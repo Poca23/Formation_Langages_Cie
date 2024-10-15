@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Définissez vos premières variables</title>
+    <link rel="stylesheet" href="../../style.css">
+    <script src=""></script>
+</head>
+
+<body>
+    <h2><a href="../partie1MaitrisezLesBasesDeJava.html">Définissez vos premières variables</a></h2>
+    <h3>Définissez vos premières variables : </h3>
+    <p>Alors que le projet Epicrafter’s Journey vit ses premiers jours, une équipe a été constituée. Laissez-moi vous
+        présenter
+        ses membres :
+    </p>
+    <br>
+    <ul>
+        <li>Jenny est une professionnelle expérimentée dans le domaine de la gestion de projet. Elle a travaillé dans
+            plusieurs
+            entreprises de développement de jeux vidéo avant de rejoindre votre équipe.</li>
+        <li>Marc est un développeur senior avec une expertise approfondie dans la programmation Java. Il a une solide
+            expérience
+            dans la gestion d'équipes techniques et la direction de projets de grande envergure.
+        </li>
+    </ul>
+    <br>
+    <p>Après votre première rencontre, Marc souhaite vous faire monter en compétences avant de vous lancer concrètement
+        dans le
+        bain. Jenny décale donc le planning et vous laisse quelques jours pour vous préparer avant le lancement des
+        grandes
+        manœuvres !</p>
+    <br>
+    <p> Me préparer ? Mais comment ?</p>
+    <br>
+    <p>Marc vous explique :
+        <br><br>
+        Tu vas te préparer une boîte à outils. Tu sais, un développeur est comme un artisan. Face à un nouveau chantier,
+        l'artisan va préparer ses outils pour réaliser son travail, et pour cela il fera le tour de son atelier pour
+        vérifier ce
+        qu’il a à disposition.
+        <br><br>
+        L’idée est saisie ! Faisons le tour de l’atelier Java dans ses premiers chapitres afin de nous permettre le
+        moment
+        venu
+        de choisir le bon outil pour la bonne tâche.
+    </p>
+    <h4>Découvrez les variables :</h4>
+    <p>Quel est le premier outil de notre atelier qui mérite d’être examiné ? Pour cela demandons-nous ce que fait
+        fondamentalement un programme ?
+        <br><br>
+        Exécuter du code ?
+
+        Bonne tentative ! Je ne peux pas vous donner tort, mais soyons plus précis. Répondre à cette question n’est pas
+        si
+        simple, voilà mon avis : fondamentalement, un programme traite des données.
+        <br><br>
+        Cette définition me plaît car elle fait ressortir deux points :
+    </p>
+    <br>
+    <ul>
+        <li>Un programme implique des <strong>données</strong>.</li>
+        <li>Un programme implique des <strong>traitements</strong>.</li>
+    </ul>
+    <br>
+    <p>Commençons par parler des données. Les programmes que nous développons doivent être en mesure de manipuler de
+        l’information ou bien de la donnée. En tant qu’être humain, nous sommes constamment en train de traiter de
+        l’information. Nos différents sens nous permettent de capter l’information puis notre cerveau l'interprète ce
+        qui
+        nous
+        amène à agir d’une façon ou d’une autre. Nous retenons très brièvement certaines informations tandis que nous
+        gardons
+        précisément en mémoire d’autres informations.
+        <br><br>
+        Un programme devra se comporter comme notre cerveau et donc manipuler de l’information.
+    </p>
+    <br>
+    <p>Comment je peux faire ça avec le langage Java ?
+    </p>
+    <br>
+    <p>Premièrement grâce à des <strong>variables</strong> ! Voilà le premier outil que nous devons savoir utiliser. Une
+        <strong>variable</strong> est un
+        <strong>espace
+            mémoire du système d'exploitation qui contient une information</strong>.
+        <br><br>
+        Comparons les variables à des boîtes. Imaginez une boîte dans laquelle nous allons ranger quelque chose et
+        celle-ci
+        sera
+        étiquetée avec un <strong>nom</strong>.
+        <br><br>
+        Étant donné que <u>le langage Java est typé</u>, nous ne pourrons pas nous contenter de donner uniquement une
+        étiquette
+        (un
+        nom) à notre boîte. Nous allons devoir également <strong>indiquer sa forme, autrement dit son type</strong>.
+
+        Retenez d’ores et déjà ce point clé, <strong>une variable se définit par un nom ET un type</strong>.
+    </p>
+    <br>
+    <p>Maintenant j’attire votre attention sur <u>3 aspects</u> : <strong>la
+            déclaration</strong>, <strong>l’affectation</strong> et <strong>l’initialisation
+            d’une
+            variable</strong>.</p>
+    <br>
+    <ul>
+        <li> <strong>Déclarer</strong> une variable correspond au moment où l’on indique le type et le nom de la
+            variable. Pour reprendre
+            notre
+            exemple, on choisit <u>la forme</u> de la boîte et on y colle l’étiquette avec <u>le nom</u>.</li>
+        <br>
+        <li>
+            <strong>Affecter</strong> une donnée à une variable c’est lorsque l’on <u>met un objet dans la boîte</u>.
+            C’est
+            possible grâce à
+            <strong>l’opérateur
+                d’affectation : =</strong>.
+        </li>
+        <br>
+        <li><strong>Initialiser</strong> une variable correspond au moment où l’on <u>insère une donnée pour la première
+                fois</u>. C’est donc <strong>la
+                première
+                affectation</strong>.</li>
+    </ul>
+    <br>
+    <p> Parfois la déclaration et l'initialisation se font lors de la même instruction, mais rappelez-vous que ce sont
+        deux
+        choses différentes.
+        <br><br>
+        Enfin une variable possède <strong>une portée</strong>, ce qui signifie qu’elle sera <u>utilisable uniquement
+            dans
+            une certaine zone
+            de
+            code</u>.
+        <br><br>
+        Notre boîte est rangée dans une pièce. En dehors de la pièce on ne la voit plus et on pourrait
+        dire
+        qu’elle
+        est
+        hors de notre portée. De la même façon, lorsqu'une variable est déclarée dans un bloc de code, elle est ensuite
+        disponible uniquement dans ce bloc.
+        <br><br>
+        <strong><u>En Java, un bloc de code est délimité par des accolades { }.</u></strong>
+        <br><br>
+        Jusque-là j’arrive à suivre, et dans la pratique ? Car je n’ai pas vu une seule ligne de code là.
+        <br><br>
+        Vous avez raison, j’y arrive. Pour ce faire, laissez-moi vous présenter les types primitifs.
+    </p>
+    <h3>Comprenez les types primitifs :</h3>
+    <p>Un type permet de définir, symboliquement parlant, la forme de notre variable. Java nous offre 8 types dits
+        primitifs.
+        Retenons que c’est la façon la plus simple de typer une donnée. Mais assez parler, retrouvez-moi dans la
+        démonstration
+        ci-dessous : (c.f IDE Eclipse : C:\Users\clair\OneDrive\Bureau\TRAVAIL\Workspace-pro-web\ej\src\ej)</p>
+    <br>
+    <p><strong>Que pouvons-nous retenir de cette démonstration ?</strong></p>
+    <br>
+    <ul>
+        <li>Eclipse nous permet de créer rapidement un projet minimal où nos fichiers Java seront organisés dans des
+            <strong>packages</strong>.
+            Un
+            package est comme un dossier où l’on range nos fichiers.
+        </li>
+        <br>
+
+        <li>Chaque <strong>instruction</strong> Java se termine par le <strong>caractère ;</strong>.</li>
+        <br>
+        <li>La <strong>fonction</strong> <strong><u>public static void main(String[] args) { }</u></strong> est le
+            <strong>point
+                d’entrée de notre programme</strong>. Une
+            <u>fonction</u> est un
+            <strong>bloc de code permettant d’exécuter un traitement</strong>.
+        </li>
+        <br>
+        <li>On déclare une <strong>variable</strong> avec la <u>syntaxe suivante :</u>
+            <br>
+            <strong>int valeur</strong>
+        </li>
+        <br>
+        <li>Les variables qui utilisent un type primitif possèdent une valeur par défaut. Ainsi une variable de type int
+            vaut 0
+            par
+            défaut.</li>
+        <li>On déclare et initialise une variable avec la syntaxe suivante : int valeur = 5;</li>
+        <li>On change la valeur d'une variable avec la syntaxe suivante : valeur = 10;</li>
+        <li> Le mot-clé <strong>final</strong> permet de rendre immuable une variable. La valeur de la variable est
+            définie une fois et
+            ne peut
+            plus
+            être changée ensuite.</li>
+    </ul>
+    <br>
+    <p>Lors de la création du projet <u>nous n’avons pas coché la case</u> <strong>Create module-info.java
+            file</strong>, cela correspond à une
+        fonctionnalité qui est arrivée à partir de la version 9 de Java que nous ne traiterons pas dans ce cours.</p>
+    <br>
+    <p>Tandis que nous parlons de variables numériques sachez que l’on peut y appliquer les opérateurs arithmétiques
+        habituels
+        : +, -, *, /
+        <br><br>
+        Par exemple : (c.f IDE Eclipse : C:\Users\clair\OneDrive\Bureau\TRAVAIL\Workspace-pro-web\ej\src\ej)
+    </p>
+    <br>
+    <p>Voici un tableau reprenant les 8 types et une description associée :</p>
+    <img src="../../assets/lessonsOpenclassroomsJavatypesPrimitifs.png" alt="lessonsOpenclassroomsJavatypesPrimitifs">
+
+    <p>Pour retrouver plus de détails sur ces 8 types primitifs, je vous encourage <a
+            href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html" target="_blank">à
+            consulter la documentation Java</a>.
+        <br><br>
+        Sympa tout ça, n’est-ce pas insuffisant 8 types pour gérer toutes les possibles informations qui arrivent dans
+        un
+        programme ?
+        <br><br>
+        Bonne remarque ! C’est en effet insuffisant, allons découvrir <strong>les types complexes</strong>.
+    </p>
+    <h3>Comprenez les types complexes :</h3>
+    <p>Comment gérer tous les types d’information possibles et inimaginables ? La solution qu'apporte un langage de
+        programmation à cette problématique sera des plus importantes.
+        <br><br>
+        Il est certain qu’il faut une solution dynamique. Autrement dit, puisqu’il serait impossible de définir à
+        l’avance tous
+        les types de données possibles, <strong><u>il est crucial de pouvoir définir ses propres types au fur et à
+                mesure</u></strong>.
+        <br>
+        Et Java
+        nous
+        fournit un tel outil !
+        <br><br>
+        Attends, tu nous parles de quel outil ?
+    </p>
+    <br>
+    <p>Le langage Java applique le paradigme de programmation objet. Bien que je ne veuille pas trop anticiper sur la
+        seconde
+        partie du cours qui va expliquer ce paradigme en long et en large, sachez qu’un <strong>objet</strong> est un
+        <strong>ensemble de données
+            et de
+            traitements</strong>.
+    </p>
+    <br>
+    <p>Un paradigme de programmation est une façon de traiter les problématiques de programmation afin d’y apporter une
+        réponse
+        pertinente.</p>
+    <br>
+    <p>Dans le contexte des variables, le point clé est l’expression <strong>“ensemble de données”</strong>. En fait, un
+        objet peut
+        assembler
+        <u>plusieurs données ensemble</u>. On peut ainsi définir des <strong>données complexes</strong> et ainsi des
+        <strong>types complexes</strong>. Le
+        point
+        étant
+        qu’ <strong>un objet</strong> est <strong>un type</strong>.
+    </p>
+    <br>
+    <p>Voyons cela ensemble dans la démonstration suivante :(c.f IDE VSCode,
+        Lessons\coursOpenclassrooms\apprendreAProgrammerEnJava\lessonsOpenclassroomsJavaApplicationEJ)</p>
+    <br>
+    <p>Qu’avons-nous pu voir ensemble ?</p>
+    <br>
+    <ul>
+        <li><u>L’instruction</u> <strong>String langage = “Java”;</strong> permet de <strong>déclarer</strong> et
+            <strong>initialiser</strong> en <strong><u>une
+                    seule fois</u></strong>
+            une variable
+            contenant une
+            <strong>chaîne de caractères</strong>.
+        </li>
+        <br>
+        <li><u>L’instruction</u> <strong>String phrase = langage + " est un langage de programmation.";</strong> permet
+            de <strong>concaténer</strong> la
+            variable
+            langage
+            avec une autre chaîne de caractères.</li>
+        <br>
+        <li><u>L’instruction</u> <strong>System.out.println(phrase);</strong> permet d’<strong>afficher</strong> la
+            chaîne de caractères
+            <strong>dans la console</strong>.
+        </li>
+    </ul>
+    <br>
+    <p>
+        <u>Contrairement aux types primitifs</u>, <strong>les types complexes n'ont pas de valeur par défaut</strong>.
+        Ainsi Java affecte
+        <strong>null</strong> à
+        la
+        variable lorsqu’elle a été déclarée mais non initialisée.
+    </p>
+    <br>
+    <p>Ce simple exemple est pertinent pour découvrir les types complexes.
+        <br><br>
+        Mais c’est bien dans la deuxième partie de ce
+        cours
+        que nous verrons toute la puissance de ces types grâce à la <strong>programmation orientée objet</strong> !
+    </p>
+
+    <h3>Utilisez un tableau de variables :</h3>
+
+    <p>Pour gérer un <strong>ensemble de données d’un même type</strong>, le langage Java comme de nombreux autres
+        langages de
+        programmation
+        implémente les <strong>tableaux (array en anglais)</strong>.
+        <br><br>
+        Un tableau possède un nombre défini d’éléments. Chaque case du tableau peut contenir un élément. Chaque élément
+        est
+        du
+        même type.
+    </p>
+    <br>
+    <p>Observez le code suivant : int[] unTableauDEntier = {5,10,15,20};</p>
+
+    <br>
+    <ul>
+        <li>J’ai déclaré un <strong>tableau nommé</strong> unTableauDEntier contenant des entiers.</li>
+        <li>J’ai <strong>affecté 4 valeurs de type int</strong>, à savoir 5, 10, 15 et 20.
+        </li>
+    </ul>
+    <br>
+
+    <p>Je peux <strong>accéder à une case du tableau</strong> en <strong>indiquant l’indice de cette dernière</strong>
+        grâce à la
+        notation suivante :
+        <strong>unTableauDentier[0];</strong>
+    </p>
+    <br>
+    <p><strong>La première case a pour indice 0</strong>, la deuxième l’indice 1, etc.</p>
+    <br>
+    <p>Il est également possible de déclarer et initialiser un tableau où chaque case est vide avec la notation
+        suivante :
+        <br>
+        <strong>char[] unTableauDeChar = new char[3];</strong>
+    </p>
+    <br>
+    <ul>
+        <li>J’ai déclaré un tableau <strong>nommé unTableauDeChar</strong> contenant des <u>caractères</u>.</li>
+        <li>J’ai utilisé le <strong>mot-clé new</strong> pour <strong>initialiser 3 cases dans le tableau</strong>.</li>
+    </ul>
+    <br>
+
+    <p>Le mot-clé <strong>new</strong> a également d’autres manières d’être utilisé. Nous le verrons dans la deuxième
+        partie du cours.
+        <br><br>
+        Nous pouvons ensuite affecter une valeur à chaque case. Par exemple : (c.f IDE VSCode,
+        Lessons\coursOpenclassrooms\apprendreAProgrammerEnJava\lessonsOpenclassroomsJavaApplicationEJ)
+    </p>
+    <br>
+    <p>Avant de conclure cette section, sachez que pour être précis il s’agit ici d’un <strong>tableau
+            unidimensionnel</strong>. Il est
+        possible
+        de créer des tableaux à plusieurs dimensions. Voyez la notation suivante :</p>
+    <br>
+    <p>int[][] unTableauBiDimentionnel = new int[2][3];</p>
+    <br>
+    <p>Dans cet exemple il y a donc <strong>6 cases</strong> avec pour indices : <strong>[0][0], [0][1], [0][2], [1][0],
+            [1][1],
+            [1][2]</strong>.</p>
+    <br>
+    <p>Voyons désormais ensemble la dernière notion liée aux variables pour ce chapitre.</p>
+
+    <h3>Utilisez le mot-clé var pour définir vos variables :</h3>
+
+    <p>Une des caractéristiques du <strong>Java est que c’est un langage typé</strong>. Nous l’avons bien vu dans les
+        sections
+        précédentes,
+        impossible de déclarer une variable sans indiquer le type. Cette contrainte a l’avantage de forcer le
+        développeur à
+        mieux comprendre ce qu’il code mais il faut reconnaître que cela peut aussi alourdir le code.
+        <br><br>
+        Ainsi depuis <strong>la version 10 de Java</strong> le mot-clé <strong>var</strong> a été introduit pour
+        simplifier l’écriture du
+        code.
+        <br><br>
+        Ce mot-clé peut se substituer au type lors de la déclaration de la variable. Par exemple :
+
+        <br><br>
+        <strong>var unEntier = 5;</strong>
+
+        <br><br>
+        Mais c’est trop fort ! Pourquoi tu n’en as pas parlé dès le début ?!
+        <br><br>
+
+        Pour la bonne raison qu’il faut utiliser cette possibilité avec précaution. Dans <strong>le bytecode
+            généré</strong>, <u>le
+            compilateur
+            aura
+            défini le bon type à la place du mot-clé var</u>.
+        <br><br>
+        La condition est que <strong>lors de la déclaration</strong> de la variable
+        cette
+        dernière
+        soit également <strong>initialisée</strong> pour permettre au compilateur de <strong>déterminer le type</strong>
+        correspondant.
+        <br><br>
+
+        Au vu de cette particularité, soyez <strong>intransigeants</strong> sur les deux points suivants concernant
+        l’<strong>utilisation du
+            mot-clé
+            var</strong>
+        :
+    </p>
+    <br>
+    <ul>
+        <li>Les <strong>variables</strong> doivent être <strong>utilisées dans un bloc de code restreint</strong> pour
+            limiter la confusion dans la
+            lecture du
+            code.</li>
+        <br>
+        <li>Les <strong>variables</strong> doivent avoir un <strong>nom à forte valeur sémantique</strong> pour
+            compenser l’indication que fournit
+            habituellement
+            le
+            type.</li>
+    </ul>
+    <br>
+    <p> Une dernière information, <strong>une ligne d’instruction qui commence par //</strong> est une ligne de
+        <strong></strong>commentaire.
+        <br>
+        Elle n’est
+        <strong>pas
+            exécutée</strong> et sert donc à écrire un <strong>texte informatif</strong>. Pour mettre en commentaire
+        <strong>plusieurs lignes,
+            utilisez la
+            syntaxe
+            /*
+            puis */</strong> .
+        <br><br>
+        Voici un lien vers <a href="https://www.oracle.com/java/technologies/javase/codeconventions-comments.html"
+            target="_blank">la documentation traitant de ce sujet de format</a>.
+    </p>
+
+    <h3>À vous de jouer :</h3>
+    <h4>Contexte :</h4>
+
+    <p>Marc :
+        <br><br>
+        Est-ce que tu connais le fameux Hello World ? C’est la première chose que fait généralement un développeur avec
+        un
+        nouveau langage de programmation. Je te laisse me montrer ça !
+        <br><br>
+        Enthousiaste de cette première tâche qui vous est confiée, vous créez un projet dans le but d’afficher le texte
+        Hello
+        World dans une console.
+    </p>
+
+    <h4>Consignes :</h4>
+    <p>Créez un fichier Main.java et ajoutez y le code minimal :
+    </p>
+
+    <br><br>
+    public class Main {
+    }
+    <br><br>
+    <p>Puis ajouter la fonction main qui est le point d’entrée de tout projet Java.</p>
+    <br>
+    <p>Au sein de cette fonction déclarez une variable nommée texte de type String et affectez y la valeur “Hello
+        World”.</p>
+    <br>
+    <p>Ensuite affichez cette valeur dans la console.</p>
+    <br>
+    <p>Retrouvez la correction dans ce <a
+            href="https://github.com/OpenClassrooms-Student-Center/8383791-apprenez-a-programmer-en-java/tree/p1c3"
+            target="_blank">repository GitHub</a>.</p>
+
+
+
+
+
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    (c.f IDE VSCode, Lessons\coursOpenclassrooms\apprendreAProgrammerEnJava\lessonsOpenclassroomsJavaApplicationEJ)
+    (c.f IDE Eclipse, C:\Users\clair\OneDrive\Bureau\TRAVAIL\Workspace-pro-web\ej\src\ej)
+
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Liste en HTML</title>
+</head>
+
+<body>
+
+
+    <!--  On va vouloir créer une liste non-ordonnées  -->
+    <!--
+    
+    -On aura besoin de créer un élément <ul> </ul>;
+    -A l'intérieur de cet élément ul un élémnt <li> </li>;
+    -On enregistrera et on et en ligne sur le serveur.
+
+Nous avons bien nos éléments en liste
+-->
+
+    <ul>
+        <li>Pomme</li>
+        <li>Vélo</li>
+        <li>Guitare</li>
+    </ul>
+    --------------------------------------------------------------------------
+    <!--  On va vouloir créer une liste ordonnées  -->
+    <!--
+        
+        -On aura besoin de créer un élément <ol> </ol>;
+        -A l'intérieur de cet élément ul un élémnt <li> </li>;
+        -On enregistrera et on et en ligne sur le serveur.
+    
+    Nous avons bien nos éléments en liste ordonnée 
+    avec des chiffes qui s'affichent à chaque début d'élément.
+    On peut changer de comportement en mettant soit des chiffres ou des lettres
+    en utilisant l'attribut type des listes ordonnées. 
+    
+    Cet attribut peut prendre cinq vaaleurs différentes:
+    - 1 valeur par défaut, fait apparaître des numéros devant chaque élément de la lsite;
+    - I fait apparaître des chiffres romains majuscules devant chaque élément de la lsite;
+    - i fait apparaitre des chiffres romains minuscules devant chaque élément de la lsite;
+    - A fait apparaître des lettres majuscules devant chaque élément de la lsite;*
+    - a fait apparaître des lettres minuscules devant chaque élément de la lsite.
+
+    On va appliquer chaque exemple. 
+    L'attribut type se place dans la balise ouvrante de l'élément "ol"
+    -->
+
+    <!--Chiffres-->
+
+    <ol type="1">
+        <li>Introduction</li>
+        <li>Partie 1</li>
+        <li>Partie 2</li>
+        <li>Partie 3</li>
+        <li>Conclusion</li>
+    </ol>
+
+    <!--chiffres romains majuscules-->
+    <ol type="I">
+        <li>Introduction</li>
+        <li>Partie 1</li>
+        <li>Partie 2</li>
+        <li>Partie 3</li>
+        <li>Conclusion</li>
+    </ol>
+
+    <!--chiffres romains minuscules-->
+    <ol type="i">
+        <li>Introduction</li>
+        <li>Partie 1</li>
+        <li>Partie 2</li>
+        <li>Partie 3</li>
+        <li>Conclusion</li>
+    </ol>
+
+    <!--lettres majuscules-->
+    <ol type="A">
+        <li>Introduction</li>
+        <li>Partie 1</li>
+        <li>Partie 2</li>
+        <li>Partie 3</li>
+        <li>Conclusion</li>
+    </ol>
+
+    <!--lettres minuscules-->
+    <ol type="a">
+        <li>Introduction</li>
+        <li>Partie 1</li>
+        <li>Partie 2</li>
+        <li>Partie 3</li>
+        <li>Conclusion</li>
+    </ol>
+
+    --------------------------------------------------------------------------
+    <!--  On va vouloir créer une liste de définitions  -->
+
+    <!--
+-On créera un élément <dl></dl> pour liste de définitions;
+-Ensuite à l'intérieur de "dl" l'élement <dt></dt>, l'élément à définir;
+-Et au même niveau que l'élément "dt" l'élément <dd></dd>, la définition de l'élément en soi;
+-On enregistre;
+-On envoi sur le navigateur.
+
+La mise en forme est différente, on pourra régler en css.
+Cette liste sert pour des description en HTML.
+-->
+
+
+    <dl>
+        <dt>HTML</dt>
+        <dd>HTML signifie Hyper Text Markup Language</dd>
+    </dl>
+
+    --------------------------------------------------------------------------
+    <!--  On va vouloir imbriquer des listes entre elles  -->
+    <!--
+-On créera l'élément "ol";
+-Puis trois élément "li" dans l'élément "ol";
+
+On voudra créer ensuite une liste non-ordonnées à l'intérieur de ces listes ordonnées :
+
+  On va imbriquer un des élément de la liste non-ordonnées à l'intérieur d'un des éléments de la liste ordonnée,
+  à l'intérieur d'un élément "li" qui se trouve à l'intéieur de l'élément "ol".
+
+On enregistre et on envoie sur le navigateur.
+  -On peut bien voir que notre liste non-ordonnée est à l'intérieur de notre liste ordonnée;
+  -Les puces sont aussi un peu différentes .
+! Attention à bien placer à la fin de la balise ouvrante li l'élément de la liste ordonnée ou non ordonnée,
+  juste avant la balise fermant de l'élément li.!
+
+  !  L'indentation est importante pour une meilleur lisibilité  !
+-->
+
+    <ol>
+        <li>Partie I
+            <ul>
+                <li>Définitions</li>
+                <li>Auteurs</li>
+                <li>Exemples</li>
+            </ul>
+        </li>
+        <li>Partie II</li>
+        <li>Partie III</li>
+    </ol>
+
+</body>
+
+</html>

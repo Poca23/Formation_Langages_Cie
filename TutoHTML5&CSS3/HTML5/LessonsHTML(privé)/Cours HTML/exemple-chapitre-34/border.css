@@ -1,0 +1,56 @@
+/* Exemples des 8 bordures en css */
+h1 {
+  width: 30%;
+  margin: auto;
+  text-align: center;
+  font-family: fantasy;
+  font-weight: 100;
+  background-color: brown;
+  text-decoration: underline;
+  border: 8px ridge rgb(7, 173, 54);
+  color: rgb(176, 203, 22);
+}
+.divprincipal {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+p {
+  margin: 10px;
+  width: 600px;
+  height: 50px;
+  position: relative;
+  float: left;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.827);
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-weight: 100;
+}
+.psolid {
+  border: 10px solid rgb(255, 8, 0);
+}
+.pdotted {
+  border: 10px dotted rgb(255, 145, 0);
+}
+.pdashed {
+  border: 10px dashed rgb(255, 183, 0);
+}
+.pdouble {
+  border: 10px double rgb(147, 164, 16);
+}
+.pgroove {
+  border: 10px groove rgb(19, 164, 16);
+}
+.pridge {
+  border: 10px ridge rgb(16, 164, 147);
+}
+.pinset {
+  border: 10px inset rgb(16, 70, 164);
+}
+.poutset {
+  border: 10px outset rgb(122, 16, 164);
+}

@@ -1,0 +1,76 @@
+/*  Les propriétés de type "text"  */
+/*------------------------------------------------------------*/
+/*On va aligner notre titre au centre*/
+/*
+-On ajoute notre sélecteur : h1
+-On lui ajoute la propriété : text-align
+-Et on lui donne la valeur : center (pour centrer le titre)
+-On enregistre et on envoie
+Le titre est bien aligné au centre
+*/
+h1{
+    text-align: center;
+    text-decoration:underline;
+    text-shadow: 0px 0px 6px RGBa(0,0,250,0.5)
+}
+/*------------------------------------------------------------*/
+/*On va aligner notre premier paragraphe p1 sur la droite*/
+/*
+-On ajoute un point pour bien cibler notre sélecteur attibué : .p1
+-On le fait suivre d'accolades 
+-Dans lesquelles on va ajouter la propriété : text-align
+-Et on lui attribuera la valeur : right (droite)
+-On enregistre et on affiche immédiatement
+*/
+.p1{
+    text-align: right;
+    text-decoration: line-through;
+}
+/*------------------------------------------------------------*/
+/*On va utiliser "text-transform" sur notre deuxième paragraphe*/
+/*
+-On ajoute un point pour bien cibler notre sélecteur attibué : .p2 
+-On le fait suivre d'accolades 
+-Dans lesquelles on va ajouter la propriété : text-transform
+-Et on lui attribuera la valeur :
+-On enregistre et on affiche immédiatement
+ */
+.p2 {
+    text-transform: uppercase;/*tout en majuscule*/
+    text-decoration: overline;
+    text-indent: 25%;
+    text-shadow: -40px -12px 3px RGBa(255,0,0,1);
+}
+.p3 {
+    text-transform:lowercase;/*tout en minuscule*/
+    text-indent: 100px;
+}
+.p4 {
+    text-transform:capitalize;/*premier lettre de chaque mot en majuscule*/
+    text-indent: 50em;
+}
+.p5,a {
+    text-decoration:none;/*On enlève la décoration qui souligne le texte en question*/
+    text-indent: 200px;
+}
+/*------------------------------------------------------------*/
+/*On va utiliser "text-transform" sur nos paragraphes
+(sauf h1 et p1 car propriété "text-align" pas compatible avec)*/
+/*
+-On ajoute notre sélecteur : 
+-On le fait suivre d'accolades 
+-Dans lesquelles on va ajouter la propriété : text-indent
+-Et on lui attribuera la valeur :
+-On enregistre et on affiche immédiatement
+/*------------------------------------------------------------*/
+/*On va utiliser "text-shadow" sur le deuxième et sixième paragraphe*/
+/*
+-On ajoute notre sélecteur 
+-On le fait suivre d'accolades 
+-Dans lesquelles on va ajouter la propriété : text-shadow
+-Et on lui attribuera la valeur : horizontal, vertical, propagation, couleur de l'ombre
+-On enregistre et on affiche immédiatement
+/*------------------------------------------------------------*/
+.p6{
+    text-shadow: 16px 8px 6px RGBa(0,255,0,1);
+}

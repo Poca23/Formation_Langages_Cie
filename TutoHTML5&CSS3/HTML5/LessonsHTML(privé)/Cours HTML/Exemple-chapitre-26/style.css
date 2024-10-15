@@ -1,0 +1,35 @@
+/*  Les elements html div et span  */
+
+/*Element div:
+On va appliquer un style à nos deux parapgraphe à l'intérieur de notre élément div:
+(Pour bien le vérifier on ajoutera un élément paragraphe en dehors de l'élément <div>)
+-On ajoute le selecteur de la class : .div-para;
+-On lui donnera : background-color en green (vert);
+-Ainsi qu'un texte gras: bold (gras);
+-On enregistre et on envoie.
+
+On obtient bien donc un fond vert et un texte en gras.
+Le pragraphe en dehoors de notre div n'a pas été touché par le code css,
+car il ne s'applique pas sur lui.
+*/
+
+.div-para{
+    background-color: rgb(141, 230, 141);
+    font-weight: bold;
+}
+/*----------------------------------------------------*/
+/*Element span:
+On veut juste mettre en forme le mot "troisième":
+-Nous ne pouvons pas le cibler da façon simple,
+car pas d'élément qui pourrait servir de selecteur ensuite en css;
+-On va donc encadrer le mot "troisième" avec l'élément <span>;
+-On attribuera un class à cet élément span avec la valeur: span-trois;
+-On donnera à ce sélecteur la valeur : blue (bleue);
+-On enregistre et on envoie.
+
+Notre mot "troisième" est bien en bleu,
+car on a pu le cibler précisément grace à notre élément "span".
+*/
+.span-trois{
+    color:rgb(84, 84, 223);
+}

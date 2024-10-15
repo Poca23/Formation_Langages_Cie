@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appréhendez la logique de programmation</title>
+    <link rel="stylesheet" href="../../style.css">
+    <script src="apprehendezLaLogiqueDeProgrammation.js"></script>
+</head>
+
+<body>
+    <h2><a href="../index.html" target="_blank">Appréhendez la logique de programmation</h2></a>
+    <p>Vous avez découvert le langage JavaScript, et vous connaissez désormais sa syntaxe. Prochaine étape ? Comprendre
+        la
+        logique de programmation de JavaScript ! Pour cela, je vous propose de réaliser un petit projet. 🚀</p>
+
+    <h4>Découvrez votre mission :</h4>
+    <p><strong>Votre but est de coder une application en ligne nommée “AzerType”.</strong>
+        <br><br>
+        L’objectif de cette application est
+        d’apprendre à
+        <strong>taper plus vite au clavier</strong>, en tapant le plus rapidement possible et dans un temps imparti des
+        mots proposés par
+        l’application.
+        <br><br>
+        Nous allons réaliser l’intégralité de ce projet ensemble.
+        <br>
+        Voici une capture d’écran pour vous montrer un aperçu
+        du
+        projet finalisé :
+    </p>
+    <img src="../../assets/screenAppliAzerType.png" alt="screenAppliAzerType">
+
+    <p>Mais commençons par le début : écrire notre premier fichier JavaScript !
+        <br><br>
+        Dans cette deuxième partie du cours, vous allez rédiger un programme informatique qui répond à <strong>une
+            logique de
+            programmation :</strong> votre navigateur est capable de comprendre et d’interpréter ce programme.
+        <br><br>
+        Avant de rentrer dans les lignes de code, arrêtons-nous sur quelques notions clés pour mieux appréhender le
+        concept de
+        logique de programmation.
+    </p>
+
+    <h4>Appréhendez la notion d’algorithme :</h4>
+
+    <p>En tant que développeur, vous rédigez du code dans le but de développer un programme informatique. Vous allez
+        donc
+        écrire, en JavaScript, un ensemble d’instructions et d’opérations qui seront exécutées par un ordinateur dans un
+        but
+        précis. Dans notre cas, nous souhaitons coder un algorithme capable de :</p>
+    <ul>
+        <li> proposer des mots à un utilisateur ;</li>
+        <li>vérifier que les mots entrés par l’utilisateur sont corrects.</li>
+    </ul>
+    <br>
+    <p>Un <strong>algorithme</strong> ? Mais qu’est-ce que c’est ?</p>
+    <p>Un <strong>algorithme</strong> est une <strong>façon de concevoir</strong> les étapes d’un code <strong>dans le
+            but de résoudre</strong> un
+        problème donné.</p>
+
+    <p>Dans notre cas, l’application AzerType va proposer des mots, et l’utilisateur devra taper ces mots correctement
+        avec son
+        clavier.
+        <br>
+        Notre problème est donc le suivant : comment faire comprendre cela à l’ordinateur ?
+        <br><br>
+        L’idéal serait de lui fournir une liste d’étapes pour lui expliquer, pas à pas, chaque instruction qu’il doit
+        exécuter.
+        Eh bien un algorithme, c’est exactement ça !
+        <br><br>
+        Notre algorithme pourrait donc ressembler à cette suite d’étapes :
+    </p>
+    <br><br>
+    <ul>
+        <li><strong>Étape 1 :</strong> L’application propose un mot.</li>
+        <li><strong>Étape 2 :</strong> L’utilisateur tape ce mot au clavier.</li>
+        <li><strong>Étape 3 :</strong> <strong><u>Si</u></strong> le mot de l’utilisateur est exactement le même que le
+            mot de l’application,
+            <strong><u>alors</u></strong> on ajoute un
+            point au
+            score.
+        </li>
+        <li><strong>Étape 4 :</strong> On passe au mot suivant.</li>
+        <li><strong>Étape 5 :</strong> On <strong><u>recommence</u></strong> à l’étape 1, <strong><u>jusqu’à ce
+                    que</u></strong> le temps soit
+            écoulé. </li>
+    </ul>
+    <br>
+    <p>Je vous rassure, nous n’irons pas plus loin sur la notion d’algorithmique dans ce cours. Tout ce que vous avez
+        besoin de
+        retenir, c’est qu’un algorithme vous aidera à bien penser vos étapes en amont de votre code. Toutefois, si vous
+        souhaitez en savoir plus, n’hésitez pas à consulter le cours Découvrez <a
+            href="https://openclassrooms.com/fr/courses/7527306-decouvrez-le-fonctionnement-des-algorithmes">le
+            fonctionnement des
+            algorithmes</a>.</p>
+
+    <h3>Organisez votre code grâce aux blocs de code</h3>
+
+    <p>Dans les chapitres précédents, nous avons écrit des lignes de code les unes à la suite des autres. Maintenant que
+        nous
+        suivons une logique de programmation, cette logique doit transparaître dans l’organisation de votre code. C’est
+        là
+        qu’interviennent <strong>les blocs de code</strong>.</p>
+    <br>
+    <p>Les blocs de code sont des <strong>regroupements de lignes de code</strong>. Ils permettent d’organiser votre
+        code et de clarifier
+        à quoi
+        sert un groupe de lignes de code. En JavaScript, ils sont <strong>délimités par des accolades { }</strong> .</p>
+    <br>
+    <p>Voici un exemple de bloc de code : (cf fichier JavaScript)</p>
+    <br>
+    <p>Ici, j’ai utilisé un bloc de code pour déclarer la variable monChiffre.</p>
+    <br>
+    <p>Mais…. Il est un peu seul, ton bloc de code, non ?</p>
+    <br>
+    <p>Pour le moment, oui. 😃 Mais dans un programme informatique, les blocs de code sont associés à des structures
+        conditionnelles et à des fonctions. Je ne rentre pas plus dans les détails pour l’instant, car vous allez
+        justement le
+        découvrir dans cette partie en construisant votre premier fichier JavaScript.</p>
+    <h4>Installez votre environnement de travail :</h4>
+
+    <h4>Utilisez un éditeur de code :</h4>
+    <p>Jusqu’ici, nous avons utilisé l’éditeur de code en ligne CodePen. Mais pour démarrer notre nouvelle mission, nous
+        aurons
+        besoin d’un éditeur plus avancé. Vous l’avez compris : on passe aux choses sérieuses !</p>
+    <br>
+    <p>Personnellement, j’utiliserai Visual Studio Code dans ce cours. Il s’agit d’un IDE (Integrated Development
+        Environment,
+        ou environnement de développement intégré, en français). Un IDE permet de regrouper tout ce dont nous aurons
+        besoin
+        pour
+        écrire notre code. Ainsi, tous les fichiers seront au même endroit, et le code sera coloré pour faciliter la
+        lecture.</p>
+
+    <br>
+    <p>Si vous le souhaitez, vous pouvez choisir d’autres IDE similaires, comme IntelliJ ou Atom. Vous avez fait votre
+        choix ?
+        <br>
+        Alors découvrons ensemble les fichiers sur lesquels vous allez travailler.
+    </p>
+    <br>
+    <p> Une fois votre éditeur lancé, votre première étape consiste à créer un dossier qui contiendra tous les fichiers
+        nécessaires à votre projet.</p>
+
+    <h4>Créez vos premiers fichiers :</h4>
+
+
+    <h4>Affichez la console de votre navigateur :</h4>
+</body>
+
+</html>

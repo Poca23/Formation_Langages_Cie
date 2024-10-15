@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Répétez du code grâce aux boucles</title>
+    <link rel="stylesheet" href="../../style.css">
+    <script src="repetezDuCodeGraceAuxBoucles.js"></script>
+</head>
+
+<body>
+    <h2><a href="../../Partie2EcrivezVotrePremierFichierJavaScript/index.html" target="_blank">Répétez du code grâce aux
+            boucles</a>
+    </h2>
+    <p>Dans le chapitre précédent, nous avons défini et rédigé un algorithme qui permet de tester si l’utilisateur a
+        bien
+        tapé
+        le mot proposé par l’application. Mais il arrive régulièrement d’avoir envie de répéter du code. C’est le cas
+        pour
+        notre
+        application :
+        <br><br>
+        nous voulons maintenant demander à l’utilisateur de tester un mot trois fois de suite.
+    </p>
+    <br>
+    <p> Alors, comment demander à JavaScript de réaliser ces répétitions à notre place dans le code ? La réponse est
+        dans ce
+        chapitre : en utilisant des boucles !</p>
+    <h3>Découvrez les boucles :</h3>
+    <p>En tant que développeur, vous aurez parfois besoin de faire plusieurs fois la même action sur une variable ou sur
+        une
+        partie de votre code. Dans cette situation, vous devrez utiliser des boucles.
+        <br><br>
+        Une boucle est une structure conditionnelle qui permet de répéter un certain nombre de fois du code, jusqu’à ce
+        qu’un
+        test ne soit plus vrai.
+        <br><br>
+        Rappelez-vous, dans l’exercice du chapitre précédent, nous avons déclaré un tableau qui contient trois
+        mots :
+        Cachalot,
+        Pétunia et Serviette.
+        <br><br>
+        Pour afficher chacun de ces mots, on peut donc écrire :
+    </p>
+    <br>
+    <p><u>Il existe deux principaux types de boucles :</u></p>
+    <br>
+    <ul>
+        <li><strong><u>La boucle for</u></strong> permet de répéter du code lorsque l’on sait d’avance combien de fois
+            il faudra le répéter.
+            Par exemple, si nous voulons demander <strong>exactement</strong> trois fois à l’utilisateur d’entrer un
+            mot.</li>
+        <br>
+        <li><strong><u>La boucle while</u></strong> permet de répéter du code <strong>autant de fois</strong> qu’il le
+            faut pour qu’une
+            condition ne soit plus
+            vraie.
+            Par exemple, si nous voulons redemander un mot à l’utilisateur jusqu’à ce que ce mot soit correct.
+        </li>
+    </ul>
+    <br>
+    <p>Comme toujours, je vous propose de découper notre problème en petites étapes. 😉</p>
+    <h4>Utilisez l’instruction for pour répéter du code un certain nombre de fois :</h4>
+    <p>Commençons par écrire une boucle qui affiche 0, puis 1, puis 2. Dans ce cas, nous savons à l’avance combien de
+        tours de
+        boucle nous voulons faire, <strong>un for est donc tout à fait indiqué ici</strong>.</p>
+    <br>
+    <p>Pour rédiger notre boucle for, nous allons utiliser l’instruction for (“pour”, en anglais). Cette instruction
+        sera
+        suivie d’une condition entre parenthèses dans laquelle on indiquera :</p>
+    <br>
+    <ul>
+        <li>le départ de la boucle ;</li>
+        <br>
+        <li>au bout de combien de tours la boucle devra s’arrêter.
+        </li>
+    </ul>
+    <br>
+    <p>Ouh là là… Je ne suis pas sûr d’avoir tout suivi…
+        <br><br>
+        Aucun souci, voyons en détail ce qui est écrit.
+    </p>
+    <br>
+    <ul>
+        <li>Nous avons d’abord notre <strong>for</strong>, suivi de <strong>trois instructions séparées par un point
+                virgule
+                “;”</strong>.</li>
+        <li>Ensuite, un <strong>bloc de code entre accolades</strong> : le console.log.</li>
+        <li>Ce bloc de code sera <strong>exécuté à chaque tour de boucle</strong>.</li>
+    </ul>
+    <br>
+
+    <p>Première instruction : (cf fichier JavaScript)</p>
+    <p>Ici nous <strong>définissons une nouvelle variable</strong> appelée “compteur”, et qui contient 0.</p>
+    <br>
+    <p>Deuxième instruction : (cf fichier JavaScript)</p>
+    <p>Ceci est <strong>la condition d’arrêt</strong>.
+        <br>
+        La boucle continuera tant que compteur est plus petit que 3.
+    </p>
+    <br>
+    <p>Troisième instruction :</p>
+    <p>À chaque tour de boucle, on fait évoluer la valeur de compteur. Ici, on dit que compteur vaut la valeur
+        précédente
+        de
+        compteur, plus 1.</p>
+    <br>
+    <p>Au premier tour de boucle, compteur vaut 0, puis 1, puis 2, jusqu’à ce que compteur arrive à 3 (la condition
+        d'arrêt) et
+        là, on sort de la boucle.</p>
+    <br>
+    <p>Le bloc de code entre accolades aura donc été exécuté 3 fois avec compteur ayant la valeur 0, puis 1, puis 2.
+    </p>
+    <br><br>
+    <p>Il est très courant en programmation d’utiliser une boucle for. Pour la taper plus vite, il existe donc une
+        écriture un
+        peu raccourcie. Par convention, <strong>on nomme souvent la variable compteur <u>“i” (comme
+                “indice”)</u></strong> . Et au lieu d’écrire
+        <strong>i = i+1</strong>,
+        on utilise <strong><u>l’opérateur d’incrémentation ++ </u></strong>, qui augmente la valeur d’une variable de
+        <strong>1</strong>.
+    </p>
+    <br>
+    <p>Le résultat est exactement le même.
+        <br><br>
+        Grâce à la boucle for, nous avons donc répété du code, de manière à ne pas écrire plusieurs fois la ligne de
+        codeconsole.log().
+    </p>
+
+    <h4>Utilisez l’instruction while pour répéter du code :</h4>
+    <p>La boucle for est utilisée lorsque l'on connaît en amont le nombre de tours à effectuer. Mais cela n’est pas
+        toujours
+        possible ! Dans ce cas, nous utiliserons <strong>la boucle while</strong>, qui peut s’adapter à tous les cas.
+    </p>
+    <br>
+    <p>Reprenons notre exemple de compteur avec un algorithme différent :</p>
+    <br>
+    <p><strong>Tant que</strong> le compteur n’est pas égal à 3, on augmente le compteur de 1.
+    </p>
+    <br>
+    <p>Pour rédiger cette boucle while, nous allons utiliser la structure conditionnelle while (“tant que”, en français)
+        qui
+        sera suivie d’une condition entre parenthèses.
+        <br><br>
+        Cette condition indique le moment où notre boucle doit s’arrêter.
+    </p>
+    <br>
+    <p>Nous allons donc écrire : (cf fichier JavaScript)</p>
+    <br>
+    <p>Dans le code ci-dessus :</p>
+    <br>
+    <ul>
+        <li> on <strong>déclare la variable i</strong>, que l’on initialise à zéro, avant la boucle ;</li>
+        <li> le while ne contient que <strong>la condition d’arrêt</strong> : tant que i est plus petit que 3 ;</li>
+        <li><strong>on incrémente i (<u>i va gagner +1 à chaque tour de boucle</u>)</strong> .</li>
+    </ul>
+    <br>
+    <p> Attention !
+        <br>
+        Si vous oubliez d’augmenter la valeur de i, alors la condition i < 3 sera toujours vraie, et vous aurez une
+            boucle infinie ! <br>
+            Cela peut même faire planter votre navigateur !
+    </p>
+
+    <h2 id="quiz"><a href="#sommaire">À vous de jouer !</a></h2>
+    <p>Jusqu’à maintenant, nous avons répété trois fois les mêmes instructions dans notre projet :
+    </p>
+    <br>
+    <ul>
+        <li>3 “prompts”, qui nous ont permis de demander des mots à l’utilisateur ;</li>
+        <li> 3 fois le test pour vérifier que le mot tapé par l’utilisateur est correct.
+        </li>
+    </ul>
+    <br>
+    <p>Je vous propose de factoriser ce code, c'est-à-dire de mettre en commun les parties répétées à l’aide d'une
+        boucle.
+    </p>
+
+    <h4>Étape 1 : répétez votre code avec une boucle</h4>
+    <p>Dans ce dossier GitHub, le tableau listeMots contient 3 mots : “Cachalot”, “Pétunia” et “Serviette”. Pour chacun
+        de
+        ces
+        mots, à l’aide d’une boucle for :</p>
+    <ul>
+        <li> demandez à l’utilisateur de le retaper avec prompt ;
+        </li>
+        <li>comptez un point par mot correctement tapé ;</li>
+        <li>affichez le score à la fin avec un console.log.</li>
+    </ul>
+    <br>
+    <p>Gardez en tête que l’emplacement des instructions est particulièrement important pour le fonctionnement du code !
+        Ce qui
+        se trouve dans le bloc d’instruction de la boucle est répété, mais pas ce qui est à l’extérieur.
+        <br><br>
+        Ici, votre objectif est de répéter certaines instructions comme le prompt, mais pas toutes les instructions (le
+        score,
+        lui, ne doit pas être affiché).
+    </p>
+
+    <h4>Étape 2 : proposez deux types de listes de mots</h4>
+    <p>Pour rendre le jeu plus engageant, nous voulons que l’utilisateur puisse avoir le choix entre deux listes de mots
+        différentes : une liste avec des mots et une liste avec des phrases.
+    </p>
+    <br>
+
+    <ul>
+        <li>Déclarez un tableau listePhrases qui contient 3 courtes phrases :“Pas de panique !”, “La vie, l’univers et
+            le
+            reste”,
+            “Merci pour le poisson”.</li>
+        <li>Demandez à l’utilisateur s’il veut la liste de mots ou la liste de phrases. Répétez la question tant que
+            l’utilisateur
+            n’a pas écrit “mots” ou “phrases”.
+        </li>
+        <li>Lancez votre boucle for, avec la liste que l’utilisateur a choisie.
+        </li>
+    </ul>
+    <br>
+    <p> Pour cet exercice, vous pouvez copier deux fois la boucle de jeu :</p>
+    <br>
+    <ul>
+        <li> une fois dans le if ;</li>
+        <li>une fois dans le else.</li>
+    </ul>
+    <br>
+    <p> Mais bien sûr, il existe d’autres manières de réussir l’exercice !
+    </p>
+
+</body>
+
+</html>

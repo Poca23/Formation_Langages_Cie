@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exécutez des fonctions</title>
+    <link rel="stylesheet" href="../../style.css">
+    <script src=""></script>
+</head>
+
+<body>
+    <h2><a href="../partie1MaitrisezLesBasesDeJava.html">Exécutez des fonctions</a></h2>
+    <p>Nous continuons notre préparation pour le projet <strong>Epicrafter’s Journey</strong> en complétant notre boîte
+        à outils.
+        <br><br>
+        Marc revient vers vous et nous demande de progresser :
+        <br><br>
+        Après avoir vu la notion de variable, il est temps d’apprendre à exécuter des traitements grâce aux
+        <strong>fonctions</strong>.
+        C’est
+        l’heure d’aller de l’avant !
+        <br><br>
+        Ni une ni deux, vous vous plongez dans cette nouvelle thématique !
+    </p>
+    <h3>Découvrez les fonctions :</h3>
+    <p>Une <strong>fonction</strong> est un <strong>traitement</strong>, c’est-à-dire, une <strong>suite
+            d’instructions</strong>.</p>
+    <br>
+    <p>Une fonction possède :</p>
+    <br>
+    <ul>
+        <li><strong>Une signature</strong> (on dit aussi <u>prototype</u>)</li>
+        <li>Une <strong>implémentation</strong>, ce qui correspond aux <strong>instructions exécutées</strong>.</li>
+    </ul>
+    <br>
+    <p>La <strong>signature d’une fonction</strong> suit un schéma standard en <strong>5 éléments</strong> :</p>
+    <img src="../../assets/lessonsOpenclassroomsJavaSignatureFonction.png"
+        alt="lessonsOpenclassroomsJavaSignatureFonction">
+
+    <p><strong>La visibilité </strong>: Cet élément influence les <strong>zones de code</strong> qui seront en droit
+        d’exécuter la
+        fonction.
+
+        <br><br>
+        <strong>Une caractéristique</strong>: Le <strong>comportement</strong> d’une fonction peut être altéré par cet
+        élément. Plusieurs
+        mots-clés Java sont applicables ici
+        comme
+        <strong>final</strong> ou <strong>static</strong>. Nous y reviendrons.
+        <br><br>
+
+        <strong>Le type retour</strong>: Une fonction peut <strong>retourner ou non une valeur</strong>. Comme le
+        langage Java est typé
+        il faut <strong>définir</strong> à l’avance quel
+        <strong>type de
+            donnée sera renvoyé</strong>.
+        <br><br>
+
+        <strong>Le nom</strong>: Le nom sera utilisé <strong>pour exécuter la fonction</strong> au moment voulu.
+        J'encourage
+        l'utilisation de nom à <strong>forte valeur
+            sémantique</strong> et à la notation<a href="https://developer.mozilla.org/fr/docs/Glossary/Camel_case"
+            target="_blank">Camel case</a>.
+        <br><br>
+
+        <strong>Les paramètres</strong> : Une fonction peut recevoir des <strong>données en entrée</strong>. Ces données
+        seront alors
+        <strong>exploitées durant le traitement</strong>.
+    </p>
+    <br>
+    <p>Voici un exemple : <strong>public static void main(String[] args)</strong></p>
+    <img src="../../assets/lessonsOpenclassroomsJavaSynthaxeJava.jpg" alt="lessonsOpenclassroomsJavaSynthaxeJava">
+    <br>
+    <p>Mais nous l’avons déjà vu cette fonction !
+        <br><br>
+        Absolument, maintenant nous sommes en mesure d'interpréter sa signature :
+    </p>
+    <br>
+    <ul>
+        <li>la visibilité : public</li>
+        <li>la caractéristique : static.</li>
+        <li>le type retour : void</li>
+        <li>le nom : main</li>
+        <li>les paramètres : String[] args</li>
+    </ul>
+    <br>
+    <p>Certaines de ses notions sont directement liées à la programmation orientée objet que l’on étudiera plus tard
+        dans le
+        cours.
+        <br><br>
+        Pour l’instant, vous pouvez considérer que la <strong>visibilité public</strong> permet à notre
+        <strong>fonction</strong> d’être <strong>exécutées depuis
+            d’autres
+            fichiers</strong> et que le mot-clé <strong></strong>static nous <strong>simplifie l’appel de la
+            fonction</strong>. D’ailleurs nous
+        utiliserons ces deux
+        aspects
+        tout au long du chapitre.
+    </p>
+    <br>
+    <p>Le type retour void est particulier car il signifie que la fonction ne retourne pas de valeurs.</p>
+    <br>
+    <p><strong><u>Et comment fait-on appel à une fonction ?</u></strong></p>
+    <br>
+    <p>Excellente question ! Étant donné que nous utilisons pour l’instant des méthodes statiques, alors la syntaxe est
+        : [Nom
+        de classe].[Nom de la méthode]. Par exemple, si une fonction nommée test est codée dans une classe nommée Main,
+        le code
+        sera :
+        <br><br>
+        <strong>Main.test();</strong>
+    </p>
+    <br>
+    <p>Allez, passons à la pratique !</p>
+
+    <h3>Écrivez une première fonction simple :</h3>
+
+    <p>Je vous propose d'écrire une fonction qui :</p>
+    <br>
+    <ul>
+        <li>N'aura <strong>pas de paramètres</strong>.</li>
+        <li>N'aura <strong>pas de type retour</strong>.</li>
+        <li> Aura pour <u>nom</u> : <strong>affiche</strong>.</li>
+        <li><strong>Affiche</strong> le texte <strong>“Une fonction en Java a été exécutée”</strong> dans la console.
+        </li>
+    </ul>
+    <p>Sauriez-vous définir <strong>la signature</strong> ? Allez je vous aide ce coup-ci : <strong>public static void
+            affiche()</strong>
+        <br><br>
+        Les parenthèses () sont vraiment le point précis qui nous aide à identifier en un coup d'œil qu’il s’agit d’une
+        fonction.
+
+        <br><br>
+        Et que dire de son <strong>implémentation</strong> ? La voici : (c.f IDE VSCode,
+        Lessons\coursOpenclassrooms\apprendreAProgrammerEnJava\lessonsOpenclassroomsJavaApplicationEJ\src\Affiche.java)
+    </p>
+    <br>
+    <p>Pour rappel l’instruction System.out.println() permet d’afficher dans la console du texte comme vu lors d’une
+        démonstration précédente.</p>
+
+    <h3>Écrivez une fonction paramétrée :</h3>
+    <p>Cela a l’air simple en fait Java. Rassurez-moi, il y a moyen de faire des choses plus compliquées ?
+        <br><br>
+        Je l'admets : c'était vraiment une fonction simple. Alors ajoutons un peu de complexité avec les paramètres.
+        Reprenons
+        la fonction précédente et faisons en sorte que le texte affiché dans la console soit récupéré en paramètre de la
+        fonction : (c.f IDE VSCode,
+        Lessons\coursOpenclassrooms\apprendreAProgrammerEnJava\lessonsOpenclassroomsJavaApplicationEJ)
+    </p>
+    <br>
+    <p>Notez que le paramètre est écrit entre les parenthèses de la fonction.</p>
+    <br>
+    <p>On dirait une variable, non ?
+        <br><br>
+        Je vois que vous êtes de fins observateurs. Absolument ! Un <strong>paramètre</strong> n’est rien d’autre qu’
+        <strong>une variable</strong> et sera
+        donc
+        composé d’un <u>type</u> et d’un <u>nom</u>. <strong>La portée de la variable est la fonction</strong>.
+        <strong>En
+            dehors</strong> de la fonction
+        <strong>impossible d’y
+            accéder</strong>.
+        <br><br>
+        Voyons un autre exemple dans la démonstration suivante :
+    </p>
+    <br>
+    <p>Pas mal, n’est-ce pas ? Nous pouvons retenir :</p>
+    <br>
+    <ul>
+        <li>Qu’<strong>une fonction</strong> peut avoir <strong>plusieurs paramètres</strong>.</li>
+        <li>Qu’ <strong>une fonction</strong> peut <u>retourner une valeur</u> grâce au mot-clé <strong>return</strong>.
+        </li>
+        <li>Que le mot-clé <strong>final</strong> peut être <strong>mis devant un paramètre</strong>. C’est une <u>bonne
+                pratique de programmation</u> car un
+            <strong>paramètre
+                d’entrée n’a pas pour vocation à être modifié par la fonction</strong>.
+        </li>
+    </ul>
+    <br>
+    <p>Il existe de nombreuses bonnes pratiques en programmation Java, j’essayerais d’en indiquer le plus possible au
+        fur
+        et à
+        mesure de ce cours.
+        <br><br>
+        Voici le code écrit : (c.f IDE VSCode,
+        Lessons\coursOpenclassrooms\apprendreAProgrammerEnJava\lessonsOpenclassroomsJavaApplicationEJ)
+    </p>
+
+    <h3>Écrivez une fonction récursive :</h3>
+    <p>Voyons à présent une certaine catégorie de fonctions : <strong>les fonctions récursives</strong>.
+        <br><br>
+        <strong><u>Une fonction récursive est une fonction qui s'appelle elle-même !</u></strong>
+        <br><br>
+        Dans quelle situation
+        est-ce nécessaire ?
+        <br><br>
+        Principalement lorsque l’on souhaite éviter un code répétitif pour exécuter une chaîne de traitement où chaque
+        traitement est le même mais avec des paramètres d’entrée différents. Voici un exemple :
+        <br><br>
+        Decompte(valeur) {<br>
+        Affiche la valeur <br>
+        Appel Decompte(valeur-1) <br>
+        }
+        <br><br>
+        J’ai volontairement écrit en<a href="https://developer.mozilla.org/fr/docs/Glossary/Pseudocode"
+            target="_blank"><strong>pseudo-code</strong></a> (également appelé <strong>LDA</strong> pour Langage de
+        Description d'Algorithmes) ici pour
+        que vous vous concentriez sur la logique du traitement et non sur
+        la
+        syntaxe du Java.
+        <br><br>
+        Le but de cette fonction est de réaliser un <strong>décompte</strong>. <strong>À chaque fois qu’on rentre dans
+            la
+            fonction</strong>
+        on
+        affiche la valeur puis on appelle la même fonction en transmettant en <strong>paramètre la valeur moins
+            un</strong>. Ainsi chaque
+        appel
+        aura un résultat différent.
+        <br><br>
+        Mais ce code a un <strong>problème</strong> ! Il s’exécutera <strong>sans fin</strong> (ou plutôt jusqu’à ce
+        qu’on ait <strong>consommé
+            toute la mémoire
+            disponible pour notre application</strong>).
+        <br><br>
+        Pour résoudre ce point, une fonction récursive doit avoir un critère d’arrêt.
+        Complétons la fonction :
+        <br><br>
+        Decompte(valeur) {<br>
+        Si la valeur est supérieure ou égale à 0 <br>
+        Alors <br>
+        Affiche la valeur <br>
+        Appel Decompte(valeur-1) <br>
+        }
+        <br><br>
+        Au moment où la <strong>valeur atteindra -1</strong> alors la fonction ne s’appellera plus elle-même et le
+        <strong>traitement sera
+            arrêté</strong>.
+
+        Voici le code en Java : (c.f IDE VSCode,
+        Lessons\coursOpenclassrooms\apprendreAProgrammerEnJava\lessonsOpenclassroomsJavaApplicationEJ)
+        <br><br>
+        On n'a pas vu cette <strong>instruction if</strong>, c’est quoi ?
+        <br><br>
+        En effet ! Comme <strong>critère d’arrêt</strong> j’ai utilisé ce qu’on appelle <strong>une condition</strong>
+        en programmation. Suivez-moi dans
+        le
+        prochain chapitre pour que je vous explique précisément ce point.
+        <br><br>
+        Intéressé par des exemples de fonctions récursives ? Penchez-vous sur le calcul d’une factorielle ou de <a
+            href="https://www.baeldung.com/java-fibonacci#1-recursive-method" target="_blank">la suite
+            de
+            fibonacci</a>. (ressource en anglais)
+    </p>
+
+    <h3>À vous de jouer :</h3>
+    <h4>Contexte :</h4>
+    <p>Marc :
+        <br><br>
+        Alors tu t’en sors avec les fonctions ? Tiens, je te propose un exercice de programmation. Essaye de créer une
+        fonction
+        paramétrée qui permet d’afficher un texte dans une console.
+        <br><br>
+        Je vais t’écrire une consigne.
+        <br><br>
+        Dans le même projet que pour le chapitre précédent, complétez le code en suivant la consigne suivante.
+    </p>
+    <h4>Consignes :</h4>
+    <ol>
+        <li><strong>Ajoutez une nouvelle fonction</strong> nommée <strong>affichage</strong> qui prend un <strong>texte
+                en
+                paramètre</strong> et qui n’a
+            <strong>pas de type
+                retour</strong>.
+        </li>
+        <li>La fonction concatène la variable passée en paramètre avec le mot “Bonjour “ puis affiche dans la console le
+            résultat.</li>
+        <li>Dans la fonction principale main appelez la fonction affichage en passant en paramètre le texte “Marty”.
+        </li>
+    </ol>
+    <br>
+    <p>Le résultat dans la console sera :</p>
+    <img src="../../assets/lessonsOpenclassroomsResultatDansLaConsole.png"
+        alt="lessonsOpenclassroomsResultatDansLaConsole">
+    <p>Retrouvez la correction dans <a
+            href="https://github.com/OpenClassrooms-Student-Center/8383791-apprenez-a-programmer-en-java/tree/p1c4"
+            target="_blank"></a>ce repository GitHub.</p>
+
+    <h3>En résumé :</h3>
+    <ul>
+        <li>Une <strong>fonction</strong> permet d’<strong>exécuter une suite d’instructions</strong>.</li>
+        <li>Une <strong>fonction</strong> possède une <strong>signature décomposable en plusieurs éléments</strong>
+            (<u>visibilité</u>, <u>caractéristique</u>, <u>type
+                retour</u>, <u>nom</u>,<u>paramètres</u>
+            ).</li>
+        <li>L’<strong>implémentation</strong> de la fonction est <strong>écrite entre { </strong>}</li>
+    </ul>
+    <br><br>
+    <p><i>Utiliser des variables et exécuter des fonctions sont une base indispensable. Maintenant voyez d’autres outils
+            pour
+            manipuler nos variables au sein des fonctions !</i></p>
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    (c.f IDE VSCode, Lessons\coursOpenclassrooms\apprendreAProgrammerEnJava\lessonsOpenclassroomsJavaApplicationEJ)
+    (c.f IDE Eclipse, C:\Users\clair\OneDrive\Bureau\TRAVAIL\Workspace-pro-web\ej\src\ej)
+</body>
+
+</html>

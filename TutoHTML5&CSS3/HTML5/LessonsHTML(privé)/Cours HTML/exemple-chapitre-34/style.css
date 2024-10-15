@@ -1,0 +1,38 @@
+/* Les bordures en css */
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.div1 {
+  height: 400px;
+  width: 500px;
+  background-color: #1c7077;
+  /* on utilise d'abord la propriété border, notation courte :
+  On va indiquer trois valeurs à notre bordure :
+  -la première, une valeur en pixel qui représente l'épaisseur:
+  -la deuxième valeur, le style de la bordure:
+  -la troisième valeur, la couleur de la bordure.
+
+  On a bien une bordure noir de 5px qui s'est créée autour de la div1.
+*/
+  border: 20px ridge black;
+  border-radius: 15px;
+}
+
+.p1 {
+  height: 100px;
+  width: 50%;
+  background-color: rgb(255, 0, 162);
+  /* On utilisera cette fois-ci sur le pragraphe p1 les trois propriétés :display:
+  -border-width; (largeur de la bordure)
+  -border-style; (le style de la bordure)
+  -border-color. (la couleur de notre bordure)
+
+    On a bien une bordure jaune de 2px qui s'est créée autour du paragraphe p1.
+*/
+  border-width: 10px;
+  border-style: inset;
+  border-color: yellow;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}

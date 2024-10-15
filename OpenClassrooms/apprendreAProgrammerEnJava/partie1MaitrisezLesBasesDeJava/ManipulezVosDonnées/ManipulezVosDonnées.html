@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manipulez vos données</title>
+    <link rel="stylesheet" href="../../style.css">
+    <script src=""></script>
+</head>
+
+<body>
+    <h2><a href="../partie1MaitrisezLesBasesDeJava.html" target="_blank">Manipulez vos données</a></h2>
+
+    <p>Finalisons notre boîte à outils du développeur pour le projet Epicrafter’s Journey. Marc est une nouvelle fois de
+        retour
+        et il vient faire le point avec vous !
+
+        Alors te voilà capable de :</p>
+    <br>
+    <ul>
+        <li><strong>déclarer</strong>, initialiser une variable et lui affecter une valeur ;</li>
+        <li><strong>afficher un texte dans la console</strong>; </li>
+        <li><strong>appeler une fonction</strong>.</li>
+    </ul>
+    <br>
+    <p>C’est bien !
+        <br><br>
+        Jenny intervient :
+        <br><br>
+        Prêt à passer à la suite ?
+        <br><br>
+        Marc ne vous laisse pas le temps de répondre :
+        <br><br>
+        On y est presque Jenny ! Les variables et les fonctions ont été vues. Cependant ce n’est pas suffisant encore.
+        <br><br>
+        Interrogatif, vous réagissez :
+        <br><br>
+        Pourquoi ?
+        <br><br>
+        On pourrait comparer les fonctions à des machines sur une chaîne de montage. Actuellement tu arrives à
+        construire la
+        machine c’est-à-dire écrire une fonction. Tu arrives aussi à faire en sorte que le tapis amène des éléments à ta
+        machine
+        et que quelque chose en sorte, c’est-à-dire les paramètres d’entrées et la valeur de sortie.
+        <br><br>
+        Mais voilà, ta machine en elle-même ne fait pas grand-chose ! On va arranger ça avec deux points fondamentaux :
+        les
+        <strong><u>structures conditionnelles</u></strong> et les <strong><u>structures itératives</u></strong>.
+    </p>
+    <br>
+    <p> Les techniques de programmation (variable, fonction, condition, itération) apprises tout au long de cette partie
+        appartiennent au <strong>paradigme de programmation structurée</strong>. Ce paradigme est une base pour de
+        nombreux langages de
+        programmation et c’est pour ça que sur la première partie de ce cours nous nous sommes concentrés sur ces
+        éléments.</p>
+
+    <h3>Vérifiez une condition :</h3>
+
+    <p>Nous avons terminé le chapitre précédent avec un point en suspens mais qu’est-ce que l’instruction <strong>if( )
+            {
+            }</strong> ?
+        <br><br>
+        Vous nous avez dit que c’est une condition, c’est-à-dire ?
+        <br><br>
+        En français, la traduction littérale du mot anglais <strong>if est si</strong>. Nous sommes en train d’évoquer
+        une
+        éventualité.
+        <br><br>
+        Exemple,
+        s’il fait beau demain, j’irai à la plage. Notre action est alors conditionnée par le temps qu’il fera.
+        <br><br>
+        En programmation, la condition revêt exactement le même caractère. En fonction d’un certain critère (évidemment
+        pas
+        le
+        temps qu’il fait, quoique… ) alors nous réaliserons certaines instructions.
+        <br><br>
+        Mais cela ne s’arrête pas là. Complétons notre exemple. S’il fait beau demain, j’irai à la plage
+        <strong>sinon</strong> j’irai au
+        cinéma.
+        Ce deuxième scénario, issu de la <strong>non-validation du critère</strong>, est programmable grâce au mot-clé
+        <strong>else</strong>.
+        <br><br>
+        Enfin, <strong></strong>en programmation, <strong>la condition</strong> doit être une valeur de <strong>type
+            boolean</strong> (car oui tout est typé).
+        <br><br>
+        Comme vu au chapitre sur les variables, le <strong>type booléen</strong> peut avoir <strong>uniquement 2
+            valeurs</strong> : <strong>vrai</strong>
+        ou <strong>faux</strong>.
+        <br><br>
+        En Java
+        :
+        <strong>true</strong>
+        ou <strong>false</strong>.
+        <br><br>
+        Pour obtenir cette valeur booléenne nous allons généralement utiliser des <strong>opérateurs de
+            comparaison</strong> comme <strong>==
+            (égal
+            à)</strong> ou
+        <strong>!= (différent de</strong>).
+        <br><br>
+        Illustrons : (c.f IDE VSCode,
+        Lessons\coursOpenclassrooms\apprendreAProgrammerEnJava\lessonsOpenclassroomsJavaApplicationEJ)
+    </p>
+    <br>
+    <p>À l'exécution, l'expression <strong>`valeur == 0`</strong> sera évaluée et renverra <strong>true (si valeur vaut
+            0)</strong> ou
+        <strong>false dans tous les
+            autres
+            cas</strong>.
+        <br><br>
+        Voyons un autre exemple : (c.f IDE VSCode,
+        Lessons\coursOpenclassrooms\apprendreAProgrammerEnJava\lessonsOpenclassroomsJavaApplicationEJ)
+    </p>
+    <br>
+    <p>Étant donné que <strong>la variable beauTemps</strong> est déjà <strong>un booléen</strong>, Java évaluera
+        directement son contenu
+        et il n'est <u>pas
+            nécessaire d'y appliquer un opérateur de comparaison</u>.
+        Continuons avec un exemple qui permet de vérifier la négation :
+    </p>
+    <br>
+    <p>Continuons avec un exemple qui permet de <strong>vérifier la négation</strong> :</p>
+    <br>
+    <p>L’utilisation du <strong>!devant une expression booléenne</strong> permet donc de <strong>vérifier la
+            négation</strong>.
+        <br><br>
+        Si vous souhaitez <strong><u>comparer deux chaînes de caractères</u></strong>, vous devrez utiliser une
+        <strong>fonction nommée equals</strong>.
+        <br><br>
+        L’opérateur ==
+        n’est pas adapté à cette situation. Par exemple : (c.f IDE VSCode,
+        Lessons\coursOpenclassrooms\apprendreAProgrammerEnJava\lessonsOpenclassroomsJavaApplicationEJ)
+    </p>
+    <br>
+    <p>La <strong>fonction equals renvoie</strong> <u>vrai</u> ou <u>faux</u> selon l’égalité obtenue.
+
+        Enfin, nous pouvons aussi <strong>combiner des conditions</strong> grâce aux <strong>opérateurs
+            logiques</strong> :</p>
+    <br>
+    <ul>
+        <li><strong>ET</strong> dont le symbole est <strong>&&</strong></li>
+        <li><strong>OU</strong> dont le symbole est<strong>||</strong></li>
+    </ul>
+    <br>
+    <p>Imaginons qu’on veuille vérifier si une valeur est
+    </p>
+    <ul>
+        <li>entre 0 et 10 exclus : if(valeur > 0 && valeur < 10)</li>
+                <br>
+        <li>Maintenant si l’on souhaite vérifier qu’une valeur vaut 10 ou 20 : if(valeur==10 || valeur==20)</li>
+    </ul>
+    <br>
+    <p>Lorsqu'une
+        condition est suivie d’une seule instruction, les { } deviennent optionnelles. Je ne recommande pas cette
+        notation car elle pourrait être source d’erreur et diminue la lisibilité.</p>
+    <br>
+    <p>Retrouvez sur <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/opsummary.html"
+            target="_blank">la documentation
+            officielle</a> la liste de tous les opérateurs Java.</p>
+    <br>
+    <p>Tu nous as montré comment traiter un scénario et son
+        opposé, mais comment gérer plusieurs possibilités ?
+
+        <br><br>
+        Très bon point ! Si demain il fait beau, je vais à la
+        plage, mais s’il fait nuageux je vais juste me promener, sinon je reste à la maison.
+        <br><br>
+        Tout d’abord sachez
+        qu’on peut <strong>combiner des instructions</strong> if de la façon suivante :
+    </p>
+    <br>
+    <p>
+        <strong>if(première condition) { <br>
+            <br>
+            } else if(deuxième condition) { <br>
+            <br>
+            }else {<br>
+            <br>
+            }</strong>
+    </p>
+    <br>
+    <p>Que se passerait-il si on avait de <strong>nombreuses conditions à vérifier</strong> ?</p>
+    <h3>Vérifiez plusieurs cas possibles :</h3>
+    <p>Laissez-moi à présent vous montrer la <strong><u>structure itérative switch</u></strong> :</p>
+    <br>
+    <p>Que pouvez-vous retenir ?</p>
+    <br>
+    <ul>
+        <li>Le mot-clé <strong>case</strong> permet de <u>définir une possibilité</u> tandis que <strong>-></strong>
+            <u>précède l’instruction à
+                exécuter</u>.
+        </li>
+        <li>Si l’expression ne correspond à <strong>aucun cas</strong>, c’est l’<strong>instruction associée à
+                <u>default</u></strong> qui sera exécutée</li>
+    </ul>
+    <br>
+    <p>Voici le code vu ensemble :</p>
+    <br>
+    <p>Allez, faisons un autre exemple ! (c.f IDE VSCode,
+        Lessons\coursOpenclassrooms\apprendreAProgrammerEnJava\lessonsOpenclassroomsJavaApplicationEJ)</p>
+    <br>
+    <p>Que pouvez-vous retenir cette fois-ci ?</p>
+    <br>
+    <ul>
+        <li> Le <strong>résultat du switch</strong> peut directement être <strong>affecté à une variable</strong>.</li>
+        <li>Les possibilités peuvent être <strong>chaînées</strong> dans un <strong>case</strong>.</li>
+        <li> Si les <strong>instructions</strong> sont <strong>dans un bloc { }</strong> le mot-clé
+            <strong><u>yield</u></strong> doit être utilisé.
+        </li>
+    </ul>
+    <br>
+    <p>Et voici également le code : <i>(c.f IDE VSCode,
+            Lessons\coursOpenclassrooms\apprendreAProgrammerEnJava\lessonsOpenclassroomsJavaApplicationEJ)</i></p>
+    <br>
+    <p>Cette syntaxe est disponible uniquement depuis <strong>Java 14</strong>.</p>
+    <br>
+    <p>Envie d’en découvrir plus ? Je vous recommande <a href="https://www.baeldung.com/java-switch" target="_blank">cet
+            excellent article en anglais</a>.
+    </p>
+    <br>
+    <p>Nous sommes allés au bout des structures conditionnelles, passons maintenant aux <strong>structures
+            itératives</strong> !</p>
+    <h3>Itérez avec while :</h3>
+    <p>Alors, c’est quoi une structure itérative ?
+        <br><br>
+        C’est un code que l’on peut <strong>répéter</strong>. Il existe <strong>2 grandes catégories de structures
+            itératives</strong> :
+    </p>
+    <br>
+    <ul>
+        <li><strong>Tant que</strong></li>
+        <li><strong>Pour</strong></li>
+    </ul>
+    <br>
+    <p>On parle également de <strong>boucles</strong>. C’est plus simple à prononcer que structures itératives.
+        <br><br>
+        Commençons par examiner la catégorie de <strong>boucle Tant que</strong>. L’idée est de <strong>répéter un bloc
+            d’instructions</strong> <u>tant qu’une</u>
+        <strong>condition est vérifiée</strong>. Le mot-clé Java est <strong>while</strong>.
+        <br>
+        Notez ce code : <i>(c.f IDE VSCode,
+            Lessons\coursOpenclassrooms\apprendreAProgrammerEnJava\lessonsOpenclassroomsJavaApplicationEJ)</i>
+    </p>
+    <br>
+    <p>Ce code très basique signifie que <strong>tant que</strong> la <strong>variable chiffre</strong> est
+        <strong>inférieure à 5</strong> <strong>alors</strong> on <strong>affiche le chiffre</strong>
+        puis on
+        <strong>incrémente de 1</strong>.
+        <br>
+        En effet, l’ajout des opérateurs `++` à la suite d’une variable numérique va
+        ajouter 1 à la
+        valeur de
+        la variable.
+        <br><br>
+        Quels chiffres s’afficheront dans la console ?
+
+        La réponse est : <strong>0, 1, 2, 3, 4</strong>. Et cela car il y a eu <strong> itérations</strong>5, les
+        instructions de la
+        boucle ont été
+        <strong>exécutées 5
+            fois</strong>.
+        <br><br>
+        Maintenant imaginez que la variable chiffre ait été <strong>initialisée à 5</strong>, que se serait-il passé ?
+        <br><br>
+        Rien ! Le code de la boucle n’aurait jamais été exécuté. Parfois on aimerait s’assurer que le code soit exécuté
+        <strong>au moins
+            une fois indépendamment du résultat de l’évaluation de la condition</strong>.
+        <br>
+        Voilà comment faire : (c.f IDE VSCode,
+        Lessons\coursOpenclassrooms\apprendreAProgrammerEnJava\lessonsOpenclassroomsJavaApplicationEJ)</i>
+    </p>
+    <br>
+    <p>La boucle utilisée est une <strong>do { } while( )</strong> ;
+        <br><br>
+        Les <strong>instructions</strong> définies dans le <strong>do</strong> seront <strong>d’abord
+            exécutées</strong> puis si
+        la
+        <strong>condition du while est vraie</strong>, elles seront de nouveau exécutées et ainsi de suite. Nous sommes
+        donc
+        <strong>assurés</strong> de
+        voir le
+        bloc d’instruction <strong>s’exécuter au moins une fois</strong> !
+        <br><br>
+        Passons à la <strong>deuxième catégorie de structures itératives</strong>, les <strong>boucles for</strong>.
+    </p>
+
+    <h3>Itérez avec for :</h3>
+    <p>Je vais commencer par la boucle Pour suivante : <i>(c.f IDE VSCode,
+            Lessons\coursOpenclassrooms\apprendreAProgrammerEnJava\lessonsOpenclassroomsJavaApplicationEJ)</i></p>
+    <br>
+    <p>Tout d’abord le mot-clé Java est <strong>for</strong>. Vis-à-vis d’une boucle while, la syntaxe est un peu plus
+        complexe, décomposons
+        le
+        contenu des parenthèses :</p>
+    <br>
+    <ul>
+        <li><strong>int i = 1;</strong> : on <strong></strong>déclare <u>et</u> <strong>initialise</strong> une variable
+            de <strong>type int</strong> nommée <strong>i</strong> avec la <strong>valeur 1</strong>.
+        </li>
+        <li><strong>i <= 10; </strong> : on définit une <strong>condition de fin de boucle</strong>, si la
+                    <strong>variable i
+                        est inférieure ou
+                        égale à 10</strong>.</li>
+        <li><strong>i++;</strong> : on
+            <strong>incrémente la variable i de 1 à chaque itération</strong>.
+        </li>
+    </ul>
+    <br>
+    <p>La boucle va donc évaluer le contenu de la variable i. S’il
+        est inférieur ou égal à 10, les instructions seront exécutées puis la variable i sera incrémentée. De nouveau
+        son contenu est évalué et s’il est toujours inférieur ou égal à 10 les instructions seront de nouveau exécutées
+        et ainsi de suite…
+        <br><br>
+        C’est pas mal mais il faut reconnaître que la notation n’est pas très belle. Découvrons un
+        autre type de for dans la démonstration suivante : <i>(c.f IDE VSCode,
+            Lessons\coursOpenclassrooms\apprendreAProgrammerEnJava\lessonsOpenclassroomsJavaApplicationEJ)</i>
+    </p>
+    <br>
+    <p>En résumé :</p>
+    <br>
+    <ul>
+        <li><strong>List</strong> est un <strong>type complexe permettant de gérer un
+                ensemble d'éléments</strong>. On peut dire que c’est un <strong>tableau évolué</strong>. On lui
+            <strong>spécifie
+                quel type
+                d’élément il va
+                gérer
+                grâce à la notation List<Type></strong>.
+        </li>
+        <br>
+        <li>Le code <strong>Arrays.asList("Java", "PHP", "JavaScript");</strong> permet de <strong>créer une
+                liste</strong> de 3 éléments
+            de <strong>type String</strong> à
+            savoir
+            Java, PHP et JavaScript.</li>
+        <br>
+        <li> La boucle : <strong>for(String nomDUnLangage : nomsDesLangages)</strong> permet de <strong>parcourir la
+                liste</strong>.
+            <br>
+            À la
+            <strong>première
+                itération</strong>,
+            le
+            <strong>premier élément de la liste</strong> sera <strong>affecté à la variable nomDUnLangage</strong> puis
+            les <strong>instructions seront exécutées</strong>.
+            <strong>Ensuite</strong>, ce sera le tour du <strong>second élément</strong> et enfin du
+            <strong>troisième</strong>.
+        </li>
+    </ul>
+    <br>
+    <p>L’utilisation des <strong>types complexes</strong> <u>List</u> et <u>Arrays</u> nécessitent l’ <strong>ajout
+            d’une
+            instruction <u>import</u> pour chacun</strong>.
+        <br><br>
+        Un
+        import
+        est <strong>nécessaire</strong> à chaque fois que nous utilisons une <strong>classe d’un autre package</strong>
+        à l’ <strong>exception des classes du
+            package
+            java.lang</strong> qui sont automatiquement importées.
+        <br><br>
+        Les <strong>instructions d’import</strong> sont <strong><u><u>après</u> la déclaration
+                du package et
+                avant la déclaration de la classe</u></strong>.
+    </p>
+    <br>
+    <p>Voici le code vu ensemble : <i>(c.f IDE VSCode,
+            Lessons\coursOpenclassrooms\apprendreAProgrammerEnJava\lessonsOpenclassroomsJavaApplicationEJ)</i>
+    </p>
+    <br>
+    <p> La <strong>portée</strong> de la variable <strong>nomDUnLangage</strong> est <strong>uniquement le bloc
+            d’instructions de la boucle</strong>. <strong>En dehors</strong> de ce
+        bloc,
+        la <strong>variable n’existe pas</strong>.
+        <br><br>
+        On parle <strong>ici</strong> d’une <strong>boucle for each</strong> , en français <strong>Pour Chaque</strong>.
+        <br><br>
+        Nous venons de finir de traiter les <strong>cas principaux de structures itératives</strong> !
+    </p>
+    <h3>À vous de jouer :</h3>
+
+    <h4>Contexte :</h4>
+    <p>Vous retrouvez Marc à la machine à café.
+        <br><br>
+        J’ai passé une tête au-dessus de ton épaule et j’ai noté que tu bosses dur, c’est bien. Appréhender les
+        conditions
+        et
+        les boucles est fondamental !
+        <br><br>
+        Il faut cependant reconnaître que vous manquez de pratique. Hema, une développeuse expérimentée de l’entreprise
+        assiste
+        à cet échange et intervient :
+        <br><br>
+        Je me souviens de mes premiers pas en Java, ce n’était pas si simple ! Si tu veux, je t’envoie un exercice qui
+        permet de
+        t’entraîner.
+        <br><br>
+        Vous repartez à votre bureau, ravi de la solidarité des collègues, et recevez dans les minutes qui suivent un
+        email
+        d’Hema avec la consigne suivante :
+    </p>
+    <h4>Consignes :</h4>
+    <ol>
+        <li>Dans la fonction principale main, déclarez un tableau d’entier à 7 cases contenant les valeurs de votre
+            choix.</li>
+        <li>Bouclez sur chaque case.</li>
+        <li> Si la valeur est égale à 0, incrémentez une variable nommée cpt.
+        </li>
+        <li>Après l’exécution de la boucle, afficher la variable cpt.
+        </li>
+    </ol>
+    <br>
+    <p>Par exemple, si le tableau contient les 7 valeurs suivantes : 26, 10, 1985, 0, 12, 11, 1955. Alors la console
+        devrait
+        afficher 1.</p>
+    <br>
+    <p>Retrouvez la correction dans <a
+            href="https://github.com/OpenClassrooms-Student-Center/8383791-apprenez-a-programmer-en-java/tree/p1c5"
+            target="_blank">ce repository GitHub</a>.</p>
+
+    <h3>En résumé :</h3>
+    <ul>
+        <li>Une structure conditionnelle permet d’exécuter des instructions en fonction de l’évaluation d’une condition.
+        </li>
+        <li>En Java, les mots-clés sont if { } else { }</li>
+        <li>Pour évaluer plusieurs conditions, la structure conditionnelle switch peut être utilisée.</li>
+        <li>Pour itérer utilisez une boucle while() { } , do { } while(); ou for() { }</li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <br><br><br><br><br><br><br><br><br><br>
+    <i>(c.f IDE VSCode,
+        Lessons\coursOpenclassrooms\apprendreAProgrammerEnJava\lessonsOpenclassroomsJavaApplicationEJ)</i>
+    <br><br>
+    <i>(c.f IDE Eclipse, C:\Users\clair\OneDrive\Bureau\TRAVAIL\Workspace-pro-web\ej\src\ej)</i>
+
+</body>
+
+</html>

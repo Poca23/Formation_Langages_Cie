@@ -1,0 +1,37 @@
+/*  On va vouloir appliquer des styles différents en css 
+par l'attribut id et class  */
+
+/*
+On ciblera l'attribut id="" avec un dièse "#" avant la valeur qu'on lui a donné :
+#p1.
+-On enregistre et on affiche.
+
+On a bien le premier paragraphe en bleu.
+*/
+#p1{
+    color:blue;
+}
+
+
+
+/*et dans le cas d'une class on ciblera avec un point "." avant la valeur.
+-On enregistre et on affiche.
+
+On a bien notre deuxième paragraphe en rouge.
+*/
+.p1{
+   color: red; 
+}
+
+/*
+En cas de conflits,
+c'est le sélecteur le plus précis qui sera appliqué.
+Si on applique une couleur (valeur) différente pour une même class et un même id.
+
+Le style du sélecteur id sera donc appliqué, car il permet de cibler plus précisément
+un élément qu'un attribut class.
+*/
+#para{
+    color: green;
+}
+

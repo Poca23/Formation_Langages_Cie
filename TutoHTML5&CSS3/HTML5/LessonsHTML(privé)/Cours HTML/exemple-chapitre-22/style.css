@@ -1,0 +1,54 @@
+/*  Les sélecteurs simples en CSS de type élément  */
+/*-------------------------------------------------*/
+/*
+Commençons aves notre titre h1 :
+-On lui appliquera une taille avec la propriété css :
+font-size.
+-On lui aplliquera également une couleur : 
+red (rouge);
+-On le mettra aussi en italique avec la propriété :
+font-style.
+*/
+/*
+h1{
+    font-size: 80px;
+    color: red;
+    font-style: italic;
+}
+*/
+/*-------------------------------------------------*/
+/*
+Pour nos éléments p :
+-On lui appliquera une couleur bleue :
+blue;
+-Et on va également les mettre en gras avec sa valeur :
+bold.
+*/
+/*p{
+    color: blue;
+    font-weight: bold;
+}*/
+
+/*
+Mon titre est bien en rouge et en italiques;
+Mes paragraphes sont bien en bleu et en gras.
+*/
+
+/*-------------------------------------------------*/
+
+/*  Découverte d'un sélecteur complexe  */
+/*
+-On mettra en commentaires les règles précédentes;
+-On voudra mettre en bleu le titre et les paragraphes;
+
+On évitera d'écrire deux fois la même déclaration css,
+pas pratique pour un développeur.
+-On préféra grouper les sélecteurs 
+avec une virgule entre les sélecteurs;
+
+
+*/
+
+h1, p{
+    color: blue;
+}

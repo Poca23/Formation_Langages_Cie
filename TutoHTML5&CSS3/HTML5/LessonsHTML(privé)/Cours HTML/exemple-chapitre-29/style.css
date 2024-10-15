@@ -1,0 +1,112 @@
+/*  La couleur et l'opacité en css  */
+body{
+    font-family:Verdana;
+    background-color: #000;
+}
+/*--------------------------------------------------------------------------------*/
+/*On donnera donc des noms de couleur en valeur de la propriété color*/
+/*On commencera par notre sélecteur h1 :
+-On donnera la valeur : purple*/
+/*h1{
+    color:purple;
+}*/
+
+/*Ensuite notre premier paragraphe : p1
+-On donnera à la propriété color cette fois-ci la valeur : blue*/
+/*.p1{
+    color:blue;
+}*/
+/*Et enfin notre premier paragraphe : p2
+-On donnera à la propriété color cette fois-ci la valeur : red*/
+/*.p2{
+    color:red;
+}*/
+
+/*On enregistre et on affiche immédiatement dans notre navigateur.
+On voit que c'est simple en donnant le nom à la valeur de la prorpriété color, 
+mais très limité*/
+/*--------------------------------------------------------------------------------*/
+/*On mettre en commentaire les exemples précédents pour utiliser les valeurs hexadécimal*/
+/*
+On veut donner une couleur rouge vif à notre titre : h1
+-On commence avec un dièse : #
+-On va devoir indiquer trois intensités de couleur pour former une couleur :
+    une intensité de rouge (entre 00 et FF, en base 10 entre 00 et 255)
+    une intensité de vert (entre 00 et FF, en base 10 entre 00 et 255)
+    une intensité de bleue (entre 00 et FF, en base 10 entre 00 et 255)
+-On va donc d'abord indiquer une intensité maximale de rouge : FF (comme 255 en décimale)
+-On indiquera une ontensité minimale de vert : 00
+-Ainsi que de bleu : 00
+
+*/
+/*h1{
+    color: #FF0000;
+}*/
+
+/*
+On veut donner un couleur bleu vif à notre premier paragraphe : p1
+-On commence avec un dièse : #
+-On va donc d'abord indiquer une intensité minimale de rouge : 00
+-On indiquera une ontensité minimale de vert : 00
+-Ainsi qu'une intensité maximale de bleu : FF (un bleu pur)
+*/
+/*.p1{
+    color: #0000FF;
+}*/
+
+/*On veut donner un couleur bleu vif à notre deuxième paragraphe : pé 
+-On commence avec un dièse : # 
+-On va donc d'abord indiquer une intensité minimale de rouge : 00
+-On indiquera une ontensité maximale de vert : FF (un vert pur)
+-Ainsi qu'une intensité minimale de bleu : 00 
+*/
+
+/*.p2{
+    color: #00FF00;
+}*/
+
+/*En mixant les différentes intensités,
+ on pourra obtenir n'importe quelle nuance de couleur.*/
+/*--------------------------------------------------------------------------------*/
+/* On mettra en commentaire les exemples précédents pour utiliser rgb en valeur de la propriété color*/
+/*
+-On precise tout d'abord : RGB
+-Un couple de parenthèse : ()  c'est obligatoire
+-On indiquera les différentes intensités, cette fois-ci, séparées par une virgule : ,
+-Intensité maximale de rouge : 255
+-Intensité minmale de vert : 000
+-Intensité minimale de bleu : 000
+*/
+/*h1{
+    color: RGB(255,000,000);}*/ /*rouge pur à nouveau, correspond en hexadécimale à #FF0000*/
+/*--------------------------------------------------------------------------------*/
+/* On mettra en commentaire les exemples précédents pour utiliser RGBa en valeur de la propriété color*/
+/*
+-On précise tout d'abord : RGBa (en minuscule !)
+-On va pouvoir ajouter un quatrième paramètre,
+après les intensités des couleur rouge, vert et bleue, 
+cela à la suite d'une virgule : ,
+-Ce quatrième paramètre représentera l'opacité de la couleur (entre 0 et 1)
+0 correspondant a totalemen transparent, et 1 totalement opaque, 
+avec la notation anglosaxone qui utilise les points : 0.4
+-On mettra sur un fond d'écran noir
+*/
+/*h1{
+    color:RGBa(255,000,000,0.4);
+}*/
+/*--------------------------------------------------------------------------------*/
+/* On mettra en commentaire les exemples précédents pour utiliser opacity en propriété*/
+/*
+On peut modifier aussi l'opacité de la couleur en utilisant la propriété opacity :
+-On ajoute à un sélecteur la propriété : opacity (valeur entre 0 (transparent) et 1(opacité complète))
+-
+
+*/
+
+h1{
+    color:RGB(23,200,51);
+    opacity: 0.4;
+}
+.p1{
+    color: RGB(255,000,000);
+}

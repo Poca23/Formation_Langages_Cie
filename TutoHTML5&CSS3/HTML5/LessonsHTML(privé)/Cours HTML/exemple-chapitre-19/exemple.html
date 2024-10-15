@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sélecteurs et propriétés CSS</title>
+
+    ----------------------------------------------------------------
+    <!--  On va créer une déclaration en CSS  -->
+
+    <!--
+On va donner la couleur rouge aux trois paragraphes suivants :
+-On écrit un élément "style" dans l'élément "head";
+
+On va placer une déclaration en CSS :
+-On utilisera le sélecteur "p";
+-On lui attribuera "color" avec comme valeur "red"(rouge);
+-On enregistre;
+-On envoie sur le navigateur.
+
+Tous les paragraphes sont bien en rouge car on les a ciblé avec le sélecteur "p",
+auxquels on a appliqué une couleur, red.
+
+La déclaration en CSS est composé :
+-d'un sélecteur : "p";
+-d'une propriété : "color";
+-qu'oon séparera de sa valeur par deux points;
+-et de la valeur qui lui est rattachée : "red";
+-et !!! TOUJOURS !!! finir avec un point virgule pour bien séparer chaque propriétés/couples/valeurs/.
+
+Toutes les propriétés et les valeurs seront mise entre les accolades "{}"
+-->
+
+    <style>
+        p {
+            color: red;
+        }
+
+        /*  On veut appliquer une autre prorpiété à un titre  h1  */
+        /*
+A l'intérieur de l'élément "style" on rajoutera :
+-On ajoutera l'élément "h1";
+-On lui ajoutera les accolades "{}";
+-On va vouloir le souligner avec la proprété "text-decoration";
+-On lui donnera sa valeur "underline" (souligner);
+-On enregistre et on affiche;
+
+Le titre est bien souligné.
+*/
+        h1 {
+            text-decoration: underline;
+        }
+    </style>
+
+    ----------------------------------------------------------------
+
+
+
+
+</head>
+
+<body>
+
+
+    <h1>Je suis un titre</h1>
+
+    <p>Je suis un pargraphe</p>
+    <p>Je suis une deuxième paragraphe</p>
+    <p>Je suis une troisième paragraphe</p>
+
+
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Syntaxe, indentation, commentaires</title>
+</head>
+
+<body>
+    <h1>Syntaxe, indentation, commentaires</h1>
+
+    <!--  
+    Au niveau de la syntaxe du javascript il faut retenir que 
+! chaque instructions en javascript doit être terminée par un point virgule !
+
+Si on crée deux instructions alert dans mon élément script,
+le code ne pourra pas fonctionner sans point virgule après chacune des deux instructions.
+-On peut entourer le texte soit par des apostrophes, soit par des guillemets,
+ça n'a aucune importance.
+-Si on écrit des chiffres pas besoin d'apostrophes ni de guillemets,
+si des chiffres décimaux utilisation des notations anglo-saxonnes en codage, donc pas de virgule,
+Outilidera des points.
+-On enregistre et on envoie.
+
+Pas de différence entre les guillements et les apostrophes,
+et le nombre donnée dans la troisième alerte.
+
+Si on avait mit des guillemets ou des apostrophes pour un chiffre, ou pour un chiffre décimal,
+le navigateur l'aurait interprêté comme un texte et non pas comme un nommbre. 
+Pour le cas d'une alerte on aurait eu le même résultat visuel à l'écran,
+ mais pas dans l'interpétation du langage javascript.
+
+-->
+
+    <script>
+        alert('Une première instrcution javaScript');
+        alert("Une deuxième instrcution en Javascript");
+        alert(5.45)
+
+        //un commentaire mono-ligne va s'écrire comme ceci //...
+        /*un commentaire multi-ligne va s'écrire
+        comme ceci /*...*/
+    </script>
+</body>
+
+</html>

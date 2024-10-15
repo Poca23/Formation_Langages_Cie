@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Validation et compatibilité du code</title>
+</head>
+
+<body>
+
+    <!--  on va vouloir prendre l'exemple des chevrons ouvrants et fermants  -->
+
+    <!--
+
+-On va créer un paragrpahe;
+-On veut afficher quelque chose en-dessous;
+-On choisira l'élément <br>, sauf que le navigateur va l'interprêter et créer un retour à la ligne;
+-Pour y remédier on utilisera des entités html;
+- Ils nous permetteront d'échapper des caractères spéciaux et de les représenter;
+
+-L'entité html correspondant au caractère chevron ouvrant est l'entité html : 
+&lt; qui correspondra à "<"
+
+-L'entité html correspondant au caractère chevron fermant est l'entité html :
+&gt; qui correspondra à ">"
+
+Le navigateur va bien faire apparaître les chevrons ouvrants et fermants.
+
+-->
+
+
+    <p>Je suis un pargraphe</p>
+    <p>L'élément br s'écrit comme ceci : &lt;br&gt; </p>
+
+    <!--
+
+    Il est une autre entité qu'il est bon de connaître :
+   
+C'est l'entité html représentant le caractère spécial & appelé esperluette (ou perluète):
+&amp; qui correspondra à "&"
+
+Le navigateur va bien faire apparaître & (l'esperluette)
+
+-->
+
+    <p>Du HTML &amp; du CSS</p>
+
+    <!-- Une quatrième entité html est aussi bon de connaître : l'espace  -->
+
+    <!--
+
+    Nous allons pouvoir créer un espace avec l'entité html suivante :
+ &nbsp (none broking space)
+-On intègrera trois entités html dans le pragraphe;
+-On enregistre;
+-On envoie au navigateur.
+
+Des espaces se sont bien créés entre les mots.
+
+-->
+
+    <p>Un autre &nbsp&nbsp&nbspparagraphe</p>
+
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+/*  Gestion des espaces en css  */
+body{
+    font-family:Verdana, Geneva, Tahoma, sans-serif
+}
+
+/*------------------------------------------------*/
+/*On utilise l'élément "line-height" sur le praragraphe : p1*
+-On cible le sélecteur associé à l'aide d'un point : .
+-On lui applique un : line-height
+-Avec la valeur : 30px
+-On enregistre et on envoie
+
+-On lui appliquera ensuite un "letter-spacing"
+-Avec une valeur de : 4px
+-On enregistre enregistre et on envoie
+
+-On lui appliquera ensuite un "word-spacing"
+-Avec une valeur de : 10px 
+-On enregistre enregistre et on envoie
+*/
+.p1{
+    line-height: 30px;
+    letter-spacing: 4px;
+    word-spacing:10px;
+}
+
+/*------------------------------------------------*/
+/*On utilise l'élément "line-height" sur le praragraphe : p2*
+-On cible le sélecteur associé à l'aide d'un point : .
+-On lui applique un : line-height
+-Avec la valeur : 45px
+-On enregistre et on envoie
+
+-On lui appliquera ensuite un "letter-spacing"
+-Avec une valeur de : -20px 
+-On enregistre enregistre et on envoie
+
+-On lui appliquera ensuite un "word-spacing"
+-Avec une valeur de : 8px 
+-On enregistre enregistre et on envoie
+*/
+.p2{
+    line-height: 45px;
+    letter-spacing: -20px;
+    text-indent:280px;/*Pour pouvoir lire le mot qui est décalé à gauche*/
+    word-spacing:14px;
+}
+/*------------------------------------------------*/
+/*On utilise l'élément "line-height" sur le praragraphe : p3*
+-On cible le sélecteur associé à l'aide d'un point : .
+-On lui applique un : line-height
+-Avec la valeur : 70px
+-On enregistre et on envoie
+
+-On lui appliquera ensuite un "letter-spacing"
+-Avec une valeur de : 10px 
+-On enregistre enregistre et on envoie
+
+-On lui appliquera ensuite un "word-spacing"
+-Avec une valeur de : 8px 
+-On enregistre enregistre et on envoie
+*/
+.p3 {
+    line-height: 70px;
+    letter-spacing:10px;
+    word-spacing:20px;
+}

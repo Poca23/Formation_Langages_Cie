@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utiliser des fonctionnalités avancées de HTML et CSS</title>
+</head>
+
+<body>
+    <h1>Utiliser des fonctionnalités avancées de HTML et CSS</h1>
+
+    <form method="get" action=""></form>
+    <label for="plante">Quelle plante souhaitez-vous acheter ?</label>
+    <select name="plante" id="plante">
+        <option value="philodendron">Philodendron</option>
+        <option value="calathea">Calathea</option>
+        <option value="pilea">Pilea</option>
+        <option value="yucca">Yucca</option>
+    </select>
+    </form>
+
+    <hr>
+    <form method="post" action="">
+        <fieldset>
+            <title>Vos coordonnées</title>
+            <label for="nom">Quel est votre nom ?</label>
+            <input type="text" name="nom" id="nom">
+            <label for="prenom">Quel est votre prénom ?</label>
+            <input type="text" name="prenom" id="prenom">
+            <option for="email">Quel est votre e-mail ?</option>
+            <input type="email" name="email" id="email">
+            <button type="submit" value="Envoyer">
+    </form>
+    </fieldset>
+
+    <hr>
+    <strong>strong = réponse fausse</strong>
+    <hr>
+    <h3>Question 2</h3>
+    <p>Parmi les éléments ci-dessous, lesquels ne concernent pas les tableaux en HTML et CSS ?
+
+        Attention, plusieurs réponses sont possibles.
+        <br><br>
+        <strong>tfooter</strong>
+        <br>
+        thead
+        <br>
+        td
+        <br>
+        caption
+        <br>
+        <strong>legend</strong>
+    </p>
+
+    <hr>
+    <h3>Question 4</h3>
+    <p>Parmi les valeurs suivantes, lesquelles permettent bien de créer un champ de saisie ? Vous pouvez essayer les
+        différentes options pour voir !
+        <br>
+        Attention, plusieurs réponses sont possibles.
+        <br><br>
+        strongtype="email"
+        <br>
+        type="date"
+        <br>
+        <strong>type="telephone"</strong>
+        <br>
+        type="URL"
+        <br><br>
+        Ici, seule la troisième option ne correspond pas à un véritable type d'input : il faut choisir tel car telephone
+        n’existe pas. Il fallait donc choisir les réponses 1, 2 et 4 !
+    </p>
+    <hr>
+    <h3>Question 6</h3>
+    <p>J'ai le bout de code suivant :</p>
+
+    <form method="post" action="">
+        <fieldset>
+            <title>Vos coordonnées</title>
+            <label for="nom">Quel est votre nom ?</label>
+            <input type="text" name="nom" id="nom">
+            <label for="prenom">Quel est votre prénom ?</label>
+            <input type="text" name="prenom" id="prenom">
+            <option for="email">Quel est votre e-mail ?</option>
+            <input type="email" name="email" id="email">
+            <button type="submit" value="Envoyer">
+    </form>
+    </fieldset>
+    <p>Qu'est-ce qui ne va pas ici ? (Vous pouvez essayer de repérer les erreurs sans regarder les propositions, pour
+        vous
+        entraîner.)
+        <br>
+        Attention, plusieurs réponses sont possibles.
+        <br><br>
+        La balise
+        -form est fermée avant la balise fieldset
+        <br>
+        -Le fieldset utilise une balise title au lieu d'utiliser legend
+        <br>
+        -Le bouton de validation est un button et non un input
+        <br>
+        -Il y a une option qui se balade seule
+        <br>
+        <strong>-La valeur de l'attribut method est post</strong>
+        <br><br>
+        Pas mal de choses posent problème dans ce bout de code. En effet, les explications citées dans les
+        propositions 1, 2, 3 et 4 sont bien des erreurs. En revanche, le fait que l'attribut method ait pour
+        valeur post n'est pas du tout un problème. Il fallait donc choisir 1, 2, 3 et 4.
+    </p>
+</body>
+
+</html>

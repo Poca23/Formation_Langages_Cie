@@ -1,0 +1,43 @@
+/* Le modele des botes en css */
+body {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+/* ---------------------------------------------------- */
+/* 
+-On va mettre tous les éléments à l'intérieur d'une : div
+-Auquel on va attribuer une : class
+-Qu'on appellera : div1
+
+On va essayer de voir les différentes boites qui constituent cette div en particulier.
+-On cible notre div avec sa class : div1
+-On lui attribue une couleur de fond,
+afin de bien distinguer les différentes boites : background-color
+-On donne comme valeur : bleur-vert (intensité minimale de rouge, max devert et bleu)
+-On lui attribue une largeur : widht
+-Avec une valeur : 500px
+-Une marge avec le padding de : 20px
+-Une bordure : border
+-Avec une valeur de : 20px solid avec la couleur vert assez fluo
+-Et une marge extérieure : margin
+-D'une valeur de : 50px
+-On enregistre et on envoie
+
+Première boite :
+1-Contenu de la div ; titre h1 et les deux paragraphes, ce qui comprend,
+la couleur vert-bleu moins la marge du padding de 20px, 
+c'est-à-dire entre les lettres et la bordure intérieure.
+2-Le padding constitue la seconde boite; distance entre le contenu (le texte ici),
+et la bordure de la boite de couleur vert-bleu.
+3-La troisième boite est la bordure entre les deux couleurs
+4-La quatrièùe boite est la boite verte fluo
+*/
+
+.div1 {
+  background-color: #088;
+  width: 500px;
+  padding: 20px;
+  border: 20px solid greenyellow;
+  margin: 50px;
+}

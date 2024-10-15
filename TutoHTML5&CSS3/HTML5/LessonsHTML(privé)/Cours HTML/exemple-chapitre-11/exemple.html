@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Titres et paragraphes en HTML</title>
+</head>
+
+<body>
+    <!--
+        
+        Il existe six niveau de titres (h correspond à "heading" en anglais) 
+        qui sont définis par les éléments suivants : h1, h2, h3, h4, h5 et h6
+    
+    -->
+
+    <!--Créons des titres dans notre balise <body>-->
+
+    <h1>Un titre de niveau 1</h1> <!--titre très important-->
+    <h2>Un titre de niveau 2</h2> <!--titre important-->
+    <h3>Un titre de niveau 3</h3> <!--titre d'importance moyenne, etc, en ordre décroissant-->
+    <h4>Un titre de niveau 4</h4>
+    <h5>Un titre de niveau 5</h5>
+    <h6>Un titre de niveau 6</h6>
+
+
+    <!--
+        
+        On peut voir que le navigateur fait apparaître des titres de différentes taille. 
+    
+        On rappellera que le HTML n'est pas là pour mettre en forme un contenu, ça sera le
+        travail du CSS ! 
+        
+        Le HTML est là pour donner du sens à un contenu
+
+        Un titre h1 par exemple doit être utilisé pour montrer son importance par rapport 
+        à un titre h2, 
+        pas pour mettre en forme un texte. C'est une mise en forme automatique du navigateur.
+
+        A retenir : 
+        -Une seule utilisation du titre h1 n'est permise par page. 
+        (plus tard on verra que c'est plus par section de page)
+        -Pour les éléments de h2 à h6 on pourra les utiliser autant que souhaité.
+        -La différence entre l'élément "h" et l'élément "title" est que :
+        
+            -l'élément "h" va nous servir à définir des titres à l'intérieur de notre page, 
+            il sera aussi dans l'élément "body",
+            -tandis que l'élément "title" va servir à définir le titre de la page qui s'afficher 
+            dans la barre haute du navigateur, il sera aussi dans l'élément "head".
+    -->
+
+
+
+    <!--Pour créer des paragraphes en HTML on utilisera l'élément <p></p>
+    
+        -On pourra créer autant de parapgraphes qu'on le souhaitera dans une page;
+        -à chaque nouveau paragraphe il faudra utilisera un nouvel élément p;
+        -à chaque nouveau paragraphe un retour à la ligne sera créé automatiquement 
+        et affiché dans le navigateur (comme avec les éléments h).
+
+        Créons deux paragraphes :
+    
+    -->
+
+    <p>Un premier paragraphe</p>
+    <p>Un deuxième paragraphe</p>
+
+    <!--  ! Ne pas placer les éléments "p" à l'intérieur des éléments "h", ça n'aurait aucun sens !  -->
+
+</body>
+
+</html>

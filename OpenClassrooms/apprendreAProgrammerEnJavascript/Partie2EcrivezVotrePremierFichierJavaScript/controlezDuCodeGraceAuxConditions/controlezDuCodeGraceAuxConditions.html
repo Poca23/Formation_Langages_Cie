@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contrôlez du code grâce aux conditions :</title>
+    <link rel="stylesheet" href="../../style.css">
+    <script src="controlezDuCodeGraceAuxConditions.js"></script>
+</head>
+
+<body>
+    <h2><a href="../index.html" target="_blank">Contrôlez du code grâce aux conditions :</a></h2>
+
+
+    <p>Maintenant que vous avez installé votre environnement de travail, revenons à notre mission ! Je vous propose de
+        construire notre projet pas à pas et de le découper en petits morceaux.
+        <br><br>
+        Alors, commençons par le cœur de notre application. Son mécanisme principal est la vérification d’un mot tapé au
+        clavier
+        par l’utilisateur. Le mot tapé doit correspondre au mot proposé par l’application.
+        <br><br>
+        Pour résoudre ce problème,
+        nous
+        allons utiliser des <strong>structures conditionnelles</strong>, et plus particulièrement : <strong>les
+            conditions</strong>.
+    </p>
+    <h4>Découvrez les conditions :</h4>
+    <p>Une condition est une structure conditionnelle qui contient un <strong>test</strong> dont le résultat sera vrai
+        ou faux. Elle
+        permet
+        d'exécuter des instructions en fonction du résultat de ce test. On parle donc de structure conditionnelle, car
+        un code
+        <strong>ne s’exécutera qu’à condition</strong> que le test soit <strong>vrai ou faux</strong>.
+    </p>
+    <br>
+    <p>Je n’ai rien compris o_O.</p>
+    <br>
+    <p>Je vous l’accorde, ce terme peut faire peur. Mais, dans la réalité, nous utilisons des conditions sans le savoir
+        dans
+        notre vie quotidienne ! 😃
+        <br><br>
+        Par exemple, lorsque vous allez à la boulangerie et que vous vous dites :
+        <br><br>
+        “S’il y a du pain aux noix, j’en achèterai, sinon, je vais juste prendre une baguette.”
+        <br><br>
+        Pour transformer cette phrase en langage de programmation, on écrira donc :
+        <br><br>
+        <strong>Si</strong> “présence de pain aux noix” == “vrai”
+        <br><br>
+        <strong>Alors</strong> “j'achète du pain au noix”
+        <br><br>
+        <strong>Sinon</strong> “j’achète une baguette”
+    </p>
+    <br>
+    <p>La première ligne [Si “présence de pain aux noix” == vrai] est un test : c'est-à-dire, ce que l’ordinateur va
+        vérifier
+        si la condition est vraie.</p>
+
+
+    <h4>À vous de jouer !</h4>
+    <p>Maintenant, revenons à notre mission ! D’après vous, comment formuler l’algorithme pour notre application
+        AzerType ?</p>
+    <br>
+    <hr>
+    <p>Pseudo code proposé :</p>
+    <ul>
+        <li><strong>Étape 1 :</strong> L’application propose un mot.</li>
+        <br><br>
+
+        <li><strong>Étape 2 :</strong> L’utilisateur tape ce mot au clavier.</li>
+        <li><strong>Étape 3 :</strong> <strong><u>Si</u></strong> le mot de l’utilisateur est exactement le même que le
+            mot de l’application,
+            <strong><u>alors</u></strong> on ajoute un
+            point au
+            score.
+        </li>
+        <li><strong>Étape 4 :</strong> On passe au mot suivant.</li>
+        <li><strong>Étape 5 :</strong> On <strong><u>recommence</u></strong> à l’étape 1, <strong><u>jusqu’à ce
+                    que</u></strong> le temps soit
+            écoulé. </li>
+    </ul>
+    <hr>
+    <p><strong>SI</strong> “mot tapé par l’utilisateur” == “mot proposé” </p>
+    <br>
+    <p><strong>ALORS</strong> “on augmente le score”</p>
+    <br>
+    <p>Et voilà, nous venons de définir notre algorithme ! Nous pouvons passer à sa rédaction ! 🥳</p>
+
+    <h4>Rédigez une condition en JavaScript</h4>
+    <p>Pour rédiger une condition, vous devez :</p>
+    <br>
+    <ul>
+        <li>utiliser des <strong>structures conditionnelles</strong> ;
+        </li>
+        <li>rédiger un <strong>test</strong> ;</li>
+        <li>rédiger un <strong>bloc de code</strong>.</li>
+    </ul>
+    <br>
+    <p>Il existe <u>deux principaux types de conditions en JavaScript</u> :</p>
+    <br>
+    <ul>
+        <li>les conditions <strong><u>if / else</u></strong> permettent d’exécuter du code selon une réponse unique à un
+            test ;</li>
+        <li>les conditions <strong><u>switch</u></strong> permettent d’exécuter du code si notre test peut avoir
+            plusieurs réponses.</li>
+    </ul>
+    <br>
+    <p>Découvrons ensemble comment les utiliser ! 🚀</p>
+
+    <h3>Utilisez des conditions if / else pour gérer une seule réponse</h3>
+    <h4>Commençons par découvrir la syntaxe d’une condition en JavaScript : (cf fichier JavaScript)</h4>
+
+    <p>Ce morceau de code signifie :
+        <br><br>
+        <strong>SI</strong> (if, en angais) la condition est vraie, alors j’exécute le
+        premier bloc de code,
+        <strong>SINON</strong>
+        (else, en anglais) j’exécute le second.
+    </p>
+    <br>
+    <p>La condition utilisée peut être un <strong>booléen</strong> (valant true ou false), ou une
+        <strong>comparaison</strong> (exemple : variable ===
+        42).
+    </p>
+
+    <h4>Rédigez un test avec des booléens :</h4>
+    <p>Revenons maintenant à notre projet pour rédiger notre premier test. 😃 Dans notre cas, nous cherchons à comparer
+        le mot
+        tapé par l’utilisateur à celui choisi par l’application.</p>
+    <br>
+    <p>Je crée ainsi une variable motTapeOk qui contiendra true ou false, et j’écris mon test en fonction : (cf fichier
+        JavaScript)</p>
+    <br>
+    <p>Ici, motTapeOk est une variable de type <u>booléen</u>. Comme la variable <u>vaut true (vrai)</u>, alors
+        <strong><u>JavaScript a exécuté
+                le
+                premier bloc de code</u></strong>, car la <strong>condition est validée</strong>. Le mot tapé est
+        correct, <strong>j’affiche donc
+            le message
+            correspondant</strong>.
+        <br><br>
+        Vérifions tout de même le résultat dans la console : (cf fichier JavaScript)
+    </p>
+    <br>
+    <p>Je vous invite à modifier la valeur de motTapeOk, et remplacer true par false. Vous verrez alors l’autre portion
+        de code
+        s'exécuter !
+        <br><br>
+        Si je ne veux pas afficher de message quand l’utilisateur fait une erreur, je mets un else vide ?
+        <br><br>
+        Excellente question ! En fait, le else est optionnel. Vous pouvez donc simplement écrire : (cf fichier
+        JavaScript)
+    </p>
+    <br>
+    <p>Si l’utilisateur a correctement tapé le mot, le premier bloc sera exécuté, sinon… eh bien pas de sinon. Le code
+        s’arrête
+        là. 🙂</p>
+
+    <h4>Rédigez un test avec des opérateurs de comparaison :</h4>
+    <p>Pour l’instant, nous avons manipulé un code simple. Nous ne comparons pas vraiment le mot de l’utilisateur avec
+        le mot
+        suggéré par l’application.
+        <br><br>
+        <u>La première étape</u> va donc être de <strong>demander un mot à l’utilisateur</strong> <u>et</u> de
+        <strong>mettre ce mot dans une variable</strong>.
+        <br>
+        Pour
+        cela, le
+        plus simple est d’utiliser <u>une nouvelle instruction</u> : <strong>prompt</strong>.
+        <br><br>
+        Voilà ce que cela donne dans le code : (cf fichier JavaScript)
+    </p>
+    <img src="../../assets/lessonsOpenclassroomsJavascriptinstructionPrompt.png"
+        alt="lessonsOpenclassroomsJavascriptinstructionPrompt">
+
+    <p>Super, nous sommes désormais capables d’interagir avec l’utilisateur ! 🥳</p>
+    <br>
+    <p>OK ! C’est quoi la suite, alors ?</p>
+    <br>
+    <p>L’étape suivante est de réellement <strong>comparer le mot de l’utilisateur</strong>, qui est stocké dans la
+        variable
+        <u>motUtilisateur</u>,
+        <strong>avec le mot de l’application</strong> que nous allons stocker dans la variable <u>motApplication</u>.
+    </p>
+
+    <br>
+    <p>Pour comparer ces deux mots, nous allons utiliser des <strong>opérateurs de comparaison</strong> :</p>
+    <img src="../../assets/lessonsOpenclassroomsJavascriptOperateursDeComparaison.png"
+        alt="lessonsOpenclassroomsJavascriptOperateursDeComparaison">
+    <br>
+    <p>Il existe également les opérateurs == et != pour comparer des valeurs entre elles. Cependant, il n’est pas
+        recommandé de
+        les utiliser, car ils ne permettent pas de tester en une seule opération la valeur et le type de données de la
+        valeur.
+        <br>
+        Vous pourrez néanmoins être amené à en trouver dans le code d’autres développeurs.
+        <br><br>
+        Notez bien également la différence entre = et === :
+        <br><br>
+        a = 42 signifie que l’on met la valeur 42 dans la variable a ;
+        <br><br>
+        a === 42 signifie que l’on compare la valeur a et la valeur 42, pour savoir si ce sont les mêmes ou pas.
+    </p>
+
+    <br>
+    <p>Dans notre cas, nous allons utiliser l’opérateur === .
+        <br>
+        Il va nous permettre de comparer si deux éléments ont
+        exactement
+        la même valeur. Nous allons donc vérifier si les deux mots sont les mêmes. (cf fichier JavaScript)
+    </p>
+    <br>
+    <p>Et voilà, le tour est joué ! N’hésitez pas à revoir ces démonstrations dans la vidéo ci-dessous : ///</p>
+
+    <h4>Utilisez la condition switch/case pour gérer plusieurs réponses :</h4>
+    <p>Il arrive parfois que l’on souhaite imbriquer beaucoup de if. Typiquement, cela arrive quand on veut faire un
+        traitement
+        différent pour chaque valeur d’une même variable, par exemple. Comme cela rend le code difficile à lire, nous
+        utiliserons dans ce cas la <strong>structure conditionnelle switch/case</strong>.</p>
+    <br>
+    <p>Il arrive parfois que l’on souhaite imbriquer beaucoup de if. Typiquement, cela arrive quand on veut faire un
+        traitement
+        différent pour chaque valeur d’une même variable, par exemple. Comme cela rend le code difficile à lire, nous
+        utiliserons dans ce cas la structure conditionnelle switch/case. (cf fichier JavaScript)</p>
+    <br>
+    <p>Mais… Avouez que le résultat n’est pas facile à lire 😱. Heureusement, <u>on peut utiliser
+            <strong>switch</strong> en combinaison
+            <strong>avec case</strong>
+            pour remédier à cela</u>.</p>
+    <br>
+    <p>On procède alors en deux étapes :</p>
+    <br>
+    <ul>
+        <li> définir le test avec switch (laValeurATester) ;
+        </li>
+        <li> lister les valeurs possibles avec case.</li>
+    </ul>
+    <br>
+    <p>Dans notre exemple, on écrira donc : (cf fichier JavaScript)</p>
+    <br>
+    <p>Ici, je teste motUtilisateur :</p>
+    <br>
+    <ul>
+        <li>si l’utilisateur a tapé “Gredin”, alors c’est le premier console.log qui va s’exécuter ;</li>
+        <li> s’il a tapé “Mécréant”, c’est le second console.log qui s’exécute. ;</li>
+        <li>s’il a tapé “Vilain”, c’est le troisième ;</li>
+        <li> s’il a rentré autre chose (default), alors c’est le dernier console.log qui s’exécute.
+        </li>
+    </ul>
+    <br>
+    <p>Heuu… Et ça veut dire quoi “break”, dans ce morceau de code ?</p>
+    <br>
+    <p>Bien vu ! 😉 Le break (“casser”, en anglais) sert à arrêter le code.
+
+        Dans notre exemple, si l’utilisateur à écrit “Mécréant” et qu’il n’y a pas de break, alors le console.log(“Soyez
+        gentil
+        !”) qui est lié au mot “Vilain”, sera exécuté aussi.</p>
+
+    <h3>À vous de jouer !</h3>
+    <p>Et maintenant, entraînez-vous à rédiger des conditions en JavaScript dans votre fichier script.js.
+        <br><br>
+        Dans ce chapitre, vous avez appris à tester un mot dans notre application. Votre objectif est maintenant d’en
+        tester
+        trois à la suite, et toujours pas à pas ! 😉
+    </p>
+    <br>
+    <h4>Étape 1 : Testez le premier mot</h4>
+    <ul>
+        <li>Déclarez une variable listeMots qui est un tableau.</li>
+    </ul>
+    <br>
+    <p>Ce tableau contient trois mots que l’utilisateur devra taper au clavier : “Cachalot”, “Pétunia” et “Serviette”.
+    </p>
+    <br>
+    <ul>
+        <li>Déclarez une deuxième variable score, initialisée à 0, qui contiendra le nombre de mots correctement tapés
+            par
+            l’utilisateur.</li>
+        <br>
+        <li>À l’aide de l’instruction prompt, demandez à l’utilisateur de rentrer le mot contenu dans la première case
+            du
+            tableau. <br>
+            N’oubliez pas, la première case d’un tableau est la case numéro zéro !</li>
+        <br>
+        <li>Écrivez une première structure conditionnelle pour savoir si le mot tapé par l’utilisateur est bien celui
+            demandé
+            par
+            l’application.</li>
+    </ul>
+    <br>
+    <p>Si c’est le cas, on augmente la valeur de score de 1.
+        <br><br>
+        Vérifiez avec des console.log si le score final est correct.
+    </p>
+    <h4>Étape 2 : Testez le second mot</h4>
+    <ul>
+        <li> Demandez à l’utilisateur de rentrer le second mot.
+        </li>
+        <br>
+        <li>Faites une seconde structure conditionnelle pour vérifier si le second mot tapé par l’utilisateur correspond
+            bien au
+            second mot du tableau.</li>
+    </ul>
+
+    <h4>Étape 3 : Testez le troisième mot</h4>
+    <p>Recommencez une troisième fois pour la dernière case du tableau !</p>
+    <br>
+    <p>Vous remarquerez peut-être que certaines portions de code vont beaucoup se ressembler dans cet exercice.
+        <br>
+        Pas
+        d'inquiétude, c’est normal à ce stade ! 😉
+    </p>
+
+</body>
+
+</html>

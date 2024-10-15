@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style-type: none;
+  box-sizing: border-box;
+}
+
+body {
+}
+/* search */
+label {
+  display: block;
+  font: 1rem "Fira Sans", sans-serif;
+}
+input,
+label {
+  margin: 0.4rem 0;
+}
+/* scroll*/
+.scroll {
+  width: 50px;
+  bottom: 5%;
+  right: 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  position: fixed;
+}
+/*top-button*/
+html {
+  scroll-behavior: smooth;
+}
+/*bottom-button*/
+html {
+  scroll-behavior: smooth;
+}

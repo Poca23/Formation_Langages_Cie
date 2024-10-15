@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ou écrire le code javaScript</title>
+    <!------------------------------------------------------------------>
+
+    <!--  On pourra écrire le code JavaScript dans l'élément <head> du fichier HTML  -->
+    <!--
+    -On utilisera l'élément <script></script> en le plaçant à la fin de l'élément <head>;
+    -On écrira notre première instruction JavaScript, l'instruction : 
+    alert (ouvrire une boite de dialogue avec du texte dans une page html)
+    -On ajoutera des parenthèses;
+    -Suivi à l'intérieur de guillemets/apostrophes (aucune différence);
+    -On terminera toujours une instruction JavaScript par un point virgule;
+    -On enregistre et on envoie.
+-->
+    <script>
+        alert('Bonjour Senseï')
+    </script>
+
+    <!------------------------------------------------------------------>
+    <!-- On va placer un troisième élément script dans notre head  -->
+    <!------------------------------------------------------------------>
+    <script>
+        alert('Les filles sont calmes :)')
+    </script>
+</head>
+
+<body>
+
+    <h1>On peut écrire le javaScript dans ...</h1>
+    <!------------------------------------------------------------------>
+    <!--  Pour montrer la linéarité des éléments script -->
+    <!--
+    on peut rajouter un deuxième élément script entre le titre et le la liste;
+-->
+    <!------------------------------------------------------------------>
+    <script>
+        alert('Quoi tu fais ?')
+    </script>
+    <ul>
+        <li>L'élément head dans un fichier HTML</li>
+        <li>L'élément body dans un fichier HTML</li>
+        <li>Un fichier .js séparé</li>
+    </ul>
+    <!------------------------------------------------------------------>
+    <!--  On pourra écrire le code JavaScript dans l'élément <body> du fichier HTML  -->
+    <!--
+    -On enregistre et on affiche.
+
+    On a bien la même boite d'alerte qui s'affiche sur la même page.
+-->
+    <!------------------------------------------------------------------>
+
+    <script>
+        alert('Comment tu vas mon aimée ?')
+    </script>
+    <!------------------------------------------------------------------>
+    <!--  On peut écrire aussi sur un fichier séparé en liant le fichier .html et .js -->
+    <!--
+                -On ajoutera le lien entre les fichiers .html et .js en fin de l'élément <body>:
+                -On ajoutera un autre script avec son attribut src="";
+                -On donnera comme valeur le chemain relatif entre le fichier .html et .js.
+            -->
+    <!------------------------------------------------------------------>
+    <script src="/exemple-chapitre-4/javascript.js"></script>
+
+</body>
+
+</html>

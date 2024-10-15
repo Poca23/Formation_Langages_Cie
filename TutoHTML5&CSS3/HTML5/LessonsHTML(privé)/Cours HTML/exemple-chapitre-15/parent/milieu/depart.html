@@ -1,0 +1,88 @@
+<!--  On voudra créer des liens d'une page depart vers la page milieu, sous et parent  -->
+
+<!--
+
+    La seule chose qui changera sera la valeur qu'on donnera à la valeur de l'attribut href="".
+
+On commencera par créer trois paragraphes :
+- page de départ;
+-Lien vers la page milieu;
+-Lien vers la page sous;
+-Lien vers la page parent.
+
+On mettra comme texte cliquable :
+"page milieu"
+"page sous"
+"page parent"
+
+-->
+
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Page de départ</title>
+</head>
+
+<body>
+
+    <!--
+
+    On créera nos balises <a></a> autour de ces textes.
+On renseignera les attributs href="" et les différentes valeurs.
+
+1) Pour créer un lien vers une autre page qui est dans le même dossier que la page de départ,
+   il suffit de renseigner le nom de la page : 
+   nom de la page : "milieu.html" 
+=> le premier lien interne est donc actif et nous emmène sur la page milieu.html.
+
+2) Pour créer un lien d'une page ver une autre page qui se trouve dans un sous-dossier :(un dossier enfant)
+- On indiquera le nom du sous-dossier en valeur href="" qui sera "sous";
+- puis le nom de la page, qui sera "sous.html"
+=> le deuxième lien interne est donc actif et nous emmène sur la page sous.html
+
+3) Pour créer un lien d'une page vers une autre page qui se trouve dans un dossier parent :
+- On indiquera deux points et un slach : ""../"";
+- Le nom de la page html 3parent.html en valeur de l'attribut href="";
+-On enregistre et envoie au navigateur.
+=> le troisièeme lien interne est donc actif et nous emmène sur la page parent.html
+
+Tous les cas d'utilisation des cas interne sont couverts :
+1) La page de départ est dans  le même dossier;
+2) La page de départ est dans le dossier enfant;
+3) La page est dans le dossier parent.
+
+
+    -->
+    <h1>Page de départ</h1>
+    <p>Lien vers la <a href="milieu.html">page milieu</a></p>
+    <p>Lien vers la <a href="sous/sous.html">page sous</a></p>
+    <p>Lien vers la <a href="../parent.html">page parent</a></p>
+
+    ----------------------------------------------------------------
+
+    <!--
+
+        On voudra utiliser l'attribut "target", avec la valeur " _blank" (underscore blank)
+
+-On mettra l'attribut "target" encore une fois dans la balise ouvrante de mon élément "a".
+-on ajouter comme valeur "underscore blank" c'est à dire "_blank";
+-On enregistre;
+-On envoie sur le navigateur.
+
+On clique sur le lien et la page d'arrivée cette fois va s'ouvrir dans un nouvel onglet.
+Cela permet de conserver la page du site, et donc, de ne pas le quitter.
+
+
+    -->
+
+    <h1>Page de départ</h1>
+    <p>Lien vers la <a href="milieu.html" target="_blank">page milieu</a></p>
+    <p>Lien vers la <a href="sous/sous.html" target="_blank">page sous</a></p>
+    <p>Lien vers la <a href="../parent.html" target="_blank">page parent</a></p>
+
+</body>
+
+</html>

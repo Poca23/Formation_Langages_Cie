@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Espace et retour à la ligne en HTML</title>
+</head>
+
+<body>
+
+
+    <h1>Je suis <!--On créera des espaces comme ici--> un gros titre <!--Ou encore ici--> </h1>
+    <p>Je <!--On ajoutera un retour à la ligne ici-->
+        suis
+        le
+        premier paragraphe</p>
+
+    <!--
+
+        On affichera ce que l'on voit :
+    Nous pouvons voir que nous n'avons 
+    -ni retours à la ligne;
+    -ni espaces.
+    
+C'est tout à fait normal, car pour créer des espaces ou bien des retours à la ligne,
+il faudra utiliser des éléments html. Le navigateur ne comprendra pas ce qu'on écrira de cette façon, 
+et donc ne l'interprétera pas ou mal. Il ne traitera que les éléments que vous luis écrirai.
+
+    -->
+
+
+    <!--Pour effectuer un retour à la ligne on utilisera l'élément :
+    <br>
+
+    -C'est une unique balise orpheline;
+    - "br" correspond à l'abréviation anglaise de break (= casser en français);
+    -On peut utiliser autant d'élément "br" que l'on veut.
+
+    -->
+
+    <p>Je <br> suis <br> un <br> second <br> paragraphe</p>
+
+    <!--  Cette fois-ci, le navigateur affiche bien les retours à la ligne  -->
+
+    <!--  Pour le changement de thématique, on utilisera l'élément <hr>  -->
+
+    <p>HTML : le HTML est un langage de balisage</p>
+    <hr> <!--  On séparera ces deux paragraphes avec l'élement <hr>  -->
+    <p>CSS : le CSS est un langage de style</p>
+
+    <!--Une ligne a été créé automatiquement par le navigateur,
+    et cela pour symboliser le changement de thématique-->
+
+    <!-- Pour utiliser l'élément <pre></pre>  -->
+
+    <!--
+        
+        -On va effacer les éléments "p" de l'exemple précédent;
+        -On conservera le contenu;
+        -On le remplacera par l'élément "pre";
+        -On commencera à mettre en forme notre texte comme souhaité
+    -->
+
+    <pre>
+        HTML : le HTML est un langage
+                de balisage
+    <hr>
+        CSS : le CSS est un langage 
+                de style
+    </pre>
+
+    <!--On constate qu'on a bien tous les espaces et les retours à la ligne qui sont conservés,
+    grâce à lélément "pre"-->
+
+    <!--  
+        ATTENTION à ne pas abuser de cet élément  
+    Il faut l'utiliser que si il n'y a pas d'autres choix, car il ne comporte aucune
+    signification d'un point de vue sémantique et n'est pas très apprécié en html et
+    ne renforce pas son rôle.
+   
+    -->
+
+
+
+
+
+</body>
+
+</html>

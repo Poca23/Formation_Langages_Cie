@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz : Maîtriser les bases de Java</title>
+    <link rel="stylesheet" href="../../style.css">
+    <script src=""></script>
+</head>
+
+<body>
+
+    <h2><a href="../partie1MaitrisezLesBasesDeJava.html" target="_blank">Quiz : Maîtriser les
+            bases de Java</a></h2>
+    <hr>
+    <h3>Description :</h3>
+    <p> Vous êtes développeur Java et vous accompagnez Marlène, une apprentie qui vient de rejoindre l’équipe
+        <strong>CubeCrafters
+            Interactive</strong>.
+        <br><br>
+        Marlène fait ses premiers pas avec le langage Java et vient vous solliciter pour
+        l’aider dans ces
+        premières
+        tâches.
+        <br><br>
+        Il s’agit d’une série d'exercices créée pour les nouveaux apprentis de l’entreprise.
+    </p>
+    <hr>
+
+    <h3>Question 1 :</h3>
+    <p>Pour introduire l’univers Java à Marlène, vous décidez de la sensibiliser sur <strong>plusieurs caractéristiques
+            fortes
+            du
+            Java</strong>.
+        <br><br>
+        Que présentez-vous ?
+    </p>
+    <ul>
+        <li>C’est un langage interprété, typé et objet.</li>
+        <li>C’est un langage <strong>compilé, typé et objet</strong>. <u>OK</u></li>
+        <li>C’est un langage compilé, non typé et objet.</li>
+    </ul>
+
+    <h3>Question 2 :</h3>
+    <p>Toujours dans le but d’aider Marlène à se lancer, vous l’encouragez à mettre en place un environnement de
+        développement
+        adapté.
+        <br><br>
+        Que doit-elle installer ?
+    </p>
+    <ul>
+        <li>Le Java Runtime Environment et un IDE comme Eclipse.</li>
+        <li>Une version à jour de Windows, tout le nécessaire est déjà disponible.</li>
+        <li><strong>Le Java Development Kit</strong> et un <strong>IDE comme Eclipse</strong>. <u>OK</u></li>
+    </ul>
+
+    <h3>Question 3 :</h3>
+    <p>Marlène vous présente le code suivant : <i>(c.f IDE VSCode,
+            Lessons\coursOpenclassrooms\apprendreAProgrammerEnJava\lessonsOpenclassroomsJavaApplicationEJ)</i></p>
+    <br>
+    <p>L’IDE indique une erreur à la ligne <strong>compteurNumerique = 0;</strong> .
+        <br><br>
+        Quel est le problème et comment le corrigez-vous ?
+    </p>
+    <br>
+    <ul>
+        <li>La variable n’est pas correctement déclarée, il faut y indiquer le type int. Il faut écrire : int
+            compteurNumerique = 0;</li>
+        <li>Il est interdit d’affecter une valeur lors de la déclaration à une variable non final, il faut écrire :
+            final
+            compteurNumerique = 0;</li>
+        <li>Il est obligatoire de déclarer la variable sur une ligne puis d’initialiser la variable sur une autre ligne.
+            <strong> Il faut
+                écrire : compteurNumerique; puis à la ligne compteurNumerique = 0;</strong> <u>OK</u>
+        </li>
+    </ul>
+
+    <h3>Question 4 :</h3>
+    <p>Marlène a encore du mal avec la déclaration des variables qu’elle manipule.
+        <br><br>
+        Vous souhaitez lui donner un coup de pouce et lui indiquer une astuce qui lui sera une aide bien qu’à utiliser
+        avec
+        prudence :
+    </p>
+    <ul>
+        <li>Vous lui recommandez d’appliquer le mot-clé final sur toutes ces variables pour les rendre immuables et
+            avoir un code
+            plus stable.</li>
+        <li>Vous lui indiquez d’utiliser le <strong>type var</strong> pour laisser la JVM décider du bon type à
+            utiliser. <u>OK</u></li>
+        <li>Vous lui suggérez d’utiliser uniquement des types complexes même si le type primitifs existe pour avoir
+            accès aux
+            méthodes associées.</li>
+    </ul>
+
+    <h3>Question 5 :</h3>
+    <p>Vous devez fournir un corrigé pour l’un des exercices de Marlène. La consigne est la suivante :
+        <br><br>
+        Écrire une
+        fonction
+        qui
+        prend un tableau de caractère en paramètre et renvoie le dernier caractère mis en majuscule.
+        <br><br>
+        Quel corrigé préparez-vous ?
+    </p>
+    <ul>
+        <li><strong>public static char fonction(char[] tableau) { <br>
+                char valeur = tableau[tableau.length-1]; <br>
+                return Character.toUpperCase(valeur); <br>
+                }</strong> <u>OK</u></li>
+        <li>public static String fonction(String[] tableau) { <br>
+            char valeur = tableau[tableau.length-1]; <br>
+            return String.toUpperCase(valeur); <br>
+            }
+        </li>
+        <li>public static void fonction(char[] tableau) { <br>
+            char valeur = tableau[tableau.length-1]; <br>
+            System.out.println(valeur.toUpperCase()); <br>
+            }</li>
+    </ul>
+    <br>
+
+    <h3>Question 6 :</h3>
+    <p>Marlène vient de réaliser un exercice ayant trait aux structures conditionnelles. Le code qu’elle a produit est
+        le
+        suivant :</p>
+    <br>
+    <p>// Exercice : <br>
+        // si la personne appartient à la liste Superman, Chuck Norris, Luke Skywalker renvoyer le texte gentil
+        <br><br>
+        // si la personne appartient à la liste Joker, Cruella renvoyer le texte méchant
+        <br><br>
+        // sinon renvoyer gentil
+        <br><br>
+        public static String gentilOuMechant(String personne) { <br>
+        String resultatGentil = "gentil"; <br>
+        String resultatMechant = "méchant";
+        <br><br>
+        if(personne.equals("Superman")) { <br>
+        return resultatGentil; <br>
+        } else if(personne.equals("Chuck Norris")) { <br>
+        return resultatGentil; <br>
+        } else if(personne.equals("Luke Skywalker")) { <br>
+        return resultatGentil;
+        <br><br>
+        } else if(personne.equals("Joker")) { <br>
+        return resultatMechant; <br>
+        } else if(personne.equals("Cruella")) { <br>
+        return resultatMechant; <br>
+        } else { <br>
+        return resultatGentil; <br>
+        } <br>
+        }
+    </p>
+    <br>
+    <p>Bien que ce code fonctionne, vous lui proposez deux alternatives valides plus optimisées, lesquelles ?</p>
+    <p><i>Attention, plusieurs réponses sont possibles.</i></p>
+    <br>
+    <ul>
+        <li><strong>
+                public static String gentilOuMechant(String personne) { <br>
+                String resultatGentil = "gentil"; <br>
+                if(personne.equals("Superman") || personne.equals("Chuck Norris") || personne.equals("Luke Skywalker"))
+                {
+                <br>
+                return resultatGentil; <br>
+                } else if(personne.equals("Joker") || personne.equals("Cruella")) { <br>
+                return "méchant"; <br>
+                } else { <br>
+                return resultatGentil; <br>
+                }
+                }</strong> <u>OK</u>
+        </li>
+        <br>
+        <li>public static String gentilOuMechant(String personne) { <br>
+            String resultatGentil = "gentil"; <br>
+            if(personne.equals("Superman") && personne.equals("Chuck Norris") && personne.equals("Luke Skywalker")) {
+            <br>
+            return resultatGentil; <br>
+            } else if(personne.equals("Joker") && personne.equals("Cruella")) { <br>
+            return "méchant"; <br>
+            } else { <br>
+            return resultatGentil; <br>
+            } <br>
+            }
+        </li>
+        <br>
+        <li><strong>
+                public static String gentilOuMechant(String personne) { <br>
+                <br>
+                return switch (personne) { <br>
+                case "Superman", "Chuck Norris", "Luke Skywalker" -> "gentil";
+                case "Joker", "Cruella" -> "méchant"; <br>
+                default -> "gentil"; <br>
+                }; <br>
+                }</strong> <u>OK</u>
+        </li>
+        <br>
+        <li>public static String gentilOuMechant(String personne) { <br>
+            String resultat = null; <br>
+            switch (personne) { <br>
+            case "Superman": <br>
+            resultat = “gentil”; <br>
+            break; <br>
+            case “Chuck Norris”: <br>
+            resultat = “gentil”; <br>
+            break; <br>
+            case “Luke Skywalker”: <br>
+            resultat = “gentil”; <br>
+            case "Joker": <br>
+            resultat = “méchant”; <br>
+            case "Cruella": <br>
+            resultat = “méchant”; <br>
+            default: <br>
+            resultat=gentil;; <br>
+            } <br>
+            return resultat; <br>
+            }</li>
+    </ul>
+    <br>
+
+
+
+    <h3>Question 7 :</h3>
+    <p>Marlène travaille sur un exercice mais reste bloquée. Son code est le suivant :</p>
+    <br>
+    <p>public static void main(String[] args) { <br>
+        <br>
+        System.out.println("Programme d'entrainement aux nouveaux apprentis"); <br>
+        <br>
+        do { <br>
+        double valeur = (Math.random() * 10) + 1; // cette ligne génère une valeur en 0 et 10. <br>
+        <!-- } while (valeur < 5); }  -->
+        <br>
+    </p>
+    <br>
+    <!-- <p>Elle n’arrive pas à comprendre pourquoi l’IDE indique une erreur sur la ligne} while (valeur <5); .</p> -->
+    <br>
+    <p>Vous décidez de la
+        débloquer et lui indiquer la raison :</p>
+    <br>
+    <ul>
+        <li>La variable valeur est typée par le type primitif double. Une
+            instruction
+            while ne peut pas fonctionner avec une comparaison sur un double.</li>
+        <li>La boucle do { } while() n’est pas
+            adaptée, il
+            aurait fallu utiliser une boucle while afin d’évaluer d’abord la valeur puis exécuter l’instruction.</li>
+        <li>La
+            variable
+            valeur est déclarée au sein du bloc do { } et de ce fait l’instruction while n’y accède pas. Il faut
+            déclarer la
+            variable en dehors de la boucle.</li>
+    </ul>
+    <br>
+
+
+
+
+    <h3>Question 8 :</h3>
+
+
+    <br><br><br><br><br><br><br><br>
+    <i>(c.f IDE VSCode,
+        Lessons\coursOpenclassrooms\apprendreAProgrammerEnJava\lessonsOpenclassroomsJavaApplicationEJ)</i>
+    <br><br>
+    <i>(c.f IDE Eclipse, C:\Users\clair\OneDrive\Bureau\TRAVAIL\Workspace-pro-web\ej\src\ej)</i>
+
+</body>
+
+</html>

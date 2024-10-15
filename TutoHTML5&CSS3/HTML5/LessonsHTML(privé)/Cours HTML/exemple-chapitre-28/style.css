@@ -1,0 +1,54 @@
+/*  Les propriétés de type "font"  */
+/*---------------------------------------------------------------*/
+/*Propriétés font-size :
+On appliquera une taille différente pour notre titre h1 :
+-On séléctionne le titre h1 avec le sélectionneur : h1;
+-On lui donne la propriété : font-size;
+-On donne à cette propriété la valeur : 100px (grand, une valeur absolue)
+
+On donnera ensuite une taille différente à nos paragraphes avec le sélecteur p :
+-On lui donne la propriété : font-size à nouveau;
+-On donne comme valeur à cette propriété : 150% (valeur relative);
+-On enregistre et on envoie.
+
+On peut voir que le titre apparaît en très grand,
+et le prargraphe est écrit également plus grand que sa taille d'origine par défaut.
+/*---------------------------------------------------------------*/
+/*Propriétés font-style :
+-On appliquera un font-style au titre avec la valeur : italic;
+-On appliquera cette-fois ci pour nos paragraphes un font-style : oblique;
+-On enregistre et on affiche.
+
+            !  Attention !
+Certaines police ne supporte pas l'écriture italique, 
+car pas été conçu pour être mis en forme en italique, 
+et donc la valeur oblique va forcer l'inclinaison du texte.
+
+/*---------------------------------------------------------------*/
+/*Propriétés font-weight :
+-On appliquera un font-weight au titre : normal;
+-On appliquera un font-weight au paragraphe : 700 (bold);
+-On enregistre et on applique.
+
+Le titre est bien un peu plus fin, et le paragraphe plus épais, plus gras.
+
+            ! Attention !
+Certaines police ne vont pas supporter certains poids,
+et donc respecter certaines valeurs demandées par la propriété font-weight,
+comme par exemple la valeur : lighter et les valeur inférieur à 400.
+*/
+ 
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1{
+    font-size: 100px;
+    font-style: italic;
+    font-weight: normal;
+}
+p{
+    font-size: 150%;
+    font-style: oblique;
+    font-weight: 700;
+}

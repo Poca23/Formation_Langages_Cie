@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Les attributs id et class en html</title>
+    <link rel="stylesheet" href="/exemple-chapitre-23/style.css">
+</head>
+
+
+
+<body>
+    <h1>Je suis une titre</h1>
+
+    <!--  On va vouloir appliquer des styles différents en css par 
+        l'attribut id et class  -->
+
+    <!--  
+    On va vouloir appliquer un style au premier paragraphe en utilisant l'attribut id=""
+    -On ajoutera l'attribut id="" dans la balise ouvrante de l'élément <p></p>;
+    -On lui donnera comme valeur : "p1";
+    
+
+    On va vouloir appliquer un style au deuxième paragraphe en utilisant l'attribut class=""
+    -On ajoutera l'attribut class="" dans la balise ouvrante de l'élément <p></p>;
+    -On lui donnera comme valeur : "p1";
+
+    ! Il n'y a aucun problème à appliquer la même valeur à un id et à une class,
+    parce qu'on les ciblera en css d'une manière différente.
+
+    -->
+    <p id="p1">Je suis un paragraphe</p>
+    <p class="p1">Je suis un deuxième paragraphe</p>
+
+    <!-- 
+        On peut aussi attribuer un id ET une class à un même élément:
+        class="p1" et id="para".
+        Le paragraphe va hérité de la couleur rouge de l'attribut class="" avec sa valeur "p1",
+        ainsi que le style de l'attribut id avec sa valeur "para".
+
+        
+    -->
+    <p class="p1" id="para">Je suis un troisième paragraphe</p>
+</body>
+
+</html>

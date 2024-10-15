@@ -1,0 +1,21 @@
+/*  La propriété css font-family  */
+
+/*
+On va donc définir une nouvelle famille de police pour notre élément body,
+et donc tous les éléments qui sont à l'intérieur de notre élément body.
+-On ajoute le sélecteur : body;
+-On lui donne la propriété css : font-family;
+-On attribue à cette propriété la valeur : "Century Gothic",Verdana, sans'serif;
+
+La police a bien changé en Century Gothic. 
+Si ça n'avait pas été lu le navigateur aurait prit la police qui suivait,
+cela dans l'odre de lecture. 
+
+Verdana fait parti des Webs safe font (/famille de police sûre),
+sans-serif est une famille générique plutôt qu'une famille en soi.
+
+*/
+body{
+    font-family: "Bungee Spice", sans-serif;
+            
+}

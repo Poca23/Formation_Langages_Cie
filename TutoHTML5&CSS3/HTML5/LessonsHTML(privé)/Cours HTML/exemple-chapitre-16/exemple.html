@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ancres avec id en HTML</title>
+</head>
+
+<body>
+    -------------------------------------------------------------------------------------------------
+    <!--  On va créer une ancre avec un id  -->
+
+    <!--
+
+-On créera une ancre dans un élément titre "h2";
+-On ajoutera un attribut id="" dans la balise ouvrante de l'élément a;
+-On donner comme valeur à l'attribut id="" la valeur ancre1;
+
+Une fois l'ancre crée, nous allons devoir créer le lien qui va nous ramener vers l'ancre.
+
+-On utilisera une nouvelle fois un élément "a"; 
+-Avec son attribut href="";
+-On va donner la valeur donné à l'attribut id="" en valeut de l'attribut href="";
+-Et la faire précédéer d'un dièse "#".
+
+On créera un paragraphe pour ceci entre notre h1 et notre h2:
+-On va créer notre élément a pour rendre notre texte cliquable "ancre1";
+-On ajoutera l'attribut href="" dans l'élément "a";
+-Comme valeur de l'attribut href="" on donnera la valeur qu'on a donné à l'attribut id="";
+-On la fera précéder d'un dièse "#";
+-On va créer un autre paragrpahe avec beaucoup de retour à la page pour créer un scrolling 
+et devoir faire descendre la page;
+-On va pouvoir observer l'effet d'une ancre grâce à ceci;
+-On est bien ramené à "première ancre".
+-On pourra ajouter du texte avant, et du texte après.
+-En cliquant sur l'ancre on est ramené sur le titre ancré avec celui-ci en haut de page, 
+car nous avons la place en bas de page avec d'autres lignes en-dessous de l'ancre.
+
+
+-->
+
+    <h1>Les ancres en HTML</h1>
+    <p>Acces direct à notre ancre <a href="#ancre1">"ancre1"</a></p>
+    <p>Acces direct à notre deuxième ancre <a href="#ancre2">"ancre2"</a></p>
+
+    -------------------------------------------------------------------------------------------------
+    <p>
+        sauts de pages à la suite
+        <br><br><br><br><br><br><br><br><br><br><br><br><br>
+        sauts de pages à la suite<br><br><br><br><br><br><br><br>
+        sauts de pages à la suite<br><br><br><br><br><br><br><br><br>
+
+    </p>
+    <h2 id="ancre1">Une première ancre</h2>
+    <p>
+        s<br><br><br><br><br><br>a<br><br><br><br><br><br>u<br><br><br><br><br><br>t<br><br><br><br>
+        d<br><br><br><br><br><br><br>e<br><br><br><br>p<br><br>a<br><br>g<br><br>e<br>
+    </p>
+    -------------------------------------------------------------------------------------------------
+
+    <!--  On va créer une deuxième ancre -->
+
+    <!--
+    
+    -On copiera l'"id" précédent avec le paragraphe qui suit;
+    -On remplacera "ancre1" par "ancre2";
+    -On créera notre lien en haut de page comme tout à l'heure;
+    -On copiera l'élément a de la première ancre à la suite de ce dernier;
+    -On remplacera la valeur "#ancre1" de l'attribut href="" de l'élément "a" de la première ancre par;
+    -La valeur "#ancre2" de l'attribut href="" de l'élément "a" de la deuxième ancre;
+    -On enregistre;
+    -On envoie sur le navigateur.
+
+    La deuxième ancre nous ramène bien à l'élément "h2" de la deuxième ancre.
+
+    -->
+    <h2 id="ancre2">Une deuxième ancre</h2>
+    <p>
+        s<br><br><br><br><br><br>a<br><br><br><br><br><br>u<br><br><br><br><br><br>t<br><br><br><br>
+        d<br><br><br><br><br><br><br>e<br><br><br><br>p<br><br>a<br><br>g<br><br>e<br>
+    </p>
+
+    -------------------------------------------------------------------------------------------------
+
+    <!--  On vouloir créer un lien pour permettre d'envoyer un mail en HTML  -->
+    <!--
+
+-On va créer un lien à l'intérieur d'un paragraphe;
+-La valaur de l'attribut href de l'élément dans ce pargaraphe sera cette fois-ci:
+href="mailto:claire.naudin@outlook.fr"
+-On enregistre;
+-On envoie sur le navigateur;
+-On clique sur le lien;
+-La messagerie du visiteur s'ouvrira par défaut avec le champ d'envoi mail prérempli
+(sur MAC : apllication mail qui s'ouvrira, sous WINDOWS : à moins d'avoir configurer une messagerie par défaut il n'y aura pas de résultat)
+et on a bien la proposition d'envoie d'un mail à l'adresse donnée précédemment.
+
+    -->
+
+
+
+    <p>M'envoyer<a href="mailto:claire.naudin@outlook.fr"> un mail</a></p>
+
+
+    -------------------------------------------------------------------------------------------------
+
+
+    <!--  On va vouloir créer un lien de téléchargement  pour permettre aux visiteurs d'envoyer un fichier  -->
+
+    <!--
+
+   ! Il va nous falloir un fichier, 
+   car la valeur à préciser dans l'attribut href="" sera le chemin relatif à ce fichier !
+(exemple d'un fichier PDF)
+
+    !!  Attention au nom du fichier téléchargé, sans espaces et sans caractères spéciaux et dans le même dossier que le fichier html  !!
+
+Si le dossier est dans un dossier enfant, un sous-dossier, ou un dossier parent, il faudra bien suivre le chemin relatif jusqu'à celui-ci.
+
+-On crée un paragraphe;
+-On rajoute l'élément "a";
+-On encadre de l'élément a la zone cliquable souhaitée : "fichier PDF";
+-On rajoute l'attribut href="";
+-En valeur de l'attribut href="" je rajoute le nom du fichier avec son chemain relatif.
+-On enregistre;
+-On envoie sur le navigateur.
+
+En cliquant sur le lien on arrive bien sur le document PDF souhaité avec le lien de téléchargement pour ce fichier.
+-->
+
+    <p>Télécharger l'exemple de <a href="/exemple-chapitre-16/Fichier-PDF-chapitre-16.pdf">fichier PDF</a> pour le
+        chapitre 16 en HTML</p>
+
+</body>
+
+</html>

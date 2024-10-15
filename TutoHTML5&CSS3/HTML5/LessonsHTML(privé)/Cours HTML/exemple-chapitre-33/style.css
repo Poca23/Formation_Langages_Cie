@@ -1,0 +1,62 @@
+/* Largeur et hauteur en css */
+/* On va définir une largeur et une hauteur pour notre div1 :
+-On cible avec notre sélecteur notre class en particulier : div1;
+-On définit sa hauteur avec la propriété : height;
+-On lui donne la valeur de : 400px (valeur absolue);
+-On va également définir sa largeur avec la propriété : width;
+-On lui donnera comme valeur : 500pxvaleur absolue);
+-Pour bien voir le résultat on applucquera une couleur de fond à notre div :background-color;
+-Auquel on donnera la valeur : bleu/vert, #088;
+-On enregistre et on affiche.
+
+Notre div fait bien 400px de large sur 500px de haut.
+
+On va également pouvoir donner des valeurs relatives à nos propriétés heigth et width.
+-On peut mettre à width : 50% de l'élément parent (du body)
+Si on diminue la page on voit bien que notre widht reste bien à 50% de la page,
+selon que la page diminue ou augmente en largeur.
+*/
+
+.div1 {
+  height: 500px;
+  width: 500px;
+  background-color: #088;
+}
+
+/* On va vouloir donner une largeur et une hauteur à mon premier paragraphe :
+(On remettra une valeur absolue à ma div1)
+-On cible avec notre sélecteur notre class en particulier notre premier paragraphe : p1;
+-On va donner comme hauteur : height;
+-Une valeur de : 100px;
+-Ainsi qu'une largeur : width;
+-D'une valeur de : 400px;
+-On lui donne une couleur de fond pour bien situer le contenu de l'élément : background-color;
+-Avec la valeur : orangé, #FA0;
+-On enregistre et on affiche.
+
+Si j'ajoute un padding, une marge intérieure à mon élément : padding;
+-On donnera la valeur : 60px;
+Ca rajoutera à la taille de l'élément, 
+à la hauteur et à la largeur de l'élément 60px (haut, bas, droite et gauche)
+
+Ca sera donc un élément de :
+400px de large + 2*60px (droite et gauche +120px) = 520px de large
+On va donc pouvoir voir que l'élément va sortir de la div.
+!!! MAUVAISE PRATIQUE EN CSS !!!
+
+Un élément enfant dépasse de son conteneur, de son élément parent qui est la div.
+Quand on définit des hauteurs et des largeurs à bien tenir compte du padding,
+de la bordure et de la marge extérieur qu'on définiera pour l'élément.
+Cela jouera dans la disposition des éléments de notre page.
+
+Si on définit un pourcentage de la valeur de la largeur pour notre paragraphe,
+ca sera définit de par la valeur de la largeur de l'élément parent : la div1. 
+Il fera donc 50% de 500px = 250px.
+-On donne à la largeur width la valeur : 50%;
+-
+*/
+.p1 {
+  height: 100px;
+  width: 50%;
+  background-color: #fa0;
+}

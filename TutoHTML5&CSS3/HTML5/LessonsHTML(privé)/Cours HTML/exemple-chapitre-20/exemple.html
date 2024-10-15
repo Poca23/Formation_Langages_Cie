@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ou écrire le code CSS ?</title>
+    ---------------------------------------------------------------------
+
+    <!--  Première façon d'érire le code CSS  -->
+    <!--  On pourra écrire le code CSS dans à la fin de l'élément <head></head> de notre page html  -->
+    <!--
+    -On ouvre une balise <style></style>;
+    -On écrit notre code CSS à l'intérieur de notre élément "style";
+    -On peut par exemple appliquer une couleur de fond à toute notre page;
+    -On ajoutera le sélecteur body;
+    -On utilisera la propriété background-color qui nous permet de cibler notre page;
+    -On lui ajoutera la valeur orange;
+    -On enregistre et on affiche immédiatement sur le navigateur.
+
+    Toute notre page est en orange.
+    -->
+    <style>
+        body {
+            background-color: orange;
+        }
+    </style>
+    ---------------------------------------------------------------------
+    <!--  On va utiliser l'élément link pour créer le lien avec la page HTML & la page CSS  -->
+
+    <!--
+    -On lui ajoutera un premier attribut : rel="" qui précisera le type de fichier à linker (relié);
+    -Dans ce cas c'est "stylesheet";
+    -Puis ensuite un deuxième attribut qui va préciser l'emplacement du fichier à relié : son adresse;
+    -Les deux fichiers sont donc liés désormais.
+    -->
+    <link rel="stylesheet" href="/exemple-chapitre-20/exemple.css">
+
+</head>
+
+<body>
+    ---------------------------------------------------------------------
+    <!-- Deuxième façon d'érire le code CSS  -->
+    <!-- On pourra écrire le code CSS dans la balise ouvrante de l'élément html  -->
+    <!--
+        On peut ajouter un attribut cette fois-ci style="" et lui donner une valeur 
+        qui sera la propriété CSS et sa valeur en soi,
+        le tout entre guillemets.
+         !! ATTENTION l'élément style est différent de l'attribut style !!
+         On enregistre et on envoie.
+    -->
+
+
+    <h1>Je suis un titre</h1>
+    <p style="color: red;">Je suis un paragraphe</p>
+    <p>Je suis un deuxième paragraphe</p>
+    ---------------------------------------------------------------------
+
+    <!-- INCONVENIENTS : Il faudrait à chaque fois appoiquer l'attribut rouge à chacun des éléments voulu.
+         AVANTAGES : On va pouvoir cibler très précisément un style à un élément en particulier.
+    -->
+    <!--  Ces deux premières méthodes ne sont généralement pas recommandées :
+    -Raisons de performances;
+    -Maintenabilité du code.
+
+    Car il faudrait écrire un code CSS pour chaque page .. trop long
+    -->
+    ---------------------------------------------------------------------
+
+    <!-- TROISIEME METHODE, la meilleure, pour écrire le code en CSS : créer une page CSS sur un autre fichier typé CSS  -->
+
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+/* Troisème méthode pour écrire le code CSS 
+On enregistrera le fichier CSS dans le même fichier que le fichier html.
+
+On va ensuite devoir lier le fichier CSS et le fichier HTML entre eux.
+On rajoutera un élément <link></link> dans l'élément <head></head> de la page html.
+
+A la suite de ça, on appliquera tous nos styles CSS dans notre fichier CSS :{
+*/
+
+body{
+    background-color: orange;
+}
+
+h1{
+    color: green;
+}
+
+p{
+    color: red;
+}
+
+/* AVANTAGES : 
+
+On va pouvoir lier plusieurs fichiers html  à un fichier CSS, et 
+influer sur ces mêmes pages par cette seule page CSS
+=> GAIN DE TEMPS CONSIDERABLES
+
+!!  METHODE CONSEILLEE  !!

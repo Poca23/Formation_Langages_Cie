@@ -1,0 +1,41 @@
+/*  Commentaires et indentations en CSS  */
+/*----------------------------------------*/
+/*  
+Ecrivons d'abord un commentaire monoligne : 
+-On commencera tout d'abord avec un "/";
+-Puis ensuite une "*";
+-Et on referme ensuite avec un "*";
+-Puis un "/".
+/*----------------------------------------*/
+/*Les commentaires monolignes s'écriront de la même manière que les commentaires multilignes.
+*/
+
+/* Je suis un commentaire monoligne */
+
+/* Je suis
+un commentaires
+multiligne*/
+/*----------------------------------------*/
+/* En plus d'être très utile pour nous indiquer le pourquoi de chaque code, 
+le commentaire en CSS peut aussi permettre de neutraliser certaines lignes de code
+si on ne souhaite pas qu'une ligne de code s'applique*/
+
+body{
+    /*background-color: green;*/
+}
+/* Très utile de neutraliser du code par le commentaire, 
+notemment pour le javascrpit pour changer dynamiquement le code d'une page.*/
+/*----------------------------------------*/
+
+/*  Indentations en CSS  */
+h1{
+    text-decoration: underline;
+    font-style: italic;
+}
+/*On peut voir que les déclarations concernant le sélecteur "h1" donné 
+restent au même niveau.*/
+/*----------------------------------------*/
+/* Essayons avec un autre sélecteur */
+p{
+    color: red;
+}

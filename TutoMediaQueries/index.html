@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le responsive design avec les Media Queries</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Le responsive design avec les Media Queries</h1>
+    <h2>Appliquez une media query avec @media :</h2>
+    <p>Les media queries sont des règles qui indiquent quand on doit appliquer des propriétés CSS, en fonction de la
+        taille de l'écran sur lequel s'affiche le site web.</p>
+    <p>En fait, les maquettes pour les différentes versions d'écrans sont conçues dès l'élaboration du design.
+        C'est-à-dire que la présentation du contenu va changer :</p>
+    <p>Ok mais concrètement, comment on fait pour écrire une media query ?
+        <br><br>
+        La syntaxe est un peu particulière, mais rassurez-vous si vous n'arrivez pas à vous en souvenir : vous pourrez
+        toujours
+        aller la chercher sur internet, et la copier-coller.
+        <br><br>
+        Voilà à quoi cela ressemble :(cf fichier css)
+    </p>
+    <br><br>
+    <p>Les tailles que nous indiquons avec min-width ou max-width sont souvent appelées "points de ruptures", ou
+        breakpoints en
+        anglais, car ce sont les points où le design change.</p>
+    <br><br>
+    <p>Ici, cela signifie que le style écrit entre les accolades ne sera appliqué que pour les écrans dont la taille est
+        comprise entre 1 025 pixels et 1 200 pixels.</p>
+    <br><br>
+    <p>! Attention, afin que les Media Queries soient prises en compte correctement sur tous les dispositifs, il est
+        également
+        essentiel de rajouter dans l’en-tête (partie
+
+        <head> de notre site) la ligne suivante :
+            <br><br>
+            meta name="viewport" content="width=device-width, initial-scale=1.0" !
+    </p>
+    <br><br>
+    <p>Ici on demande a ce que le "viewport" du navigateur, c’est à dire la surface d’affichage du navigateur s’adapte à
+        la
+        largeur d’affichage de l’appareil. Cela permet notamment un affichage correct sur nos téléphones mobiles.
+        <br><br>
+        En effet les téléphones actuels ont une résolution native proche des écrans HD. Par exemple un iPhone 12Pro a
+        une
+        résolution native de 1 170 x 2 532 pixels. Si nous ne mettons pas la balise meta viewport, l’affichage de notre
+        site
+        serait le même que sur un écran de cette taille, donc on y verrait pas grand chose. Par contre avec cette balise
+        l’affichage se fait sur une base de 390 x 844 pixels. Cela permet donc d’assurer un affichage standard sur tous
+        les
+        mobiles.
+    </p>
+    <h2>Utilisez les règles disponibles</h2>
+    <p>Il existe de nombreuses règles permettant de construire des media queries. Mais pour ne pas vous perdre, je vous
+        ai
+        uniquement listé les plus utilisées :</p>
+    <ul>
+        <li>height : hauteur de la zone d'affichage (fenêtre) ;</li>
+        <li>width : largeur de la zone d'affichage (fenêtre) ;</li>
+        <li>orientation : orientation du périphérique (portrait ou paysage) ;</li>
+        <li>media : type d'écran de sortie. Avec la valeur la plus utilisée :
+            <br><br>
+            <ul>
+                <li>screen : écran “classique”,</li>
+                <li>all : tout type de média,</li>
+                <li>print : imprimante (pratique pour formater un contenu pour l’imprimer).</li>
+            </ul>
+        </li>
+    </ul>
+    <br>
+    <p>On peut rajouter le préfixe min- ou max- devant la plupart de ces règles. Ainsi, min-width signifie “largeur
+        minimale”, max-height signifie “hauteur maximale”, etc.</p>
+    <p>Les règles peuvent être combinées à l'aide des mots suivants:</p>
+    <br>
+    <ul>
+        <li>only : “uniquement” ;</li>
+        <li>and : “et” ;</li>
+        <li>not : “non”.</li>
+    </ul>
+    <br>
+    <p>Voici quelques exemples de media queries pour vous aider à bien comprendre le principe : (cf fichier css)</p>
+
+    <h2>Codez des interfaces responsives</h2>
+    <p>Maintenant que vous savez comment sélectionner des éléments en fonction des différentes tailles d'écran, vous
+        allez également pouvoir tirer profit des différentes astuces pour adapter votre contenu.</p>
+
+    <h3>Exploitez les minimum et maximum :</h3>
+
+    <p>On peut demander à ce qu'un bloc ait des dimensions minimales et maximales. C'est très pratique, car cela nous
+        permet de
+        définir des dimensions “limites” pour que notre site s'adapte aux différentes résolutions d'écran de nos
+        visiteurs :</p>
+    <br>
+    <ul>
+        <li>min-width : largeur minimale ;</li>
+        <li>min-height : hauteur minimale ;</li>
+        <li>max-width : largeur maximale ;</li>
+        <li>max-height : hauteur maximale.</li>
+    </ul>
+    <br>
+    <p>Par exemple, on peut demander à ce qu'une image occupe 50% de la largeur et exiger qu'elle fasse au moins 400
+        pixels de
+        large dans tous les cas :
+        <br><br>
+        img {<br>
+        width: 50%;<br>
+        min-width: 400px;<br>
+        }
+    </p>
+    <br>
+    <p>Observez le résultat en modifiant la largeur de la fenêtre de votre navigateur. Vous allez voir que, si celle-ci
+        est
+        trop petite, le paragraphe se force à occuper au moins 400 pixels de largeur.</p>
+
+    <h3>Coupez ce qui dépasse avec overflow</h3>
+    <p>Lorsqu'on commence à définir des dimensions précises pour nos blocs, comme on vient de le faire, il arrive qu'ils
+        deviennent trop petits pour le texte qu'ils contiennent.
+        <br><br>
+        Les propriétés CSS que nous allons voir ici ont justement été créées pour contrôler les dépassements… et décider
+        quoi
+        faire si jamais cela devait arriver.
+        <br><br>
+        Supposons que vous ayez un long paragraphe et que vous vouliez (pour une raison qui ne regarde que vous) qu'il
+        fasse
+        250px de large et 110px de haut. Ajoutons-lui une bordure et remplissons-le de texte… à ras bord :
+    </p>
+    <br><br>
+    <p>Le texte dépasse du bloc de paragraphe
+        Horreur ! Le texte dépasse des limites du paragraphe !
+        <br><br>
+        Eh oui ! Vous avez demandé des dimensions précises, vous les avez eues ! Mais… le texte ne tient pas à
+        l'intérieur d'un
+        si petit bloc.
+        <br><br>
+    <p>Si vous voulez que le texte ne dépasse pas les limites du paragraphe, il va falloir utiliser la propriété CSS
+        overflow. Voici les valeurs qu'elle peut accepter :
+    </p>
+    <br>
+    <ul>
+        <li>visible (par défaut) : si le texte dépasse les limites de taille, il reste visible et sort volontairement du
+            bloc ;</li>
+        <li>hidden : si le texte dépasse les limites, il sera tout simplement caché. On ne pourra pas voir tout le texte
+            ;</li>
+        <li>scroll : là encore, le texte sera caché s'il dépasse les limites. Sauf que cette fois, le navigateur mettra
+            en place des
+            barres de défilement pour qu'on puisse lire l'ensemble du texte. C'est un peu comme un cadre à l'intérieur
+            de la page ;</li>
+        <li>auto : c'est le mode “pilote automatique”. En gros, c'est le navigateur qui décide de mettre ou non des
+            barres de
+            défilement (il n'en mettra que si c'est nécessaire). C'est la valeur que je conseille d'utiliser le plus
+            souvent.</li>
+    </ul>
+    <br>
+    <p>Dans le cas spécifique du texte, vous pouvez même utiliser text-overflow: ellipsis; combiné à white-space:
+        no-wrap; :
+        ils vous permettent d'afficher "..." à la fin de votre texte pour signaler à l'utilisateur que le texte a été
+        tronqué.</p>
+</body>
+
+</html>

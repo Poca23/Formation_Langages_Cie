@@ -1,0 +1,75 @@
+/*  On étudiera le concept d'héritage en css  */
+/*
+Appliquer une couleur au body ne veut rien dire en soit, 
+car le body n'es t pas quelque chose de visible en soit,
+par contre on va pouvoir voir que tous les textes à l'intérieur 
+de ce même élément body prennent la valeur de la couleur demandé.
+
+Cela veut dire que les élément contenu dans l'élément body vont hériter
+des styles de l'élément body défini en css, 
+ils hériteront donc de cette couleur blue (bleue).
+*/
+
+body{
+    color: blue;
+}
+
+/*
+Je vais également donner à mes éléments p une couleur différente: red (/rouge)
+*/
+
+p{
+    color: red;
+}
+
+/*
+Je vais également donner à mon id "para" une autre couleur : green
+*/
+
+/*#para{
+    color: green;
+}
+*/
+/*
+-nos titre est toujours en bleu, 
+-nos paragraphes un et deux sont en rouge et 
+-notre dernier paragraphe est en vert.
+--------------------------------------------------------
+Pourquoi ?
+-On a définit une couleur bleu pour notre body, 
+tous les éléments ont hérités d'une couleur bleu : h1 et des trois p
+
+Le h1 n'a aucune règle spécifique en css, il s'affichera bien en css.
+CEPENDANT,
+Pour les paragraphes ce sera plus compliqué 
+car on a un sélecteur plus précis qui est le sélecteur p 
+qui définiera la couleur en rouge, 
+il sera plus précis que body pour les éléments paragraphes.
+MAIS,
+On a défini un style encore plus précis pour un paragraphe en particulier,
+le troisième paragraphe. On lui a définit une couleur verte.
+L'id "para" permet de cibler plus précisément que le sélecteur p.
+
+
+-On a donc un titre affiché en bleu, seul style qui lui est appliqué,
+-Deux paragraphes qui sont tous en rouge, style par le sélecteur p,
+-Et le dernier paragraphe en vert, 
+ciblé plus précisément par le sélecteur #para de l'attribut id.
+-----------------------------------------------------------------
+Si j'applique une couleur rouge à mes paragraphes en enlevant le sélecteur #para
+et que je retourne sur ma page html en attribuant 
+un attribut style au deuxième paragraphe, en donnant une valeur color="green"
+il va y avoir un autre conflit à nouveau.
+POURQUOI ?
+Car on applique encore sur une même propriété des valeurs diférentes sur le même élément.
+
+-Notre élément s'affichera donc en vert, 
+car quand on définit un style à l'intérieur d'un élément,
+on ne peut pas faire plus précis,
+
+-Ensuite, ça sera celui dans l'élément style qui sera retenu (dans le head),
+
+-Et enfin, les derniers styles retenus seront ceux définis dans un fichier css sépraés.
+
+
+*/

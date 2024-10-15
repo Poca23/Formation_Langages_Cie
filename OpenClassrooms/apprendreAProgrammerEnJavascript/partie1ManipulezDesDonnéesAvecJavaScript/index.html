@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partie 1 - Manipulez des données avec JavaScript</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+    <h1>Partie 1 - Manipulez des données avec JavaScript</h1>
+    <ol>
+        <li>Tirez un maximum de ce cours</li>
+        <li>Déclarez une variable</li>
+        <li>Modifiez une variable</li>
+        <li>Structurez des données grâce aux objets</li>
+        <li>Regroupez des données grâce aux tableaux</li>
+        <li>Quiz : Manipuler des données avec JavaScript</li>
+    </ol>
+
+    <hr>
+
+    <p>Apprendre un langage de programmation, c’est comme apprendre une nouvelle langue. Dans la première partie de ce
+        cours,
+        nous allons découvrir le langage JavaScript : son vocabulaire et sa syntaxe… et vous aurez surtout l’occasion de
+        vous
+        entraîner sur des exercices !</p>
+    <br>
+
+    <h2>Découvrez les variables</h2>
+    <p>En tant que développeur, vous utilisez des variables pour stocker un nom d’utilisateur ou encore un chiffre
+        représentant
+        le nombre de produits restants dans votre stock. Cela vous permet de retrouver ces données plus facilement.</p>
+    <br>
+    <p>Heuu…. Comment ça, “les retrouver plus facilement” ?</p>
+
+    <p>Eh oui ! La mémoire d’un ordinateur est un peu comme une énorme armoire avec des milliers de tiroirs qui
+        permettent de
+        ranger les données que l’on stocke. Et comme il y a des milliers de tiroirs, nous identifions chacun d’entre eux
+        grâce à
+        une “étiquette”.
+        <br><br>
+        Pour identifier facilement le tiroir qui contient le nom d’un utilisateur, par exemple, nous lui attribuons
+        l’étiquette
+        nomUtilisateur. Ainsi, à chaque fois que nous voudrons consulter ou mettre à jour cette donnée, nous irons
+        directement
+        dans le tiroir nomUtilisateur. Ce conteneur de données est donc une variable. Et l’étiquette, c’est le nom de la
+        variable.
+        <br><br>
+        Chaque variable possède un type. Cela permet à l’ordinateur d’attribuer le “tiroir” le plus approprié à chaque
+        donnée.
+    </p>
+    <img src="tiroirIdentification.png" alt="tiroirIdentifiaction">
+
+    <p>Il existe des types basiques :</p>
+    <br>
+    <ul>
+        <li> <strong>number</strong> : la donnée est un chiffre ;</li>
+        <li><strong>string</strong> : la donnée est une chaîne de caractères (du texte, comme “David”, par exemple) ;
+        </li>
+        <li><strong>boolean </strong>: la donnée est vraie ou fausse.
+        </li>
+    </ul>
+    <br>
+    <p><i>Il existe aussi d’autres types dit “complexes”, que nous verrons en détail dans les prochains chapitres.</i>
+    </p>
+
+    <h3>Déclarez une variable en JavaScript</h3>
+
+    <p>Lorsque vous déclarez une variable, c’est-à-dire lorsque vous la créez, vous devez utiliser une syntaxe précise
+        qui
+        permettra à votre programme informatique d’interpréter correctement votre code. Vous allez donc déclarer votre
+        variable
+        en utilisant une instruction.</p>
+    <br>
+    <p>Les instructions sont des mots-clés uniques qui permettent au code d’être correctement interprété. Pour déclarer
+        des
+        variables, vous utiliserez les instructions let et const.</p>
+
+    <h4>L’instruction let :</h4>
+
+    <p>Utilisons l’instruction let suivie du nom de la variable : (cf fichier Javascript)</p>
+    <br>
+    <p>Notez que je n’ai pas réécrit l’instruction let. En effet, une fois la variable déclarée une première fois grâce
+        à let,
+        je peux l’utiliser directement.
+        <br><br>
+        Dans ce cours, nous avons fait le choix de ne pas mettre le caractère;pour indiquer la fin d’une ligne de code.
+        Vous
+        serez cependant amené à le retrouver dans certains extraits de code. Les deux écritures sont acceptées.
+        <br><br>
+        L’écriture let monAge = 42; est donc tout à fait valide. L’idéal est de faire un choix au départ, et de rester
+        cohérent
+        tout au long d’un même projet.
+    </p>
+
+    <h4>L’instruction const :</h4>
+
+    <p>Utilisons l’instruction const suivie du nom de la variable :(cf fichier Javascript)</p>
+    <br>
+    <p><strong>Mais c’est pareil que let, alors ?</strong></p>
+    <br>
+    <p>Eh bien non ! const signifie “constante”. Donc, une fois déclaré, monPrénom ne pourra plus changer. Si on essaie,
+        JavaScript refusera d’exécuter l’instruction et affichera une erreur. <br>En revanche, monAge, déclaré avec let,
+        pourra
+        évoluer dans le code.</p>
+    <br>
+    <p>L’instruction <strong>var</strong> peut également être utilisée pour déclarer une variable, mais elle est
+        considérée comme
+        <strong>obsolète</strong>. Pour
+        autant, ne soyez pas surpris d’en trouver parfois dans le code d’autres développeurs, ou dans de vieux projets.
+    </p>
+
+    <h4>L’instruction console.log() :</h4>
+    <p>Pour vérifier le contenu d’une variable, il est possible d’utiliser l’instruction console.log(), avec entre les
+        parenthèses, le nom de la variable.(cf fichier JavaScript)</p>
+    <br>
+    <p>!!!
+        <br>
+        Je vous encourage vivement à vous servir de console.log tout au long de ce cours. Cela vous permettra de
+        vérifier
+        les
+        valeurs de n’importe quelle variable, et de vous assurer que notre code produit bien les résultats attendus
+        <br>
+        !!!
+    </p>
+
+    <h4>Codez proprement</h4>
+    <p>Il n’est jamais trop tôt pour coder proprement, et cela commence dès que vous déclarez une variable ! Ainsi, il
+        est très
+        important de nommer correctement nos variables.
+        <br><br>
+        Qu’est-ce que tu entends par “correctement” ?
+
+        Concrètement : donnez du sens aux noms de vos variables, et décrivez précisément leur contenu.
+        <br><br>
+        Dans mon exemple, pour mon prénom j’ai nommé ma variable monPrenom. De cette façon, je m’assure que si un autre
+        développeur lit mon code, il saura précisément ce que contient ma variable tout au long du code.
+        <br><br>
+        C’est également utile pour moi, lorsque je reviens sur du code écrit il y a longtemps, pour l’améliorer ou
+        ajouter
+        quelque chose. Avec des variables bien nommées, je suis sûr de retrouver le sens de ce qui a été codé. 😉
+    </p>
+
+    <h2>Modifiez une variable</h2>
+
+    <p>Dans le chapitre précédent, vous avez appris quelques mots du langage JavaScript. Découvrons maintenant comment
+        formuler
+        des phrases en utilisant des opérateurs !</p>
+    <h3>Découvrez les différents types de données :</h3>
+    <p>Comme nous l’avons vu précédemment, en JavaScript, il existe plusieurs types pour décrire la valeur d’une
+        variable. En
+        fonction du type de données, les opérations qui permettent de manipuler ces données sont différentes.
+        <br><br>
+        Dans ce chapitre, nous allons apprendre à manipuler les trois types de données basiques :
+    </p>
+    <br>
+    <ul>
+        <li>le type <strong>string</strong> : correspond à une chaîne de caractères, c’est-à-dire un texte ;</li>
+        <li>le type <strong>number</strong> : correspond à un chiffre ;</li>
+        <li>le type <strong>boolean</strong> : correspond à un booléen en mathématiques, c’est-à-dire une valeur qui est
+            soit vraie
+            (true, en
+            anglais) soit fausse (false, en anglais).</li>
+    </ul>
+    <br>
+    <h3>Utilisez des opérateurs</h3>
+    <p>Pour modifier la valeur d’une variable, nous allons utiliser des opérateurs.</p>
+    <br>
+    <p>Un opérateur est un symbole qui permet d’effectuer des actions sur des variables ou des valeurs. Ces actions
+        peuvent
+        être des opérations mathématiques, ou encore des comparaisons entre valeurs.</p>
+
+    <p>Voyons ensemble les différents résultats que l’on obtient, selon le type de données que l’on manipule.</p>
+
+    <h4>Manipulez des chiffres</h4>
+    <p>Commençons par manipuler des chiffres avec une opération mathématique simple : l’addition.
+        <br><br>
+        Imaginons que vous souhaitiez connaître le nombre d’entrées qu’a fait le film Batman durant les deux premières
+        semaines
+        suivant sa sortie dans un cinéma donné. Il vous faudra additionner le nombre d’entrées de la première semaine
+        avec celui
+        de la deuxième semaine.
+        <br><br>
+        Écrivons cela en JavaScript :(cf fichier JavaScript)
+    </p>
+    <br>
+    <p>Ici nous avons utilisé des instructions const, car les valeurs ne changeront pas dans la suite du code. N’oubliez
+        pas de
+        vous poser la question chaque fois que vous devez définir une variable.</p>
+    <br>
+    <p>Et voilà ! Vous avez fait votre première addition en JavaScript, félicitations ! 🥳 Le principe est le même pour
+        les
+        autres opérations mathématiques qui auront chacun un opérateur : les soustractions - , les multiplications * ,
+        les
+        divisions / .</p>
+    <br>
+    <p>Imaginez maintenant un autre cas de figure. Vous voulez connaître en direct le nombre de places vendues dans la
+        journée. Vous avez une variable qui contient le nombre actuel de places vendues, et vous voulez lui ajouter le
+        nombre de places vendues à l’instant dans le cinéma.
+        <br><br>
+        Vous écrivez donc :(cf fichier JavaScript)
+    </p>
+    <br>
+    <p>Comme vous pouvez le constater, j’ai répété deux fois placesDejaVendues. Si j’avais écrit placesDejaVendues = 10,
+        cela
+        aurait écrasé la valeur 150 au lieu de réaliser une addition. Comme ce genre d’opération est très fréquent,
+        JavaScript a
+        créé des raccourcis pour les réaliser : les opérateurs d’affectation.
+        <br><br>
+        On peut donc écrire plus simplement :(cf fichier JavaScript)
+    </p>
+    <br>
+    <p>Et le résultat est strictement équivalent. 😉</p>
+    <br>
+    <p>Lorsqu’on utilise <strong>+=</strong> , on <strong>additionne</strong> la valeur à droite du signe = à notre
+        variable.
+        <br>
+        Les
+        variantes pour les
+        autres
+        opérations mathématiques existent également.
+        <br>
+        On aura donc <strong>-=</strong> pour une
+        <strong>soustraction</strong>,
+        <br>
+        <strong>*=</strong> pour une <strong>multiplication</strong>,
+        <br>
+        <strong>/=</strong> pour
+        une <strong>division</strong>.
+    </p>
+
+    <h4>Manipulez des chaînes de caractères</h4>
+    <p>Pour déclarer une variable qui contient une chaîne de caractères, nous devons entourer notre texte avec des
+        guillemets
+        simples ‘ ou doubles “ .
+        <br><br>
+        Regardez l’exemple ci-dessous :(cf fichier JavaScript)
+    </p>
+    <br>
+    <p>Si on utilise l’opérateur <strong>+</strong> entre deux chaînes de caractères, on réalise ce que l’on appelle en
+        programmation une
+        <strong>concaténation</strong>.
+    </p>
+    <br>
+    <p>La concaténation est le fait de mettre bout à bout deux chaînes de caractères. On utilise cette opération quand
+        la
+        chaîne de caractères que l’on souhaite stocker dans une variable est dans deux variables différentes.
+        <br><br>
+        exemple :(cf fichier JavaScript)
+    </p>
+
+    <br>
+    <p>Les caractères // que vous apercevez à la fin de cet extrait de code me permettent d’insérer des commentaires
+        écrits
+        sans qu’ils aient une incidence sur le code lui-même. C’est ainsi que je pourrai vous donner des indications
+        directement
+        dans le code.
+        <br><br>
+        Les commentaires sont d’une manière générale très utiles si vous devez vous relire par la suite, ou partager
+        votre code
+        avec d’autres.
+    </p>
+    <br>
+    <p>Comme pour les chiffres, vous pouvez également utiliser l’opérateur += :</p>
+
+    <h4>Manipulez des booléens</h4>
+
+    <p>Très souvent, en programmation, vous aurez besoin d'un type de données qui ne peut avoir que 2 possibilités :
+        <br><br>
+        oui/non,
+        vrai/faux, allumé/éteint. Ainsi, une variable qui contient un booléen ne peut avoir que deux valeurs : true ou
+        false. On
+        utilise ce type de données pour savoir si un état est vrai ou faux dans notre code.
+        <br><br>
+        Par exemple, pour savoir si un utilisateur d’un site web est connecté ou pas, on écrira :(cf fichier JavaScript)
+    </p>
+
+    <br>
+    <p>Il existe de nombreux autres opérateurs, n’hésitez pas à aller consulter <a
+            href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_and_operators#op%C3%A9rateurs_daffectation">la
+            documentation</a> pour les
+        découvrir.</p>
+
+    <h3>Différenciez les types de données</h3>
+
+    <p>Lorsque vous utilisez des opérateurs, ne mélangez pas les types de données entre eux. Assurez-vous que vos
+        variables ont
+        des types cohérents.
+        <br><br>
+        Reprenons l’exemple des places de cinéma, mais avec des guillemets autour des chiffres.
+        <br><br>
+        Si on écrit ceci :(cf fichier JavaScript)
+    </p>
+
+    <br>
+    <p>La variable placesDejaVendues va contenir “15010” et pas “160”, car la présence des guillemets indique à
+        JavaScript que
+        le type de données est “String”, c'est-à-dire du texte. Par conséquent, le + n’est plus un opérateur d’addition.
+        <br><br>
+        Il
+        devient un opérateur de concaténation, qui colle deux morceaux de texte.
+    </p>
+    <br>
+    <p>Pour résoudre ce problème, nous pouvons soit :
+        <br><br>
+    <ul>
+        <li>enlever les guillemets autour des chiffres</li>
+        <li>soit préciser à
+            JavaScript que
+            nous voulons vraiment utiliser des chiffres, grâce à l’instruction Number.</li>
+    </ul>
+    <br>
+    <p>Cette dernière permet de convertir le
+        texte
+        “150” en chiffre 150.
+        <br><br>
+        Cette fois-ci, le résultat est correct !
+    </p>
+
+    <h2>Structurez des données grâce aux objets</h2>
+    <p>Dans le chapitre précédent, vous avez appris à reconnaître différents types de variables qui permettent
+        d’identifier une
+        valeur à la fois. Mais comment faire pour identifier un élément avec plusieurs valeurs ? C’est le moment
+        d’utiliser les
+        objets !</p>
+
+    <h3>Découvrez les objets en JavaScript</h3>
+    <p>Un Object (objet, en français) JavaScript est un conteneur. Il est composé de propriétés qui ont chacune une
+        valeur.
+        Ainsi, le type de donnée Object offre la possibilité de stocker plusieurs valeurs en une seule fois, plutôt que
+        de
+        devoir stocker séparément nos valeurs dans plusieurs variables différentes.</p>
+
+
+    <h3>Déclarez un objet en JavaScript</h3>
+
+    <p>Pour <strong>déclarer un objet</strong> en JavaScript, vous devez utiliser <strong>les accolades { }</strong> .
+        Les <strong>propriétés d’un objet</strong> ont un
+        <strong>nom</strong> et
+        une <strong>valeur</strong> qui sont assignées avec <strong>deux points:</strong>. Les
+        <strong>propriétés</strong> sont séparées
+        entre elles <strong>par
+            des virgules,</strong>.
+    </p>
+    <br>
+    <p>Par exemple, pour déclarer l’objet monPersonnage qui représente le personnage fictif Bruce Wayne, 35 ans, dont la
+        couleur préférée est le noir et qui adore sortir la nuit, <br>vous écrirez : (cf fichier JavaScript)</p>
+
+    <h4>Ajoutez une propriété à un objet JavaScript:</h4>
+    <p>Un objet JavaScript peut être mis à jour au fur et à mesure de son évolution dans le code.
+        <br><br>
+        Par exemple, si vous vous rendez compte que l’objet monPersonnage a désormais un véhicule préféré, il vous
+        faudra lui
+        ajouter cette nouvelle propriété.
+        <br><br>
+        Pour ajouter une propriété, vous devez écrire le nom de votre objet, séparé par un point . avec le nom de votre
+        nouvelle
+        propriété : (cf fichier JavaScript)
+    </p>
+
+    <h4>Accédez à une propriété d’un objet JavaScript :</h4>
+    <p>Lorsque vous manipulez des objets JavaScript, vous avez également besoin d’accéder à leurs propriétés pour les
+        stocker
+        dans des variables, et les utiliser dans la suite de votre code ou dans un autre contexte.
+        <br><br>
+        Vous pouvez accéder à la valeur d’une propriété en utilisant le point . et par exemple, la stocker dans une
+        variable.
+        <br><br>
+        Dans le cadre de l’objet monPersonnage, vous écrirez :
+    </p>
+
+    <h3>À vous de jouer !</h3>
+
+    <p>Et maintenant, entraînez-vous à manipuler des variables avec cet exercice CodePen.
+        <br><br>
+        Vous êtes chargé de la maintenance d’une borne automatique qui permet de récupérer son billet de cinéma. Vous
+        devez
+        préparer la sortie du prochain film Batman, et faire en sorte que les utilisateurs puissent récupérer un billet
+        pour ce
+        nouveau film.
+        <br><br>
+        Déclarez le nouveau ticket de cinéma
+        Un ticket de cinéma a plusieurs propriétés : un nom de film, un prix, un numéro de salle.
+        <br><br>
+        Déclarez un objet ticket avec les propriétés suivantes :
+        <br><br>
+        nomFilm ;
+        <br>
+        prix ;
+        <br>
+        numeroSalle.
+        <br>
+        Déclarez une variable nom avec votre nom.
+        <br><br>
+        Affichez les informations sur la borne
+        Affichez un message sur la borne : “Bonjour NOM, votre film NOMDEFILM est en salle NUMERODELASALLE”.
+        <br><br>
+        Créez une variable texteAffichage qui contient cette phrase, avec NOM, NOMDEFILM et NUMERODELASALLE remplacés
+        par leur
+        vraie valeur.
+        <br><br>
+        Vérifiez le résultat avec un console.log.
+        <br><br>
+        Corrigé <br>
+        Vous pouvez vérifier votre travail en consultant<a
+            href="https://codepen.io/OpenClassroomsLearning/pen/YzjLwMe?editors=1111" target="_blank">le corrigé et la
+            vidéo :</a>
+    </p>
+
+    <h2>Regroupez des données grâce aux tableaux</h2>
+    <p>Vous savez désormais déclarer différents types de variables. En tant que développeur, vous aurez aussi souvent
+        besoin de
+        stocker plusieurs données dans des listes. Pour cela, l’option la plus simple est d’utiliser des tableaux.</p>
+
+    <h3>Découvrez les tableaux en JavaScript :</h3>
+    <p>Si vous manipulez des données similaires ou qui partagent la même thématique, il est préférable de les regrouper
+        dans un
+        tableau, plutôt que de les stocker individuellement dans des variables différentes. Cela vous permet de les
+        retrouver en
+        un seul endroit, et de limiter le nombre de variables dans votre code.
+        <br><br>
+        Un tableau en JavaScript est donc un objet qui permet de lister plusieurs variables ou valeurs, et de les
+        regrouper.
+    </p>
+
+    <h3>Déclarez un tableau en JavaScript :</h3>
+    <p>Pour déclarer un <strong>tableau</strong> en JavaScript, vous devez utiliser <strong>les crochets [ ]</strong> .
+        <strong>Chaque valeur</strong>
+        contenue dans le
+        tableau
+        est <strong>séparée</strong> par <strong>une virgule ,</strong> : (cf fichier JavaScript)
+    </p>
+
+    <br>
+    <p>Vous pouvez également stocker des variables dans votre tableau : (cf fichier JavaScript)
+    </p>
+
+    <h4>Accédez à un élément de votre tableau :</h4>
+
+    <p>Pour accéder à un élément de votre tableau, vous devez utiliser les crochets, et mettre entre crochets le numéro
+        de la
+        case que vous voulez regarder. La première case du tableau correspond à la case numéro zéro.
+        <br><br>
+        Pour accéder au contenu de cette case, vous écrirez donc : (cf fichier JavaScript)
+    </p>
+
+    <h4>Comptez le nombre d’éléments de votre tableau :</h4>
+    <p>Pour connaître le nombre d’éléments que contient votre tableau, vous devez accéder à la propriété
+        <strong>length</strong>, en
+        utilisant <strong>le
+            point .</strong> , <strong>comme pour les objets</strong>. Cette propriété est préétablie par JavaScript.
+        Elle est donc
+        automatiquement
+        disponible
+        pour tous les tableaux. Pratique !
+        <br><br>
+        Imaginons que vous vouliez connaître le nombre total de films que vous possédez dans votre collection. Vous
+        écrirez : (cf fichier JavaScript)
+    </p>
+
+    <h4>Modifiez votre tableau grâce aux méthodes :</h4>
+    <p>Les <strong>tableaux</strong> sont des <strong>conteneurs</strong>, <strong>comme les objets (const)</strong> que
+        nous avons vus dans le
+        chapitre précédent.
+        <br>
+        Pour effectuer des <strong>actions sur les données stockées dans votre tableau</strong> (ajouter, supprimer des
+        données…), vous
+        utiliserez des <strong>méthodes</strong>.
+    </p>
+    <br>
+    <p>Les <strong>méthodes</strong> s’utilisent avec des <strong>parenthèses ( )</strong> . À l’intérieur de ces
+        parenthèses vous pouvez
+        passer des
+        valeurs,
+        c'est-à-dire des <strong>données</strong>, qui serviront à la méthode pour modifier les données de votre
+        tableau.
+        <br><br>
+        En réalité,
+        vous avez
+        déjà utilisé une méthode fournie par JavaScript : <strong>console.log()</strong> !
+    </p>
+
+    <h4>Ajoutez des données grâce à la méthode push :</h4>
+    <p>Pour ajouter des données à un tableau, vous devez utiliser la méthode push en lui indiquant la valeur que vous
+        souhaitez
+        ajouter.
+        <br><br>
+        Si vous voulez ajouter Retour vers le futur à votre liste de films, vous écrirez : (cf fichier JavaScript)
+    </p>
+    <br>
+    <p>Avec la méthode push, la donnée qui est entre les parenthèses (ici “Retour vers le futur”) sera ajoutée en
+        dernier dans
+        votre tableau.</p>
+
+    <h4>Supprimez des données grâce à la méthode pop :</h4>
+
+    <p>Pour supprimer la dernière donnée de votre tableau, vous pouvez utiliser la méthode pop sans avoir besoin de
+        passer de
+        valeurs (c'est-à-dire, sans rien écrire entre les parenthèses).
+        <br><br>
+        Si vous voulez retirer Retour vers le futur de votre liste de films, vous écrirez : (cf fichier JavaScript)
+    </p>
+    <br>
+    <p>Sachez qu’il existe beaucoup d’autres méthodes pour manipuler les données d’un tableau, comme la méthode splice
+        pour
+        supprimer une donnée précise, ou la méthode sort pour trier les données. Pour en savoir plus, il y a toujours <a
+            href="https://developer.mozilla.org/fr/docs/Learn/JavaScript/First_steps/Arrays">la
+            documentation</a> !</p>
+
+    <h3>Distinguez les copies par “valeur” et par “référence”</h3>
+
+    <h4>La copie par valeur :</h4>
+    <p>Lorsqu’on programme, il arrive parfois que l’on veuille dupliquer une variable. <br><br>
+        C’est le cas lorsque l’on
+        doit
+        sauvegarder une valeur avant de la modifier, par exemple. Pour cela, le plus simple est de copier le contenu
+        d’une
+        variable à l’intérieur d’une autre variable.
+        <br><br>
+        Mais que se passe-t-il en réalité lorsque nous effectuons cette opération ? (cf fichier JavaScript)
+    </p>
+    <br>
+    <p>Eh bien, cela va dépendre du type de la variable. Si variable2 est un type simple (boolean, number ou string),
+        alors le
+        contenu sera dupliqué.
+        <br><br>
+        Souvenez-vous, dans le deuxième chapitre du cours, je vous expliquais que, lorsqu’on crée une variable, on lui
+        attribue
+        une étiquette. Pour reprendre notre métaphore de l’armoire, ce qui est dans le tiroir variable1 va être
+        dupliqué, et la
+        copie sera mise dans variable2.
+        <br><br>
+        Au final, nous aurons deux tiroirs indépendants avec chacun une valeur à
+        l’intérieur.
+    </p>
+    <br>
+    <p>C’est ce qu’on appelle <strong>la copie par valeur</strong>. Nous avons copié le contenu d’une <strong>variable à
+            l’intérieur d’une autre
+            variable</strong>. Nous avons donc deux variables indépendantes.</p>
+
+    <h4>La copie par références :</h4>
+    <p>Imaginez maintenant que vous vouliez copier une variable qui contient un <strong>contenu de type “complexe” : un
+            objet ou
+            un
+            tableau, par exemple</strong>. Dans ce cas, JavaScript fait une <strong>copie par référence</strong>. (cf
+        fichier JavaScript)
+    </p>
+
+    <br>
+    <p>Ici, nous n’avons pas deux tiroirs, c’est l’étiquette qui a été copiée. En d’autre termes, variable1 et variable2
+        sont
+        deux étiquettes différentes pour le même tiroir. Nous avons donc deux variables qui pointent sur le même
+        contenu.
+        <br><br>
+        Oui mais concrètement, quelle est la différence ?
+    </p>
+    <br>
+    <ul>
+        <li>Dans le cas d’une copie par valeur, si vous modifiez la valeur d’une des deux variables, la valeur de
+            l’autre ne
+            change
+            pas.</li>
+        <br>
+        <li>Dans le cas d’une copie par référence, si vous changez la valeur de la première variable, la valeur de
+            la
+            seconde
+            est affectée aussi.</li>
+    </ul>
+    <br><br>
+    <p>Et si je veux vraiment dupliquer mon tableau, alors ?
+        <br><br>
+        Dans ce cas, vous devez déclarer un nouveau tableau et recopier toutes les valeurs une par une.
+        <br>
+        Ahh !!!! Mais ça va prendre des heures ! 😱
+        <br>
+        Eh bien non, car JavaScript a pensé à tout !
+        <br>
+        😃 Vous n’aurez donc qu’à utiliser un <strong>spread operato</strong>r.
+        <br><br>
+        Comme le ++
+        que nous
+        avons déjà croisé, c’est un opérateur qui nous permet de faire <strong>automatiquement la copie</strong>, et cet
+        opérateur
+        <strong>s’écrit…</strong>. (cf fichier JavaScript)
+    </p>
+
+    <br>
+    <p>Ici, je dis que dans variableComplexe3, je recopie un par un tous les éléments qui sont dans variableComplexe1.
+        <br><br>
+        Comme
+        ces variables sont de type simple, nous avons une vraie copie, et les deux tableaux sont indépendants !
+        <br><br>
+        Voici un exemple pour illustrer tout ça : (cf fichier JavaScript)
+    </p>
+
+    <br>
+    <p>C’est également pour cette raison que les tableaux sont souvent déclarés avec <strong>const</strong> en
+        JavaScript, même s'ils
+        évoluent
+        tout au long du code.
+        <br><br>
+        Ce qui est <strong>constant</strong>, ce n’est pas le contenu, mais <strong>l’endroit en mémoire où est stocké
+            le
+            tableau</strong>.
+    </p>
+
+    <h2>À vous de jouer !</h2>
+    <p><i>(cf fichier JavaScript)</i></p>
+    <br>
+    <p>Vous organisez une soirée avec des amis. Une bonne soirée, c’est souvent une bonne musique ! Mais pour cela, vous
+        devez
+        vous organiser.</p>
+
+    <h3>Déclarez les morceaux de votre playlist</h3>
+    <p>Commençons par faire un inventaire des CD en votre possession.
+
+        Déclarez un tableau playlist qui contiendra trois de vos morceaux préférés.
+
+        Stockez le nombre de morceaux disponibles dans une variable totalMorceaux.</p>
+
+    <h3>Ajoutez les morceaux de vos amis</h3>
+    <p>Pour plaire à tout le monde, vous décidez de laisser vos amis choisir deux morceaux supplémentaires pour
+        compléter votre
+        collection.
+        <br><br>
+        Ajoutez deux morceaux au tableau playlist de manière à porter le total à cinq morceaux.
+    </p>
+
+    <h3>Enlevez le dernier morceau de votre playlist</h3>
+    <p>Malheureusement, certains ne sont pas d’accord avec le dernier morceau ajouté. Il va falloir faire du tri ! 😱
+        <br><br>
+        Supprimez le dernier morceau ajouté à votre collection.
+        <br><br>
+    </p>
+
+
+
+
+    <!-- (cf fichier JavaScript) -->
+    <script src="../script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+/*  Elements html block et inline  */
+/*
+On va créer un élément "border" 
+pour mieux voir l'espace que prend l'élément "p" sur une page:
+-On ajoute le sélecteur "p";
+-On ajoute l'élément border;
+-Auquel on ajoute une valeur, 1px solid black (ces valeurs là sont juste pour l'exemple)
+-On enregidtre et on affiche.
+
+Notre élément "p" prend bien tout l'espace de la ligne qu'il occupe sur la page.
+
+Un élément de type block va également pouvoir contenir des éléments de type inline.
+On peut très bien rajouter un élément "strong" ) l'intérieur d'un élément de type block.
+
+Ils peuvent aussi contenir d'autres éléments de type block.
+
+
+On va en lever la bordure de l'élément "p", qu'on mettra à notre élément "strong":
+-On enregistre et on affiche.
+On voit bien que l'élément strong va occuper simplement la largeur de son contenu:
+ "type block"
+
+ 
+*/
+
+
+strong{
+    border:1px solid black;
+}

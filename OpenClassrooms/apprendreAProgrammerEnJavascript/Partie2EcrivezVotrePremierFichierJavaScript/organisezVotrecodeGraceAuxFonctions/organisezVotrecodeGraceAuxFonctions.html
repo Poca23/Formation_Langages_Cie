@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organisez votre code grâce aux fonctions</title>
+    <link rel="stylesheet" href="../../style.css">
+    <script src="../organisezVotrecodeGraceAuxFonctions/organisezVotrecodeGraceAuxFonctions.js"></script>
+</head>
+
+<body>
+    <h2><a href="../../Partie2EcrivezVotrePremierFichierJavaScript/index.html" target="_blank">Organisez votre code
+            grâce aux
+            fonctions</a></h2>
+    <p>Notre projet avance ! Nous pouvons maintenant proposer plusieurs mots ou phrases à l’utilisateur, compter son
+        score et
+        l’afficher. 🚀
+        <br><br>
+        Pour l’instant notre code est encore relativement petit, mais il va grandir au fur et à mesure du développement.
+        Il est
+        donc très important de l’organiser pour qu’il reste lisible et fonctionnel. C’est d’autant plus important que,
+        en tant
+        que développeur, vous devrez fréquemment dupliquer du code. Voyons ensemble comment éviter cette répétition et
+        réaliser
+        cela efficacement, grâce aux fonctions ! 😃
+    </p>
+
+    <h3>Découvrez les fonctions</h3>
+
+    <p>Une <strong>fonction</strong> est un <strong>bloc de code auquel on attribue un nom</strong> .
+        <strong>Appeler</strong> cette fonction permet d’exécuter le code
+        qu’elle
+        contient. On parle donc de fonction, car il s’agit d’un bloc de code qui a un rôle spécifique au sein de votre
+        fichier
+        <br>
+        JavaScript. Une fonction peut ainsi :
+    </p>
+    <br>
+    <ul>
+        <li><strong>contenir des informations</strong>, qu’on appelle <strong>paramètres</strong> ;</li>
+        <li><strong>retourner un résulta</strong>t ;</li>
+        <li><strong>effectuer une action</strong>.</li>
+    </ul>
+    <br>
+    <p>En fait, vous utilisez déjà des fonctions depuis le début de ce cours, sans même le savoir ! Par exemple, quand
+        vous
+        écrivez : (cf fichier JavaScript)</p>
+    <br>
+    <p><strong>Prompt est une fonction</strong> :</p>
+    <br>
+    <ul>
+        <li>elle prend en paramètre le message à afficher (ici, “Entrez un mot”) ;</li>
+        <li>elle retourne un résultat : le mot tapé par l’utilisateur.</li>
+    </ul>
+    <br>
+    <p>Dans l’exemple ci-dessus, le retour de la fonction prompt est copié dans motUtilisateur.</p>
+    <h3>Rédigez une fonction en JavaScript</h3>
+    <p>Dans le cadre de notre application, nous souhaitons écrire une fonction qui va générer une phrase pour donner le
+        score
+        final à l'utilisateur.
+        <br>
+        Cette fonction prendra donc en paramètre deux informations :
+    </p>
+    <br>
+    <ul>
+        <li> le score ;</li>
+        <li> le nombre de questions.</li>
+    </ul>
+    <br>
+    <p>Elle retournera une phrase contenant ces informations.
+        <br><br>
+        Cela donne donc : (cf fichier JavaScript)
+    </p>
+    <br>
+    <p>Revenons en détail sur ce morceau de code :</p>
+    <br>
+    <ul>
+        <li>le mot-clé <strong>function</strong> (“fonction”, en anglais) est suivi du nom “retournerMessageScore”. Ce
+            mot est ici
+            <strong>obligatoire</strong>
+            pour
+            définir la fonction, <strong>mais</strong> <u>il n’est ensuite plus nécessaire lorsqu’on l’utilise</u> ;
+        </li>
+        <li>par conséquent, la fonction “retournerMessageScore” est créée ;</li>
+        <li><strong>entre parenthèses</strong> sont indiqués <strong>les paramètres</strong> envoyés à cette fonction :
+            <u>“score”</u> et <u>“nombreQuestions” </u> ;
+        </li>
+        <li> <strong>entre accolades</strong> est indiqué <strong>le bloc de code</strong> qui sera exécuté
+            <strong>quand la fonction
+                sera
+                appelée</strong> (<u>let message…et return</u>);
+        </li>
+        <li><strong>dans ce bloc de code</strong>, nous <strong>déclarons</strong> <u>une variable message</u> dans
+            laquelle nous <strong>créons notre
+                message</strong> ;</li>
+        <li> <strong>le code est finalisé</strong> avec le nouveau mot-clé <strong>return</strong>. Ce mot signifie que
+            <u>la fonction va
+                retourner le
+                contenu de
+                message</u>.
+        </li>
+    </ul>
+    <br>
+
+    <p>Si vous ajoutez ce code dans votre projet et que vous le testez, il ne provoquera aucun changement pour le
+        moment. Ces
+        instructions définissent notre fonction… Mais pour qu’elle produise son effet, nous devons l’appeler.</p>
+    <p>Par exemple : (cf fichier JavaScript)</p>
+    <br>
+    <p>Gardez également en tête que <strong>l’ordre des paramètres est très important</strong> !
+        <br>
+        La fonction a un
+        premier paramètre
+        nommé
+        <strong>“score”</strong> et un second paramètre nommé <strong>“nombreQuestions”</strong> :
+    </p>
+    <br>
+    <ul>
+        <li>si on appelle la fonction avec 5 et 10, 5 étant le premier paramètre, il ira donc dans la variable “score” ;
+        </li>
+        <li>le 10 étant positionné en second, il ira dans la variable “nombreQuestions”, positionnée en second aussi.
+        </li>
+    </ul>
+    <br>
+    <img src="../../assets/function.png" alt="">
+    <h3>Codez proprement</h3>
+
+    <p>Vous vous rendrez compte très rapidement que les fonctions sont un élément majeur de votre code. Il est donc très
+        important de respecter quelques bonnes pratiques pour prévenir tout problème. Voici quelques conseils.</p>
+    <h4>Définissez une tâche spécifique pour chaque fonction</h4>
+    <p>Dans l’idéal, on attribue une seule tâche à une fonction : afficher, calculer, lancer une opération, initialiser…
+        <br><br>
+        Si une
+        fonction s’occupe de tout gérer à la fois, elle comportera beaucoup de lignes, difficiles à comprendre, à
+        modifier et à
+        tester.
+    </p>
+    <h4>Écrivez des fonctions courtes</h4>
+    <p>Dans l'idéal, vos fonctions ne doivent pas dépasser 30 lignes. Si le but de la fonction est clair, un code court
+        est
+        généralement suffisant pour l’atteindre.</p>
+    <br>
+    <p>Si la fonction prend trop d’ampleur, c’est peut-être qu’elle est mal conçue, qu’elle fait trop de choses, ou
+        qu’il
+        faudrait la découper en plusieurs sous-fonctions.</p>
+    <h4>Nommez clairement vos fonctions</h4>
+    <p>Comme pour les variables, le nom d’une fonction devrait être suffisamment clair pour permettre d’en deviner le
+        contenu
+        sans lire le code qu’elle contient.</p>
+    <br>
+    <p>Vous pouvez par exemple utiliser un verbe pour nommer vos fonctions.
+        <br>
+        Si une fonction s’appelle resultat, que
+        fait-elle ?
+        Elle calcule le résultat ? Elle l’affiche ? Elle le réinitialise ?
+        <br>
+        En utilisant des noms tels que
+        afficherResultat,
+        calculerResultat, reinitialiserResultat… là, plus aucune ambiguïté ! 😃
+    </p>
+    <h4>Nommez clairement vos paramètres</h4>
+    <p>Les paramètres doivent également être le plus explicites possible : (cf fichier JavaScript)</p>
+    <br>
+    <p>Que dois-je envoyer à ma fonction pour remplir le paramètre a ? Est-ce qu’il représente le nom du joueur ? La
+        liste des
+        mots qu’il doit taper ? Autre chose ?
+        <br><br>
+        Ici, il est donc préférable d’écrire : (cf fichier JavaScript)
+    </p>
+    <br>
+    <p>Rien qu’avec le nom, nous savons maintenant que le paramètre contient en réalité un tableau avec une liste de
+        mots.
+        N’oubliez pas non plus qu’en cas d'ambiguïté, vous pouvez toujours insérer un commentaire pour ajouter une
+        précision !</p>
+
+    <h3>Organisez votre code en plusieurs fichiers</h3>
+    <p>Découper votre code en plusieurs fonctions permet de mieux organiser vos idées et facilite les modifications,
+        mais
+        ce
+        n’est pas suffisant…
+        <br><br>
+        Si votre projet continue de grandir, <u><strong>regrouper</strong> toutes vos fonctions au même endroit risque
+            de rapidement
+            <strong>causer
+                des
+                problèmes de lisibilité et de navigation</strong>. C’est encore plus vrai si vous êtes plusieurs à
+            travailler sur le
+            même
+            projet
+            !</u>
+        <br><br>
+    <p> Souvenez-vous, quand nous avons créé notre fichier index.HTML dans le chapitre "Appréhendez la logique de
+        programmation", nous avons écrit :</p>
+    </p>
+    <br>
+    <p>script src="script.js"</p>
+    <br>
+    <p> … afin d’inclure notre fichier script.
+        <br><br>
+        Imaginez maintenant que nous voulions créer un fichier de configuration qui contiendrait nos deux tableaux
+        listeMots
+        et
+        listePhrases. Cela nous permettrait de faire évoluer ces tableaux sans risquer de modifier par erreur la logique
+        du
+        code
+        ! 😃
+        <br><br>
+        Pour y parvenir, nous pouvons inclure ce nouveau fichier en insérant une nouvelle ligne dans le fichier HTML
+        pour
+        préciser le chemin du nouveau fichier :
+    </p>
+    <p>
+        script src="config.js"
+        <br>
+        script src="script.js"
+    </p>
+    <br>
+    <p>Dans cet exemple, j’ai mis le <strong>fichier config.js</strong> <u>avant</u> <strong>script.js</strong>, car les
+        <strong>variables que je
+            vais</strong> définir dans le
+        fichier
+        <u>config.js</u> <strong>seront utilisées par script.js</strong>. Elles doivent donc être <strong>définies en
+            premier</strong>.
+    </p>
+    <br>
+    <p>Ensuite, nous devons définir le contenu du fichier.
+        <br><br>
+        Pour cela, nous allons supprimer les deux const <strong>listeMots</strong> et
+        <strong>listesPhrases</strong> de script.js, et les copier <u>dans config.js</u>.
+    </p>
+    <br>
+    <p>N'hésitez pas à ajouter des commentaires pour donner des précisions dans votre code. Mettre un commentaire
+        inutile n’est
+        pas très grave. En revanche, ne pas avoir un commentaire utile peut parfois faire perdre beaucoup de temps.</p>
+
+    <h3>Maîtrisez la portée des variables</h3>
+    <p>Nous avons commencé à apprendre le JavaScript en déclarant des variables. Maintenant que vous manipulez des
+        fonctions et
+        des blocs de code, vous devez maîtriser une notion importante : la portée des variables. Pas de panique, je vous
+        explique ! 😉</p>
+    <br>
+    <p>Les variables ont une portée, qui est définie par l’endroit où cette variable est déclarée. Ainsi, on distingue
+        deux
+        types de variables :</p>
+
+    <br>
+    <ul>
+        <li><strong>les variables globales :</strong> visibles et utilisables dans l’ensemble du code ;</li>
+        <li><strong>les variables locales :</strong> qui ne peuvent être utilisées qu’au sein du bloc de code dans
+            lequel elles sont
+            définies.</li>
+    </ul>
+    <br>
+    <p>Ouh là là là… Aurais-tu un exemple pour rendre les choses plus claires ? 😱
+        <br><br>
+        Bien sûr ! Prenons l’exemple ci-dessous : (cf fichier JavaScript)
+    </p>
+    <br>
+    Si vous copiez-collez ce code dans votre éditeur de code, vous constaterez plusieurs choses :
+    <br><br>
+    les chiffres 1 et 2 apparaissent en premier : ils sont affichés dans la fonction afficheUnNombre ;
+    <br><br>
+    le dernier console.log renvoie une erreur, due au fait que la variable monNombreLocal est définie au sein du bloc de
+    code de la fonction afficheUnNombre.
+    <br><br>
+    Comme il s’agit d’une variable locale, elle n’est pas accessible dans l’ensemble du code. Elle est donc inconnue
+    lorsqu’on tente de l’afficher hors de la fonction qui la déclare.
+    <br><br>
+    À mesure que votre code s’agrandit, les variables s’accumulent. Certaines peuvent désigner le même élément, avoir le
+    même nom… et provoquer des résultats inattendus 😱. En restreignant une variable à un bloc de code, vous l’empêchez
+    d'interférer avec une autre variable globale. Cela vous évitera de nombreux bugs particulièrement difficiles à
+    trouver !
+
+    <h3>À vous de jouer !</h3>
+
+    <h4>Étape 1 : découpez votre code en fonctions :</h4>
+    <p>Notre but est maintenant d’améliorer l’organisation et la lisibilité de<a
+            href="https://github.com/OpenClassrooms-Student-Center/7696886-javascript/tree/P2-C3---Les-boucles">notre
+            code</a>.
+        <br>
+        Je vous propose donc de créer
+        les
+        fonctions suivantes :
+    </p>
+    <br>
+    <ul>
+        <li>afficherResultat : cette fonction prend en paramètre le résultat et le nombre total de mots proposés, et
+            affiche le
+            résultat du joueur ;</li>
+        <li> choisirPhrasesOuMots : cette fonction demande à l’utilisateur s’il veut jouer avec des phrases ou des mots.
+        </li>
+    </ul>
+    <br>
+    <p> Tant que l’utilisateur n’a pas répondu “phrases” ou “mots”, la question lui est posée en boucle. La fonction ne
+        prend
+        aucun paramètre, mais retourne ce que l’utilisateur a répondu.</p>
+    <br>
+    <ul>
+        <li> lancerBoucleDeJeu : cette fonction contient la boucle principale de jeu, c'est-à-dire la boucle for qui
+            propose les
+            mots/phrases au joueur, et lui demande de taper ces mots. Elle prend en paramètre le tableau de mots/phrases
+            qui
+            sera
+            proposé au joueur, et retourne le nombre de mots/phrases correctement tapés ;</li>
+        <li> lancerJeu : cette fonction sera la fonction principale, c’est elle qui s’occupe de lancer toutes les
+            autres. En
+            d’autres
+            termes, c’est elle qui va appeler les fonctions que vous venez d’écrire.</li>
+    </ul>
+    <br>
+    <p>Vous pouvez vérifier votre travail en consultant la vidéo ci-dessous :</p>
+
+    <h4>Étape 2 : séparez votre code en plusieurs fichiers :</h4>
+    <br>
+    <ul>
+        <li>Séparez votre code en plusieurs fichiers.</li>
+        <li>Créez un fichier config.js qui contiendra uniquement les deux listes de propositions.</li>
+        <li>Créez un fichier main.js qui contiendra uniquement l’appel à la fonction principale lancerJeu.</li>
+        <li>Vérifiez que tout fonctionne encore.</li>
+        <li>Créez un nouveau répertoire appelé “scripts”, et placez-y tous vos fichiers.</li>
+        <li>Vérifiez à nouveau votre code. 😃</li>
+        <li>Pour réussir cette étape, pensez bien à mettre à jour le fichier HTML !</li>
+    </ul>
+    <br>
+    <p>Pour réussir cette étape, pensez bien à mettre à jour le fichier HTML !</p>
+
+
+
+
+
+
+    (cf fichier JavaScript)
+</body>
+
+</html>
