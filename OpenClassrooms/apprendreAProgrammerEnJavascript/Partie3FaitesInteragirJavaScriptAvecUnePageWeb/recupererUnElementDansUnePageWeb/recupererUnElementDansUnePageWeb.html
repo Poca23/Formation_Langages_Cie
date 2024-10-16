@@ -26,11 +26,111 @@
         en HTML
         les mots à recopier et le score.
     </p>
+    <br>
+    <p>Pour appréhender cette étape, vous devez donc maîtriser les fondamentaux du langage HTML. Si ce n’est pas le cas,
+        je
+        vous conseille fortement de suivre le cours<a
+            href="https://openclassrooms.com/fr/courses/1603881-creez-votre-site-web-avec-html5-et-css3"
+            target="_blank">Créez votre site web avec HTML 5 et CSS
+            3</a>.</p>
+    <br>
+    <p>Notre première étape, dans ce chapitre, est d’<strong>établir un lien entre le code HTML et le code
+            JavaScript</strong>. Cela nous
+        permettra, dans le chapitre suivant, de modifier le code HTML directement depuis notre code JavaScript. Alors,
+        avant de
+        rentrer dans le vif du sujet, regardons ensemble <strong>comment une page web est structurée</strong> ! 😉</p>
+
+    <h3>Appréhendez la structure d’une page web :</h3>
+    <p>Généralement, une page web est constituée de <strong>deux parties</strong> :</p>
+    <br>
+    <ul>
+        <li>un <strong>head</strong> qui donne des <u>informations générales sur la page</u> ;
+        </li>
+        <li>un <strong>body</strong> qui <u>contient ce qui est affiché dans la page</u>.</li>
+    </ul>
+    <br>
+    <p>Voici un exemple de body pour une page simple :</p>
+    <img src="../../assets/FormationOpenclassroomsJavascriptExempleDeBodySimplePourPageHtml.png"
+        alt="FormationOpenclassroomsJavascriptExempleDeBodySimplePourPageHtml">
+    <p>Ce code HTML est simple. Il est constitué d’un <strong>header</strong> avec un <strong>titre</strong>, d’un
+        <strong>corps (main)</strong> et d’un <strong>footer</strong>.
+    </p>
+    <br>
+    <p>Ce code est un peu structuré comme un arbre, c’est pourquoi on appelle cette structure l’<strong><u>arbre DOM
+                (Document
+                Object
+                Model, ou modèle objet du document, en français)</u></strong>. En fait, JavaScript ne lit pas une page
+        HTML comme du simple
+        texte. Il
+        la représente comme une <strong>structure organisée en parents/enfants</strong>, et composée de <strong>nœuds
+            qui
+            représentent des
+            balises</strong>.</p>
+    <br>
+    <p>Ouh là là là, ça devient un peu abstrait ton truc, là… 😅</p>
+    <br>
+    <p>C’est un peu imagé oui, mais revenons ensemble sur l’illustration de l’arbre DOM ci-dessous :</p>
+    <img src="../../assets/FormationOpenclassroomsJavascriptIllustrationSructureArbreDOM.png"
+        alt="FormationOpenclassroomsJavascriptIllustrationSructureArbreDOM">
+
+    <p>Dans la structure ci-dessus :</p>
+    <br>
+    <ul>
+        <li>le <strong>body</strong> en haut représente la <u>racine de l’arbre DOM</u> ;</li>
+        <li>de cette racine se déploient des <strong>branches (en bleu sur l’image)</strong> ;</li>
+        <li>ces branches <strong>mènent à des nœuds</strong> : <u>header, main, footer, h1, h2, div, p…</u> ;
+        </li>
+        <li>les branches <strong>se terminent généralement</strong> par une <strong>feuille</strong> : <u>texte</u>.
+        </li>
+    </ul>
+    <br>
+    <p>En développement informatique, on dit que <u>header, main et footer</u> sont les <strong>noeuds enfants de
+            body</strong>, et que <u>body</u> est
+        <strong>le
+            parent de ces nœud</strong>s.
+    </p>
+    <br>
+    <p>Chaque <strong>nœud</strong> de cet <strong>arbre DOM</strong> (header, main, div…) est un <strong><u>objet
+                HTMLElement</u></strong>. Pour le dire autrement, JavaScript a
+        regroupé <strong>dans un même objet deux choses</strong> :</p>
+    <br>
+    <ul>
+        <li>les <u>informations sur cet objet (son nom, son id, sa position, etc.)</u> : ce sont les <strong>propriétés
+                de
+                l’objet</strong>;
+        </li>
+        <br>
+        <li><u>ce que cet objet est capable de faire (réagir au clic, par exemple)</u> : ce sont <strong>les
+                méthodes</strong>.</li>
+    </ul>
+    <br>
+    <p>Dans ce cours, nous explorons plusieurs propriétés et méthodes, mais il en existe d’autres. Si vous voulez en
+        savoir
+        plus, <a href="https://developer.mozilla.org/fr/docs/Web/API/HTMLElement" target="_blank">la documentation</a>
+        est à votre disposition. 😃</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
     <br><br><br><br><br><br><br><br><br><br>
-    <i>cf recupererUnElementDansUnePageWeb.js</i>
+    <i>cf : recupererUnElementDansUnePageWeb.js</i>
 </body>
 
 </html>
