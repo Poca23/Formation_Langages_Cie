@@ -109,10 +109,35 @@
         plus, <a href="https://developer.mozilla.org/fr/docs/Web/API/HTMLElement" target="_blank">la documentation</a>
         est à votre disposition. 😃</p>
 
+    <h3>Récupérez un élément du DOM :</h3>
+    <p>Dans ce chapitre, notre but est de récupérer certains éléments de l’arbre DOM, qui a pour racine la balise body.
+        Cependant, vous vous souvenez peut-être que <u>nos fichiers JavaScript sont stockés dans la balise head</u>, qui
+        se
+        situe <strong>avant
+            le body</strong>.</p>
+    <br>
 
-
-
-
+    <h4>Utilisez defer pour différer l’exécution du script :</h4>
+    <p>Pour <strong>manipuler le DOM</strong>, JavaScript doit ainsi <strong>construire une variable globale,
+            <u>document</u></strong>, qui est donc <strong>accessible</strong>
+        depuis
+        <u>n’importe où dans notre code</u>.
+        <br><br>
+        Cependant, pour construire cette variable, <u>la page HTML doit être chargée
+            en
+            entier</u>. Or,
+        <u>le script étant lancé dans la balise head, avant que le body ne s’affiche à l’écran, la page HTML n’existe
+            pas
+            encore</u>.
+        Nous devons donc attendre que la page ait fini de charger avant d’utiliser la variable document.
+    </p>
+    <br>
+    <p>Pour résoudre ce problème, la méthode la plus efficace est d’ <strong>ajouter le <u>mot-clé defer</u> dans la
+            balise script</strong>.
+        Concrètement, cela revient à demander au navigateur “Si tu rencontres la balise script, <strong>diffère</strong>
+        sa prise en
+        compte et
+        attends que la page soit chargée.”</p>
 
 
 
@@ -131,6 +156,10 @@
 
     <br><br><br><br><br><br><br><br><br><br>
     <i>cf : recupererUnElementDansUnePageWeb.js</i>
+    <i>cf : applicationAzertyType</i>
+    <i>cf : config.js</i>
+    <i>cf : main.js</i>
+    <i>cf : script.js</i>
 </body>
 
 </html>
