@@ -7,10 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Application AzerType</title>
     <link rel="stylesheet" href="../style.css">
-    <script src="scripts/config.js" defer></script>
-    <script src="scripts/script.js" defer></script>
+    <!-- <script src="scripts/config.js"></script>
+    <script src="scripts/script.js"></script> -->
     <!-- mettre le main à la fin car il utilisera une fonction du fichier script précédent, l'ordre est important -->
-    <script src="scripts/main.js" defer></script>
+    <!-- <script src="scripts/main.js"></script> -->
+    <script src="scripts/script2.js" defer></script>
 </head>
 
 <body>
@@ -39,14 +40,15 @@
 
         <hr>
 
-        <div>
-            <h2>Le jeu</h2>
-            <p>Un petit texte</p>
+        <div class="zoneChoix">
+            <input type="radio" name="optionSource" id="mots" value="1" checked>
+            <label for="mots">Mots</label>
+            <input type="radio" name="optionSource" id="phrases" value="2" checked>
+            <label for="phrases">Phrases</label>
         </div>
 
-        <div>
-            <h2>Une autre div</h2>
-            <p>Un autre petit texte</p>
+        <div id="zoneProposition">
+            Entrez le mot : <span>Cachalot</span>
         </div>
     </main>
 

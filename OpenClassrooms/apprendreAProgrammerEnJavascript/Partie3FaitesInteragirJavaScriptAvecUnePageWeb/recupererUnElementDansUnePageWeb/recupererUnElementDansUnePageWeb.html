@@ -137,12 +137,144 @@
         Concrètement, cela revient à demander au navigateur “Si tu rencontres la balise script, <strong>diffère</strong>
         sa prise en
         compte et
-        attends que la page soit chargée.”</p>
+        attends que la page soit chargée.” <i>(cf : applicationAzertyType)</i>
+    </p>
 
+    <h4>Utilisez différentes syntaxes pour récupérer un élément :</h4>
+    <p>JavaScript propose tout un <strong>éventail de méthodes</strong> pour <u>récupérer les éléments du DOM</u>. Dans
+        ce chapitre, nous en
+        aborderons
+        trois :</p>
+    <br>
+    <ul>
+        <li><strong>getElementById</strong> ;</li>
+        <li><strong>querySelector</strong> ;</li>
+        <li><strong>querySelectorAll</strong>.</li>
+    </ul>
+    <br>
+    <p>Il existe bien sûr d’autres méthodes, et je vous invite d’ailleurs à les découvrir par vous-même. L’essentiel est
+        de
+        <strong>choisir la méthode la plus adaptée à la problématique suivante</strong> :
+        <br>
+        cibler le ou les éléments qui nous intéressent
+        au
+        milieu d’une page HTML souvent très conséquente.
+    </p>
+    <br>
+    <h5>Récupérez un élément avec <strong>getElementById</strong> :</h5>
+    <p>La première méthode, et probablement la plus simple, est getElementById. Comme son nom l’indique, elle permet de
+        <strong>récupérer un élément en fournissant son id en paramètre</strong>.
+    </p>
+    <br>
+    <p>Dans notre application par exemple, nous affichions jusqu’à maintenant le mot à recopier dans le texte du prompt.
+        Désormais, notre <u>objectif</u> est de l’<strong>afficher dans une zone de la page dédiée</strong>.</p>
+    <br>
+    <p>Pour cela, nous pouvons commencer par créer une div dans le HTML. Pour la distinguer des autres, nous lui
+        fournissons un
+        id : <i>(cf : applicationAzertyType)</i></p>
+    <br>
+    <p>Pour <strong>accéder à cette balise</strong>, nous allons donc écrire : <i>(cf : script2.js)</i></p>
+    <br>
+    <p>Ici, nous avons demandé à JavaScript, <strong>depuis document</strong>, donc <strong>toute la page</strong> :
+        “Trouve-moi un élément HTML qui a
+        pour id
+        zoneProposition”. Puis nous avons mis le <strong>résultat dans la variable baliseZoneProposition</strong>.
+        <br><br>
+        Quand nous faisons un <strong>console.log de cette variable</strong>, nous constatons bien le contenu de notre
+        variable
+        baliseZoneProposition, et <strong>nous retrouvons bien notre div</strong> :
+    </p>
+    <br>
+    <p>Cette <strong>variable</strong> est un <strong>objet de type HTMLElement</strong>. Si nous cliquons sur le petit
+        triangle à côté de cette div pour
+        déployer le contenu, les détails de cet objet HTMLElement vont s’afficher, comme dans la capture d’écran
+        ci-dessous.</p>
+    <img src="../../assets/FormationOpenclassroomsJavascriptDétailDUnObjetHTMLElement.png"
+        alt="FormationOpenclassroomsJavascriptDétailDUnObjetHTMLElement">
+    <p>Ah oui…. Ca fait beaucoup d'informations, tout ça !</p>
+    <br>
+    <p>Eh oui… JavaScript propose beaucoup de propriétés et de méthodes sur les objets HTLMElement. Pour vous, ce sont
+        autant
+        d’opportunités d’aller les piocher en fonction de vos besoins !
+        <br><br>
+        Enfin, comme pour n’importe quel objet en JavaScript, <strong>vous pouvez accéder aux propriétés de votre nœud
+            grâce au
+            point
+            “.”</strong> .
+        <br><br>
+        Par exemple, pour afficher la hauteur de l’élément dans votre console, vous pouvez écrire :
+    </p>
 
+    <h5>Récupérez un élément <strong>QuerySelector</strong> :</h5>
+    <p>Lorsqu’on a un id sur nos éléments, document.getElementById est une bonne option pour les récupérer.
+        Malheureusement, il
+        arrive régulièrement que ça ne soit pas le cas !</p>
+    <br>
+    <p>JavaScript a donné une réponse particulièrement intuitive à ce problème : utiliser les sélecteurs CSS. En gros,
+        si vous
+        savez désigner un élément en CSS, alors <strong>il vous suffit de reprendre exactement la même syntaxe</strong>
+        ! 😃</p>
+    <br>
+    <p>Modifions légèrement le contenu de notre page HTML pour illustrer cela : <i>(cf : applicationAzertyType)</i></p>
+    <br>
+    <p>Pour mettre le mot Cachalot en gras en CSS, nous aurions écrit :
+        <br><br>
+        <strong>
+            #zoneProposition span {<br>
+            font-weight: bold; <br>
+            }
+        </strong>
+        <br>
+    <p>Ce code signifie : “Il faut mettre <strong>la police d’écriture en gras</strong> pour <strong>tous les span
+            contenus dans
+            un élément qui a
+            l’id
+            zoneProposition</strong>.”</p>
+    </p>
+    <br>
+    <p>querySelector nous permet de trouver le premier élément qui correspond au sélecteur CSS proposé : <i>(cf :
+            script2.js)</i></p>
+    <br>
+    <p>Et voilà le résultat ci-dessus : nous voyons dans la console que nous avons bien trouvé
+        notre
+        span.</p>
+    <br>
+    <p>Notez que <strong># est présent devant l’id</strong>, comme on l’écrirait en CSS, alors que <strong>ce # n’était
+            pas nécessaire avec
+            getElementById</strong>.</p>
 
-
-
+    <h5>Récupérez plusieurs éléments avec <strong>QuerySelectorAll</strong> :</h5>
+    <p>Ici, le principe est le même que pour <strong>tous les éléments dans une liste de type NodeList</strong> (ou
+        liste de nœuds, en
+        français).</p>
+    <br>
+    <p>Modifions à nouveau notre body : <i>(cf : applicationAzertyType)</i></p>
+    <br>
+    <p>Dans ce code, j’ai ajouté une <strong>nouvelle div</strong> avec la <strong>classe zoneChoix</strong>. Cette div
+        contient <strong>deux inputs de type
+            radio</strong>.
+        <br><br>
+        Pour <strong>récupérer</strong> tous les <strong>inputs de type radio d’un seul coup</strong>, je peux donc
+        écrire : <i>(cf : script2.js)</i>
+    </p>
+    <br>
+    <p>Et voici le résultat : nous obtenons une NodeList.</p>
+    <img src="../../assets/FormationOpenclassroomsjavascriptQuerySelectorAllNodeList.png"
+        alt="FormationOpenclassroomsjavascriptQuerySelectorAllNodeList">
+    <p>Nous voyons bien ici notre NodeList. Pour reprendre l’image de l’arbre DOM, <strong>JavaScript</strong> a
+        sélectionné dans cet
+        arbre <strong>les
+            nœuds qui correspondent à notre sélecteur CSS</strong>.</p>
+    <br>
+    <p>Nous allons devoir <strong>parcourir les différents éléments de cette liste un par un pour y accéder</strong>.
+        Nous utiliserons
+        donc une
+        <strong>boucle</strong> : <i>(cf : script2.js)</i>
+    </p>
+    <br>
+    <p>Et voilà le résultat, nous retrouvons bien le détail de tous nos éléments :</p>
+    <img src="../../assets/FormationOpenclassroomsjavascriptBoucleNodeListe.png"
+        alt="FormationOpenclassroomsjavascriptBoucleNodeListe">
 
 
 
@@ -155,11 +287,11 @@
 
 
     <br><br><br><br><br><br><br><br><br><br>
-    <i>cf : recupererUnElementDansUnePageWeb.js</i>
-    <i>cf : applicationAzertyType</i>
-    <i>cf : config.js</i>
-    <i>cf : main.js</i>
-    <i>cf : script.js</i>
+    <i>(cf : applicationAzertyType)</i>
+    <i>(cf : script2.js)</i>
+    <i>(cf : config.js)</i>
+    <i>(cf : main.js)</i>
+    <i>(cf : script.js)</i>
 </body>
 
 </html>

@@ -47,6 +47,16 @@ h4 {
   padding: 3%;
 }
 
+h5 {
+  font-family: "Roboto Slab", sans-serif;
+  font-size: 0.85em;
+  text-align: left;
+  color: rgb(133, 160, 95);
+  text-decoration: wavy;
+  text-shadow: 1px 1px 1px black;
+  padding: 3%;
+}
+
 p {
   font-family: "Open sans", sans-serif;
   font-size: 0.8em;
@@ -98,7 +108,7 @@ strong {
 }
 
 strong:hover {
-  font-size: 0.96em;
+  font-size: 0.999em;
   font-weight: 800;
 }
 

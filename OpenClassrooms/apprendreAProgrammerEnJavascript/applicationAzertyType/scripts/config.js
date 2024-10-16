@@ -1,7 +1,7 @@
 // Liste des mots et liste des phrases utilisés pour le jeu :
-const listeMots = ["Bonjour", "Salut", "Coucou"];
+const listeMots = ["Cachalot", "Pétunia", "Serviette"];
 const listePhrases = [
-  "Bonjour, comment allez-vous ?",
-  "Salut, ça va ?",
-  "Coucou, ça va ?",
+  "Pas de panique",
+  "La vie, l'univers et le reste",
+  "Merci pour le poisson",
 ];
