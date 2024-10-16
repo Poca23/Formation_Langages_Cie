@@ -18,38 +18,37 @@
 
     <header>
         <h1>Application AzerType</h1>
+        <h2>Découvrez votre mission :
+            <br>
+            Votre but est de coder une application en ligne nommée “AzerType”.
+        </h2>
+        <hr>
+        <p>L’objectif de cette application est d’apprendre à taper plus vite au clavier, en tapant le plus
+            rapidement
+            possible
+            et
+            dans un temps imparti des mots proposés par l’application.</p>
+        <br>
+        <p>Nous allons réaliser l’intégralité de ce projet ensemble.
+            Voici une capture d’écran pour vous montrer un aperçu du projet finalisé :</p>
+        <img src="../assets/screenAppliAzerType.png" alt="screenAppliAzerType">
+        </div>
     </header>
 
     <main>
         <div>
-            <h2>Découvrez votre mission :
-                <br>
-                Votre but est de coder une application en ligne nommée “AzerType”.
-            </h2>
             <hr>
-            <p>L’objectif de cette application est d’apprendre à taper plus vite au clavier, en tapant le plus
-                rapidement
-                possible
-                et
-                dans un temps imparti des mots proposés par l’application.</p>
-            <br>
-            <p>Nous allons réaliser l’intégralité de ce projet ensemble.
-                Voici une capture d’écran pour vous montrer un aperçu du projet finalisé :</p>
-            <img src="../assets/screenAppliAzerType.png" alt="screenAppliAzerType">
-        </div>
 
-        <hr>
+            <div class="zoneChoix">
+                <input type="radio" name="optionSource" id="mots" value="1" checked>
+                <label for="mots">Mots</label>
+                <input type="radio" name="optionSource" id="phrases" value="2" checked>
+                <label for="phrases">Phrases</label>
+            </div>
 
-        <div class="zoneChoix">
-            <input type="radio" name="optionSource" id="mots" value="1" checked>
-            <label for="mots">Mots</label>
-            <input type="radio" name="optionSource" id="phrases" value="2" checked>
-            <label for="phrases">Phrases</label>
-        </div>
-
-        <div id="zoneProposition">
-            Entrez le mot : <span>Cachalot</span>
-        </div>
+            <div id="zoneProposition">
+                Entrez le mot : <span>Cachalot</span>
+            </div>
     </main>
 
     <footer>
