@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dans le fourré</title>
+    <link rel="stylesheet" href="../../style.css">
+    <script src=""></script>
+</head>
+
+<body>
+
+    <h1>Dans le fourré</h1>
+    <br>
+    <p>Sur l'étroit chemin qui mène à la montagne, vous parvenez à une énorme porte qui vous empêche de passer. Les
+        villageois
+        vous ont prévenu que la clé de cette porte demeure dans le fourré qui se trouve juste à côté. Celui-ci est
+        organisé
+        selon des cases avec des pièges et des buissons, dont on vous a fourni le plan.
+        <br><br>
+        Cependant, vous n'êtes pas sûr que le plan soit tout à fait exact et vous redoutez les pièges du fourré.
+        <br>
+        Vous
+        décidez
+        donc d'envoyer votre robot chercher la clé pour vous.
+    </p>
+
+    <h3>Ce que doit faire votre programme :</h3>
+    <p>Votre programme doit diriger votre robot dans la grille suivante : ///</p>
+    <br>
+    <p>Le robot se trouve initialement à l'entrée du fourré et doit atteindre la case où se trouve la clé sans passer
+        par les
+        cases où se trouvent des buissons infranchissables ni celles qui contiennent un piège . Vous n'avez pas besoin
+        de
+        programmer le chemin retour.</p>
+    <br>
+    <p>vous devez inclure la ligne suivante en haut de votre programme :</p>
+    <br>
+    <pre>
+    import static algorea.Robot.*;
+    </pre>
+    <br>
+    <p>Si elle est nécessaire, vous la trouverez dans le squelette à compléter.</p>
+
+    <h3>Commandes pour cet exercice :</h3>
+    <p>Pour déplacer le robot dans le fourré, nous proposons les quatre instructions suivantes :</p>
+    <br>
+    <pre>
+    Aller en haut
+    Aller en bas
+    Aller à gauche
+    Aller à droite
+    </pre>
+    <br>
+    <p>chacune demandant au robot de se déplacer d'une case dans une direction sur la grille.
+        <br><br>
+        En Java, vous devrez les écrire comme suit :
+    </p>
+    <br>
+    <pre>
+    haut();
+    bas();
+    gauche();
+    droite();
+    </pre>
+    <br>
+    <p>Notez bien que le robot ne tourne pas : il se déplace de case en case sur la grille, vers le haut, le bas, la
+        gauche
+        ou
+        la droite.
+    </p>
+    <h3>Aide :</h3>
+    <br>
+    <pre>
+import static algorea.Robot.*;
+
+class Main {
+    public static void main(String[] args) {
+        haut();
+        haut();
+        gauche();
+    }
+}
+
+    </pre>
+
+</body>
+
+</html>
