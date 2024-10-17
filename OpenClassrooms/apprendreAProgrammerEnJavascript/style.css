@@ -81,6 +81,15 @@ li {
   color: rgb(69, 69, 69);
 }
 
+li > ul > li {
+  font-family: "Open sans", sans-serif;
+  font-size: 1em;
+  text-align: justify;
+  padding-left: 2%;
+  padding-right: 2%;
+  color: rgb(69, 69, 69);
+}
+
 a {
   text-decoration: none;
   font-family: "Open sans", sans-serif;
