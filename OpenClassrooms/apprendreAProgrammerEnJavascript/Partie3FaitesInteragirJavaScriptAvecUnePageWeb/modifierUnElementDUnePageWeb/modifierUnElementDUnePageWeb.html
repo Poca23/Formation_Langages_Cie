@@ -5,13 +5,92 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code de base html avec liens</title>
-    <link rel="stylesheet" href="">
-    <script src=""></script>
+    <title>Modifiez un élément d’une page web</title>
+    <link rel="stylesheet" href="../../style.css">
+    <script src="modifierUnElementDUnePageWeb.js"></script>
 </head>
 
 <body>
+    <h2><a href="../index.html">Modifiez un élément d’une page web</a></h2>
+    <p>Nous savons désormais comment interroger l’arbre DOM pour récupérer certaines balises. Mais pour l’instant, nous
+        n’avons
+        pas encore véritablement agi sur notre page HTML. Ce sera l’objet de ce chapitre et du suivant ! Mais avant de
+        passer à
+        l’action, revenons ensemble sur les éléments HTML.</p>
 
+    <h3>Appréhendez les attributs d’un élément HTML :</h3>
+    <p>Commençons par un petit rappel de la façon dont sont construites les balises HTML, avec cet exemple : </p>
+    <br>
+
+    <pre></pre>
+
+    &lt;img id="premiereImage" src="image.jpg" alt="Ceci est une image de test" class="photo flexCenter"/&gt;
+
+    <p>Ici nous constatons <strong>img</strong>, qui sert à afficher une image. En plus de son nom, cette balise possède
+        ici <strong>4 attributs</strong>
+        qui
+        permettent de la configurer :</p>
+    <br>
+    <ul>
+        <li><strong>id</strong> : l’identifiant de la div ;</li>
+        <li><strong>src</strong> : l’emplacement de l’image ;</li>
+        <li><strong>alt</strong> : le texte alternatif pour l’image ;</li>
+        <li><strong>class</strong> : la liste des classes appliquées sur la balise image.</li>
+    </ul>
+    <br>
+    <p>Chaque balise possède ses propres attributs. Ici, la balise img possède un attribut src qui sert à indiquer où se
+        trouve
+        l’image à afficher. En revanche, une balise div, qui n’affiche pas d'image, ne possèdera pas cet attribut, car
+        elle n’en
+        a pas l’utilité. Il est donc important d’avoir une vision claire du résultat final en HTML afin d’écrire du code
+        cohérent.</p>
+
+    <h3>Modifiez un élément du DOM :</h3>
+    <p>Pour modifier un élément du DOM, JavaScript propose là encore de nombreuses <strong>méthodes</strong>. Nous en
+        aborderons deux
+        dans ce chapitre :
+    </p>
+    <br>
+    <ul>
+        <li><strong>setAttribute</strong> : méthode la plus générique, qui permet de spécifier n’importe quel attribut ;
+        </li>
+        <li><strong>classList</strong> : propriété spécifique qui permet de modifier des classes.</li>
+    </ul>
+    <br>
+    <h4>Utilisez <strong>setAttribute</strong> pour modifier les attributs :</h4>
+
+    <p>Si nous voulons modifier <strong>l’attribut alt</strong> de notre balise <strong>image</strong>, nous pouvons
+        écrire : <i>(cf
+            fichier
+            JavaScript)</i></p>
+
+    <img id="premiereImage" src="image.jpg" alt="Ceci est une image de test" class="photo flexCenter">
+
+    <p>Dans ce code :</p>
+    <br>
+    <ol>
+        <li>j’ai commencé par <strong>récupérer</strong> mon image grâce à <strong>getElementById</strong>;</li>
+        <li><u>directement sur la balise</u>, j’ai <strong>appliqué la méthode setAttribute</strong>;</li>
+        <li>le <strong>premier paramètre</strong> représente le <u>nom de l’attribut que je souhaite modifier</u>, ici,
+            l’attribut <strong>alt</strong>;</li>
+        <li>le <strong>second paramètre</strong> est la <u>nouvelle valeur que je souhaite lui attribuer</u>.</li>
+    </ol>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <br><br><br><br><br><br><br><br><br><br>
+    <i>(cf fichier JavaScript)</i>
 </body>
 
 </html>
