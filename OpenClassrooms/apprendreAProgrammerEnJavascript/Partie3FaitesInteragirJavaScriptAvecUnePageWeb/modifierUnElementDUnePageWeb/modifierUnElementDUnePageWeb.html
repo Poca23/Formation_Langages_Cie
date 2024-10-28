@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifiez un élément d’une page web</title>
     <link rel="stylesheet" href="../../style.css">
-    <script src="modifierUnElementDUnePageWeb.js"></script>
+    <script src="modifierUnElementDUnePageWeb.js" defer></script>
 </head>
 
 <body>
@@ -64,7 +64,7 @@
             fichier
             JavaScript)</i></p>
 
-    <img id="premiereImage" src="image.jpg" alt="Ceci est une image de test" class="photo flexCenter">
+    <!-- <img id="premiereImage" src="baccBlackSmoke.jpg" alt="Ceci est une image de test" class="photo flexCenter"> -->
 
     <p>Dans ce code :</p>
     <br>
@@ -75,6 +75,85 @@
             l’attribut <strong>alt</strong>;</li>
         <li>le <strong>second paramètre</strong> est la <u>nouvelle valeur que je souhaite lui attribuer</u>.</li>
     </ol>
+    <br>
+    <p>Cette méthode avec setAttribute est générique : on peut l’appliquer à <strong>tous les attributs</strong>, et
+        créer des attributs
+        personnalisés au besoin.
+        <br><br>
+        Cependant, pour <strong>les attributs qui sont valides en HTML de base</strong>, il n’est <u>pas nécessaire</u>
+        d’utiliser la <strong>méthode setAttribute</strong>.
+    </p>
+    <br>
+    <p>Ainsi, nous pouvons plus simplement écrire : (cf fichier JavaScript)</p>
+
+    <h4>Utilisez classList pour modifier les classes :</h4>
+    <p>Parmi les attributs disponibles, il en existe un <strong>particulier</strong>, qui correspond à la liste des
+        <strong>classes</strong> qui sont
+        appliquées
+        sur une balise.
+    </p>
+    <br>
+
+    &lt;div class="listeMotsCentreeActifPhoto"&gt;&lt;/div&gt;
+    <div class="listeMotsCentreeActifPhoto"></div>
+
+    <br><br>
+    <p>Il est évidemment possible de modifier cet attribut avec setAttribute, mais si l’on veut ajouter ou supprimer une
+        seule
+        classe, c’est peu pratique, car il faut alors réécrire l'ensemble des classes. JavaScript nous propose donc une
+        syntaxe
+        spécifique : l’utilisation de la <strong>propriété classList</strong> et des <strong>méthodes add et
+            remove</strong>.</p>
+    <p><i>(cf fichier JavaScript)</i></p>
+
+    <h3>Utilisez l’inspecteur pour vérifier vos modifications :</h3>
+    <p>En utilisant des propriétés et des méthodes, nous modifions le code HTML de la page. Il est donc important de
+        vérifier
+        que ces modifications correspondent bien à ce que nous souhaitons, comme nous l'avons fait jusqu’à présent avec
+        des
+        <strong>console.log</strong>.
+    </p>
+    <br>
+    <p>Pour cela, les navigateurs proposent d’utiliser l’inspecteur. Pour ce faire, faites un <strong>clic
+            droit</strong> sur n’importe
+        quel
+        <strong>élément de votre page</strong>, et choisissez l’option <strong>“Inspecter”</strong> .
+    </p>
+    <br>
+    <p>Reprenons cette balise :</p>
+    <img id="premiereImage" src="baccBlackSmoke.jpg" alt="Ceci est une image de test" class="photoFlexCenter">
+
+    <p>Puis, appliquons ce code JS : <i>(cf fichier JavaScript)</i></p>
+    <br>
+    <p>Ici, nous retrouvons bien notre <strong>balise image initiale avec l’id “premiereImage”</strong> , mais les
+        <strong>attributs class, src et
+            alt
+            ont bien été mis à jour</strong>.
+    </p>
+
+    <h3>En résumé :</h3>
+    <ul>
+        <li>Utilisez des attributs pour configurer les éléments HTML d’une page web.</li>
+        <li>Modifiez la valeur des attributs :
+            <ul>
+                <li>en utilisant la méthode setAttribute ;</li>
+                <li>en utilisant la syntaxe : elementHtml.nomAttribut = “nouvelle valeur d’attribut”.</li>
+            </ul>
+    </ul>
+    <br>
+    <p>Vous venez de découvrir comment <strong>modifier un élément d’une page web</strong>, bravo ! 🥳
+        <br>
+        Ne nous arrêtons
+        pas en si bon
+        chemin.
+        <br><br>
+        Suivez-moi dans le prochain chapitre pour découvrir comment <strong>créer un nouvel élément</strong> !
+    </p>
+
+
+
+
+
 
 
 
