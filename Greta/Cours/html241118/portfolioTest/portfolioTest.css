@@ -34,7 +34,7 @@ header{
     flex-direction: row;
     flex-wrap: wrap;
     padding: 1%;
-    border: 1px solid;
+    border: 3px solid rgb(85, 136, 104);
 }
 
 .avatar{
@@ -43,6 +43,8 @@ header{
     margin: auto;
     padding: 1%;
     border: 1px solid;
+    color: #f1f1f1;
+    background-color: rgb(70, 70, 70);
 }
 
 .titre{
@@ -51,6 +53,8 @@ header{
     margin: auto;
     padding: 1%;
     border: 1px solid;
+    color: #f1f1f1;
+    background-color: rgb(70, 70, 70);
 }
 
 .contactHeader{
@@ -59,6 +63,8 @@ header{
     margin: auto;
     padding: 1%;
     border: 1px solid;
+    color: #f1f1f1;
+    background-color: rgb(70, 70, 70);
 }
 
 /* ------------------------------------------------------ */
@@ -73,15 +79,16 @@ main{
     flex-direction: row;
     flex-wrap: wrap;
     padding: 1%;
-    border: 1px solid;
+    border: 0.5px solid rgb(85, 136, 104);
 }
 
 .competences{
     width: 20%;
-    height: 100%;
     margin: auto;
+    height: 100%;
     padding: 1%;
-    border: 1px solid;
+    color: #f1f1f1;
+    background-color: rgb(70, 70, 70);
 }
 
 .expForm{
@@ -94,8 +101,6 @@ main{
     flex-direction: row;
     flex-wrap: wrap;
     padding: 1%;
-    border: 1px solid;
-    align-items: ;
 }
 
 .experiences{
@@ -103,7 +108,8 @@ main{
     height: 100%;
     margin: auto;
     padding: 1%;
-    border: 1px solid;
+    color: #f1f1f1;
+    background-color: rgb(70, 70, 70);
     margin: 1%;
 }
 
@@ -112,7 +118,8 @@ main{
     height: 100%;
     margin: auto;
     padding: 1%;
-    border: 1px solid;
+    color: #f1f1f1;
+    background-color: rgb(70, 70, 70);
     margin: 1%;
 }
 
@@ -128,7 +135,7 @@ footer{
     flex-direction: row;
     flex-wrap: wrap;
     padding: 1%;
-    border: 1px solid;
+    border: 3px solid rgb(85, 136, 104);
 }
 
 .contactFooterLogo{
@@ -136,7 +143,8 @@ footer{
     height: 100%;
     margin: auto;
     padding: 1%;
-    border: 1px solid;
+    color: #f1f1f1;
+    background-color: rgb(70, 70, 70);
     margin: 1%;
 }
 
@@ -145,7 +153,8 @@ footer{
     height: 100%;
     margin: auto;
     padding: 1%;
-    border: 1px solid;
+    color: #f1f1f1;
+    background-color: rgb(70, 70, 70);
     margin: 1%;
 }
 
@@ -154,7 +163,8 @@ footer{
     height: 100%;
     margin: auto;
     padding: 1%;
-    border: 1px solid;
+    color: #d74949;
+    background-color: rgb(70, 70, 70);
     margin: 1%;
 }
 
