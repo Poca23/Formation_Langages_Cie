@@ -1,0 +1,240 @@
+/* Portfolio Test */
+/* reset */
+*, ::after, ::before{
+    margin: 0;
+    padding: 0;
+}
+
+li{
+    list-style-type: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+/* ------------------------------------------------------ */
+
+/* body */
+body{
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+/* ------------------------------------------------------ */
+/* header */
+header{
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 1%;
+    border: 1px solid;
+}
+
+.avatar{
+    width: 20%;
+    height: 100%;
+    margin: auto;
+    padding: 1%;
+    border: 1px solid;
+}
+
+.titre{
+    width: 40%;
+    height: 100%;
+    margin: auto;
+    padding: 1%;
+    border: 1px solid;
+}
+
+.contactHeader{
+    width: 20%;
+    height: 100%;
+    margin: auto;
+    padding: 1%;
+    border: 1px solid;
+}
+
+/* ------------------------------------------------------ */
+/* main */
+main{
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 1%;
+    border: 1px solid;
+}
+
+.competences{
+    width: 20%;
+    height: 100%;
+    margin: auto;
+    padding: 1%;
+    border: 1px solid;
+}
+
+.expForm{
+    width: 65%;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 1%;
+    border: 1px solid;
+    align-items: ;
+}
+
+.experiences{
+    width: 60%;
+    height: 100%;
+    margin: auto;
+    padding: 1%;
+    border: 1px solid;
+    margin: 1%;
+}
+
+.formations{
+    width: 60%;
+    height: 100%;
+    margin: auto;
+    padding: 1%;
+    border: 1px solid;
+    margin: 1%;
+}
+
+/* ------------------------------------------------------ */
+/* footer */
+footer{    
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 1%;
+    border: 1px solid;
+}
+
+.contactFooterLogo{
+    width: 20%;
+    height: 100%;
+    margin: auto;
+    padding: 1%;
+    border: 1px solid;
+    margin: 1%;
+}
+
+.navigation{
+    width: 40%;
+    height: 100%;
+    margin: auto;
+    padding: 1%;
+    border: 1px solid;
+    margin: 1%;
+}
+
+.liens{
+    width: 20%;
+    height: 100%;
+    margin: auto;
+    padding: 1%;
+    border: 1px solid;
+    margin: 1%;
+}
+
+
+/* typographie */
+h1{
+    font-family: 'Rboto Slab', sans-serif;
+    color: darkcyan;
+    font-size: 30px;
+    letter-spacing: -1px;
+    line-height: 20px;
+    text-decoration: none;
+    text-align: center;
+}
+
+h2{
+    font-family: 'Rboto Slab', sans-serif;
+    color: brown;
+    font-size: 25px;
+    letter-spacing: -1px;
+    line-height: 20px;
+    text-decoration: none;
+    text-align: center;
+}
+
+h3{    
+    font-family: 'Rboto Slab', sans-serif;
+    color: purple;
+    font-size: 20px;
+    letter-spacing: -1px;
+    line-height: 20px;
+    text-decoration: none;
+    text-align: center;
+}
+
+h4{    
+    font-family: 'Rboto Slab', sans-serif;
+    color: rgb(48, 47, 47);
+    font-size: 18px;
+    letter-spacing: -1px;
+    line-height: 20px;
+    text-decoration: none;
+    text-align: center;
+}
+
+h5{    
+    font-family: 'Rboto Slab', sans-serif;
+    color: #025030;
+    font-size: 18px;
+    letter-spacing: -1px;
+    line-height: 20px;
+    text-decoration: none;
+    text-align: center;
+}
+
+
+p{    
+    font-family: 'Rboto Slab', sans-serif;
+    color: rgb(125, 125, 125);
+    font-size: 15px;
+    letter-spacing: -1px;
+    line-height: 20px;
+    text-decoration: none;
+    text-align: center;
+}
+
+a{    
+    font-family: 'Rboto Slab', sans-serif;
+    color: #501010;
+    font-size: 30px;
+    letter-spacing: -1px;
+    line-height: 20px;
+    text-decoration: none;
+    text-align: center;
+}
+
+/* pseudo classes */
+/* hover */
+/* active */
+/* visited */
+
+/* responsive */
+@media screen {}
