@@ -24,31 +24,59 @@
         </div>
 
         <div class="contact">
-          <p>permis</p>
-          <p><a href="mailto:">mail</a></p>
-          <p><a href="tel:+">téléphone</a></p>
-          <p><a href="linkedin">linkedin</a></p>
-          <p><a href="GitHub">GitHub</a></p>
+          <p>permis 🚀</p>
+          <p>
+            <a href="mailto:">
+              <img class="imgContact" src="assets/contact-email.png" alt="mail"
+            /></a>
+          </p>
+          <p>
+            <a href="tel:+"
+              ><img
+                class="imgContact"
+                src="assets/contact-telephone.png"
+                alt="telephone"
+            /></a>
+          </p>
+          <p>
+            <a href="https://www.linkedin.com/in/naudin-claire/" target="_blank"
+              ><img
+                class="imgContact"
+                src="assets/logo-linkedin.png"
+                alt="linkedin"
+            /></a>
+          </p>
+          <p>
+            <a href="https://github.com/Poca23" target="_blank"
+              ><img
+                class="imgContact"
+                src="assets/logo-github.png"
+                alt="github"
+            /></a>
+          </p>
         </div>
       </div>
       <div class="pitch">
         <div class="nomPrenom">
-          <h1>Nom + Prénom</h1>
+          <h1>Naudin Claire</h1>
         </div>
 
         <div class="titre">
-          <h2>Titre</h2>
+          <h2>Recherche la paix dans le monde</h2>
         </div>
 
         <div class="texte">
-          <p>présentation succinte de mon parcours</p>
-          <p>raisons qui m'ont poussé à me lancer dans l'aventure</p>
+          <p>
+            J'ai fait un rêve, qu'un jour, nous pourrions vivre d'eau fraîche et
+            babybel.
+          </p>
+          <p>Les raisons ? J'avais faim, et j'aime boire de l'eau.</p>
         </div>
       </div>
       <div class="blocForm">
         <!-- formulaire -->
         <form action="php?" method="get">
-          <h4>formulaire de contact</h4>
+          <h4>Contact</h4>
           <label for="nom">Votre nom :</label>
           <input type="text" id="nom" placeholder="NOM Prénom" required />
 
@@ -61,49 +89,168 @@
           />
 
           <select name="sujet" id="sujet" required>
-            <option value="" disabled selected hidden>Sujet du message</option>
+            <option value="" disabled selected hidden>Sujet</option>
             <option value="stage">Stage</option>
             <option value="alternance">alternance</option>
             <option value="echanger">échanger</option>
             <option value="autre">Autre...</option>
           </select>
 
-          <label for="radio"></label>
+          <label for="radio">cliquez si vous êtes un robot</label>
           <input type="radio" id="radio" required />
-
-          <label for="checkbox">cliquez si vous êtes un robot</label>
-          <input type="checkbox" id="robot" required />
-
           <input type="submit" value="GO" class="go" />
         </form>
       </div>
     </header>
+    <nav>
+      <input type="checkbox" id="robot" required />
+      <div class="checkbox-wrapper-5">
+        <p>Découvre comment aimer son prochain 😃</p>
+        <div class="check">
+          <input id="check-5" type="checkbox" />
+          <label for="check-5"></label>
+        </div>
+      </div>
+
+      <style>
+        .checkbox-wrapper-5 .check {
+          --size: 40px;
+
+          position: relative;
+          background: linear-gradient(90deg, #a6f39a, #12b407);
+          line-height: 0;
+          perspective: 400px;
+          font-size: var(--size);
+        }
+
+        .checkbox-wrapper-5 .check input[type="checkbox"],
+        .checkbox-wrapper-5 .check label,
+        .checkbox-wrapper-5 .check label::before,
+        .checkbox-wrapper-5 .check label::after,
+        .checkbox-wrapper-5 .check {
+          appearance: none;
+          display: inline-block;
+          border-radius: var(--size);
+          border: 0;
+          transition: 0.35s ease-in-out;
+          box-sizing: border-box;
+          cursor: pointer;
+        }
+
+        .checkbox-wrapper-5 .check label {
+          width: calc(2.2 * var(--size));
+          height: var(--size);
+          background: #d7d7d7;
+          overflow: hidden;
+        }
+
+        .checkbox-wrapper-5 .check input[type="checkbox"] {
+          position: absolute;
+          z-index: 1;
+          width: calc(0.8 * var(--size));
+          height: calc(0.8 * var(--size));
+          top: calc(0.1 * var(--size));
+          left: calc(0.1 * var(--size));
+          background: linear-gradient(45deg, #dedede, #ffffff);
+          box-shadow: 0 6px 7px rgba(0, 0, 0, 0.3);
+          outline: none;
+          margin: 0;
+        }
+
+        .checkbox-wrapper-5 .check input[type="checkbox"]:checked {
+          left: calc(1.3 * var(--size));
+        }
+
+        .checkbox-wrapper-5 .check input[type="checkbox"]:checked + label {
+          background: transparent;
+        }
+
+        .checkbox-wrapper-5 .check label::before,
+        .checkbox-wrapper-5 .check label::after {
+          content: "· ·";
+          position: absolute;
+          overflow: hidden;
+          left: calc(0.15 * var(--size));
+          top: calc(0.5 * var(--size));
+          height: var(--size);
+          letter-spacing: calc(-0.04 * var(--size));
+          color: #9b9b9b;
+          font-family: "Times New Roman", serif;
+          z-index: 2;
+          font-size: calc(0.6 * var(--size));
+          border-radius: 0;
+          transform-origin: 0 0 calc(-0.5 * var(--size));
+          backface-visibility: hidden;
+        }
+
+        .checkbox-wrapper-5 .check label::after {
+          content: "●";
+          top: calc(0.65 * var(--size));
+          left: calc(0.2 * var(--size));
+          height: calc(0.1 * var(--size));
+          width: calc(0.35 * var(--size));
+          font-size: calc(0.2 * var(--size));
+          transform-origin: 0 0 calc(-0.4 * var(--size));
+        }
+
+        .checkbox-wrapper-5
+          .check
+          input[type="checkbox"]:checked
+          + label::before,
+        .checkbox-wrapper-5
+          .check
+          input[type="checkbox"]:checked
+          + label::after {
+          left: calc(1.55 * var(--size));
+          top: calc(0.4 * var(--size));
+          line-height: calc(0.1 * var(--size));
+          transform: rotateY(360deg);
+        }
+
+        .checkbox-wrapper-5
+          .check
+          input[type="checkbox"]:checked
+          + label::after {
+          height: calc(0.16 * var(--size));
+          top: calc(0.55 * var(--size));
+          left: calc(1.6 * var(--size));
+          font-size: calc(0.6 * var(--size));
+          line-height: 0;
+        }
+      </style>
+    </nav>
     <!-- -------------------------------------------- -->
     <main>
       <aside class="cursus">
         <section class="formation">
           <h4>FORMATIONS</h4>
           <div class="form1">
-            <p>form1</p>
+            <strong
+              ><p>Soeur-Thérèse.com <i>(2020-2024)</i></p></strong
+            >
           </div>
           <div class="form2">
-            <p>form2</p>
+            <strong
+              ><p>Abbé Pierre <i>(2014-2020)</i></p></strong
+            >
           </div>
           <div class="form3">
-            <p>form3</p>
+            <strong
+              ><p>Marie Madeleine <i>(2010 - 2014)</i></p></strong
+            >
           </div>
         </section>
 
         <section class="langues">
           <h4>LANGUES</h4>
           <div class="langue1">
-            <p>langue1</p>
+            <strong><p>Mandarin - B2</p></strong>
           </div>
           <div class="langue2">
-            <p>langue2</p>
+            <strong><p>Anglais - A1</p></strong>
           </div>
           <div class="langue3">
-            <p>langue3</p>
+            <strong><p>Français - B1</p></strong>
           </div>
         </section>
       </aside>
@@ -113,29 +260,75 @@
           <h3>EXPERIENCES</h3>
           <div class="experience1">
             <article>
-              <p>experience1</p>
-              <img src="" alt="" />image
-              <a href="">Les acteurs anonymes</a>
+              <img
+                class="imgContact"
+                src="assets/cropped-logo.Acteurs.Anonymes-1.webp"
+                alt="logo_acteurs_anonymes"
+              />
+              <p>
+                création du site
+                <a href="https://coursacteursanonymes.com/" target="_blank"
+                  >Les acteurs anonymes</a
+                >
+              </p>
             </article>
           </div>
           <div class="experience2">
-            <p>experience2</p>
+            <img class="imgContact" src="assets/logoEna.svg" alt="logoEna" />
+            <p>
+              Création du site
+              <a href="https://www.ena.fr/" target="_blank">ENA</a>
+            </p>
           </div>
           <div class="experience3">
-            <p>experience3</p>
+            <img
+              class="imgContact"
+              src="assets/logoAmeli.png"
+              alt="logo_ameli"
+            />
+            <p>
+              Création du site
+              <a href="https://www.ameli.fr/assure" target="_blank">Ameli</a>
+            </p>
           </div>
         </section>
 
         <section class="ref">
           <h4>RÉFÉRENCES</h4>
           <div class="reference1">
-            <p>reference1</p>
+            <img
+              class="imgContact"
+              src="assets/pierreGiraud.png"
+              alt="pierre_giraud"
+            />
+            <p>
+              <a href="https://www.pierre-giraud.com/" target="_blank"
+                >Pierre Giraud</a
+              >
+            </p>
           </div>
           <div class="reference2">
-            <p>reference2</p>
+            <img
+              class="imgContact"
+              src="assets/franceIOI.jpeg"
+              alt="franceioi"
+            />
+            <p>
+              <a href="https://www.france-ioi.org/" target="_blank"></a
+              >FranceIOI
+            </p>
           </div>
           <div class="reference3">
-            <p>reference3</p>
+            <img
+              class="imgContact"
+              src="assets/openclassrooms.png"
+              alt="openclassroom"
+            />
+            <p>
+              <a href="https://www.openclassrooms.com" target="_blank"
+                >OpenClassrooms</a
+              >
+            </p>
           </div>
         </section>
       </div>
@@ -146,16 +339,16 @@
             <th rowspan="5">SOFTSKILLS</th>
           </tr>
           <tr>
-            <td class="1">1</td>
+            <td class="1">Curiosité</td>
           </tr>
           <tr>
-            <td class="2">2</td>
+            <td class="2">Autonomie</td>
           </tr>
           <tr>
-            <td class="3">3</td>
+            <td class="3">Gestion de projet</td>
           </tr>
           <tr>
-            <td class="4">4</td>
+            <td class="4">Veille technologique</td>
           </tr>
         </table>
 
@@ -164,16 +357,24 @@
             <th rowspan="5">HARDSKILLS</th>
           </tr>
           <tr>
-            <td class="1">1</td>
+            <td class="1">
+              <img class="imgContact" src="assets/html-5.png" alt="html5" />
+            </td>
           </tr>
           <tr>
-            <td class="2">2</td>
+            <td class="2">
+              <img class="imgContact" src="assets/css-3.png" alt="css-3" />
+            </td>
           </tr>
           <tr>
-            <td class="3">3</td>
+            <td class="3">
+              <img class="imgContact" src="assets/js.png" alt="js" />
+            </td>
           </tr>
           <tr>
-            <td class="4">4</td>
+            <td class="4">
+              <img class="imgContact" src="assets/wordpress.jpeg" alt="js" />
+            </td>
           </tr>
         </table>
       </aside>
@@ -183,18 +384,30 @@
       <section class="interet">
         <h5>CENTRE D'INTÉRÊTS</h5>
         <ul class="listInteret">
-          <li class="interet1">interet1</li>
-          <li class="interet2">interet2</li>
-          <li class="interet3">interet3</li>
+          <li class="interet1">Donner sans recevoir 🤗</li>
+          <li class="interet2">Prendre sans demander 😈</li>
+          <li class="interet3">Respecter la charte de vie 😇</li>
         </ul>
       </section>
 
       <section class="liens">
         <h5>LIENS</h5>
         <ul class="listLiens">
-          <li class="lien1"><a href="">lien1</a></li>
-          <li class="lien2"><a href="">lien2</a></li>
-          <li class="lien3"><a href="">lien3</a></li>
+          <li class="lien1">
+            <a
+              href="https://www.canva.com/fr_fr/creer/portfolio/"
+              target="_blank"
+              >Portfolio</a
+            >
+          </li>
+          <li class="lien2">
+            <a href="https://www.laboutiqueduguerisseur.fr/" target="_blank"
+              >Boule-de-cristal</a
+            >
+          </li>
+          <li class="lien3">
+            <a href="https://www.lesmaldives.fr/" target="_blank">Maldives</a>
+          </li>
         </ul>
       </section>
     </footer>
