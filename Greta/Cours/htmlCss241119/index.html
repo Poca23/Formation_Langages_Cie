@@ -102,124 +102,24 @@
         </form>
       </div>
     </header>
-    <nav>
-      <input type="checkbox" id="robot" required />
-      <div class="checkbox-wrapper-5">
-        <p>Découvre comment aimer son prochain 😃</p>
-        <div class="check">
-          <input id="check-5" type="checkbox" />
-          <label for="check-5"></label>
-        </div>
+
+    <div class="checkbox-wrapper-1">
+      <div class="check">
+        <input id="check-1" type="checkbox" required />
+        <label for="check-1"></label>
       </div>
+    </div>
 
-      <style>
-        .checkbox-wrapper-5 .check {
-          --size: 40px;
-
-          position: relative;
-          background: linear-gradient(90deg, #a6f39a, #12b407);
-          line-height: 0;
-          perspective: 400px;
-          font-size: var(--size);
-        }
-
-        .checkbox-wrapper-5 .check input[type="checkbox"],
-        .checkbox-wrapper-5 .check label,
-        .checkbox-wrapper-5 .check label::before,
-        .checkbox-wrapper-5 .check label::after,
-        .checkbox-wrapper-5 .check {
-          appearance: none;
-          display: inline-block;
-          border-radius: var(--size);
-          border: 0;
-          transition: 0.35s ease-in-out;
-          box-sizing: border-box;
-          cursor: pointer;
-        }
-
-        .checkbox-wrapper-5 .check label {
-          width: calc(2.2 * var(--size));
-          height: var(--size);
-          background: #d7d7d7;
-          overflow: hidden;
-        }
-
-        .checkbox-wrapper-5 .check input[type="checkbox"] {
-          position: absolute;
-          z-index: 1;
-          width: calc(0.8 * var(--size));
-          height: calc(0.8 * var(--size));
-          top: calc(0.1 * var(--size));
-          left: calc(0.1 * var(--size));
-          background: linear-gradient(45deg, #dedede, #ffffff);
-          box-shadow: 0 6px 7px rgba(0, 0, 0, 0.3);
-          outline: none;
-          margin: 0;
-        }
-
-        .checkbox-wrapper-5 .check input[type="checkbox"]:checked {
-          left: calc(1.3 * var(--size));
-        }
-
-        .checkbox-wrapper-5 .check input[type="checkbox"]:checked + label {
-          background: transparent;
-        }
-
-        .checkbox-wrapper-5 .check label::before,
-        .checkbox-wrapper-5 .check label::after {
-          content: "· ·";
-          position: absolute;
-          overflow: hidden;
-          left: calc(0.15 * var(--size));
-          top: calc(0.5 * var(--size));
-          height: var(--size);
-          letter-spacing: calc(-0.04 * var(--size));
-          color: #9b9b9b;
-          font-family: "Times New Roman", serif;
-          z-index: 2;
-          font-size: calc(0.6 * var(--size));
-          border-radius: 0;
-          transform-origin: 0 0 calc(-0.5 * var(--size));
-          backface-visibility: hidden;
-        }
-
-        .checkbox-wrapper-5 .check label::after {
-          content: "●";
-          top: calc(0.65 * var(--size));
-          left: calc(0.2 * var(--size));
-          height: calc(0.1 * var(--size));
-          width: calc(0.35 * var(--size));
-          font-size: calc(0.2 * var(--size));
-          transform-origin: 0 0 calc(-0.4 * var(--size));
-        }
-
-        .checkbox-wrapper-5
-          .check
-          input[type="checkbox"]:checked
-          + label::before,
-        .checkbox-wrapper-5
-          .check
-          input[type="checkbox"]:checked
-          + label::after {
-          left: calc(1.55 * var(--size));
-          top: calc(0.4 * var(--size));
-          line-height: calc(0.1 * var(--size));
-          transform: rotateY(360deg);
-        }
-
-        .checkbox-wrapper-5
-          .check
-          input[type="checkbox"]:checked
-          + label::after {
-          height: calc(0.16 * var(--size));
-          top: calc(0.55 * var(--size));
-          left: calc(1.6 * var(--size));
-          font-size: calc(0.6 * var(--size));
-          line-height: 0;
-        }
-      </style>
+    <nav>
+      <ul>
+        <li>
+          <a href="#" target="_blank"
+            ><p>Découvre comment aimer son prochain 😃</p>
+          </a>
+        </li>
+      </ul>
     </nav>
-    <!-- -------------------------------------------- -->
+
     <main>
       <aside class="cursus">
         <section class="formation">
@@ -314,8 +214,9 @@
               alt="franceioi"
             />
             <p>
-              <a href="https://www.france-ioi.org/" target="_blank"></a
-              >FranceIOI
+              <a href="https://www.france-ioi.org/" target="_blank"
+                >France IOI</a
+              >
             </p>
           </div>
           <div class="reference3">
@@ -336,50 +237,62 @@
       <aside class="skills">
         <table class="softskills">
           <tr>
-            <th rowspan="5">SOFTSKILLS</th>
+            <th>SOFTSKILLS</th>
           </tr>
           <tr>
-            <td class="1">Curiosité</td>
+            <td class="td1">Curiosité</td>
           </tr>
           <tr>
-            <td class="2">Autonomie</td>
+            <td class="td2">Autonomie</td>
           </tr>
           <tr>
-            <td class="3">Gestion de projet</td>
+            <td class="td3">Gestion de projet</td>
           </tr>
           <tr>
-            <td class="4">Veille technologique</td>
+            <td class="td4">Veille technologique</td>
           </tr>
         </table>
 
         <table class="hardskills">
           <tr>
-            <th rowspan="5">HARDSKILLS</th>
+            <th colspan="2">HARDSKILLS</th>
           </tr>
           <tr>
-            <td class="1">
+            <td class="td1">
               <img class="imgContact" src="assets/html-5.png" alt="html5" />
             </td>
-          </tr>
-          <tr>
-            <td class="2">
+            <td class="td2">
               <img class="imgContact" src="assets/css-3.png" alt="css-3" />
             </td>
           </tr>
           <tr>
-            <td class="3">
+            <td class="td3">
               <img class="imgContact" src="assets/js.png" alt="js" />
             </td>
-          </tr>
-          <tr>
-            <td class="4">
+            <td class="td4">
               <img class="imgContact" src="assets/wordpress.jpeg" alt="js" />
             </td>
           </tr>
         </table>
       </aside>
     </main>
+
     <!-- -------------------------------------------- -->
+    <nav>
+      <ul>
+        <li>
+          <a href="#"><p>C'est pas fini 😃</p> </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="checkbox-wrapper-2">
+      <div class="check">
+        <input id="check-2" type="checkbox" required />
+        <label for="check-2"></label>
+      </div>
+    </div>
+
     <footer>
       <section class="interet">
         <h5>CENTRE D'INTÉRÊTS</h5>
