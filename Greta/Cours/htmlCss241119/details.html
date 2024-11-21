@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>details</title>
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <body>
+      <!-- details_main -->
+      <details class="details">
+        <summary class="details_summary">
+          Main
+          <div class="details_content">
+            <p>cursus</p>
+            <p>expRef</p>
+            <p>skills</p>
+          </div>
+        </summary>
+      </details>
+
+      <!-- details_footer -->
+      <details class="details">
+        <summary class="details_summary">
+          Footer
+          <div class="details_content">
+            <p>interet</p>
+            <p>liens</p>
+          </div>
+        </summary>
+      </details>
+
+      <style>
+        details {
+          position: relative;
+          max-inline-size: 40rem;
+          padding: 1rem;
+          margin-block: 1 rem;
+          margin-inline: auto;
+          background-image: linear-gradient(
+            to top left,
+            rgba(0, 0, 0, 0.5),
+            rgba(255, 255, 255, 0.75)
+          );
+          border: 1px solid hsl(260deg 100% 95%);
+          border-radius: 0.3rem;
+        }
+
+        .details[open] {
+        }
+
+        .details::details_content {
+          display: block;
+          margin-inline: 2rem;
+          block-size: 0;
+          transition-property: block-size;
+          transition-duration: 0.75s;
+        }
+
+        .details[open]::details_content {
+          block-size: auto;
+          block-size: calc-size(auto);
+        }
+
+        summary {
+          padding-inline: 0.5rem;
+          font-weight: 700;
+          cursor: pointer;
+        }
+
+        .details_content {
+          display: block;
+          margin-inline: 0.5rem;
+        }
+      </style>
+    </body>
+  </head>
+</html>
