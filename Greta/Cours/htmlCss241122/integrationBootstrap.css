@@ -1,0 +1,26 @@
+/* integrationBootstrap */
+/* reset */
+/* body */
+/* pseudo classes */
+/* typographie */
+/* media */
+
+body > div.hobbyForm {
+  margin: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#accordionPanelsStayOpenExample {
+  margin: 5%;
+  width: 80% !important;
+  background-color: black !important;
+}
+
+body > div.hobbyForm > form {
+  margin:   margin: 5%;
+  width: 50% !important;
+}
