@@ -4,6 +4,7 @@
 /* pseudo classes */
 /* typographie */
 /* media */
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap");
 
 body > div.hobbyForm {
   margin: auto;
@@ -16,11 +17,72 @@ body > div.hobbyForm {
 
 #accordionPanelsStayOpenExample {
   margin: 5%;
-  width: 80% !important;
+  width: 90% !important;
   background-color: black !important;
 }
 
 body > div.hobbyForm > form {
-  margin: 2.5%;
+  margin: auto 2.5% 5%;
   width: 50% !important;
+}
+#carouselExampleCaptions {
+  margin: 2%;
+  padding: 5%;
+  width: 100%;
+  height: 80vh;
+  background-color: rgb(31, 30, 30);
+}
+
+img {
+  margin: auto;
+  width: 90%;
+  height: 60vh;
+}
+
+/* slider */
+#slider {
+  margin: 2%;
+  position: relative;
+  width: 90%;
+  height: 80hv;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  background-color: rgb(45, 45, 45);
+}
+
+#slide {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#slider:hover #precedent,
+#slider:hover #suivant {
+  opacity: 1;
+}
+
+#precedent,
+#suivant {
+  position: absolute;
+  font-size: 100px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+#precedent {
+  left: 0;
+}
+
+#suivant {
+  right: 0;
+}
+
+#slide:hover {
+  animation-play-state: paused;
 }
