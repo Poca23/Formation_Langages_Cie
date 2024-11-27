@@ -1,20 +1,32 @@
- /**
-   * -------------------------------------------------------
-   * 1 - Renommer les variables correctement
-   * -------------------------------------------------------
-*/
-const country = "France";
-console.log(country); // m'affiche "France"
+/**
+ * -------------------------------------------------------
+ * 1 - Renommer les variables correctement
+ * -------------------------------------------------------
+ */
 
+// const country = "England";
+// let country2 = "France";
+// console.log(country); // m'affiche "France"
+// country = "Gaule";
+// console.log(country); // m'affiche "Gaule"
 
-let z = "Salut je m'appelle Bruno et voici ma description";
+let presentation = "Salut je m'appelle Bruno et voici ma description";
 
-const métier = "Analyste financier au Yémen";
+const metier = "Analyste financier au Yémen";
 
 const age = 23;
 
-l = "Bordeaux";
+let localisation = "Bordeaux";
 
-arr = "Une liste de nombres";
+const listNumber = "Une liste de nombres";
 
-?? = "le prénom du plus grand agent secret de tous les temps";
+let nameBestAgentOfTime =
+  "le prénom du plus grand agent secret de tous les temps";
+
+console.log(
+  presentation,
+  metier,
+  age,
+  localisation + "est mon lieu d'habitation, " + listNumber,
+  nameBestAgentOfTime
+);
