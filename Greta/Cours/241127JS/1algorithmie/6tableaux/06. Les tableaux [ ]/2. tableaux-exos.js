@@ -111,4 +111,4 @@ function search(needle) {
   return matchAnswers;
 }
 // Appeler la fonction
-console.log(search("Amim"));
+console.log(search("a"));

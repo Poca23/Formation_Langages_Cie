@@ -39,7 +39,7 @@ function learnJavascript(langage1, langage2) {
     return false;
   }
 }
-let langageHTML = prompt(
+let langageHTML = prompt.(
   "Quel est le premier langage informatique à connaître avant d'aborder le JavaScript ?"
 );
 let langageCSS = prompt(
