@@ -30,7 +30,7 @@ console.log(characterNames[0]);
  * -------------------------------------------------------
  */
 
-console.log(characterNames[6]);
+console.log(characterNamess[6]);
 
 /**
  * -------------------------------------------------------
@@ -49,7 +49,14 @@ console.log(characterNames[lastElement]);
  * -------------------------------------------------------
  */
 
-console.log(characterNames);
+characterNames.forEach((character) => {
+  console.log(character);
+});
+
+// écriture équivalente
+characterNames.forEach(function (character) {
+  conseol.log(character);
+});
 
 /**
  * -------------------------------------------------------
@@ -67,7 +74,7 @@ characterNames.forEach((item) =>
  * 7 - Afficher le nom de chaque personnage en minuscules
  * -------------------------------------------------------
  */
-// characterNames.forEach((item) => console.log(item.toLowerCase()));
+characterNames.forEach((item) => console.log(item.toLowerCase()));
 
 /**
  * -------------------------------------------------------
@@ -78,8 +85,7 @@ characterNames.forEach((item) =>
 
 let nbLetterAInWord = 0;
 characterNames.forEach((item) => {
-  let condition = item.includes("a") + item.includes("A");
-  if (condition) {
+  if (item.includes("a") || item.includes("A")) {
     nbLetterAInWord++;
   }
 });
