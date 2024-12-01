@@ -149,24 +149,21 @@ Copier le code
 */
 // ÉCRIRE ICI :
 
-
 // for (let i = 1; i < 21; i++){
 
 //       if (i % 3 === 0 && i % 5 === 0){
-//             console.log("FizzBuzz");  
+//             console.log("FizzBuzz");
 
 //       }  else if (i % 3 === 0){
-//                   console.log("Fizz"); 
-//       } 
+//                   console.log("Fizz");
+//       }
 //             else if  (i % 5 === 0){
 //                   console.log("Buzz");
-//       } 
+//       }
 //             else {
 //                   console.log(i);
 //       }
 // }
-
-
 
 /**----------------------------------------------------------------------------- */
 /* 
@@ -182,6 +179,17 @@ inverser("JavaScript"); // Retourne : "tpircSavaJ"
 */
 // ÉCRIRE ICI :
 
+// // On transforme la chaîne de caractère en un tableau
+// let myString = "bonjour"; // On initialise la variable de chaîne de caracteres
+// let myArray = myString.split(''); // On transforme la chaîne de caractère en un tableau
+// console.log(myArray); //On vérifie dans la console si la chaîne de caractère est bien devenue un tableau
+
+// // On inverse puis on remet le tableau en chaîne de caracteres
+// myArray = myArray.reverse(); // On inverse le sens du tableau
+// console.log(myArray); // On vérifie sur la console que le sens est bien inversé
+// myReversedString = myArray.join(''); // On initie une variable qui vas stocker une nouvelle valeur, le retour d'un tableau à une chaîne de caracteres
+// console.log(myReversedString); // On vérifie qu'on a bien une chaîne de caractère inversé comme demandé
+
 /**----------------------------------------------------------------------------- */
 /* 
 6. Filtrer les nombres pairs
@@ -195,6 +203,28 @@ filtrerPairs([1, 2, 3, 4, 5, 6]); // Retourne : [2, 4, 6]
 filtrerPairs([7, 11, 14, 18]);   // Retourne : [14, 18]
 */
 // ÉCRIRE ICI :
+
+// const array = [1, 2, 3, 4, 5, 6]; // je dois initier une variable constante nommée array, qui stoche un tableau
+// let filterArrayPush = [];
+
+// function filterPair(array) {
+//   for (let i = 0; i < array.length; i++) { // Je dois parcourir le tableau => boucle for ou forEach
+//     if (array[i] % 2 === 0) {               // Je dois donner comme condition : si mon nombre est pair (modulo 2 = 0)
+//       filterArrayPush.push(array[i]);
+//     }
+//   }
+//   return filterArrayPush; // je retourne le résultat final du tableau créé "filterArrayPush"
+// }
+// console.log(filterPair(array));
+
+// Autre méthode, .filter :
+
+// const array = [1, 2, 3, 4, 5, 6]; // je dois initier une variable constante nommée array, qui stoche un tableau
+// function filterPair(array) {
+//       return array.filter((number) => number % 2 === 0);
+// }
+
+// console.log(filterPair(array));
 
 /**----------------------------------------------------------------------------- */
 /*
@@ -210,6 +240,24 @@ factorielle(5); // Retourne : 120
 factorielle(0); // Retourne : 1
 */
 // ÉCRIRE ICI :
+
+// function calculFactorielle(n){
+//       let resultat = 1;
+//       for (let i = 1; i <= n; i++){
+//             resultat *= i;
+//       }
+//       return resultat;
+// }
+// console.log(calculFactorielle(5));
+
+// function calculFactorielle(n) {
+//   let resultat = 1;
+//   for (let i = n; i >= 1; i--) {
+//     resultat *= i;
+//   }
+//   return resultat;
+// }
+// console.log(calculFactorielle(5));
 
 /**----------------------------------------------------------------------------- */
 /**----------------------------------------------------------------------------- */
