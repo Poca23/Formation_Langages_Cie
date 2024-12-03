@@ -1,0 +1,3 @@
+// DOM
+
+console.log(document);
