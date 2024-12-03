@@ -169,6 +169,8 @@ for (let i = 0; i < 3; i++) {
 
 let arraySpans = document.querySelectorAll("span"); // sélection de tous les spans qui devient une NodeList de neuf éléments
 
+
+
 console.log(arraySpans); // vérification
 
 for (let i = 0; i < arraySpans.length; i++) {
