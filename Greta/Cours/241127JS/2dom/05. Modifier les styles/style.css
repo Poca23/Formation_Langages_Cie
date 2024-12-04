@@ -1,1 +1,7 @@
 /* Écrire dans ce fichier seulement après la question 4 👀 */
+.title1 {
+  color: rgb(157, 157, 157);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}

@@ -4,30 +4,18 @@
  * Toujours via JS, leur fixer une longueur de 100%.
  * --------------------------------
  */
-let arrayImg = document.querySelectorAll("img")[0]; // sélection des éléments img
+let arrayImg = document.querySelectorAll("img"); // sélection des éléments img
 console.log(arrayImg);
 
-let src0 = arrayImg.setAttribute("src", "assets/cloud-296722_1920.png");
-console.log(src0);
+arrayImg.forEach((element) =>
+  element.setAttribute("src", "assets/sand-305497_1920.png")
+);
 
-arrayImg = document.querySelectorAll("img")[1]; // sélection des éléments img
-console.log(arrayImg);
+arrayImg.forEach((element) =>
+  element.setAttribute("alt", "image-plage-vacances")
+);
 
-let src1 = arrayImg.setAttribute("src", "assets/sand-305497_1920.png");
-console.log(src1);
-
-arrayImg = document.querySelectorAll("img")[2]; // sélection des éléments img
-console.log(arrayImg);
-
-let src2 = arrayImg.setAttribute("src", "assets/unicorn-3637428_1920.png");
-console.log(src2);
-
-arrayImg.forEach((element) => element.setAttribute("style", "width: 100%"));
-
-// for (let i = 0; i < arrayImg.length; i++) {
-// let src = arrayImg[i].set
-
-// }
+arrayImg.forEach((element) => (element.style.width = "100%"));
 
 // Voici un bout de code : ne pas y toucher (vraiment) 🤓
 const titleList = ["h1", "h2", "h3", "h4", "h5", "h6"];
@@ -41,6 +29,24 @@ const titleList = ["h1", "h2", "h3", "h4", "h5", "h6"];
  * --------------------------------
  */
 
+let arrayTitle = document.querySelectorAll("h1, h2, h3, h4, h5, h6"); // sélection des balises titres
+console.log(arrayTitle);
+
+arrayTitle.forEach((title) => {
+  // parcourir le tableau pour ajouter l'attribut "title" à chaque balise h
+  title.classList.add("title"); // ajout de la class "title"
+
+  if (title.tagName === "H1") {
+    title.classList.add("title1");
+  }
+  if (title.tagName === "H2") {
+    title.classList.add("title2");
+  }
+  if (title.tagName === "H3") {
+    title.classList.add("title3");
+  }
+});
+
 /**
  * --------------------------------
  * 3 - Ajouter les classes suivantes à certains éléments HTML (à vous d'analyser lesquels) :
@@ -49,6 +55,18 @@ const titleList = ["h1", "h2", "h3", "h4", "h5", "h6"];
  * → "card"
  * --------------------------------
  */
+
+let arraySection = document.querySelectorAll("section");
+arraySection[arraySection.length - 1].classList.add("section2");
+
+let cardContainer = document.querySelector("section.section2 > div");
+cardContainer.classList.add("card-container");
+console.log(cardContainer);
+
+let arrayCard = cardContainer.querySelectorAll("div");
+console.log(arrayCard);
+
+arrayCard.forEach((card) => card.classList.add("card"));
 
 /**
  * --------------------------------
@@ -73,6 +91,31 @@ const titleList = ["h1", "h2", "h3", "h4", "h5", "h6"];
  * --------------------------------
  */
 
+// changer la couleur de la balise main :
+let main = document.querySelector("main");
+main.style.backgroundColor = "rgb(157, 157, 157)";
+
+// modifier la section 2 :
+let section2 = document.querySelector("section.section2");
+section2.setAttribute(
+  "style",
+  "background-color: #f1f1f1; padding: 1rem; margin:1rem; display:flex; justify-content: center;align-items: center; flex-direction: row;"
+);
+
+// modifier "card-container" :
+cardContainer.setAttribute(
+  "style",
+  "border: 1px solid; padding: 1rem; margin:1rem;display:flex; justify-content:space-evenly;align-items: center; flex-direction: column;"
+);
+
+// modifier "card" :
+arrayCard.forEach((card) =>
+  card.setAttribute(
+    "style",
+    "border: 1px solid; padding: 1rem; margin:1rem;display:flex; justify-content: center;align-items: center; flex-direction: column"
+  )
+);
+
 /**
  * --------------------------------
  * 5 - Retirer la classe "card" du second et du troisième élément possédant cette classe.
@@ -81,6 +124,8 @@ const titleList = ["h1", "h2", "h3", "h4", "h5", "h6"];
  * --------------------------------
  */
 
+arrayCard.forEach((card) => card.classList.add("card"));
+
 /**
  * --------------------------------
  * 6 - Via JS, créer une <div> comme celles déjà présentes dans le HTML : avec sa classe, son style et ses éléments enfants.
@@ -88,3 +133,14 @@ const titleList = ["h1", "h2", "h3", "h4", "h5", "h6"];
  * Cool n'est-ce pas ? 🤓
  * --------------------------------
  */
+
+
+let divCard = document.querySelector('.card'); // on sélectionne l'élément à cloner
+
+let cloneDivCard = divCard.cloneNode(true); // copy de l'élément entier div
+
+cloneDivCard.id = 'divClone'; // on attribut un id au clone de la div
+
+document.body.app(cloneDivCard); // On ajoute la div clonée à l'intérieur de la div "cardContainer"
+
+
