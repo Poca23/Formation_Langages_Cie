@@ -1,0 +1,51 @@
+body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+  }
+  
+  header {
+      background-color: #ff0000;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+  }
+  
+  .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+  }
+  
+  .video-card {
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      padding: 10px;
+      transition: transform 0.2s;
+  }
+  
+  .video-card img {
+      max-width: 100%;
+      height: auto;
+      border-bottom: 1px solid #ccc;
+  }
+  
+  .video-card h3 {
+      margin: 10px 0 5px;
+      font-size: 18px;
+  }
+  
+  .video-card p {
+      font-size: 14px;
+      color: #555;
+  }
+  
+  .video-card:hover {
+      transform: scale(1.05);
+  }
+  
