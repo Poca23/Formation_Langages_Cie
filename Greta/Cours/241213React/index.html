@@ -4,16 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>React</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-
     <h1>React</h1>
 
     <h2>Définition</h2>
     <p>
-      Librairie JavaScript (facebook) pour créer des interfaces utilisateurs
-      dynamiques et interactives? Développement de composants réutilisables et
-      gestion efficace de l'état de l'application.
+      <strong>Library(bibliothèque en français) JavaScript</strong> (facebook)
+      pour créer des interfaces utilisateurs dynamiques et interactives.
+      Développement de composants réutilisables et gestion efficace de l'état de
+      l'application.
     </p>
 
     <h2>Application</h2>
@@ -34,7 +35,76 @@
       </li>
     </ul>
 
+    <h3>Pourquoi utiliser React ?</h3>
+    <ul>
+      <li>
+        <strong>Flexibilité</strong> : Peut être intégré dans un projet existant
+        ou utilisé pour des applications complètes">
+      </li>
+      <li>
+        <strong>Large communauté</strong> : Beaucoup de ressources,
+        bibliothèques et outils disponibles
+      </li>
+      <li>
+        <strong>Performances</strong> : Le Virtual DOM réduit les mises à jour
+        inutiles et accélère le rendu.
+      </li>
+    </ul>
+
     <h2>Installation et configuration</h2>
-    <p>nvm - </p>
+    <h3>Webstorm (jetbrains)</h3>
+
+    <h3>Installation de Node.js et npm/yarn</h3>
+
+    <h3>Créer un projet avec Create React App</h3>
+    <p>np x create-react-app my-app --template typescript</p>
+    <p>cd my-app</p>
+    <p>npm start</p>
+
+    <h3>Structure de Base d'un Projet React</h3>
+    <h4>Dossier clés</h4>
+    <h5>public/ :</h5>
+    <p>Contient des fichiers statiques (<b>html, images,</b> etc..)</p>
+    <h5>src/ :</h4>
+    <p>Contient les fichiers principaux, comme <b>App.js et index.js</b>
+    </p>
+    <img src="assets/dossiers_cles.png" alt="keys-folders">
+    <p>Dans <b>src:</b> créer un dossier <b>components</b> et <b>pages</b>
+    </p>
+    <p>Dans <u>components</u> on peut placer : Header.tsx, Footer.tsx et Bienvenue.tsx</p>
+    <p>Dans <u>pages</u> on peut placer Home.tsx et About.tsx</p>
+
+
+
+    <h2>Les Composants React</h2>
+    <p>Les composants sont la base de React. Ils permettent de diviser une interface utilisateur en petites parties réutilisables. Un composant est une <b>fonction</b> ou une <b>classe</b> qui <b>retourne</b> une partie de l'interface utilisateur.</p>
+
+
+    <h3>Les Composants Fonctionnels</h3>
+    <p>Définis par une fonction qui retourne du JSX (JavaScript XML)</p>
+    <p>Ils sont les plus couramment utilisés en React. Ils sont simples et faciles à comprendre, surtout avec l'introduction des hooks dans React.</p>
+
+
+    <h3>Les Composants basés sur les Classes</h3>
+    <p>Définis par une classe JavaScript. Ces composants utilisent render() pour retourner du JSX</p>
+
+
+    <h3>Les composants basés sur les constantes</h3>
+    <p>???</p>
+
+    <h3>Les props et Transmissions de Données</h3>
+    <p>Les props sont des arguments passés aux composants, permettant de rendre ceux-ci dynamiques. Ils sont immuables, le composant ne peut pas les modifier.</p>
+    <h3>Composition de Composants</h3>
+    <p>???</p>
+
+
+    <h2>Gestion de l'État (State)</h2>
+    
+
+    <h3>Utilisation du Hook useState</h3>
+    <h3>partage de l'État entre Composants(lifting State Up)</h3>
+    <h3>Tic-Tac-Toe</h3>
+    <h3>Gestion des Formulaires et Événements</h3>
+    <p><small>(p.47)</small></p>
   </body>
 </html>

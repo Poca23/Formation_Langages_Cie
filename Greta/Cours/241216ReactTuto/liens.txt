@@ -1,2 +1,3 @@
-https://19.react.dev/learn/tutorial-tic-tac-toe
-https://19.react.dev/learn/describing-the-ui
+https://19.react.dev/learn/tutorial-tic-tac-toe (tuto tic tac toe react)
+https://19.react.dev/learn/describing-the-ui 
+https://www.youtube.com/watch?v=oCINeytlyRA (tuto 7h)
