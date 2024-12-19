@@ -1,3 +1,7 @@
+https://www.figma.com/deck/D3J7WsYPo20Gey5H2CgVwJ/React-course?node-id=1-88&t=A14pytyIgjtBsWNj-1 (cours react)
+https://docs.google.com/document/d/1AQTDZ7px9KE8cZJNWg7ca6-l6SpfVSFHS5Xsv89Z4h8/edit?tab=t.0#heading=h.3rcmo76jvde9 (exercice props - useState - Function vs Const)
+
+
 https://19.react.dev/learn/tutorial-tic-tac-toe (tuto tic tac toe react)
 https://19.react.dev/learn/describing-the-ui 
 https://www.youtube.com/watch?v=oCINeytlyRA (tuto 7h)

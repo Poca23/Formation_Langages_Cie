@@ -1,0 +1,5 @@
+https://docs.google.com/document/d/1hM3_YlSm0-yZKoR31jzO34ZMVS4XOqYmE4p8X_zlFFY/edit?tab=t.0#heading=h.cz8iynhlk2o9 (exercice visiotech)
+
+
+https://reactrouter.com/start/library/routing (documentation)
+https://api.reactrouter.com/v7/modules/react_router.html (fonctionnalités possibles)
