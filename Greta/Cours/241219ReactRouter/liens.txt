@@ -4,3 +4,6 @@ https://reactrouter.com/start/library/routing
 https://api.reactrouter.com/v7/modules/react_router_dom.html
 https://api.reactrouter.com/v7/modules/react_router.html
 https://reactrouter.com/start/library/routing
+https://github.com/staylor/react-helmet-async#readme (helmet)
+https://mui.com/material-ui/react-app-bar/ (composant appbar)
+https://www.youtube.com/watch?v=T0igFcsjAiE (tuto movie database)
