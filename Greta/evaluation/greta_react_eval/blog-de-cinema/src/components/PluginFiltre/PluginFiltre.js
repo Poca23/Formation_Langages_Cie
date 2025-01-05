@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFolder, faFilter, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom"; // Importation du composant Link
+import { Link } from "react-router-dom"; 
 import "./PluginFiltre.css";
 
 const PluginFiltre = () => {
@@ -29,7 +29,7 @@ const PluginFiltre = () => {
       const response = await fetch(query);
       const data = await response.json();
       if (data.results) {
-        setMovies(data.results.slice(0, 20)); // Limiter les résultats à 20 films
+        setMovies(data.results.slice(0, 20)); 
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -113,7 +113,7 @@ const PluginFiltre = () => {
               >
                 <div className="movie-card">
                   <img
-                    src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                     alt={movie.title}
                   />
                   <h3>{movie.title}</h3>

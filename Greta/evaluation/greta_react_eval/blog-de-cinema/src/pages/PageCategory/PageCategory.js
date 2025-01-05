@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import PageTemplate from "../../components/PageTemplate/PageTemplate.js";
-import SectionTitle from "../../components/SectionTitle/SectionTitle.js";
-import "./PageCategory.css"; // Chemin correct vers le fichier CSS
+import PageTemplate from "../../components/PageTemplate/PageTemplate";
+import SectionTitle from "../../components/SectionTitle/SectionTitle";
+import "./PageCategory.css";
 
 const CategoryPage = () => {
   const { id } = useParams();
@@ -19,7 +19,7 @@ const CategoryPage = () => {
         const updatedMovies = await Promise.all(
           category.movies.map(async (movie) => {
             const response = await fetch(
-              `https://www.omdbapi.com/?i=${movie.imdbID}&apikey=3b12adf8`
+              `https://www.omdbapi.com/?i=${movie.imdbID}&apikey=YOUR_API_KEY`
             );
             const data = await response.json();
             return {

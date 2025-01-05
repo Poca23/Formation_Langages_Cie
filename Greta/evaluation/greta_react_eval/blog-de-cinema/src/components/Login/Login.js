@@ -15,7 +15,7 @@ const Login = ({ setIsAuthenticated }) => {
       alert("Veuillez compléter le reCAPTCHA.");
       return;
     }
-    const response = await fetch("http://localhost:5000/api/login", {
+    const response = await fetch("http://example.com/api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -27,7 +27,7 @@ const Login = ({ setIsAuthenticated }) => {
     });
     const data = await response.json();
     if (response.ok) {
-      localStorage.setItem("authToken", data.token); // Stockez le token d'authentification
+      localStorage.setItem("authToken", data.token); 
       setIsAuthenticated(true);
     } else {
       alert("Invalid credentials");
@@ -40,7 +40,7 @@ const Login = ({ setIsAuthenticated }) => {
       alert("Veuillez compléter le reCAPTCHA.");
       return;
     }
-    const response = await fetch("http://localhost:5000/api/register", {
+    const response = await fetch("http://example.com/api/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

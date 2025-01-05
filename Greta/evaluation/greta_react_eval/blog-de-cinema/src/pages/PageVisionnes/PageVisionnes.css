@@ -1,15 +1,13 @@
-/* src/pages/PageVisionnes/PageVisionnes.css */
-
 .vue-page {
   padding: 20px;
   background: url("../../../public/media/images/movie-theater-2093264_1920.jpg")
     no-repeat center center fixed;
   background-size: cover;
-  min-height: 100vh; /* Assurer que la page prend toute la hauteur */
+  min-height: 100vh; 
 }
 
 .add-movie-card {
-  display: none; /* Masquer la carte d'ajout de film */
+  display: none; 
 }
 
 .search-bar {
@@ -21,12 +19,12 @@
 
 .search-bar input {
   padding: 10px;
-  width: 100%; /* S'adapter à la largeur de la barre de recherche */
-  max-width: 500px; /* Limiter la largeur maximale à 500px */
+  width: 100%; 
+  max-width: 500px; 
   border: 1px solid #1e1e1e;
   border-radius: 5px;
   font-size: 16px;
-  box-sizing: border-box; /* Inclure le padding et la bordure dans la largeur */
+  box-sizing: border-box; 
 }
 
 .movies-section {
@@ -35,13 +33,13 @@
 
 .movies-list {
   display: flex;
-  flex-wrap: wrap; /* Permettre aux cartes de s'adapter à la taille de l'écran */
+  flex-wrap: wrap; 
   gap: 20px;
-  justify-content: center; /* Centrer les cartes */
+  justify-content: center; 
 }
 
 .movie-card {
-  background-color: rgba(30, 30, 30, 0.8); /* Fond noir semi-transparent */
+  background-color: rgba(30, 30, 30, 0.8); 
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   padding: 20px;
@@ -68,12 +66,12 @@
   margin: 10px 0;
   color: #f1f1f1;
   font-size: 16px;
-  line-height: 1.2; /* Proportionnel à la taille de l'image */
+  line-height: 1.2; 
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2; /* Limiter à deux lignes */
-  line-clamp: 2; /* Limiter à deux lignes */
+  -webkit-line-clamp: 2; 
+  line-clamp: 2; 
   -webkit-box-orient: vertical;
 }
 
@@ -96,7 +94,7 @@
   border-radius: 5px;
   transition: background 0.3s;
   position: absolute;
-  bottom: 20px; /* Assurer que le bouton reste en bas de la carte */
+  bottom: 20px; 
   left: 50%;
   transform: translateX(-50%);
 }
@@ -113,7 +111,7 @@
 .suggestions-list {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Aligner les suggestions à gauche */
+  align-items: flex-start; 
   width: 100%;
   max-width: 500px;
   background-color: rgba(30, 30, 30, 0.9);
@@ -128,25 +126,25 @@
 
 .suggestions-list.adjust-up {
   top: auto;
-  bottom: 100%; /* Remonter les suggestions si elles touchent le footer */
+  bottom: 100%; 
   transform: translate(75%, 168.5%);
 }
 
 .suggestion-item {
   display: flex;
-  align-items: flex-start; /* Aligner les éléments sur le haut */
+  align-items: flex-start; 
   cursor: pointer;
   padding: 2px;
   transition: background 0.3s;
   width: 100%;
-  height: 75px; /* Limiter la hauteur */
-  margin-bottom: 2px; /* Ajouter un espacement entre les suggestions */
+  height: 75px; 
+  margin-bottom: 2px; 
   background-color: rgba(
     30,
     30,
     30,
     0.9
-  ); /* Assurer que chaque suggestion est visible */
+  ); 
 }
 
 .suggestion-item:hover {
@@ -164,7 +162,7 @@
 .suggestion-item-content {
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Aligner le contenu sur le centre */
+  justify-content: center; 
 }
 
 .suggestion-item span {
@@ -175,5 +173,5 @@
   white-space: nowrap;
   max-width: calc(
     100% - 60px
-  ); /* Assurer que le texte reste dans la largeur autorisée */
+  ); 
 }

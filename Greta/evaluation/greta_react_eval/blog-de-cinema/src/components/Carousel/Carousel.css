@@ -1,42 +1,42 @@
 .carousel-item img {
-  height: 600px; /* Ajuster la hauteur des images */
-  width: 100%; /* S'assurer que l'image prend toute la largeur de son conteneur */
-  object-fit: contain; /* Garder les proportions de l'image */
-  margin: 0 auto; /* Centrer l'image */
+  height: 600px; 
+  width: 100%; 
+  object-fit: contain; 
+  margin: 0 auto; 
 }
 
 .carousel-movie {
   flex: 1;
-  margin: 0 10px; /* Espacement entre les films */
+  margin: 0 10px; 
 }
 
 .movie-details {
   text-align: center;
   padding: 10px;
-  width: 100%; /* Assurer que le résumé prend toute la largeur de l'affiche */
+  width: 100%; 
 }
 
 .movie-details h5 {
-  color: rgba(255, 255, 255, 0.9); /* Blanc adouci */
+  color: rgba(255, 255, 255, 0.9); 
   font-size: 18px;
   font-weight: bold;
 }
 
 .movie-details p {
-  color: rgba(255, 255, 255, 0.7); /* Blanc adouci */
+  color: rgba(255, 255, 255, 0.7); 
   padding: 10px;
   font-size: 14px;
   overflow: hidden;
-  text-overflow: ellipsis; /* Ajouter les points de suspension */
-  white-space: nowrap; /* Limiter à une ligne */
+  text-overflow: ellipsis; 
+  white-space: nowrap; 
   background-color: rgba(0, 0, 0, 0.575);
   border-radius: 5px;
-  width: 100%; /* Assurer que le résumé prend toute la largeur de l'affiche */
-  margin: 0; /* Supprimer les marges autour du résumé */
+  width: 100%; 
+  margin: 0; 
 }
 
 .movie-details a {
-  color: rgba(255, 255, 255, 0.7); /* Blanc adouci */
+  color: rgba(255, 255, 255, 0.7); 
   text-decoration: none;
 }
 
@@ -46,30 +46,30 @@
 
 .carousel-control-prev,
 .carousel-control-next {
-  background: rgba(0, 0, 0, 0.5); /* Fond noir avec opacité de 50% */
-  border: 2px solid transparent; /* Bordure initialement transparente */
+  background: rgba(0, 0, 0, 0.5); 
+  border: 2px solid transparent; 
   color: #fff;
-  font-size: 2.5rem; /* Augmenter la taille des flèches */
+  font-size: 2.5rem; 
   cursor: pointer;
-  width: 3rem; /* Définir la largeur des boutons */
-  height: 3rem; /* Définir la hauteur des boutons */
-  padding: 5px; /* Ajouter un léger padding */
+  width: 3rem; 
+  height: 3rem; 
+  padding: 5px; 
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: border-color 0.3s ease, color 0.3s ease; /* Transition pour l'effet de hover */
-  border-radius: 50%; /* Bordures arrondies pour un look plus élégant */
+  transition: border-color 0.3s ease, color 0.3s ease; 
+  border-radius: 50%; 
 }
 
 .carousel-control-prev:hover,
 .carousel-control-next:hover {
-  border-color: #ff5722; /* Changer la couleur de la bordure au survol */
-  color: #ff5722; /* Changer la couleur des icônes au survol */
+  border-color: #ff5722; 
+  color: #ff5722; 
 }
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-  width: 2rem; /* Ajuster la taille des icônes */
+  width: 2rem; 
   height: 2rem;
-  pointer-events: none; /* Assurer que seul le bouton est cliquable, pas l'icône directement */
+  pointer-events: none; 
 }

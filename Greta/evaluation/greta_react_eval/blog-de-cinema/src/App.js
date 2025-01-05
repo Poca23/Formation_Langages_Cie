@@ -10,7 +10,7 @@ import FavorisPage from "./pages/PageFavoris/PageFavoris";
 import HomePage from "./pages/PageHome/PageHome";
 import SeesFilmsPage from "./pages/PageVisionnes/PageVisionnes";
 import Login from "./components/Login/Login";
-import AccountPage from "./components/AccountPage/AccountPage.js"; // Importation de la page Mon compte
+import AccountPage from "./components/AccountPage/AccountPage.js"; 
 
 const App = () => {
   return (
@@ -26,7 +26,7 @@ const App = () => {
           <Route path="/visionnes" element={<SeesFilmsPage />} />
           <Route path="/detail-film/:id" element={<DetailsFilmPage />} />
           <Route path="/compte" element={<AccountPage />} />{" "}
-          {/* Ajout de la route vers AccountPage */}
+          {}
         </Routes>
       </div>
     </Router>

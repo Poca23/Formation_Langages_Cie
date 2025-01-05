@@ -49,7 +49,7 @@ const Navbar = () => {
         <li>
           <Link to="/compte">
             {" "}
-            {/* Changez '/account' en '/compte' */}
+            {}
             <i className="fas fa-user"></i>
             <span>Mon Compte</span>
           </Link>

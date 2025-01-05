@@ -10,7 +10,7 @@ const CarouselComponent = () => {
     const fetchMovies = async () => {
       const apiKey = "48a751c85b6b3d4c0750582c52468efb";
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=fr-FR&page=1`
+        `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=fr-FR&page=1`
       );
       const data = await response.json();
       setMovies(data.results.slice(0, 12));
@@ -39,7 +39,7 @@ const CarouselComponent = () => {
                 <Link to={`/detail-film/${movie.id}`}>
                   <img
                     className="d-block w-100"
-                    src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                     alt={movie.title}
                   />
                 </Link>

@@ -59,7 +59,7 @@ const FavorisPage = () => {
     );
     const data = await response.json();
     if (data.Search) {
-      setSuggestions(data.Search.slice(0, 5)); // Limiter les suggestions à cinq
+      setSuggestions(data.Search.slice(0, 5)); 
     }
   };
 
@@ -82,7 +82,7 @@ const FavorisPage = () => {
   const addMovie = (movie, setMovies, querySetter, suggestionsSetter) => {
     const newMovie = {
       title: movie.Title,
-      description: "", // Pas besoin de description
+      description: "", 
       image: movie.Poster,
     };
     setMovies((movies) => [...movies, newMovie]);

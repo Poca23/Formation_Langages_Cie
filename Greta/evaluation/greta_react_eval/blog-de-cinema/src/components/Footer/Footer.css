@@ -1,5 +1,3 @@
-/* src/components/Footer.css */
-
 footer {
   position: fixed;
   bottom: 0;
@@ -22,7 +20,7 @@ footer {
 }
 
 .logo-image-footer {
-  height: 60px; /* Réduire la taille du logo */
+  height: 60px; 
   width: auto;
   filter: contrast(0.2);
 }

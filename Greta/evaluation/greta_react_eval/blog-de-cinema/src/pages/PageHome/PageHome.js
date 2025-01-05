@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import PageTemplate from "../../components/PageTemplate/PageTemplate.js";
 import CarouselComponent from "../../components/Carousel/Carousel.js";
 import SectionTitle from "../../components/SectionTitle/SectionTitle.js";
-import SearchBar from "../../components/SearchBar/SearchBar.js"; // Importation du composant SearchBar
-import "./PageHome.css"; // Assurez-vous que ce chemin est correct
+import SearchBar from "../../components/SearchBar/SearchBar.js"; 
+import "./PageHome.css"; 
 
 const initialCategories = [
   "Action",
@@ -31,7 +31,7 @@ const HomePage = () => {
           placeholder="Rechercher un film..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          categories={categories} // Transmettre les catégories au composant SearchBar
+          categories={categories} 
         />
       </div>
       <CarouselComponent className="carousel-component" />

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PageTemplate from "../PageTemplate/PageTemplate";
-import "./AccountPage.css"; // Utilisation du fichier CSS direct
+import "./AccountPage.css"; 
 
 const AccountPage = () => {
   const [showPassword, setShowPassword] = useState(false);

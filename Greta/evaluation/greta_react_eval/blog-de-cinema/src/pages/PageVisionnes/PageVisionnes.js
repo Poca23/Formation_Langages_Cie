@@ -14,13 +14,13 @@ const SeesFilmsPage = () => {
             title: "Film 1",
             description: "Description du Film 1",
             image: "URL_Image_Film_1",
-            id: "tt1234567", // Exemple d'ID
+            id: "tt1234567", 
           },
           {
             title: "Film 2",
             description: "Description du Film 2",
             image: "URL_Image_Film_2",
-            id: "tt2345678", // Exemple d'ID
+            id: "tt2345678", 
           },
         ];
   });
@@ -34,13 +34,13 @@ const SeesFilmsPage = () => {
             title: "Film 3",
             description: "Description du Film 3",
             image: "URL_Image_Film_3",
-            id: "tt3456789", // Exemple d'ID
+            id: "tt3456789", 
           },
           {
             title: "Film 4",
             description: "Description du Film 4",
             image: "URL_Image_Film_4",
-            id: "tt4567890", // Exemple d'ID
+            id: "tt4567890", 
           },
         ];
   });
@@ -63,13 +63,13 @@ const SeesFilmsPage = () => {
 
   const searchMovies = async (query, setSuggestions) => {
     const response = await fetch(
-      `http://www.omdbapi.com/?s=${query}&apikey=3b12adf8`
+      `http://example.com/api/search-movies?query=${query}`
     );
     const data = await response.json();
     if (data.Search) {
-      setSuggestions(data.Search.slice(0, 5)); // Limiter les suggestions à cinq
+      setSuggestions(data.Search.slice(0, 5)); 
     } else {
-      setSuggestions([]); // Remettre les suggestions à zéro si aucun résultat n'est trouvé
+      setSuggestions([]); 
     }
   };
 
@@ -109,7 +109,7 @@ const SeesFilmsPage = () => {
   const addMovie = (movie, setMovies, querySetter, suggestionsSetter) => {
     const newMovie = {
       title: movie.Title,
-      description: "", // Pas besoin de description
+      description: "", 
       image: movie.Poster,
       id: movie.imdbID,
     };

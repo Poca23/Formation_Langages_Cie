@@ -1,8 +1,8 @@
 .search-bar-container {
   display: flex;
   justify-content: center;
-  margin-top: 5px; /* Réduire la marge supérieure */
-  margin-bottom: -38px; /* Réduire la marge inférieure */
+  margin-top: 5px; 
+  margin-bottom: -38px; 
 }
 
 .movies-list {

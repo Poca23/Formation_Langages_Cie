@@ -4,7 +4,7 @@
 
 .filter-button {
   position: fixed;
-  top: 85px; /* Juste en-dessous de la navbar */
+  top: 85px; 
   left: 10px;
   background-color: #000;
   color: #fff;
@@ -26,14 +26,14 @@
 
 .sidebar {
   position: fixed;
-  top: 78px; /* Juste en-dessous de la navbar */
+  top: 78px; 
   left: 0;
-  bottom: 60px; /* Juste au-dessus du footer */
+  bottom: 60px; 
   width: 280px;
   height: calc(
     100% - 145px
-  ); /* Prendre la hauteur entre la navbar et le footer */
-  overflow-y: auto; /* Permettre le défilement vertical */
+  ); 
+  overflow-y: auto; 
   background-color: #d3d3d3;
   padding: 20px;
   display: flex;
@@ -51,14 +51,14 @@
 }
 
 .filters h4 {
-  width: 100%; /* Pour que les titres de section prennent toute la largeur */
+  width: 100%; 
   margin: 10px 0 5px;
-  font-size: 14px; /* Réduire la taille des titres */
-  text-align: center; /* Centrer les titres */
+  font-size: 14px; 
+  text-align: center; 
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5px; /* Espacement entre l'icône et le texte */
+  gap: 5px; 
 }
 
 .filters button {
@@ -69,7 +69,7 @@
   margin-bottom: 5px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
-  flex: 0 1 auto; /* Prendre seulement la largeur nécessaire */
+  flex: 0 1 auto; 
   text-align: left;
 }
 
@@ -103,15 +103,15 @@
 
 .dropdown {
   position: fixed;
-  top: 78px; /* Juste en-dessous de la navbar */
-  left: 280px; /* À droite de la sidebar */
-  bottom: 60px; /* Juste au-dessus du footer */
-  width: calc(100% - 280px); /* Prendre la largeur restante de l'écran */
+  top: 78px; 
+  left: 280px; 
+  bottom: 60px; 
+  width: calc(100% - 280px); 
   height: calc(
     100% - 145px
-  ); /* Prendre la hauteur entre la navbar et le footer */
-  overflow-y: auto; /* Permettre le défilement vertical */
-  background-color: rgba(0, 0, 0, 0.9); /* Fond noir semi-transparent */
+  ); 
+  overflow-y: auto; 
+  background-color: rgba(0, 0, 0, 0.9); 
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -143,7 +143,7 @@
 }
 
 .movie-card {
-  background-color: rgba(30, 30, 30, 0.8); /* Fond noir semi-transparent */
+  background-color: rgba(30, 30, 30, 0.8); 
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   padding: 20px;

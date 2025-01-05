@@ -1,11 +1,9 @@
-/* src/pages/DetailsFilmPage/PageDetailFilm.css */
-
 .film-detail-page {
   display: flex;
   gap: 20px;
   padding: 20px;
   color: #f1f1f1;
-  background-color: #121212; /* Fond sombre pour un look élégant */
+  background-color: #121212; 
 }
 
 .left-column,
@@ -15,18 +13,18 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Aligner le contenu à gauche */
+  align-items: flex-start; 
 }
 
 .middle-column {
-  margin-left: -20px; /* Réduire l'espacement entre la partie centrale et la partie gauche */
+  margin-left: -20px; 
 }
 
 .film-poster {
   width: 100%;
   max-width: 300px;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Ombre pour un effet d'élévation */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); 
 }
 
 .film-category,
@@ -52,15 +50,15 @@
 }
 
 .film-icons .heart-button {
-  color: white; /* Couleur par défaut de l'icône de cœur */
+  color: white; 
 }
 
 .film-icons .heart-button:hover {
-  color: #ff6347; /* Couleur au survol, par exemple, un rouge tomate */
+  color: #ff6347; 
 }
 
 .film-icons .heart-button:active {
-  color: #ff0000; /* Couleur au clic, rouge vif */
+  color: #ff0000; 
 }
 
 .film-info h1 {
@@ -70,21 +68,21 @@
 
 .film-description {
   margin-top: 20px;
-  font-size: 1.3rem; /* Grossir un peu le texte */
+  font-size: 1.3rem; 
   line-height: 1.6;
-  color: #f1f1f1; /* Changer la couleur en #f1f1f1 */
-  text-align: left; /* Aligner à gauche */
+  color: #f1f1f1; 
+  text-align: left; 
 }
 
 .film-details {
   font-size: 1rem;
   margin-top: 20px;
-  text-align: left; /* Aligner à gauche */
+  text-align: left; 
 }
 
 .film-details h3 {
-  font-size: 1.1rem; /* Diminuer la taille des textes */
-  color: #f1f1f1; /* Changer la couleur en #f1f1f1 */
+  font-size: 1.1rem; 
+  color: #f1f1f1; 
   margin-bottom: 10px;
 }
 
@@ -96,13 +94,13 @@
 }
 
 .film-rating .fa-star {
-  transition: color 0.3s ease; /* Pour une transition douce */
+  transition: color 0.3s ease; 
 }
 
 .film-rating .fa-star:hover {
-  color: #ffd700; /* Couleur jaune plus douce */
+  color: #ffd700; 
 }
 
 .film-rating .fa-star:hover ~ .fa-star {
-  color: gray; /* Rendre les étoiles suivantes grises au survol */
+  color: gray; 
 }

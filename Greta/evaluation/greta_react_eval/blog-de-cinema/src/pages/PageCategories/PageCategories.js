@@ -81,7 +81,7 @@ const CategoriesPage = () => {
       return cat;
     });
     setCategories(updatedCategories);
-    localStorage.setItem("categories", JSON.stringify(updatedCategories)); // Mise à jour du localStorage
+    localStorage.setItem("categories", JSON.stringify(updatedCategories)); 
   };
 
   return (
@@ -95,7 +95,7 @@ const CategoriesPage = () => {
           placeholder="Rechercher un film..."
           value={searchTerm}
           onChange={handleInputChange}
-          categories={categories.map((cat) => cat.name)} // Transformation en noms
+          categories={categories.map((cat) => cat.name)} 
           onAddToCategory={addMovieToCategory}
         />
 

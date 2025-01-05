@@ -14,7 +14,7 @@ import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons";
 const DetailsFilmPage = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
-  const [trailerId, setTrailerId] = useState(null); // Ajoutez cet état pour l'ID de la bande-annonce
+  const [trailerId, setTrailerId] = useState(null); 
   const [error, setError] = useState(null);
   const [isFavorite, setIsFavorite] = useState(false);
   const [isWatched, setIsWatched] = useState(false);
@@ -23,14 +23,14 @@ const DetailsFilmPage = () => {
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        // Récupérer les détails du film depuis TMDb
+        
         const tmdbApiKey = "48a751c85b6b3d4c0750582c52468efb";
         const tmdbResponse = await fetch(
-          `https://api.themoviedb.org/3/movie/${id}?api_key=${tmdbApiKey}&language=fr-FR&append_to_response=videos`
+          `https://api.themoviedb.org/3/movie/${id}?api_key=${tmdbApiKey}&language=fr-FR`
         );
         const tmdbData = await tmdbResponse.json();
 
-        // Utiliser l'ID IMDb pour récupérer les détails depuis OMDb
+        
         const imdbId = tmdbData.imdb_id;
         if (!imdbId) {
           throw new Error("IMDb ID non disponible.");
@@ -47,7 +47,7 @@ const DetailsFilmPage = () => {
 
         setMovie(omdbData);
 
-        // Récupérer l'ID de la bande-annonce
+        
         const trailer = tmdbData.videos.results.find(
           (video) => video.type === "Trailer"
         );

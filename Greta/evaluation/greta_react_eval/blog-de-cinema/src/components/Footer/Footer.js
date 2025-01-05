@@ -44,6 +44,9 @@ const Footer = () => {
         <a href="https://www.instagram.com">
           <i className="fab fa-instagram"></i>
         </a>
+        <a href="https://www.twitter.com">
+          <i className="fab fa-twitter"></i>
+        </a>
       </div>
     </footer>
   );

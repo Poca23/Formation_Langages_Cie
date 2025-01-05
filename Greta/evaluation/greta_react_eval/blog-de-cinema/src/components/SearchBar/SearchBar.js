@@ -19,7 +19,7 @@ const SearchBar = ({
   const searchMovies = async (query) => {
     try {
       const response = await fetch(
-        `http://www.omdbapi.com/?s=${query}&apikey=3b12adf8`
+        `http://www.omdbapi.com/?s=${query}&apikey=YOUR_API_KEY`
       );
       const data = await response.json();
       if (data.Search) {
@@ -60,7 +60,7 @@ const SearchBar = ({
           title: selectedMovie.Title,
         });
         setSuggestions([]);
-        onChange({ target: { value: "" } }); // Réinitialiser la barre de recherche
+        onChange({ target: { value: "" } }); 
       }
     }
   };
@@ -68,7 +68,7 @@ const SearchBar = ({
   const handleClickSuggestion = (imdbID, title) => {
     setMovieToAdd({ imdbID, title });
     setSuggestions([]);
-    onChange({ target: { value: "" } }); // Réinitialiser la barre de recherche
+    onChange({ target: { value: "" } }); 
   };
 
   const handleCategoryChange = (e) => {
