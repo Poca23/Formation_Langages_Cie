@@ -73,6 +73,7 @@
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2; /* Limiter à deux lignes */
+  line-clamp: 2; /* Limiter à deux lignes */
   -webkit-box-orient: vertical;
 }
 
@@ -128,6 +129,7 @@
 .suggestions-list.adjust-up {
   top: auto;
   bottom: 100%; /* Remonter les suggestions si elles touchent le footer */
+  transform: translate(75%, 168.5%);
 }
 
 .suggestion-item {

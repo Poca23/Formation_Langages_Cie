@@ -2,37 +2,61 @@ import React, { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import "./Login.css";
 
-const Login = () => {
+const Login = ({ setIsAuthenticated }) => {
   const [recaptchaValue, setRecaptchaValue] = useState("");
 
   const handleRecaptchaChange = (value) => {
     setRecaptchaValue(value);
   };
 
-  const handleSubmitLogin = (event) => {
+  const handleSubmitLogin = async (event) => {
     event.preventDefault();
     if (!recaptchaValue) {
       alert("Veuillez compléter le reCAPTCHA.");
       return;
     }
-    console.log("Login:", event.target.login.value);
-    console.log("Mot de passe:", event.target.password.value);
-    console.log("Captcha:", recaptchaValue);
+    const response = await fetch("http://localhost:5000/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: event.target.login.value,
+        password: event.target.password.value,
+      }),
+    });
+    const data = await response.json();
+    if (response.ok) {
+      localStorage.setItem("authToken", data.token); // Stockez le token d'authentification
+      setIsAuthenticated(true);
+    } else {
+      alert("Invalid credentials");
+    }
   };
 
-  const handleSubmitSignup = (event) => {
+  const handleSubmitSignup = async (event) => {
     event.preventDefault();
     if (!recaptchaValue) {
       alert("Veuillez compléter le reCAPTCHA.");
       return;
     }
-    console.log("Nom:", event.target.firstName.value);
-    console.log("Prénom:", event.target.lastName.value);
-    console.log("Email:", event.target.email.value);
-    console.log("Confirmer Email:", event.target.confirmEmail.value);
-    console.log("Mot de passe:", event.target.signupPassword.value);
-    console.log("Confirmer Mot de passe:", event.target.confirmPassword.value);
-    console.log("Captcha:", recaptchaValue);
+    const response = await fetch("http://localhost:5000/api/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        firstName: event.target.firstName.value,
+        lastName: event.target.lastName.value,
+        email: event.target.email.value,
+        password: event.target.signupPassword.value,
+      }),
+    });
+    if (response.ok) {
+      alert("User registered successfully");
+    } else {
+      alert("Error registering user");
+    }
   };
 
   return (

@@ -25,8 +25,8 @@ const App = () => {
           <Route path="/favoris" element={<FavorisPage />} />
           <Route path="/visionnes" element={<SeesFilmsPage />} />
           <Route path="/detail-film/:id" element={<DetailsFilmPage />} />
-          <Route path="/account" element={<AccountPage />} />{" "}
-          {/* Ajout de la route pour AccountPage */}
+          <Route path="/compte" element={<AccountPage />} />{" "}
+          {/* Ajout de la route vers AccountPage */}
         </Routes>
       </div>
     </Router>

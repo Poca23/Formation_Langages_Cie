@@ -1732,6 +1732,7 @@ export default SeesFilmsPage;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2; /* Limiter à deux lignes */
+  line-clamp: 2; /* Limiter à deux lignes */
   -webkit-box-orient: vertical;
 }
 
@@ -1787,6 +1788,7 @@ export default SeesFilmsPage;
 .suggestions-list.adjust-up {
   top: auto;
   bottom: 100%; /* Remonter les suggestions si elles touchent le footer */
+  transform: translate(75%, 168.5%);
 }
 
 .suggestion-item {
@@ -1834,7 +1836,6 @@ export default SeesFilmsPage;
     100% - 60px
   ); /* Assurer que le texte reste dans la largeur autorisée */
 }
-"
 
 -------------------------------------------------------------------------
 -------------------------------------------------------------------------
@@ -2001,8 +2002,7 @@ button:hover {
   color: #f1f1f1; /* Écriture blanche douce */
 }
 
-button:active {
-  background-color: #f1f1f1; /* Fond blanc doux */
+button:active {app
   color: #e51515; /* Écriture rouge douce */
   border: 1px solid #e51515; /* Bordure rouge douce */
 }
@@ -2929,19 +2929,59 @@ PluginFiltre :
 "
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFolder,
-  faClock,
-  faUserShield,
-  faFilter,
-} from "@fortawesome/free-solid-svg-icons";
+import { faFolder, faFilter, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom"; // Importation du composant Link
 import "./PluginFiltre.css";
 
 const PluginFiltre = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [movies, setMovies] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const fetchMovies = async () => {
+    try {
+      let query = `https://api.themoviedb.org/3/discover/movie?api_key=48a751c85b6b3d4c0750582c52468efb&language=fr-FR`;
+
+      if (selectedCategories.length > 0) {
+        query += `&with_genres=${selectedCategories.join(",")}`;
+      }
+
+      const response = await fetch(query);
+      const data = await response.json();
+      if (data.results) {
+        setMovies(data.results.slice(0, 20)); // Limiter les résultats à 20 films
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  const handleCategoryClick = (category) => {
+    setSelectedCategories((prevCategories) => {
+      if (prevCategories.includes(category)) {
+        return prevCategories.filter((c) => c !== category);
+      } else {
+        return [...prevCategories, category];
+      }
+    });
+  };
+
+  const filteredMovies = movies.filter((movie) => {
+    if (selectedCategories.length === 0) return true;
+
+    return selectedCategories.some((category) =>
+      movie.genre_ids.includes(category)
+    );
+  });
 
   return (
     <div className="filter-container">
@@ -2955,33 +2995,61 @@ const PluginFiltre = () => {
               <FontAwesomeIcon icon={faFolder} /> Catégorie
             </h4>
             <div className="filter-category">
-              <button>Action</button>
-              <button>Fantaisie</button>
-              <button>Aventure</button>
-              <button>Drame</button>
-              <button>SF</button>
-              <button>Horreur</button>
-              <button>Comédie</button>
-              <button>Romantique</button>
+              {[
+                { id: 28, name: "Action" },
+                { id: 14, name: "Fantaisie" },
+                { id: 12, name: "Aventure" },
+                { id: 18, name: "Drame" },
+                { id: 878, name: "SF" },
+                { id: 27, name: "Horreur" },
+                { id: 35, name: "Comédie" },
+                { id: 10749, name: "Romantique" },
+              ].map((category) => (
+                <button
+                  key={category.id}
+                  className={
+                    selectedCategories.includes(category.id) ? "selected" : ""
+                  }
+                  onClick={() => handleCategoryClick(category.id)}
+                >
+                  {category.name}
+                </button>
+              ))}
             </div>
-            <h4>
-              <FontAwesomeIcon icon={faClock} /> Durée du film
-            </h4>
-            <div className="filter-duration">
-              <button>- de 2H</button>
-              <button>[2H et 3H]</button>
-              <button>+ de 3H</button>
-            </div>
-            <h4>
-              <FontAwesomeIcon icon={faUserShield} /> Âge
-            </h4>
-            <div className="filter-age">
-              <button>Tous publics</button>
-              <button>- de 12 ans</button>
-              <button>- de 16 ans</button>
-              <button>- de 18 ans</button>
-              <button>+ de 18 ans</button>
-            </div>
+            <button
+              className="show-movies-button"
+              onClick={() => {
+                fetchMovies();
+                toggleDropdown();
+              }}
+            >
+              Afficher les films possibles
+            </button>
+          </div>
+        </div>
+      )}
+      {isDropdownOpen && (
+        <div className="dropdown">
+          <button className="close-dropdown-button" onClick={toggleDropdown}>
+            <FontAwesomeIcon icon={faTimes} />
+          </button>
+          <div className="movies-list">
+            {filteredMovies.map((movie, index) => (
+              <Link
+                to={`/detail-film/${movie.id}`}
+                key={index}
+                className="movie-card-link"
+              >
+                <div className="movie-card">
+                  <img
+                    src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
+                    alt={movie.title}
+                  />
+                  <h3>{movie.title}</h3>
+                  <p>{movie.release_date}</p>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       )}
@@ -2993,7 +3061,6 @@ export default PluginFiltre;
 "
 
 "
-/* src/components/PluginFiltre.css */
 .filter-container {
   position: relative;
 }
@@ -3069,17 +3136,113 @@ export default PluginFiltre;
   text-align: left;
 }
 
-.filters button:hover {
+.filters button:hover,
+.filters button.selected {
   background-color: #e51515;
   color: #fff;
 }
 
-.filters .filter-category,
-.filters .filter-duration,
-.filters .filter-age {
+.filters .filter-category {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+.show-movies-button {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s, color 0.3s;
+  width: 100%;
+}
+
+.show-movies-button:hover {
+  background-color: #e51515;
+  color: #fff;
+}
+
+.dropdown {
+  position: fixed;
+  top: 78px; /* Juste en-dessous de la navbar */
+  left: 280px; /* À droite de la sidebar */
+  bottom: 60px; /* Juste au-dessus du footer */
+  width: calc(100% - 280px); /* Prendre la largeur restante de l'écran */
+  height: calc(
+    100% - 145px
+  ); /* Prendre la hauteur entre la navbar et le footer */
+  overflow-y: auto; /* Permettre le défilement vertical */
+  background-color: rgba(0, 0, 0, 0.9); /* Fond noir semi-transparent */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+  z-index: 998;
+}
+
+.close-dropdown-button {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  align-self: flex-end;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.close-dropdown-button:hover {
+  background-color: #e51515;
+  color: #fff;
+}
+
+.movies-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.movie-card {
+  background-color: rgba(30, 30, 30, 0.8); /* Fond noir semi-transparent */
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  text-align: center;
+  width: 200px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+}
+
+.movie-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.movie-card h3 {
+  margin: 10px 0;
+  color: #f1f1f1;
+  font-size: 16px;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.movie-card p {
+  color: #d1d1d1;
+  font-size: 14px;
 }
 "
 
