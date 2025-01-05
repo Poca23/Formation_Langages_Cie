@@ -1,0 +1,75 @@
+.carousel-item img {
+  height: 600px; /* Ajuster la hauteur des images */
+  width: 100%; /* S'assurer que l'image prend toute la largeur de son conteneur */
+  object-fit: contain; /* Garder les proportions de l'image */
+  margin: 0 auto; /* Centrer l'image */
+}
+
+.carousel-movie {
+  flex: 1;
+  margin: 0 10px; /* Espacement entre les films */
+}
+
+.movie-details {
+  text-align: center;
+  padding: 10px;
+  width: 100%; /* Assurer que le résumé prend toute la largeur de l'affiche */
+}
+
+.movie-details h5 {
+  color: rgba(255, 255, 255, 0.9); /* Blanc adouci */
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.movie-details p {
+  color: rgba(255, 255, 255, 0.7); /* Blanc adouci */
+  padding: 10px;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Ajouter les points de suspension */
+  white-space: nowrap; /* Limiter à une ligne */
+  background-color: rgba(0, 0, 0, 0.575);
+  border-radius: 5px;
+  width: 100%; /* Assurer que le résumé prend toute la largeur de l'affiche */
+  margin: 0; /* Supprimer les marges autour du résumé */
+}
+
+.movie-details a {
+  color: rgba(255, 255, 255, 0.7); /* Blanc adouci */
+  text-decoration: none;
+}
+
+.movie-details a:hover {
+  text-decoration: underline;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  background: rgba(0, 0, 0, 0.5); /* Fond noir avec opacité de 50% */
+  border: 2px solid transparent; /* Bordure initialement transparente */
+  color: #fff;
+  font-size: 2.5rem; /* Augmenter la taille des flèches */
+  cursor: pointer;
+  width: 3rem; /* Définir la largeur des boutons */
+  height: 3rem; /* Définir la hauteur des boutons */
+  padding: 5px; /* Ajouter un léger padding */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s ease, color 0.3s ease; /* Transition pour l'effet de hover */
+  border-radius: 50%; /* Bordures arrondies pour un look plus élégant */
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  border-color: #ff5722; /* Changer la couleur de la bordure au survol */
+  color: #ff5722; /* Changer la couleur des icônes au survol */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 2rem; /* Ajuster la taille des icônes */
+  height: 2rem;
+  pointer-events: none; /* Assurer que seul le bouton est cliquable, pas l'icône directement */
+}

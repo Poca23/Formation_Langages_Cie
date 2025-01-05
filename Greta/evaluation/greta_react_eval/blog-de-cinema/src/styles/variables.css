@@ -1,0 +1,37 @@
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #0056b3;
+  --text-color: #f1f1f1;
+  --highlight-color: #e51515;
+  --background-opacity: rgba(0, 0, 0, 0.5);
+  --border-radius: 5px;
+  --spacing-small: 5px;
+  --spacing-medium: 10px;
+  --spacing-large: 20px;
+}
+
+:root {
+  --highlight-color: #e51515; /* Couleur de surbrillance */
+  --spacing-medium: 10px; /* Espacement moyen */
+  --text-color: #f1f1f1; /* Couleur du texte */
+}
+
+.navbar a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.navbar a:hover {
+  text-decoration: none;
+  color: var(--highlight-color);
+}
+
+.navbar .icon {
+  margin-right: var(--spacing-medium);
+  font-size: 24px;
+  transition: color 0.3s;
+}
+
+.navbar .icon:hover {
+  color: var(--highlight-color);
+}

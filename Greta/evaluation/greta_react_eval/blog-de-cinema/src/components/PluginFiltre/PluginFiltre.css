@@ -1,0 +1,88 @@
+/* src/components/PluginFiltre.css */
+.filter-container {
+  position: relative;
+}
+
+.filter-button {
+  position: fixed;
+  top: 85px; /* Juste en-dessous de la navbar */
+  left: 10px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  z-index: 1000;
+}
+
+.filter-button:hover {
+  background-color: #e51515;
+  color: #fff;
+}
+
+.sidebar {
+  position: fixed;
+  top: 78px; /* Juste en-dessous de la navbar */
+  left: 0;
+  bottom: 60px; /* Juste au-dessus du footer */
+  width: 280px;
+  height: calc(
+    100% - 145px
+  ); /* Prendre la hauteur entre la navbar et le footer */
+  overflow-y: auto; /* Permettre le défilement vertical */
+  background-color: #d3d3d3;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease-in-out;
+  z-index: 999;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.filters h4 {
+  width: 100%; /* Pour que les titres de section prennent toute la largeur */
+  margin: 10px 0 5px;
+  font-size: 14px; /* Réduire la taille des titres */
+  text-align: center; /* Centrer les titres */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px; /* Espacement entre l'icône et le texte */
+}
+
+.filters button {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  flex: 0 1 auto; /* Prendre seulement la largeur nécessaire */
+  text-align: left;
+}
+
+.filters button:hover {
+  background-color: #e51515;
+  color: #fff;
+}
+
+.filters .filter-category,
+.filters .filter-duration,
+.filters .filter-age {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
