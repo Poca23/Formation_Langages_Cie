@@ -1,5 +1,3 @@
-/* src/pages/PageCategory/CategoryPage.css */
-
 .category-page {
   padding: 20px;
 }
@@ -59,13 +57,21 @@
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
 }
 
-.movie-card p {
-  color: #d1d1d1;
-  font-size: 14px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.delete-movie-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #e51515;
+  color: #fff;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+.delete-movie-btn:hover {
+  background-color: #a61010;
 }

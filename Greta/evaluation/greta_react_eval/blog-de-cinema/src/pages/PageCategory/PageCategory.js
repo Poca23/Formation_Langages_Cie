@@ -10,31 +10,43 @@ const CategoryPage = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    // Remplacer par la logique réelle de récupération du nom de la catégorie et des films
-    const categories = [
-      "Action",
-      "Fantaisie",
-      "Aventure",
-      "Drame",
-      "SF",
-      "Horreur",
-      "Comédie",
-      "Romantique",
-    ];
+    const categories = JSON.parse(localStorage.getItem("categories")) || [];
     const category = categories[id];
-    setCategoryName(category ? category : "");
+    setCategoryName(category ? category.name : "");
 
-    // Exemple de récupération des films de la catégorie
-    const fetchMovies = async () => {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/discover/movie?with_genres=${id}&api_key=48a751c85b6b3d4c0750582c52468efb&language=fr-FR`
-      );
-      const data = await response.json();
-      setMovies(data.results || []);
-    };
+    if (category) {
+      const fetchMovies = async () => {
+        const updatedMovies = await Promise.all(
+          category.movies.map(async (movie) => {
+            const response = await fetch(
+              `https://www.omdbapi.com/?i=${movie.imdbID}&apikey=3b12adf8`
+            );
+            const data = await response.json();
+            return {
+              ...movie,
+              poster: data.Poster,
+            };
+          })
+        );
+        setMovies(updatedMovies);
+      };
 
-    fetchMovies();
+      fetchMovies();
+    }
   }, [id]);
+
+  const removeMovieFromCategory = (imdbID) => {
+    const categories = JSON.parse(localStorage.getItem("categories")) || [];
+    const category = categories[id];
+    if (category) {
+      const updatedMovies = category.movies.filter(
+        (movie) => movie.imdbID !== imdbID
+      );
+      categories[id].movies = updatedMovies;
+      localStorage.setItem("categories", JSON.stringify(categories));
+      setMovies(updatedMovies);
+    }
+  };
 
   return (
     <PageTemplate>
@@ -48,16 +60,16 @@ const CategoryPage = () => {
         </Link>
         <div className="movies-list">
           {movies.map((movie) => (
-            <Link to={`/detail-film/${movie.id}`} key={movie.id}>
-              <div className="movie-card">
-                <img
-                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                  alt={movie.title}
-                />
-                <h3>{movie.title}</h3>
-                <p>{movie.overview}</p>
-              </div>
-            </Link>
+            <div key={movie.imdbID} className="movie-card">
+              <img src={movie.poster} alt={movie.title} />
+              <h3>{movie.title}</h3>
+              <button
+                onClick={() => removeMovieFromCategory(movie.imdbID)}
+                className="delete-movie-btn"
+              >
+                Supprimer
+              </button>
+            </div>
           ))}
         </div>
       </div>

@@ -1,14 +1,20 @@
 import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import "./SearchBar.css";
-import { useNavigate } from "react-router-dom";
 
-const SearchBar = ({ placeholder, value, onChange }) => {
+const SearchBar = ({
+  placeholder,
+  value,
+  onChange,
+  categories,
+  onAddToCategory,
+}) => {
   const [suggestions, setSuggestions] = useState([]);
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [movieToAdd, setMovieToAdd] = useState(null);
   const suggestionsRef = useRef(null);
   const inputRef = useRef(null);
-  const navigate = useNavigate(); // Remplacement de useHistory par useNavigate
 
   const searchMovies = async (query) => {
     try {
@@ -49,17 +55,32 @@ const SearchBar = ({ placeholder, value, onChange }) => {
     } else if (e.key === "Enter") {
       if (suggestions.length > 0) {
         const selectedMovie = suggestions[activeSuggestionIndex];
-        navigate(`/detail-film/${selectedMovie.imdbID}`);
+        setMovieToAdd({
+          imdbID: selectedMovie.imdbID,
+          title: selectedMovie.Title,
+        });
         setSuggestions([]);
         onChange({ target: { value: "" } }); // Réinitialiser la barre de recherche
       }
     }
   };
 
-  const handleClickSuggestion = (imdbID) => {
-    navigate(`/detail-film/${imdbID}`);
+  const handleClickSuggestion = (imdbID, title) => {
+    setMovieToAdd({ imdbID, title });
     setSuggestions([]);
     onChange({ target: { value: "" } }); // Réinitialiser la barre de recherche
+  };
+
+  const handleCategoryChange = (e) => {
+    setSelectedCategory(e.target.value);
+  };
+
+  const handleAddToCategory = () => {
+    if (movieToAdd && selectedCategory) {
+      onAddToCategory(movieToAdd.imdbID, movieToAdd.title, selectedCategory);
+      setSelectedCategory("");
+      setMovieToAdd(null);
+    }
   };
 
   useEffect(() => {
@@ -78,6 +99,13 @@ const SearchBar = ({ placeholder, value, onChange }) => {
     window.addEventListener("resize", adjustPosition);
     return () => window.removeEventListener("resize", adjustPosition);
   }, [suggestions]);
+
+  console.log("Categories in SearchBar before render:", categories);
+
+  if (!categories || !Array.isArray(categories)) {
+    console.error("Categories are undefined or not an array:", categories);
+    return null;
+  }
 
   return (
     <div className="search-bar-wrapper" onKeyDown={handleKeyDown}>
@@ -99,7 +127,7 @@ const SearchBar = ({ placeholder, value, onChange }) => {
                 index === activeSuggestionIndex ? "active" : ""
               }`}
               key={index}
-              onClick={() => handleClickSuggestion(movie.imdbID)}
+              onClick={() => handleClickSuggestion(movie.imdbID, movie.Title)}
             >
               <img src={movie.Poster} alt={movie.Title} />
               <div className="suggestion-item-content">
@@ -107,6 +135,19 @@ const SearchBar = ({ placeholder, value, onChange }) => {
               </div>
             </div>
           ))}
+        </div>
+      )}
+      {movieToAdd && (
+        <div className="add-movie-to-category">
+          <select value={selectedCategory} onChange={handleCategoryChange}>
+            <option value="">Choisir une catégorie</option>
+            {categories.map((category, index) => (
+              <option key={index} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
+          <button onClick={handleAddToCategory}>Ajouter à la catégorie</button>
         </div>
       )}
     </div>
@@ -117,6 +158,8 @@ SearchBar.propTypes = {
   placeholder: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  categories: PropTypes.array.isRequired,
+  onAddToCategory: PropTypes.func.isRequired,
 };
 
 export default SearchBar;

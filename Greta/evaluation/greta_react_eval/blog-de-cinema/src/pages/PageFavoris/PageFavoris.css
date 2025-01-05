@@ -1,5 +1,3 @@
-/* src/pages/FavorisPage/FavorisPage.css */
-
 .favorites-page {
   padding: 20px;
   background: url("../../../public/media/images/movie-theater-2093264_1920.jpg")
@@ -77,6 +75,7 @@
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2; /* Limiter à deux lignes */
+  line-clamp: 2; /* Limiter à deux lignes */
   -webkit-box-orient: vertical;
 }
 
@@ -162,6 +161,7 @@
   border: 1px solid #e51515;
 }
 
+/* Ajustement des suggestions */
 .suggestions-list {
   display: flex;
   flex-direction: column;
@@ -176,6 +176,8 @@
   top: 100%;
   left: 0;
   z-index: 1000;
+  transform: translateX(50%);
+  gap: 5px; /* Ajustement de la position */
 }
 
 .suggestion-item {
@@ -186,7 +188,7 @@
   transition: background 0.3s;
   width: 100%;
   height: 75px; /* Limiter la hauteur */
-  margin-bottom: 2px; /* Ajouter un espacement entre les suggestions */
+  margin-bottom: 1px; /* Réduire l'espacement entre les suggestions */
   background-color: rgba(
     30,
     30,
@@ -222,4 +224,10 @@
   max-width: calc(
     100% - 60px
   ); /* Assurer que le texte reste dans la largeur autorisée */
+}
+
+/* Spécifique à la page Favoris */
+/* Ajustement de la position des suggestions */
+.favorites-page .suggestions-list {
+  transform: translate(75%, -156%); /* Centrer horizontalement */
 }

@@ -5,8 +5,20 @@ import SectionTitle from "../../components/SectionTitle/SectionTitle.js";
 import SearchBar from "../../components/SearchBar/SearchBar.js"; // Importation du composant SearchBar
 import "./PageHome.css"; // Assurez-vous que ce chemin est correct
 
+const initialCategories = [
+  "Action",
+  "Fantaisie",
+  "Aventure",
+  "Drame",
+  "SF",
+  "Horreur",
+  "Comédie",
+  "Romantique",
+];
+
 const HomePage = () => {
   const [query, setQuery] = useState("");
+  const [categories] = useState(initialCategories);
 
   return (
     <PageTemplate>
@@ -14,11 +26,14 @@ const HomePage = () => {
         title="Catégories de Films"
         description="Explorez nos critiques par catégorie."
       />
-      <SearchBar
-        placeholder="Rechercher un film..."
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-      />
+      <div className="search-bar-container">
+        <SearchBar
+          placeholder="Rechercher un film..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          categories={categories} // Transmettre les catégories au composant SearchBar
+        />
+      </div>
       <CarouselComponent className="carousel-component" />
     </PageTemplate>
   );

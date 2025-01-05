@@ -106,4 +106,3 @@
 .film-rating .fa-star:hover ~ .fa-star {
   color: gray; /* Rendre les étoiles suivantes grises au survol */
 }
-
