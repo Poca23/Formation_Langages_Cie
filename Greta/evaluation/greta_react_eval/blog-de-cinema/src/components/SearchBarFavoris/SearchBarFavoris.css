@@ -1,0 +1,136 @@
+.SearchBarFavoris-search-bar-categories-search-bar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.SearchBarFavoris-search-bar-categories-search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.SearchBarFavoris-search-bar-categories-search-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 300px;
+  box-sizing: border-box;
+}
+
+.SearchBarFavoris-search-bar-categories-suggestion-item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px;
+  transition: background 0.3s;
+  width: 100%;
+  background-color: rgba(30, 30, 30, 0.9);
+}
+
+.SearchBarFavoris-search-bar-categories-suggestion-item:hover,
+.SearchBarFavoris-search-bar-categories-suggestion-item.active {
+  background-color: rgba(229, 21, 21, 0.8);
+}
+
+.SearchBarFavoris-search-bar-categories-suggestion-item img {
+  width: 70px;
+  object-fit: cover;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+.SearchBarFavoris-search-bar-categories-suggestion-item-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: calc(100% - 80px);
+}
+
+.SearchBarFavoris-search-bar-categories-suggestion-item span {
+  color: #f1f1f1;
+  font-size: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.SearchBarFavoris-search-bar-categories-suggestions-list.adjust-up {
+  top: auto;
+  bottom: calc(100% + 2px);
+}
+
+.SearchBarFavoris-search-bar-categories-add-movie-to-category {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.SearchBarFavoris-search-bar-categories-add-movie-to-category select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.SearchBarFavoris-search-bar-categories-add-movie-to-category button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #e51515;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.SearchBarFavoris-search-bar-categories-add-movie-to-category button:hover {
+  background-color: #a61010;
+}
+
+.SearchBarFavoris-search-bar-categories-search-bar-with-suggestions {
+  position: relative;
+  width: 400px;
+  margin: 0 auto;
+}
+
+.SearchBarFavoris-search-bar-categories-suggestions-list {
+  position: absolute;
+  top: 100%;
+  /* left: 50%; */
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid #ccc;
+  z-index: 10000;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 400px;
+}
+
+.SearchBarFavoris-search-bar-categories-suggestions-list li {
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.SearchBarFavoris-search-bar-categories-suggestions-list li:hover {
+  background: rgba(210, 28, 28, 0.8);
+}
+
+.SearchBarFavoris-search-bar-categories-suggestion-poster {
+  width: 50px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.SearchBarFavoris-search-bar-categories-suggestions-list span {
+  color: #f1f1f1;
+  flex-grow: 1;
+}

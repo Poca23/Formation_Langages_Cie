@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import PageTemplate from "../../components/PageTemplate/PageTemplate.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash, faPlus } from "@fortawesome/free-solid-svg-icons";
-import SearchBar from "../../components/SearchBar/SearchBar";
+import SearchBar from "../../components/SearchBarCategories/SearchBarCategories.js";
 import SectionTitle from "../../components/SectionTitle/SectionTitle.js";
 import "./PageCategories.css";
 

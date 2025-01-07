@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import PageTemplate from "../../components/PageTemplate/PageTemplate.js";
 import CarouselComponent from "../../components/Carousel/Carousel.js";
 import SectionTitle from "../../components/SectionTitle/SectionTitle.js";
-import SearchBar from "../../components/SearchBar/SearchBar.js"; 
-import "./PageHome.css"; 
+import SearchBarWithSuggestions from "../../components/SearchBarHome/SearchBarWithSuggestions.js";
+import "./PageHome.css";
 
 const initialCategories = [
   "Action",
@@ -23,15 +23,15 @@ const HomePage = () => {
   return (
     <PageTemplate>
       <SectionTitle
-        title="Catégories de Films"
-        description="Explorez nos critiques par catégorie."
+        title="Accueil DE VOTRE VIDEOTHÈQUE"
+        description="Bienvenue sur votre vidéothèque !"
       />
       <div className="search-bar-container">
-        <SearchBar
+        <SearchBarWithSuggestions
           placeholder="Rechercher un film..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          categories={categories} 
+          categories={categories}
         />
       </div>
       <CarouselComponent className="carousel-component" />

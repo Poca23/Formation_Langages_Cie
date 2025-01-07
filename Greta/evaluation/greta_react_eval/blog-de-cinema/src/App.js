@@ -10,7 +10,8 @@ import FavorisPage from "./pages/PageFavoris/PageFavoris";
 import HomePage from "./pages/PageHome/PageHome";
 import SeesFilmsPage from "./pages/PageVisionnes/PageVisionnes";
 import Login from "./components/Login/Login";
-import AccountPage from "./components/AccountPage/AccountPage.js"; 
+import AccountPage from "./components/AccountPage/AccountPage.js";
+// import TemplateComponent from "./components/TemplateComponent/TemplateComponent.js";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
       <div>
         <PluginFiltre />
         <Routes>
+          {/* <TemplateComponent /> */}
           <Route path="/connexion" element={<Login />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/categories" element={<CategoriesPage />} />
@@ -25,8 +27,7 @@ const App = () => {
           <Route path="/favoris" element={<FavorisPage />} />
           <Route path="/visionnes" element={<SeesFilmsPage />} />
           <Route path="/detail-film/:id" element={<DetailsFilmPage />} />
-          <Route path="/compte" element={<AccountPage />} />{" "}
-          {}
+          <Route path="/compte" element={<AccountPage />} /> {}
         </Routes>
       </div>
     </Router>

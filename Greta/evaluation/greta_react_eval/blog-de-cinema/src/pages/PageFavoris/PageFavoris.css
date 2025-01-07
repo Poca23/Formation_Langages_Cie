@@ -161,25 +161,6 @@
   border: 1px solid #e51515;
 }
 
-
-.suggestions-list {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; 
-  width: 100%;
-  max-width: 500px;
-  background-color: rgba(30, 30, 30, 0.9);
-  border-radius: 0 0 10px 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  padding: 5px;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 1000;
-  transform: translateX(50%);
-  gap: 5px; 
-}
-
 .suggestion-item {
   display: flex;
   align-items: flex-start; 
@@ -224,10 +205,4 @@
   max-width: calc(
     100% - 60px
   ); 
-}
-
-
-
-.favorites-page .suggestions-list {
-  transform: translate(75%, -156%); 
 }

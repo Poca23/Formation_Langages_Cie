@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
-import "./SearchBar.css";
+import "./SearchBarFavoris.css";
 
-const SearchBar = ({
+const SearchBarFavoris = ({
   placeholder,
   value,
   onChange,
@@ -19,7 +19,8 @@ const SearchBar = ({
   const searchMovies = async (query) => {
     try {
       const response = await fetch(
-        `http://www.omdbapi.com/?s=${query}&apikey=YOUR_API_KEY`
+        `http://www.omdbapi.com/?s=${query}&apikey=3b12adf8
+`
       );
       const data = await response.json();
       if (data.Search) {
@@ -60,7 +61,7 @@ const SearchBar = ({
           title: selectedMovie.Title,
         });
         setSuggestions([]);
-        onChange({ target: { value: "" } }); 
+        onChange({ target: { value: "" } });
       }
     }
   };
@@ -68,7 +69,7 @@ const SearchBar = ({
   const handleClickSuggestion = (imdbID, title) => {
     setMovieToAdd({ imdbID, title });
     setSuggestions([]);
-    onChange({ target: { value: "" } }); 
+    onChange({ target: { value: "" } });
   };
 
   const handleCategoryChange = (e) => {
@@ -154,7 +155,7 @@ const SearchBar = ({
   );
 };
 
-SearchBar.propTypes = {
+SearchBarFavoris.propTypes = {
   placeholder: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
@@ -162,4 +163,4 @@ SearchBar.propTypes = {
   onAddToCategory: PropTypes.func.isRequired,
 };
 
-export default SearchBar;
+export default SearchBarFavoris;
