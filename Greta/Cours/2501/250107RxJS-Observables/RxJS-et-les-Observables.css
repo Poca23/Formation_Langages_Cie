@@ -1,5 +1,4 @@
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f4f4f4;
@@ -12,17 +11,25 @@ body {
 }
 
 h1 {
+  font-family: "Roboto Slab", sans-serif;
   text-align: center;
   margin-top: 50px;
-  color:brown;
+  color: brown;
 }
 
 h2 {
+  font-family: "Roboto Slab", sans-serif;
   color: cadetblue;
 }
 
 h3 {
-  color:darkblue;
+  font-family: "Roboto Slab", sans-serif;
+  color: darkblue;
+}
+
+p {
+  font-family: "Open sans", sans-serif;
+  color: #333;
 }
 
 a {
