@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="RxJS-et-les-Observables.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>RxJS et les Observables</h1>
+        <p>Les observables sont des objets qui émettent des valeurs au fil du temps. Ils sont utilisés pour gérer des
+            événements asynchrones. Les observables sont très similaires aux promesses, mais ils ont quelques
+            différences
+            clés. Par exemple, les observables peuvent émettre plusieurs valeurs, tandis que les promesses n'en émettent
+            qu'une seule. De plus, les observables peuvent être annulés, ce qui n'est pas possible avec les promesses.
+        </p>
+        <p>Les observables sont utilisés dans de nombreux frameworks JavaScript modernes, tels que Angular et React.</p>
+        <h2>Création d'un observable</h2>
+        <p>Il existe plusieurs façons de créer un observable en RxJS. Voici quelques exemples :</p>
+        <pre>
+        <code>
+            // Créer un observable à partir d'un tableau
+            const observable1 = Rx.Observable.from([1, 2, 3, 4, 5]);
+
+            // Créer un observable à partir d'un événement DOM
+            const observable2 = Rx.Observable.fromEvent(document, 'click');
+
+            // Créer un observable à partir d'une promesse
+            const observable3 = Rx.Observable.fromPromise(fetch('https://api.github.com/users'));
+        </code>
+    </pre>
+        <h2>Abonnement à un observable</h2>
+        <p>Une fois que vous avez créé un observable, vous pouvez vous y abonner pour écouter les valeurs qu'il émet.
+            Voici
+            comment vous pouvez le faire :</p>
+        <pre>
+        <code>
+            observable1.subscribe(value => console.log(value));
+        </code>
+    </pre>
+        <p>Cette instruction crée un abonnement à l'observable1 et affiche chaque valeur émise par l'observable dans la
+            console de votre navigateur.</p>
+        <h2>Opérateurs d'observable</h2>
+        <p>Les observables peuvent être manipulés à l'aide d'opérateurs. Les opérateurs sont des fonctions qui prennent
+            un
+            observable en entrée et renvoient un nouvel observable en sortie. Voici quelques exemples d'opérateurs
+            couramment utilisés en RxJS :</p>
+        <pre>
+        <code>
+            // Filtrer les valeurs émises par un observable
+            const filteredObservable = observable1.filter(value => value % 2 === 0);
+
+            // Mapper les valeurs émises par un observable
+            const mappedObservable = observable1.map(value => value * 2);
+
+            // Concaténer les valeurs émises par plusieurs observables
+            const concatenatedObservable = observable1.concat(observable2);
+        </code>
+    </pre>
+        <h2>Gestion des erreurs et de la fin d'un observable</h2>
+        <p>Les observables peuvent émettre des erreurs ou se terminer de manière inattendue. Vous pouvez gérer ces
+            situations en utilisant les méthodes :
+            <br>
+            <code>catch</code>
+            <br>
+            et
+            <br>
+            <code>finally</code> :
+        </p>
+        <pre>
+        <code>
+            observable1.catch(error => console.error(error))
+                .finally(() => console.log('Observable has completed'));
+        </code>
+    </pre>
+        <p>Cette instruction intercepte les erreurs émises par l'observable1 et les affiche dans la console de votre
+            navigateur. Elle affiche également un message lorsque l'observable se termine.</p>
+        <h2>Conclusion</h2>
+        <p>Les observables sont un outil puissant pour gérer des événements asynchrones en JavaScript. Ils sont
+            utilisés
+            dans de nombreux frameworks modernes et offrent de nombreuses fonctionnalités pour manipuler les données
+            émises
+            par les observables. En apprenant à utiliser les observables, vous pourrez créer des applications plus
+            réactives
+            et plus performantes.</p>
+    </div>
+
+
+
+
+</body>
+
+</html>

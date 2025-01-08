@@ -1,0 +1,151 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 50px;
+  color: #333;
+}
+
+h2 {
+  color: #333;
+}
+
+h3 {
+  color: #333;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #333;
+}
+
+#output {
+  margin-top: 20px;
+  padding: 20px;
+  background: #333;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+#output p {
+  margin: 0;
+}
+
+#output h2 {
+  margin-top: 0;
+}
+
+#output h3 {
+  margin-top: 0;
+}
+
+#output ul {
+  list-style: none;
+  padding: 0;
+}
+
+#output ul li {
+  padding: 10px;
+  background: #f4f4f4;
+  margin: 5px;
+}
+
+#output ul li:hover {
+  background: #e3e3e3;
+}
+
+#output ul li a {
+  color: #333;
+}
+
+#output ul li a:hover {
+  color: #333;
+}
+
+#output ul li span {
+  color: #333;
+}
+
+#output ul li span:hover {
+  color: #333;
+}
+
+#output ul li button {
+  background: #333;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#output ul li button:hover {
+  background: #555;
+}
+
+#output ul li button:active {
+  background: #000;
+}
+
+#output ul li button:focus {
+  outline: none;
+}
+
+#output ul li button a {
+  color: #fff;
+}
+
+#output ul li button a:hover {
+  color: #fff;
+}
+
+#output ul li button a:active {
+  color: #fff;
+}
+
+#output ul li button a:focus {
+  outline: none;
+}
+
+#output ul li button a:visited {
+  color: #fff;
+}
+
+#output ul li button a:link {
+  color: #fff;
+}
+
+#output ul li button a:visited:hover {
+  color: #fff;
+}
+
+#output ul li button a:visited:active {
+  color: #fff;
+}
+
+#output ul li button a:visited:focus {
+  outline: none;
+}
+
+#output ul li button a:visited:link {
+  color: #fff;
+}
+
+#output ul li button a:visited:visited {
+  color: #fff;
+}
