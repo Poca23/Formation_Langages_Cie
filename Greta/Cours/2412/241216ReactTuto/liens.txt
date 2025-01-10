@@ -5,3 +5,96 @@ https://docs.google.com/document/d/1AQTDZ7px9KE8cZJNWg7ca6-l6SpfVSFHS5Xsv89Z4h8/
 https://19.react.dev/learn/tutorial-tic-tac-toe (tuto tic tac toe react)
 https://19.react.dev/learn/describing-the-ui 
 https://www.youtube.com/watch?v=oCINeytlyRA (tuto 7h)
+
+
+Organisation des dossiers d'un projet React :
+
+/mon-projet
+|-- /public
+|   |-- favicon.ico
+|   |-- logo192.png
+|   |-- logo512.png
+|   |-- index.html
+|   |-- manifest.json
+|   |-- robots.txt
+|
+|-- /src
+|   |-- /assets
+|   |   |-- /media
+|   |   |   |-- /images
+|   |   |   |-- /videos
+|   |   |   |-- /audios
+|   |   |
+|   |   |-- /styles
+|   |
+|   |-- /components
+|   |
+|   |-- /contexts
+|   |
+|   |-- /db
+|   |
+|   |-- /hooks
+|   |
+|   |-- /pages
+|   |
+|   |-- /services
+|   |   |-- dexieService.js
+|   |
+|   |-- App.css
+|   |-- App.test.tsx
+|   |-- App.tsx
+|   |-- index.tsx
+|   |-- index.css
+|   |-- logo.svg
+|   |-- reportWebVitals.js
+|   |-- setupTests.ts
+|
+|-- .gitignore
+|-- package-lock.json
+|-- package.json
+|-- README.md
+|-- webpack.config.js
+
+Description des dossiers :
+/public : Contient les fichiers statiques comme index.html et le favicon.
+
+/src : Contient le code source de votre application.
+
+/assets : Contient les ressources comme les images et les fichiers CSS globaux.
+
+/images : Contient les images.
+
+/styles : Contient les fichiers CSS.
+
+/components : Contient les composants React réutilisables.
+
+/common : Composants communs utilisés dans plusieurs parties de l'application.
+
+/specific : Composants spécifiques à certaines fonctionnalités.
+
+/contexts : Contient les Contexts React pour la gestion de l'état global.
+
+/hooks : Contient les hooks personnalisés.
+
+/pages : Contient les composants de page pour les différentes routes.
+
+Home.js : Page d'accueil.
+
+About.js : Page à propos.
+
+/services : Contient les services pour les appels API ou d'autres logiques métier.
+
+App.js : Composant principal de l'application.
+
+index.js : Point d'entrée de l'application.
+
+index.css : Styles globaux de l'application.
+
+reportWebVitals.js : Fichier pour mesurer les performances web.
+
+Fichiers de configuration :
+package.json : Liste des dépendances et scripts de votre projet.
+
+webpack.config.js : Configuration de Webpack.
+
+.gitignore : Fichier pour ignorer certains fichiers dans le contrôle de version.
