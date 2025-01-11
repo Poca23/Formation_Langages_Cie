@@ -1,0 +1,138 @@
+/* Style de base */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: #004c99;
+  color: #fff;
+  padding: 1em 0;
+  text-align: center;
+}
+
+main {
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Style des sections dépliantes */
+.collapsible {
+  margin-bottom: 1em;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 800px; /* Limiter la largeur des sections */
+}
+
+.collapsible-header {
+  background: #0073e6;
+  color: #fff;
+  padding: 0.5em;
+  cursor: pointer;
+  user-select: none;
+}
+
+.collapsible-content {
+  display: none;
+  padding: 0.5em;
+  background: #f9f9f9;
+}
+
+/* Style des images */
+.styled-image {
+  display: block;
+  margin: 1em auto;
+  transition: filter 0.3s ease;
+  filter: brightness(0.5);
+  cursor: pointer;
+  max-width: 100%;
+  height: auto;
+}
+
+.styled-image:hover {
+  filter: brightness(1.7);
+}
+
+/* Ajustement pour le bas du contenu principal */
+main {
+  padding-bottom: 6em; /* Ajustez selon l'espace que vous souhaitez */
+}
+
+footer {
+  background: #004c99;
+  color: #fff;
+  text-align: center;
+  padding: 1em 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-divider {
+  height: 4em; /* Ajustez cette valeur selon vos besoins */
+}
+
+/* Styles responsives */
+@media (max-width: 1024px) {
+  /* Styles pour tablette */
+  main {
+    padding: 1em;
+  }
+
+  .collapsible-header {
+    padding: 1em;
+  }
+
+  .collapsible-content {
+    padding: 1em;
+  }
+
+  .styled-image {
+    max-width: 90%; /* Ajustement de la taille des images pour tablette */
+  }
+}
+
+@media (max-width: 900px) {
+  /* Styles pour mobile */
+  header {
+    padding: 0.5em 0;
+  }
+
+  main {
+    padding: 1em;
+    align-items: center;
+  }
+
+  .collapsible-header {
+    padding: 0.5em;
+    text-align: center;
+  }
+
+  .collapsible-content {
+    padding: 0.5em;
+  }
+
+  footer {
+    padding: 0.5em 0;
+  }
+
+  .footer-divider {
+    height: 6em; /* Ajustez cette valeur selon vos besoins */
+  }
+
+  /* Centrage des titres et images pour les écrans en dessous de 900px */
+  h2 {
+    text-align: center;
+  }
+
+  .styled-image {
+    max-width: 80%; /* Ajustement de la taille des images pour mobile */
+    display: block;
+    margin: 1em auto;
+  }
+}
