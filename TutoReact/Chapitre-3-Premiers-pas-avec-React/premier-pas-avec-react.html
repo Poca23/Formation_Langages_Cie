@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premier pas avec React</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>Chapitre 3 - Premier pas avec React</h1>
+    </header>
+    <a href="../Sommaire/sommaire.html">Sommaire</a>
+
+    <main>
+        <section class="collapsible">
+            <h2 class="collapsible-header">Installer son environnement de développement</h2>
+            <div class="collapsible-content">
+                <p>Il faut choisir et installer un éditeur de code pour écrire du code React. Il est possible d'utiliser
+                    Visual Studio Code (gratuit et développé par Microsoft), Sublime Text, Atom, WebStorm, etc. Il
+                    faudra que cet éditeur de code supporte le TypeScript en s'occupant de la coloration synthaxique et
+                    de l'affichage d'erreurs propres à ce langage.
+                </p>
+                <p>Rendez vous sur la doc du site officiel de TypeScript :
+                    <a href="https://www.typescriptlang.org/fr/docs/" target="_blank" rel="noopener">TypeScript</a>
+                </p>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Démarrer un projet React</h2>
+            <div class="collapsible-content">
+                <p>Il est possible de démarrer un projet React en utilisant la commande suivante :
+                    <br><br>
+                    <code>npx create-react-app mon-projet</code>
+                </p>
+                <p>Cependant, nous poartirons d'un dossier vide pour pouvoir voir le processus de création d'une
+                    nouvelle application React en partantv de zéro.</p>
+                <p>Il sera nécessaire de rajouter quelques fichiers dans notre dossier racine vide de notre projet
+                    intitulé :
+                    "REACT-POKEMONS-APP"</p>
+                <p>Commençons par la base. Nous partirons d'un dossier vide jusqu'à obtenir une application finale prête
+                    pour la production.</p>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Le fichier package.json</h2>
+            <div class="collapsible-content">
+                <p>On ajoutera le fichier package.json à la racine de notre projet.</p>
+                <p>Le fichier package.json est un fichier de configuration pour notre projet. Il contient des
+                    informations
+                    sur notre projet, les dépendances utilisées, les scripts disponibles, etc.</p>
+                </p>
+                <p>Le contenu de notre fichier package.json peut se découper en 3 parties :</p>
+                <br>
+                <p><strong>Les dépendences</strong> de notre projet :
+
+                </p>
+                <pre>
+                    <code> "dependencies": {
+                    "@types/node": "12.11.1",
+                    "@types/react": "16.9.9",
+                    "@types/react-dom": "16.9.2",
+                    "@types/react-router-dom": "^5.1.2",
+                    "react": "^17.0.0",
+                    "react-dom": "^17.0.0",
+                    "react-router-dom": "^5.1.2",
+                    "react-scripts": "^4.0.0",
+                    "typescript": "3.6.4"
+                  },
+                  </code>
+                </pre>
+
+                <p><strong>Les scripts</strong> de notre projet :
+                </p>
+                <pre>
+                    <code> "scripts": {
+                        "start": "react-scripts start",
+                        "build": "react-scripts build"
+                      },
+                  </code>
+                </pre>
+                <p>"start" permet de mettre en place un petit environnement de développement React pour pouvoir tester
+                    notre projet react dans un navigateur.</p>
+                <p>"build" nous permet de créer le livrable de notre application une fois le developpement fini.</p>
+                <br><br>
+                <p>Vers la fin du fichier on retrouve un élément <strong>"eslintConfig" qui permettra d'analyser la
+                        syntaxe du code écrit avec es6.</strong></p>
+                <pre>
+                    <code>"eslintConfig": {
+                        "extends": "react-app"
+                        },
+                    </code>
+                </pre>
+                <br><br>
+                <p>L'élément <strong>"browserslist"</strong> permet de configurer le comportement de certains scripts en
+                    fonction des serveurs sur lesquels on souhaite faire marcher l'application.</p>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Le fichier tsconfig.json</h2>
+            <div class="collapsible-content">
+                <p>Ce fichier est un fichier de configuration pour TypeScript. Il permet de configurer le comportement
+                    de
+                    TypeScript dans notre projet. Il doit être aussi placé à la racine du projet.
+                </p>
+                <p>Tout d'abord, nous allons le créer :</p>
+                <pre>
+                    <code>
+                        {
+                            "compilerOptions": {
+                              "target": "es5",
+                              "lib": [
+                                "dom",
+                                "dom.iterable",
+                                "esnext"
+                              ],
+                              "allowJs": true,
+                              "skipLibCheck": true,
+                              "esModuleInterop": true,
+                              "allowSyntheticDefaultImports": true,
+                              "strict": true,
+                              "forceConsistentCasingInFileNames": true,
+                              "module": "esnext",
+                              "moduleResolution": "node",
+                              "resolveJsonModule": true,
+                              "isolatedModules": true,
+                              "noEmit": true,
+                              "jsx": "react",
+                              "noFallthroughCasesInSwitch": true
+                            },
+                            "include": [
+                              "src"
+                            ]
+                          }
+                    </code>
+                </pre>
+                <p>TSX est une syntaxe qui permet d'écrire du HTML dans du JavaScript. Elle est utilisée par React pour
+                    décrire l'interface utilisateur.
+                <pre>TSX = TypeScript + JSX</pre>
+                </p>
+                <p>JSX est une extension de la syntaxe JavaScript qui permet d'écrire du HTML directement dans le code
+                    JavaScript. Elle est utilisée par React pour décrire l'interface utilisateur de manière déclarative.
+                </p>
+
+                <pre>
+                    <code>
+                        "include": ["src"]
+                    }                  
+                    </code>
+                </pre>
+                <p>L'option "include" indique au compilateur de TypeScript ou se trouve les fichiers que nous voulons
+                    compiler vers JavaScript.Nous indiquons par la même que nous placerons tous nos fichiers sources
+                    dans un dossier source "src" à TypeScript.</p>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Installer les dépendances</h2>
+            <div class="collapsible-content">
+                <p>Nous allons installer les bibliothèques que nous avons déclarées dans notre fichier package.json.
+                    Pour cela, nous allons utiliser la commande suivante à lancer à la racine de notre projet dans le
+                    terminal :</p>
+                <pre>
+                    <code>npm install</code>
+                </pre>
+
+                <p>Cette commande va créer un dossier à la racine de notre projet nommé <strong>"node_modules"</strong>.
+                    Il contient toutes les dépendances dont nous aurons besoin pour faire fonctionner notre projet.</p>
+            </div>
+        </section>
+
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Ajouter notre premier composant</h2>
+            <div class="collapsible-content">
+                <p>Nous allons créer notre premier <strong>composant</strong> React. Mais avant cela, nous allons
+                    organiser un peu notre code en mettant nos fichier dans un dossier <strong>src</strong>, un dossier
+                    source, à la racine de notre projet.</p>
+                </p>
+                <p>A l'intérieur de ce dossier, créons un nouveau fichier nommé <strong>"App.tsx"</strong> qui
+                    contiendra le code de notre premier composant.</p>
+                <pre>
+                <code>
+                    import React from 'react';
+  
+                    const App: React.FC = () => {
+                     const name: String = 'React';
+                        
+                     return (
+                      <h1>Hello, {name} !</h1>
+                     )
+                    }
+                      
+                    export default App;
+                </code>
+            </pre>
+                <p>Ce fichier est composé de quatres parties différentes :</p>
+                <ul>
+                    <li>
+                        <p>On importe React depuis le module React dont on va avoir besoin pour déclarer notre premier
+                            composant :
+                        </p>
+                        <pre>
+                            <code>
+                                import React from 'react';
+                            </code>
+                        </pre>
+                    </li>
+                    <li>
+                        <p>On s'aperçoit à la ligne 3 qu'on a typé notre composant App avec le type :</p>
+                        <pre>
+                        <code>
+                            App: React.FC
+                        </code>
+                    </pre>
+                        <p>Qu'est-ce que FC signifie ?
+                            <br>
+                            <strong>FC</strong> signifie <strong>Function Component</strong>. C'est un type générique
+                            qui
+                            permet de typer les composants fonctionnels en React. IL permet d'écrire un composant sous
+                            la forme d'une focntion.
+                        </p>
+                        <p>Il y a écrit le mot <strong>const</strong> au début de la ligne 3. C'est une constante qui
+                            contient une fonction. Une fonction fléchée. <br>
+                            Pourquoi passer par une constante ?
+                            <br>
+                            Ça nous permet d'utiliser une fonction fléchée plutôt qu'une fonction traditionnelle.
+                        </p>
+                    </li>
+                    <li>
+                        <p>On déclare en troisième partie le code de notre composant. On déclare une variable à la ligne
+                            4 de <strong>type String</strong> qui contient la valeur React.</p>
+                        <br>
+                        <p>Ensuite, on souhaite afficher cette valeur dans notre DOM virtuel, pour cela, on utilise la
+                            fonction <strong>return</strong> à la ligne 6. Et entre parenthèse nous écrivons
+                            l'expression <strong>JSX</strong> suivante :</p>
+                        <pre>
+                                <code>
+                                    <h1>Hello, {name} !</h1>
+                                </code>
+                            </pre>
+                        <p>Comme on peut le voir, la synthaxe avec les accollades permet d'utiliser JavaScript dans JSX
+                            qui va remplacer name par la valeur "React".</p>
+                        <br>
+                        <p>Lorsque nous aurons fini de mettre en place notre projet, c'est donc la première chose que
+                            nous verrons à l'écran.</p>
+                    </li>
+                    <li>
+                        <p>La dernière ligne du fichier :</p>
+                        <pre>
+                        <code>
+                            export default App; 
+                        </code>
+                    </pre>
+                        <p>Elle permet d'exporter notre composant afin qu'il soit utilisable dans le reste de notre
+                            application.</p>
+                    </li>
+                </ul>
+                <p><strong>Petit tips !</strong> Plutôt que d'écrire :</p>
+                <pre>
+                <code>
+                    App: React.FC 
+                </code>
+            </pre>
+                <p>Nous pouvons importer directement depuis le paquet react le type :</p>
+                <pre>
+                <code>
+                    import React, {FunctionComponent} from 'react';
+                </code>
+            </pre>
+                <p>Ensuite nous pouvons utiliser cette nouvelle importation à la place de React.FC :</p>
+                <pre>
+                <code>
+                    const App: FunctionComponent = () => {...}
+                </code>
+            </pre>
+            </div>
+        </section>
+        <!-- TODO : 7. Créer un point d'entrée pour notre application - Premiers pas avec react - 28:07 -->
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Créer un point d'entrée pour notre application</h2>
+            <div class="collapsible-content">
+                <p>contenu
+                </p>
+            </div>
+        </section>
+
+
+
+    </main>
+    <footer>
+        <p>&copy; 2025 Cours en HTML et CSS - CND</p>
+    </footer>
+</body>
+
+</html>
