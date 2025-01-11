@@ -4,6 +4,7 @@ body {
   line-height: 1.6;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 header {
@@ -20,13 +21,12 @@ main {
   align-items: center;
 }
 
-/* Style des sections dépliantes */
 .collapsible {
   margin-bottom: 1em;
   border: 1px solid #ddd;
   border-radius: 5px;
   width: 100%;
-  max-width: 800px; /* Limiter la largeur des sections */
+  max-width: 800px;
 }
 
 .collapsible-header {
@@ -58,10 +58,19 @@ main {
   filter: brightness(1.7);
 }
 
-/* Ajustement pour le bas du contenu principal */
 main {
-  padding-bottom: 6em; /* Ajustez selon l'espace que vous souhaitez */
+  padding-bottom: 6em; 
 }
+
+a {
+  color: #004c99;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 
 footer {
   background: #004c99;
@@ -74,10 +83,8 @@ footer {
 }
 
 .footer-divider {
-  height: 4em; /* Ajustez cette valeur selon vos besoins */
-}
+  height: 4em;}
 
-/* Styles responsives */
 @media (max-width: 1024px) {
   /* Styles pour tablette */
   main {
@@ -93,7 +100,7 @@ footer {
   }
 
   .styled-image {
-    max-width: 90%; /* Ajustement de la taille des images pour tablette */
+    max-width: 90%; 
   }
 }
 
@@ -122,16 +129,15 @@ footer {
   }
 
   .footer-divider {
-    height: 6em; /* Ajustez cette valeur selon vos besoins */
+    height: 6em;
   }
 
-  /* Centrage des titres et images pour les écrans en dessous de 900px */
   h2 {
     text-align: center;
   }
 
   .styled-image {
-    max-width: 80%; /* Ajustement de la taille des images pour mobile */
+    max-width: 80%; 
     display: block;
     margin: 1em auto;
   }
