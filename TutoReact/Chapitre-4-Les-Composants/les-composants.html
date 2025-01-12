@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les Composants</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>Chapitre 4 - Les Composants</h1>
+    </header>
+    <a href="../Sommaire/sommaire.html">Sommaire</a>
+
+    <main>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Les types de composants</h2>
+            <div class="collapsible-content">
+                <p>Il existe deux types de composants en React : les composants fonctionnels et les composants de
+                    classe.</p>
+                <p>Utiliser l'un ou l'autre applique de grandes différences pour l'application créée.</p>
+            </div>
+        </section>
+
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Les limites de composants de fonctions</h2>
+            <div class="collapsible-content">
+                <p>Les composants généralement déclarés avec des classes sont plus longs à écrire que les composants
+                    fonctionnels car ils proposent deux fonctionnalités supplémentaires.</p>
+                <ul>
+                    <li>
+                        <p>Les composants de classe permettent de gérer un état, le state.</p>
+                        <p>Qu'est-ce qu'un state ?</p>
+                        <p>Le state est un objet JavaScript qui contient des données relatives à un composant et
+                            directement synchronisé avec le DOM virtuel et écrit en JSX.</p>
+                    </li>
+                    <li>Les composants déclarés avec des classes permettent d'implémenter un cycle de vie pour les
+                        composants, comme par exemple sa création ou sa suppression du DOM virtuel. très utilise pour
+                        implémenter un comportement spécifique à nos composants.</li>
+                </ul>
+                <p>Pourquoi alors ne pas tout le temps utiliser des composants de classe, puisqu'ils sont plus complets,
+                    et offrent davantage de fonctionnalistés ?</p>
+                <p>Les composants de fonction ont aussi une utilité.
+                    <br><br>
+                    React recommande les utiliser le plus possible car ils sont dit "pur". C'est-à-dire, pour telle
+                    donnée entrante, alors le composant affiche toujours la même chose. En gros, son comportement est
+                    parfaitement prévisible, il n'a pas de dépedances extérieurs.
+                    <br>
+                    Ils sont aussi plus performants.
+                    <br>
+                    Ils sont aussi plus concis et plus lisible.
+                </p>
+                <p>Donc, tant que vous n'avez pas besoin de fonctinnalités avancés, on utilisera des composants
+                    fonctionnels pour ce genre de situation.</p>
+                <p>Ensuite, au fil du projet, il faudra refactoriser certains composants de fonctions de l'application
+                    en composants de classes, pour pouvoir ajouter le state ou la gestion des cycles de vies. Cela peut
+                    vite devenir pénible.</p>
+                <img src="assets/types-composants.png" alt="type de composants React" class="styled-image">
+                <p>Que choisir alors ??</p>
+                <p>Les composants de fonctions aussi appelés les Stateless component ?</p>
+                <p>Les composants de classes aussi appelés les Statefull component ?</p>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Présentation des Hooks</h2>
+            <div class="collapsible-content">
+                <p>Ils ont été apportés dans la version 16.8 de React.</p>
+                <p>Les Hooks sont des fonctions qui permettent d'ajouter des fonctionnalités à un composant fonctionnel,
+                    sans avoir à écrire une classe. Une pierre deux coups !</p>
+                <p>On obtient l'équation suivante :</p>
+                <pre>
+                    <code>
+                        "Functional Component"   MIEUX QUE   "Class Component"
+                    </code>
+                </pre>
+                <p>Les Hooks sont 100% optionnels, 100% rétro-compatibles à partir de la version 16.8.</p>
+            </div>
+        </section>
+
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Présentation d'un state/état</h2>
+            <div class="collapsible-content">
+                <p>Nous repatirons sur notre composant App.tsx.
+                </p>
+                <pre>
+                    <code>
+                        import React from "react";
+
+                        const App: React.FC = () => {
+                          const name: String = "React";
+
+                          return <h1>Bonjour, {name} !</h1>;
+                        };
+
+                        export default App;
+                    </code>
+                </pre>
+                <p>Dans ce composant en apparence très simple, il y a une petite amélioration possible.
+                    <br>
+                    On pourrait utiliser un state à la ligne 4 plutôt que de simplement déclarer une constante.
+                    <br>
+                    Pourquoi
+                    ?
+                    <br>
+                    Comme son nom l'indique, une constante est une valeur qui ne peut pas changer dans le temps,
+                    contrairement à un state.
+                </p>
+                <p>Un state est une valeur privé d'un composant qui permet de sauvegarder l'état des données de ce
+                    composant et qui est spécifique de React pour gérer ces problèmes.</p>
+            </div>
+        </section>
+
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Le Hook d'état</h2>
+            <div class="collapsible-content">
+                <p>Pour rappel, il n'est pas possible d'ajouter un état à un composant de fonction. C'est là
+                    qu'intervient
+                    le Hook d'état.</p>
+                <p>Le Hook d'état est une fonction qui permet de déclarer un état dans un composant de fonction.</p>
+                <p>On le nomme <strong>useState</strong></p>
+                <p>Mettons en place un state pour la variable "name" de notre fichier App.tsx.</p>
+                <p>Commençons par : </p>
+                <ul>
+                    <li>A la ligne 1, importons le Hook useState. Il fera parti du paquet React.
+                        <br>
+                        <code>import React, { FunctionComponent, useState } from "react";
+                        </code>
+                    </li>
+                    <li>A la ligne 4, on utilisera le Hook useState pour mettre en place un état. On supprimera d'abord
+                        la constante name : <code>  const name: String = "React";
+                    </code> puisque je veux mettre en place un état plutôt qu'une constante dont la valeur est fixe. On
+                        obtiendra donc :
+                        <br>
+                        <code>  const [name, setName] = useState("React");
+                        </code>
+                    </li>
+                </ul>
+                <p>Une question à se poser, que fait la fonction useState ?</p>
+                <p>Les Hooks sont de simple fonction JavaScript. Ce Hook, permet de déclarer une variable d'état. Cette
+                    méthode prend en argument une valeur correspondant à un état initial du composant. Ça peut être
+                    n'importe quelle valeur, un nombre, un objet, une chaine de caractère, un tableau, etc..</p>
+                <p>Dans notre exemple, l'état est initialisé avec la valeur React.</p>
+                <p>Ensuite, cette fonction retourne une pair de deux éléments :</p>
+                <ul>
+                    <li>L'état actuel : <strong>name</strong></li>
+                    <li>Et une fonction pour modifier la valeur de cet état : <strong>setName</strong></li>
+                </ul>
+                <p>Pourqoi il y a des crochets ? La synthaxe des crochest est lié au destructuring en JavaScript. <img
+                        src="assets/sans-destructuring.png" alt="sans-destructuring" class="styled-image">
+                    <br>
+                    Pourquoi la fonction useState renvoie un tableau de deux éléments ?
+                </p>
+                <p>Pour résumer :</p>
+                <ul>
+                    <li>on déclare une variable d'état appelée <strong>name</strong>, et nous l'initialisons avec la
+                        valeur React.</li>
+                    <li>Ensuite, react va sauvegarder et maintenir à jour cet état.</li>
+                    <li>Si nous voulons modifier la valeur de <strong>name</strong>, nous allons appeler la méthode
+                        <strong>setName</strong>.
+                    </li>
+                    <li>Notre code JSX n'a pas été modifié. <code>  return <h1>Bonjour, {name} !</h1>;
+                        </code>. Pour lire la valeur de notre état il nous suffit de passer la valeur
+                        <strong>name</strong> à JSX, React s'occupe de ça. Même si nous avons déclaré une constante à la
+                        ligne 4, c'est notre état, et il est dynamique grâce à React. en regardant dans la console du
+                        navigateur à propos de la valeur setName, il n'est pas utilisé, ignorons le pour le moment.
+                        <br>
+                        <img src="assets/non-utilisation-setName.png" alt="non-utilisation-setName"
+                            class="styled-image">
+                        C'est simplement que nous n'avons pas encore implémenté de fonctionnalité pour modifier la
+                        valeur de name. C'est juste un avertisseeur de React qu'on peut ignorer pour le moment.
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Ajouter un type à notre état avec TypeScript</h2>
+            <div class="collapsible-content">
+                <p>Notre exemple précédent fonctionne, et est tout à fait valide. Cependant nous n'avons pas profité du
+                    typage de TypeScript pour notre état. Nous avons déclaré une variable d'état name, mais nous n'avons
+                    pas précisé son type.</p>
+                <p>Heureusement, l'intégration de TypeScript avec les Hooks est plutôt simple, il suffit d'utiliser le
+                    concept de généricité de TypeScript : (ligne 4)
+                    <br>
+                    <code>const [name, setName] = useState<String>("React");
+                    </code>
+                </p>
+                <p>Il suffit d'ajouter <strong>entre chevrons String</strong>. On indique à react que seule une chaîne
+                    de caractères peut être stocké dans notre état <strong>name</strong>.</p>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Exercice : Créer un état pour générer les pokémons</h2>
+            <div class="collapsible-content">
+                <p>Il va falloir enrichir le composant App.tsx de notre application.
+                </p>
+                <p>Commençons par ajouter un state à notre composant qui contiendra une liste de pokémons.</p>
+                <p>On disposera d'une class TypeScript permettant de modéliser un pokémon, et un fichier de données
+                    contenant quelques pokémons à injecter dans notre composant.</p>
+                <p>On va créer un nouveau dossier <strong>models</strong> dans le dossier source de notre application.
+                    On y ajouter un fichier <strong>pokemon.ts</strong>. On récupérera le code depuis une page distante.
+                </p>
+                <pre>
+                    <code>
+                        export default class Pokemon {
+                            // 1. Typage des propiétés d'un pokémon.
+                            id: number;
+                            hp: number;
+                            cp: number;
+                            name: string;
+                            picture: string;
+                            types: Array<string>;
+                            created: Date;
+                             
+                            // 2. Définition des valeurs par défaut des propriétés d'un pokémon.
+                            constructor(
+                             id: number,
+                             hp: number = 100,
+                             cp: number = 10,
+                             name: string = 'name',
+                             picture: string = 'http://...',
+                             types: Array<string> = ['Normal'],
+                             created: Date = new Date()
+                            ) {
+                             // 3. Initialisation des propiétés d'un pokémons.
+                             this.id = id;
+                             this.hp = hp;
+                             this.cp = cp;
+                             this.name = name;
+                             this.picture = picture;
+                             this.types = types;
+                             this.created = created;
+                            }
+                           }
+                    </code>
+                </pre>
+                <p>Il y a beaucoup de redondances dans cette classe car un pokemon regroupe sept propriétés. cette
+                    <strong>"class Pokemon"</strong> aura pour rôle de représenter chaque pokémon dans notre
+                    application. Chaque pokémon aura donc un identifiant <strong>id</strong> unique sous la forme d'un
+                    nombre, un nombre de point de vie <strong>"hp</strong> associé à ce pokémon, un nombre de dégâts
+                    <strong>"cp"</strong>, chaque pokémon aura un nom <strong>"name</strong>, l'url
+                    <strong>"pictures</strong>d'une image représentant ce pokémon, un tableau <strong>"types"</strong>
+                    contenant les types possibles de ce pokémon (eau, feu, plante, etc...), et une date de création
+                    <strong>"created"</strong> pour savoir quand ce pokémon a été ajouté à notre application.
+                </p>
+                <p>Nous allons maintenant créer un fichier <strong>mock-pokemon</strong> toujours dans le dossier models
+                    qui contiendra les données de plusieurs pokémons. Nous récupérerons le code depuis la pages des
+                    ressources du code.</p>
+                <p>Ce fichier ne fait qu'exporter la constante <string>POKEMONS</string> à la ligne 3 qui contient les
+                    données nécessaires pour l'ensemble de notre application.</p>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Ce que vous devez faire</h2>
+            <div class="collapsible-content">
+                <p>
+                <ol type="1">
+                    <li>Définir une variable d'état nommée POKEMONS dans le composant App.tsx</li>
+                    <li>Initialiser cet état avec la liste de pokémons contenus dans la constante POKEMONS</li>
+                    <li>Typer l'état POKEMONS afin qu'il contienne un tableau de pokemons</li>
+                    <li>Afficher le nombre de pokémons présents dans l'état du state à l'utilisateur</li>
+                </ol>
+                </p>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Correction : Créer un état pour gérer les pokémons</h2>
+            <div class="collapsible-content">
+                <ol type="1">
+                    <li>Importons les deux fichiers que nous avons créés précédemment : pokemon (fichier pokemon.ts) et
+                        mock-pokemon (fichier mock-pokemon.ts)</li>
+                    <li>Ensuite, je vais modifier mon état, puisqu'il ne va plus contenir la chaîne de caractère 'React', mais un tableau de pokémons.</li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ol>
+            </div>
+        </section>
+
+
+    </main>
+    <footer>
+        <p>&copy; 2025 Cours React en HTML, CSS et JavaScript - CND</p>
+    </footer>
+</body>
+
+</html>

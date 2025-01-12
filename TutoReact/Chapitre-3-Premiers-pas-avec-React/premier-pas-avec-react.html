@@ -281,13 +281,100 @@
             </pre>
             </div>
         </section>
-        <!-- TODO : 7. Créer un point d'entrée pour notre application - Premiers pas avec react - 28:07 -->
 
         <section class="collapsible">
             <h2 class="collapsible-header">Créer un point d'entrée pour notre application</h2>
             <div class="collapsible-content">
-                <p>contenu
+                <p><u>Nous avons notre premier composant</u>. Mais comment allons faire <u>le lien</u> entre le fichier
+                    <strong>index.html</strong> que nous allons créer plus tard qui <u>sera le point de départ de notre
+                        application</u> et notre premier composant <strong>App.tsx</strong> ?
                 </p>
+                <p>Nous devons indiquer à React comment démarrer notre application aevec le composant App.tsx lors du
+                    chargement initial.
+                </p>
+                <p>Pour cela, nous allons créer un fichier <strong>index.tsx</strong> <u>dans le fichier source</u>.
+                </p>
+                <p>Écrivons dans le fichier index.tsx. Ajoutons 3 importations :</p>
+                <ul>
+                    <li> On importe react lui-même : <code>import React from 'react';</code></li>
+                    <li>Un paquet reactDOM : <code>import ReactDOM from 'react-dom';</code></li>
+                    <li>Et enfin notre composant App : <code>import App from './App';</code></li>
+                </ul>
+                <p>Ensuite, je vais appeler la méthode <code>render</code> de ReactDom sur l'élément DOM afin de
+                    démarrer mon application avec mon composant App.
+                    <br>
+                    Cette méthode prendra 2 paramètres : un composant react, et ensuite un élément html avec
+                    l'identifiant root. Pour le moment, nous n'avons pas encore créé le fichier index.html, mais
+                    celui-ci devra contenir un élément avec l'identifiant root.
+                </p>
+                <pre>
+                    <code>
+                        ReactDOM.render(
+                            <App />,
+                            document.getElementById('root')
+                        );
+                    </code>
+                </pre>
+                <p>Ensuite, React va démarrer notre application en injectant le composant racine App dans l'élément html
+                    avec l'identifiant root. Ainsi notre application pouraa démarrer, et afficher "Hello React".</p>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Héberger notre application</h2>
+            <div class="collapsible-content">
+                <p>Rappelons nous que nous sommes entrain de développer une SPA (Single Page Application). C'est à dire
+                    une application qui ne contient qu'une seule page HTML. Toutes les autres pages sont générées
+                    dynamiquement par JavaScript.
+                </p>
+                <p>Il nous manque donc cette fameuse page html. Créons on donc tout de suite un fichier
+                    <code>index.htm</code>l dans un dossier nommé <code>public</code>.
+                </p>
+                <p>Pourquoi avoir mis ce fichier dans un dossier public ?
+                    <br>
+                    Parce que ce fichier sera le seul fichier statique de notre application. Il sera le point d'entrée
+                    de notre application. Il sera le seul fichier qui sera servi par le serveur web. Récupérons le code
+                    de ce fichier dans l'extrait de code suivant :
+                </p>
+                <pre>
+                    <code>
+                        <!DOCTYPE html>
+                        <html lang="fr">
+                          <head>
+                            <title>Pokédex</title>
+                          </head>
+                          <body>
+                            <noscript>You need to enable JavaScript to run this app.</noscript>
+                            <div id="root">L'application est en cours de chargement...</div>
+                          </body>
+                        </html>
+                    </code>
+                </pre>
+                <p>Cet à cet endroit de la ligne de la div root que notre application va vivre, et c'est à cet endroit
+                    que notre composant App sera injecté dans la balise avec l'identifiant root.</p>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Démarrer l'application</h2>
+            <div class="collapsible-content">
+                <p>Ouvrez un terminal de commande à la racine de votre projet et lancez la commande suivante :</p>
+                <pre>
+                    <code>npm start</code>
+                </pre>
+                <p>Cette commande va démarrer un serveur de développement qui va servir notre application sur
+                    <code>http://localhost:3000</code>. Vous pourrez voir votre application en direct dans votre
+                    navigateur.</p>
+                <p>Vous pouvez maintenant commencer à développer votre application React!</p>
+                <p>On vient de mettre en place l'architecture de l'application.</p>
+                <p>Avec la commande npm start on : </p>
+                <ul>
+                    <li>On compile tous nos fichiers TypeScript, vers du JavaScript,</li>
+                    <li>lance l'application dans un navigateur,</li>
+                    <li>Met automatiquement à jour si on modifie le code</li>
+                    <li>On peut voir notre application en direct</li>
+                </ul>
+                <p>Modifions notre texte de "Hello React" à "Bonjour React" en allant sur le fichier App.tsx. L'application a été mise à jour automatiquement, la seule condition est de laisser tourner npm start pendant qu'on développe.</p>
             </div>
         </section>
 
@@ -295,7 +382,7 @@
 
     </main>
     <footer>
-        <p>&copy; 2025 Cours en HTML et CSS - CND</p>
+        <p>&copy; 2025 Cours React en HTML, CSS et JavaScript - CND</p>
     </footer>
 </body>
 
