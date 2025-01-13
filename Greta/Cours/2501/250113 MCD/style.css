@@ -1,58 +1,145 @@
-*,
-::after,
-::before {
+/* Style de base */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  color: #333;
-  background-color: #f4f4f4;
-  margin: 0;
-  padding: 0;
-}
-
-.container {
-  width: 80%;
-  margin: auto;
-  overflow: hidden;
-}
-
 header {
-  background: #333;
+  background: #004c99;
   color: #fff;
   padding: 1em 0;
-}
-
-header h1 {
   text-align: center;
 }
 
-main > .container > h2 {
-  margin: 1em 0;
+main {
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-p {
-  margin: 1em 0;
+
+.collapsible {
+  margin-bottom: 1em;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.collapsible-header {
+  background: #0073e6;
+  color: #fff;
+  padding: 0.5em;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.collapsible-content {
+  display: none;
+  padding: 0.5em;
+  background: #f9f9f9;
+}
+
+/* Style des images */
+.styled-image {
+  display: block;
+  margin: 1em auto;
+  transition: filter 0.3s ease;
+  filter: brightness(0.5);
+  cursor: pointer;
+  max-width: 100%;
+  height: auto;
+}
+
+.styled-image:hover {
+  filter: brightness(1.7);
+}
+
+main {
+  padding-bottom: 6em;
 }
 
 a {
-  color: #333;
+  color: #004c99;
   text-decoration: none;
 }
 
-ul {
-  list-style: none;
+a:hover {
+  text-decoration: underline;
 }
 
-li {
-  padding: 0.5em 0;
+footer {
+  background: #004c99;
+  color: #fff;
+  text-align: center;
+  padding: 1em 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
-@media screen and (max-width: 768px) {
-  .container {
-    width: 80%;
+
+.footer-divider {
+  height: 4em;
+}
+
+@media (max-width: 1024px) {
+  /* Styles pour tablette */
+  main {
+    padding: 1em;
+  }
+
+  .collapsible-header {
+    padding: 1em;
+  }
+
+  .collapsible-content {
+    padding: 1em;
+  }
+
+  .styled-image {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 900px) {
+  /* Styles pour mobile */
+  header {
+    padding: 0.5em 0;
+  }
+
+  main {
+    padding: 1em;
+    align-items: center;
+  }
+
+  .collapsible-header {
+    padding: 0.5em;
+    text-align: center;
+  }
+
+  .collapsible-content {
+    padding: 0.5em;
+  }
+
+  footer {
+    padding: 0.5em 0;
+  }
+
+  .footer-divider {
+    height: 6em;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+  .styled-image {
+    max-width: 80%;
+    display: block;
+    margin: 1em auto;
   }
 }
