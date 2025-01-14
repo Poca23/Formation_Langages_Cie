@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL - JOIN</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>SQL - JOIN</header>
+    <main>
+        <div class="container">
+            <pre>
+    <code>
+        Explorer les données
+        1 - Lister tous les articles disponibles avec leurs prix.
+        2 - Afficher les factures ayant un total supérieur à 10 €.
+
+        Effectuer des calculs
+        3 - Trouver le montant total des ventes pour la journée.
+        4 - Identifier l'article le plus vendu :
+        <pre>
+            <code>
+                select a.article_name, SUM(it.quantity) AS sum 
+                FROM bakery.invoice_item AS it 
+                JOIN bakery.article AS a ON it.article_id = a.article_id 
+                GROUP BY a.article_name ORDER BY sum
+                desc LIMIT 1;       
+            </code>
+        </pre>
+
+            Utiliser des jointures
+            5 - Associer chaque facture à ses articles et quantités correspondants.
+            6 - Lister tous les articles qui n'ont pas encore été vendus.
+
+            Créer des statistiques
+            7 - Calculer la quantité totale vendue pour chaque article.
+            8 - Trouver l’heure où les ventes sont les plus importantes.
+
+            Requêtes imbriquées
+            9 - Trouver toutes les factures contenant au moins un "CROISSANT".
+            10 - Lister les factures avec plus de 5 articles au total.
+            </code>
+            </pre>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>
