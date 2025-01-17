@@ -1,0 +1,76 @@
+##########################################################################
+# Étape 1 : Installer une extension pour la visualisation de diagrammes
+##########################################################################
+Installe l'extension "Markdown Preview Mermaid Support" :
+Dans VS Code, ouvre le Marketplace (Ctrl + Shift + X) et recherche Markdown Preview Mermaid Support.
+Installe l'extension.
+Elle te permettra de générer des diagrammes à partir de code Markdown utilisant Mermaid.js.
+
+
+##########################################################################
+# Étape 2 : Utiliser Mermaid pour créer des diagrammes ERD (Entity-Relationship Diagram)
+##########################################################################
+Crée un fichier .md (par exemple, schema.md) dans ton projet.
+Colle-y la structure suivante, en utilisant le langage Mermaid :
+markdown
+Copier
+Modifier
+```mermaid
+erDiagram
+    UTILISATEURS {
+        int id
+        string nom
+        string prenom
+        string email
+        string mot_de_passe
+        date date_inscription
+    }
+    FILMS {
+        int id
+        string titre
+        string synopsis
+        date date_sortie
+        string image
+        float notation
+        string critique
+        string trailer
+    }
+    CATEGORIES {
+        int id
+        string nom
+    }
+    FAVORIS {
+        int id
+        int utilisateur_id
+        int film_id
+    }
+    VISIONNES {
+        int id
+        int utilisateur_id
+        int film_id
+        date date_visionnage
+    }
+
+    UTILISATEURS ||--o{ FAVORIS : "a"
+    UTILISATEURS ||--o{ VISIONNES : "a"
+    FILMS ||--o{ FAVORIS : "is in"
+    FILMS ||--o{ VISIONNES : "is in"
+    CATEGORIES ||--o{ FILMS : "contains"
+
+
+##########################################################################
+# Étape 3 : Prévisualiser le diagramme
+##########################################################################
+Ouvre le fichier schema.md.
+Appuie sur Ctrl + Shift + V pour ouvrir l'aperçu Markdown.
+Si tu as installé "Markdown Preview Mermaid Support", le diagramme s'affichera directement dans la fenêtre.
+
+
+##########################################################################
+# Étape 4 : Exporter le diagramme
+##########################################################################
+Une fois affiché, tu peux utiliser des outils comme une capture d'écran ou des options spécifiques pour exporter en PNG ou SVG, selon les fonctionnalités de l'extension Mermaid utilisée.
+Avantages de cette méthode :
+Facilité : Tu peux éditer directement tes schémas dans VS Code et voir les changements instantanément.
+Personnalisation : Mermaid permet de styliser et d'ajouter des détails à tes diagrammes.
+Versioning : En utilisant Markdown, tes schémas sont intégrés dans ton projet et peuvent être suivis via Git.

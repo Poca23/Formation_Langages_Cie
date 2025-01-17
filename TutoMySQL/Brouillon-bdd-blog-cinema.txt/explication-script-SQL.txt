@@ -1,0 +1,11 @@
+Explication du script SQL :
+Base de données :
+
+Nous créons une base de données appelée blog_cinema avec CREATE DATABASE blog_cinema; et nous l'utilisons avec USE blog_cinema;.
+Tables :
+
+Utilisateurs : Cette table stocke les informations des utilisateurs, avec une clé primaire id et un email unique.
+Films : Cette table contient les films, avec un champ titre, une description, une date_sortie et une image.
+Catégories : Pour organiser les films par catégorie, on utilise un champ nom pour le nom de la catégorie et une description pour plus de détails.
+Favoris : Relation entre les utilisateurs et leurs films favoris. Elle relie l'id de l'utilisateur et l'id du film. Les clés étrangères (utilisateur_id et film_id) sont liées respectivement aux tables utilisateurs et films.
+Visionnés : Cette table suit les films visionnés par chaque utilisateur. Elle comprend l'id de l'utilisateur et du film, ainsi qu'une date_visionnage.

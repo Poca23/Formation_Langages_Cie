@@ -1,0 +1,24 @@
+Comment tester la base de données
+Une fois que tu as exécuté le script ci-dessus pour créer la base de données et les tables, tu peux vérifier si tout fonctionne correctement en exécutant les requêtes suivantes :
+
+Voir les bases de données :
+sql
+Copier
+Modifier
+SHOW DATABASES;
+Voir les tables de la base de données blog_cinema :
+sql
+Copier
+Modifier
+SHOW TABLES;
+Voir la structure d'une table :
+sql
+Copier
+Modifier
+DESCRIBE utilisateurs;
+Vérifier les données :
+sql
+Copier
+Modifier
+SELECT * FROM utilisateurs;
+SELECT * FROM films;

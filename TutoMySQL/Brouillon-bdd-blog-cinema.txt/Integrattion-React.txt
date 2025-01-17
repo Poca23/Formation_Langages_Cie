@@ -1,0 +1,4 @@
+Intégration avec React
+Dans ton application React, tu peux utiliser des appels API pour récupérer ou envoyer des données vers ta base de données MySQL (par exemple, via un serveur backend en Node.js). Tu pourrais aussi gérer l'authentification de l'utilisateur, l'ajout de films, la gestion des favoris, etc., en interagissant avec ces tables.
+
+Si tu souhaites des exemples de code pour la partie backend ou une intégration avec un serveur Node.js (par exemple, avec Express.js), fais-le moi savoir !

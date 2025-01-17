@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1. Introduction à MySQL et VS Code</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>1. Introduction à MySQL et VS Code
+        </h1>
+        <p>Système Linux/Ubuntu - IDE VS Code - 25/01/17</p>
+    </header>
+    <a href="/MySQL-BDD-Sommaire.html">Retour au Sommaire</a>
+
+    <main>
+
+        <section class="collapsible-principal">
+            <h2 class="collapsible-header">A.Installation de MySQL</h2>
+            <div class="collapsible-content">
+                <section class="collapsible">
+                    <h2 class="collapsible-header">1. Installation de MySQL avec le terminal
+                    </h2>
+                    <div class="collapsible-content">
+                        <ul>
+                            <li>Sur Linux (Ubuntu) : Si MySQL n'est pas encore installé, vous pouvez l'installer en
+                                exécutant
+                                les commandes suivantes dans votre terminal :
+                                <pre>
+                            <code>
+bash
+sudo apt update
+sudo apt install mysql-server 
+                            </code>
+                        </pre>
+                            </li>
+                            <li>Sur Windows ou macOS : Si vous êtes sur un autre système, vous pouvez télécharger MySQL
+                                à partir
+                                de ce <a href="https://dev.mysql.com/downloads/installer/">lien officiel</a>. Il suffit
+                                de
+                                suivre les instructions pour installer MySQL sur votre
+                                machine.</li>
+                            <li>Connexion à MySQL depuis VS Code</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="collapsible">
+                    <h2 class="collapsible-header">2. Vérification du fonctionnement de MySQL avec le terminal
+                    </h2>
+                    <div class="collapsible-content">
+                        <ul>
+                            <li>Une fois MySQL installé, vous pouvez démarrer le serveur MySQL avec :
+                                <br>
+                                <pre>
+                            <code>
+bash
+sudo systemctl start mysql
+                            </code>
+                        </pre>
+                            </li>
+                            <li>Pour vérifier que MySQL fonctionne correctement :
+                                <br>
+                                <pre>
+                            <code>
+sudo systemctl status mysql   
+                            </code>
+                        </pre>
+                                Vous devriez voir une confirmation que MySQL est en cours d'exécution.
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="collapsible">
+                    <h2 class="collapsible-header">3. Connexion à MySQL avec le terminal
+                    </h2>
+                    <div class="collapsible-content">
+                        <ul>
+                            <li>Pour se connecter à MySQL, vous pouvez utiliser la commande suivante dans le terminal :
+                                <br>
+                                <pre>
+                            <code>
+bash
+sudo mysql -u root -p
+                            </code>
+                        </pre>
+                                Il vous sera demandé de saisir le mot de passe pour l'utilisateur root que vous avez
+                                configuré
+                                lors de l'installation de MySQL.
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+            </div>
+        </section>
+
+        <section class="collapsible-principal">
+            <h2 class="collapsible-header">B.Installation de l'extension MySQL pour VS Code</h2>
+            <div class="collapsible-content">
+                <section class="collapsible">
+                    <h2 class="collapsible-header">4. Installation de l'extension MySQL pour VS Code
+                    </h2>
+                    <div class="collapsible-content">
+                        <ul>
+                            <li>Ouvrez Visual Studio Code.</li>
+                            <li>Allez dans l'onglet des Extensions (icône carrée dans la barre latérale à gauche).</li>
+                            <li>Recherchez "MySQL" et installez l'extension "MySQL" de Jun Han (ou une extension
+                                équivalente que
+                                vous préférez).</li>
+                            <li>Une fois l'extension installée, vous pourrez vous connecter à votre base de données
+                                directement
+                                depuis VS Code pour exécuter des requêtes SQL.
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+            </div>
+        </section>
+
+        <section class="collapsible-principal">
+            <h2 class="collapsible-header">C.Connexion à MySQL depuis VS Code</h2>
+            <div class="collapsible-content">
+
+                <section class="collapsible">
+                    <h2 class="collapsible-header">1. Installer l'extension MySQL dans VS Code</h2>
+                    <div class="collapsible-content">
+                        <ul>
+                            <li>Ouvrez VS Code.</li>
+                            <li>Cliquez sur l’icône des extensions (à gauche, représentée par quatre blocs empilés).
+                            </li>
+                            <li>Dans la barre de recherche, tapez "MySQL".</li>
+                            <li>Installez l’extension appelée MySQL by Weijan Chen (ou une autre populaire et bien
+                                notée).</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="collapsible">
+                    <h2 class="collapsible-header">2. Configurer la connexion à MySQL</h2>
+                    <div class="collapsible-content">
+                        <ul>
+                            <li>Une fois l’extension installée, ouvrez le panneau latéral en cliquant sur l’icône
+                                associée à l’extension (souvent un logo MySQL dans la barre latérale).</li>
+                            <li>Cliquez sur Add Connection ou un bouton similaire.</li>
+                            <li>Remplissez les informations suivantes :
+                                <ul>
+                                    <li>Host : localhost</li>
+                                    <li>Port : 3306 (par défaut, sinon ajustez si différent).</li>
+                                    <li>User : root (ou un autre utilisateur que vous avez créé).</li>
+                                    <li>Password : Entrez votre mot de passe utilisateur MySQL.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="collapsible">
+                    <h2 class="collapsible-header">3. Testez de connexion en exécutant des requêtes SQL
+                    </h2>
+                    <div class="collapsible-content">
+                        <ol>
+                            <li>Développez une base de données pour voir ses tables et colonnes.
+                                <ul>
+                                    <li>Si la connexion réussit, vous verrez votre connexion listée dans le panneau
+                                        latéral
+                                        MySQL.</li>
+                                    <li>Cliquez sur la connexion pour l’ouvrir. Vous devriez voir toutes les bases de
+                                        données
+                                        (comme blog_cinema).</li>
+                                </ul>
+                            </li>
+                            <li>Vérification de la connexion
+                                <ul>
+                                    <li>Ouvrir l'éditeur de requêtes SQL
+                                        <br>
+                                        Vous avez mentionné avoir cliqué sur "Open Query". Cela ouvre un éditeur où vous
+                                        pouvez écrire et exécuter vos requêtes SQL.
+                                    </li>
+                                    <li>Écrire une première requête
+                                        <br>
+                                        Une fois l'éditeur ouvert, tapez une requête simple pour vérifier que la
+                                        connexion fonctionne bien et que vous pouvez interagir avec MySQL. Essayez la
+                                        commande suivante :
+                                        <br>
+                                        <pre>
+                                            <code>
+sql
+SHOW DATABASES;
+                                            </code>
+                                        </pre>
+                                        Cette commande listera toutes les bases de données disponibles sur votre serveur
+                                        MySQL. Si la connexion est réussie, vous devriez voir une liste de bases de
+                                        données, y compris celle que vous avez créée (par exemple, blog_cinema).
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Exécuter la requête
+                                <br>
+                                Pour exécuter la requête, placez vous après le ' ; ' de la requête et faite : Ctrl +
+                                Enter.
+                            </li>
+                            <li>Accéder à une base de données
+                                <br>
+                                Pour sélectionner une base de données spécifique et commencer à travailler dessus,
+                                utilisez la commande suivante :
+                                <br>
+                                <pre>
+                                    <code>
+sql
+USE blog_cinema;
+                                    </code>
+                                </pre>
+                                Ce qui donnera :
+                                <pre>
+                                    <code>
+USE blog_cinema
+
+AffectedRows : 0
+                                    </code>
+                                </pre>
+                                Cela vous permettra de travailler sur la base de données blog_cinema.
+                            </li>
+                            <li>Vérifier les tables de la base de données
+                                <br>
+                                Une fois que vous avez sélectionné votre base de données, vous pouvez afficher les
+                                tables qu'elle contient avec cette commande :
+                                <br>
+                                <pre>
+                                    <code>
+sql
+SHOW TABLES;                                    </code>
+                                </pre>
+                            </li>
+                        </ol>
+
+                    </div>
+                </section>
+
+
+            </div>
+        </section>
+
+
+        <section class="collapsible-principal">
+            <h2 class="collapsible-header">D.Suppression / Modifications / manipulation de mysql avec le terminal</h2>
+            <div class="collapsible-content">
+
+                <section class="collapsible">
+                    <h2 class="collapsible-header">5. Suppression d'une base de donnée sur MySQL
+                    </h2>
+                    <div class="collapsible-content">
+                        <ul>
+                            <li>On peut utiliser :
+                                <pre>
+                            <code>
+bash
+sql
+DROP DATABASE nom-de-la-bdd; 
+                            </code>
+                        </pre>
+                                Cette commande supprimera définitivement la base de données, alors il faut s'assurer de
+                                vouloir
+                                la supprimer.
+                            </li>
+                            <li>Vous pouvez également vérifier que la base a été supprimée après l'avoir exécutée avec :
+                                <pre>
+                            <code>
+bash
+sql
+SHOW DATABASES;
+                            </code>
+                        </pre>
+                            </li>
+                            <li>!!! ATTENTION, c'est irréversible !!!</li>
+                        </ul>
+                    </div>
+                </section>
+
+
+                <section class="collapsible">
+                    <h2 class="collapsible-header">6. Sortir de MySQL dans le terminal
+                    </h2>
+                    <div class="collapsible-content">
+                        <ul>
+                            <li>Taper la commande :
+                                <br>
+                                <pre>
+                            <code>
+bash
+sql
+EXIT; 
+                            </code>
+                        </pre>
+                                ou :
+                                <pre>
+                            <code>
+bash
+sql
+QUIT;
+                            </code>
+                        </pre>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+
+                <section class="collapsible">
+                    <h2 class="collapsible-header">7. Pas de connexion à MySQL avec les bons privilèges </h2>
+                    <div class="collapsible-content">
+                        <ol>
+                            <li>Se connecter en tant que root (utilisateur administrateur de MySQL).
+                                <br>
+                                Lorsque vous utilisez MySQL, le compte root est souvent utilisé pour l'administration.
+                                Tentez de
+                                vous connecter avec le compte root en spécifiant un mot de passe :
+                                <br>
+                                <pre>
+                            <code>
+bash
+sudo mysql -u root -p 
+                            </code>
+                        </pre>
+                                Entrez le mot de passe de l'utilisateur root que vous avez configuré lors de
+                                l'installation de
+                                MySQL. <i>(password)</i>
+                                <pre>
+                            <code>
+bash
+sql
+QUIT;
+                            </code>
+                        </pre>
+                            </li>
+                            <li>Essayer à nouveau
+                                <br>
+                                Une fois connecté, vous pouvez vérifier que MySQL fonctionne correctement en exécutant
+                                la
+                                commande suivante :
+                                <br>
+                                <pre>
+                            <code>
+SHOW DATABASES; 
+                            </code>
+                        </pre>
+                            </li>
+                        </ol>
+                    </div>
+                </section>
+
+                <section class="collapsible">
+                    <h2 class="collapsible-header">8. Oubli de
+                        spécification d'un
+                        mot de passe</h2>
+                    <div class="collapsible-content">
+                        <ul>
+                            <li>Changer le mot de passe de l'utilisateur (si nécessaire)
+                                <br>
+                                Si vous avez des difficultés à vous connecter avec root ou si vous souhaitez configurer
+                                un autre
+                                utilisateur, vous pouvez aussi réinitialiser les mots de passe ou attribuer de nouveaux
+                                privilèges.
+                                <br>
+                                Réinitialiser le mot de passe root (si nécessaire) :
+                                <pre>
+                            <code>
+bash
+sudo mysql
+                            </code>
+                        </pre>
+                                Ensuite, dans l'invite MySQL, exécutez la commande suivante pour modifier le mot de
+                                passe root :
+                                <br>
+                                <pre>
+                            <code>
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password';
+FLUSH PRIVILEGES;
+                            </code>
+                        </pre>
+                                Remplacez new_password par le mot de passe souhaité.
+                            </li>
+                        </ul>
+
+                    </div>
+                </section>
+
+                <section class="collapsible">
+                    <h2 class="collapsible-header">Création d'un nouvel utilisateur (optionnel)</h2>
+                    <div class="collapsible-content">
+                        <ul>
+                            <li>Création d'un nouvel utilisateur (optionnel)
+                                <br>
+                                Si vous voulez créer un autre utilisateur avec des privilèges, vous pouvez le faire une
+                                fois
+                                connecté à MySQL :
+                                <br>
+                                <pre>
+                            <code>
+bash
+sql
+CREATE USER 'greta'@'localhost' IDENTIFIED BY 'your_password';
+GRANT ALL PRIVILEGES ON *.* TO 'greta'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+                            </code>
+                        </pre>
+                                Cela crée un nouvel utilisateur greta avec tous les privilèges.
+                            </li>
+
+                        </ul>
+                    </div>
+                </section>
+
+
+            </div>
+        </section>
+
+
+
+
+
+
+
+
+
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Cours MySQL - BDD - en HTML, CSS et JavaScript - CND</p>
+    </footer>
+</body>
+
+</html>
