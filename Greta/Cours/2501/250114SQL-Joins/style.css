@@ -64,8 +64,10 @@ main {
 }
 
 a {
+  display: block;
   color: #004c99;
   text-decoration: none;
+  margin: auto;
 }
 
 a:hover {

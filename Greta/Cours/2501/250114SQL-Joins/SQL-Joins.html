@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -12,39 +12,174 @@
     <header>SQL - JOIN</header>
     <main>
         <div class="container">
-            <pre>
-    <code>
+            <p>
+                <code>
         Explorer les données
         1 - Lister tous les articles disponibles avec leurs prix.
         2 - Afficher les factures ayant un total supérieur à 10 €.
 
         Effectuer des calculs
         3 - Trouver le montant total des ventes pour la journée.
+        </p>
+        <p>
         4 - Identifier l'article le plus vendu :
-        <pre>
-            <code>
+            <pre>
+                <code>
                 select a.article_name, SUM(it.quantity) AS sum 
                 FROM bakery.invoice_item AS it 
                 JOIN bakery.article AS a ON it.article_id = a.article_id 
                 GROUP BY a.article_name ORDER BY sum
-                desc LIMIT 1;       
-            </code>
-        </pre>
-
-            Utiliser des jointures
-            5 - Associer chaque facture à ses articles et quantités correspondants.
-            6 - Lister tous les articles qui n'ont pas encore été vendus.
-
-            Créer des statistiques
-            7 - Calculer la quantité totale vendue pour chaque article.
-            8 - Trouver l’heure où les ventes sont les plus importantes.
-
-            Requêtes imbriquées
-            9 - Trouver toutes les factures contenant au moins un "CROISSANT".
-            10 - Lister les factures avec plus de 5 articles au total.
-            </code>
+                desc LIMIT 1;
+                </code>
+                </pre>
+            </p>
+            <p>
+                Utiliser des jointures
+                5 - Associer chaque facture à ses articles et quantités correspondants :
+            <pre>
+                <code>
+        SELECT invoice_item.invoice_id, article.article_name, invoice_item.article_id, quantity 
+        FROM invoice_item JOIN article
+        ON invoice_item.article_id = article.article_id 
+        ORDER BY invoice_id desc LIMIT 100;
+                </code>
             </pre>
+            </p>
+            <p>
+                6 - Lister tous les articles qui n'ont pas encore été vendus :
+            <pre>
+                <code>
+                    SELECT invoice_item.invoice_id, article.article_name, invoice_item.article_id, quantity 
+                        FROM invoice_item 
+                        RIGHT JOIN article
+                        ON invoice_item.article_id = article.article_id 
+                        WHERE quantity IS NULL
+                        ORDER BY `quantity` 
+                        asc LIMIT 100 
+                </code>
+            </pre>
+            </p>
+            <p>
+                Créer des statistiques
+                7 - Calculer la quantité totale vendue pour chaque article :
+            <pre>
+                <code>
+                    SELECT article_name, quantity 
+                        FROM invoice_item JOIN article
+                        ON invoice_item.article_id = article.article_id 
+                        ORDER BY invoice_id desc LIMIT 100;
+                </code>
+            </pre>
+            </p>
 
+            <p>
+                8 - Trouver l’heure où les ventes sont les plus importantes :
+            <pre>
+                <code>
+                    SELECT invoice.time, SUM(article.unit_price * invoice_item.quantity) AS total_sales
+                        FROM invoice
+                        JOIN invoice_item ON invoice.invoice_id = invoice_item.invoice_id
+                        JOIN  article ON invoice_item.article_id = article.article_id
+                        GROUP BY  invoice.time
+                        ORDER BY  total_sales DESC
+                        LIMIT 5;
+                </code>
+            </pre>
+            </p>
+
+
+            <p>
+                Requêtes imbriquées
+                9 - Trouver toutes les factures contenant au moins un "CROISSANT":
+            <pre>
+                <code>
+                    SELECT invoice_item.invoice_id, invoice_item.article_id, article.article_name 
+                        FROM invoice_item 
+                        JOIN article ON article.article_id = invoice_item.article_id
+                        WHERE article_name LIKE 'CROISSANT%'
+                        LIMIT 100
+                </code>
+            </pre>
+            </p>
+
+            <p>
+                10 - Lister les factures avec plus de 5 articles au total.
+            <pre>
+                <code>
+                    SELECT invoice_id, COUNT(article_id) AS total_articles 
+                        FROM invoice_item 
+                        GROUP BY invoice_id 
+                        HAVING total_articles > 5
+                        LIMIT 100
+                </code>
+            </pre>
+            </p>
+
+            <p> 6. Requêtes avancées avec filtres
+                Trouver toutes les factures contenant à la fois un "CROISSANT" et une "BAGUETTE"
+            <pre>
+                <code>
+                    SELECT item.invoice_id
+                        FROM invoice_item AS item
+                        WHERE item.article_id IN (
+                            SELECT article_id 
+                            FROM article 
+                            WHERE article_name IN ('CROISSANT','BAGUETTE')
+                        )
+                    GROUP BY item.invoice_id
+                    HAVING COUNT(DISTINCT item.article_id) = 2;
+                    LIMIT 100
+                </code>
+            </pre>
+            </p>
+
+            <p>Lister les articles dont le nom contient "PAIN" (insensible à la casse)
+            <pre>
+                    <code>
+                        SELECT a.article_name 
+                        FROM article AS a 
+                        WHERE article_name LIKE '%PAIN%'
+                    </code>
+                </pre>
+            S </p>
+
+            <p>
+                7. Requêtes sur les ventes
+                Identifier les articles ayant généré le plus de revenus (prix *
+                quantité)
+            <pre>
+                    <code>
+                        SELECT  a.article_name, sum(a.unit_price + ii.quantity) AS revenus, sum(ii.quantity) AS boudin
+	                        FROM article AS a
+                            JOIN invoice_item AS ii ON a.article_id = ii.article_id
+                            GROUP BY a.article_name
+                            ORDER BY revenus DESC
+                            LIMIT 100;
+                    </code>
+                </pre>
+            </p>
+            <p>Trouver les factures égal où plus de 3 types d’articles différents qui ont été achetés
+            <pre>
+                    <code>
+
+                    </code>
+                </pre>
+            </p>
+
+            8. Analyse des horaires de vente
+            Identifier l'heure où le montant total des ventes a été le plus élevé
+            Trouver le nombre de factures émises par tranche horaire de 30 minutes (CONCAT)
+            9. Requêtes avec sous-requêtes et conditions
+            Lister les articles vendus uniquement une fois (quantité totale = 1)
+            Trouver les factures ayant au moins un article vendu plus de 5 fois
+            10. Requêtes avec jointures multiples
+            Lister toutes les factures avec leurs articles et le montant total par article
+
+            <p><a href="https://www.geeksforgeeks.org/sql-cheat-sheet/">BootStrap de requêtes MySQL</a></p>
+            <p><a href="https://media.geeksforgeeks.org/wp-content/uploads/20240328180119/SQL-Cheat-Sheet-PDF.pdf">Suite
+                    du
+                    lien</a></p>
+            <p><a href="https://sql.sh/cours/where/is">Methode WHERE ... IS NULL</a></p>
         </div>
 
     </main>
