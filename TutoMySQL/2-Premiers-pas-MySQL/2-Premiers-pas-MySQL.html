@@ -19,26 +19,120 @@
 
     <main>
         <section class="collapsible">
-            <h2 class="collapsible-header">1. Introduction à MySQL et VS Code</h2>
+            <h2 class="collapsible-header">A. Création d'une base de données</h2>
             <div class="collapsible-content">
-                <ol type="A">
-                    <li>Installation de </li>
-                    <li>Installation de l'extension MySQL pour VS Code</li>
-                    <li>Connexion à MySQL depuis VS Code</li>
-                </ol>
-            </div>
-        </section>
-
-
-
-        <section class="collapsible">
-            <h2 class="collapsible-header">2. Premiers Pas avec MySQL</h2>
-            <div class="collapsible-content">
-                <ol type="A">
-                    <li>Création d'une base de données</li>
-                    <li>Création de tables (exemple : données du projet Blog-Cinema)
+                <p>Pour commencer à travailler avec MySQL, il est essentiel de savoir où et comment exécuter les
+                    commandes. Voici un guide détaillé pour cela.
+                </p>
+                <ol>
+                    <li><b>Où se trouve-t-on ?</b>
+                        <br>
+                        Dans VS Code :
+                        Si tu utilises VS Code comme éditeur, tu peux configurer un terminal intégré pour travailler
+                        avec MySQL. Il est souvent plus pratique d'exécuter les commandes directement dans le terminal
+                        intégré ou en utilisant une extension MySQL pour interagir avec la base de données.
+                        <br><br>
+                        Voici comment procéder :
+                        <ol>
+                            <li>Ouvrir le terminal intégré dans VS Code :
+                                <br>
+                                Dans VS Code, ouvre le terminal intégré avec <code>Ctrl + t</code>.
+                            </li>
+                            <li>Se connecter à MySQL :
+                                <br>
+                                Avant de pouvoir créer une base de données, tu dois te connecter à ton serveur MySQL.
+                                Tape la commande suivante dans le terminal de VS Code :
+                                <pre>
+                                    <code>
+bash
+mysql -u root -p
+                                    </code>
+                                </pre>
+                                <ul>
+                                    <li><code>-u root</code> signifie que tu te connectes avec l'utilisateur root (par
+                                        défaut, l'utilisateur administrateur).</li>
+                                    <li><code>-p</code> te demandera de saisir ton mot de passe MySQL.</li>
+                                </ul>
+                                Si tout va bien, tu seras connecté à MySQL et tu verras une invite de commande qui
+                                ressemble à ceci :
+                                <br>
+                                <pre>
+                                    <code>
+shell
+mysql>
+                                    </code>
+                                </pre>
+                                Cela signifie que tu es dans l'interface de commande MySQL, prête à exécuter des
+                                requêtes SQL.
+                            </li>
+                        </ol>
                     </li>
-                    <li>Insertion et gestion des données</li>
+                    <li><b>Création de la base de données :</b>
+                        <br>
+                        Maintenant que tu es dans MySQL, tu peux créer une nouvelle base de données.
+                        <ol>
+                            <li>Création de la base de données :
+                                <br>
+                                <ul>
+                                    <li>Dans le terminal MySQL, tape la commande suivante pour créer une nouvelle base
+                                        de données (par exemple, blog_cinema) :
+                                        <pre>
+                                            <code>
+sql
+CREATE DATABASE blog_cinema;
+                                            </code>
+                                        </pre>
+
+                                    </li>
+                                    <li>Si la commande réussit, tu ne verras pas de message détaillé, mais tu reviendras
+                                        simplement à l'invite <code>mysql></code>.</li>
+                                </ul>
+                            </li>
+                            <li>Vérification de la création de la base :
+                                <br>
+                                <ul>
+                                    <li>Pour vérifier que ta base de données a bien été créée, tu peux utiliser la
+                                        commande suivante :
+                                        <br>
+                                        <pre>
+                                            <code>
+sql
+SHOW DATABASE;
+                                            </code>
+                                        </pre>
+                                    </li>
+                                    <li>Cette commande affichera une liste de toutes les bases de données existantes, et
+                                        tu devrais voir <code>blog_cinema</code> dans cette liste.</li>
+                                </ul>
+                            </li>
+                            <li>Sélectionner la base de données :
+                                <br>
+                                <ul>
+                                    <li>Une fois la base de données créée, tu dois la sélectionner pour commencer à y
+                                        travailler. Utilise la commande :
+                                        <pre>
+                                            <code>
+sql
+USE blog_cinema;
+                                            </code>
+                                        </pre>
+                                    </li>
+                                    <li>Si tu réussis, tu verras un message comme ceci :
+                                        <br>
+                                        <pre>
+                                            <code>
+sql
+Database changed
+                                            </code>
+                                        </pre>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ol>
+                        Cela signifie que tu es maintenant dans la base de données <code>blog_cinema</code>, prête à y
+                        créer des
+                        tables et à insérer des données.
+                    </li>
                 </ol>
             </div>
         </section>
@@ -46,12 +140,112 @@
 
 
         <section class="collapsible">
-            <h2 class="collapsible-header">3. Diagrammes MCD et MLD</h2>
+            <h2 class="collapsible-header">B. Création de tables (exemple : données du projet Blog-Cinéma)</h2>
             <div class="collapsible-content">
-                <ol type="A">
-                    <li>Création du MCD (Modèle Conceptuel de Données)</li>
-                    <li>Création du MLD (Modèle Logique de Données)</li>
-                    <li>Planification des tables et relations</li>
+                <ol>
+                    <li>Où se trouve-t-on ?
+                        <ul>
+                            <li>Nous allons travailler dans le terminal intégré de VS Code ou directement dans le
+                                terminal si tu préfères. Cela dépend de la configuration que tu as, mais les étapes sont
+                                les mêmes.</li>
+                            <li>Si tu es dans le terminal intégré de VS Code, tu es déjà connecté à MySQL, comme nous
+                                l'avons vu dans la section précédente.</li>
+                        </ul>
+
+                        <br>
+                    </li>
+                    <li>Définir une table dans MySQL
+                        <br>
+                        Une fois que tu es dans la base de données (<code>USE blog_cinema;</code>), tu peux créer des
+                        tables pour
+                        organiser les données. Une table est une structure qui contient des colonnes et des lignes.
+                        <br>
+                        <br>
+                        Pour l'exemple, imaginons que tu veuilles créer une table <code>films</code> pour stocker des
+                        informations
+                        sur les films du blog cinéma. La table pourrait contenir des colonnes comme : <code>id, titre,
+                        année_sortie, genre, etc</code>.
+                        <br>
+                        <br>
+                        Voici la commande pour créer une table simple avec quelques colonnes :
+                        <pre>
+                            <code>
+sql
+CREATE TABLE films (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titre VARCHAR(255) NOT NULL,
+    annee_sortie INT,
+    genre VARCHAR(100)
+);
+                            </code>
+                        </pre>
+                        <b>Explication de la commande :</b>
+                        <ul>
+                            <li><code><b>CREATE TABLE films</b></code> - Crée une table nommée films.</li>
+                            <li><code><b>id INT AUTO_INCREMENT PRIMARY KEY</b></code> - Une colonne id de type entier,
+                                qui s'incrémente
+                                automatiquement à chaque nouvel enregistrement et qui est la clé primaire (c'est-à-dire
+                                un
+                                identifiant unique pour chaque film).</li>
+                            <li><code><b>titre VARCHAR(255) NOT NULL</b></code> - Une colonne titre qui contient du
+                                texte, avec une longueur
+                                maximale de 255 caractères. Cette colonne est obligatoire (ne peut pas être vide).</li>
+                            <li><code><b>annee_sortie INT</b></code> - Une colonne pour l'année de sortie du film (de
+                                type entier).</li>
+                            <li><code><b>genre VARCHAR(100)</b></code> - Une colonne pour le genre du film (de type
+                                chaîne de caractères,
+                                avec
+                                une longueur maximale de 100 caractères).</li>
+                        </ul>
+                        <br>
+                    </li>
+                    <li>Où se trouve-t-on pour créer la table ?
+                        <ul>
+                            <li>Assure-toi d'être dans le terminal MySQL, dans ta base de données
+                                <code>blog_cinema</code> (tu peux
+                                le vérifier avec la commande <code>SHOW TABLE</code>S; pour voir les tables existantes).
+                            </li>
+                            <li>Une fois la commande <code>CREATE TABLE</code> prête, tu peux l'exécuter directement
+                                dans le terminal de MySQL.</li>
+                        </ul>
+                        <br>
+                    </li>
+                    <li>Exécuter la commande de création de la table
+                        <br>
+                        Dans le terminal MySQL, tape la commande ci-dessus et
+                        appuie sur Entrée. Si tout va bien, tu verras un message indiquant que la table a été créée avec
+                        succès
+                        (pas de message détaillé, mais juste l'invite mysql> qui revient).
+                        <br>
+                        <br>
+                    </li>
+                    <li>Vérification de la table créée
+                        <br>
+                        Après avoir créé la table, tu peux vérifier qu'elle existe bien en
+                        exécutant la commande :
+                        <pre>
+                    <code>
+sql
+SHOW TABLES;
+                    </code>
+                </pre>
+                        Cette commande affichera toutes les tables dans la base de données blog_cinema. Tu devrais voir
+                        films dans la liste.
+                        <br><br>
+                    </li>
+                    <li>Vérifier les colonnes de la table
+                        <br>
+                        Pour voir les colonnes de la table films (et leurs types), tu peux
+                        utiliser la commande suivante :
+                        <pre>
+                            <code>
+sql
+DESCRIBE films;
+                            </code>
+                        </pre>
+                        Cela affichera une liste des colonnes avec leurs types et autres informations, comme NULL (si la
+                        colonne peut être vide) et PRI pour la clé primaire.
+                    </li>
                 </ol>
             </div>
         </section>
@@ -59,37 +253,8 @@
 
 
         <section class="collapsible">
-            <h2 class="collapsible-header">4. Sécurité dans MySQL</h2>
+            <h2 class="collapsible-header">C. Insertion et gestion des données</h2>
             <div class="collapsible-content">
-                <ol type="A">
-                    <li>Gestion des utilisateurs et des privilèges</li>
-                    <li>Sécurisation des requêtes (prévention des injections SQL)</li>
-                </ol>
-            </div>
-        </section>
-
-
-
-        <section class="collapsible">
-            <h2 class="collapsible-header">5. Transactions dans MySQL</h2>
-            <div class="collapsible-content">
-                <ol type="A">
-                    <li>Compréhension des transactions</li>
-                    <li>Utilisation des commandes SQL (BEGIN, COMMIT, ROLLBACK)</li>
-                    <li>Gestion des erreurs et des annulations</li>
-                </ol>
-            </div>
-        </section>
-
-
-
-        <section class="collapsible">
-            <h2 class="collapsible-header">6. Exercices Pratiques</h2>
-            <div class="collapsible-content">
-                <ol type="A">
-                    <li>Insertion, mise à jour, suppression et lecture des données</li>
-                    <li>Création de requêtes SQL sécurisées avec transactions</li>
-                </ol>
             </div>
         </section>
 
