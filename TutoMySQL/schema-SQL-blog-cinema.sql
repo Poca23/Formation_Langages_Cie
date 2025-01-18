@@ -35,12 +35,14 @@ CREATE TABLE UTILISATEURS
             (100) NOT NULL
 );
 
+            -- FAVORIS avec distinction des listes
             CREATE TABLE FAVORIS
             (
                 id INT
                 AUTO_INCREMENT PRIMARY KEY,
     utilisateur_id INT NOT NULL,
     film_id INT NOT NULL,
+    liste_numero TINYINT NOT NULL, -- Numéro de la liste (1 ou 2 pour les favoris)
     FOREIGN KEY
                 (utilisateur_id) REFERENCES UTILISATEURS
                 (id),
@@ -49,12 +51,14 @@ CREATE TABLE UTILISATEURS
                 (id)
 );
 
+                -- VISIONNES avec distinction des listes
                 CREATE TABLE VISIONNES
                 (
                     id INT
                     AUTO_INCREMENT PRIMARY KEY,
     utilisateur_id INT NOT NULL,
     film_id INT NOT NULL,
+    liste_numero TINYINT NOT NULL, -- Numéro de la liste (1 ou 2 pour les visionnés)
     date_visionnage DATE NOT NULL,
     FOREIGN KEY
                     (utilisateur_id) REFERENCES UTILISATEURS

@@ -1,0 +1,64 @@
+# SUITE DU COURS 250118
+
+D. Gestion des clés étrangères et relations entre les tables
+Maintenant que tu sais créer des tables et insérer des données, l'étape suivante consiste à gérer les relations entre les tables grâce aux clés étrangères (foreign keys).
+
+1. Création d'une clé étrangère
+Une clé étrangère est une colonne dans une table qui fait référence à la clé primaire d'une autre table. Cela permet de créer des relations entre les données de ces tables.
+
+Exemple : Si tu as une table acteurs qui contient des informations sur les acteurs, tu peux lier chaque acteur à un film via une clé étrangère.
+
+Voici un exemple de création de deux tables liées :
+
+La table films (que nous avons déjà créée).
+La table acteurs qui contient des informations sur les acteurs, et chaque acteur est lié à un film par la clé étrangère film_id.
+sql
+Copier
+Modifier
+CREATE TABLE acteurs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(100),
+    prenom VARCHAR(100),
+    film_id INT,
+    FOREIGN KEY (film_id) REFERENCES films(id)
+);
+Explication :
+
+La colonne film_id dans la table acteurs fait référence à la colonne id de la table films.
+La contrainte FOREIGN KEY (film_id) REFERENCES films(id) garantit que chaque film_id dans la table acteurs doit exister dans la table films.
+2. Insertion de données avec une clé étrangère
+Une fois les deux tables créées, tu peux insérer des données en respectant la relation entre elles. Par exemple, pour ajouter un acteur à un film :
+
+sql
+Copier
+Modifier
+INSERT INTO acteurs (nom, prenom, film_id)
+VALUES ('Nolan', 'Christopher', 1);  -- Où '1' est l'id d'un film dans la table films
+Cela lie l'acteur "Christopher Nolan" au film avec l'id 1 dans la table films.
+
+3. Mise à jour d'une clé étrangère
+Si tu veux changer la relation, par exemple, changer le film auquel un acteur est lié, tu peux utiliser la commande UPDATE :
+
+sql
+Copier
+Modifier
+UPDATE acteurs
+SET film_id = 2  -- Changer le film_id
+WHERE id = 1;    -- Où id est l'id de l'acteur
+4. Suppression avec contrainte de clé étrangère
+Si tu veux supprimer un film, et que des acteurs y sont liés via la clé étrangère, tu peux rencontrer des erreurs si la contrainte de clé étrangère est définie avec ON DELETE RESTRICT.
+
+Dans ce cas, il est possible d'utiliser une option comme ON DELETE CASCADE pour supprimer également les acteurs associés au film.
+
+sql
+Copier
+Modifier
+CREATE TABLE acteurs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(100),
+    prenom VARCHAR(100),
+    film_id INT,
+    FOREIGN KEY (film_id) REFERENCES films(id) ON DELETE CASCADE
+);
+Cela signifie que si tu supprimes un film de la table films, tous les acteurs associés seront également supprimés de la table acteurs.
+

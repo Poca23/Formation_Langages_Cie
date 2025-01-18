@@ -255,6 +255,105 @@ DESCRIBE films;
         <section class="collapsible">
             <h2 class="collapsible-header">C. Insertion et gestion des données</h2>
             <div class="collapsible-content">
+                <ol>
+                    <li>Insertion de données dans la table
+                        <br>
+                        Une fois que tu as créé ta table (par exemple, films), tu peux commencer à y insérer des
+                        données.
+                        <br>
+                        <br>
+                        Syntaxe de <code>INSERT INTO</code>
+                        <br>
+                        La commande <code>INSERT INTO</code> permet d'ajouter des données dans une table. La syntaxe
+                        générale est :
+                        <pre>
+                            <code>
+sql
+INSERT INTO table_name (colonne1, colonne2, ...)
+VALUES (valeur1, valeur2, ...);
+                            </code>
+                        </pre>
+                        Exemple avec ta table <code>films</code> :
+                        <pre>
+                            <code>
+sql
+INSERT INTO films (titre, annee_sortie, genre)
+VALUES ('Inception', 2010, 'Science-fiction');
+                            </code>
+                        </pre>
+                        Cette commande insère un nouveau film avec le titre "Inception", l'année de sortie 2010, et le
+                        genre "Science-fiction" dans la table <code>films</code>.
+                        <br><br>
+                    </li>
+                    <li>Insertion de plusieurs enregistrements
+                        Tu peux également insérer plusieurs enregistrements en une seule commande, comme ceci :
+                        <pre>
+                            <code>
+sql
+INSERT INTO films (titre, annee_sortie, genre)
+VALUES 
+  ('Inception', 2010, 'Science-fiction'),
+  ('The Dark Knight', 2008, 'Action'),
+  ('Interstellar', 2014, 'Science-fiction');
+                            </code>
+                        </pre>
+                        Cela insère trois films en une seule opération.
+                        <br><br>
+                    </li>
+                    <li>Vérification des données insérées
+                        Pour vérifier que les données ont bien été insérées, tu peux utiliser la commande SELECT :
+                        <pre>
+                            <code>
+sql
+SELECT * FROM films;
+                            </code>
+                        </pre>
+                        Cela affichera toutes les lignes de la table <code>films</code>. Si l'insertion a réussi, tu
+                        verras les films
+                        que tu viens d'ajouter.
+                        <br><br>
+                    </li>
+                    <li>Mise à jour des données avec <code>UPDATE</code>
+                        Si tu veux modifier des données existantes dans la table, tu peux utiliser la commande
+                        <code>UPDATE</code>.
+                        Par exemple, pour changer le genre de "Inception" en "Action" :
+                        <pre>
+                            <code>
+sql
+UPDATE films
+SET genre = 'Action'
+WHERE titre = 'Inception';
+                            </code>
+                        </pre>
+                        <br><br>
+                    </li>
+                    <li>Suppression de données avec <code>DELETE</code>
+                        Pour supprimer un enregistrement, tu peux utiliser la commande DELETE. Par exemple, pour
+                        supprimer "Inception" de la table :
+                        <pre>
+                            <code>
+sql
+DELETE FROM films
+WHERE titre = 'Inception';
+                            </code>
+                        </pre>
+                        <b>Attention : Si tu omets la condition WHERE, toutes les lignes de la table seront supprimées,
+                            donc fais bien attention à l'utiliser !</b>
+                        <br><br>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">D. Gestion des clés étrangères et relations entre les tables</h2>
+            <div class="collapsible-content">
+                <ol>
+                    <li>Création d'une clé étrangère</li>
+                    <li>Insertion de données avec une clé étrangère</li>
+                    <li>Mise à jour d'une clé étrangère</li>
+                    <li>Suppression avec contrainte de clé étrangère</li>
+                </ol>
             </div>
         </section>
 
