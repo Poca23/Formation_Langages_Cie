@@ -349,10 +349,25 @@ WHERE titre = 'Inception';
             <h2 class="collapsible-header">D. Gestion des clés étrangères et relations entre les tables</h2>
             <div class="collapsible-content">
                 <ol>
-                    <li>Création d'une clé étrangère</li>
-                    <li>Insertion de données avec une clé étrangère</li>
-                    <li>Mise à jour d'une clé étrangère</li>
-                    <li>Suppression avec contrainte de clé étrangère</li>
+                    <li> Concept des clés étrangères
+                        <br>
+                        Une clé étrangère (foreign key) permet d'établir une relation entre deux tables. Elle pointe
+                        vers la clé primaire d'une autre table, assurant l'intégrité des données.
+                        <br>
+                        Exemple dans votre projet React Blog-Cinéma :
+                        <ul>
+                            <li>Une table <code>films</code> pour stocker les films.</li>
+                            <li>Une table <code>genres</code> pour classifier les films par genre (action, comédie,
+                                etc.).</li>
+                            <li>La table films contient une clé étrangère qui fait référence à la clé primaire de
+                                genres.</li>
+                        </ul>
+                    </li>
+                    <li>Création des tables avec relations</li>
+                    <li>Explications des commandes</li>
+                    <li>Insertion de données pour tester</li>
+                    <li>Vérifications</li>
+                    <li>À vous de jouer</li>
                 </ol>
             </div>
         </section>

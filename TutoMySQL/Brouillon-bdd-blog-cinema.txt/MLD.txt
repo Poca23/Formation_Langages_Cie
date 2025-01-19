@@ -1,5 +1,0 @@
-Étape 1 : Créer un fichier Mermaid pour le MLD
-Le MLD est une version plus détaillée du MCD, avec une attention particulière sur :
-
-Les types de données précis (e.g., VARCHAR, INT, FLOAT, etc.).
-Les relations PK (Primary Key), FK (Foreign Key) et leurs contraintes.
