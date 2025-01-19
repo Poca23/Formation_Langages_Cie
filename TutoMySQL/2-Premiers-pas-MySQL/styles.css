@@ -78,6 +78,13 @@ a:hover {
   text-decoration: underline;
 }
 
+code {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: rgb(0, 40, 151);
+  background-color: #ffffff;
+}
+
 /* Responsivité */
 @media (max-width: 1024px) {
   main {

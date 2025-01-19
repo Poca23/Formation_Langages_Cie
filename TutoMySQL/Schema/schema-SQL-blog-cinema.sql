@@ -25,6 +25,7 @@ CREATE TABLE UTILISATEURS
         (255),
     notation FLOAT,
     critique TEXT
+    id_genre INT,
 );
 
         CREATE TABLE CATEGORIES

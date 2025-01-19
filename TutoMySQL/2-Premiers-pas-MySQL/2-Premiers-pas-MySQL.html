@@ -349,7 +349,7 @@ WHERE titre = 'Inception';
             <h2 class="collapsible-header">D. Gestion des clés étrangères et relations entre les tables</h2>
             <div class="collapsible-content">
                 <ol>
-                    <li> Concept des clés étrangères
+                    <li><b>Concept des clés étrangères</b>
                         <br>
                         Une clé étrangère (foreign key) permet d'établir une relation entre deux tables. Elle pointe
                         vers la clé primaire d'une autre table, assurant l'intégrité des données.
@@ -362,12 +362,122 @@ WHERE titre = 'Inception';
                             <li>La table films contient une clé étrangère qui fait référence à la clé primaire de
                                 genres.</li>
                         </ul>
+                        <br><br>
                     </li>
-                    <li>Création des tables avec relations</li>
-                    <li>Explications des commandes</li>
-                    <li>Insertion de données pour tester</li>
-                    <li>Vérifications</li>
-                    <li>À vous de jouer</li>
+                    <li><b>Création des tables avec relations</b>
+                        <br>
+                        Commençons avec deux tables simples :
+                        <ul>
+                            <li><code>genres</code> : contient la liste des genres de films.</li>
+                            <li><code>films</code> : contient les informations des films, avec une relation à genres
+                            </li>
+                        </ul>
+                        <b>Création de la table <code>genres</code></b> :
+                        <pre>
+                            <code>
+sql
+CREATE TABLE genres (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(50) NOT NULL
+);
+                            </code>
+                        </pre>
+                        <b>Création de la table <code>films</code> avec une clé étrangère</b> :
+                        <pre>
+                            <code>
+sql
+CREATE TABLE films (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titre VARCHAR(255) NOT NULL,
+    annee_sortie INT,
+    id_genre INT, 
+    FOREIGN KEY (id_genre) REFERENCES genres(id)
+);
+                            </code>
+                        </pre>
+                    </li>
+                    <li><b>Explications des commandes</b>
+                        <br>
+                        <ul>
+                            <li><code>id_genre INT</code> : C'est la colonne dans <code>films</code> qui stocke
+                                l'identifiant d'un
+                                genre.</li>
+                            <li><code>FOREIGN KEY (id_genre) REFERENCES genres(id)</code> :
+                                <ul>
+                                    <li>Déclare <code></code>id_genre comme clé étrangère.</li>
+                                    <li>Elle pointe vers la colonne <code>id</code> de la table <code>genres</code>.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Grâce à cette relation, vous ne pouvez pas insérer un film avec un id_genre inexistant
+                                dans la table <code>genres</code>.
+                            </li>
+                        </ul>
+                        <br><br>
+                    </li>
+                    <li><b>Insertion de données pour tester</b>
+                        <br>
+                        Insérons des données dans <code>genres</code> et <code>films</code> :
+                        <br>
+                        <b>Ajout de genres :</b>
+                        <pre>
+                            <code>
+sql
+INSERT INTO genres (nom) VALUES ('Action'), ('Comédie'), ('Drame');
+                            </code>
+                        </pre>
+                        <b>Ajout de films avec des références à <code>genres</code> :</b>
+                        <pre>
+                            <code>
+sql
+INSERT INTO films (titre, annee_sortie, id_genre) 
+VALUES 
+    ('Inception', 2010, 1), 
+    ('The Hangover', 2009, 2), 
+    ('The Pursuit of Happyness', 2006, 3);
+                            </code>
+                        </pre>
+                    </li>
+                    <li><b>Vérifications</b>
+                        <br>
+                        <ol>
+                            <li>Affichez les données dans <code>genres</code> et <code>films</code> pour voir si tout
+                                est correct :
+                                <pre>
+                            <code>
+sql
+SELECT * FROM genres;
+SELECT * FROM films;
+                            </code>
+                        </pre>
+                            </li>
+                            <li>Testez l'intégrité des données :
+                                <br>
+                                <ul>
+                                    <li>Essayez d'ajouter un film avec un <code>id_genre</code> inexistant, par exemple
+                                        <code>999</code> :
+                                        <pre>
+                                            <code>
+sql
+INSERT INTO films (titre, annee_sortie, id_genre) 
+VALUES ('Invalid Film', 2025, 999);
+                                            </code>
+                                        </pre>
+                                    </li>
+                                    <li>Cela générera une erreur, car 999 n'existe pas dans genres.</li>
+                                </ul>
+                            </li>
+                        </ol>
+                        <br><br>
+                    </li>
+                    <li><b>À vous de jouer</b>
+                        <br>
+                        <ol>
+                            <li>Créez les deux tables (genres et films).</li>
+                            <li>Insérez les données proposées.</li>
+                            <li>Vérifiez les relations avec quelques tests.</li>
+                        </ol>
+                    </li>
                 </ol>
             </div>
         </section>

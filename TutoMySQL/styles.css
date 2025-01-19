@@ -40,17 +40,8 @@ main {
 }
 
 /* Sections repliables */
-.collapsible-principal {
-  margin-bottom: 1em;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  max-width: 850px;
-  width: 100%;
-}
-
 .collapsible {
   margin-bottom: 1em;
-  margin-left: 1em;
   border: 1px solid #ddd;
   border-radius: 5px;
   max-width: 800px;
@@ -72,21 +63,9 @@ main {
   background-color: #f9f9f9;
 }
 
-h2 {
-  transition: color 1s ease, transform 0.8s ease; /* Transition douce pour un effet fluide */
-}
-
-h2:hover {
-  color: #0073e6; /* Change la couleur du texte */
-  background-color: #ffffff;
-  border: 1px solid #0073e6;
-  transform: scale(1.05); /* Agrandit légèrement le texte */
-}
-
 /* Listes ordonnées */
-ol,
-ul {
-  margin-left: 2.5em;
+ol {
+  margin-left: 1.5em;
 }
 
 /* Liens */
@@ -99,6 +78,13 @@ a:hover {
   text-decoration: underline;
 }
 
+code {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: rgb(0, 40, 151);
+  background-color: #ffffff;
+}
+
 /* Responsivité */
 @media (max-width: 1024px) {
   main {
@@ -109,22 +95,6 @@ a:hover {
   .collapsible-content {
     padding: 1em;
   }
-}
-
-pre {
-  left: 0;
-  white-space: pre-wrap; /* Permet aux longues lignes de se couper */
-  word-wrap: break-word; /* Coupe les mots qui dépassent */
-  overflow: auto; /* Ajoute une barre de défilement si nécessaire */
-  max-width: 100%; /* Limite la largeur au conteneur */
-  background-color: #d9d9d9; /* Optionnel : ajoute un fond pour le code */
-  padding: 10px;
-  border-radius: 5px;
-}
-
-code {
-  font-family: "Courier New", Courier, monospace; /* Police de type monospace */
-  font-size: 1em; /* Taille de police ajustable */
 }
 
 @media (max-width: 900px) {
