@@ -43,13 +43,45 @@
                     </li>
                     <li><b>Étapes pour créer un MCD :</b>
                         <ol>
-                            <li><b>Identification des entités :</b></li>
-                            <li><b>Définition des relations :</b></li>
-                            <li><b>Définition des attributs :</b></li>
-                            <li><b>Exemple simplifié de MCD :</b></li>
+                            <li><b>Identification des entités : </b> Les entités sont les objets que nous souhaitons
+                                gérer dans
+                                notre base de données. Dans le cas d'un projet "Blog-Cinéma", les entités principales
+                                peuvent
+                                être UTILISATEURS, FILMS, CATEGORIES, LISTES, etc.</li>
+                            <li><b>Définition des relations :</b> Les relations entre les entités représentent la
+                                manière dont les entités interagissent entre elles. Par exemple, un utilisateur peut
+                                avoir plusieurs films dans ses favoris, donc il y a une relation
+                                UTILISATEUR-FAVORIS-FILM.</li>
+                            <li><b>Définition des attributs :</b> Chaque entité aura des attributs qui décrivent ses
+                                caractéristiques. Par exemple, l'entité FILMS peut avoir des attributs comme titre,
+                                date_sortie, synopsis, etc.</li>
+                            <li><b>Identification des cardinalités :</b> La cardinalité décrit le nombre d’occurrences
+                                d’une
+                                entité qui peuvent être associées à une autre. Par exemple, un UTILISATEUR peut avoir
+                                plusieurs FILMS dans ses FAVORIS, mais chaque FILM peut être dans plusieurs LISTES. Une
+                                relation UN à N.</li>
                         </ol>
+
+                        <br>
                     </li>
-                    <li><b>Identification des cardinalités :</b></li>
+                    <li><b>Exemple simplifié de MCD :</b>
+                        <br>
+                        Voici un exemple de MCD simplifié pour un projet de Blog-Cinéma :
+                        <br>
+                        <ul>
+                            <li><b>UTILISATEURS</b> : id, nom, email, mot_de_passe.</li>
+                            <li><b>FILMS</b> : id, titre, synopsis, date_sortie.</li>
+                            <li><b>FAVORIS</b> : id, utilisateur_id, film_id.</li>
+                            <li><b>LISTES</b> : id, utilisateur_id, nom, type.</li>
+                        </ul>
+                        <br>
+                        Les relations :
+                        <ul>
+                            <li>Un utilisateur peut avoir plusieurs films dans ses favoris.</li>
+                            <li>Un utilisateur peut avoir plusieurs listes de films.</li>
+                            <li>Un film peut appartenir à plusieurs listes.</li>
+                        </ul>
+                    </li>
                 </ol>
 
             </div>
@@ -58,19 +90,126 @@
         <section class="collapsible">
             <h2 class="collapsible-header">B. Création du MLD (Modèle Logique de Données)</h2>
             <div class="collapsible-content">
+                <ol>
+                    <li><b>Le MLD (Modèle Logique de Données)</b>
+                        <br>
+                        est une version plus détaillée et technique du MCD. Tandis que le MCD se concentre sur les
+                        objets métiers, le MLD inclut les informations nécessaires pour implémenter ces objets dans une
+                        base de données relationnelle.
+                        <br><br>
+                    </li>
+                    <li><b>Objectifs du MLD :</b>
+                        <br>
+                        <ul>
+                            <li>Traduire le MCD en un modèle plus proche de la réalité d'une base de données
+                                relationnelle.</li>
+                            <li>Définir la structure des tables de la base de données, y compris les types de données et
+                                les contraintes.
+                            </li>
+                            <li>Ajouter les clés primaires, clés étrangères et relations entre les tables.</li>
+                        </ul>
+                        <br><br>
+                    </li>
+                    <li><b>Étapes pour créer un MLD :</b>
+                        <br>
+                        <ol>
+                            <li><b>Définir les tables :</b> À partir des entités définies dans le MCD, on crée des
+                                tables. Par exemple, l’entité UTILISATEUR devient une table UTILISATEURS.</li>
+                            <li><b>Définir les types de données :</b> Chaque attribut d'une entité dans le MCD doit
+                                avoir un type de données correspondant dans le MLD. Par exemple, email pourrait être de
+                                type VARCHAR(255).</li>
+                            <li><b>Définir les clés primaires :</b> Chaque table aura une clé primaire (généralement un
+                                identifiant unique). Par exemple, l'attribut id dans la table UTILISATEURS serait la clé
+                                primaire.</li>
+                            <li><b>Définir les clés étrangères :</b> Les relations entre les entités du MCD sont
+                                représentées par des clés étrangères dans le MLD. Par exemple, la relation entre
+                                UTILISATEURS et FAVORIS pourrait être représentée par une clé étrangère utilisateur_id
+                                dans la table FAVORIS.</li>
+                            <li><b>Définir les contraintes :</b> Certaines contraintes doivent être ajoutées, comme NOT
+                                NULL, UNIQUE, FOREIGN KEY, etc., pour garantir l’intégrité des données.</li>
+                        </ol>
+                        <br><br>
+                    </li>
+                    <li><b>Exemple de MLD basé sur le MCD :</b>
+                        <br>
+                        <pre>
+                    Voici un exemple de MLD pour notre projet Blog-Cinéma :
+
+Table UTILISATEURS :
+
+id INT (clé primaire)
+nom VARCHAR(100) NOT NULL
+prenom VARCHAR(100) NOT NULL
+email VARCHAR(255) UNIQUE NOT NULL
+mot_de_passe VARCHAR(255) NOT NULL
+date_inscription DATE NOT NULL
+Table FILMS :
+
+id INT (clé primaire)
+titre VARCHAR(255) NOT NULL
+synopsis TEXT
+date_sortie DATE
+image VARCHAR(255)
+notation FLOAT
+critique TEXT
+Table FAVORIS :
+
+id INT (clé primaire)
+utilisateur_id INT (clé étrangère vers UTILISATEURS)
+film_id INT (clé étrangère vers FILMS)
+liste_numero TINYINT NOT NULL
+
+                </pre>
+                    </li>
+                </ol>
             </div>
         </section>
 
         <section class="collapsible">
             <h2 class="collapsible-header">C. Planification des tables et relations</h2>
             <div class="collapsible-content">
+                <p>
+                    La planification des tables et relations consiste à traduire le MCD et le MLD en une structure
+                    relationnelle et à réfléchir à la manière dont les tables vont interagir entre elles. Cela implique
+                    :
+                </p>
+                <ul>
+                    <li><b>Définir les tables et les relations :</b> Après avoir créé le MCD et le MLD, vous devez vous
+                        assurer que chaque relation est bien définie et que les clés primaires et étrangères sont
+                        correctement utilisées pour établir ces relations.</li>
+                    <li><b>Déterminer les cardinalités des relations :</b> Chaque relation a une cardinalité, telle que
+                        un à un, un à plusieurs, ou plusieurs à plusieurs, et cela doit être pris en compte lors de la
+                        création des clés étrangères.</li>
+                    <li><b>Optimiser les performances :</b> Parfois, les relations peuvent être ajustées pour améliorer
+                        les performances des requêtes (en fonction des besoins du projet).</li>
+                </ul>
+                <p><b>Exemple de relations dans les tables :</b>
+                    <br>
+                <ul>
+                    <li>La table FAVORIS contient deux clés étrangères, une vers UTILISATEURS et une vers FILMS, ce qui
+                        établit une relation plusieurs à plusieurs entre les utilisateurs et les films dans les favoris.
+                    </li>
+                    <li>La table FILMS_CATEGORIES est une table de jonction entre FILMS et CATEGORIES, et elle contient
+                        des clés étrangères pour chaque entité.</li>
+                </ul>
+                </p>
             </div>
         </section>
 
-
-
-
+        <section class="collapsible">
+            <h2 class="collapsible-header">Conclusion</h2>
+            <div class="collapsible-content">
+                <p>Le MCD et le MLD sont des outils essentiels pour la conception d'une base de données. Le MCD permet
+                    de comprendre les données et leurs relations à un niveau abstrait, tandis que le MLD traduit cette
+                    structure en un modèle plus technique, prêt à être implémenté dans une base de données
+                    relationnelle. La planification des tables et des relations est la dernière étape avant de commencer
+                    à implémenter la base de données et garantir que les données peuvent être manipulées efficacement et
+                    en toute sécurité.</p>
+            </div>
+        </section>
     </main>
+
+    
 
     <footer>
         <p>&copy; 2025 Cours MySQL - BDD - en HTML, CSS et JavaScript - CND</p>
