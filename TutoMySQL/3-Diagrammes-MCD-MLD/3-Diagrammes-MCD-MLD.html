@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1. Introduction à MySQL et VS Code</title>
+    <title>3. Diagrammes MCD et MLD</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
 </head>
 
 <body>
     <header>
-        <h1>1. Introduction à MySQL et VS Code
+        <h1>3. Diagrammes MCD et MLD
         </h1>
         <p>Système Linux/Ubuntu - IDE VS Code - 25/01/17</p>
     </header>
@@ -19,79 +19,55 @@
 
     <main>
         <section class="collapsible">
-            <h2 class="collapsible-header">1. Introduction à MySQL et VS Code</h2>
+            <h2 class="collapsible-header">A. Création du MCD (Modèle Conceptuel de Données)</h2>
             <div class="collapsible-content">
-                <ol type="A">
-                    <li>Installation de </li>
-                    <li>Installation de l'extension MySQL pour VS Code</li>
-                    <li>Connexion à MySQL depuis VS Code</li>
-                </ol>
-            </div>
-        </section>
-
-
-
-        <section class="collapsible">
-            <h2 class="collapsible-header">2. Premiers Pas avec MySQL</h2>
-            <div class="collapsible-content">
-                <ol type="A">
-                    <li>Création d'une base de données</li>
-                    <li>Création de tables (exemple : données du projet Blog-Cinema)
+                <ol>
+                    <li><b>Le MCD (Modèle Conceptuel de Données)</b>
+                        <br>
+                        est une représentation des données nécessaires à une application sans se soucier des aspects
+                        techniques de la base de données. Il sert à comprendre et définir les données qui doivent être
+                        stockées ainsi que les relations entre ces données. C'est une étape de conception importante
+                        avant de passer à la création des tables dans la base de données.
+                        <br><br>
                     </li>
-                    <li>Insertion et gestion des données</li>
+                    <li><b>Objectifs du MCD :</b>
+                        <ul>
+                            <li>Identifier les entités principales (objets ou concepts) de l'application.</li>
+                            <li>Définir les relations entre ces entités.</li>
+                            <li>Indiquer les attributs (données spécifiques) de chaque entité.</li>
+                            <li>Identifier les cardinalités des relations (par exemple, un utilisateur peut avoir
+                                plusieurs films en favoris, mais chaque film peut avoir plusieurs utilisateurs qui le
+                                considèrent comme favori).</li>
+                        </ul>
+                        <br>
+                    </li>
+                    <li><b>Étapes pour créer un MCD :</b>
+                        <ol>
+                            <li><b>Identification des entités :</b></li>
+                            <li><b>Définition des relations :</b></li>
+                            <li><b>Définition des attributs :</b></li>
+                            <li><b>Exemple simplifié de MCD :</b></li>
+                        </ol>
+                    </li>
+                    <li><b>Identification des cardinalités :</b></li>
                 </ol>
+
             </div>
         </section>
-
-
 
         <section class="collapsible">
-            <h2 class="collapsible-header">3. Diagrammes MCD et MLD</h2>
+            <h2 class="collapsible-header">B. Création du MLD (Modèle Logique de Données)</h2>
             <div class="collapsible-content">
-                <ol type="A">
-                    <li>Création du MCD (Modèle Conceptuel de Données)</li>
-                    <li>Création du MLD (Modèle Logique de Données)</li>
-                    <li>Planification des tables et relations</li>
-                </ol>
             </div>
         </section>
-
-
 
         <section class="collapsible">
-            <h2 class="collapsible-header">4. Sécurité dans MySQL</h2>
+            <h2 class="collapsible-header">C. Planification des tables et relations</h2>
             <div class="collapsible-content">
-                <ol type="A">
-                    <li>Gestion des utilisateurs et des privilèges</li>
-                    <li>Sécurisation des requêtes (prévention des injections SQL)</li>
-                </ol>
             </div>
         </section>
 
 
-
-        <section class="collapsible">
-            <h2 class="collapsible-header">5. Transactions dans MySQL</h2>
-            <div class="collapsible-content">
-                <ol type="A">
-                    <li>Compréhension des transactions</li>
-                    <li>Utilisation des commandes SQL (BEGIN, COMMIT, ROLLBACK)</li>
-                    <li>Gestion des erreurs et des annulations</li>
-                </ol>
-            </div>
-        </section>
-
-
-
-        <section class="collapsible">
-            <h2 class="collapsible-header">6. Exercices Pratiques</h2>
-            <div class="collapsible-content">
-                <ol type="A">
-                    <li>Insertion, mise à jour, suppression et lecture des données</li>
-                    <li>Création de requêtes SQL sécurisées avec transactions</li>
-                </ol>
-            </div>
-        </section>
 
 
     </main>
