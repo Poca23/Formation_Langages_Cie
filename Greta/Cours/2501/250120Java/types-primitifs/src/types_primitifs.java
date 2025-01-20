@@ -41,17 +41,19 @@ public class types_primitifs {
         // long addition = (long)nombreUtilisateurs + 1;
         // System.out.println(addition);
 
-        short tempsFilm = 120;
-        long calculSecondes = (long)tempsFilm * 60;
-        System.out.println(calculSecondes);
+        // short tempsFilm = 120;
+        // long calculSecondes = (long)tempsFilm * 60;
+        // System.out.println(calculSecondes);
 
-        double prixLocationFilm =  2.50;
-        double reduction = prixLocationFilm * 10 / 100;
-        System.out.println(reduction);
-        double prixReduction = prixLocationFilm - reduction;
-        System.out.println(prixReduction);
+        // double prixLocationFilm = 2.50;
+        // double reduction = prixLocationFilm * 10 / 100;
+        // System.out.println(reduction);
+        // double prixReduction = prixLocationFilm - reduction;
+        // System.out.println(prixReduction);
 
-
+        String phrase = "test cet exercice";
+        phrase = phrase.substring(0, 1).toUpperCase() + phrase.substring(1).toLowerCase();
+        System.out.println(phrase);
 
     }
 }
