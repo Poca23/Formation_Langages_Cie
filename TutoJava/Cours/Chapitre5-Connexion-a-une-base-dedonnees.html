@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapitre 5 - Connexion à une base de données</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>Chapitre 5 - Connexion à une base de données</h1>
+    </header>
+    <a href="../Sommaire.html">Retour au Sommaire</a>
+
+    <main>
+        <section class="collapsible">
+            <h2 class="collapsible-header">Introduction</h2>
+            <div class="collapsible-content">
+                <p>Dans ce chapitre, nous allons apprendre comment connecter une application Java à une base de données
+                    MySQL. Une base de données est essentielle pour stocker, récupérer et manipuler des données dans une
+                    application backend.</p>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Étape 1 : Installation de MySQL</h2>
+            <div class="collapsible-content">
+                <p>Avant de pouvoir établir une connexion, vous devez avoir MySQL installé sur votre machine. Vous
+                    pouvez télécharger MySQL à partir de son site officiel et suivre les instructions d'installation
+                    pour votre système d'exploitation.</p>
+                <p>Vérifiez que MySQL fonctionne en exécutant la commande suivante dans votre terminal :</p>
+                <pre><code>mysql --version</code></pre>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Étape 2 : Ajouter la dépendance MySQL dans votre projet Java</h2>
+            <div class="collapsible-content">
+                <p>Pour connecter Java à une base de données MySQL, vous devez utiliser un driver JDBC. Le driver JDBC
+                    de MySQL est disponible via Maven. Ajoutez la dépendance suivante dans votre fichier
+                    <code>pom.xml</code> :
+                </p>
+                <pre><code>
+&lt;dependency&gt;
+    &lt;groupId&gt;mysql&lt;/groupId&gt;
+    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+    &lt;version&gt;8.0.28&lt;/version&gt;
+&lt;/dependency&gt;
+                </code></pre>
+                <p>Une fois la dépendance ajoutée, Maven téléchargera automatiquement le driver JDBC de MySQL.</p>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Étape 3 : Configurer la connexion à MySQL</h2>
+            <div class="collapsible-content">
+                <p>Pour vous connecter à la base de données MySQL, vous devez spécifier l'URL de connexion, le nom
+                    d'utilisateur et le mot de passe. Voici un exemple de code Java pour établir la connexion :</p>
+                <pre><code>
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class DatabaseConnection {
+    public static void main(String[] args) {
+        String url = "jdbc:mysql://localhost:3306/nom_de_la_base";
+        String user = "root";
+        String password = "votre_mot_de_passe";
+
+        try {
+            Connection connection = DriverManager.getConnection(url, user, password);
+            System.out.println("Connexion réussie !");
+        } catch (SQLException e) {
+            System.out.println("Erreur de connexion : " + e.getMessage());
+        }
+    }
+}
+                </code></pre>
+                <p>Assurez-vous de remplacer <code>nom_de_la_base</code> par le nom réel de votre base de données MySQL
+                    et d'utiliser le bon mot de passe pour l'utilisateur MySQL.</p>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Étape 4 : Tester la connexion</h2>
+            <div class="collapsible-content">
+                <p>Une fois que vous avez configuré la connexion, exécutez votre programme Java. Si la connexion est
+                    réussie, le message "Connexion réussie !" devrait s'afficher. En cas d'erreur, vérifiez les
+                    informations de connexion et assurez-vous que le serveur MySQL est en cours d'exécution.</p>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Conclusion</h2>
+            <div class="collapsible-content">
+                <p>Dans ce chapitre, nous avons appris à connecter une application Java à une base de données MySQL.
+                    Cette connexion est la base pour interagir avec les données dans votre application backend. Vous
+                    pouvez maintenant effectuer des opérations CRUD (Créer, Lire, Mettre à jour, Supprimer) sur la base
+                    de données en utilisant Java et MySQL.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Cours Java Backend - CND</p>
+    </footer>
+</body>
+
+</html>

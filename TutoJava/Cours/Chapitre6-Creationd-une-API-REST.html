@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapitre 6 - Création d'une API REST</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>Chapitre 6 - Création d'une API REST</h1>
+    </header>
+    <a href="../Sommaire.html">Retour au Sommaire</a>
+
+    <main>
+        <section class="collapsible">
+            <h2 class="collapsible-header">Introduction</h2>
+            <div class="collapsible-content">
+                <p>Dans ce chapitre, nous allons apprendre à créer une API REST en Java avec Spring Boot. Une API REST
+                    permet de manipuler des ressources sur le serveur via des requêtes HTTP, comme GET, POST, PUT et
+                    DELETE. Cela permet à votre application frontend (par exemple React) de communiquer avec le backend
+                    Java.</p>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Étape 1 : Configuration de Spring Boot</h2>
+            <div class="collapsible-content">
+                <p>Pour commencer, vous devez avoir Spring Boot configuré dans votre projet. Si vous n'avez pas encore
+                    Spring Boot, vous pouvez le configurer facilement avec Maven ou Gradle.</p>
+                <p>Dans votre fichier <code>pom.xml</code> (pour Maven), ajoutez les dépendances suivantes :</p>
+                <pre><code>
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt;
+&lt;/dependency&gt;
+                </code></pre>
+                <p>Si vous utilisez Gradle, vous pouvez ajouter les dépendances similaires dans votre fichier
+                    <code>build.gradle</code>.
+                </p>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Étape 2 : Création d'un contrôleur REST</h2>
+            <div class="collapsible-content">
+                <p>Une fois Spring Boot configuré, vous pouvez commencer à créer votre API REST. Un contrôleur REST est
+                    une classe qui contient des méthodes pour gérer les requêtes HTTP. Voici un exemple de contrôleur
+                    qui gère des utilisateurs :</p>
+                <pre><code>
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/users")
+public class UserController {
+    
+    @GetMapping
+    public List<User> getAllUsers() {
+        // Retourner la liste des utilisateurs
+        return userService.findAll();
+    }
+}
+                </code></pre>
+                <p>Dans cet exemple, la méthode <code>getAllUsers()</code> répond à une requête GET à l'URL
+                    <code>/api/users</code> et renvoie une liste d'utilisateurs.
+                </p>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Étape 3 : Création d'un modèle</h2>
+            <div class="collapsible-content">
+                <p>Vous aurez probablement besoin d'un modèle pour vos données. Voici un exemple d'un modèle "User" pour
+                    représenter un utilisateur dans la base de données :</p>
+                <pre><code>
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+public class User {
+    
+    @Id
+    private Long id;
+    private String name;
+    private String email;
+
+    // Getters et setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+}
+                </code></pre>
+                <p>Ce modèle correspond à une table "users" dans votre base de données MySQL. Chaque instance de
+                    <code>User</code> sera mappée à une ligne dans cette table.
+                </p>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Étape 4 : Création d'un service</h2>
+            <div class="collapsible-content">
+                <p>Les services dans Spring Boot gèrent la logique métier. Un service peut appeler un dépôt (repository)
+                    pour interagir avec la base de données. Voici un exemple de service pour gérer les utilisateurs :
+                </p>
+                <pre><code>
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.List;
+
+@Service
+public class UserService {
+    
+    @Autowired
+    private UserRepository userRepository;
+
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+}
+                </code></pre>
+                <p>Le service <code>UserService</code> utilise un dépôt <code>UserRepository</code> pour récupérer tous
+                    les utilisateurs de la base de données.</p>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Étape 5 : Création d'un dépôt</h2>
+            <div class="collapsible-content">
+                <p>Le dépôt est responsable de la communication directe avec la base de données. Voici un exemple de
+                    dépôt pour l'entité <code>User</code> :</p>
+                <pre><code>
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserRepository extends JpaRepository<User, Long> {
+}
+                </code></pre>
+                <p>Le dépôt <code>UserRepository</code> étend <code>JpaRepository</code>, ce qui permet d'utiliser des
+                    méthodes comme <code>findAll()</code> pour récupérer tous les utilisateurs de la base de données
+                    sans écrire de requêtes SQL.</p>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Étape 6 : Tester l'API REST</h2>
+            <div class="collapsible-content">
+                <p>Une fois votre API REST créée, vous pouvez la tester en utilisant un outil comme
+                    <strong>Postman</strong> ou <strong>cURL</strong> pour envoyer des requêtes HTTP.
+                </p>
+                <p>Par exemple, vous pouvez tester une requête GET pour obtenir la liste des utilisateurs :</p>
+                <pre><code>
+GET http://localhost:8080/api/users
+                </code></pre>
+                <p>Si tout fonctionne correctement, vous devriez recevoir une réponse contenant la liste des
+                    utilisateurs en format JSON.</p>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Conclusion</h2>
+            <div class="collapsible-content">
+                <p>Dans ce chapitre, vous avez appris à créer une API REST en Java avec Spring Boot. Nous avons couvert
+                    la configuration de Spring Boot, la création d'un contrôleur REST, la définition de modèles et de
+                    services, ainsi que la manière de tester l'API. Vous êtes maintenant prêt à construire des APIs REST
+                    pour vos applications backend Java.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Cours Java Backend - CND</p>
+    </footer>
+</body>
+
+</html>
