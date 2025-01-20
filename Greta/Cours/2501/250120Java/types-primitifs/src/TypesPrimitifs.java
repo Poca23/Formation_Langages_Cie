@@ -18,21 +18,41 @@ public class TypesPrimitifs {
         // System.out.println((Double.parseDouble(note1) + Double.parseDouble(note2) +
         // Double.parseDouble(note3)) / 3);
 
-        System.out.println(verifierIdentifiant("123", 123)); // Affiche true
-        System.out.println(verifierIdentifiant("456", 789)); // Affiche false
-    }
+        // System.out.println(verifierIdentifiant("123", 123)); // Affiche true
+        // System.out.println(verifierIdentifiant("456", 789)); // Affiche false
 
-    public static boolean verifierIdentifiant(String identifiantString, Integer identifiantRecherche) {
-        try {
-            int identifiantConverti = Integer.parseInt(identifiantString);
-
-            return identifiantConverti == identifiantRecherche;
-        } catch (NumberFormatException e) {
-            
-            System.out.println("Erreur : l'identifiantString n'est pas un nombre valide.");
-            return false;
-        }
+        // afficherTitreFilm("Inception");
+        // System.out.println(titre); // Erreur de compilation : titre non accessible
+        // ici car en dehors du bloc ou elle est déclarée.
 
     }
+
+    // public static boolean verifierIdentifiant(String identifiantString, Integer
+    // identifiantRecherche) {
+    // try {
+    // int identifiantConverti = Integer.parseInt(identifiantString);
+
+    // return identifiantConverti == identifiantRecherche;
+    // } catch (NumberFormatException e) {
+
+    // System.out.println("Erreur : l'identifiantString n'est pas un nombre
+    // valide.");
+    // return false;
+    // }
+
+    // }
+
+    // public static void afficherTitreFilm(String titreParam) {
+    // String titre = titreParam; // Variable locale à la méthode afficherTitreFilm
+    // System.out.println("Titre du film : " + titre);
+    // }
+
+    // public static void verifierAge(int age) {
+    //     if (age >= 18) {
+    //         String message = "Accès autorisé."; // Variable locale au bloc if
+    //         System.out.println(message);
+    //     }
+    //     System.out.println(message); // Erreur de compilation : message non accessible ici
+    // }
 
 }
