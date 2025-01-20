@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapitre 3 - Connexion à MySQL depuis Java</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>Chapitre 3 - Connexion à MySQL depuis Java</h1>
+    </header>
+    <a href="../Sommaire.html">Retour au Sommaire</a>
+
+    <main>
+
+        <!-- Section 1: Présentation de JDBC -->
+        <section class="collapsible">
+            <h2 class="collapsible-header">1. Présentation de JDBC</h2>
+            <div class="collapsible-content">
+                <p>
+                    JDBC (Java Database Connectivity) est une API Java permettant de se connecter à une base de données
+                    relationnelle et de manipuler les données.
+                    JDBC agit comme un pont entre les applications Java et les bases de données, telles que MySQL,
+                    PostgreSQL ou Oracle.
+                </p>
+                <img src="images/jdbc_overview.png" alt="Schéma de fonctionnement JDBC" class="styled-image">
+            </div>
+        </section>
+
+        <!-- Section 2: Installation du Connecteur MySQL -->
+        <section class="collapsible">
+            <h2 class="collapsible-header">2. Installation du Connecteur MySQL</h2>
+            <div class="collapsible-content">
+                <p>
+                    Pour utiliser MySQL avec JDBC, vous devez télécharger et ajouter le connecteur MySQL à votre projet
+                    Java :
+                </p>
+                <ol>
+                    <li>
+                        Téléchargez le connecteur depuis le site officiel :
+                        <a href="https://dev.mysql.com/downloads/connector/j/" target="_blank" rel="noopener">Télécharger MySQL
+                            Connector/J</a>.
+                    </li>
+                    <li>
+                        Ajoutez le fichier JAR du connecteur à votre projet :
+                        <ul>
+                            <li><strong>Avec IntelliJ IDEA :</strong> Faites un clic droit sur votre projet, choisissez
+                                <em>"Add Library"</em>, et sélectionnez le fichier JAR.</li>
+                            <li><strong>Avec Eclipse :</strong> Faites un clic droit sur votre projet, choisissez
+                                <em>"Build Path > Add External Archives"</em>, et ajoutez le fichier JAR.</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Section 3: Établir une Connexion à la Base de Données -->
+        <section class="collapsible">
+            <h2 class="collapsible-header">3. Établir une Connexion à la Base de Données</h2>
+            <div class="collapsible-content">
+                <p>
+                    Voici un exemple de code Java pour se connecter à une base de données MySQL :
+                </p>
+                <pre><code>import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class Main {
+    public static void main(String[] args) {
+        String url = "jdbc:mysql://localhost:3306/nom_de_la_base";
+        String user = "nom_utilisateur";
+        String password = "mot_de_passe";
+
+        try (Connection connection = DriverManager.getConnection(url, user, password)) {
+            System.out.println("Connexion réussie à la base de données !");
+        } catch (SQLException e) {
+            System.out.println("Erreur de connexion : " + e.getMessage());
+        }
+    }
+}</code></pre>
+                <p>
+                    Assurez-vous de remplacer <code>nom_de_la_base</code>, <code>nom_utilisateur</code> et
+                    <code>mot_de_passe</code> par vos propres informations.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 4: Tester la Connexion -->
+        <section class="collapsible">
+            <h2 class="collapsible-header">4. Tester la Connexion</h2>
+            <div class="collapsible-content">
+                <p>
+                    Pour tester le code ci-dessus :
+                </p>
+                <ol>
+                    <li>
+                        Assurez-vous que votre serveur MySQL est démarré.
+                    </li>
+                    <li>
+                        Exécutez le programme Java dans votre IDE.
+                    </li>
+                    <li>
+                        Si la connexion est réussie, le message suivant s'affichera dans la console :
+                        <em>"Connexion réussie à la base de données !"</em>
+                    </li>
+                    <li>
+                        En cas d'erreur, vérifiez les informations de connexion et les logs.
+                    </li>
+                </ol>
+                <img src="images/mysql_connection_test.png" alt="Test de connexion MySQL" class="styled-image">
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Cours React en HTML, CSS et JavaScript - CND</p>
+    </footer>
+</body>
+
+</html>
