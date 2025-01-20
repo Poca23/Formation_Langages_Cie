@@ -56,7 +56,7 @@ main {
 }
 
 .styled-image:hover {
-  filter: brightness(1.2);
+  filter: brightness(1.7);
 }
 
 main {
@@ -89,7 +89,7 @@ footer {
 @media (max-width: 1024px) {
   /* Styles pour tablette */
   main {
-    padding: 1em;
+  padding-bottom: 6em;
   }
 
   .collapsible-header {
@@ -112,7 +112,7 @@ footer {
   }
 
   main {
-    padding: 1em;
+    padding-bottom: 6em;
     align-items: center;
   }
 

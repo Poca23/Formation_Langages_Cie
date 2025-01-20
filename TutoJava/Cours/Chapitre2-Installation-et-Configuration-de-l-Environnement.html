@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapitre 2 - Installation et Configuration de l'Environnement</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>Chapitre 2 - Installation et Configuration de l'Environnement</h1>
+    </header>
+    <a href="sommaire.html">Retour au Sommaire</a>
+
+    <main>
+
+        <!-- Section 1: Installation de Java Development Kit (JDK) -->
+        <section class="collapsible">
+            <h2 class="collapsible-header">1. Installation de Java Development Kit (JDK)</h2>
+            <div class="collapsible-content">
+                <p>
+                    Le JDK (Java Development Kit) est indispensable pour compiler et exécuter vos programmes Java. Voici
+                    les étapes pour l'installer :
+                </p>
+                <ol>
+                    <li>
+                        Rendez-vous sur le site officiel d'<a
+                            href="https://www.oracle.com/java/technologies/javase-downloads.html" target="_blank"
+                            rel="noopener">Oracle</a> ou utilisez une version open source comme OpenJDK.
+                    </li>
+                    <li>
+                        Téléchargez la version correspondant à votre système d'exploitation (Windows, macOS, Linux).
+                    </li>
+                    <li>
+                        Suivez les instructions d'installation spécifiques à votre plateforme.
+                    </li>
+                    <li>
+                        Une fois installé, vérifiez que Java est bien configuré en exécutant la commande suivante dans
+                        votre terminal :
+                        <pre><code>java -version</code></pre>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Section 2: Installation d'un IDE -->
+        <section class="collapsible">
+            <h2 class="collapsible-header">2. Installation d'un IDE (Environnement de Développement Intégré)</h2>
+            <div class="collapsible-content">
+                <p>
+                    Un IDE facilite l'écriture et la gestion de projets Java. Nous recommandons les options suivantes :
+                </p>
+                <ul>
+                    <li>
+                        <strong>IntelliJ IDEA :</strong> Puissant et populaire, avec une version Community gratuite.
+                        <a href="https://www.jetbrains.com/idea/download/" target="_blank" rel="noopener">Télécharger
+                            IntelliJ IDEA</a>
+                    </li>
+                    <li>
+                        <strong>Eclipse :</strong> Un choix classique pour les développeurs Java.
+                        <a href="https://www.eclipse.org/downloads/" target="_blank" rel="noopener">Télécharger
+                            Eclipse</a>
+                    </li>
+                    <li>
+                        <strong>VS Code :</strong> Léger, avec l'extension <em>Java Extension Pack</em> pour Java.
+                        <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">Télécharger VS Code</a>
+                    </li>
+                </ul>
+                <p>
+                    Installez l'IDE de votre choix et configurez-le pour votre premier projet Java.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 3: Configuration des Variables d'Environnement -->
+        <section class="collapsible">
+            <h2 class="collapsible-header">3. Configuration des Variables d'Environnement</h2>
+            <div class="collapsible-content">
+                <p>
+                    Pour que votre système reconnaisse les commandes Java, ajoutez le chemin du JDK à votre variable
+                    d'environnement PATH :
+                </p>
+                <ol>
+                    <li>
+                        Localisez le dossier d'installation de votre JDK (par exemple,
+                        <code>C:\\Program Files\\Java\\jdk-version</code> sur Windows).
+                    </li>
+                    <li>
+                        Ajoutez le chemin <code>bin</code> à votre variable PATH.
+                    </li>
+                    <li>
+                        Redémarrez votre terminal et vérifiez avec :
+                        <pre><code>echo %PATH%</code> (Windows) ou <code>echo $PATH</code> (Linux/macOS).</pre>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Section 4: Création du Premier Projet Java -->
+        <section class="collapsible">
+            <h2 class="collapsible-header">4. Création du Premier Projet Java</h2>
+            <div class="collapsible-content">
+                <p>
+                    Voici les étapes pour créer et exécuter un premier programme Java :
+                </p>
+                <ol>
+                    <li>
+                        Ouvrez votre IDE et créez un nouveau projet Java.
+                    </li>
+                    <li>
+                        Ajoutez une nouvelle classe avec un fichier nommé <code>Main.java</code>.
+                    </li>
+                    <li>
+                        Écrivez le code suivant dans le fichier :
+                        <pre><code>public class Main {
+    public static void main(String[] args) {
+        System.out.println("Bonjour, Java Backend !");
+    }
+}</code></pre>
+                    </li>
+                    <li>
+                        Exécutez le programme et observez le message s'afficher dans la console.
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Cours React en HTML, CSS et JavaScript - CND</p>
+    </footer>
+</body>
+
+</html>
