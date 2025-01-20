@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercices - Cours JavaScript</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>Exercices - Cours JavaScript</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2><a href="../Sommaire.html">Retour au Sommaire</a></h2>
+            <h2>Exercices JavaScript - Niveau Débutant ++</h2>
+
+            <div class="collapsible">
+                <div class="collapsible-header">Exercice 1 - Afficher un message de bienvenue</div>
+                <div class="collapsible-content">
+                    <p>Écrivez un programme qui affiche un message de bienvenue dans la console.</p>
+                    <pre><code>console.log("Bienvenue dans le cours JavaScript !");</code></pre>
+                </div>
+            </div>
+
+            <div class="collapsible">
+                <div class="collapsible-header">Exercice 2 - Calculer la somme de deux nombres</div>
+                <div class="collapsible-content">
+                    <p>Écrivez une fonction qui prend deux nombres en entrée et retourne leur somme.</p>
+                    <pre><code>
+function somme(a, b) {
+    return a + b;
+}
+console.log(somme(5, 3)); // Résultat attendu : 8
+</code></pre>
+                </div>
+            </div>
+
+            <div class="collapsible">
+                <div class="collapsible-header">Exercice 3 - Vérifier si un nombre est pair ou impair</div>
+                <div class="collapsible-content">
+                    <p>Écrivez une fonction qui prend un nombre en entrée et vérifie s'il est pair ou impair.</p>
+                    <pre><code>
+function estPair(n) {
+    return n % 2 === 0 ? "Pair" : "Impair";
+}
+console.log(estPair(4)); // Résultat attendu : "Pair"
+console.log(estPair(7)); // Résultat attendu : "Impair"
+</code></pre>
+                </div>
+            </div>
+
+            <div class="collapsible">
+                <div class="collapsible-header">Exercice 4 - Afficher la date et l'heure actuelles</div>
+                <div class="collapsible-content">
+                    <p>Écrivez un programme qui affiche la date et l'heure actuelles dans le format suivant :
+                        "YYYY-MM-DD HH:MM:SS".</p>
+                    <pre><code>
+const dateActuelle = new Date();
+console.log(dateActuelle.toISOString().slice(0, 19).replace("T", " ")); // Exemple : "2025-01-20 14:30:00"
+</code></pre>
+                </div>
+            </div>
+
+            <div class="collapsible">
+                <div class="collapsible-header">Exercice 5 - Inverser un tableau</div>
+                <div class="collapsible-content">
+                    <p>Écrivez une fonction qui inverse l'ordre des éléments d'un tableau.</p>
+                    <pre><code>
+function inverserTableau(arr) {
+    return arr.reverse();
+}
+console.log(inverserTableau([1, 2, 3, 4])); // Résultat attendu : [4, 3, 2, 1]
+</code></pre>
+                </div>
+            </div>
+
+            <div class="collapsible">
+                <div class="collapsible-header">Exercice 6 - Calculer la factorielle d'un nombre</div>
+                <div class="collapsible-content">
+                    <p>Écrivez une fonction qui calcule la factorielle d'un nombre.</p>
+                    <pre><code>
+function factorielle(n) {
+    let resultat = 1;
+    for (let i = 1; i <= n; i++) {
+        resultat *= i;
+    }
+    return resultat;
+}
+console.log(factorielle(5)); // Résultat attendu : 120
+</code></pre>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Cours JavaScript - CND</p>
+    </footer>
+
+</body>
+
+</html>
