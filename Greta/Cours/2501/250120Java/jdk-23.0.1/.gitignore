@@ -1,0 +1,2 @@
+echo "Greta/Cours/2501/250120Java/jdk-23.0.1/lib/src.zip" >> .gitignore
+echo "Greta/Cours/2501/250120Java/jdk-23.0.1/lib/modules" >> .gitignore

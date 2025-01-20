@@ -1,0 +1,118 @@
+/* Style global */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  padding-bottom: 6em; /* Espace pour le footer fixé */
+}
+
+small {
+  text-transform: uppercase;
+}
+/* En-tête et pied de page */
+header,
+footer {
+  background-color: #004c99;
+  color: white;
+  text-align: center;
+  padding: 1em;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Mise en page principale */
+main {
+  padding: 2em 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Sections repliables */
+.collapsible {
+  margin-bottom: 1em;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  max-width: 800px;
+  width: 100%;
+}
+
+.collapsible-header {
+  background-color: #0073e6;
+  color: white;
+  padding: 0.5em;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.collapsible-content {
+  display: none;
+  padding: 0.5em;
+  background-color: #f9f9f9;
+}
+
+/* Listes ordonnées */
+ol {
+  margin-left: 1.5em;
+}
+
+/* Liens */
+a {
+  color: #004c99;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+code {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: rgb(0, 40, 151);
+  background-color: #ffffff;
+}
+
+/* Responsivité */
+@media (max-width: 1024px) {
+  main {
+    padding: 1em;
+  }
+
+  .collapsible-header,
+  .collapsible-content {
+    padding: 1em;
+  }
+}
+
+@media (max-width: 900px) {
+  header,
+  footer {
+    padding: 0.5em 0;
+  }
+
+  .collapsible-header {
+    padding: 0.5em;
+    text-align: center;
+  }
+
+  .collapsible-content {
+    padding: 0.5em;
+  }
+
+  footer {
+    padding: 0.5em 0;
+  }
+}
