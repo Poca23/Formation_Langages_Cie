@@ -13,7 +13,7 @@ public class Actor {
         this.name = name;
         this.birthYear = birthYear;
         this.nationality = nationality;
-        this.birthDate = LocalDate.of(birthYear, 1, 1); // Ajout de l'initialisation de birthDate
+        this.birthDate = LocalDate.of(birthYear, 1, 1);
     }
 
     public String getName() {
