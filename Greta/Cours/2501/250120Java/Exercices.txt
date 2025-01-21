@@ -1,0 +1,462 @@
+Variable : emplacement en mémoire qui permet de stocker une valeur d'un type spécifique.
+
+Nom de la variable : camelCase
+
+Déclaration et initialisation d’une variable :
+String visioTech = "ma visiotech";
+
+
+Java est sensible à la casse :
+maVariable = "toto";
+maVariaBle = "tata";
+System.out.println(maVariable);
+System.out.println(maVariaBle);
+
+
+Constante :
+final int NOMBRE_MAXIMAL = 100;
+
+
+char : un seul caractère, avec guillemets simples :
+char premiereLettre = 'A';
+
+
+Caractères spéciaux : utiliser des séquences d'échappement 
+char retourALaLigne = '\n';
+char Tabulation = '\t';
+char guillemetSimple = '\'';
+char backslash = '\\';
+
+
+String : chaîne de caractères
+String titreFilm = "Le Seigneur des Anneaux";
+
+
+Afficher ce message :
+"Être ou ne pas être", telle est la question.
+String citation = "\"Être ou ne pas être\", telle est la question.";
+System.out.println( citation );
+
+
+
+Essayer quelques types primitifs :
+Déclarer et initialiser les variables suivantes pour représenter des informations sur un film :
+agePublic (int) : L'âge minimum requis pour regarder le film (par exemple, 12 ans).
+anneeSortie (int) : L'année de sortie du film (par exemple, 2023).
+nombreVues (int) : Le nombre total de vues du film.
+estEnCouleur (boolean) : Indique si le film est en couleur ou en noir et blanc.
+premiereLettreTitre (char) : La première lettre du titre du film.
+
+int agePublic = 12;
+int anneeSortie = 2023;
+int nombreVues = 100;
+boolean estEnCouleur = true;
+char premiereLettreTitre = 'H';
+
+
+Tableau récapitulatif sur les types primitifs :
+
+
+	Type
+	Taille (bits)
+	
+
+Plage de valeurs
+		
+Usage principal
+			
+Exemple
+boolean
+		
+Indéterminé
+		
+true ou false
+		
+Valeurs logiques, conditions
+		
+boolean disponible = true;
+		
+byte	
+8
+		
+-128 à 127
+		
+Petits entiers, données binaires
+		
+byte octetRecu = 0x0A;
+
+		
+short
+		
+16
+		
+-32 768 à 32 767
+		
+Petits entiers (économie de mémoire)
+		
+short annee = 2024;
+		
+int
+		
+32
+		
+-2 147 483 648 à 2 147 483 647
+		
+Entiers courants, compteurs, indices
+		
+int nombre = 1000;
+		
+long
+		
+64
+		
+-9 223 372 036 854 775 808 à 9 223 372 036 854 775 807
+		
+Grands entiers, identifiants, dates en millisecondes
+		
+long id = 1234567890L;
+		
+float
+		
+32
+		
+±1.4E-45 à ±3.4E+38 (environ 7 chiffres significatifs)
+		
+Nombres décimaux simple précision (économie de mémoire)
+		
+float prix = 9.99f;
+		
+double
+		
+64
+		
+±4.9E-324 à ±1.8E+308 (environ 15 chiffres significatifs)
+		
+Nombres décimaux double précision, calculs scientifiques et financiers
+		
+double taux = 0.05;
+		
+char
+		
+16
+		
+U+0000 à U+FFFF (caractères Unicode)
+		
+Caractères individuels
+		
+char initiale = 'J';
+		
+
+
+
+
+int vs long
+Vous avez une base de données avec 2 147 483 647 utilisateurs. Vous en ajoutez un. Quel est le nouveau nombre d’utilisateurs ? Que se passe-t-il si vous utilisez int ?
+int numberUsers = Integer.MAX_VALUE;
+numberUsers++;
+System.out.println("Nombre d'utilisateurs (int) : " + numberUsers);
+
+
+long numberUsersLong = Integer.MAX_VALUE;
+numberUsersLong++;
+System.out.println("Nombre d'utilisateurs (long) : " + numberUsersLong); 
+
+
+long
+Un film a une durée de 120 minutes. Calculez sa durée en secondes et stockez le résultat dans une variable long.
+int dureeMinutes = 120;
+long dureeSecondes = dureeMinutes * 60;
+System.out.println("Durée en secondes : " + dureeSecondes);
+
+
+double
+Le prix de base d'une location de film est de 2.50€. Calculez le prix avec une réduction de 10% et stockez le résultat dans une variable double.
+double prixReduit = 2.50 * (1 - 0.1);
+System.out.println("Prix réduit : " + prixReduit);
+
+
+
+https://fr.wikibooks.org/wiki/Programmation_Java/Types_de_base
+“Une constante numérique de type entier est considérée comme étant de type int. Il faut ajouter le suffixe L pour avoir une constante de type long.”
+“Une constante numérique à virgule est considérée comme étant de type double. Il faut ajouter le suffixe F pour avoir une constante de type float.”
+
+méthodes de String
+Un utilisateur saisit le titre d'un film en minuscules. Écrivez une méthode formaterTitre(String titre) qui retourne le titre avec la première lettre en majuscule et le reste en minuscules.
+méthodes substring(), toUpperCase(), toLowerCase()
+public class Exercices
+{
+	public static String formaterTitre(String titre) {
+          return titre.substring(0, 1).toUpperCase() + titre.substring(1).toLowerCase();  	 
+	}
+
+	public static void main( String[] args )
+	{
+    	    System.out.println(formaterTitre("interstellar"));
+          // Affiche Interstellar
+
+    	    System.out.println(formaterTitre("HARRY POTTER"));
+          // Affiche Harry potter
+	}
+}
+
+
+Écrivez une méthode comparerActeurs(String acteur1, String acteur2) qui retourne true si les noms des deux acteurs sont identiques (en ignorant la casse), false sinon.
+equalsIgnoreCase()
+public class Exercices {
+	public static boolean comparerActeurs(String acteur1, String acteur2) {
+   	    return acteur1.equalsIgnoreCase(acteur2);
+	}
+
+	public static void main(String[] args) {
+    	System.out.println(comparerActeurs("Leonardo DiCaprio", "leonardo dicaprio")); // Affiche true
+    	System.out.println(comparerActeurs("Brad Pitt", "Angelina Jolie")); // Affiche false 
+	}
+}
+
+
+Pour chaque type primitif, il existe une classe enveloppe (Wrapper) correspondante : 
+Integer pour int
+Double pour double
+Boolean pour boolean
+Character pour char
+Byte pour byte
+Short pour short
+Long pour long.
+
+
+Double
+Corriger le code ci-dessous qui calcule la moyenne des notes d’un film :
+Double.parseDouble()
+public static void main( String[] args )
+{
+	Double note1 = Double.parseDouble("8.5");
+	Double note2= Double.parseDouble("9");
+	Double note3 = Double.parseDouble("9.5");
+	System.out.println((note1 + note2 + note3) / 3);
+}
+
+
+Pour déclarer et initialiser plusieurs variables sur une ligne :
+int x = 1, y = 2, z = 3;
+
+
+Integer
+Vous avez des identifiants d'utilisateurs stockés sous forme de String. Écrivez une méthode verifierIdentifiant(String identifiantString, Integer identifiantRecherche) qui vérifie si un identifiant donné correspond à un identifiant recherché.
+Integer.valueOf() -> Integer
+Interger.parseInt() -> int
+public class Exercices {
+	public static boolean verifierIdentifiant(String identifiantString, Integer identifiantRecherche) {
+        	Integer identifiant = Integer.valueOf(identifiantString);
+        	return identifiant.equals(identifiantRecherche);
+	}
+
+	public static void main(String[] args) {
+    	System.out.println(verifierIdentifiant("123", 123)); // Affiche true
+    	System.out.println(verifierIdentifiant("456", 789)); // Affiche false
+	}
+}
+
+
+
+Portée d’une variable : portée locale
+Sa portée est limitée au bloc dans lequel elle est déclarée.
+
+
+public class ExemplePortee {
+    
+	public static void afficherTitreFilm(String titreParam) {
+    	String titre = titreParam; // Variable locale à la méthode afficherTitreFilm
+    	System.out.println("Titre du film : " + titre);
+	}
+
+	public static void main(String[] args) {
+    	afficherTitreFilm("Inception");
+      System.out.println(titre); // Erreur de compilation : titre non accessible ici
+	}
+}
+
+
+public static void verifierAge(int age) {
+	if (age >= 18) {
+    	    String message = "Accès autorisé."; // Variable locale au bloc if
+    	    System.out.println(message);
+	} 
+      System.out.println(message); // Erreur de compilation : message non accessible ici
+}
+
+
+
+Conditions
+
+Écrivez une méthode checkLocationPermission(int age, String categorie) qui prend en paramètre l'âge d'un utilisateur et la catégorie du film. Les règles sont les suivantes :
+Si l'âge est inférieur à 12 ans, afficher "Accès refusé. Âge minimum : 12 ans.".
+Si l'âge est entre 12 et 16 ans (inclus), et que la catégorie est "Horreur", afficher "Accès refusé. Catégorie interdite aux moins de 16 ans.".
+Dans tous les autres cas, afficher "Location autorisée.".
+
+
+opérateurs logiques
+et : &&
+ou : ||
+non : !
+
+
+opérateurs de comparaison : ==, !=, <, >, <=, >=
+
+public static void checkLocationPermission(int age, String category) {
+	if (age < 12) {
+    	    System.out.println("Accès refusé. Âge minimum : 12 ans.");
+	} else if (age <= 16 && category.equals("Horreur")) {
+    	    System.out.println("Accès refusé. Catégorie interdite aux moins de 16 ans.");
+	} else {
+    	    System.out.println("Location autorisée.");
+	}
+}
+
+public static void main(String[] args) {
+	checkLocationPermission(10, "Action");
+	checkLocationPermission(15, "Horreur");
+	checkLocationPermission(15, "Comédie");
+	checkLocationPermission(18, "Horreur");
+}
+
+
+
+
+Visiotech propose différents types d'abonnements : "Basique", "Premium" et "VIP".
+Écrivez une méthode afficherAvantagesAbonnement(String typeAbonnement, boolean aUtiliseCodePromo) qui affiche les avantages de chaque abonnement :
+"Basique" : "Accès au catalogue standard." Si l'utilisateur a utilisé un code promo, ajouter "Réduction de 5% sur la première location.".
+"Premium" : "Accès au catalogue complet et location HD." Si l'utilisateur a utilisé un code promo, ajouter "Réduction de 10% sur les trois premières locations.".
+"VIP" : "Accès au catalogue complet, location HD et support prioritaire.". Si l'utilisateur a utilisé un code promo, ajouter "Accès à une avant-première exclusive.".
+Pour tout autre type d'abonnement, afficher "Type d'abonnement inconnu.".
+
+public static void afficherAvantagesAbonnement(String typeAbonnement, boolean aUtiliseCodePromo) {
+	switch (typeAbonnement) {
+    	case "Basique":
+        	System.out.println("Accès au catalogue standard.");
+        	if (aUtiliseCodePromo) {
+            	System.out.println("Réduction de 5% sur la première location.");
+        	}
+        	break;
+    	case "Premium":
+        	System.out.println("Accès au catalogue complet et location HD.");
+        	if (aUtiliseCodePromo) {
+            	System.out.println("Réduction de 10% sur les trois premières locations.");
+        	}
+        	break;
+    	case "VIP":
+        	System.out.println("Accès au catalogue complet, location HD et support prioritaire.");
+        	if (aUtiliseCodePromo) {
+            	System.out.println("Accès à une avant-première exclusive.");
+        	}
+        	break;
+    	default:
+        	System.out.println("Type d'abonnement inconnu.");
+	}
+}
+
+public static void main(String[] args) {
+	afficherAvantagesAbonnement("Basique", true);
+	afficherAvantagesAbonnement("Premium", false);
+	afficherAvantagesAbonnement("VIP", true);
+	afficherAvantagesAbonnement("Platine", false);
+}
+
+
+Switch Expressions and Statements
+https://docs.oracle.com/en/java/javase/23/language/switch-expressions-and-statements.html
+
+Boucles
+Vous avez un tableau de titres de films. Écrivez une méthode afficherTitres(String[] titres) qui affiche chaque titre précédé de son numéro d'ordre.
+public static void afficherTitres(String[] titres) {
+	for (int i = 0; i < titres.length; i++) {
+    	    System.out.println((i + 1) + ". " + titres[i]);
+	}
+}
+public static void main(String[] args) {
+	String[] films = {"Inception", "Interstellar", "The Dark Knight", "Tenet"};
+	afficherTitres(films);
+}
+
+
+
+
+Autre façon de faire la boucle for :
+
+public static void afficherTitres(String[] titres) {
+	int i = 1;
+	for (String titre : titres) {
+    	    System.out.println((i + 1) + ". " + titres[i]);
+    	    i++;
+	}
+}
+
+
+Vous avez un tableau de noms d'acteurs. Écrivez une méthode rechercherActeur(String[] acteurs, String nomRecherche) qui recherche un acteur par son nom et retourne true s'il est trouvé, false sinon.
+
+boucle while:
+public static boolean rechercherActeur(String[] acteurs, String nomRecherche) {
+	int i = 0;
+	while (i < acteurs.length) {
+    	    if (acteurs[i].equals(nomRecherche)) {
+        	  return true;
+    	    }
+    	    i++;
+	}
+	return false;
+}
+
+public static void main(String[] args) {
+	String[] acteurs = {"Leonardo DiCaprio", "Brad Pitt", "Angelina Jolie"};
+	System.out.println(rechercherActeur(acteurs, "Brad Pitt"));
+            System.out.println(rechercherActeur(acteurs, "Tom Cruise"));
+}
+
+
+boucle do-while :
+public static boolean rechercherActeur(String[] acteurs, String nomRecherche) {
+	int i = 0;
+	do {
+    	    if (acteurs[i].equals(nomRecherche)) {
+        	  return true;
+    	    }
+    	    i++;
+	} while (i < acteurs.length);
+	return false;
+}
+
+Programmation Orientée Objet
+Car redCar = new Car("red", "Renault", "Clio");
+Car greenCar = new Car("green", "Peugeot", "208"); 
+
+l’objet redCar est une instance de la classe Car
+L’objet redCar est une instance de la classe Car.
+L’action d créer un objet : instanciation
+
+public class Car {
+    private String color;
+    private String brand;
+    private String model;
+
+    public Car(String color, String brand, String model) {
+        this.color = color;
+        this.brand = brand;
+        this.model = model;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public String getDetails() {
+        return "A " + color + " " + brand + " " + model;
+    }
+}
+

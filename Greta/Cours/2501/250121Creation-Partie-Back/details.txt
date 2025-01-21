@@ -1,0 +1,9 @@
+# Details du projet visotech-cnd avec Maven
+
+Confirm properties configuration:
+groupId: vcom.visiotech
+artifactId: visotech-core-cnd
+version: 1.0-SNAPSHOT
+package: vcom.visiotech
+
+https://mvnrepository.com/
