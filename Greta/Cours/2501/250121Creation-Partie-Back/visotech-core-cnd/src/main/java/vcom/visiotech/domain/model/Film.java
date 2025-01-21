@@ -12,21 +12,17 @@ public class Film {
         this.duration = duration;
     }
 
-
     public String getTitle() {
         return title;
     }
-
 
     public int getReleaseYear() {
         return releaseYear;
     }
 
-
     public int getDuration() {
         return duration;
     }
-
 
     public String getDetails() {
         return title + " (" + releaseYear + "), " + duration + " minutes";
