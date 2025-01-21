@@ -1,16 +1,19 @@
-// Actor.java
 package vcom.visiotech.domain.model;
+
+import java.time.LocalDate;
 
 public class Actor {
 
     private String name;
-    private int birthYear;
     private String nationality;
+    private LocalDate birthDate;
+    private int birthYear;
 
     public Actor(String name, int birthYear, String nationality) {
         this.name = name;
         this.birthYear = birthYear;
         this.nationality = nationality;
+        this.birthDate = LocalDate.of(birthYear, 1, 1); // Ajout de l'initialisation de birthDate
     }
 
     public String getName() {
