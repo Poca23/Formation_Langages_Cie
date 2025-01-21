@@ -1,5 +1,6 @@
 package vcom.visiotech.domain.model;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
@@ -7,45 +8,50 @@ import java.util.List;
 
 public class UserTest {
 
-    @Test
-    public void testUserConstructor() {
-        // Création de films fictifs pour les tests
-        Film film1 = new Film("Inception", 2010, 148); // Exemple avec un film
-        Film film2 = new Film("Titanic", 1997, 195);
+    private Film film1;
+    private Film film2;
+    private Film film3;
+    private User user;
 
-        // Création de la liste de films vus et favoris
+    @BeforeEach
+    public void setUp() {
+        // Initialisation des films et de l'utilisateur
+        film1 = new Film("Inception", 2010, 148);
+        film2 = new Film("Titanic", 1997, 195);
+        film3 = new Film("Interstellar", 2014, 169);
+
         List<Film> viewedFilms = new ArrayList<>();
         viewedFilms.add(film1);
+
         List<Film> favoriteFilms = new ArrayList<>();
         favoriteFilms.add(film2);
 
-        // Création d'un utilisateur
-        User user = new User("John Doe", "john.doe@example.com", "password123", viewedFilms, favoriteFilms);
+        user = new User("John Doe", "john.doe@example.com", "password123", viewedFilms, favoriteFilms);
+    }
 
-        // Vérification des attributs
+    @Test
+    public void testUserConstructor() {
         assertEquals("John Doe", user.getName());
         assertEquals("john.doe@example.com", user.getEmail());
         assertEquals("password123", user.getPassword());
-        assertEquals(1, user.getViewedFilms().size()); // Vérifie qu'il y a 1 film vu
-        assertEquals(1, user.getFavoriteFilms().size()); // Vérifie qu'il y a 1 film favori
+        assertEquals(1, user.getViewedFilms().size());
+        assertEquals(1, user.getFavoriteFilms().size());
     }
 
     @Test
     public void testGetDetails() {
-        // Création de films fictifs pour les tests
-        Film film1 = new Film("Inception", 2010, 148);
-        Film film2 = new Film("Titanic", 1997, 195);
-
-        // Création de la liste de films vus et favoris
-        List<Film> viewedFilms = new ArrayList<>();
-        viewedFilms.add(film1);
-        List<Film> favoriteFilms = new ArrayList<>();
-        favoriteFilms.add(film2);
-
-        // Création d'un utilisateur
-        User user = new User("John Doe", "john.doe@example.com", "password123", viewedFilms, favoriteFilms);
-
-        // Vérification de la méthode getDetails()
         assertEquals("Name: John Doe, Email: john.doe@example.com", user.getDetails());
+    }
+
+    @Test
+    public void testAddFilmNote() {
+        user.addFilmNote(film1, 4.5);
+        assertEquals(4.5, user.getNotesOfViewedFilms().get(film1));
+
+        // Cas où le film n'est pas dans les films vus
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            user.addFilmNote(film3, 3.5);
+        });
+        assertEquals("Le film doit être dans la liste des films vus avant d'ajouter une note.", exception.getMessage());
     }
 }
