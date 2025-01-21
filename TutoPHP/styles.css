@@ -15,6 +15,7 @@ header {
 }
 
 main {
+  margin-bottom: 6em;
   padding: 2em;
   display: flex;
   flex-direction: column;
@@ -112,7 +113,6 @@ footer {
   }
 
   main {
-    padding: 6em;
     align-items: center;
   }
 
