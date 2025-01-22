@@ -28,6 +28,10 @@ public class Actor {
         return nationality;
     }
 
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
     public String getDetails() {
         return name + " (" + birthYear + "), " + nationality;
     }
