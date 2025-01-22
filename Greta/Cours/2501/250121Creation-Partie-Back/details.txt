@@ -16,3 +16,5 @@ https://blog.openreplay.com/what-is-a-ci-cd-pipeline/
 
 Commande de sauvegarde de base de données :
 mysqldump
+
+https://www.mongodb.com/fr-fr
