@@ -152,7 +152,7 @@
         </main>
 
         <footer>
-            <p>&copy; 2025 - Plan de Révision PHP et Laravel</p>
+            <p>&copy; 2025 - Plan de Révision PHP et Laravel -CND</p>
         </footer>
     </div>
 </body>

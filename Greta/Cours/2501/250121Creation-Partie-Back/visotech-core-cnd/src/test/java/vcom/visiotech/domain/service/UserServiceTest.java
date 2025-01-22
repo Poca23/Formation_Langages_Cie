@@ -1,4 +1,4 @@
-package vcom.visiotech.domain.model;
+package vcom.visiotech.domain.service;
 
 public class UserServiceTest {
     

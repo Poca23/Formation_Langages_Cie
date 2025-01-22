@@ -1,4 +1,8 @@
-package vcom.visiotech.domain.model;
+package vcom.visiotech.domain.service;
+
+import vcom.visiotech.domain.model.Actor;
+import vcom.visiotech.domain.model.Film;
+import vcom.visiotech.domain.model.User;
 
 public class UserService {
     public void addFilmToViewedList(User user, Film film) {

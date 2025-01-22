@@ -1,21 +1,41 @@
 package vcom.visiotech.domain.service;
 
-import java.util.List;
 import java.util.ArrayList;
 import vcom.visiotech.domain.model.Film;
+import java.util.List;
 
 public class FilmService {
 
-    // méthode temporaire pour stocker un jeu de films en local, sans la DB
     private List<Film> films = new ArrayList<>();
 
-    public void addFilm(Film film) {
-        // Ajouter le film à la DataBase
-        films.add(film);
+    public void addFilms(List<Film> films) {
+
+        this.films.addAll(films);
+
     }
 
     public List<Film> listFilms() {
-        // Récupérer les films depuis la DataBase
-        return films;
+
+        return new ArrayList<>(films);
+
     }
+
+    public List<Film> searchFilms(String keyword) {
+
+        List<Film> result = new ArrayList<>();
+
+        for (Film film : films) {
+
+            if (film.getTitle().toLowerCase().contains(keyword.toLowerCase())) {
+
+                result.add(film);
+
+            }
+
+        }
+
+        return result;
+
+    }
+
 }

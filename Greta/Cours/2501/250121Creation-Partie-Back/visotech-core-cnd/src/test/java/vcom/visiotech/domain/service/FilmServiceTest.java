@@ -1,4 +1,4 @@
-package vcom.visiotech.domain.model;
+package vcom.visiotech.domain.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -8,6 +8,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import vcom.visiotech.domain.model.Film;
 
 
 public class FilmServiceTest {
