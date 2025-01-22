@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapitre 9 - Introduction à l'architecture MVC</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>Chapitre 9 - Introduction à l'architecture MVC (Model-View-Controller)</h1>
+    </header>
+
+    <main>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Qu'est-ce que l'architecture MVC ?</h2>
+            <div class="collapsible-content">
+                <p>L'architecture MVC est un modèle de conception qui sépare une application en trois parties distinctes
+                    :
+                    le modèle (Model), la vue (View) et le contrôleur (Controller).</p>
+                <ul>
+                    <li><strong>Model :</strong> Représente les données et la logique de l'application.</li>
+                    <li><strong>View :</strong> Gère l'affichage des données à l'utilisateur (interface utilisateur).
+                    </li>
+                    <li><strong>Controller :</strong> Traite les entrées de l'utilisateur, interagit avec le modèle et
+                        met à jour la vue.</li>
+                </ul>
+                <p>Le but de l'architecture MVC est de séparer les différentes préoccupations dans une application, ce
+                    qui
+                    facilite la maintenance et les évolutions de celle-ci.</p>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Création d'une petite application PHP MVC</h2>
+            <div class="collapsible-content">
+                <p>Nous allons maintenant créer une petite application utilisant l'architecture MVC en PHP.</p>
+
+                <h3>1. Le Model (Modèle) :</h3>
+                <p>Le modèle est responsable de la gestion des données. Dans notre exemple, nous allons créer un modèle
+                    simple
+                    pour gérer des tâches à faire.</p>
+                <pre><code>class TaskModel {
+    private $tasks = [];
+
+    public function addTask($task) {
+        $this->tasks[] = $task;
+    }
+
+    public function getTasks() {
+        return $this->tasks;
+    }
+}</code></pre>
+
+                <h3>2. La View (Vue) :</h3>
+                <p>La vue est responsable de l'affichage des données. Elle peut être un fichier HTML simple qui affiche
+                    les tâches.</p>
+                <pre><code>&lt;!-- view.php --&gt;
+&lt;?php foreach ($tasks as $task) : ?&gt;
+    &lt;p&gt;&lt;?php echo $task; ?&gt;&lt;/p&gt;
+&lt;?php endforeach; ?&gt;</code></pre>
+
+                <h3>3. Le Controller (Contrôleur) :</h3>
+                <p>Le contrôleur interagit avec le modèle et met à jour la vue. Il prend les actions de l'utilisateur,
+                    comme ajouter une tâche, et met à jour la vue en conséquence.</p>
+                <pre><code>class TaskController {
+    private $model;
+    private $view;
+
+    public function __construct($model, $view) {
+        $this->model = $model;
+        $this->view = $view;
+    }
+
+    public function addTask($task) {
+        $this->model->addTask($task);
+        $this->view->render($this->model->getTasks());
+    }
+}</code></pre>
+
+                <h3>4. Intégration des trois parties :</h3>
+                <p>Enfin, nous intégrons le modèle, la vue et le contrôleur pour faire fonctionner notre petite
+                    application MVC.</p>
+                <pre><code>$model = new TaskModel();
+$view = new TaskView();
+$controller = new TaskController($model, $view);
+
+$controller->addTask("Apprendre PHP");
+$controller->addTask("Pratiquer Laravel");</code></pre>
+
+                <p>Le contrôleur prend en charge l'ajout de nouvelles tâches et met à jour la vue avec la liste des
+                    tâches.</p>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Exercice :</h2>
+            <div class="collapsible-content">
+                <ul>
+                    <li>Créez une version simple d'une application MVC pour gérer une liste de contacts (nom, email,
+                        téléphone).</li>
+                    <li>Définissez le modèle pour stocker les informations des contacts.</li>
+                    <li>Créez une vue pour afficher les contacts et un formulaire pour en ajouter.</li>
+                    <li>Implémentez le contrôleur pour gérer l'ajout de contacts.</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Cours PHP et Laravel - CND</p>
+    </footer>
+</body>
+
+</html>

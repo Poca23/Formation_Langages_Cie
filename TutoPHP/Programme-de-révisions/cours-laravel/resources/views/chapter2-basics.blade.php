@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapitre 2 - Les bases du PHP</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>Chapitre 2 - Les bases du PHP</h1>
+    </header>
+
+    <main>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Les variables et les types de données</h2>
+            <div class="collapsible-content">
+                <p>En PHP, les variables sont utilisées pour stocker des valeurs. Vous n'avez pas besoin de déclarer le
+                    type de données de la variable, PHP le fait automatiquement. Voici les types de données principaux :
+                </p>
+                <ul>
+                    <li><strong>Entiers :</strong> Des nombres sans décimales, comme <code>25</code>.</li>
+                    <li><strong>Flottants :</strong> Des nombres avec des décimales, comme <code>3.14</code>.</li>
+                    <li><strong>Booléens :</strong> Soit <code>true</code> ou <code>false</code>.</li>
+                    <li><strong>Chaînes de caractères :</strong> Texte entre guillemets, comme <code>"Bonjour"</code>.
+                    </li>
+                    <li><strong>Tableaux :</strong> Des collections de valeurs, comme
+                        <code>$nombres = [1, 2, 3];</code>.
+                    </li>
+                </ul>
+                <h3>Exercice :</h3>
+                <ul>
+                    <li>Déclarez une variable pour stocker votre âge et affichez-la avec la fonction <code>echo</code>.
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Opérateurs arithmétiques et logiques</h2>
+            <div class="collapsible-content">
+                <p>PHP fournit plusieurs opérateurs pour effectuer des calculs (arithmétiques) ou des comparaisons
+                    (logiques) :</p>
+                <h3>Opérateurs arithmétiques :</h3>
+                <ul>
+                    <li><strong>+</strong> Addition</li>
+                    <li><strong>-</strong> Soustraction</li>
+                    <li><strong>*</strong> Multiplication</li>
+                    <li><strong>/</strong> Division</li>
+                    <li><strong>%</strong> Modulo (reste de la division)</li>
+                </ul>
+                <h3>Opérateurs logiques :</h3>
+                <ul>
+                    <li><strong>==</strong> égal à</li>
+                    <li><strong>===</strong> strictement égal (même type et valeur)</li>
+                    <li><strong>!=</strong> différent de</li>
+                    <li><strong>&&</strong> ET logique</li>
+                    <li><strong>||</strong> OU logique</li>
+                </ul>
+                <h3>Exercice :</h3>
+                <ul>
+                    <li>Créez deux variables pour stocker des nombres et effectuez une addition et une comparaison entre
+                        eux.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Les fonctions de base (echo, print, var_dump)</h2>
+            <div class="collapsible-content">
+                <p>Les fonctions suivantes sont utilisées pour afficher des données :</p>
+                <ul>
+                    <li><strong>echo</strong> : Affiche du texte ou des variables.</li>
+                    <li><strong>print</strong> : Similaire à <code>echo</code>, mais retourne une valeur (toujours
+                        <code>1</code>).
+                    </li>
+                    <li><strong>var_dump</strong> : Affiche des informations détaillées sur une variable (type et
+                        valeur).</li>
+                </ul>
+                <h3>Exercice :</h3>
+                <ul>
+                    <li>Créez une variable et affichez-la avec <code>echo</code>, <code>print</code>, et
+                        <code>var_dump</code>.
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Introduction aux constantes et aux variables globales</h2>
+            <div class="collapsible-content">
+                <p>Les constantes sont des valeurs qui ne changent jamais pendant l'exécution du programme. Elles sont
+                    définies avec la fonction <code>define()</code>.</p>
+                <ul>
+                    <li><strong>Les constantes :</strong> Par exemple, <code>define("PI", 3.14);</code></li>
+                    <li><strong>Les variables globales :</strong> Vous pouvez accéder à une variable globale depuis
+                        n'importe où, en utilisant le mot-clé <code>global</code> dans une fonction.</li>
+                </ul>
+                <h3>Exercice :</h3>
+                <ul>
+                    <li>Créez une constante pour stocker la valeur de Pi et une variable globale. Affichez-les dans une
+                        fonction.</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Cours PHP et Laravel - CND</p>
+    </footer>
+</body>
+
+</html>

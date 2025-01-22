@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapitre 10 - Introduction à Laravel</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>Chapitre 10 - Introduction à Laravel</h1>
+    </header>
+
+    <main>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Présentation du framework Laravel</h2>
+            <div class="collapsible-content">
+                <p>Laravel est un framework PHP open-source, puissant et élégant, qui facilite le développement
+                    d'applications
+                    web robustes. Il propose une syntaxe expressive, une grande facilité d'utilisation, et de nombreux
+                    outils
+                    intégrés pour améliorer l'efficacité du développement.</p>
+                <p>Laravel est largement utilisé pour sa capacité à simplifier des tâches courantes telles que la
+                    gestion de bases
+                    de données, l'authentification, les routages et bien plus encore. Il repose sur le patron de
+                    conception MVC
+                    (Model-View-Controller), ce qui facilite l'organisation et la maintenance du code.</p>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Installation de Laravel</h2>
+            <div class="collapsible-content">
+                <p>Pour commencer à utiliser Laravel, vous devez d'abord installer Composer, un gestionnaire de
+                    dépendances
+                    PHP qui facilite l'installation de Laravel et d'autres bibliothèques nécessaires.</p>
+                <h3>1. Installation de Composer</h3>
+                <p>Si vous n'avez pas encore installé Composer, vous pouvez le faire en suivant ces étapes :</p>
+                <ul>
+                    <li>Sur Linux/macOS : ouvrez votre terminal et tapez la commande suivante :</li>
+                </ul>
+                <pre><code>curl -sS https://getcomposer.org/installer | php</code></pre>
+                <ul>
+                    <li>Sur Windows, vous pouvez télécharger Composer depuis le site officiel.</li>
+                </ul>
+
+                <h3>2. Création d'un projet Laravel</h3>
+                <p>Une fois Composer installé, vous pouvez créer un projet Laravel en exécutant la commande suivante :
+                </p>
+                <pre><code>composer create-project --prefer-dist laravel/laravel monProjetLaravel</code></pre>
+                <p>Cela créera un dossier <strong>monProjetLaravel</strong> contenant une nouvelle application Laravel
+                    prête à l'emploi.</p>
+
+                <h3>3. Lancer le serveur de développement</h3>
+                <p>Après avoir créé le projet, entrez dans le répertoire du projet et lancez le serveur local de Laravel
+                    :</p>
+                <pre><code>cd monProjetLaravel
+php artisan serve</code></pre>
+                <p>Le serveur local de Laravel sera accessible à l'adresse <strong>http://localhost:8000</strong>.</p>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Structure d'un projet Laravel</h2>
+            <div class="collapsible-content">
+                <p>Laravel suit une structure de répertoires très organisée qui facilite la gestion du code. Voici les
+                    principaux répertoires d'un projet Laravel :</p>
+                <ul>
+                    <li><strong>app/ :</strong> Contient le code de l'application (contrôleurs, modèles, etc.).</li>
+                    <li><strong>resources/ :</strong> Contient les vues et les fichiers de ressources comme les CSS et
+                        JS.</li>
+                    <li><strong>routes/ :</strong> Contient les fichiers de définition des routes de l'application.</li>
+                    <li><strong>database/ :</strong> Contient les migrations, les modèles Eloquent et les usines de
+                        données.</li>
+                    <li><strong>public/ :</strong> Contient les fichiers accessibles publiquement, comme index.php et
+                        les assets.</li>
+                </ul>
+                <p>Voici un aperçu de la structure d'un projet Laravel :</p>
+                <pre><code>monProjetLaravel/
+├── app/
+│   ├── Http/
+│   ├── Models/
+│   └── ...
+├── resources/
+│   ├── views/
+│   ├── css/
+│   └── js/
+├── routes/
+│   └── web.php
+├── database/
+│   ├── migrations/
+│   ├── seeds/
+│   └── factories/
+└── public/
+    ├── index.php
+    ├── css/
+    └── js/</code></pre>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Création de votre première route et contrôleur Laravel</h2>
+            <div class="collapsible-content">
+                <p>Laravel permet de définir facilement des routes dans le fichier <strong>routes/web.php</strong>.
+                    Voici comment créer une route basique :</p>
+                <pre><code>Route::get('/', function () {
+    return view('welcome');
+});</code></pre>
+                <p>Ceci affiche la vue <strong>welcome.blade.php</strong> lorsqu'un utilisateur accède à la racine de
+                    votre site.</p>
+
+                <h3>Création d'un contrôleur</h3>
+                <p>Les contrôleurs dans Laravel permettent de centraliser la logique métier. Pour créer un contrôleur,
+                    vous pouvez exécuter la commande suivante :</p>
+                <pre><code>php artisan make:controller HomeController</code></pre>
+                <p>Cette commande crée un contrôleur <strong>HomeController</strong> dans le répertoire
+                    <strong>app/Http/Controllers</strong>.
+                </p>
+                <p>Voici un exemple de méthode dans le contrôleur pour retourner une vue :</p>
+                <pre><code>class HomeController extends Controller
+{
+    public function index()
+    {
+        return view('home');
+    }
+}</code></pre>
+                <p>Ensuite, vous pouvez définir une route pour ce contrôleur :</p>
+                <pre><code>Route::get('/home', [HomeController::class, 'index']);</code></pre>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Exercice :</h2>
+            <div class="collapsible-content">
+                <ul>
+                    <li>Créez un projet Laravel et définissez une route qui affiche un message personnalisé dans une
+                        vue.</li>
+                    <li>Créez un contrôleur <strong>ProductController</strong> avec une méthode pour afficher une liste
+                        de produits.</li>
+                    <li>Définissez une route qui appelle cette méthode et affiche les produits dans une vue.</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Cours PHP et Laravel - CND</p>
+    </footer>
+</body>
+
+</html>

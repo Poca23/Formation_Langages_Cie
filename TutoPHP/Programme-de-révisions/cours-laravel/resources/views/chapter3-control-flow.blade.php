@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapitre 3 - Les structures de contrôle en PHP</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>Chapitre 3 - Les structures de contrôle en PHP</h1>
+    </header>
+
+    <main>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Les conditions : if, else, elseif</h2>
+            <div class="collapsible-content">
+                <p>Les structures conditionnelles permettent d'exécuter des blocs de code en fonction de certaines
+                    conditions. En PHP, on utilise principalement les structures suivantes :</p>
+                <ul>
+                    <li><strong>if</strong> : Vérifie une condition. Si elle est vraie, le code à l'intérieur du bloc
+                        est exécuté.</li>
+                    <li><strong>else</strong> : Exécute le code à l'intérieur du bloc si la condition du <code>if</code>
+                        est fausse.</li>
+                    <li><strong>elseif</strong> : Permet d'ajouter d'autres conditions à tester si le premier
+                        <code>if</code> échoue.
+                    </li>
+                </ul>
+                <h3>Exercice :</h3>
+                <ul>
+                    <li>Créez un script qui vérifie si un nombre est positif, négatif ou égal à zéro. Utilisez
+                        <code>if</code>, <code>else</code> et <code>elseif</code> pour afficher les messages appropriés.
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Les boucles : for, while, do-while</h2>
+            <div class="collapsible-content">
+                <p>Les boucles permettent de répéter un bloc de code plusieurs fois. PHP propose trois types de boucles
+                    :</p>
+                <h3>La boucle <strong>for</strong> :</h3>
+                <ul>
+                    <li>Utilisée lorsqu'on connaît à l'avance le nombre d'itérations.</li>
+                    <li><code>for ($i = 0; $i < 10; $i++)</code>
+                    </li>
+                </ul>
+                <h3>La boucle <strong>while</strong> :</h3>
+                <ul>
+                    <li>Utilisée lorsque l'on répète une action tant qu'une condition est vraie.</li>
+                    <li><code>while ($i < 10)</code>
+                    </li>
+                </ul>
+                <h3>La boucle <strong>do-while</strong> :</h3>
+                <ul>
+                    <li>La condition est testée après l'exécution du bloc de code. Cela garantit que le bloc s'exécute
+                        au moins une fois.</li>
+                    <li><code>do { ... } while ($i < 10);</code>
+                    </li>
+                </ul>
+                <h3>Exercice :</h3>
+                <ul>
+                    <li>Créez une boucle <code>for</code> qui affiche les nombres de 1 à 10, une boucle
+                        <code>while</code> pour afficher les nombres de 10 à 1, et une boucle <code>do-while</code> qui
+                        affiche les nombres de 1 à 5.
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Les switch / case</h2>
+            <div class="collapsible-content">
+                <p>La structure <code>switch</code> est utilisée pour exécuter un bloc de code en fonction de la valeur
+                    d'une variable. Elle est souvent plus pratique que plusieurs <code>if</code> imbriqués lorsqu'il y a
+                    plusieurs valeurs à tester :</p>
+                <ul>
+                    <li><strong>switch</strong> : Permet de tester une variable contre plusieurs valeurs possibles.</li>
+                    <li><strong>case</strong> : Chaque valeur testée, si elle correspond à la variable, exécute le bloc
+                        associé.</li>
+                    <li><strong>default</strong> : Exécute le bloc si aucune des valeurs <code>case</code> ne
+                        correspond.</li>
+                </ul>
+                <h3>Exercice :</h3>
+                <ul>
+                    <li>Créez un <code>switch</code> pour afficher les jours de la semaine en fonction d'un nombre (1 =
+                        Lundi, 2 = Mardi, etc.).</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Cours PHP et Laravel - CND</p>
+    </footer>
+</body>
+
+</html>
