@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapitre 14 - Optimisation et déploiement</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <script src="script.js" defer></script>
+    <script src="{{ asset('js/script.js') }}" defer></script>
 </head>
 
 <body>
@@ -16,7 +16,10 @@
 
     <main>
 
-        <section class="collapsible">
+    <a href="{{ route('home') }}">Retour au Sommaire</a>
+
+
+        <section class="collapsible"  id="chapter12">
             <h2 class="collapsible-header">Optimisation des performances</h2>
             <div class="collapsible-content">
                 <p>Optimiser les performances d'une application Laravel est essentiel pour garantir une expérience

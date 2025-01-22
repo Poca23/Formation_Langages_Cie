@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapitre 13 - Sécurisation des applications avec Laravel</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <script src="script.js" defer></script>
+    <script src="{{ asset('js/script.js') }}" defer></script>
 </head>
 
 <body>
@@ -16,7 +16,10 @@
 
     <main>
 
-        <section class="collapsible">
+    <a href="{{ route('home') }}">Retour au Sommaire</a>
+
+
+        <section class="collapsible"  id="chapter13">
             <h2 class="collapsible-header">Authentification et autorisation</h2>
             <div class="collapsible-content">
                 <p>La sécurisation de votre application Laravel passe par plusieurs étapes, notamment l'authentification

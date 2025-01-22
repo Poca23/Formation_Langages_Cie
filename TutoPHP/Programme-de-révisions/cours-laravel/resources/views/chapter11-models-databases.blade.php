@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapitre 11 - Bases de données avec Laravel</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <script src="script.js" defer></script>
+    <script src="{{ asset('js/script.js') }}" defer></script>
 </head>
 
 <body>
@@ -16,7 +16,10 @@
 
     <main>
 
-        <section class="collapsible">
+    <a href="{{ route('home') }}">Retour au Sommaire</a>
+
+
+        <section class="collapsible"  id="chapter11">
             <h2 class="collapsible-header">Configuration de la connexion à la base de données</h2>
             <div class="collapsible-content">
                 <p>Laravel offre une gestion simple et fluide des bases de données. Pour commencer, vous devez

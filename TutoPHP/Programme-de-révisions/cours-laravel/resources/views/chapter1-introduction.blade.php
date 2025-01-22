@@ -6,17 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapitre 1 - Introduction à PHP</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <script src="script.js" defer></script>
+    <script src="{{ asset('js/script.js') }}" defer></script>
 </head>
 
 <body>
     <header>
         <h1>Chapitre 1 - Introduction à PHP</h1>
+        
     </header>
-
+    
     <main>
+        
+    <a href="{{ route('home') }}">Retour au Sommaire</a>
 
-        <section class="collapsible">
+        <section class="collapsible" id="chapter1">
             <h2 class="collapsible-header">Qu'est-ce que PHP ?</h2>
             <div class="collapsible-content">
                 <p>PHP (Hypertext Preprocessor) est un langage de programmation serveur, principalement utilisé pour le

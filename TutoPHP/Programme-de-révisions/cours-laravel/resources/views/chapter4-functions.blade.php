@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapitre 4 - Les fonctions en PHP</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <script src="script.js" defer></script>
+    <script src="{{ asset('js/script.js') }}" defer></script>
 </head>
 
 <body>
@@ -16,7 +16,10 @@
 
     <main>
 
-        <section class="collapsible">
+    <a href="{{ route('home') }}">Retour au Sommaire</a>
+
+
+        <section class="collapsible"  id="chapter4">
             <h2 class="collapsible-header">Définir une fonction</h2>
             <div class="collapsible-content">
                 <p>Les fonctions en PHP permettent de regrouper un ensemble d'instructions que l'on peut réutiliser

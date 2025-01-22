@@ -6,28 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Programme de révisions</title>
     <link rel="stylesheet" href="{{ asset('css/revisions.css') }}">
-    <script src="programme-revisions.js" defer></script>
-</head>
-
-<body>
-    <header>
-        <h1>Programme de révisions</h1>
-    </header>
-    <main>
-        <!-- Contenu spécifique du programme de révisions -->
-    </main>
-</body>
-
-</html>
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plan de Révision - PHP et Laravel</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+    <script src="{{ asset('js/revisions.js') }}" defer></script>
 </head>
 
 <body>
@@ -152,9 +131,7 @@
         </main>
 
         <footer>
-            <p>&copy; 2025 - Plan de Révision PHP et Laravel -CND</p>
+            <p>&copy; 2025 - Plan de Révision PHP et Laravel - CND</p>
         </footer>
     </div>
 </body>
-
-</html>

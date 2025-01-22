@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapitre 6 - Structures de contrôle en PHP</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <script src="script.js" defer></script>
+    <script src="{{ asset('js/script.js') }}" defer></script>
 </head>
 
 <body>
@@ -16,7 +16,10 @@
 
     <main>
 
-        <section class="collapsible">
+    <a href="{{ route('home') }}">Retour au Sommaire</a>
+
+
+        <section class="collapsible"  id="chapter6">
             <h2 class="collapsible-header">Les instructions conditionnelles (if, else, elseif)</h2>
             <div class="collapsible-content">
                 <p>Les structures conditionnelles permettent d'exécuter certaines instructions en fonction de la

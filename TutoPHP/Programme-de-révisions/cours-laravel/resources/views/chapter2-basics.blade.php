@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapitre 2 - Les bases du PHP</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <script src="script.js" defer></script>
+    <script src="{{ asset('js/script.js') }}" defer></script>
 </head>
 
 <body>
@@ -16,7 +16,9 @@
 
     <main>
 
-        <section class="collapsible">
+    <a href="{{ route('home') }}">Retour au Sommaire</a>
+
+        <section class="collapsible"  id="chapter2">
             <h2 class="collapsible-header">Les variables et les types de données</h2>
             <div class="collapsible-content">
                 <p>En PHP, les variables sont utilisées pour stocker des valeurs. Vous n'avez pas besoin de déclarer le

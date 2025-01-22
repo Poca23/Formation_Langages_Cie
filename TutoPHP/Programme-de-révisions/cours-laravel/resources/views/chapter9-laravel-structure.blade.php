@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapitre 9 - Introduction à l'architecture MVC</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <script src="script.js" defer></script>
+    <script src="{{ asset('js/script.js') }}" defer></script>
 </head>
 
 <body>
@@ -16,7 +16,10 @@
 
     <main>
 
-        <section class="collapsible">
+    <a href="{{ route('home') }}">Retour au Sommaire</a>
+
+
+        <section class="collapsible"  id="chapter9">
             <h2 class="collapsible-header">Qu'est-ce que l'architecture MVC ?</h2>
             <div class="collapsible-content">
                 <p>L'architecture MVC est un modèle de conception qui sépare une application en trois parties distinctes

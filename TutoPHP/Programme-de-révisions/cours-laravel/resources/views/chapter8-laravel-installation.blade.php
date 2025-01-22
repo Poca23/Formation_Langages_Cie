@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapitre 8 - Introduction aux bases de données avec MySQL</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <script src="script.js" defer></script>
+    <script src="{{ asset('js/script.js') }}" defer></script>
 </head>
 
 <body>
@@ -16,7 +16,10 @@
 
     <main>
 
-        <section class="collapsible">
+    <a href="{{ route('home') }}">Retour au Sommaire</a>
+
+
+        <section class="collapsible"  id="chapter8">
             <h2 class="collapsible-header">Connexion à une base de données MySQL avec PHP</h2>
             <div class="collapsible-content">
                 <p>Avant de pouvoir interagir avec une base de données MySQL, nous devons établir une connexion. Cela se

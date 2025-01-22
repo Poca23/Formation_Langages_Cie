@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapitre 12 - Développement d'une application avec Laravel</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <script src="script.js" defer></script>
+    <script src="{{ asset('js/script.js') }}" defer></script>
 </head>
 
 <body>
@@ -16,53 +16,54 @@
 
     <main>
 
-        <section class="collapsible">
+    <a href="{{ route('home') }}">Retour au Sommaire</a>
+
+
+        <section class="collapsible" id="chapter12">
             <h2 class="collapsible-header">Création d'une petite application CRUD (Créer, Lire, Mettre à jour,
                 Supprimer)</h2>
             <div class="collapsible-content">
                 <p>Dans ce chapitre, nous allons créer une petite application CRUD avec Laravel. Nous allons permettre à
-                    l'utilisateur de
-                    créer, lire, mettre à jour et supprimer des produits dans la base de données.</p>
+                    l'utilisateur de créer, lire, mettre à jour et supprimer des éléments dans la base de données.</p>
 
                 <h3>Étape 1 - Création des routes</h3>
                 <p>Nous allons commencer par définir les routes nécessaires dans le fichier
-                    <strong>routes/web.php</strong> pour
-                    afficher les produits, créer de nouveaux produits, mettre à jour et supprimer des produits :
+                    <strong>routes/web.php</strong> pour afficher les éléments, en ajouter de nouveaux, les mettre à jour et les supprimer :
                 </p>
-                <pre><code>use App\Models\Product;
+                <pre><code>use App\Models\Element;
 
-Route::get('/products', [ProductController::class, 'index']);
-Route::get('/products/create', [ProductController::class, 'create']);
-Route::post('/products', [ProductController::class, 'store']);
-Route::get('/products/{product}/edit', [ProductController::class, 'edit']);
-Route::put('/products/{product}', [ProductController::class, 'update']);
-Route::delete('/products/{product}', [ProductController::class, 'destroy']);</code></pre>
+Route::get('/elements', [ElementController::class, 'index']);
+Route::get('/elements/create', [ElementController::class, 'create']);
+Route::post('/elements', [ElementController::class, 'store']);
+Route::get('/elements/{element}/edit', [ElementController::class, 'edit']);
+Route::put('/elements/{element}', [ElementController::class, 'update']);
+Route::delete('/elements/{element}', [ElementController::class, 'destroy']);</code></pre>
 
                 <h3>Étape 2 - Création du contrôleur</h3>
-                <p>Ensuite, nous allons créer un contrôleur <strong>ProductController</strong> pour gérer la logique
+                <p>Ensuite, nous allons créer un contrôleur <strong>ElementController</strong> pour gérer la logique
                     métier des actions CRUD.
                     Utilisez la commande Artisan suivante :</p>
-                <pre><code>php artisan make:controller ProductController</code></pre>
+                <pre><code>php artisan make:controller ElementController</code></pre>
 
                 <p>Une fois le contrôleur créé, ouvrez-le dans le fichier
-                    <strong>app/Http/Controllers/ProductController.php</strong> et définissez
+                    <strong>app/Http/Controllers/ElementController.php</strong> et définissez
                     les méthodes suivantes :
                 </p>
 
-                <h4>Méthode pour afficher tous les produits</h4>
+                <h4>Méthode pour afficher tous les éléments</h4>
                 <pre><code>public function index()
 {
-    $products = Product::all();
-    return view('products.index', compact('products'));
+    $elements = Element::all();
+    return view('elements.index', compact('elements'));
 }</code></pre>
 
                 <h4>Méthode pour afficher le formulaire de création</h4>
                 <pre><code>public function create()
 {
-    return view('products.create');
+    return view('elements.create');
 }</code></pre>
 
-                <h4>Méthode pour stocker un produit</h4>
+                <h4>Méthode pour stocker un élément</h4>
                 <pre><code>public function store(Request $request)
 {
     $validated = $request->validate([
@@ -71,18 +72,18 @@ Route::delete('/products/{product}', [ProductController::class, 'destroy']);</co
         'price' => 'required|numeric',
     ]);
 
-    Product::create($validated);
-    return redirect('/products');
+    Element::create($validated);
+    return redirect('/elements');
 }</code></pre>
 
                 <h4>Méthode pour afficher le formulaire d'édition</h4>
-                <pre><code>public function edit(Product $product)
+                <pre><code>public function edit(Element $element)
 {
-    return view('products.edit', compact('product'));
+    return view('elements.edit', compact('element'));
 }</code></pre>
 
-                <h4>Méthode pour mettre à jour un produit</h4>
-                <pre><code>public function update(Request $request, Product $product)
+                <h4>Méthode pour mettre à jour un élément</h4>
+                <pre><code>public function update(Request $request, Element $element)
 {
     $validated = $request->validate([
         'name' => 'required',
@@ -90,114 +91,17 @@ Route::delete('/products/{product}', [ProductController::class, 'destroy']);</co
         'price' => 'required|numeric',
     ]);
 
-    $product->update($validated);
-    return redirect('/products');
+    $element->update($validated);
+    return redirect('/elements');
 }</code></pre>
 
-                <h4>Méthode pour supprimer un produit</h4>
-                <pre><code>public function destroy(Product $product)
+                <h4>Méthode pour supprimer un élément</h4>
+                <pre><code>public function destroy(Element $element)
 {
-    $product->delete();
-    return redirect('/products');
+    $element->delete();
+    return redirect('/elements');
 }</code></pre>
 
-                <p>Chaque méthode correspond à une opération CRUD, comme afficher tous les produits, ajouter un nouveau
-                    produit,
-                    modifier un produit ou supprimer un produit.</p>
-
-                <h3>Étape 3 - Création des vues Blade</h3>
-                <p>Nous allons maintenant créer des vues pour afficher la liste des produits, le formulaire de création,
-                    le formulaire d'édition et la confirmation de suppression.</p>
-
-                <h4>Vues pour afficher les produits</h4>
-                Créez un fichier <strong>resources/views/products/index.blade.php</strong> pour afficher la liste des
-                produits :
-                <pre><code>@foreach ($products as $product)
-    <div>{{ $product->name }} - {{ $product->price }}€</div>
-    <a href="/products/{{ $product->id }}/edit">Editer</a>
-    <form action="/products/{{ $product->id }}" method="POST">
-        @csrf
-        @method('DELETE')
-        <button type="submit">Supprimer</button>
-    </form>
-@endforeach</code></pre>
-
-                <h4>Vue pour créer un produit</h4>
-                Créez un fichier <strong>resources/views/products/create.blade.php</strong> pour le formulaire de
-                création de produit :
-                <pre><code><form action="/products" method="POST">
-    @csrf
-    <label for="name">Nom du produit :</label>
-    <input type="text" name="name" title="Nom du produit" placeholder="Entrez le nom du produit" required>
-    
-    <label for="description">Description :</label>
-    <textareatextarea name="description" title="Description du produit" placeholder="Entrez la description du produit" required></textarea>
-    
-    <label for="price">Prix :</label>
-    <input type="number" name="price" title="Prix du produit" placeholder="Entrez le prix du produit" step="0.01" required>
-    
-    <button type="submit">Ajouter le produit</button>
-</form></code></pre>
-
-                <h4>Vue pour éditer un produit</h4>
-                Créez un fichier <strong>resources/views/products/edit.blade.php</strong> pour le formulaire d'édition
-                de produit :
-                <pre><code><form action="/products/{{ $product->id }}" method="POST">
-    @csrf
-    @method('PUT')
-    <label for="name">Nom du produit :</label>
-    <input type="text" name="name" value="{{ $product->name }}" title="Nom du produit" placeholder="Entrez le nom du produit" required>
-    
-    <label for="description">Description :</label>
-    <textareatextarea name="description" title="Description du produit" placeholder="Entrez la description du produit" required>{{ $product->description }}</textarea>
-    
-    <label for="price">Prix :</label>
-    <input type="number" name="price" value="{{ $product->price }}" title="Prix du produit" placeholder="Entrez le prix du produit" step="0.01" required>
-    
-    <button type="submit">Mettre à jour le produit</button>
-</form></code></pre>
-
-                <p>Les vues permettent à l'utilisateur de voir les produits existants, d'ajouter un nouveau produit, de
-                    modifier un produit existant
-                    ou de supprimer un produit.</p>
-            </div>
-        </section>
-
-        <section class="collapsible">
-            <h2 class="collapsible-header">Utilisation des contrôleurs et des ressources Laravel</h2>
-            <div class="collapsible-content">
-                <p>Laravel offre des outils pour simplifier la gestion des contrôleurs et des ressources. Vous pouvez
-                    utiliser
-                    des <strong>ressources</strong> pour structurer vos réponses et exposer des API.</p>
-
-                <h3>Création d'un contrôleur de ressources</h3>
-                <p>Un contrôleur de ressources simplifie la gestion des actions CRUD. Vous pouvez le créer en utilisant
-                    :</p>
-                <pre><code>php artisan make:controller ProductController --resource</code></pre>
-                <p>Cela génère un contrôleur avec toutes les méthodes CRUD par défaut. Vous pouvez alors les adapter à
-                    vos besoins.</p>
-            </div>
-        </section>
-
-        <section class="collapsible">
-            <h2 class="collapsible-header">Exercice :</h2>
-            <div class="collapsible-content">
-                <ul>
-                    <li>Créez une application Laravel permettant de gérer des produits avec un système CRUD complet.
-                    </li>
-                    <li>Ajoutez des validations pour chaque champ de formulaire (par exemple, le prix doit être
-                        numérique).</li>
-                    <li>Affichez les produits dans une vue, permettant de les éditer et de les supprimer.</li>
-                    <li>Ajoutez des liens pour naviguer entre les pages d'édition, de création et de suppression.</li>
-                </ul>
-            </div>
-        </section>
-
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Cours PHP et Laravel - CND</p>
-    </footer>
-</body>
-
-</html>
+                <p>Chaque méthode correspond à une opération CRUD, comme afficher tous les éléments, ajouter un nouvel
+                    élément,
+                    modifier un élément ou supprimer un élément.</p
