@@ -1,182 +1,119 @@
-<!DOCTYPE html>
-<html lang="fr">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapitre 14 - Optimisation et déploiement</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <script src="{{ asset('js/script.js') }}" defer></script>
-</head>
+@section('title', 'Bonnes pratiques de déploiement avec Laravel')
 
-<body>
-    <header>
-        <h1>Chapitre 14 - Optimisation et déploiement</h1>
-    </header>
-
-    <main>
-
-    <a href="{{ route('home') }}">Retour au Sommaire</a>
-
-
-        <section class="collapsible"  id="chapter12">
-            <h2 class="collapsible-header">Optimisation des performances</h2>
-            <div class="collapsible-content">
-                <p>Optimiser les performances d'une application Laravel est essentiel pour garantir une expérience
-                    utilisateur fluide et rapide,
-                    en particulier lorsque l'application se trouve en production. Laravel offre plusieurs outils pour
-                    améliorer la performance.</p>
-
-                <h3>1. Mise en cache des routes et des vues</h3>
-                <p>Laravel permet de mettre en cache les routes et les vues pour éviter les recalculs inutiles lors des
-                    requêtes. Cela peut réduire considérablement
-                    le temps de réponse.</p>
-
-                <h4>Cache des routes</h4>
-                <p>Pour mettre en cache les routes de votre application, exécutez la commande suivante :</p>
-                <pre><code>php artisan route:cache</code></pre>
-                <p>Cette commande génère un fichier de cache pour les routes, ce qui réduit le temps nécessaire pour
-                    charger les routes lors de l'exécution des requêtes.</p>
-
-                <h4>Cache des vues</h4>
-                <p>De même, pour mettre en cache les vues Blade, vous pouvez utiliser la commande :</p>
-                <pre><code>php artisan view:cache</code></pre>
-                <p>Cela précompilera toutes les vues pour éviter les rendus répétitifs.</p>
-
-                <h3>2. Mise en cache des données</h3>
-                <p>Laravel offre également un mécanisme de cache pour stocker les données fréquemment consultées. Par
-                    exemple, vous pouvez mettre en cache
-                    les résultats d'une requête de base de données :</p>
-                <pre><code>Cache::remember('products', 60, function() {
-    return Product::all();
-});</code></pre>
-                <p>Ceci met en cache les produits pendant 60 minutes. Si la donnée est déjà en cache, elle sera
-                    récupérée sans refaire la requête à la base de données.</p>
-
-                <h3>3. Optimisation des requêtes Eloquent</h3>
-                <p>Pour améliorer la performance des requêtes Eloquent, utilisez les méthodes de "chargement paresseux"
-                    et "chargement hâtif".</p>
-
-                <h4>Chargement paresseux</h4>
-                <p>Le chargement paresseux (Lazy Loading) consiste à ne charger les relations d'un modèle qu'au moment
-                    où elles sont réellement nécessaires :</p>
-                <pre><code>$product = Product::find(1);
-$reviews = $product->reviews;</code></pre>
-
-                <h4>Chargement hâtif</h4>
-                <p>Le chargement hâtif (Eager Loading) permet de charger les relations au moment de la requête initiale,
-                    ce qui peut améliorer les performances
-                    lorsque vous avez plusieurs relations :</p>
-                <pre><code>$products = Product::with('reviews')->get();</code></pre>
-                <p>Cela évite de faire plusieurs requêtes supplémentaires lorsque vous accédez aux relations.</p>
-
-                <h3>4. Compression des fichiers CSS et JS</h3>
-                <p>En production, vous devez toujours compiler et minifier vos fichiers CSS et JavaScript pour réduire
-                    leur taille et améliorer les performances.</p>
-                <p>Vous pouvez le faire en utilisant Laravel Mix, qui est intégré par défaut dans Laravel :</p>
-                <pre><code>npm run prod</code></pre>
-                <p>Cela va minifier et combiner les fichiers CSS et JS pour qu'ils soient plus rapides à charger sur les
-                    clients.</p>
+@section('content')
+<div class="container">
+    <div class="row">
+        <!-- Sidebar de navigation -->
+        <div class="col-md-3">
+            <div class="card shadow mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Dans ce chapitre</h5>
+                </div>
+                <div class="card-body">
+                    <nav id="navbar-chapter" class="nav flex-column">
+                        <a class="nav-link" href="#section1">Introduction</a>
+                        <a class="nav-link" href="#section2">Préparation au déploiement</a>
+                        <a class="nav-link" href="#section3">Déploiement sur un serveur</a>
+                        <a class="nav-link" href="#section4">Mises à jour et maintenance</a>
+                        <a class="nav-link" href="#section5">Résumé et meilleures pratiques</a>
+                    </nav>
+                </div>
             </div>
-        </section>
 
-        <section class="collapsible">
-            <h2 class="collapsible-header">Déploiement de l'application</h2>
-            <div class="collapsible-content">
-                <p>Une fois votre application prête pour la production, il est temps de la déployer sur un serveur. Ce
-                    processus peut inclure la mise en place d'un serveur
-                    web, d'une base de données et la configuration de votre environnement de production.</p>
+            <div class="progress mb-3">
+                <div class="progress-bar" role="progressbar" style="width: {{ $progress ?? 0 }}%">
+                    {{ $progress ?? 0 }}% complété
+                </div>
+            </div>
+        </div>
 
-                <h3>1. Préparation de l'environnement</h3>
-                <p>Avant de déployer l'application, assurez-vous que votre environnement de production est prêt. Cela
-                    inclut :</p>
-                <ul>
-                    <li>Le serveur web : Apache, Nginx ou tout autre serveur compatible avec Laravel.</li>
-                    <li>La base de données : MySQL, PostgreSQL ou une autre base de données selon vos besoins.</li>
-                    <li>PHP : La version de PHP utilisée doit être compatible avec Laravel (idéalement PHP 8.x ou
-                        supérieur).</li>
-                    <li>Les extensions PHP nécessaires : PDO, Mbstring, OpenSSL, etc.</li>
-                </ul>
+        <!-- Contenu principal -->
+        <div class="col-md-9">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h1 class="mb-4">Chapitre 14 : Bonnes pratiques de déploiement avec Laravel</h1>
 
-                <h3>2. Déploiement via Git</h3>
-                <p>Un moyen courant de déployer une application Laravel est d'utiliser Git pour gérer les versions du
-                    code. Voici un exemple de flux de travail :</p>
-                <ul>
-                    <li>Clonez le dépôt Git sur votre serveur de production :
-                        <pre><code>git clone https://github.com/votre-utilisateur/votre-repository.git</code></pre>
-                    </li>
-                    <li>Accédez au dossier du projet :
-                        <pre><code>cd votre-repository</code></pre>
-                    </li>
-                    <li>Installez les dépendances avec Composer :
-                        <pre><code>composer install --optimize-autoloader --no-dev</code></pre>
-                    </li>
-                    <li>Exécutez les migrations de la base de données :
-                        <pre><code>php artisan migrate --force</code></pre>
-                    </li>
-                    <li>Générez la clé d'application si ce n'est pas déjà fait :
-                        <pre><code>php artisan key:generate</code></pre>
-                    </li>
-                    <li>Configurez l'environnement de production dans le fichier .env (base de données, cache, etc.).
-                    </li>
-                    <li>Assurez-vous que les fichiers de cache sont à jour :
-                        <pre><code>php artisan config:cache</code></pre>
-                    </li>
-                </ul>
+                    <section id="section1" class="mb-5">
+                        <h2>Introduction</h2>
+                        <p>Le déploiement d'une application Laravel doit être effectué avec soin pour garantir une performance optimale et une sécurité renforcée. Dans ce chapitre, nous examinerons les étapes importantes du déploiement et les meilleures pratiques à suivre.</p>
+                    </section>
 
-                <h3>3. Configuration du serveur web</h3>
-                <p>Si vous utilisez Nginx ou Apache, assurez-vous que votre serveur est bien configuré pour rediriger
-                    toutes les requêtes vers <strong>public/index.php</strong>,
-                    ce fichier est le point d'entrée de l'application Laravel.</p>
-                <p>Voici un exemple de configuration pour Nginx :</p>
-                <pre><code>server {
-    listen 80;
-    server_name votre-domaine.com;
-    root /chemin/vers/votre-projet/public;
+                    <section id="section2" class="mb-5">
+                        <h2>Préparation au déploiement</h2>
+                        <p>Avant de déployer votre application, assurez-vous de bien la préparer. Cela inclut :</p>
+                        <ul>
+                            <li>Vérifier les dépendances dans <code>composer.json</code>.</li>
+                            <li>Configurer les variables d'environnement dans votre fichier <code>.env</code>.</li>
+                            <li>Exécuter les migrations et seeding de la base de données.</li>
+                        </ul>
+                    </section>
 
-    index index.php;
+                    <section id="section3" class="mb-5">
+                        <h2>Déploiement sur un serveur</h2>
+                        <p>Pour déployer votre application sur un serveur, vous pouvez suivre ces étapes :</p>
+                        <ol>
+                            <li>Choisir un environnement d'hébergement (VPS, Shared Hosting, etc.).</li>
+                            <li>Configurer le serveur web (Apache, Nginx) pour qu'il pointe vers le répertoire <code>public</code> de votre application.</li>
+                            <li>Transférer les fichiers de l'application vers le serveur via FTP ou SSH.</li>
+                        </ol>
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i> Assurez-vous que les fichiers de votre application ont les bonnes permissions.
+                        </div>
+                    </section>
 
-    location / {
-        try_files $uri $uri/ /index.php?$query_string;
+                    <section id="section4" class="mb-5">
+                        <h2>Mises à jour et maintenance</h2>
+                        <p>Après le déploiement, il est essentiel de gérer correctement les mises à jour et la maintenance :</p>
+                        <ul>
+                            <li>Utilisez les commandes <code>php artisan migrate</code> et <code>php artisan db:seed</code> pour mettre à jour la base de données.</li>
+                            <li>Surveillez les logs d'erreurs pour résoudre tout problème rapidement.</li>
+                            <li>Planifiez des sauvegardes régulières de la base de données et des fichiers de l'application.</li>
+                        </ul>
+                    </section>
+
+                    <section id="section5" class="mb-5">
+                        <h2>Résumé et meilleures pratiques</h2>
+                        <p>En résumé, assurez-vous de :</p>
+                        <ul>
+                            <li>Suivre les étapes de préparation avec rigueur.</li>
+                            <li>Déployer dans un environnement de production sécurisé.</li>
+                            <li>Mettre en place un processus de maintenance efficace.</li>
+                        </ul>
+                    </section>
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="{{ route('chapter13') }}" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Chapitre précédent
+                        </a>
+                        <a href="{{ route('chapter15') }}" class="btn btn-primary">
+                            Chapitre suivant <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
+@section('styles')
+<style>
+    .code-block {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        margin: 10px 0;
     }
+</style>
+@endsection
 
-    location ~ \.php$ {
-        include fastcgi_params;
-        fastcgi_pass unix:/var/run/php/php8.0-fpm.sock;
-        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        include snippets/fastcgi-php.conf;
-    }
-}</code></pre>
-
-                <h3>4. Configuration du processus de déploiement continu (CI/CD)</h3>
-                <p>Pour rendre votre déploiement plus fluide, vous pouvez utiliser des outils de CI/CD comme Jenkins,
-                    GitLab CI, ou GitHub Actions. Ces outils permettent
-                    de déployer automatiquement votre application après chaque modification sur le dépôt Git, avec des
-                    étapes comme la validation des tests et la mise à jour du serveur.</p>
-            </div>
-        </section>
-
-        <section class="collapsible">
-            <h2 class="collapsible-header">Exercice :</h2>
-            <div class="collapsible-content">
-                <ul>
-                    <li>Optimisez les performances de votre application en mettant en cache les routes, vues et données.
-                    </li>
-                    <li>Compilez et minifiez vos fichiers CSS et JS en production.</li>
-                    <li>Préparez votre application pour le déploiement sur un serveur en configurant correctement
-                        l'environnement.</li>
-                    <li>Déployez votre application sur un serveur en utilisant Git et configurez le serveur web pour
-                        rediriger les requêtes vers <strong>public/index.php</strong>.</li>
-                    <li>Configurez un processus CI/CD pour automatiser les déploiements futurs.</li>
-                </ul>
-            </div>
-        </section>
-
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Cours PHP et Laravel - CND</p>
-    </footer>
-</body>
-
-</html>
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Script pour gérer des fonctionnalités spécifiques au chapitre, si nécessaire
+    });
+</script>
+@endsection

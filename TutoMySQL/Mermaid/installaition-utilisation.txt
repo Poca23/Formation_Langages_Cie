@@ -1,3 +1,5 @@
+https://mermaid.live/edit#pako:eNq9Vd1u2jAUfpXI1xQBIfzkDrWwRWUwQYq2KRKyiEu9ETuznWqM8i67XJ-DF9sxgfyAqZgmLdyQY38_5_hLskELHhLkooARcUfxUuAoYBZcD7439KY9v_8wmVqbtKYvb-RbNLQ-3uelWW9y-743sRiPzouxIMY6iTBdnZcjruYhmcdYSpKv3oEPK8SKzCmTC0FjRTlLl7fB4c8t7Hk3nnj9v7abUQy84Ydr0YoqUXDo9z_5llwzHksqTcYlF4qScx4a4WWhPBiOez5YUzhvMeOHzhX9npAT23BOfv-fDkmtY1JGJ4quqATjiZgD0-DeNKr5Vcq6BFz68HKi48IjXUWn9Xxo-CtPlFH58mmbGHV9AYRLLigx99ObAds1rVyYzFvyvjf6nE-BJRER_ER_5k298WjU_-8OygN_phJix7JIZv5Kr4OXl5sbvjnmzrUCFHMpd79DYoVEpiIyQKV0HjCl3GjkgjN4LpjaI7X1DJg-jZdwOI6xSJG7XwZZA7qQGTMDRGT3us9IRlPAvMV1uQvT4I5h27tIIfgZZC-YL-wmEiQwg2bPQSalPFYFLW3POpz07tUsWgaWZQ14_UMVBLGC13oI35N9igOknkhEAqQ5Qiy-6a1b2IcTxadrtkCuEgmpIMGT5RNyH_FKwl0S6ywevkbHLTFmXzgv3iJ3g34gt9Wp2q1areF0nFqr2ag7FbRGbt2pVztt22443Ybddmy7ta2gn3uCWrWty_V6rdvtttrNTnP7B0aKDDY
+
 ##########################################################################
 # Étape 1 : Installer une extension pour la visualisation de diagrammes
 ##########################################################################
