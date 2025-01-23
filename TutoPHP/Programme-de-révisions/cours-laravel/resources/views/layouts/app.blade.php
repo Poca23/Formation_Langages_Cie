@@ -41,7 +41,7 @@
                         <a class="nav-link" href="{{ route('login') }}">Connexion</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">Inscription</a>
+                        <a class="nav-link" href="{{ route('register-user') }}">Inscription</a>
                     </li>
                     @else
                     <li class="nav-item dropdown">
