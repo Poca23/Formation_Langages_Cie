@@ -159,12 +159,12 @@ tbody td:first-child {
     }
 
     thead th {
-        font-size: 0.9rem; /* Ajuste la taille de police des en-têtes */
+        font-size: 0.9rem;
     }
 
     tbody td {
         padding: 12px;
-        font-size: 0.8rem; /* Réduit légèrement la taille des cellules */
+        font-size: 0.8rem;
     }
 }
 

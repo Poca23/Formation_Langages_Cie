@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programme de révisions</title>
-    <link rel="stylesheet" href="{{ asset('css/revisions.css') }}">
-    <script src="{{ asset('js/revisions.js') }}" defer></script>
+    <title>Plan de Révision - PHP et Laravel</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 
 <body>
@@ -135,3 +135,5 @@
         </footer>
     </div>
 </body>
+
+</html>

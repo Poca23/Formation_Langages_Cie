@@ -9,7 +9,6 @@ class CustomAuth
 {
     public function handle(Request $request, Closure $next)
     {
-        // Vérification si l'utilisateur est authentifié
         if (!$request->session()->has('authenticated') || !$request->session()->get('authenticated')) {
             return redirect()->route('login');
         }
