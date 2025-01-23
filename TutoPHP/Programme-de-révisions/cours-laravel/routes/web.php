@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\QuizController;
 
 // Route de connexion
 Route::get('/login', function () {
@@ -75,4 +76,9 @@ Route::middleware('auth.custom')->group(function () {
     Route::get('/programme-revisions', function () {
         return view('programme-revisions');
     })->name('programme-revisions');
+
+    // Route vers le quiz
+    Route::get('/quiz/{chapter}', [QuizController::class, 'show'])->name('quiz.show');
+    // Route pour soumettre le quiz
+    Route::post('/quiz/{quiz}/submit', [QuizController::class, 'submit'])->name('quiz.submit');
 });
