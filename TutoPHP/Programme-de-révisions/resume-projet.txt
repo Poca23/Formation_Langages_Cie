@@ -5,39 +5,90 @@
 # Structure du projet :
 
 
-├── app/
-│   ├── Http/
-│   │   ├── Controllers/
-│   │   │   └── Controller.php ✓
-│   │   └── Middleware/
-│   │       └── CustomAuth.php ✓
-│   └── Models/
-│       └── User.php ✓
-├── config/
-│   └── auth.php ✓
-├── database/
-│   └── migrations/
-│       ├── create_users_table.php ✓
-│       ├── create_jobs_table.php ✓
-│       ├── create_products_table.php ✓
-│       └── create_personal_access_tokens_table.php ✓
-├── public/
-│   ├── css/
-│   │   ├── revisions.css ✓
-│   │   └── style.css ✓
-│   └── js/
-│       ├── revisions.js ✓
-│       └── script.js ✓
-├── resources/
-│   └── views/
-│       ├── chapter1-introduction.blade.php ✓
-│       ├── chapter2-basics.blade.php ✓
-│       └── [autres chapitres...] ✓
-└── routes/
-    ├── web.php ✓
-    ├── api.php ✓
-    └── console.php ✓
+Voici l'arborescence du projet Laravel basée sur les liens GitHub fournis :
 
+** racine du projet **
+
+app
+Http
+Controllers
+Controller.php
+QuizController.php
+CustomAuthController.php
+Middleware
+CustomAuth.php
+Models
+User.php
+Question.php
+Quiz.php
+UserQuizResult.php
+config
+auth.php
+database
+migrations
+0001_01_01_000000_create_users_table.php
+0001_01_01_000000_create_jobs_table.php
+2025_01_22_125731_create_products_table.php
+2025_01_22_154459_create_personal_access_tokens_table.php
+2025_01_23_110906_create_quizzes_table.php
+public
+css
+revisions.css
+style.css
+quiz.css
+js
+revisions.js
+script.js
+quiz.js
+resources
+views
+chapter1-introduction.blade.php
+chapter2-basics.blade.php
+chapter3-control-flow.blade.php
+chapter4-functions.blade.php
+chapter5-arrays.blade.php
+chapter6-sessions-cookies.blade.php
+chapter7-laravel-intro.blade.php
+chapter8-laravel-installation.blade.php
+chapter9-laravel-structure.blade.php
+chapter10-routes-controllers.blade.php
+chapter11-models-databases.blade.php
+chapter12-views-frontend.blade.php
+chapter13-security-validation.blade.php
+chapter14-deployments-practices.blade.php
+programme-revisions.blade.php
+sommaire.blade.php
+quiz
+result.blade.php
+show.blade.php
+dashboard.blade.php
+auth
+login.blade.php
+registration.blade.php
+layouts
+app.blade.php
+routes
+web.php
+api.php
+console.php
+.env
+Les chapitres Blade sont les suivants :
+
+Introduction (chapter1-introduction.blade.php)
+Basics (chapter2-basics.blade.php)
+Control Flow (chapter3-control-flow.blade.php)
+Functions (chapter4-functions.blade.php)
+Arrays (chapter5-arrays.blade.php)
+Sessions et Cookies (chapter6-sessions-cookies.blade.php)
+Introduction à Laravel (chapter7-laravel-intro.blade.php)
+Installation de Laravel (chapter8-laravel-installation.blade.php)
+Structure de Laravel (chapter9-laravel-structure.blade.php)
+Routes et Controllers (chapter10-routes-controllers.blade.php)
+Modèles et Bases de Données (chapter11-models-databases.blade.php)
+Vues et Frontend (chapter12-views-frontend.blade.php)
+Sécurité et Validation (chapter13-security-validation.blade.php)
+Déploiement et Pratiques (chapter14-deployments-practices.blade.php)
+Notez que certains fichiers Blade ne sont pas associés à des chapitres, tels que les vues de connexion et d'inscription, les vues de quiz, etc.
 
 Controllers : Base standard Laravel
 Middleware : CustomAuth pour l'authentification

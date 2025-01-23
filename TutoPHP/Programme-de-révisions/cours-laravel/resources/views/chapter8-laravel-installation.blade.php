@@ -1,112 +1,191 @@
-<!DOCTYPE html>
-<html lang="fr">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapitre 8 - Introduction aux bases de données avec MySQL</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <script src="{{ asset('js/script.js') }}" defer></script>
-</head>
+@section('title', 'Installation de Laravel')
 
-<body>
-    <header>
-        <h1>Chapitre 8 - Introduction aux bases de données avec MySQL</h1>
-    </header>
-
-    <main>
-
-    <a href="{{ route('home') }}">Retour au Sommaire</a>
-
-
-        <section class="collapsible"  id="chapter8">
-            <h2 class="collapsible-header">Connexion à une base de données MySQL avec PHP</h2>
-            <div class="collapsible-content">
-                <p>Avant de pouvoir interagir avec une base de données MySQL, nous devons établir une connexion. Cela se
-                    fait
-                    en utilisant la fonction <code>mysqli_connect()</code>.</p>
-
-                <h3>Exemple de connexion :</h3>
-                <pre><code>$conn = mysqli_connect("localhost", "utilisateur", "motdepasse", "base_de_donnees");
-
-if (!$conn) {
-    die("Échec de la connexion : " . mysqli_connect_error());
-}
-echo "Connexion réussie";</code></pre>
-                <p>Dans cet exemple, nous tentons de nous connecter à la base de données. Si la connexion échoue, un
-                    message d'erreur est affiché.</p>
-
-                <h3>Exercice :</h3>
-                <ul>
-                    <li>Écrivez un script PHP qui tente de se connecter à une base de données appelée
-                        <code>mon_blog</code> avec les identifiants appropriés.
-                    </li>
-                    <li>Affichez un message de succès si la connexion est réussie, sinon affichez un message d'erreur.
-                    </li>
-                </ul>
+@section('content')
+<div class="container">
+    <div class="row">
+        <!-- Sidebar de navigation -->
+        <div class="col-md-3">
+            <div class="card shadow mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Dans ce chapitre</h5>
+                </div>
+                <div class="card-body">
+                    <nav id="navbar-chapter" class="nav flex-column">
+                        <a class="nav-link" href="#section1">Introduction à l'installation de Laravel</a>
+                        <a class="nav-link" href="#section2">Prérequis pour l'installation de Laravel</a>
+                        <a class="nav-link" href="#section3">Téléchargement et installation de Laravel</a>
+                        <a class="nav-link" href="#section4">Configuration de Laravel</a>
+                        <a class="nav-link" href="#section5">Lancement de Laravel</a>
+                        <a class="nav-link" href="#section6">Résolution des problèmes courants</a>
+                    </nav>
+                </div>
             </div>
-        </section>
 
-        <section class="collapsible">
-            <h2 class="collapsible-header">Création, lecture, mise à jour et suppression des enregistrements</h2>
-            <div class="collapsible-content">
-                <p>Une fois la connexion établie, vous pouvez effectuer des opérations de lecture, d'ajout, de mise à
-                    jour et de suppression
-                    (les opérations CRUD) sur les enregistrements de la base de données.</p>
-
-                <h3>Exemple de requête SELECT (Lecture) :</h3>
-                <pre><code>$sql = "SELECT * FROM articles";
-$result = mysqli_query($conn, $sql);
-
-while ($row = mysqli_fetch_assoc($result)) {
-    echo $row['titre'] . "<br>";
-}</code></pre>
-                <p>Dans cet exemple, nous sélectionnons tous les articles de la table <code>articles</code> et affichons
-                    leurs titres.</p>
-
-                <h3>Exercice :</h3>
-                <ul>
-                    <li>Écrivez une requête qui sélectionne tous les enregistrements d'une table
-                        <code>utilisateurs</code> et affiche les noms des utilisateurs.
-                    </li>
-                    <li>Ajoutez un bouton dans votre page HTML pour afficher les résultats de la requête en utilisant
-                        PHP.</li>
-                </ul>
+            <div class="progress mb-3">
+                <div class="progress-bar" role="progressbar" style="width: {{ $progress ?? 0 }}%">
+                    {{ $progress ?? 0 }}% complété
+                </div>
             </div>
-        </section>
+        </div>
 
-        <section class="collapsible">
-            <h2 class="collapsible-header">Préparation des requêtes sécurisées avec MySQL</h2>
-            <div class="collapsible-content">
-                <p>Il est important de sécuriser vos requêtes afin d'éviter les injections SQL. Cela peut être réalisé
-                    en préparant les requêtes avec la fonction <code>mysqli_prepare()</code>.</p>
+        <!-- Contenu principal -->
+        <div class="col-md-9">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h1 class="mb-4">Chapitre 8 : Installation de Laravel</h1>
 
-                <h3>Exemple de requête préparée :</h3>
-                <pre><code>$stmt = mysqli_prepare($conn, "SELECT * FROM utilisateurs WHERE id = ?");
-mysqli_stmt_bind_param($stmt, "i", $id);  // "i" pour un entier
-mysqli_stmt_execute($stmt);
-$result = mysqli_stmt_get_result($stmt);
+                    <section id="section1" class="mb-5">
+                        <h2>Introduction à l'installation de Laravel</h2>
+                        <p>L'installation de Laravel est un processus simple et rapide.</p>
+                        <p>Il existe plusieurs méthodes pour installer Laravel, nous allons voir les plus courantes dans ce chapitre.</p>
+                    </section>
 
-while ($row = mysqli_fetch_assoc($result)) {
-    echo $row['nom'] . "<br>";
-}</code></pre>
-                <p>Dans cet exemple, nous utilisons une requête préparée pour sécuriser l'entrée d'un utilisateur.</p>
+                    <section id="section2" class="mb-5">
+                        <h2>Prérequis pour l'installation de Laravel</h2>
+                        <p>Avant de commencer l'installation de Laravel, assurez-vous que vous avez les prérequis suivants :</p>
+                        <ul>
+                            <li>PHP 7.3 ou supérieur</li>
+                            <li>Composer</li>
+                            <li>Un serveur web (Apache, Nginx, etc.)</li>
+                            <li>Une base de données (MySQL, PostgreSQL, etc.)</li>
+                        </ul>
+                    </section>
 
-                <h3>Exercice :</h3>
-                <ul>
-                    <li>Créez un formulaire HTML pour rechercher un utilisateur par son <code>id</code> et affichez son
-                        nom en utilisant une requête préparée.</li>
-                    <li>Assurez-vous que l'entrée de l'utilisateur est correctement sécurisée contre les injections SQL.
-                    </li>
-                </ul>
+                    <section id="section3" class="mb-5">
+                        <h2>Téléchargement et installation de Laravel</h2>
+                        <p>Il existe plusieurs façons de télécharger et d'installer Laravel :</p>
+                        <ol>
+                            <li>En utilisant Composer : <code>composer create-project --prefer-dist laravel/laravel projet-laravel</code></li>
+                            <li>En téléchargeant le fichier zip depuis le site officiel de Laravel</li>
+                        </ol>
+                    </section>
+
+                    <section id="section4" class="mb-5">
+                        <h2>Configuration de Laravel</h2>
+                        <p>Une fois Laravel installé, vous devez configurer quelques paramètres pour que votre application fonctionne correctement.</p>
+                        <ul>
+                            <li>Configurer la base de données dans le fichier .env</li>
+                            <li>Exécuter les migrations pour créer les tables de la base de données</li>
+                        </ul>
+                    </section>
+
+                    <section id="section5" class="mb-5">
+                        <h2>Lancement de Laravel</h2>
+                        <p>Une fois que vous avez configuré Laravel, vous pouvez lancer votre application en exécutant la commande suivante :</p>
+                        <code>php artisan serve</code>
+                    </section>
+
+                    <section id="section6" class="mb-5">
+                        <h2>Résolution des problèmes courants</h2>
+                        <p>Voici quelques problèmes courants que vous pouvez rencontrer lors de l'installation de Laravel et comment les résoudre :</p>
+                        <ul>
+                            <li>Erreur de dépendance : assurez-vous que vous avez installé toutes les dépendances requises</li>
+                            <li>Erreur de base de données : assurez-vous que vous avez configuré correctement la base de données</li>
+                        </ul>
+                    </section>
+
+                    <!-- Exercices pratiques -->
+                    <div class="card mt-4">
+                        <div class="card-header bg-light">
+                            <h3 class="mb-0">Exercices pratiques</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="exercise mb-4">
+                                <h4>Exercice 1</h4>
+                                <p>Installez Laravel en utilisant Composer.</p>
+                                <div class="code-editor" id="exercise1">
+                                    <textarea class="form-control" rows="8">
+composer create-project --prefer-dist laravel/laravel projet-laravel
+                                    </textarea>
+                                    <button class="btn btn-primary mt-2" onclick="verifyExercise1()">Vérifier</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quiz -->
+                    <div class="card mt-4">
+                        <div class="card-header bg-light">
+                            <h3 class="mb-0">Quiz rapide</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="chapter-quiz">
+                                <div class="mb-3">
+                                    <p>Quel est le prérequis minimum pour PHP pour installer Laravel ?</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1" value="1">
+                                        <label class="form-check-label">PHP 7.2</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1" value="2">
+                                        <label class="form-check-label">PHP 7.3</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1" value="3">
+                                        <label class="form-check-label">PHP 8.0</label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Vérifier</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Navigation entre chapitres -->
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="{{ route('chapter7') }}" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Chapitre précédent
+                        </a>
+                        <a href="{{ route('chapter9') }}" class="btn btn-primary">
+                            Chapitre suivant <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
+    </div>
+</div>
+@endsection
 
-    </main>
+@section('styles')
+<style>
+    .code-block {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        margin: 10px 0;
+    }
 
-    <footer>
-        <p>&copy; 2025 Cours PHP et Laravel - CND</p>
-    </footer>
-</body>
+    .code-editor textarea {
+        font-family: monospace;
+        resize: vertical;
+    }
+</style>
+@endsection
 
-</html>
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Gestion du quiz
+        document.getElementById('chapter-quiz').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Logique de vérification du quiz
+        });
+
+        // Navigation fluide
+        document.querySelectorAll('#navbar-chapter .nav-link').forEach(function(navLink) {
+            navLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    });
+
+    function verifyExercise1() {
+        // Logique de vérification de l'exercice
+    }
+</script>
+@endsection

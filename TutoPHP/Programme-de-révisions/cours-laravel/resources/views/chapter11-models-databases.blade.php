@@ -1,155 +1,245 @@
-<!DOCTYPE html>
-<html lang="fr">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapitre 11 - Bases de données avec Laravel</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <script src="{{ asset('js/script.js') }}" defer></script>
-</head>
+@section('title', 'Modèles et Base de Données')
 
-<body>
-    <header>
-        <h1>Chapitre 11 - Bases de données avec Laravel</h1>
-    </header>
-
-    <main>
-
-    <a href="{{ route('home') }}">Retour au Sommaire</a>
-
-
-        <section class="collapsible"  id="chapter11">
-            <h2 class="collapsible-header">Configuration de la connexion à la base de données</h2>
-            <div class="collapsible-content">
-                <p>Laravel offre une gestion simple et fluide des bases de données. Pour commencer, vous devez
-                    configurer la
-                    connexion à la base de données dans le fichier <strong>.env</strong> situé à la racine de votre
-                    projet.</p>
-                <p>Voici comment configurer les informations de connexion :</p>
-                <pre><code>DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=nom_de_votre_base_de_donnees
-DB_USERNAME=votre_utilisateur
-DB_PASSWORD=mot_de_passe</code></pre>
-                <p>Assurez-vous que votre base de données MySQL est en cours d'exécution et que les informations de
-                    connexion
-                    correspondent à celles de votre serveur MySQL.</p>
-                <p>Laravel utilise Eloquent, un ORM (Object Relational Mapper), qui permet de travailler avec les bases
-                    de
-                    données de manière simple et intuitive en utilisant des modèles PHP.</p>
+@section('content')
+<div class="container">
+    <div class="row">
+        <!-- Sidebar de navigation -->
+        <div class="col-md-3">
+            <div class="card shadow mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Dans ce chapitre</h5>
+                </div>
+                <div class="card-body">
+                    <nav id="navbar-chapter" class="nav flex-column">
+                        <a class="nav-link" href="#section1">Introduction aux modèles et à la base de données</a>
+                        <a class="nav-link" href="#section2">Définition des modèles</a>
+                        <a class="nav-link" href="#section3">Utilisation de Eloquent</a>
+                        <a class="nav-link" href="#section4">Création de tables</a>
+                        <a class="nav-link" href="#section5">Insertion de données</a>
+                        <a class="nav-link" href="#section6">Récupération de données</a>
+                        <a class="nav-link" href="#section7">Mise à jour de données</a>
+                        <a class="nav-link" href="#section8">Suppression de données</a>
+                    </nav>
+                </div>
             </div>
-        </section>
 
-        <section class="collapsible">
-            <h2 class="collapsible-header">Migrations de bases de données</h2>
-            <div class="collapsible-content">
-                <p>Les migrations sont des scripts qui permettent de versionner et de gérer la structure de votre base
-                    de
-                    données. Elles facilitent le partage des modifications de la base de données entre les développeurs.
-                </p>
-                <h3>Création d'une migration</h3>
-                <p>Pour créer une migration, utilisez la commande Artisan suivante :</p>
-                <pre><code>php artisan make:migration create_table_name</code></pre>
-                <p>Cela crée un fichier de migration dans le répertoire <strong>database/migrations</strong>. Ce fichier
-                    contient
-                    deux méthodes principales : <strong>up()</strong> et <strong>down()</strong>.</p>
-                <p>Voici un exemple de migration pour créer une table <strong>products</strong> :</p>
-                <pre><code>public function up()
+            <div class="progress mb-3">
+                <div class="progress-bar" role="progressbar" style="width: {{ $progress ?? 0 }}%">
+                    {{ $progress ?? 0 }}% complété
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenu principal -->
+        <div class="col-md-9">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h1 class="mb-4">Chapitre 11 : Modèles et Base de Données</h1>
+
+                    <section id="section1" class="mb-5">
+                        <h2>Introduction aux modèles et à la base de données</h2>
+                        <p>Les modèles représentent les tables de la base de données.</p>
+                        <p>Les modèles sont utilisés pour interagir avec la base de données.</p>
+                    </section>
+
+                    <section id="section2" class="mb-5">
+                        <h2>Définition des modèles</h2>
+                        <p>Les modèles sont définis dans le dossier app/Models de votre application.</p>
+                        <p>Les modèles doivent étendre la classe Model.</p>
+                        <code>
+                            namespace App\Models;
+
+                            use Illuminate\Database\Eloquent\Model;
+
+                            class User extends Model
+                            {
+                            protected $fillable = ['name', 'email', 'password'];
+                            }
+                        </code>
+                    </section>
+
+                    <section id="section3" class="mb-5">
+                        <h2>Utilisation de Eloquent</h2>
+                        <p>Eloquent est l'ORM (Object-Relational Mapping) de Laravel.</p>
+                        <p>Eloquent fournit une interface simple pour interagir avec la base de données.</p>
+                        <code>
+                            $user = User::find(1);
+                        </code>
+                    </section>
+
+                    <section id="section4" class="mb-5">
+                        <h2>Création de tables</h2>
+                        <p>Les tables sont créées en utilisant les migrations.</p>
+                        <p>Les migrations sont des classes qui définissent les modifications apportées à la base de données.</p>
+                        <code>
+                            use Illuminate\Database\Migrations\Migration;
+                            use Illuminate\Database\Schema\Blueprint;
+
+                            class CreateUsersTable extends Migration
+                            {
+                            public function up()
+                            {
+                            Schema::create('users', function (Blueprint $table) {
+                            $table->id();
+                            $table->string('name');
+                            $table->string('email')->unique();
+                            $table->string('password');
+                            $table->timestamps();
+                            });
+                            }
+
+                            public function down()
+                            {
+                            Schema::dropIfExists('users');
+                            }
+                            }
+                        </code>
+                    </section>
+
+                    <section id="section5" class="mb-5">
+                        <h2>Insertion de données</h2>
+                        <p>Les données sont insérées en utilisant la méthode create() du modèle.</p>
+                        <code>
+                            $user = User::create(['name' => 'John Doe', 'email' => 'john@example.com', 'password' => 'secret']);
+                        </code>
+                    </section>
+
+                    <section id="section6" class="mb-5">
+                        <h2>Récupération de données</h2>
+                        <p>Les données sont récupérées en utilisant les méthodes find(), get() ou all() du modèle.</p>
+                        <code>
+                            $user = User::find(1);
+                            $users = User::get();
+                        </code>
+                    </section>
+
+                    <section id="section7" class="mb-5">
+                        <h2>Mise à jour de données</h2>
+                        <p>Les données sont mises à jour en utilisant la méthode update() du modèle.</p>
+                        <code>
+                            $user = User::find(1);
+                            $user->update(['name' => 'Jane Doe']);
+                        </code>
+                    </section>
+
+                    <section id="section8" class="mb-5">
+                        <h2>Suppression de données</h2>
+                        <p>Les données sont supprimées en utilisant la méthode delete() du modèle.</p>
+                        <code>
+                            $user = User::find(1);
+                            $user->delete();
+                        </code>
+                    </section>
+
+                    <!-- Exercices pratiques -->
+                    <div class="card mt-4">
+                        <div class="card-header bg-light">
+                            <h3 class="mb-0">Exercices pratiques</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="exercise mb-4">
+                                <h4>Exercice 1</h4>
+                                <p>Créez un nouveau modèle pour représenter les utilisateurs.</p>
+                                <div class="code-editor" id="exercise1">
+                                    <textarea class="form-control" rows="8">
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class User extends Model
 {
-    Schema::create('products', function (Blueprint $table) {
-        $table->id();
-        $table->string('name');
-        $table->text('description');
-        $table->decimal('price', 8, 2);
-        $table->timestamps();
+    protected $fillable = ['name', 'email', 'password'];
+}
+                                    </textarea>
+                                    <button class="btn btn-primary mt-2" onclick="verifyExercise1()">Vérifier</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quiz -->
+                    <div class="card mt-4">
+                        <div class="card-header bg-light">
+                            <h3 class="mb-0">Quiz rapide</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="chapter-quiz">
+                                <div class="mb-3">
+                                    <p>Quel est le dossier où les modèles doivent être définis ?</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1" value="1">
+                                        <label class="form-check-label">app/Models</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1" value="2">
+                                        <label class="form-check-label">app/Controllers</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1" value="3">
+                                        <label class="form-check-label">app/Views</label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Vérifier</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Navigation entre chapitres -->
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="{{ route('chapter10') }}" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Chapitre précédent
+                        </a>
+                        <a href="{{ route('chapter12') }}" class="btn btn-primary">
+                            Chapitre suivant <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
+@section('styles')
+<style>
+    .code-block {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        margin: 10px 0;
+    }
+
+    .code-editor textarea {
+        font-family: monospace;
+        resize: vertical;
+    }
+</style>
+@endsection
+
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Gestion du quiz
+        document.getElementById('chapter-quiz').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Logique de vérification du quiz
+        });
+
+        // Navigation fluide
+        document.querySelectorAll('#navbar-chapter .nav-link').forEach(function(navLink) {
+            navLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
     });
-}</code></pre>
-                <p>La méthode <strong>up()</strong> définit la structure de la table, et <strong>down()</strong> permet
-                    de la supprimer :</p>
-                <pre><code>public function down()
-{
-    Schema::dropIfExists('products');
-}</code></pre>
-                <h3>Exécution des migrations</h3>
-                <p>Une fois la migration créée, vous pouvez l'exécuter avec la commande :</p>
-                <pre><code>php artisan migrate</code></pre>
-                <p>Cette commande crée la table <strong>products</strong> dans la base de données, selon la définition
-                    de la migration.</p>
-            </div>
-        </section>
 
-        <section class="collapsible">
-            <h2 class="collapsible-header">Utilisation de l'Eloquent ORM</h2>
-            <div class="collapsible-content">
-                <p>Eloquent est l'ORM de Laravel, qui permet de manipuler les données de la base de données de manière
-                    orientée objet. Un modèle Eloquent correspond à une table dans la base de données.</p>
-                <h3>Création d'un modèle Eloquent</h3>
-                <p>Pour créer un modèle Eloquent pour la table <strong>products</strong>, vous pouvez utiliser la
-                    commande Artisan :</p>
-                <pre><code>php artisan make:model Product</code></pre>
-                <p>Le modèle <strong>Product</strong> sera créé dans le répertoire <strong>app/Models</strong>. Il est
-                    automatiquement
-                    lié à la table <strong>products</strong> de la base de données, mais vous pouvez personnaliser cette
-                    relation
-                    si nécessaire.</p>
-                <p>Voici un modèle simple pour la table <strong>products</strong> :</p>
-                <pre><code>class Product extends Model
-{
-    protected $fillable = ['name', 'description', 'price'];
-}</code></pre>
-                <p>La propriété <strong>$fillable</strong> permet de définir quels attributs du modèle peuvent être
-                    mass-assignés
-                    (c'est-à-dire modifiés en une seule opération).</p>
-
-                <h3>Opérations CRUD avec Eloquent</h3>
-                <p>Eloquent vous permet de réaliser facilement des opérations CRUD (Créer, Lire, Mettre à jour,
-                    Supprimer) sur vos
-                    données. Voici quelques exemples :</p>
-                <ul>
-                    <li><strong>Création d'un produit :</strong></li>
-                    <pre><code>$product = Product::create([
-    'name' => 'Produit A',
-    'description' => 'Description du produit A',
-    'price' => 100.00,
-]);</code></pre>
-                    <li><strong>Lecture d'un produit :</strong></li>
-                    <pre><code>$product = Product::find(1); // Trouve un produit par son ID</code></pre>
-                    <li><strong>Mise à jour d'un produit :</strong></li>
-                    <pre><code>$product = Product::find(1);
-$product->price = 120.00;
-$product->save();</code></pre>
-                    <li><strong>Suppression d'un produit :</strong></li>
-                    <pre><code>$product = Product::find(1);
-$product->delete();</code></pre>
-                </ul>
-            </div>
-        </section>
-
-        <section class="collapsible">
-            <h2 class="collapsible-header">Exercice :</h2>
-            <div class="collapsible-content">
-                <ul>
-                    <li>Créez une table <strong>categories</strong> avec les champs <strong>name</strong> et
-                        <strong>description</strong>.
-                    </li>
-                    <li>Créez un modèle Eloquent <strong>Category</strong> et associez-le à la table
-                        <strong>categories</strong>.
-                    </li>
-                    <li>Ajoutez quelques catégories à votre base de données avec Eloquent.</li>
-                    <li>Affichez toutes les catégories dans une vue Blade.</li>
-                    <li>Créez une relation entre <strong>Product</strong> et <strong>Category</strong>, pour que chaque
-                        produit appartienne à une catégorie.</li>
-                </ul>
-            </div>
-        </section>
-
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Cours PHP et Laravel - CND</p>
-    </footer>
-</body>
-
-</html>
+    function verifyExercise1() {
+        // Logique de vérification de l'exercice
+    }
+</script>
+@endsection

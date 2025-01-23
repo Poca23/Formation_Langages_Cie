@@ -1,159 +1,240 @@
-<!DOCTYPE html>
-<html lang="fr">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapitre 10 - Introduction à Laravel</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <script src="{{ asset('js/script.js') }}" defer></script>
-</head>
+@section('title', 'Routes et Contrôleurs')
 
-<body>
-    <header>
-        <h1>Chapitre 10 - Introduction à Laravel</h1>
-    </header>
-
-    <main>
-
-    <a href="{{ route('home') }}">Retour au Sommaire</a>
-
-
-        <section class="collapsible"  id="chapter10">
-            <h2 class="collapsible-header">Présentation du framework Laravel</h2>
-            <div class="collapsible-content">
-                <p>Laravel est un framework PHP open-source, puissant et élégant, qui facilite le développement
-                    d'applications
-                    web robustes. Il propose une syntaxe expressive, une grande facilité d'utilisation, et de nombreux
-                    outils
-                    intégrés pour améliorer l'efficacité du développement.</p>
-                <p>Laravel est largement utilisé pour sa capacité à simplifier des tâches courantes telles que la
-                    gestion de bases
-                    de données, l'authentification, les routages et bien plus encore. Il repose sur le patron de
-                    conception MVC
-                    (Model-View-Controller), ce qui facilite l'organisation et la maintenance du code.</p>
+@section('content')
+<div class="container">
+    <div class="row">
+        <!-- Sidebar de navigation -->
+        <div class="col-md-3">
+            <div class="card shadow mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Dans ce chapitre</h5>
+                </div>
+                <div class="card-body">
+                    <nav id="navbar-chapter" class="nav flex-column">
+                        <a class="nav-link" href="#section1">Introduction aux routes et contrôleurs</a>
+                        <a class="nav-link" href="#section2">Définition des routes</a>
+                        <a class="nav-link" href="#section3">Définition des contrôleurs</a>
+                        <a class="nav-link" href="#section4">Liaison des routes aux contrôleurs</a>
+                        <a class="nav-link" href="#section5">Passage de paramètres aux contrôleurs</a>
+                        <a class="nav-link" href="#section6">Utilisation des méthodes HTTP</a>
+                        <a class="nav-link" href="#section7">Gestion des erreurs</a>
+                    </nav>
+                </div>
             </div>
-        </section>
 
-        <section class="collapsible">
-            <h2 class="collapsible-header">Installation de Laravel</h2>
-            <div class="collapsible-content">
-                <p>Pour commencer à utiliser Laravel, vous devez d'abord installer Composer, un gestionnaire de
-                    dépendances
-                    PHP qui facilite l'installation de Laravel et d'autres bibliothèques nécessaires.</p>
-                <h3>1. Installation de Composer</h3>
-                <p>Si vous n'avez pas encore installé Composer, vous pouvez le faire en suivant ces étapes :</p>
-                <ul>
-                    <li>Sur Linux/macOS : ouvrez votre terminal et tapez la commande suivante :</li>
-                </ul>
-                <pre><code>curl -sS https://getcomposer.org/installer | php</code></pre>
-                <ul>
-                    <li>Sur Windows, vous pouvez télécharger Composer depuis le site officiel.</li>
-                </ul>
-
-                <h3>2. Création d'un projet Laravel</h3>
-                <p>Une fois Composer installé, vous pouvez créer un projet Laravel en exécutant la commande suivante :
-                </p>
-                <pre><code>composer create-project --prefer-dist laravel/laravel monProjetLaravel</code></pre>
-                <p>Cela créera un dossier <strong>monProjetLaravel</strong> contenant une nouvelle application Laravel
-                    prête à l'emploi.</p>
-
-                <h3>3. Lancer le serveur de développement</h3>
-                <p>Après avoir créé le projet, entrez dans le répertoire du projet et lancez le serveur local de Laravel
-                    :</p>
-                <pre><code>cd monProjetLaravel
-php artisan serve</code></pre>
-                <p>Le serveur local de Laravel sera accessible à l'adresse <strong>http://localhost:8000</strong>.</p>
+            <div class="progress mb-3">
+                <div class="progress-bar" role="progressbar" style="width: {{ $progress ?? 0 }}%">
+                    {{ $progress ?? 0 }}% complété
+                </div>
             </div>
-        </section>
+        </div>
 
-        <section class="collapsible">
-            <h2 class="collapsible-header">Structure d'un projet Laravel</h2>
-            <div class="collapsible-content">
-                <p>Laravel suit une structure de répertoires très organisée qui facilite la gestion du code. Voici les
-                    principaux répertoires d'un projet Laravel :</p>
-                <ul>
-                    <li><strong>app/ :</strong> Contient le code de l'application (contrôleurs, modèles, etc.).</li>
-                    <li><strong>resources/ :</strong> Contient les vues et les fichiers de ressources comme les CSS et
-                        JS.</li>
-                    <li><strong>routes/ :</strong> Contient les fichiers de définition des routes de l'application.</li>
-                    <li><strong>database/ :</strong> Contient les migrations, les modèles Eloquent et les usines de
-                        données.</li>
-                    <li><strong>public/ :</strong> Contient les fichiers accessibles publiquement, comme index.php et
-                        les assets.</li>
-                </ul>
-                <p>Voici un aperçu de la structure d'un projet Laravel :</p>
-                <pre><code>monProjetLaravel/
-├── app/
-│   ├── Http/
-│   ├── Models/
-│   └── ...
-├── resources/
-│   ├── views/
-│   ├── css/
-│   └── js/
-├── routes/
-│   └── web.php
-├── database/
-│   ├── migrations/
-│   ├── seeds/
-│   └── factories/
-└── public/
-    ├── index.php
-    ├── css/
-    └── js/</code></pre>
-            </div>
-        </section>
+        <!-- Contenu principal -->
+        <div class="col-md-9">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h1 class="mb-4">Chapitre 10 : Routes et Contrôleurs</h1>
 
-        <section class="collapsible">
-            <h2 class="collapsible-header">Création de votre première route et contrôleur Laravel</h2>
-            <div class="collapsible-content">
-                <p>Laravel permet de définir facilement des routes dans le fichier <strong>routes/web.php</strong>.
-                    Voici comment créer une route basique :</p>
-                <pre><code>Route::get('/', function () {
+                    <section id="section1" class="mb-5">
+                        <h2>Introduction aux routes et contrôleurs</h2>
+                        <p>Les routes et les contrôleurs sont les éléments clés de Laravel.</p>
+                        <p>Les routes définissent les chemins que les utilisateurs peuvent emprunter pour accéder à votre application.</p>
+                        <p>Les contrôleurs traitent les requêtes des utilisateurs et renvoient des réponses.</p>
+                    </section>
+
+                    <section id="section2" class="mb-5">
+                        <h2>Définition des routes</h2>
+                        <p>Les routes sont définies dans les fichiers de route, qui sont situés dans le dossier routes de votre application.</p>
+                        <p>Il existe plusieurs types de routes, notamment les routes web, les routes API et les routes de console.</p>
+                        <code>
+                            Route::get('/', function () {
+                            return view('welcome');
+                            });
+                        </code>
+                    </section>
+
+                    <section id="section3" class="mb-5">
+                        <h2>Définition des contrôleurs</h2>
+                        <p>Les contrôleurs sont des classes qui traitent les requêtes des utilisateurs et renvoient des réponses.</p>
+                        <p>Les contrôleurs sont situés dans le dossier app/Http/Controllers de votre application.</p>
+                        <code>
+                            namespace App\Http\Controllers;
+
+                            use Illuminate\Http\Request;
+
+                            class WelcomeController extends Controller
+                            {
+                            public function index()
+                            {
+                            return view('welcome');
+                            }
+                            }
+                        </code>
+                    </section>
+
+                    <section id="section4" class="mb-5">
+                        <h2>Liaison des routes aux contrôleurs</h2>
+                        <p>Les routes peuvent être liées aux contrôleurs pour traiter les requêtes des utilisateurs.</p>
+                        <code>
+                            Route::get('/', 'WelcomeController@index');
+                        </code>
+                    </section>
+
+                    <section id="section5" class="mb-5">
+                        <h2>Passage de paramètres aux contrôleurs</h2>
+                        <p>Les paramètres peuvent être passés aux contrôleurs pour traiter les requêtes des utilisateurs.</p>
+                        <code>
+                            Route::get('/{id}', 'WelcomeController@index');
+                        </code>
+                        <code>
+                            namespace App\Http\Controllers;
+
+                            use Illuminate\Http\Request;
+
+                            class WelcomeController extends Controller
+                            {
+                            public function index($id)
+                            {
+                            return view('welcome', compact('id'));
+                            }
+                            }
+                        </code>
+                    </section>
+
+                    <section id="section6" class="mb-5">
+                        <h2>Utilisation des méthodes HTTP</h2>
+                        <p>Les méthodes HTTP peuvent être utilisées pour traiter les requêtes des utilisateurs.</p>
+                        <ul>
+                            <li>GET : pour récupérer des données</li>
+                            <li>POST : pour créer des données</li>
+                            <li>PUT : pour mettre à jour des données</li>
+                            <li>DELETE : pour supprimer des données</li>
+                        </ul>
+                        <code>
+                            Route::get('/{id}', 'WelcomeController@get');
+                            Route::post('/{id}', 'WelcomeController@post');
+                            Route::put('/{id}', 'WelcomeController@put');
+                            Route::delete('/{id}', 'WelcomeController@delete');
+                        </code>
+                    </section>
+
+                    <section id="section7" class="mb-5">
+                        <h2>Gestion des erreurs</h2>
+                        <p>Les erreurs peuvent être gérées en utilisant les exceptions et les codes de statut.</p>
+                        <code>
+                            try {
+                            // Code qui peut occasionner une erreur
+                            } catch (Exception $e) {
+                            // Gestion de l'erreur
+                            return response()->json(['error' => $e->getMessage()], 500);
+                            }
+                        </code>
+                    </section>
+
+                    <!-- Exercices pratiques -->
+                    <div class="card mt-4">
+                        <div class="card-header bg-light">
+                            <h3 class="mb-0">Exercices pratiques</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="exercise mb-4">
+                                <h4>Exercice 1</h4>
+                                <p>Créez une nouvelle route pour afficher une page de bienvenue.</p>
+                                <div class="code-editor" id="exercise1">
+                                    <textarea class="form-control" rows="8">
+Route::get('/', function () {
     return view('welcome');
-});</code></pre>
-                <p>Ceci affiche la vue <strong>welcome.blade.php</strong> lorsqu'un utilisateur accède à la racine de
-                    votre site.</p>
+});
+                                    </textarea>
+                                    <button class="btn btn-primary mt-2" onclick="verifyExercise1()">Vérifier</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                <h3>Création d'un contrôleur</h3>
-                <p>Les contrôleurs dans Laravel permettent de centraliser la logique métier. Pour créer un contrôleur,
-                    vous pouvez exécuter la commande suivante :</p>
-                <pre><code>php artisan make:controller HomeController</code></pre>
-                <p>Cette commande crée un contrôleur <strong>HomeController</strong> dans le répertoire
-                    <strong>app/Http/Controllers</strong>.
-                </p>
-                <p>Voici un exemple de méthode dans le contrôleur pour retourner une vue :</p>
-                <pre><code>class HomeController extends Controller
-{
-    public function index()
-    {
-        return view('home');
+                    <!-- Quiz -->
+                    <div class="card mt-4">
+                        <div class="card-header bg-light">
+                            <h3 class="mb-0">Quiz rapide</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="chapter-quiz">
+                                <div class="mb-3">
+                                    <p>Quel est le dossier où sont situées les routes de votre application ?</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1" value="1">
+                                        <label class="form-check-label">app</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1" value="2">
+                                        <label class="form-check-label">routes</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1" value="3">
+                                        <label class="form-check-label">config</label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Vérifier</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Navigation entre chapitres -->
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="{{ route('chapter9') }}" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Chapitre précédent
+                        </a>
+                        <a href="{{ route('chapter11') }}" class="btn btn-primary">
+                            Chapitre suivant <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
+@section('styles')
+<style>
+    .code-block {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        margin: 10px 0;
     }
-}</code></pre>
-                <p>Ensuite, vous pouvez définir une route pour ce contrôleur :</p>
-                <pre><code>Route::get('/home', [HomeController::class, 'index']);</code></pre>
-            </div>
-        </section>
 
-        <section class="collapsible">
-            <h2 class="collapsible-header">Exercice :</h2>
-            <div class="collapsible-content">
-                <ul>
-                    <li>Créez un projet Laravel et définissez une route qui affiche un message personnalisé dans une
-                        vue.</li>
-                    <li>Créez un contrôleur <strong>ProductController</strong> avec une méthode pour afficher une liste
-                        de produits.</li>
-                    <li>Définissez une route qui appelle cette méthode et affiche les produits dans une vue.</li>
-                </ul>
-            </div>
-        </section>
+    .code-editor textarea {
+        font-family: monospace;
+        resize: vertical;
+    }
+</style>
+@endsection
 
-    </main>
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Gestion du quiz
+        document.getElementById('chapter-quiz').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Logique de vérification du quiz
+        });
 
-    <footer>
-        <p>&copy; 2025 Cours PHP et Laravel - CND</p>
-    </footer>
-</body>
+        // Navigation fluide
+        document.querySelectorAll('#navbar-chapter .nav-link').forEach(function(navLink) {
+            navLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    });
 
-</html>
+    function verifyExercise1() {
+        // Logique de vérification de l'exercice
+    }
+</script>
+@endsection
