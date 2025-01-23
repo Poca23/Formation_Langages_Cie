@@ -77,8 +77,9 @@ Route::middleware('auth.custom')->group(function () {
         return view('programme-revisions');
     })->name('programme-revisions');
 
-    // Route vers le quiz
-    Route::get('/quiz/{chapter}', [QuizController::class, 'show'])->name('quiz.show');
-    // Route pour soumettre le quiz
-    Route::post('/quiz/{quiz}/submit', [QuizController::class, 'submit'])->name('quiz.submit');
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/quiz/{chapter}', [QuizController::class, 'show'])->name('quiz.show');
+        Route::post('/quiz/{quiz}/submit', [QuizController::class, 'submit'])->name('quiz.submit');
+        Route::get('/quiz/results', [QuizController::class, 'results'])->name('quiz.results');
+    });
 });
