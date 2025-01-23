@@ -22,8 +22,10 @@
                 </div>
             </div>
 
+            <!-- Barre de progression utilisateur -->
             <div class="progress mb-3">
-                <div class="progress-bar" role="progressbar" style="width: {{ $progress ?? 0 }}%">
+                <div class="progress-bar" role="progressbar" aria-valuenow="{{ $progress ?? 0 }}" aria-valuemin="0"
+                    aria-valuemax="100" style="width: {{ $progress ?? 0 }}%;">
                     {{ $progress ?? 0 }}% complété
                 </div>
             </div>
@@ -37,7 +39,8 @@
 
                     <section id="section1" class="mb-5">
                         <h2>Qu'est-ce que PHP ?</h2>
-                        <p>PHP (Hypertext Preprocessor) est un langage de programmation libre, principalement utilisé pour produire des pages Web dynamiques via un serveur HTTP.</p>
+                        <p>PHP (Hypertext Preprocessor) est un langage de programmation libre, principalement utilisé
+                            pour produire des pages Web dynamiques via un serveur HTTP.</p>
                         <div class="alert alert-info">
                             <i class="fas fa-info-circle"></i> PHP est un langage de script côté serveur.
                         </div>
@@ -45,7 +48,8 @@
 
                     <section id="section2" class="mb-5">
                         <h2>Histoire de PHP</h2>
-                        <p>Créé en 1994 par Rasmus Lerdorf, PHP a évolué pour devenir l'un des langages les plus utilisés pour le développement web.</p>
+                        <p>Créé en 1994 par Rasmus Lerdorf, PHP a évolué pour devenir l'un des langages les plus
+                            utilisés pour le développement web.</p>
                         <div class="timeline">
                             <div class="timeline-item">
                                 <h4>1994</h4>
@@ -59,7 +63,6 @@
                                 <h4>2000</h4>
                                 <p>PHP 4.0</p>
                             </div>
-                            <!-- etc. -->
                         </div>
                     </section>
 
@@ -120,11 +123,13 @@ sudo apt-get install php apache2
                                 <div class="mb-3">
                                     <p>Que signifie PHP ?</p>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="q1" value="1">
+                                        <input class="form-check-input" type="radio" name="q1" value="1"
+                                            data-answer="false">
                                         <label class="form-check-label">Personal Home Page</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="q1" value="2">
+                                        <input class="form-check-input" type="radio" name="q1" value="2"
+                                            data-answer="true">
                                         <label class="form-check-label">Hypertext Preprocessor</label>
                                     </div>
                                 </div>
@@ -138,7 +143,7 @@ sudo apt-get install php apache2
                         <a href="{{ route('sommaire') }}" class="btn btn-secondary">
                             <i class="fas fa-arrow-left"></i> Sommaire
                         </a>
-                        <a href="{{ route('chapter2') }}" class="btn btn-primary">
+                        <a href="{{ route('chapter', ['id' => 2]) }}" class="btn btn-primary">
                             Chapitre suivant <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
@@ -179,16 +184,21 @@ sudo apt-get install php apache2
 
 @section('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         // Gestion du quiz
-        document.getElementById('chapter-quiz').addEventListener('submit', function(e) {
+        document.getElementById('chapter-quiz').addEventListener('submit', function (e) {
             e.preventDefault();
-            // Logique de vérification du quiz
+            const answer = document.querySelector('[name="q1"]:checked');
+            if (answer && answer.getAttribute('data-answer') === 'true') {
+                alert('Bonne réponse !');
+            } else {
+                alert('Essayez encore.');
+            }
         });
 
         // Spy scroll pour la navigation
-        document.querySelectorAll('#navbar-chapter .nav-link').forEach(function(navLink) {
-            navLink.addEventListener('click', function(e) {
+        document.querySelectorAll('#navbar-chapter .nav-link').forEach(function (navLink) {
+            navLink.addEventListener('click', function (e) {
                 e.preventDefault();
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
