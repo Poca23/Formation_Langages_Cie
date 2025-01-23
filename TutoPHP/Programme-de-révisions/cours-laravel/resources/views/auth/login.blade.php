@@ -11,20 +11,26 @@
                     <h4 class="mb-0">Connexion</h4>
                 </div>
                 <div class="card-body">
+                    <!-- Afficher les messages d'erreur ou de succès -->
                     @if(Session::has('error'))
-                    <div class="alert alert-danger">
-                        {{ Session::get('error') }}
-                    </div>
+                        <div class="alert alert-danger">
+                            {{ Session::get('error') }}
+                        </div>
+                    @endif
+                    @if(Session::has('success'))
+                        <div class="alert alert-success">
+                            {{ Session::get('success') }}
+                        </div>
                     @endif
 
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('login.custom') }}"> {{-- Correction ici --}}
                         @csrf
                         <div class="mb-3">
                             <label for="email" class="form-label">Adresse email</label>
-                            <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                id="email" name="email" value="{{ old('email') }}" required>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
+                                name="email" value="{{ old('email') }}" required>
                             @error('email')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
@@ -33,7 +39,7 @@
                             <input type="password" class="form-control @error('password') is-invalid @enderror"
                                 id="password" name="password" required>
                             @error('password')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 

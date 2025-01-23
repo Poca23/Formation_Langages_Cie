@@ -3,76 +3,87 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Hash;
-use Session;
-use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use App\Models\User;
 
 class CustomAuthController extends Controller
 {
+    // Afficher le formulaire de connexion
     public function index()
     {
         return view('auth.login');
     }
 
+    // Traitement de la connexion
     public function customLogin(Request $request)
     {
+        // Validation des champs
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => 'required'
         ]);
 
+        // Vérification des identifiants
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard')
-                ->withSuccess('Connexion réussie');
+            return redirect()->route('dashboard')->withSuccess('Connexion réussie.');
         }
 
-        return redirect("login")->withError('Les informations de connexion ne sont pas valides');
+        // Redirection avec erreur si échec authentification
+        return redirect()->route('login')->withError('Adresse e-mail ou mot de passe incorrect.');
     }
 
+    // Afficher le formulaire d'inscription
     public function registration()
     {
         return view('auth.registration');
     }
 
+    // Traiter l'inscription (création utilisateur)
     public function customRegistration(Request $request)
     {
+        // Validation des champs + confirmation mot de passe
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed', // Vérifie password_confirmation
         ]);
 
-        $data = $request->all();
-        $check = $this->create($data);
+        // Création utilisateur (appel méthode privée "create")
+        $this->create($request->all());
 
-        return redirect("dashboard")->withSuccess('Vous vous êtes inscrit avec succès');
+        // Redirection vers le tableau de bord après inscription réussie
+        return redirect()->route('dashboard')->withSuccess('Vous vous êtes inscrit avec succès.');
     }
 
-    public function create(array $data)
+    // Créer un nouvel utilisateur
+    protected function create(array $data)
     {
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password'])
+            'password' => Hash::make($data['password']),
         ]);
     }
 
+    // Tableau de bord (protection supplémentaire via Auth::check())
     public function dashboard()
     {
         if (Auth::check()) {
             return view('dashboard');
         }
 
-        return redirect("login")->withError('Vous n\'êtes pas autorisé à accéder à cette page');
+        return redirect()->route('login')->withError("Vous n'êtes pas autorisé(e) à accéder à cette page.");
     }
 
+    // Déconnexion (vider session et déconnecter utilisateur)
     public function signOut()
     {
         Session::flush();
         Auth::logout();
 
-        return redirect('login');
+        return redirect()->route('login')->withSuccess('Vous avez été déconnecté avec succès.');
     }
 }
