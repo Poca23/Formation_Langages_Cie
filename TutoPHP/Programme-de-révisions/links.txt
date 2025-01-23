@@ -92,18 +92,17 @@ https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-d
 
 customauthcontroller.php (app/Htpp/Controller)
 
-quiz.css (public/css)
+https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/public/css/quiz.css
 
-quiz.js (public/js)
+https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/public/js/quiz.js
 
-dashboard (resources/views)
+https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/resources/views/dashboard.blade.php
 
-login (resources/views)
+https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/resources/views/auth/login.blade.php
 
-registration (resources/views/auth)
+https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/resources/views/auth/registration.blade.php
 
-app (resources/views/layouts)
-
+https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/resources/views/layouts/app.blade.php
 
 
 .env :
