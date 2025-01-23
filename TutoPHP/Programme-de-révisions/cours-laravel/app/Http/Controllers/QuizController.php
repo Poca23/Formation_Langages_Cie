@@ -2,86 +2,56 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Question;
 use App\Models\Quiz;
 use App\Models\UserQuizResult;
 use Illuminate\Http\Request;
 
 class QuizController extends Controller
 {
-    public function __construct()
+    public function index()
     {
-        $this->middleware('auth');
+        $quizzes = Quiz::all();
+        return view('quiz.index', compact('quizzes'));
     }
 
-    public function show($chapterNumber)
+    public function show(Quiz $quiz)
     {
-        $quiz = Quiz::where('chapter_number', $chapterNumber)
-            ->with(['questions' => function ($query) {
-                $query->inRandomOrder()->limit(10); // Limite à 10 questions aléatoires
-            }])
-            ->firstOrFail();
-
-        // Vérifie si l'utilisateur a déjà passé ce quiz
-        $previousResult = UserQuizResult::where('user_id', auth()->id())
-            ->where('quiz_id', $quiz->id)
-            ->first();
-
-        return view('quiz.show', compact('quiz', 'previousResult'));
+        $questions = $quiz->questions;
+        return view('quiz.show', compact('quiz', 'questions'));
     }
 
-    public function submit(Request $request, Quiz $quiz)
+    public function checkAnswer(Request $request)
     {
-        $answers = $request->input('answers');
-        $score = 0;
-        $totalQuestions = count($quiz->questions);
-        $correctAnswers = [];
-        $wrongAnswers = [];
+        $validated = $request->validate([
+            'question_id' => 'required|exists:questions,id',
+            'answer' => 'required'
+        ]);
 
-        foreach ($quiz->questions as $question) {
-            if (
-                isset($answers[$question->id]) &&
-                $answers[$question->id] === $question->correct_answer
-            ) {
-                $score++;
-                $correctAnswers[] = $question->id;
-            } else {
-                $wrongAnswers[] = $question->id;
-            }
-        }
+        $question = Question::find($validated['question_id']);
+        $isCorrect = $question->correct_answer === $validated['answer'];
 
-        // Calcul du pourcentage
-        $percentage = ($score / $totalQuestions) * 100;
-
-        // Enregistre ou met à jour le résultat
-        UserQuizResult::updateOrCreate(
-            [
-                'user_id' => auth()->id(),
-                'quiz_id' => $quiz->id
-            ],
-            [
-                'score' => $score,
-                'percentage' => $percentage,
-                'completed_at' => now(),
-            ]
-        );
-
-        return view('quiz.result', compact(
-            'score',
-            'totalQuestions',
-            'percentage',
-            'correctAnswers',
-            'wrongAnswers',
-            'quiz'
-        ));
+        return response()->json([
+            'correct' => $isCorrect,
+            'explanation' => $question->explanation
+        ]);
     }
 
-    public function results()
+    public function storeResult(Request $request)
     {
-        $results = UserQuizResult::where('user_id', auth()->id())
-            ->with('quiz')
-            ->orderBy('completed_at', 'desc')
-            ->get();
+        $validated = $request->validate([
+            'quiz_id' => 'required|exists:quizzes,id',
+            'score' => 'required|integer|min:0',
+            'total_questions' => 'required|integer|min:1'
+        ]);
 
-        return view('quiz.results', compact('results'));
+        UserQuizResult::create([
+            'user_id' => auth()->id(),
+            'quiz_id' => $validated['quiz_id'],
+            'score' => $validated['score'],
+            'total_questions' => $validated['total_questions']
+        ]);
+
+        return redirect()->route('quiz.index')->with('success', 'Quiz completed successfully!');
     }
 }

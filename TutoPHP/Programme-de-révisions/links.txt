@@ -88,6 +88,22 @@ https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-d
 
 https://github.com/Poca23/Formation_Langages_Cie/tree/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/app/Http/Controllers
 
+https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/arborescence-projet-php-laravel.png
+
+customauthcontroller.php (app/Htpp/Controller)
+
+quiz.css (public/css)
+
+quiz.js (public/js)
+
+dashboard (resources/views)
+
+login (resources/views)
+
+registration (resources/views/auth)
+
+app (resources/views/layouts)
+
 
 
 .env :

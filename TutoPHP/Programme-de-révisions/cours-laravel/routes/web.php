@@ -1,85 +1,89 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\QuizController;
 
-// Route de connexion
-Route::get('/login', function () {
-    return view('login'); // Vue login.blade.php pour l'authentification
-})->name('login');
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+*/
 
-// Groupement des routes avec le middleware 'auth.custom'
-Route::middleware('auth.custom')->group(function () {
-    // Route vers la page d'accueil
-    Route::get('/', function () {
-        return view('sommaire');
-    })->name('home');
+Route::get('/', function () {
+    return view('welcome');
+});
 
-    // Routes pour chaque chapitre
-    Route::get('/chapter1', function () {
-        return view('chapter1-introduction');
-    })->name('chapter1');
+// Routes d'authentification
+Route::get('dashboard', [CustomAuthController::class, 'dashboard'])->name('dashboard');
+Route::get('login', [CustomAuthController::class, 'index'])->name('login');
+Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom');
+Route::get('registration', [CustomAuthController::class, 'registration'])->name('register-user');
+Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom');
+Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
 
-    Route::get('/chapter2', function () {
-        return view('chapter2-basics');
-    })->name('chapter2');
+// Routes protégées (nécessitant une authentification)
+Route::middleware(['auth'])->group(function () {
+    // Routes pour les quiz
+    Route::get('/quiz', [QuizController::class, 'index'])->name('quiz.index');
+    Route::get('/quiz/{quiz}', [QuizController::class, 'show'])->name('quiz.show');
+    Route::post('/quiz/check-answer', [QuizController::class, 'checkAnswer'])->name('quiz.check-answer');
+    Route::post('/quiz/store-result', [QuizController::class, 'storeResult'])->name('quiz.store-result');
 
-    Route::get('/chapter3', function () {
-        return view('chapter3-control-flow');
-    })->name('chapter3');
+    // Routes pour les chapitres
+    Route::get('/chapitre1', function () {
+        return view('chapitre1');
+    })->name('chapitre1');
 
-    Route::get('/chapter4', function () {
-        return view('chapter4-functions');
-    })->name('chapter4');
+    Route::get('/chapitre2', function () {
+        return view('chapitre2');
+    })->name('chapitre2');
 
-    Route::get('/chapter5', function () {
-        return view('chapter5-arrays');
-    })->name('chapter5');
+    Route::get('/chapitre3', function () {
+        return view('chapitre3');
+    })->name('chapitre3');
 
-    Route::get('/chapter6', function () {
-        return view('chapter6-sessions-cookies');
-    })->name('chapter6');
+    Route::get('/chapitre4', function () {
+        return view('chapitre4');
+    })->name('chapitre4');
 
-    Route::get('/chapter7', function () {
-        return view('chapter7-laravel-intro');
-    })->name('chapter7');
+    Route::get('/chapitre5', function () {
+        return view('chapitre5');
+    })->name('chapitre5');
 
-    Route::get('/chapter8', function () {
-        return view('chapter8-laravel-installation');
-    })->name('chapter8');
+    Route::get('/chapitre6', function () {
+        return view('chapitre6');
+    })->name('chapitre6');
 
-    Route::get('/chapter9', function () {
-        return view('chapter9-laravel-structure');
-    })->name('chapter9');
+    Route::get('/chapitre7', function () {
+        return view('chapitre7');
+    })->name('chapitre7');
 
-    Route::get('/chapter10', function () {
-        return view('chapter10-routes-controllers');
-    })->name('chapter10');
+    Route::get('/chapitre8', function () {
+        return view('chapitre8');
+    })->name('chapitre8');
 
-    Route::get('/chapter11', function () {
-        return view('chapter11-models-databases');
-    })->name('chapter11');
+    Route::get('/chapitre9', function () {
+        return view('chapitre9');
+    })->name('chapitre9');
 
-    Route::get('/chapter12', function () {
-        return view('chapter12-views-frontend');
-    })->name('chapter12');
+    Route::get('/chapitre10', function () {
+        return view('chapitre10');
+    })->name('chapitre10');
 
-    Route::get('/chapter13', function () {
-        return view('chapter13-security-validation');
-    })->name('chapter13');
+    Route::get('/chapitre11', function () {
+        return view('chapitre11');
+    })->name('chapitre11');
 
-    Route::get('/chapter14', function () {
-        return view('chapter14-deployments-practices');
-    })->name('chapter14');
+    Route::get('/chapitre12', function () {
+        return view('chapitre12');
+    })->name('chapitre12');
 
-    // Route vers le programme de révisions
-    Route::get('/programme-revisions', function () {
-        return view('programme-revisions');
-    })->name('programme-revisions');
+    Route::get('/chapitre13', function () {
+        return view('chapitre13');
+    })->name('chapitre13');
 
-    Route::middleware(['auth'])->group(function () {
-        Route::get('/quiz/{chapter}', [QuizController::class, 'show'])->name('quiz.show');
-        Route::post('/quiz/{quiz}/submit', [QuizController::class, 'submit'])->name('quiz.submit');
-        Route::get('/quiz/results', [QuizController::class, 'results'])->name('quiz.results');
-    });
+    Route::get('/chapitre14', function () {
+        return view('chapitre14');
+    })->name('chapitre14');
 });

@@ -1,41 +1,42 @@
 @extends('layouts.app')
 
+@section('title', 'Quiz')
+
 @section('content')
-<div class="container">
-    <h2>{{ $quiz->title }}</h2>
-    <p>{{ $quiz->description }}</p>
+<div class="quiz-container">
+    <h1>{{ $quiz->title }}</h1>
 
-    <form method="POST" action="{{ route('quiz.submit', $quiz) }}">
+    <form id="quizForm" class="quiz-form">
         @csrf
-        @foreach($quiz->questions as $question)
-        <div class="card mb-3">
-            <div class="card-body">
-                <h5>{{ $question->question_text }}</h5>
+        <input type="hidden" name="quiz_id" value="{{ $quiz->id }}">
 
-                <div class="form-check">
-                    <input type="radio" name="answers[{{ $question->id }}]" value="a" required>
-                    <label>{{ $question->option_a }}</label>
+        @foreach($questions as $question)
+        <div class="question-container" data-question="{{ $loop->iteration }}">
+            <h2>Question {{ $loop->iteration }}: {{ $question->title }}</h2>
+            <div class="options">
+                @foreach($question->options as $option)
+                <div class="option">
+                    <input type="radio"
+                        name="answers[{{ $question->id }}]"
+                        value="{{ $option }}"
+                        id="q{{ $question->id }}_option_{{ $loop->index }}">
+                    <label for="q{{ $question->id }}_option_{{ $loop->index }}">
+                        {{ $option }}
+                    </label>
                 </div>
-
-                <div class="form-check">
-                    <input type="radio" name="answers[{{ $question->id }}]" value="b">
-                    <label>{{ $question->option_b }}</label>
-                </div>
-
-                <div class="form-check">
-                    <input type="radio" name="answers[{{ $question->id }}]" value="c">
-                    <label>{{ $question->option_c }}</label>
-                </div>
-
-                <div class="form-check">
-                    <input type="radio" name="answers[{{ $question->id }}]" value="d">
-                    <label>{{ $question->option_d }}</label>
-                </div>
+                @endforeach
             </div>
+            <div id="feedback_{{ $question->id }}" class="feedback hidden"></div>
         </div>
         @endforeach
 
-        <button type="submit" class="btn btn-primary">Soumettre le Quiz</button>
+        <div class="quiz-controls">
+            <button type="submit" class="btn btn-primary">Soumettre les réponses</button>
+        </div>
     </form>
 </div>
+@endsection
+
+@section('scripts')
+<script src="{{ asset('js/quiz.js') }}"></script>
 @endsection
