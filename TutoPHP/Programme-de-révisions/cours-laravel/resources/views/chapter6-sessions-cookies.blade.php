@@ -1,157 +1,314 @@
-<!DOCTYPE html>
-<html lang="fr">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapitre 6 - Structures de contrôle en PHP</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <script src="{{ asset('js/script.js') }}" defer></script>
-</head>
+@section('title', 'Gestion des Erreurs et Exceptions')
 
-<body>
-    <header>
-        <h1>Chapitre 6 - Structures de contrôle en PHP</h1>
-    </header>
-
-    <main>
-
-    <a href="{{ route('home') }}">Retour au Sommaire</a>
-
-
-        <section class="collapsible"  id="chapter6">
-            <h2 class="collapsible-header">Les instructions conditionnelles (if, else, elseif)</h2>
-            <div class="collapsible-content">
-                <p>Les structures conditionnelles permettent d'exécuter certaines instructions en fonction de la
-                    vérification d'une condition. En PHP, l'instruction la plus courante pour cela est <code>if</code>.
-                </p>
-
-                <h3>La structure <code>if</code> :</h3>
-                <p>La structure <code>if</code> permet de tester une condition. Si la condition est vraie, le code à
-                    l'intérieur des accolades est exécuté.</p>
-                <pre><code>$age = 18;
-if ($age >= 18) {
-    echo "Vous êtes majeur.";
-}</code></pre>
-
-                <h3>La structure <code>else</code> :</h3>
-                <p>La structure <code>else</code> est utilisée en complément du <code>if</code> pour exécuter une autre
-                    partie du code si la condition est fausse.</p>
-                <pre><code>$age = 16;
-if ($age >= 18) {
-    echo "Vous êtes majeur.";
-} else {
-    echo "Vous êtes mineur.";
-}</code></pre>
-
-                <h3>La structure <code>elseif</code> :</h3>
-                <p>Si plusieurs conditions doivent être testées, vous pouvez utiliser <code>elseif</code> pour tester
-                    une condition supplémentaire si la première est fausse.</p>
-                <pre><code>$age = 20;
-if ($age < 18) {
-    echo "Vous êtes mineur.";
-} elseif ($age >= 18 && $age < 65) {
-    echo "Vous êtes adulte.";
-} else {
-    echo "Vous êtes senior.";
-}</code></pre>
-
-                <h3>Exercice :</h3>
-                <ul>
-                    <li>Créez une variable <code>$age</code> et attribuez-lui votre âge.</li>
-                    <li>Utilisez une structure <code>if</code> pour afficher un message indiquant si vous êtes mineur,
-                        adulte ou senior en fonction de votre âge.</li>
-                </ul>
+@section('content')
+<div class="container">
+    <div class="row">
+        <!-- Sidebar de navigation -->
+        <div class="col-md-3">
+            <div class="card shadow mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Dans ce chapitre</h5>
+                </div>
+                <div class="card-body">
+                    <nav id="navbar-chapter" class="nav flex-column">
+                        <a class="nav-link" href="#section1">Types d'erreurs</a>
+                        <a class="nav-link" href="#section2">Gestion des erreurs</a>
+                        <a class="nav-link" href="#section3">Exceptions</a>
+                        <a class="nav-link" href="#section4">Try-Catch</a>
+                        <a class="nav-link" href="#section5">Exceptions personnalisées</a>
+                        <a class="nav-link" href="#section6">Bonnes pratiques</a>
+                    </nav>
+                </div>
             </div>
-        </section>
 
-        <section class="collapsible">
-            <h2 class="collapsible-header">Les boucles en PHP (for, while, foreach)</h2>
-            <div class="collapsible-content">
-                <p>Les boucles permettent d'exécuter un bloc de code plusieurs fois de manière répétée. PHP propose
-                    plusieurs types de boucles :</p>
-
-                <h3>La boucle <code>for</code> :</h3>
-                <p>La boucle <code>for</code> est utilisée lorsque vous savez à l'avance combien de fois vous souhaitez
-                    répéter le code. Elle contient trois parties :</p>
-                <ul>
-                    <li>Initialisation : une fois au début de la boucle.</li>
-                    <li>Condition : la boucle continue tant que cette condition est vraie.</li>
-                    <li>Incrémentation : elle s'exécute à chaque itération pour modifier la variable de contrôle.</li>
-                </ul>
-                <pre><code>for ($i = 0; $i < 5; $i++) {
-    echo $i . "<br>";
-}</code></pre>
-                <p>Cet exemple affiche les nombres de 0 à 4.</p>
-
-                <h3>La boucle <code>while</code> :</h3>
-                <p>La boucle <code>while</code> continue tant que la condition est vraie. Elle est utilisée lorsque vous
-                    ne savez pas à l'avance combien de fois la boucle doit s'exécuter.</p>
-                <pre><code>$i = 0;
-while ($i < 5) {
-    echo $i . "<br>";
-    $i++;
-}</code></pre>
-                <p>Cet exemple fait la même chose que la boucle <code>for</code> ci-dessus, mais d'une manière
-                    différente.</p>
-
-                <h3>La boucle <code>foreach</code> :</h3>
-                <p>La boucle <code>foreach</code> est spécialement conçue pour parcourir les éléments d'un tableau. Elle
-                    est très pratique pour traiter des tableaux sans avoir besoin d'un index explicite.</p>
-                <pre><code>$couleurs = array("rouge", "vert", "bleu");
-foreach ($couleurs as $couleur) {
-    echo $couleur . "<br>";
-}</code></pre>
-                <p>Dans cet exemple, la boucle parcourt chaque élément du tableau et l'affiche.</p>
-
-                <h3>Exercice :</h3>
-                <ul>
-                    <li>Créez un tableau contenant les jours de la semaine.</li>
-                    <li>Utilisez une boucle <code>foreach</code> pour afficher tous les jours du tableau.</li>
-                    <li>Ensuite, utilisez une boucle <code>for</code> pour afficher les mêmes jours, mais avec un index
-                        devant chaque jour (par exemple : "1. Lundi", "2. Mardi", etc.).</li>
-                </ul>
+            <div class="progress mb-3">
+                <div class="progress-bar" role="progressbar" style="width: {{ $progress ?? 0 }}%">
+                    {{ $progress ?? 0 }}% complété
+                </div>
             </div>
-        </section>
+        </div>
 
-        <section class="collapsible">
-            <h2 class="collapsible-header">L'instruction <code>switch</code> en PHP</h2>
-            <div class="collapsible-content">
-                <p>La structure <code>switch</code> est une alternative aux structures <code>if</code> et
-                    <code>elseif</code> lorsque vous avez plusieurs conditions à tester sur une même variable.
-                </p>
-                <pre><code>$jour = "Lundi";
-switch ($jour) {
-    case "Lundi":
-        echo "C'est le début de la semaine.";
-        break;
-    case "Vendredi":
-        echo "C'est presque le week-end.";
-        break;
-    default:
-        echo "C'est un jour quelconque.";
-}</code></pre>
-                <p>Dans cet exemple, la variable <code>$jour</code> est comparée à différentes valeurs possibles. Si une
-                    correspondance est trouvée, le code correspondant est exécuté. Le mot-clé <code>break</code> permet
-                    de sortir de la structure <code>switch</code> une fois qu'une correspondance est trouvée.</p>
+        <!-- Contenu principal -->
+        <div class="col-md-9">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h1 class="mb-4">Chapitre 6 : Gestion des Erreurs et Exceptions</h1>
 
-                <h3>Exercice :</h3>
-                <ul>
-                    <li>Créez une variable <code>$jour</code> et affectez-lui un jour de la semaine.</li>
-                    <li>Utilisez un <code>switch</code> pour afficher un message personnalisé en fonction du jour de la
-                        semaine.</li>
-                    <li>Ajoutez un cas <code>default</code> pour gérer les autres jours non mentionnés dans les
-                        <code>case</code>.
-                    </li>
-                </ul>
+                    <section id="section1" class="mb-5">
+                        <h2>Types d'erreurs</h2>
+                        <p>PHP définit plusieurs types d'erreurs différents.</p>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Type d'erreur</th>
+                                        <th>Description</th>
+                                        <th>Exemple</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>E_ERROR</td>
+                                        <td>Erreurs fatales qui arrêtent l'exécution</td>
+                                        <td>Appel à une fonction inexistante</td>
+                                    </tr>
+                                    <tr>
+                                        <td>E_WARNING</td>
+                                        <td>Avertissements non fatals</td>
+                                        <td>Division par zéro</td>
+                                    </tr>
+                                    <tr>
+                                        <td>E_NOTICE</td>
+                                        <td>Notifications pour des situations potentiellement problématiques</td>
+                                        <td>Utilisation d'une variable non définie</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section id="section2" class="mb-5">
+                        <h2>Gestion des erreurs</h2>
+                        <p>PHP offre plusieurs moyens de gérer les erreurs.</p>
+
+                        <div class="code-block">
+                            <pre><code>
+// Configuration du rapport d'erreurs
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// Gestionnaire d'erreurs personnalisé
+function monGestionnaireErreur($errno, $errstr, $errfile, $errline) {
+    echo "Erreur [$errno] : $errstr\n";
+    echo "Dans le fichier $errfile à la ligne $errline\n";
+    return true;
+}
+
+set_error_handler('monGestionnaireErreur');
+                            </code></pre>
+                        </div>
+
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i> En production, il est recommandé de désactiver l'affichage des erreurs et de les logger à la place.
+                        </div>
+                    </section>
+
+                    <section id="section3" class="mb-5">
+                        <h2>Exceptions</h2>
+                        <p>Les exceptions permettent une gestion plus structurée des erreurs.</p>
+
+                        <div class="code-block">
+                            <pre><code>
+class MonException extends Exception {
+    public function afficherMessage() {
+        return "Erreur : " . $this->getMessage();
+    }
+}
+
+function verifierAge($age) {
+    if ($age < 0) {
+        throw new Exception("L'âge ne peut pas être négatif");
+    }
+    return true;
+}
+                            </code></pre>
+                        </div>
+                    </section>
+
+                    <section id="section4" class="mb-5">
+                        <h2>Try-Catch</h2>
+                        <p>Le bloc try-catch permet de capturer et gérer les exceptions.</p>
+
+                        <div class="code-block">
+                            <pre><code>
+try {
+    verifierAge(-5);
+} catch (Exception $e) {
+    echo "Une erreur est survenue : " . $e->getMessage();
+} finally {
+    echo "Ce code s'exécute toujours";
+}
+                            </code></pre>
+                        </div>
+
+                        <h4>Multiple Catch</h4>
+                        <div class="code-block">
+                            <pre><code>
+try {
+    // Code potentiellement dangereux
+} catch (DatabaseException $e) {
+    // Gestion des erreurs de base de données
+} catch (FileException $e) {
+    // Gestion des erreurs de fichiers
+} catch (Exception $e) {
+    // Gestion des autres erreurs
+}
+                            </code></pre>
+                        </div>
+                    </section>
+
+                    <section id="section5" class="mb-5">
+                        <h2>Exceptions personnalisées</h2>
+                        <p>Création d'exceptions spécifiques pour votre application.</p>
+
+                        <div class="code-block">
+                            <pre><code>
+class ValidationException extends Exception {
+    protected $champ;
+
+    public function __construct($message, $champ) {
+        parent::__construct($message);
+        $this->champ = $champ;
+    }
+
+    public function getChamp() {
+        return $this->champ;
+    }
+}
+
+// Utilisation
+try {
+    if (empty($email)) {
+        throw new ValidationException("Email requis", "email");
+    }
+} catch (ValidationException $e) {
+    echo "Erreur de validation sur le champ : " . $e->getChamp();
+}
+                            </code></pre>
+                        </div>
+                    </section>
+
+                    <section id="section6" class="mb-5">
+                        <h2>Bonnes pratiques</h2>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <h5>1. Hiérarchie d'exceptions</h5>
+                                <p>Créez une hiérarchie d'exceptions logique pour votre application.</p>
+                            </li>
+                            <li class="list-group-item">
+                                <h5>2. Messages d'erreur clairs</h5>
+                                <p>Fournissez des messages d'erreur descriptifs et utiles.</p>
+                            </li>
+                            <li class="list-group-item">
+                                <h5>3. Logging</h5>
+                                <p>Enregistrez les erreurs importantes pour le débogage.</p>
+                            </li>
+                            <li class="list-group-item">
+                                <h5>4. Nettoyage</h5>
+                                <p>Utilisez finally pour le nettoyage des ressources.</p>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <!-- Exercices pratiques -->
+                    <div class="card mt-4">
+                        <div class="card-header bg-light">
+                            <h3 class="mb-0">Exercices pratiques</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="exercise mb-4">
+                                <h4>Exercice 1</h4>
+                                <p>Créez une classe d'exception personnalisée et utilisez-la dans une fonction.</p>
+                                <div class="code-editor" id="exercise1">
+                                    <textarea class="form-control" rows="8">
+class AgeException extends Exception {
+    // Votre code ici
+}
+
+function verifierAge($age) {
+    // Votre code ici
+}
+                                    </textarea>
+                                    <button class="btn btn-primary mt-2" onclick="verifyExercise1()">Vérifier</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quiz -->
+                    <div class="card mt-4">
+                        <div class="card-header bg-light">
+                            <h3 class="mb-0">Quiz rapide</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="chapter-quiz">
+                                <div class="mb-3">
+                                    <p>Quelle instruction est utilisée pour lancer une exception ?</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1" value="1">
+                                        <label class="form-check-label">throw</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1" value="2">
+                                        <label class="form-check-label">catch</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1" value="3">
+                                        <label class="form-check-label">try</label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Vérifier</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Navigation entre chapitres -->
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="{{ route('chapter5') }}" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Chapitre précédent
+                        </a>
+                        <a href="{{ route('chapter7') }}" class="btn btn-primary">
+                            Chapitre suivant <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
+    </div>
+</div>
+@endsection
 
-    </main>
+@section('styles')
+<style>
+    .code-block {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        margin: 10px 0;
+    }
 
-    <footer>
-        <p>&copy; 2025 Cours PHP et Laravel - CND</p>
-    </footer>
-</body>
+    .code-editor textarea {
+        font-family: monospace;
+        resize: vertical;
+    }
+</style>
+@endsection
 
-</html>
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Gestion du quiz
+        document.getElementById('chapter-quiz').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Logique de vérification du quiz
+        });
+
+        // Navigation fluide
+        document.querySelectorAll('#navbar-chapter .nav-link').forEach(function(navLink) {
+            navLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    });
+
+    function verifyExercise1() {
+        // Logique de vérification de l'exercice
+    }
+</script>
+@endsection

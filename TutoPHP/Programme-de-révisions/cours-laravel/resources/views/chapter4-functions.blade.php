@@ -1,138 +1,316 @@
-<!DOCTYPE html>
-<html lang="fr">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapitre 4 - Les fonctions en PHP</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <script src="{{ asset('js/script.js') }}" defer></script>
-</head>
+@section('title', 'Les Fonctions en PHP')
 
-<body>
-    <header>
-        <h1>Chapitre 4 - Les fonctions en PHP</h1>
-    </header>
-
-    <main>
-
-    <a href="{{ route('home') }}">Retour au Sommaire</a>
-
-
-        <section class="collapsible"  id="chapter4">
-            <h2 class="collapsible-header">Définir une fonction</h2>
-            <div class="collapsible-content">
-                <p>Les fonctions en PHP permettent de regrouper un ensemble d'instructions que l'on peut réutiliser
-                    plusieurs fois. Voici comment définir une fonction :</p>
-                <pre><code>function nom_de_la_fonction() {
-    // instructions
-}</code></pre>
-                <p>La fonction est définie avec le mot-clé <code>function</code>, suivi du nom de la fonction, puis des
-                    parenthèses. À l'intérieur des accolades, vous pouvez mettre les instructions que la fonction
-                    exécutera.</p>
-                <h3>Exemple :</h3>
-                <pre><code>function dire_bonjour() {
-    echo "Bonjour, tout le monde !";
-}</code></pre>
-                <p>Pour appeler cette fonction, on écrit simplement son nom suivi de parenthèses :
-                    <code>dire_bonjour();</code>
-                </p>
-                <h3>Exercice :</h3>
-                <ul>
-                    <li>Créez une fonction qui affiche "Bonjour" suivi du nom que vous passez en paramètre (exemple :
-                        "Bonjour Alice").</li>
-                </ul>
+@section('content')
+<div class="container">
+    <div class="row">
+        <!-- Sidebar de navigation -->
+        <div class="col-md-3">
+            <div class="card shadow mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Dans ce chapitre</h5>
+                </div>
+                <div class="card-body">
+                    <nav id="navbar-chapter" class="nav flex-column">
+                        <a class="nav-link" href="#section1">Définition des fonctions</a>
+                        <a class="nav-link" href="#section2">Paramètres et arguments</a>
+                        <a class="nav-link" href="#section3">Retour de valeurs</a>
+                        <a class="nav-link" href="#section4">Portée des variables</a>
+                        <a class="nav-link" href="#section5">Fonctions anonymes</a>
+                        <a class="nav-link" href="#section6">Fonctions natives</a>
+                    </nav>
+                </div>
             </div>
-        </section>
 
-        <section class="collapsible">
-            <h2 class="collapsible-header">Les paramètres et les arguments</h2>
-            <div class="collapsible-content">
-                <p>Les fonctions peuvent accepter des paramètres, qui sont des valeurs passées lors de l'appel de la
-                    fonction. Les paramètres permettent à la fonction d'agir différemment selon les valeurs qui lui sont
-                    fournies.</p>
-                <h3>Exemple de fonction avec paramètres :</h3>
-                <pre><code>function saluer($prenom) {
-    echo "Bonjour, " . $prenom;
-}</code></pre>
-                <p>Dans cet exemple, la fonction <code>saluer</code> accepte un paramètre <code>$prenom</code>. Lors de
-                    l'appel de la fonction, vous devez spécifier une valeur pour ce paramètre :
-                    <code>saluer("Alice");</code>
-                </p>
-                <h3>Exercice :</h3>
-                <ul>
-                    <li>Créez une fonction <code>additionner</code> qui prend deux nombres en paramètre et retourne leur
-                        somme.</li>
-                </ul>
+            <div class="progress mb-3">
+                <div class="progress-bar" role="progressbar" style="width: {{ $progress ?? 0 }}%">
+                    {{ $progress ?? 0 }}% complété
+                </div>
             </div>
-        </section>
+        </div>
 
-        <section class="collapsible">
-            <h2 class="collapsible-header">Les valeurs de retour</h2>
-            <div class="collapsible-content">
-                <p>Les fonctions peuvent également retourner une valeur à l'aide du mot-clé <code>return</code>. Cela
-                    permet de récupérer le résultat d'une fonction pour l'utiliser ailleurs dans le programme.</p>
-                <h3>Exemple de fonction avec retour :</h3>
-                <pre><code>function multiplier($a, $b) {
-    return $a * $b;
-}</code></pre>
-                <p>Dans cet exemple, la fonction <code>multiplier</code> retourne le produit de <code>$a</code> et
-                    <code>$b</code>. Vous pouvez récupérer cette valeur dans une variable :
-                </p>
-                <pre><code>$resultat = multiplier(2, 3);</code></pre>
-                <h3>Exercice :</h3>
-                <ul>
-                    <li>Créez une fonction <code>calculer_moyenne</code> qui prend un tableau de nombres en paramètre et
-                        retourne la moyenne de ces nombres.</li>
-                </ul>
-            </div>
-        </section>
+        <!-- Contenu principal -->
+        <div class="col-md-9">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h1 class="mb-4">Chapitre 4 : Les Fonctions</h1>
 
-        <section class="collapsible">
-            <h2 class="collapsible-header">Les fonctions anonymes</h2>
-            <div class="collapsible-content">
-                <p>Les fonctions anonymes sont des fonctions qui n'ont pas de nom. Elles sont souvent utilisées pour
-                    être passées en argument à d'autres fonctions ou pour être exécutées sur place.</p>
-                <h3>Exemple de fonction anonyme :</h3>
-                <pre><code>$additionner = function($a, $b) {
+                    <section id="section1" class="mb-5">
+                        <h2>Définition des fonctions</h2>
+                        <p>Les fonctions sont des blocs de code réutilisables qui effectuent une tâche spécifique.</p>
+
+                        <div class="code-block">
+                            <pre><code>
+function direBonjour() {
+    echo "Bonjour !";
+}
+
+// Appel de la fonction
+direBonjour();
+                            </code></pre>
+                        </div>
+
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i> Les noms de fonctions ne sont pas sensibles à la casse, mais il est recommandé d'être cohérent.
+                        </div>
+                    </section>
+
+                    <section id="section2" class="mb-5">
+                        <h2>Paramètres et arguments</h2>
+                        <p>Les fonctions peuvent accepter des paramètres pour être plus flexibles.</p>
+
+                        <h4>Paramètres obligatoires</h4>
+                        <div class="code-block">
+                            <pre><code>
+function saluer($nom) {
+    echo "Bonjour $nom !";
+}
+
+saluer("Jean"); // Affiche: Bonjour Jean !
+                            </code></pre>
+                        </div>
+
+                        <h4>Paramètres optionnels</h4>
+                        <div class="code-block">
+                            <pre><code>
+function saluerAvecTitre($nom, $titre = "M.") {
+    echo "Bonjour $titre $nom !";
+}
+
+saluerAvecTitre("Dupont"); // Affiche: Bonjour M. Dupont !
+saluerAvecTitre("Dupont", "Dr."); // Affiche: Bonjour Dr. Dupont !
+                            </code></pre>
+                        </div>
+
+                        <h4>Arguments nommés (PHP 8+)</h4>
+                        <div class="code-block">
+                            <pre><code>
+function creerUtilisateur($nom, $email, $age) {
+    // ...
+}
+
+creerUtilisateur(
+    nom: "Jean",
+    email: "jean@example.com",
+    age: 25
+);
+                            </code></pre>
+                        </div>
+                    </section>
+
+                    <section id="section3" class="mb-5">
+                        <h2>Retour de valeurs</h2>
+                        <p>Les fonctions peuvent renvoyer des valeurs avec l'instruction return.</p>
+
+                        <div class="code-block">
+                            <pre><code>
+function addition($a, $b) {
     return $a + $b;
-};</code></pre>
-                <p>Dans cet exemple, nous avons défini une fonction anonyme qui additionne deux nombres. Pour
-                    l'utiliser, on l'appelle comme une fonction classique :</p>
-                <pre><code>$resultat = $additionner(2, 3);</code></pre>
-                <h3>Exercice :</h3>
-                <ul>
-                    <li>Créez une fonction anonyme qui prend un nombre et l'élève au carré. Utilisez-la pour calculer le
-                        carré d'un nombre.</li>
-                </ul>
+}
+
+$resultat = addition(5, 3); // $resultat = 8
+
+// Retours multiples avec array
+function getInfosUtilisateur() {
+    return ["Jean", 25, "jean@example.com"];
+}
+
+[$nom, $age, $email] = getInfosUtilisateur();
+                            </code></pre>
+                        </div>
+
+                        <h4>Types de retour (PHP 7+)</h4>
+                        <div class="code-block">
+                            <pre><code>
+function calculerAge(string $dateNaissance): int {
+    // Calcul de l'âge
+    return $age;
+}
+                            </code></pre>
+                        </div>
+                    </section>
+
+                    <section id="section4" class="mb-5">
+                        <h2>Portée des variables</h2>
+                        <p>La portée détermine où une variable peut être accessible.</p>
+
+                        <div class="code-block">
+                            <pre><code>
+$globale = "Je suis globale";
+
+function testPortee() {
+    global $globale; // Accès à la variable globale
+    $locale = "Je suis locale";
+    echo $globale;
+}
+
+// Variables statiques
+function compteur() {
+    static $count = 0;
+    return ++$count;
+}
+                            </code></pre>
+                        </div>
+                    </section>
+
+                    <section id="section5" class="mb-5">
+                        <h2>Fonctions anonymes</h2>
+                        <p>Les fonctions anonymes (closures) sont des fonctions sans nom.</p>
+
+                        <div class="code-block">
+                            <pre><code>
+$dire = function($mot) {
+    echo $mot;
+};
+
+$dire("Bonjour");
+
+// Utilisation comme callback
+$nombres = [1, 2, 3, 4];
+$doubles = array_map(function($n) {
+    return $n * 2;
+}, $nombres);
+                            </code></pre>
+                        </div>
+                    </section>
+
+                    <section id="section6" class="mb-5">
+                        <h2>Fonctions natives</h2>
+                        <p>PHP dispose de nombreuses fonctions intégrées.</p>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Catégorie</th>
+                                        <th>Exemples de fonctions</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Chaînes</td>
+                                        <td>strlen(), substr(), str_replace()</td>
+                                        <td>Manipulation de chaînes</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tableaux</td>
+                                        <td>array_push(), array_pop(), sort()</td>
+                                        <td>Manipulation de tableaux</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Math</td>
+                                        <td>round(), ceil(), floor()</td>
+                                        <td>Opérations mathématiques</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- Exercices pratiques -->
+                    <div class="card mt-4">
+                        <div class="card-header bg-light">
+                            <h3 class="mb-0">Exercices pratiques</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="exercise mb-4">
+                                <h4>Exercice 1</h4>
+                                <p>Créez une fonction qui calcule la moyenne d'un tableau de nombres.</p>
+                                <div class="code-editor" id="exercise1">
+                                    <textarea class="form-control" rows="6">
+function calculerMoyenne($nombres) {
+    // Votre code ici
+}
+
+// Test
+$notes = [15, 12, 18, 9];
+echo calculerMoyenne($notes);
+                                    </textarea>
+                                    <button class="btn btn-primary mt-2" onclick="verifyExercise1()">Vérifier</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quiz -->
+                    <div class="card mt-4">
+                        <div class="card-header bg-light">
+                            <h3 class="mb-0">Quiz rapide</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="chapter-quiz">
+                                <div class="mb-3">
+                                    <p>Que fait l'instruction return ?</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1" value="1">
+                                        <label class="form-check-label">Elle arrête le script</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1" value="2">
+                                        <label class="form-check-label">Elle renvoie une valeur et termine la fonction</label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Vérifier</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Navigation entre chapitres -->
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="{{ route('chapter3') }}" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Chapitre précédent
+                        </a>
+                        <a href="{{ route('chapter5') }}" class="btn btn-primary">
+                            Chapitre suivant <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
+    </div>
+</div>
+@endsection
 
-        <section class="collapsible">
-            <h2 class="collapsible-header">Les fonctions variadiques</h2>
-            <div class="collapsible-content">
-                <p>Les fonctions variadiques sont des fonctions qui peuvent accepter un nombre variable de paramètres.
-                    Cela est utile lorsqu'on ne sait pas à l'avance combien d'arguments seront passés à la fonction.</p>
-                <h3>Exemple de fonction variadique :</h3>
-                <pre><code>function additionnerTousLesNombres(...$nombres) {
-    return array_sum($nombres);
-}</code></pre>
-                <p>Dans cet exemple, la fonction <code>additionnerTousLesNombres</code> peut accepter un nombre variable
-                    de paramètres grâce à l'opérateur <code>...</code>. Vous pouvez l'utiliser ainsi :</p>
-                <pre><code>$resultat = additionnerTousLesNombres(1, 2, 3, 4);</code></pre>
-                <h3>Exercice :</h3>
-                <ul>
-                    <li>Créez une fonction qui prend un nombre variable de notes et retourne la moyenne de ces notes.
-                    </li>
-                </ul>
-            </div>
-        </section>
+@section('styles')
+<style>
+    .code-block {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        margin: 10px 0;
+    }
 
-    </main>
+    .code-editor textarea {
+        font-family: monospace;
+        resize: vertical;
+    }
+</style>
+@endsection
 
-    <footer>
-        <p>&copy; 2025 Cours PHP et Laravel - CND</p>
-    </footer>
-</body>
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Gestion du quiz et de la navigation
+        document.getElementById('chapter-quiz').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Logique de vérification du quiz
+        });
 
-</html>
+        // Navigation fluide
+        document.querySelectorAll('#navbar-chapter .nav-link').forEach(function(navLink) {
+            navLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    });
+
+    function verifyExercise1() {
+        // Logique de vérification de l'exercice
+    }
+</script>
+@endsection

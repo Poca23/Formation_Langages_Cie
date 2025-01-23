@@ -1,120 +1,258 @@
-<!DOCTYPE html>
-<html lang="fr">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapitre 2 - Les bases du PHP</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <script src="{{ asset('js/script.js') }}" defer></script>
-</head>
+@section('title', 'Les bases de PHP')
 
-<body>
-    <header>
-        <h1>Chapitre 2 - Les bases du PHP</h1>
-    </header>
-
-    <main>
-
-    <a href="{{ route('home') }}">Retour au Sommaire</a>
-
-        <section class="collapsible"  id="chapter2">
-            <h2 class="collapsible-header">Les variables et les types de données</h2>
-            <div class="collapsible-content">
-                <p>En PHP, les variables sont utilisées pour stocker des valeurs. Vous n'avez pas besoin de déclarer le
-                    type de données de la variable, PHP le fait automatiquement. Voici les types de données principaux :
-                </p>
-                <ul>
-                    <li><strong>Entiers :</strong> Des nombres sans décimales, comme <code>25</code>.</li>
-                    <li><strong>Flottants :</strong> Des nombres avec des décimales, comme <code>3.14</code>.</li>
-                    <li><strong>Booléens :</strong> Soit <code>true</code> ou <code>false</code>.</li>
-                    <li><strong>Chaînes de caractères :</strong> Texte entre guillemets, comme <code>"Bonjour"</code>.
-                    </li>
-                    <li><strong>Tableaux :</strong> Des collections de valeurs, comme
-                        <code>$nombres = [1, 2, 3];</code>.
-                    </li>
-                </ul>
-                <h3>Exercice :</h3>
-                <ul>
-                    <li>Déclarez une variable pour stocker votre âge et affichez-la avec la fonction <code>echo</code>.
-                    </li>
-                </ul>
+@section('content')
+<div class="container">
+    <div class="row">
+        <!-- Sidebar de navigation -->
+        <div class="col-md-3">
+            <div class="card shadow mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Dans ce chapitre</h5>
+                </div>
+                <div class="card-body">
+                    <nav id="navbar-chapter" class="nav flex-column">
+                        <a class="nav-link" href="#section1">Syntaxe de base</a>
+                        <a class="nav-link" href="#section2">Variables et Types de données</a>
+                        <a class="nav-link" href="#section3">Opérateurs</a>
+                        <a class="nav-link" href="#section4">Constantes</a>
+                        <a class="nav-link" href="#section5">Commentaires</a>
+                    </nav>
+                </div>
             </div>
-        </section>
 
-        <section class="collapsible">
-            <h2 class="collapsible-header">Opérateurs arithmétiques et logiques</h2>
-            <div class="collapsible-content">
-                <p>PHP fournit plusieurs opérateurs pour effectuer des calculs (arithmétiques) ou des comparaisons
-                    (logiques) :</p>
-                <h3>Opérateurs arithmétiques :</h3>
-                <ul>
-                    <li><strong>+</strong> Addition</li>
-                    <li><strong>-</strong> Soustraction</li>
-                    <li><strong>*</strong> Multiplication</li>
-                    <li><strong>/</strong> Division</li>
-                    <li><strong>%</strong> Modulo (reste de la division)</li>
-                </ul>
-                <h3>Opérateurs logiques :</h3>
-                <ul>
-                    <li><strong>==</strong> égal à</li>
-                    <li><strong>===</strong> strictement égal (même type et valeur)</li>
-                    <li><strong>!=</strong> différent de</li>
-                    <li><strong>&&</strong> ET logique</li>
-                    <li><strong>||</strong> OU logique</li>
-                </ul>
-                <h3>Exercice :</h3>
-                <ul>
-                    <li>Créez deux variables pour stocker des nombres et effectuez une addition et une comparaison entre
-                        eux.</li>
-                </ul>
+            <div class="progress mb-3">
+                <div class="progress-bar" role="progressbar" style="width: {{ $progress ?? 0 }}%">
+                    {{ $progress ?? 0 }}% complété
+                </div>
             </div>
-        </section>
+        </div>
 
-        <section class="collapsible">
-            <h2 class="collapsible-header">Les fonctions de base (echo, print, var_dump)</h2>
-            <div class="collapsible-content">
-                <p>Les fonctions suivantes sont utilisées pour afficher des données :</p>
-                <ul>
-                    <li><strong>echo</strong> : Affiche du texte ou des variables.</li>
-                    <li><strong>print</strong> : Similaire à <code>echo</code>, mais retourne une valeur (toujours
-                        <code>1</code>).
-                    </li>
-                    <li><strong>var_dump</strong> : Affiche des informations détaillées sur une variable (type et
-                        valeur).</li>
-                </ul>
-                <h3>Exercice :</h3>
-                <ul>
-                    <li>Créez une variable et affichez-la avec <code>echo</code>, <code>print</code>, et
-                        <code>var_dump</code>.
-                    </li>
-                </ul>
+        <!-- Contenu principal -->
+        <div class="col-md-9">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h1 class="mb-4">Chapitre 2 : Les bases de PHP</h1>
+
+                    <section id="section1" class="mb-5">
+                        <h2>Syntaxe de base</h2>
+                        <p>La syntaxe PHP est délimitée par les balises <code>&lt;?php</code> et <code>?&gt;</code>.</p>
+                        <div class="code-block">
+                            <pre><code>
+&lt;?php
+    // Votre code PHP ici
+    echo "Bonjour";
+?&gt;
+                            </code></pre>
+                        </div>
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i> La balise de fermeture est optionnelle si le fichier contient uniquement du PHP.
+                        </div>
+                    </section>
+
+                    <section id="section2" class="mb-5">
+                        <h2>Variables et Types de données</h2>
+                        <p>En PHP, les variables commencent par le symbole $.</p>
+
+                        <h4>Types de base :</h4>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <strong>String (chaîne)</strong>
+                                <div class="code-block">
+                                    <code>$nom = "John";</code>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Integer (entier)</strong>
+                                <div class="code-block">
+                                    <code>$age = 25;</code>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Float (décimal)</strong>
+                                <div class="code-block">
+                                    <code>$prix = 19.99;</code>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Boolean</strong>
+                                <div class="code-block">
+                                    <code>$estActif = true;</code>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="section3" class="mb-5">
+                        <h2>Opérateurs</h2>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Opérateur</th>
+                                        <th>Description</th>
+                                        <th>Exemple</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>+</td>
+                                        <td>Addition</td>
+                                        <td><code>$a + $b</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td>-</td>
+                                        <td>Soustraction</td>
+                                        <td><code>$a - $b</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td>*</td>
+                                        <td>Multiplication</td>
+                                        <td><code>$a * $b</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td>/</td>
+                                        <td>Division</td>
+                                        <td><code>$a / $b</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td>%</td>
+                                        <td>Modulo</td>
+                                        <td><code>$a % $b</code></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section id="section4" class="mb-5">
+                        <h2>Constantes</h2>
+                        <p>Les constantes sont définies avec la fonction <code>define()</code> ou le mot-clé <code>const</code>.</p>
+                        <div class="code-block">
+                            <pre><code>
+// Utilisation de define()
+define('PI', 3.14159);
+
+// Utilisation de const
+const MAX_USERS = 100;
+
+// Utilisation
+echo PI; // Affiche 3.14159
+echo MAX_USERS; // Affiche 100
+                            </code></pre>
+                        </div>
+                    </section>
+
+                    <section id="section5" class="mb-5">
+                        <h2>Commentaires</h2>
+                        <p>Les commentaires sont utiles pour documenter votre code.</p>
+                        <div class="code-block">
+                            <pre><code>
+// Commentaire sur une ligne
+
+/* 
+   Commentaire
+   sur plusieurs
+   lignes 
+*/
+
+# Commentaire style shell
+                            </code></pre>
+                        </div>
+                    </section>
+
+                    <!-- Quiz rapide -->
+                    <div class="card mt-4">
+                        <div class="card-header bg-light">
+                            <h3 class="mb-0">Quiz rapide</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="chapter-quiz">
+                                <div class="mb-3">
+                                    <p>Comment déclare-t-on une variable en PHP ?</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1" value="1">
+                                        <label class="form-check-label">var maVariable</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1" value="2">
+                                        <label class="form-check-label">$maVariable</label>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <p>Quel est le résultat de 10 % 3 ?</p>
+                                    <input type="number" class="form-control" name="q2">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Vérifier</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Navigation entre chapitres -->
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="{{ route('chapter1') }}" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Chapitre précédent
+                        </a>
+                        <a href="{{ route('chapter3') }}" class="btn btn-primary">
+                            Chapitre suivant <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
+    </div>
+</div>
+@endsection
 
-        <section class="collapsible">
-            <h2 class="collapsible-header">Introduction aux constantes et aux variables globales</h2>
-            <div class="collapsible-content">
-                <p>Les constantes sont des valeurs qui ne changent jamais pendant l'exécution du programme. Elles sont
-                    définies avec la fonction <code>define()</code>.</p>
-                <ul>
-                    <li><strong>Les constantes :</strong> Par exemple, <code>define("PI", 3.14);</code></li>
-                    <li><strong>Les variables globales :</strong> Vous pouvez accéder à une variable globale depuis
-                        n'importe où, en utilisant le mot-clé <code>global</code> dans une fonction.</li>
-                </ul>
-                <h3>Exercice :</h3>
-                <ul>
-                    <li>Créez une constante pour stocker la valeur de Pi et une variable globale. Affichez-les dans une
-                        fonction.</li>
-                </ul>
-            </div>
-        </section>
+@section('styles')
+<style>
+    .code-block {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        margin: 10px 0;
+    }
 
-    </main>
+    .nav-link.active {
+        background-color: #007bff;
+        color: white;
+    }
 
-    <footer>
-        <p>&copy; 2025 Cours PHP et Laravel - CND</p>
-    </footer>
-</body>
+    pre {
+        margin-bottom: 0;
+    }
 
-</html>
+    code {
+        color: #e83e8c;
+    }
+</style>
+@endsection
+
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Gestion du quiz
+        document.getElementById('chapter-quiz').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Vérification des réponses
+            const answers = {
+                q1: '2', // $maVariable
+                q2: '1' // 10 % 3 = 1
+            };
+
+            // Logique de vérification et feedback
+        });
+
+        // Spy scroll pour la navigation
+        document.querySelectorAll('#navbar-chapter .nav-link').forEach(function(navLink) {
+            navLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    });
+</script>
+@endsection

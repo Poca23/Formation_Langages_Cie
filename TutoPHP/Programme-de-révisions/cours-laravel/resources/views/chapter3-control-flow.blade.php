@@ -1,107 +1,305 @@
-<!DOCTYPE html>
-<html lang="fr">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapitre 3 - Les structures de contrôle en PHP</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <script src="{{ asset('js/script.js') }}" defer></script>
-</head>
+@section('title', 'Structures de contrôle')
 
-<body>
-    <header>
-        <h1>Chapitre 3 - Les structures de contrôle en PHP</h1>
-    </header>
-
-    <main>
-
-    <a href="{{ route('home') }}">Retour au Sommaire</a>
-
-
-        <section class="collapsible"  id="chapter3">
-            <h2 class="collapsible-header">Les conditions : if, else, elseif</h2>
-            <div class="collapsible-content">
-                <p>Les structures conditionnelles permettent d'exécuter des blocs de code en fonction de certaines
-                    conditions. En PHP, on utilise principalement les structures suivantes :</p>
-                <ul>
-                    <li><strong>if</strong> : Vérifie une condition. Si elle est vraie, le code à l'intérieur du bloc
-                        est exécuté.</li>
-                    <li><strong>else</strong> : Exécute le code à l'intérieur du bloc si la condition du <code>if</code>
-                        est fausse.</li>
-                    <li><strong>elseif</strong> : Permet d'ajouter d'autres conditions à tester si le premier
-                        <code>if</code> échoue.
-                    </li>
-                </ul>
-                <h3>Exercice :</h3>
-                <ul>
-                    <li>Créez un script qui vérifie si un nombre est positif, négatif ou égal à zéro. Utilisez
-                        <code>if</code>, <code>else</code> et <code>elseif</code> pour afficher les messages appropriés.
-                    </li>
-                </ul>
+@section('content')
+<div class="container">
+    <div class="row">
+        <!-- Sidebar de navigation -->
+        <div class="col-md-3">
+            <div class="card shadow mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Dans ce chapitre</h5>
+                </div>
+                <div class="card-body">
+                    <nav id="navbar-chapter" class="nav flex-column">
+                        <a class="nav-link" href="#section1">Conditions if/else</a>
+                        <a class="nav-link" href="#section2">Switch</a>
+                        <a class="nav-link" href="#section3">Boucle while</a>
+                        <a class="nav-link" href="#section4">Boucle for</a>
+                        <a class="nav-link" href="#section5">Boucle foreach</a>
+                        <a class="nav-link" href="#section6">Break et Continue</a>
+                    </nav>
+                </div>
             </div>
-        </section>
 
-        <section class="collapsible">
-            <h2 class="collapsible-header">Les boucles : for, while, do-while</h2>
-            <div class="collapsible-content">
-                <p>Les boucles permettent de répéter un bloc de code plusieurs fois. PHP propose trois types de boucles
-                    :</p>
-                <h3>La boucle <strong>for</strong> :</h3>
-                <ul>
-                    <li>Utilisée lorsqu'on connaît à l'avance le nombre d'itérations.</li>
-                    <li><code>for ($i = 0; $i < 10; $i++)</code>
-                    </li>
-                </ul>
-                <h3>La boucle <strong>while</strong> :</h3>
-                <ul>
-                    <li>Utilisée lorsque l'on répète une action tant qu'une condition est vraie.</li>
-                    <li><code>while ($i < 10)</code>
-                    </li>
-                </ul>
-                <h3>La boucle <strong>do-while</strong> :</h3>
-                <ul>
-                    <li>La condition est testée après l'exécution du bloc de code. Cela garantit que le bloc s'exécute
-                        au moins une fois.</li>
-                    <li><code>do { ... } while ($i < 10);</code>
-                    </li>
-                </ul>
-                <h3>Exercice :</h3>
-                <ul>
-                    <li>Créez une boucle <code>for</code> qui affiche les nombres de 1 à 10, une boucle
-                        <code>while</code> pour afficher les nombres de 10 à 1, et une boucle <code>do-while</code> qui
-                        affiche les nombres de 1 à 5.
-                    </li>
-                </ul>
+            <div class="progress mb-3">
+                <div class="progress-bar" role="progressbar" style="width: {{ $progress ?? 0 }}%">
+                    {{ $progress ?? 0 }}% complété
+                </div>
             </div>
-        </section>
+        </div>
 
-        <section class="collapsible">
-            <h2 class="collapsible-header">Les switch / case</h2>
-            <div class="collapsible-content">
-                <p>La structure <code>switch</code> est utilisée pour exécuter un bloc de code en fonction de la valeur
-                    d'une variable. Elle est souvent plus pratique que plusieurs <code>if</code> imbriqués lorsqu'il y a
-                    plusieurs valeurs à tester :</p>
-                <ul>
-                    <li><strong>switch</strong> : Permet de tester une variable contre plusieurs valeurs possibles.</li>
-                    <li><strong>case</strong> : Chaque valeur testée, si elle correspond à la variable, exécute le bloc
-                        associé.</li>
-                    <li><strong>default</strong> : Exécute le bloc si aucune des valeurs <code>case</code> ne
-                        correspond.</li>
-                </ul>
-                <h3>Exercice :</h3>
-                <ul>
-                    <li>Créez un <code>switch</code> pour afficher les jours de la semaine en fonction d'un nombre (1 =
-                        Lundi, 2 = Mardi, etc.).</li>
-                </ul>
+        <!-- Contenu principal -->
+        <div class="col-md-9">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h1 class="mb-4">Chapitre 3 : Les structures de contrôle</h1>
+
+                    <section id="section1" class="mb-5">
+                        <h2>Conditions if/else</h2>
+                        <p>Les instructions conditionnelles permettent d'exécuter différents blocs de code selon des conditions.</p>
+
+                        <div class="code-block">
+                            <pre><code>
+$age = 18;
+
+if ($age >= 18) {
+    echo "Vous êtes majeur";
+} elseif ($age >= 16) {
+    echo "Vous êtes presque majeur";
+} else {
+    echo "Vous êtes mineur";
+}
+                            </code></pre>
+                        </div>
+
+                        <div class="alert alert-info mt-3">
+                            <i class="fas fa-info-circle"></i> La syntaxe alternative avec : et endif; est aussi disponible.
+                        </div>
+
+                        <h4 class="mt-4">Opérateur ternaire</h4>
+                        <div class="code-block">
+                            <pre><code>
+$status = ($age >= 18) ? "majeur" : "mineur";
+                            </code></pre>
+                        </div>
+                    </section>
+
+                    <section id="section2" class="mb-5">
+                        <h2>Switch</h2>
+                        <p>L'instruction switch est une alternative à plusieurs if/elseif/else.</p>
+
+                        <div class="code-block">
+                            <pre><code>
+$fruit = "pomme";
+
+switch ($fruit) {
+    case "pomme":
+        echo "C'est une pomme";
+        break;
+    case "banane":
+        echo "C'est une banane";
+        break;
+    default:
+        echo "Fruit inconnu";
+}
+                            </code></pre>
+                        </div>
+                    </section>
+
+                    <section id="section3" class="mb-5">
+                        <h2>Boucle while</h2>
+                        <p>La boucle while exécute un bloc de code tant qu'une condition est vraie.</p>
+
+                        <div class="code-block">
+                            <pre><code>
+$i = 1;
+while ($i <= 5) {
+    echo $i;
+    $i++;
+}
+                            </code></pre>
+                        </div>
+
+                        <h4 class="mt-4">Do...While</h4>
+                        <div class="code-block">
+                            <pre><code>
+$i = 1;
+do {
+    echo $i;
+    $i++;
+} while ($i <= 5);
+                            </code></pre>
+                        </div>
+                    </section>
+
+                    <section id="section4" class="mb-5">
+                        <h2>Boucle for</h2>
+                        <p>La boucle for est utilisée quand on connaît le nombre d'itérations à l'avance.</p>
+
+                        <div class="code-block">
+                            <pre><code>
+for ($i = 0; $i < 5; $i++) {
+    echo "Itération $i\n";
+}
+                            </code></pre>
+                        </div>
+                    </section>
+
+                    <section id="section5" class="mb-5">
+                        <h2>Boucle foreach</h2>
+                        <p>La boucle foreach est spécialement conçue pour parcourir des tableaux et des objets.</p>
+
+                        <div class="code-block">
+                            <pre><code>
+$fruits = ["pomme", "banane", "orange"];
+
+foreach ($fruits as $fruit) {
+    echo $fruit . "\n";
+}
+
+// Avec clé et valeur
+$ages = ["Jean" => 25, "Marie" => 30];
+foreach ($ages as $nom => $age) {
+    echo "$nom a $age ans\n";
+}
+                            </code></pre>
+                        </div>
+                    </section>
+
+                    <section id="section6" class="mb-5">
+                        <h2>Break et Continue</h2>
+                        <p>Les instructions break et continue permettent de contrôler le flux d'exécution des boucles.</p>
+
+                        <div class="code-block">
+                            <pre><code>
+// Break
+for ($i = 0; $i < 10; $i++) {
+    if ($i == 5) {
+        break; // Sort de la boucle
+    }
+    echo $i;
+}
+
+// Continue
+for ($i = 0; $i < 10; $i++) {
+    if ($i == 5) {
+        continue; // Passe à l'itération suivante
+    }
+    echo $i;
+}
+                            </code></pre>
+                        </div>
+                    </section>
+
+                    <!-- Exercices pratiques -->
+                    <div class="card mt-4">
+                        <div class="card-header bg-light">
+                            <h3 class="mb-0">Exercices pratiques</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="exercise mb-4">
+                                <h4>Exercice 1</h4>
+                                <p>Écrivez une boucle qui affiche les nombres pairs de 0 à 10.</p>
+                                <div class="code-editor" id="exercise1">
+                                    <textarea class="form-control" rows="4">
+for ($i = 0; $i <= 10; $i++) {
+    // Votre code ici
+}</textarea>
+                                    <button class="btn btn-primary mt-2" onclick="verifyExercise1()">Vérifier</button>
+                                </div>
+                            </div>
+
+                            <div class="exercise">
+                                <h4>Exercice 2</h4>
+                                <p>Créez une structure switch pour gérer différents jours de la semaine.</p>
+                                <div class="code-editor" id="exercise2">
+                                    <textarea class="form-control" rows="4">
+$jour = "lundi";
+switch ($jour) {
+    // Votre code ici
+}</textarea>
+                                    <button class="btn btn-primary mt-2" onclick="verifyExercise2()">Vérifier</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quiz -->
+                    <div class="card mt-4">
+                        <div class="card-header bg-light">
+                            <h3 class="mb-0">Quiz rapide</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="chapter-quiz">
+                                <div class="mb-3">
+                                    <p>Quelle instruction permet de sortir immédiatement d'une boucle ?</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1" value="1">
+                                        <label class="form-check-label">continue</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1" value="2">
+                                        <label class="form-check-label">break</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1" value="3">
+                                        <label class="form-check-label">return</label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Vérifier</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Navigation entre chapitres -->
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="{{ route('chapter2') }}" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Chapitre précédent
+                        </a>
+                        <a href="{{ route('chapter4') }}" class="btn btn-primary">
+                            Chapitre suivant <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
+    </div>
+</div>
+@endsection
 
-    </main>
+@section('styles')
+<style>
+    .code-block {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        margin: 10px 0;
+    }
 
-    <footer>
-        <p>&copy; 2025 Cours PHP et Laravel - CND</p>
-    </footer>
-</body>
+    .code-editor textarea {
+        font-family: monospace;
+        resize: vertical;
+    }
 
-</html>
+    .exercise {
+        border-bottom: 1px solid #dee2e6;
+        padding-bottom: 20px;
+    }
+
+    .exercise:last-child {
+        border-bottom: none;
+    }
+</style>
+@endsection
+
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Gestion du quiz
+        document.getElementById('chapter-quiz').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Logique de vérification du quiz
+        });
+
+        // Navigation fluide
+        document.querySelectorAll('#navbar-chapter .nav-link').forEach(function(navLink) {
+            navLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    });
+
+    function verifyExercise1() {
+        // Logique de vérification de l'exercice 1
+    }
+
+    function verifyExercise2() {
+        // Logique de vérification de l'exercice 2
+    }
+</script>
+@endsection

@@ -1,132 +1,344 @@
-<!DOCTYPE html>
-<html lang="fr">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapitre 5 - Variables et Types de données</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <script src="{{ asset('js/script.js') }}" defer></script>
-</head>
+@section('title', 'Tableaux et Objets en PHP')
 
-<body>
-    <header>
-        <h1>Chapitre 5 - Variables et Types de données</h1>
-    </header>
-
-    <main>
-
-    <a href="{{ route('home') }}">Retour au Sommaire</a>
-
-
-        <section class="collapsible"  id="chapter5">
-            <h2 class="collapsible-header">Qu'est-ce qu'une variable en PHP ?</h2>
-            <div class="collapsible-content">
-                <p>En PHP, une variable est un conteneur qui permet de stocker des informations (comme des nombres, des
-                    chaînes de texte, etc.). Elle est représentée par un nom précédé du signe dollar (<code>$</code>),
-                    suivi du nom de la variable. Par exemple :</p>
-                <pre><code>$nom = "John";</code></pre>
-                <p>Dans cet exemple, la variable <code>$nom</code> contient la chaîne de caractères <code>"John"</code>.
-                </p>
-
-                <h3>Les règles de nommage des variables :</h3>
-                <ul>
-                    <li>Le nom de la variable doit commencer par un signe dollar (<code>$</code>), suivi d'une lettre ou
-                        d'un underscore (<code>_</code>).</li>
-                    <li>Le reste du nom peut être composé de lettres, de chiffres et d'underscores.</li>
-                    <li>Les variables sont sensibles à la casse (c'est-à-dire que <code>$nom</code> et <code>$Nom</code>
-                        sont deux variables différentes).</li>
-                </ul>
-
-                <h3>Exemple :</h3>
-                <p>Voici un exemple simple de variable :</p>
-                <pre><code>$age = 30;
-$nom = "Alice";
-echo $nom . " a " . $age . " ans.";  // Affiche : Alice a 30 ans</code></pre>
-                <p>Dans cet exemple, nous avons deux variables : <code>$age</code> et <code>$nom</code>. En utilisant
-                    <code>echo</code>, nous affichons une phrase qui combine les valeurs des variables.
-                </p>
-
-                <h3>Exercice :</h3>
-                <ul>
-                    <li>Créez deux variables : une pour votre prénom et une pour votre âge. Affichez ensuite une phrase
-                        du type : "Bonjour, je m'appelle [prénom] et j'ai [âge] ans."</li>
-                    <li>Essayez de modifier les valeurs des variables et d'afficher une nouvelle phrase avec les
-                        nouvelles informations.</li>
-                </ul>
+@section('content')
+<div class="container">
+    <div class="row">
+        <!-- Sidebar de navigation -->
+        <div class="col-md-3">
+            <div class="card shadow mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Dans ce chapitre</h5>
+                </div>
+                <div class="card-body">
+                    <nav id="navbar-chapter" class="nav flex-column">
+                        <a class="nav-link" href="#section1">Tableaux indexés</a>
+                        <a class="nav-link" href="#section2">Tableaux associatifs</a>
+                        <a class="nav-link" href="#section3">Tableaux multidimensionnels</a>
+                        <a class="nav-link" href="#section4">Manipulation de tableaux</a>
+                        <a class="nav-link" href="#section5">Classes et Objets</a>
+                        <a class="nav-link" href="#section6">Propriétés et Méthodes</a>
+                    </nav>
+                </div>
             </div>
-        </section>
 
-        <section class="collapsible">
-            <h2 class="collapsible-header">Les types de données en PHP</h2>
-            <div class="collapsible-content">
-                <p>PHP prend en charge plusieurs types de données pour les variables. Ces types de données peuvent être
-                    divisés en deux catégories : les types primitifs et les types complexes.</p>
-
-                <h3>Types primitifs :</h3>
-                <ul>
-                    <li><strong>Entiers (Integer) :</strong> Ce sont des nombres entiers, positifs ou négatifs, sans
-                        décimales. Exemple : <code>$age = 30;</code></li>
-                    <li><strong>Flottants (Float ou Double) :</strong> Ce sont des nombres à virgule flottante (avec des
-                        décimales). Exemple : <code>$prix = 19.99;</code></li>
-                    <li><strong>Chaînes de caractères (String) :</strong> Ce sont des séquences de caractères entourées
-                        de guillemets ou d'apostrophes. Exemple : <code>$nom = "Alice";</code></li>
-                    <li><strong>Booléens (Boolean) :</strong> Ce sont des valeurs de vérité : <code>true</code> ou
-                        <code>false</code>. Exemple : <code>$estAdmin = true;</code>
-                    </li>
-                    <li><strong>Tableaux (Array) :</strong> Un tableau permet de stocker plusieurs valeurs sous un même
-                        nom de variable. Exemple : <code>$couleurs = array("rouge", "vert", "bleu");</code></li>
-                    <li><strong>Objets (Object) :</strong> Ce sont des instances de classes. Nous aborderons ce type
-                        plus tard, avec la programmation orientée objet.</li>
-                </ul>
-
-                <h3>Exemple de type de données :</h3>
-                <p>Voici des exemples de chaque type de données :</p>
-                <pre><code>$age = 25;  // Integer
-$prix = 15.75;  // Float
-$nom = "Bob";  // String
-$estAdmin = true;  // Boolean
-$couleurs = array("rouge", "vert", "bleu");  // Array
-</code></pre>
-
-                <h3>Exercice :</h3>
-                <ul>
-                    <li>Créez une variable de chaque type de données listé ci-dessus (Integer, Float, String, Boolean,
-                        Array).</li>
-                    <li>Affichez ces variables avec la fonction <code>echo</code> pour vérifier leur contenu.</li>
-                </ul>
+            <div class="progress mb-3">
+                <div class="progress-bar" role="progressbar" style="width: {{ $progress ?? 0 }}%">
+                    {{ $progress ?? 0 }}% complété
+                </div>
             </div>
-        </section>
+        </div>
 
-        <section class="collapsible">
-            <h2 class="collapsible-header">Les constantes en PHP</h2>
-            <div class="collapsible-content">
-                <p>Une constante est une valeur qui ne peut pas être modifiée une fois qu'elle a été définie.
-                    Contrairement aux variables, les constantes ne commencent pas par un signe dollar (<code>$</code>).
-                </p>
-                <p>Vous pouvez définir une constante en utilisant la fonction <code>define()</code>. Par exemple :</p>
-                <pre><code>define("PI", 3.14159);</code></pre>
-                <p>Dans cet exemple, la constante <code>PI</code> contient la valeur de Pi. Une fois définie, vous ne
-                    pouvez pas changer sa valeur dans le script.</p>
+        <!-- Contenu principal -->
+        <div class="col-md-9">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h1 class="mb-4">Chapitre 5 : Tableaux et Objets</h1>
 
-                <h3>Exemple de constante :</h3>
-                <pre><code>define("GREETING", "Bonjour tout le monde!");
-echo GREETING;  // Affiche : Bonjour tout le monde!</code></pre>
+                    <section id="section1" class="mb-5">
+                        <h2>Tableaux indexés</h2>
+                        <p>Les tableaux indexés utilisent des indices numériques pour accéder aux éléments.</p>
 
-                <h3>Exercice :</h3>
-                <ul>
-                    <li>Créez une constante <code>MON_NOM</code> et affectez-lui votre prénom. Affichez ensuite cette
-                        constante avec la fonction <code>echo</code>.</li>
-                    <li>Essayez de modifier la valeur de la constante après sa définition. Que se passe-t-il ?</li>
-                </ul>
+                        <div class="code-block">
+                            <pre><code>
+// Création d'un tableau indexé
+$fruits = ["pomme", "banane", "orange"];
+
+// Autre syntaxe
+$fruits = array("pomme", "banane", "orange");
+
+// Accès aux éléments
+echo $fruits[0]; // Affiche "pomme"
+
+// Ajout d'un élément
+$fruits[] = "fraise"; // Ajoute à la fin du tableau
+                            </code></pre>
+                        </div>
+
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i> Les indices commencent à 0 en PHP.
+                        </div>
+                    </section>
+
+                    <section id="section2" class="mb-5">
+                        <h2>Tableaux associatifs</h2>
+                        <p>Les tableaux associatifs utilisent des clés nommées au lieu d'indices numériques.</p>
+
+                        <div class="code-block">
+                            <pre><code>
+// Création d'un tableau associatif
+$utilisateur = [
+    "nom" => "Dupont",
+    "prenom" => "Jean",
+    "age" => 25
+];
+
+// Accès aux éléments
+echo $utilisateur["nom"]; // Affiche "Dupont"
+
+// Ajout/modification d'éléments
+$utilisateur["email"] = "jean.dupont@example.com";
+                            </code></pre>
+                        </div>
+                    </section>
+
+                    <section id="section3" class="mb-5">
+                        <h2>Tableaux multidimensionnels</h2>
+                        <p>Les tableaux peuvent contenir d'autres tableaux, créant ainsi des structures multidimensionnelles.</p>
+
+                        <div class="code-block">
+                            <pre><code>
+// Tableau multidimensionnel
+$etudiants = [
+    ["nom" => "Dupont", "notes" => [15, 12, 18]],
+    ["nom" => "Martin", "notes" => [14, 16, 13]]
+];
+
+// Accès aux éléments
+echo $etudiants[0]["nom"]; // Affiche "Dupont"
+echo $etudiants[0]["notes"][0]; // Affiche 15
+                            </code></pre>
+                        </div>
+                    </section>
+
+                    <section id="section4" class="mb-5">
+                        <h2>Manipulation de tableaux</h2>
+                        <p>PHP offre de nombreuses fonctions pour manipuler les tableaux.</p>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Fonction</th>
+                                        <th>Description</th>
+                                        <th>Exemple</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>array_push()</td>
+                                        <td>Ajoute un élément à la fin</td>
+                                        <td><code>array_push($array, "nouveau")</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td>array_pop()</td>
+                                        <td>Supprime le dernier élément</td>
+                                        <td><code>$dernier = array_pop($array)</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td>count()</td>
+                                        <td>Compte les éléments</td>
+                                        <td><code>$taille = count($array)</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td>sort()</td>
+                                        <td>Trie le tableau</td>
+                                        <td><code>sort($array)</code></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="code-block">
+                            <pre><code>
+// Exemples de manipulation
+$nombres = [3, 1, 4, 1, 5];
+sort($nombres);
+print_r($nombres);
+
+$fruits = ["pomme", "banane"];
+array_push($fruits, "orange");
+print_r($fruits);
+                            </code></pre>
+                        </div>
+                    </section>
+
+                    <section id="section5" class="mb-5">
+                        <h2>Classes et Objets</h2>
+                        <p>PHP est un langage orienté objet qui permet de créer des classes et des objets.</p>
+
+                        <div class="code-block">
+                            <pre><code>
+class Personne {
+    // Propriétés
+    public $nom;
+    public $age;
+
+    // Constructeur
+    public function __construct($nom, $age) {
+        $this->nom = $nom;
+        $this->age = $age;
+    }
+
+    // Méthode
+    public function sePresenter() {
+        return "Je m'appelle {$this->nom} et j'ai {$this->age} ans.";
+    }
+}
+
+// Création d'un objet
+$jean = new Personne("Jean", 25);
+echo $jean->sePresenter();
+                            </code></pre>
+                        </div>
+                    </section>
+
+                    <section id="section6" class="mb-5">
+                        <h2>Propriétés et Méthodes</h2>
+                        <p>Les classes peuvent avoir différents niveaux de visibilité pour leurs propriétés et méthodes.</p>
+
+                        <div class="code-block">
+                            <pre><code>
+class Compte {
+    // Propriétés privées
+    private $solde = 0;
+    
+    // Méthode publique
+    public function deposer($montant) {
+        if ($montant > 0) {
+            $this->solde += $montant;
+            return true;
+        }
+        return false;
+    }
+    
+    // Méthode publique
+    public function getSolde() {
+        return $this->solde;
+    }
+}
+
+$compte = new Compte();
+$compte->deposer(100);
+echo $compte->getSolde(); // Affiche 100
+                            </code></pre>
+                        </div>
+                    </section>
+
+                    <!-- Exercices pratiques -->
+                    <div class="card mt-4">
+                        <div class="card-header bg-light">
+                            <h3 class="mb-0">Exercices pratiques</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="exercise mb-4">
+                                <h4>Exercice 1 : Manipulation de tableau</h4>
+                                <p>Créez un tableau de nombres et écrivez une fonction pour calculer la somme de tous les éléments.</p>
+                                <div class="code-editor" id="exercise1">
+                                    <textarea class="form-control" rows="6">
+$nombres = [1, 2, 3, 4, 5];
+
+function calculerSomme($tableau) {
+    // Votre code ici
+}
+
+echo calculerSomme($nombres);
+                                    </textarea>
+                                    <button class="btn btn-primary mt-2" onclick="verifyExercise1()">Vérifier</button>
+                                </div>
+                            </div>
+
+                            <div class="exercise">
+                                <h4>Exercice 2 : Création de classe</h4>
+                                <p>Créez une classe Voiture avec des propriétés et des méthodes.</p>
+                                <div class="code-editor" id="exercise2">
+                                    <textarea class="form-control" rows="8">
+class Voiture {
+    // Votre code ici
+}
+                                    </textarea>
+                                    <button class="btn btn-primary mt-2" onclick="verifyExercise2()">Vérifier</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quiz -->
+                    <div class="card mt-4">
+                        <div class="card-header bg-light">
+                            <h3 class="mb-0">Quiz rapide</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="chapter-quiz">
+                                <div class="mb-3">
+                                    <p>Quelle fonction permet de compter les éléments d'un tableau ?</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1" value="1">
+                                        <label class="form-check-label">size()</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1" value="2">
+                                        <label class="form-check-label">count()</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1" value="3">
+                                        <label class="form-check-label">length()</label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Vérifier</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Navigation entre chapitres -->
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="{{ route('chapter4') }}" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Chapitre précédent
+                        </a>
+                        <a href="{{ route('chapter6') }}" class="btn btn-primary">
+                            Chapitre suivant <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
+    </div>
+</div>
+@endsection
 
-    </main>
+@section('styles')
+<style>
+    .code-block {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        margin: 10px 0;
+    }
 
-    <footer>
-        <p>&copy; 2025 Cours PHP et Laravel - CND</p>
-    </footer>
-</body>
+    .code-editor textarea {
+        font-family: monospace;
+        resize: vertical;
+    }
+</style>
+@endsection
 
-</html>
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Gestion du quiz
+        document.getElementById('chapter-quiz').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Logique de vérification du quiz
+        });
+
+        // Navigation fluide
+        document.querySelectorAll('#navbar-chapter .nav-link').forEach(function(navLink) {
+            navLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    });
+
+    function verifyExercise1() {
+        // Logique de vérification de l'exercice 1
+    }
+
+    function verifyExercise2() {
+        // Logique de vérification de l'exercice 2
+    }
+</script>
+@endsection

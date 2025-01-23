@@ -1,161 +1,200 @@
-<!DOCTYPE html>
-<html lang="fr">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapitre 1 - Introduction à PHP</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <script src="{{ asset('js/script.js') }}" defer></script>
-</head>
+@section('title', 'Introduction à PHP')
 
-<body>
-    <header>
-        <h1>Chapitre 1 - Introduction à PHP</h1>
-        
-    </header>
-    
-    <main>
-        
-    <a href="{{ route('home') }}">Retour au Sommaire</a>
-
-        <section class="collapsible" id="chapter1">
-            <h2 class="collapsible-header">Qu'est-ce que PHP ?</h2>
-            <div class="collapsible-content">
-                <p>PHP (Hypertext Preprocessor) est un langage de programmation serveur, principalement utilisé pour le
-                    développement de sites web dynamiques. Il permet d'exécuter des scripts sur le serveur avant
-                    d'envoyer les résultats au navigateur de l'utilisateur. Contrairement au HTML, qui est un langage de
-                    balisage statique, PHP permet de générer des pages web qui peuvent changer en fonction de
-                    l'utilisateur ou des données stockées sur un serveur, comme dans les forums, les réseaux sociaux, ou
-                    les sites de commerce en ligne.</p>
-
-                <p>Le code PHP est intégré directement dans des pages HTML, et il est généralement exécuté sur un
-                    serveur web. Par exemple, un formulaire soumis par l'utilisateur peut être traité en PHP pour
-                    stocker des informations dans une base de données.</p>
-
-                <p>PHP est très populaire pour sa simplicité d'utilisation, sa compatibilité avec la plupart des
-                    serveurs web et sa capacité à s'intégrer facilement à des bases de données, comme MySQL.</p>
-
-                <h3>Exercice :</h3>
-                <ul>
-                    <li>Qu'est-ce que PHP ? Donnez une brève explication.</li>
-                    <li>Pourquoi PHP est-il un langage populaire pour le développement web ?</li>
-                </ul>
+@section('content')
+<div class="container">
+    <div class="row">
+        <!-- Sidebar de navigation -->
+        <div class="col-md-3">
+            <div class="card shadow mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Dans ce chapitre</h5>
+                </div>
+                <div class="card-body">
+                    <nav id="navbar-chapter" class="nav flex-column">
+                        <a class="nav-link" href="#section1">Qu'est-ce que PHP ?</a>
+                        <a class="nav-link" href="#section2">Histoire de PHP</a>
+                        <a class="nav-link" href="#section3">Pourquoi utiliser PHP ?</a>
+                        <a class="nav-link" href="#section4">Configuration de l'environnement</a>
+                        <a class="nav-link" href="#section5">Premier script PHP</a>
+                    </nav>
+                </div>
             </div>
-        </section>
 
-        <section class="collapsible">
-            <h2 class="collapsible-header">Pourquoi utiliser PHP pour le développement web ?</h2>
-            <div class="collapsible-content">
-                <p>PHP est utilisé dans de nombreux projets web, car il offre plusieurs avantages :</p>
-                <ul>
-                    <li><strong>Facilité d'intégration :</strong> PHP peut être directement intégré dans un fichier
-                        HTML. Cela permet d'alterner facilement entre le code statique (HTML) et le code dynamique (PHP)
-                        dans un même fichier.</li>
-                    <li><strong>Open source et gratuit :</strong> PHP est un langage open-source, ce qui signifie qu'il
-                        est libre d'utilisation. Il bénéficie d'une large communauté de développeurs qui contribuent à
-                        son amélioration et à la création de bibliothèques et d'outils pour simplifier le développement.
-                    </li>
-                    <li><strong>Large compatibilité :</strong> PHP fonctionne sur presque tous les serveurs et systèmes
-                        d'exploitation. Vous pouvez l'utiliser aussi bien sur Windows, Linux que macOS.</li>
-                    <li><strong>Interaction avec les bases de données :</strong> PHP permet une intégration facile avec
-                        des bases de données, comme MySQL, ce qui est essentiel pour créer des applications web
-                        interactives qui nécessitent de stocker et de manipuler des données utilisateur (ex : profils,
-                        articles de blog, etc.).</li>
-                    <li><strong>Support pour les frameworks populaires :</strong> PHP offre des frameworks comme
-                        Laravel, Symfony, et CodeIgniter qui permettent de gagner du temps et de simplifier le processus
-                        de développement d'applications web complexes.</li>
-                </ul>
-
-                <h3>Exercice :</h3>
-                <ul>
-                    <li>Citez au moins deux raisons pour lesquelles PHP est souvent choisi pour le développement de
-                        sites web dynamiques.</li>
-                    <li>Comparez PHP avec un autre langage de programmation côté serveur que vous connaissez (par
-                        exemple, Python ou Node.js). Quelles sont les différences majeures ?</li>
-                </ul>
+            <div class="progress mb-3">
+                <div class="progress-bar" role="progressbar" style="width: {{ $progress ?? 0 }}%">
+                    {{ $progress ?? 0 }}% complété
+                </div>
             </div>
-        </section>
+        </div>
 
-        <section class="collapsible">
-            <h2 class="collapsible-header">Installation de PHP (local ou via un serveur comme XAMPP)</h2>
-            <div class="collapsible-content">
-                <p>Avant de commencer à coder avec PHP, il est nécessaire de configurer votre environnement de
-                    développement. Voici les deux options les plus courantes :</p>
+        <!-- Contenu principal -->
+        <div class="col-md-9">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h1 class="mb-4">Chapitre 1 : Introduction à PHP</h1>
 
-                <h3>1. Installation locale de PHP</h3>
-                <p>Pour développer des applications PHP sur votre propre machine, vous devez installer PHP ainsi qu'un
-                    serveur web (comme Apache) et une base de données (comme MySQL). Voici les étapes :</p>
-                <ol>
-                    <li><strong>Télécharger PHP :</strong> Allez sur le site officiel de PHP (https://www.php.net/) et
-                        téléchargez la version la plus récente de PHP pour votre système d'exploitation (Windows, macOS,
-                        Linux).</li>
-                    <li><strong>Configurer le serveur web :</strong> PHP a besoin d'un serveur web pour exécuter vos
-                        scripts. Vous pouvez utiliser Apache ou Nginx, mais l'installation manuelle de ces serveurs peut
-                        être complexe si vous débutez. C'est pourquoi de nombreux développeurs préfèrent utiliser des
-                        outils comme XAMPP ou WAMP.</li>
-                </ol>
+                    <section id="section1" class="mb-5">
+                        <h2>Qu'est-ce que PHP ?</h2>
+                        <p>PHP (Hypertext Preprocessor) est un langage de programmation libre, principalement utilisé pour produire des pages Web dynamiques via un serveur HTTP.</p>
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i> PHP est un langage de script côté serveur.
+                        </div>
+                    </section>
 
-                <h3>2. Installation avec XAMPP (pour Windows, macOS et Linux)</h3>
-                <p>XAMPP est un package gratuit qui comprend Apache, MySQL, PHP et Perl, et qui vous permet de
-                    configurer facilement un environnement local pour développer avec PHP. Suivez ces étapes pour
-                    l'installer :</p>
-                <ol>
-                    <li><strong>Télécharger XAMPP :</strong> Allez sur https://www.apachefriends.org/ et téléchargez la
-                        version correspondant à votre système d'exploitation.</li>
-                    <li><strong>Installer XAMPP :</strong> Lancez le fichier d'installation et suivez les instructions
-                        pour installer XAMPP sur votre machine.</li>
-                    <li><strong>Démarrer XAMPP :</strong> Ouvrez le panneau de contrôle XAMPP et démarrez Apache et
-                        MySQL. Cela vous permettra de commencer à exécuter vos scripts PHP et de gérer vos bases de
-                        données.</li>
-                    <li><strong>Accéder à PHP :</strong> Créez un fichier PHP dans le répertoire "htdocs" de XAMPP, et
-                        accédez-y via votre navigateur (par exemple : http://localhost/monfichier.php).</li>
-                </ol>
+                    <section id="section2" class="mb-5">
+                        <h2>Histoire de PHP</h2>
+                        <p>Créé en 1994 par Rasmus Lerdorf, PHP a évolué pour devenir l'un des langages les plus utilisés pour le développement web.</p>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <h4>1994</h4>
+                                <p>Création de PHP/FI</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h4>1997</h4>
+                                <p>PHP 3.0</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h4>2000</h4>
+                                <p>PHP 4.0</p>
+                            </div>
+                            <!-- etc. -->
+                        </div>
+                    </section>
 
-                <h3>Exercice :</h3>
-                <ul>
-                    <li>Installez PHP sur votre machine à l'aide de XAMPP (ou un autre serveur local).</li>
-                    <li>Vérifiez l'installation en exécutant la commande <code>php -v</code> dans le terminal.</li>
-                </ul>
+                    <section id="section3" class="mb-5">
+                        <h2>Pourquoi utiliser PHP ?</h2>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <i class="fas fa-check text-success"></i> Facile à apprendre
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-check text-success"></i> Grande communauté
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-check text-success"></i> Compatible avec la plupart des serveurs web
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-check text-success"></i> Nombreux frameworks disponibles
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="section4" class="mb-5">
+                        <h2>Configuration de l'environnement</h2>
+                        <div class="code-block">
+                            <pre><code>
+# Installation sur Windows
+1. Télécharger XAMPP
+2. Installer XAMPP
+3. Démarrer Apache
+
+# Installation sur Linux
+sudo apt-get install php apache2
+                            </code></pre>
+                        </div>
+                    </section>
+
+                    <section id="section5" class="mb-5">
+                        <h2>Premier script PHP</h2>
+                        <div class="code-block">
+                            <pre><code>
+&lt;?php
+    echo "Hello, World!";
+?&gt;
+                            </code></pre>
+                        </div>
+                        <div class="alert alert-success">
+                            <i class="fas fa-lightbulb"></i> Essayez ce code dans votre environnement local !
+                        </div>
+                    </section>
+
+                    <!-- Quiz rapide -->
+                    <div class="card mt-4">
+                        <div class="card-header bg-light">
+                            <h3 class="mb-0">Quiz rapide</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="chapter-quiz">
+                                <div class="mb-3">
+                                    <p>Que signifie PHP ?</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1" value="1">
+                                        <label class="form-check-label">Personal Home Page</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1" value="2">
+                                        <label class="form-check-label">Hypertext Preprocessor</label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Vérifier</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Navigation entre chapitres -->
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="{{ route('sommaire') }}" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Sommaire
+                        </a>
+                        <a href="{{ route('chapter2') }}" class="btn btn-primary">
+                            Chapitre suivant <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
+    </div>
+</div>
+@endsection
 
-        <section class="collapsible">
-            <h2 class="collapsible-header">Premier script PHP : "Hello World"</h2>
-            <div class="collapsible-content">
-                <p>Maintenant que PHP est installé, il est temps d'écrire votre premier script ! Pour cela, créez un
-                    fichier PHP et affichez un simple message à l'écran.</p>
+@section('styles')
+<style>
+    .timeline {
+        position: relative;
+        padding: 20px 0;
+    }
 
-                <h3>Le code PHP de base :</h3>
-                <p>Créez un fichier nommé <code>index.php</code> et ajoutez-y ce code :</p>
-                <pre><code>&lt;?php
-echo "Hello World!";
-?&gt;</code></pre>
-                <p>Voici ce que fait chaque partie du code :</p>
-                <ul>
-                    <li><strong>&lt;?php ... ?&gt;</strong> : C'est la balise PHP qui permet d'encapsuler le code PHP
-                        dans un fichier. Tout ce qui est entre ces balises est exécuté par le serveur.</li>
-                    <li><strong>echo</strong> : La fonction <code>echo</code> permet d'afficher du texte à l'écran. Ici,
-                        elle va afficher la phrase "Hello World!".</li>
-                </ul>
+    .timeline-item {
+        padding: 10px 0;
+        border-left: 2px solid #007bff;
+        margin-left: 20px;
+        padding-left: 20px;
+    }
 
-                <p>Une fois votre fichier créé, vous pouvez l'exécuter dans votre navigateur en allant à l'adresse
-                    suivante : <code>http://localhost/index.php</code>. Vous devriez voir s'afficher le message "Hello
-                    World!" à l'écran.</p>
+    .code-block {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        margin: 10px 0;
+    }
 
-                <h3>Exercice :</h3>
-                <ul>
-                    <li>Créez un fichier PHP appelé <code>hello.php</code> et affichez le message "Hello, World!".</li>
-                    <li>Testez votre script en ouvrant le fichier dans un navigateur via votre serveur local.</li>
-                </ul>
-            </div>
-        </section>
+    .nav-link.active {
+        background-color: #007bff;
+        color: white;
+    }
+</style>
+@endsection
 
-    </main>
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Gestion du quiz
+        document.getElementById('chapter-quiz').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Logique de vérification du quiz
+        });
 
-    <footer>
-        <p>&copy; 2025 Cours PHP et Laravel - CND</p>
-    </footer>
-</body>
-
-</html>
+        // Spy scroll pour la navigation
+        document.querySelectorAll('#navbar-chapter .nav-link').forEach(function(navLink) {
+            navLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    });
+</script>
+@endsection
