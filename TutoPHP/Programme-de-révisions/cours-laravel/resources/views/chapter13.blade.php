@@ -22,10 +22,10 @@
             </div>
 
             <div class="progress mb-3">
-                <div class="progress-bar" role="progressbar" style="width: {{ $progress ?? 0 }}%">
-                    {{ $progress ?? 0 }}% complété
-                </div>
-            </div>
+    <div class="progress-bar" role="progressbar" style="width: {{ $progress ?? 0 }}%;">
+        {{ $progress ?? 0 }}% complété
+    </div>
+</div>
         </div>
 
         <!-- Contenu principal -->

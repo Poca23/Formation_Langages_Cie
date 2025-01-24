@@ -15,9 +15,10 @@
                         <p class="text-muted">{{ Auth::user()->email }}</p>
                     </div>
                     <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: {{ $progressPercentage ?? 0 }}%">
-                            {{ $progressPercentage ?? 0 }}%
+                        <div class="progress-bar bg-success" role="progressbar" style="width: {{ $progress ?? 0 }}%">
+                            {{ number_format($progress, 2) }}% complété
                         </div>
+                        <p class="text-center">Progression globale</p>
                     </div>
                     <p class="text-center">Progression globale</p>
                 </div>
@@ -53,15 +54,15 @@
                 </div>
                 <div class="card-body">
                     @foreach($chapters ?? [] as $chapter)
-                    <div class="mb-3">
-                        <div class="d-flex justify-content-between align-items-center mb-1">
-                            <span>{{ $chapter->title }}</span>
-                            <span>{{ $chapter->progress }}%</span>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <span>{{ is_object($chapter) && property_exists($chapter, 'title') ? $chapter->title : 'N/A' }}</span>
+                                <span>{{ is_object($chapter) && property_exists($chapter, 'progress') ? $chapter->progress : 'N/A' }}%</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: {{ $chapter->progress }}%"></div>
+                            </div>
                         </div>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: {{ $chapter->progress }}%"></div>
-                        </div>
-                    </div>
                     @endforeach
                 </div>
             </div>
@@ -73,34 +74,35 @@
                 </div>
                 <div class="card-body">
                     @if(isset($quizResults) && count($quizResults) > 0)
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Quiz</th>
-                                    <th>Score</th>
-                                    <th>Date</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($quizResults as $result)
-                                <tr>
-                                    <td>{{ $result->quiz_name }}</td>
-                                    <td>{{ $result->score }}%</td>
-                                    <td>{{ $result->created_at->format('d/m/Y') }}</td>
-                                    <td>
-                                        <a href="{{ route('quiz.show', $result->quiz_id) }}" class="btn btn-sm btn-primary">
-                                            Revoir
-                                        </a>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Quiz</th>
+                                        <th>Score</th>
+                                        <th>Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($quizResults as $result)
+                                        <tr>
+                                            <td>{{ $result->quiz_name }}</td>
+                                            <td>{{ $result->score }}%</td>
+                                            <td>{{ $result->created_at->format('d/m/Y') }}</td>
+                                            <td>
+                                                <a href="{{ route('quiz.show', $result->quiz_id) }}"
+                                                    class="btn btn-sm btn-primary">
+                                                    Revoir
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     @else
-                    <p class="text-center">Aucun quiz complété pour le moment.</p>
+                        <p class="text-center">Aucun quiz complété pour le moment.</p>
                     @endif
                 </div>
             </div>
@@ -113,13 +115,14 @@
                 <div class="card-body">
                     <div class="row">
                         @foreach($achievements ?? [] as $achievement)
-                        <div class="col-md-4 mb-3">
-                            <div class="achievement-card text-center {{ $achievement->unlocked ? 'unlocked' : 'locked' }}">
-                                <i class="fas {{ $achievement->icon }} fa-2x mb-2"></i>
-                                <h6>{{ $achievement->title }}</h6>
-                                <small class="text-muted">{{ $achievement->description }}</small>
+                            <div class="col-md-4 mb-3">
+                                <div
+                                    class="achievement-card text-center {{ is_object($achievement) && property_exists($achievement, 'unlocked') && $achievement->unlocked ? 'unlocked' : 'locked' }}">
+                                    <i class="fas {{ is_object($achievement) && property_exists($achievement, 'icon') ? $achievement->icon : '' }} fa-2x mb-2"></i>
+                                    <h6>{{ is_object($achievement) && property_exists($achievement, 'title') ? $achievement->title : 'N/A' }}</h6>
+                                    <small class="text-muted">{{ is_object($achievement) && property_exists($achievement, 'description') ? $achievement->description : 'N/A' }}</small>
+                                </div>
                             </div>
-                        </div>
                         @endforeach
                     </div>
                 </div>

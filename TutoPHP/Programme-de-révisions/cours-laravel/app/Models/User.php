@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens; // Importez le trait
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, HasApiTokens; // Ajoutez HasApiTokens ici
+    use HasFactory, Notifiable, HasApiTokens;
 
     /**
-     * The attributes that are mass assignable.
+     * Attributs pouvant être assignés en masse (fillable).
      *
      * @var list<string>
      */
@@ -23,7 +23,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * Attributs masqués pour la sérialisation.
      *
      * @var list<string>
      */
@@ -32,11 +32,24 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    /**
+     * Types des colonnes (casts).
+     */
     protected function casts(): array
     {
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Définir la relation de l'utilisateur avec les chapitres.
+     */
+    public function chapters()
+    {
+        return $this->belongsToMany(Chapter::class, 'chapters_users')
+            ->withPivot('completed') // Inclure pivot "completed"
+            ->withTimestamps(); // Inclure les timestamps
     }
 }

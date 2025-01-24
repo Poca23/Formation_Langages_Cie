@@ -109,7 +109,7 @@
                                         </a>
                                         <a href="{{ route('chapter', ['id' => 14]) }}"
                                             class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                                            14s. Déploiement
+                                            14. Déploiement
                                             <span class="badge bg-primary rounded-pill">40 min</span>
                                         </a>
                                     </div>
