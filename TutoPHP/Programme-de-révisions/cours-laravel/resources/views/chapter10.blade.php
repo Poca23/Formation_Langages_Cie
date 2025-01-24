@@ -40,14 +40,17 @@
                     <section id="section1" class="mb-5">
                         <h2>Introduction aux routes et contrôleurs</h2>
                         <p>Les routes et les contrôleurs sont les éléments clés de Laravel.</p>
-                        <p>Les routes définissent les chemins que les utilisateurs peuvent emprunter pour accéder à votre application.</p>
+                        <p>Les routes définissent les chemins que les utilisateurs peuvent emprunter pour accéder à
+                            votre application.</p>
                         <p>Les contrôleurs traitent les requêtes des utilisateurs et renvoient des réponses.</p>
                     </section>
 
                     <section id="section2" class="mb-5">
                         <h2>Définition des routes</h2>
-                        <p>Les routes sont définies dans les fichiers de route, qui sont situés dans le dossier routes de votre application.</p>
-                        <p>Il existe plusieurs types de routes, notamment les routes web, les routes API et les routes de console.</p>
+                        <p>Les routes sont définies dans les fichiers de route, qui sont situés dans le dossier routes
+                            de votre application.</p>
+                        <p>Il existe plusieurs types de routes, notamment les routes web, les routes API et les routes
+                            de console.</p>
                         <code>
                             Route::get('/', function () {
                             return view('welcome');
@@ -57,7 +60,8 @@
 
                     <section id="section3" class="mb-5">
                         <h2>Définition des contrôleurs</h2>
-                        <p>Les contrôleurs sont des classes qui traitent les requêtes des utilisateurs et renvoient des réponses.</p>
+                        <p>Les contrôleurs sont des classes qui traitent les requêtes des utilisateurs et renvoient des
+                            réponses.</p>
                         <p>Les contrôleurs sont situés dans le dossier app/Http/Controllers de votre application.</p>
                         <code>
                             namespace App\Http\Controllers;
@@ -84,7 +88,8 @@
 
                     <section id="section5" class="mb-5">
                         <h2>Passage de paramètres aux contrôleurs</h2>
-                        <p>Les paramètres peuvent être passés aux contrôleurs pour traiter les requêtes des utilisateurs.</p>
+                        <p>Les paramètres peuvent être passés aux contrôleurs pour traiter les requêtes des
+                            utilisateurs.</p>
                         <code>
                             Route::get('/{id}', 'WelcomeController@index');
                         </code>
@@ -183,12 +188,19 @@ Route::get('/', function () {
 
                     <!-- Navigation entre chapitres -->
                     <div class="d-flex justify-content-between mt-4">
-                        <a href="{{ route('chapter9') }}" class="btn btn-secondary">
-                            <i class="fas fa-arrow-left"></i> Chapitre précédent
-                        </a>
-                        <a href="{{ route('chapter11') }}" class="btn btn-primary">
-                            Chapitre suivant <i class="fas fa-arrow-right"></i>
-                        </a>
+                        <!-- Lien vers le chapitre précédent -->
+                        @if ($currentChapterId > 1)
+                            <a href="{{ route('chapter', ['id' => $currentChapterId - 1]) }}" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Chapitre précédent
+                            </a>
+                        @endif
+
+                        <!-- Lien vers le chapitre suivant -->
+                        @if ($currentChapterId < $totalChapters)
+                            <a href="{{ route('chapter', ['id' => $currentChapterId + 1]) }}" class="btn btn-primary">
+                                Chapitre suivant <i class="fas fa-arrow-right"></i>
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -215,16 +227,16 @@ Route::get('/', function () {
 
 @section('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         // Gestion du quiz
-        document.getElementById('chapter-quiz').addEventListener('submit', function(e) {
+        document.getElementById('chapter-quiz').addEventListener('submit', function (e) {
             e.preventDefault();
             // Logique de vérification du quiz
         });
 
         // Navigation fluide
-        document.querySelectorAll('#navbar-chapter .nav-link').forEach(function(navLink) {
-            navLink.addEventListener('click', function(e) {
+        document.querySelectorAll('#navbar-chapter .nav-link').forEach(function (navLink) {
+            navLink.addEventListener('click', function (e) {
                 e.preventDefault();
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'

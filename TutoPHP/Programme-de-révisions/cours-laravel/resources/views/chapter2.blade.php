@@ -47,7 +47,8 @@
                             </code></pre>
                         </div>
                         <div class="alert alert-info">
-                            <i class="fas fa-info-circle"></i> La balise de fermeture est optionnelle si le fichier contient uniquement du PHP.
+                            <i class="fas fa-info-circle"></i> La balise de fermeture est optionnelle si le fichier
+                            contient uniquement du PHP.
                         </div>
                     </section>
 
@@ -128,7 +129,8 @@
 
                     <section id="section4" class="mb-5">
                         <h2>Constantes</h2>
-                        <p>Les constantes sont définies avec la fonction <code>define()</code> ou le mot-clé <code>const</code>.</p>
+                        <p>Les constantes sont définies avec la fonction <code>define()</code> ou le mot-clé
+                            <code>const</code>.</p>
                         <div class="code-block">
                             <pre><code>
 // Utilisation de define()
@@ -191,12 +193,19 @@ echo MAX_USERS; // Affiche 100
 
                     <!-- Navigation entre chapitres -->
                     <div class="d-flex justify-content-between mt-4">
-                        <a href="{{ route('chapter1') }}" class="btn btn-secondary">
-                            <i class="fas fa-arrow-left"></i> Chapitre précédent
-                        </a>
-                        <a href="{{ route('chapter3') }}" class="btn btn-primary">
-                            Chapitre suivant <i class="fas fa-arrow-right"></i>
-                        </a>
+                        <!-- Lien vers le chapitre précédent -->
+                        @if ($currentChapterId > 1)
+                            <a href="{{ route('chapter', ['id' => $currentChapterId - 1]) }}" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Chapitre précédent
+                            </a>
+                        @endif
+
+                        <!-- Lien vers le chapitre suivant -->
+                        @if ($currentChapterId < $totalChapters)
+                            <a href="{{ route('chapter', ['id' => $currentChapterId + 1]) }}" class="btn btn-primary">
+                                Chapitre suivant <i class="fas fa-arrow-right"></i>
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -231,9 +240,9 @@ echo MAX_USERS; // Affiche 100
 
 @section('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         // Gestion du quiz
-        document.getElementById('chapter-quiz').addEventListener('submit', function(e) {
+        document.getElementById('chapter-quiz').addEventListener('submit', function (e) {
             e.preventDefault();
             // Vérification des réponses
             const answers = {
@@ -245,8 +254,8 @@ echo MAX_USERS; // Affiche 100
         });
 
         // Spy scroll pour la navigation
-        document.querySelectorAll('#navbar-chapter .nav-link').forEach(function(navLink) {
-            navLink.addEventListener('click', function(e) {
+        document.querySelectorAll('#navbar-chapter .nav-link').forEach(function (navLink) {
+            navLink.addEventListener('click', function (e) {
                 e.preventDefault();
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'

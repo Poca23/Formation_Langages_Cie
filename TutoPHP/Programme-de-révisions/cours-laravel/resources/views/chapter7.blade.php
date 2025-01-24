@@ -39,7 +39,8 @@
                     <section id="section1" class="mb-5">
                         <h2>Qu'est-ce que Laravel ?</h2>
                         <p>Laravel est un framework PHP open-source pour développer des applications web.</p>
-                        <p>Il a été créé par Taylor Otwell en 2011 et est maintenant l'un des frameworks PHP les plus populaires.</p>
+                        <p>Il a été créé par Taylor Otwell en 2011 et est maintenant l'un des frameworks PHP les plus
+                            populaires.</p>
                     </section>
 
                     <section id="section2" class="mb-5">
@@ -53,10 +54,14 @@
                         <h2>Caractéristiques de Laravel</h2>
                         <p>Laravel a plusieurs caractéristiques qui le rendent populaire parmi les développeurs.</p>
                         <ul>
-                            <li>Modèle-Vue-Contrôleur (MVC) : Laravel utilise le modèle MVC pour séparer la logique de l'application en trois parties.</li>
-                            <li>Eloquent : Laravel dispose d'un système de gestion de bases de données appelé Eloquent.</li>
-                            <li>Routes : Laravel dispose d'un système de routage pour gérer les URL de l'application.</li>
-                            <li>Blade : Laravel dispose d'un langage de template appelé Blade pour gérer les vues de l'application.</li>
+                            <li>Modèle-Vue-Contrôleur (MVC) : Laravel utilise le modèle MVC pour séparer la logique de
+                                l'application en trois parties.</li>
+                            <li>Eloquent : Laravel dispose d'un système de gestion de bases de données appelé Eloquent.
+                            </li>
+                            <li>Routes : Laravel dispose d'un système de routage pour gérer les URL de l'application.
+                            </li>
+                            <li>Blade : Laravel dispose d'un langage de template appelé Blade pour gérer les vues de
+                                l'application.</li>
                         </ul>
                     </section>
 
@@ -64,9 +69,11 @@
                         <h2>Avantages de Laravel</h2>
                         <p>Laravel offre plusieurs avantages par rapport à d'autres frameworks PHP.</p>
                         <ul>
-                            <li>Facile à apprendre : Laravel est relativement facile à apprendre, même pour les développeurs qui n'ont pas d'expérience avec les frameworks PHP.</li>
+                            <li>Facile à apprendre : Laravel est relativement facile à apprendre, même pour les
+                                développeurs qui n'ont pas d'expérience avec les frameworks PHP.</li>
                             <li>Rapide : Laravel est rapide et peut gérer un grand nombre de requêtes.</li>
-                            <li>Sécurité : Laravel dispose de plusieurs fonctionnalités de sécurité pour protéger l'application contre les attaques.</li>
+                            <li>Sécurité : Laravel dispose de plusieurs fonctionnalités de sécurité pour protéger
+                                l'application contre les attaques.</li>
                         </ul>
                     </section>
 
@@ -74,9 +81,12 @@
                         <h2>Utilisations de Laravel</h2>
                         <p>Laravel est utilisé pour développer une variété d'applications web.</p>
                         <ul>
-                            <li>Sites web : Laravel est utilisé pour développer des sites web pour les entreprises, les organisations et les individus.</li>
-                            <li>Applications e-commerce : Laravel est utilisé pour développer des applications e-commerce pour les entreprises.</li>
-                            <li>Applications de gestion : Laravel est utilisé pour développer des applications de gestion pour les entreprises et les organisations.</li>
+                            <li>Sites web : Laravel est utilisé pour développer des sites web pour les entreprises, les
+                                organisations et les individus.</li>
+                            <li>Applications e-commerce : Laravel est utilisé pour développer des applications
+                                e-commerce pour les entreprises.</li>
+                            <li>Applications de gestion : Laravel est utilisé pour développer des applications de
+                                gestion pour les entreprises et les organisations.</li>
                         </ul>
                     </section>
 
@@ -84,9 +94,12 @@
                         <h2>Bonnes pratiques pour utiliser Laravel</h2>
                         <p>Voici quelques bonnes pratiques pour utiliser Laravel.</p>
                         <ul>
-                            <li>Utiliser le modèle MVC : Laravel utilise le modèle MVC pour séparer la logique de l'application en trois parties.</li>
-                            <li>Utiliser Eloquent : Laravel dispose d'un système de gestion de bases de données appelé Eloquent.</li>
-                            <li>Utiliser les routes : Laravel dispose d'un système de routage pour gérer les URL de l'application.</li>
+                            <li>Utiliser le modèle MVC : Laravel utilise le modèle MVC pour séparer la logique de
+                                l'application en trois parties.</li>
+                            <li>Utiliser Eloquent : Laravel dispose d'un système de gestion de bases de données appelé
+                                Eloquent.</li>
+                            <li>Utiliser les routes : Laravel dispose d'un système de routage pour gérer les URL de
+                                l'application.</li>
                         </ul>
                     </section>
 
@@ -138,12 +151,19 @@ Laravel est un framework PHP open-source pour développer des applications web.
 
                     <!-- Navigation entre chapitres -->
                     <div class="d-flex justify-content-between mt-4">
-                        <a href="{{ route('chapter6') }}" class="btn btn-secondary">
-                            <i class="fas fa-arrow-left"></i> Chapitre précédent
-                        </a>
-                        <a href="{{ route('chapter8') }}" class="btn btn-primary">
-                            Chapitre suivant <i class="fas fa-arrow-right"></i>
-                        </a>
+                        <!-- Lien vers le chapitre précédent -->
+                        @if ($currentChapterId > 1)
+                            <a href="{{ route('chapter', ['id' => $currentChapterId - 1]) }}" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Chapitre précédent
+                            </a>
+                        @endif
+
+                        <!-- Lien vers le chapitre suivant -->
+                        @if ($currentChapterId < $totalChapters)
+                            <a href="{{ route('chapter', ['id' => $currentChapterId + 1]) }}" class="btn btn-primary">
+                                Chapitre suivant <i class="fas fa-arrow-right"></i>
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -170,16 +190,16 @@ Laravel est un framework PHP open-source pour développer des applications web.
 
 @section('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         // Gestion du quiz
-        document.getElementById('chapter-quiz').addEventListener('submit', function(e) {
+        document.getElementById('chapter-quiz').addEventListener('submit', function (e) {
             e.preventDefault();
             // Logique de vérification du quiz
         });
 
         // Navigation fluide
-        document.querySelectorAll('#navbar-chapter .nav-link').forEach(function(navLink) {
-            navLink.addEventListener('click', function(e) {
+        document.querySelectorAll('#navbar-chapter .nav-link').forEach(function (navLink) {
+            navLink.addEventListener('click', function (e) {
                 e.preventDefault();
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'

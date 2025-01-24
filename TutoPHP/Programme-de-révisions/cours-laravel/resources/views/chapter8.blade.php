@@ -39,12 +39,14 @@
                     <section id="section1" class="mb-5">
                         <h2>Introduction à l'installation de Laravel</h2>
                         <p>L'installation de Laravel est un processus simple et rapide.</p>
-                        <p>Il existe plusieurs méthodes pour installer Laravel, nous allons voir les plus courantes dans ce chapitre.</p>
+                        <p>Il existe plusieurs méthodes pour installer Laravel, nous allons voir les plus courantes dans
+                            ce chapitre.</p>
                     </section>
 
                     <section id="section2" class="mb-5">
                         <h2>Prérequis pour l'installation de Laravel</h2>
-                        <p>Avant de commencer l'installation de Laravel, assurez-vous que vous avez les prérequis suivants :</p>
+                        <p>Avant de commencer l'installation de Laravel, assurez-vous que vous avez les prérequis
+                            suivants :</p>
                         <ul>
                             <li>PHP 7.3 ou supérieur</li>
                             <li>Composer</li>
@@ -57,14 +59,16 @@
                         <h2>Téléchargement et installation de Laravel</h2>
                         <p>Il existe plusieurs façons de télécharger et d'installer Laravel :</p>
                         <ol>
-                            <li>En utilisant Composer : <code>composer create-project --prefer-dist laravel/laravel projet-laravel</code></li>
+                            <li>En utilisant Composer :
+                                <code>composer create-project --prefer-dist laravel/laravel projet-laravel</code></li>
                             <li>En téléchargeant le fichier zip depuis le site officiel de Laravel</li>
                         </ol>
                     </section>
 
                     <section id="section4" class="mb-5">
                         <h2>Configuration de Laravel</h2>
-                        <p>Une fois Laravel installé, vous devez configurer quelques paramètres pour que votre application fonctionne correctement.</p>
+                        <p>Une fois Laravel installé, vous devez configurer quelques paramètres pour que votre
+                            application fonctionne correctement.</p>
                         <ul>
                             <li>Configurer la base de données dans le fichier .env</li>
                             <li>Exécuter les migrations pour créer les tables de la base de données</li>
@@ -73,16 +77,20 @@
 
                     <section id="section5" class="mb-5">
                         <h2>Lancement de Laravel</h2>
-                        <p>Une fois que vous avez configuré Laravel, vous pouvez lancer votre application en exécutant la commande suivante :</p>
+                        <p>Une fois que vous avez configuré Laravel, vous pouvez lancer votre application en exécutant
+                            la commande suivante :</p>
                         <code>php artisan serve</code>
                     </section>
 
                     <section id="section6" class="mb-5">
                         <h2>Résolution des problèmes courants</h2>
-                        <p>Voici quelques problèmes courants que vous pouvez rencontrer lors de l'installation de Laravel et comment les résoudre :</p>
+                        <p>Voici quelques problèmes courants que vous pouvez rencontrer lors de l'installation de
+                            Laravel et comment les résoudre :</p>
                         <ul>
-                            <li>Erreur de dépendance : assurez-vous que vous avez installé toutes les dépendances requises</li>
-                            <li>Erreur de base de données : assurez-vous que vous avez configuré correctement la base de données</li>
+                            <li>Erreur de dépendance : assurez-vous que vous avez installé toutes les dépendances
+                                requises</li>
+                            <li>Erreur de base de données : assurez-vous que vous avez configuré correctement la base de
+                                données</li>
                         </ul>
                     </section>
 
@@ -134,12 +142,19 @@ composer create-project --prefer-dist laravel/laravel projet-laravel
 
                     <!-- Navigation entre chapitres -->
                     <div class="d-flex justify-content-between mt-4">
-                        <a href="{{ route('chapter7') }}" class="btn btn-secondary">
-                            <i class="fas fa-arrow-left"></i> Chapitre précédent
-                        </a>
-                        <a href="{{ route('chapter9') }}" class="btn btn-primary">
-                            Chapitre suivant <i class="fas fa-arrow-right"></i>
-                        </a>
+                        <!-- Lien vers le chapitre précédent -->
+                        @if ($currentChapterId > 1)
+                            <a href="{{ route('chapter', ['id' => $currentChapterId - 1]) }}" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Chapitre précédent
+                            </a>
+                        @endif
+
+                        <!-- Lien vers le chapitre suivant -->
+                        @if ($currentChapterId < $totalChapters)
+                            <a href="{{ route('chapter', ['id' => $currentChapterId + 1]) }}" class="btn btn-primary">
+                                Chapitre suivant <i class="fas fa-arrow-right"></i>
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -166,16 +181,16 @@ composer create-project --prefer-dist laravel/laravel projet-laravel
 
 @section('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         // Gestion du quiz
-        document.getElementById('chapter-quiz').addEventListener('submit', function(e) {
+        document.getElementById('chapter-quiz').addEventListener('submit', function (e) {
             e.preventDefault();
             // Logique de vérification du quiz
         });
 
         // Navigation fluide
-        document.querySelectorAll('#navbar-chapter .nav-link').forEach(function(navLink) {
-            navLink.addEventListener('click', function(e) {
+        document.querySelectorAll('#navbar-chapter .nav-link').forEach(function (navLink) {
+            navLink.addEventListener('click', function (e) {
                 e.preventDefault();
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'

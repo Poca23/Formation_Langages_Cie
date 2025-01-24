@@ -35,10 +35,14 @@
 
                     <section id="section1" class="mb-5">
                         <h2>Création d'une petite application CRUD (Créer, Lire, Mettre à jour, Supprimer)</h2>
-                        <p>Dans ce chapitre, nous allons créer une petite application CRUD avec Laravel. Nous allons permettre à l'utilisateur de créer, lire, mettre à jour et supprimer des produits dans la base de données.</p>
+                        <p>Dans ce chapitre, nous allons créer une petite application CRUD avec Laravel. Nous allons
+                            permettre à l'utilisateur de créer, lire, mettre à jour et supprimer des produits dans la
+                            base de données.</p>
 
                         <h3>Étape 1 - Création des routes</h3>
-                        <p>Nous allons commencer par définir les routes nécessaires dans le fichier <strong>routes/web.php</strong> pour afficher les produits, créer de nouveaux produits, mettre à jour et supprimer des produits :</p>
+                        <p>Nous allons commencer par définir les routes nécessaires dans le fichier
+                            <strong>routes/web.php</strong> pour afficher les produits, créer de nouveaux produits,
+                            mettre à jour et supprimer des produits :</p>
                         <div class="code-block">
                             <pre><code>use App\Models\Product;
 
@@ -51,16 +55,20 @@ Route::delete('/products/{product}', [ProductController::class, 'destroy']);</co
                         </div>
 
                         <h3>Étape 2 - Création du contrôleur</h3>
-                        <p>Ensuite, nous allons créer un contrôleur <strong>ProductController</strong> pour gérer la logique métier des actions CRUD. Utilisez la commande Artisan suivante :</p>
+                        <p>Ensuite, nous allons créer un contrôleur <strong>ProductController</strong> pour gérer la
+                            logique métier des actions CRUD. Utilisez la commande Artisan suivante :</p>
                         <div class="code-block">
                             <pre><code>php artisan make:controller ProductController</code></pre>
                         </div>
 
-                        <p>Une fois le contrôleur créé, ouvrez-le dans le fichier <strong>app/Http/Controllers/ProductController.php</strong> et définissez les méthodes nécessaires.</p>
+                        <p>Une fois le contrôleur créé, ouvrez-le dans le fichier
+                            <strong>app/Http/Controllers/ProductController.php</strong> et définissez les méthodes
+                            nécessaires.</p>
                         <!-- Détails des méthodes -->
 
                         <h3>Étape 3 - Création des vues Blade</h3>
-                        <p>Nous allons maintenant créer des vues pour afficher la liste des produits, le formulaire de création, le formulaire d'édition et la confirmation de suppression.</p>
+                        <p>Nous allons maintenant créer des vues pour afficher la liste des produits, le formulaire de
+                            création, le formulaire d'édition et la confirmation de suppression.</p>
 
                         <!-- Détails des vues -->
 
@@ -75,20 +83,31 @@ Route::delete('/products/{product}', [ProductController::class, 'destroy']);</co
                     <section id="section3" class="mb-5">
                         <h2>Exercice :</h2>
                         <ul class="list-group">
-                            <li class="list-group-item">Créez une application Laravel permettant de gérer des produits avec un système CRUD complet.</li>
-                            <li class="list-group-item">Ajoutez des validations pour chaque champ de formulaire (par exemple, le prix doit être numérique).</li>
-                            <li class="list-group-item">Affichez les produits dans une vue, permettant de les éditer et de les supprimer.</li>
-                            <li class="list-group-item">Ajoutez des liens pour naviguer entre les pages d'édition, de création et de suppression.</li>
+                            <li class="list-group-item">Créez une application Laravel permettant de gérer des produits
+                                avec un système CRUD complet.</li>
+                            <li class="list-group-item">Ajoutez des validations pour chaque champ de formulaire (par
+                                exemple, le prix doit être numérique).</li>
+                            <li class="list-group-item">Affichez les produits dans une vue, permettant de les éditer et
+                                de les supprimer.</li>
+                            <li class="list-group-item">Ajoutez des liens pour naviguer entre les pages d'édition, de
+                                création et de suppression.</li>
                         </ul>
                     </section>
 
                     <div class="d-flex justify-content-between mt-4">
-                        <a href="{{ route('chapter11') }}" class="btn btn-secondary">
-                            <i class="fas fa-arrow-left"></i> Chapitre précédent
-                        </a>
-                        <a href="{{ route('chapter13') }}" class="btn btn-primary">
-                            Chapitre suivant <i class="fas fa-arrow-right"></i>
-                        </a>
+                        <!-- Lien vers le chapitre précédent -->
+                        @if ($currentChapterId > 1)
+                            <a href="{{ route('chapter', ['id' => $currentChapterId - 1]) }}" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Chapitre précédent
+                            </a>
+                        @endif
+
+                        <!-- Lien vers le chapitre suivant -->
+                        @if ($currentChapterId < $totalChapters)
+                            <a href="{{ route('chapter', ['id' => $currentChapterId + 1]) }}" class="btn btn-primary">
+                                Chapitre suivant <i class="fas fa-arrow-right"></i>
+                            </a>
+                        @endif
                     </div>
 
                 </div>
@@ -111,7 +130,7 @@ Route::delete('/products/{product}', [ProductController::class, 'destroy']);</co
 
 @section('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         // Script pour gérer des fonctionnalités spécifiques au chapitre
     });
 </script>

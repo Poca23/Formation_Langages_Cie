@@ -85,7 +85,8 @@ $utilisateur["email"] = "jean.dupont@example.com";
 
                     <section id="section3" class="mb-5">
                         <h2>Tableaux multidimensionnels</h2>
-                        <p>Les tableaux peuvent contenir d'autres tableaux, créant ainsi des structures multidimensionnelles.</p>
+                        <p>Les tableaux peuvent contenir d'autres tableaux, créant ainsi des structures
+                            multidimensionnelles.</p>
 
                         <div class="code-block">
                             <pre><code>
@@ -186,7 +187,8 @@ echo $jean->sePresenter();
 
                     <section id="section6" class="mb-5">
                         <h2>Propriétés et Méthodes</h2>
-                        <p>Les classes peuvent avoir différents niveaux de visibilité pour leurs propriétés et méthodes.</p>
+                        <p>Les classes peuvent avoir différents niveaux de visibilité pour leurs propriétés et méthodes.
+                        </p>
 
                         <div class="code-block">
                             <pre><code>
@@ -224,7 +226,8 @@ echo $compte->getSolde(); // Affiche 100
                         <div class="card-body">
                             <div class="exercise mb-4">
                                 <h4>Exercice 1 : Manipulation de tableau</h4>
-                                <p>Créez un tableau de nombres et écrivez une fonction pour calculer la somme de tous les éléments.</p>
+                                <p>Créez un tableau de nombres et écrivez une fonction pour calculer la somme de tous
+                                    les éléments.</p>
                                 <div class="code-editor" id="exercise1">
                                     <textarea class="form-control" rows="6">
 $nombres = [1, 2, 3, 4, 5];
@@ -283,12 +286,19 @@ class Voiture {
 
                     <!-- Navigation entre chapitres -->
                     <div class="d-flex justify-content-between mt-4">
-                        <a href="{{ route('chapter4') }}" class="btn btn-secondary">
-                            <i class="fas fa-arrow-left"></i> Chapitre précédent
-                        </a>
-                        <a href="{{ route('chapter6') }}" class="btn btn-primary">
-                            Chapitre suivant <i class="fas fa-arrow-right"></i>
-                        </a>
+                        <!-- Lien vers le chapitre précédent -->
+                        @if ($currentChapterId > 1)
+                            <a href="{{ route('chapter', ['id' => $currentChapterId - 1]) }}" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Chapitre précédent
+                            </a>
+                        @endif
+
+                        <!-- Lien vers le chapitre suivant -->
+                        @if ($currentChapterId < $totalChapters)
+                            <a href="{{ route('chapter', ['id' => $currentChapterId + 1]) }}" class="btn btn-primary">
+                                Chapitre suivant <i class="fas fa-arrow-right"></i>
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -315,16 +325,16 @@ class Voiture {
 
 @section('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         // Gestion du quiz
-        document.getElementById('chapter-quiz').addEventListener('submit', function(e) {
+        document.getElementById('chapter-quiz').addEventListener('submit', function (e) {
             e.preventDefault();
             // Logique de vérification du quiz
         });
 
         // Navigation fluide
-        document.querySelectorAll('#navbar-chapter .nav-link').forEach(function(navLink) {
-            navLink.addEventListener('click', function(e) {
+        document.querySelectorAll('#navbar-chapter .nav-link').forEach(function (navLink) {
+            navLink.addEventListener('click', function (e) {
                 e.preventDefault();
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'

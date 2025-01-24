@@ -37,7 +37,9 @@
 
                     <section id="section1" class="mb-5">
                         <h2>Introduction</h2>
-                        <p>Le déploiement d'une application Laravel doit être effectué avec soin pour garantir une performance optimale et une sécurité renforcée. Dans ce chapitre, nous examinerons les étapes importantes du déploiement et les meilleures pratiques à suivre.</p>
+                        <p>Le déploiement d'une application Laravel doit être effectué avec soin pour garantir une
+                            performance optimale et une sécurité renforcée. Dans ce chapitre, nous examinerons les
+                            étapes importantes du déploiement et les meilleures pratiques à suivre.</p>
                     </section>
 
                     <section id="section2" class="mb-5">
@@ -55,21 +57,26 @@
                         <p>Pour déployer votre application sur un serveur, vous pouvez suivre ces étapes :</p>
                         <ol>
                             <li>Choisir un environnement d'hébergement (VPS, Shared Hosting, etc.).</li>
-                            <li>Configurer le serveur web (Apache, Nginx) pour qu'il pointe vers le répertoire <code>public</code> de votre application.</li>
+                            <li>Configurer le serveur web (Apache, Nginx) pour qu'il pointe vers le répertoire
+                                <code>public</code> de votre application.</li>
                             <li>Transférer les fichiers de l'application vers le serveur via FTP ou SSH.</li>
                         </ol>
                         <div class="alert alert-info">
-                            <i class="fas fa-info-circle"></i> Assurez-vous que les fichiers de votre application ont les bonnes permissions.
+                            <i class="fas fa-info-circle"></i> Assurez-vous que les fichiers de votre application ont
+                            les bonnes permissions.
                         </div>
                     </section>
 
                     <section id="section4" class="mb-5">
                         <h2>Mises à jour et maintenance</h2>
-                        <p>Après le déploiement, il est essentiel de gérer correctement les mises à jour et la maintenance :</p>
+                        <p>Après le déploiement, il est essentiel de gérer correctement les mises à jour et la
+                            maintenance :</p>
                         <ul>
-                            <li>Utilisez les commandes <code>php artisan migrate</code> et <code>php artisan db:seed</code> pour mettre à jour la base de données.</li>
+                            <li>Utilisez les commandes <code>php artisan migrate</code> et
+                                <code>php artisan db:seed</code> pour mettre à jour la base de données.</li>
                             <li>Surveillez les logs d'erreurs pour résoudre tout problème rapidement.</li>
-                            <li>Planifiez des sauvegardes régulières de la base de données et des fichiers de l'application.</li>
+                            <li>Planifiez des sauvegardes régulières de la base de données et des fichiers de
+                                l'application.</li>
                         </ul>
                     </section>
 
@@ -84,12 +91,19 @@
                     </section>
 
                     <div class="d-flex justify-content-between mt-4">
-                        <a href="{{ route('chapter13') }}" class="btn btn-secondary">
-                            <i class="fas fa-arrow-left"></i> Chapitre précédent
-                        </a>
-                        <a href="{{ route('chapter15') }}" class="btn btn-primary">
-                            Chapitre suivant <i class="fas fa-arrow-right"></i>
-                        </a>
+                        <!-- Lien vers le chapitre précédent -->
+                        @if ($currentChapterId > 1)
+                            <a href="{{ route('chapter', ['id' => $currentChapterId - 1]) }}" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Chapitre précédent
+                            </a>
+                        @endif
+
+                        <!-- Lien vers le chapitre suivant -->
+                        @if ($currentChapterId < $totalChapters)
+                            <a href="{{ route('chapter', ['id' => $currentChapterId + 1]) }}" class="btn btn-primary">
+                                Chapitre suivant <i class="fas fa-arrow-right"></i>
+                            </a>
+                        @endif
                     </div>
 
                 </div>
@@ -112,7 +126,7 @@
 
 @section('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         // Script pour gérer des fonctionnalités spécifiques au chapitre, si nécessaire
     });
 </script>

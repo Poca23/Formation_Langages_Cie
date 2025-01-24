@@ -38,7 +38,8 @@
 
                     <section id="section1" class="mb-5">
                         <h2>Conditions if/else</h2>
-                        <p>Les instructions conditionnelles permettent d'exécuter différents blocs de code selon des conditions.</p>
+                        <p>Les instructions conditionnelles permettent d'exécuter différents blocs de code selon des
+                            conditions.</p>
 
                         <div class="code-block">
                             <pre><code>
@@ -55,7 +56,8 @@ if ($age >= 18) {
                         </div>
 
                         <div class="alert alert-info mt-3">
-                            <i class="fas fa-info-circle"></i> La syntaxe alternative avec : et endif; est aussi disponible.
+                            <i class="fas fa-info-circle"></i> La syntaxe alternative avec : et endif; est aussi
+                            disponible.
                         </div>
 
                         <h4 class="mt-4">Opérateur ternaire</h4>
@@ -150,7 +152,8 @@ foreach ($ages as $nom => $age) {
 
                     <section id="section6" class="mb-5">
                         <h2>Break et Continue</h2>
-                        <p>Les instructions break et continue permettent de contrôler le flux d'exécution des boucles.</p>
+                        <p>Les instructions break et continue permettent de contrôler le flux d'exécution des boucles.
+                        </p>
 
                         <div class="code-block">
                             <pre><code>
@@ -235,12 +238,19 @@ switch ($jour) {
 
                     <!-- Navigation entre chapitres -->
                     <div class="d-flex justify-content-between mt-4">
-                        <a href="{{ route('chapter2') }}" class="btn btn-secondary">
-                            <i class="fas fa-arrow-left"></i> Chapitre précédent
-                        </a>
-                        <a href="{{ route('chapter4') }}" class="btn btn-primary">
-                            Chapitre suivant <i class="fas fa-arrow-right"></i>
-                        </a>
+                        <!-- Lien vers le chapitre précédent -->
+                        @if ($currentChapterId > 1)
+                            <a href="{{ route('chapter', ['id' => $currentChapterId - 1]) }}" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Chapitre précédent
+                            </a>
+                        @endif
+
+                        <!-- Lien vers le chapitre suivant -->
+                        @if ($currentChapterId < $totalChapters)
+                            <a href="{{ route('chapter', ['id' => $currentChapterId + 1]) }}" class="btn btn-primary">
+                                Chapitre suivant <i class="fas fa-arrow-right"></i>
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -276,16 +286,16 @@ switch ($jour) {
 
 @section('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         // Gestion du quiz
-        document.getElementById('chapter-quiz').addEventListener('submit', function(e) {
+        document.getElementById('chapter-quiz').addEventListener('submit', function (e) {
             e.preventDefault();
             // Logique de vérification du quiz
         });
 
         // Navigation fluide
-        document.querySelectorAll('#navbar-chapter .nav-link').forEach(function(navLink) {
-            navLink.addEventListener('click', function(e) {
+        document.querySelectorAll('#navbar-chapter .nav-link').forEach(function (navLink) {
+            navLink.addEventListener('click', function (e) {
                 e.preventDefault();
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'

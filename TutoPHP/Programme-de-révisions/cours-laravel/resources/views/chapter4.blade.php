@@ -52,7 +52,8 @@ direBonjour();
                         </div>
 
                         <div class="alert alert-info">
-                            <i class="fas fa-info-circle"></i> Les noms de fonctions ne sont pas sensibles à la casse, mais il est recommandé d'être cohérent.
+                            <i class="fas fa-info-circle"></i> Les noms de fonctions ne sont pas sensibles à la casse,
+                            mais il est recommandé d'être cohérent.
                         </div>
                     </section>
 
@@ -249,7 +250,8 @@ echo calculerMoyenne($notes);
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="q1" value="2">
-                                        <label class="form-check-label">Elle renvoie une valeur et termine la fonction</label>
+                                        <label class="form-check-label">Elle renvoie une valeur et termine la
+                                            fonction</label>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Vérifier</button>
@@ -259,12 +261,19 @@ echo calculerMoyenne($notes);
 
                     <!-- Navigation entre chapitres -->
                     <div class="d-flex justify-content-between mt-4">
-                        <a href="{{ route('chapter3') }}" class="btn btn-secondary">
-                            <i class="fas fa-arrow-left"></i> Chapitre précédent
-                        </a>
-                        <a href="{{ route('chapter5') }}" class="btn btn-primary">
-                            Chapitre suivant <i class="fas fa-arrow-right"></i>
-                        </a>
+                        <!-- Lien vers le chapitre précédent -->
+                        @if ($currentChapterId > 1)
+                            <a href="{{ route('chapter', ['id' => $currentChapterId - 1]) }}" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Chapitre précédent
+                            </a>
+                        @endif
+
+                        <!-- Lien vers le chapitre suivant -->
+                        @if ($currentChapterId < $totalChapters)
+                            <a href="{{ route('chapter', ['id' => $currentChapterId + 1]) }}" class="btn btn-primary">
+                                Chapitre suivant <i class="fas fa-arrow-right"></i>
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -291,16 +300,16 @@ echo calculerMoyenne($notes);
 
 @section('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         // Gestion du quiz et de la navigation
-        document.getElementById('chapter-quiz').addEventListener('submit', function(e) {
+        document.getElementById('chapter-quiz').addEventListener('submit', function (e) {
             e.preventDefault();
             // Logique de vérification du quiz
         });
 
         // Navigation fluide
-        document.querySelectorAll('#navbar-chapter .nav-link').forEach(function(navLink) {
-            navLink.addEventListener('click', function(e) {
+        document.querySelectorAll('#navbar-chapter .nav-link').forEach(function (navLink) {
+            navLink.addEventListener('click', function (e) {
                 e.preventDefault();
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'

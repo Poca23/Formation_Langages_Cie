@@ -36,12 +36,14 @@
 
                     <section id="section1" class="mb-5">
                         <h2>Introduction</h2>
-                        <p>La sécurisation d'une application est cruciale. Dans ce chapitre, nous aborderons les meilleures pratiques pour protéger votre application Laravel.</p>
+                        <p>La sécurisation d'une application est cruciale. Dans ce chapitre, nous aborderons les
+                            meilleures pratiques pour protéger votre application Laravel.</p>
                     </section>
 
                     <section id="section2" class="mb-5">
                         <h2>Validation des formulaires</h2>
-                        <p>Laravel fournit un système de validation intégré qui facilite la validation des données envoyées via les formulaires.</p>
+                        <p>Laravel fournit un système de validation intégré qui facilite la validation des données
+                            envoyées via les formulaires.</p>
                         <pre><code>
 $request->validate([
     'name' => 'required|max:255',
@@ -49,13 +51,15 @@ $request->validate([
 ]);
                         </code></pre>
                         <div class="alert alert-info">
-                            <i class="fas fa-info-circle"></i> Assurez-vous d'afficher les messages d'erreur aux utilisateurs.
+                            <i class="fas fa-info-circle"></i> Assurez-vous d'afficher les messages d'erreur aux
+                            utilisateurs.
                         </div>
                     </section>
 
                     <section id="section3" class="mb-5">
                         <h2>Protection contre les attaques CSRF</h2>
-                        <p>Laravel inclut la protection CSRF par défaut. Ajoutez le champ CSRF à vos formulaires en utilisant {{ csrf_field() }} ou @csrf dans vos vues Blade.</p>
+                        <p>Laravel inclut la protection CSRF par défaut. Ajoutez le champ CSRF à vos formulaires en
+                            utilisant {{ csrf_field() }} ou @csrf dans vos vues Blade.</p>
                         <pre><code>
 <form method="POST" action="/profile">
     @csrf
@@ -67,7 +71,8 @@ $request->validate([
 
                     <section id="section4" class="mb-5">
                         <h2>Gestion des erreurs</h2>
-                        <p>Lorsqu'une validation échoue, Laravel redirige automatiquement l'utilisateur à la page précédente avec les anciennes données et les erreurs.</p>
+                        <p>Lorsqu'une validation échoue, Laravel redirige automatiquement l'utilisateur à la page
+                            précédente avec les anciennes données et les erreurs.</p>
                         <pre><code>
 if ($validator->fails()) {
     return redirect('form')
@@ -78,12 +83,19 @@ if ($validator->fails()) {
                     </section>
 
                     <div class="d-flex justify-content-between mt-4">
-                        <a href="{{ route('chapter12') }}" class="btn btn-secondary">
-                            <i class="fas fa-arrow-left"></i> Chapitre précédent
-                        </a>
-                        <a href="{{ route('chapter14') }}" class="btn btn-primary">
-                            Chapitre suivant <i class="fas fa-arrow-right"></i>
-                        </a>
+                        <!-- Lien vers le chapitre précédent -->
+                        @if ($currentChapterId > 1)
+                            <a href="{{ route('chapter', ['id' => $currentChapterId - 1]) }}" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Chapitre précédent
+                            </a>
+                        @endif
+
+                        <!-- Lien vers le chapitre suivant -->
+                        @if ($currentChapterId < $totalChapters)
+                            <a href="{{ route('chapter', ['id' => $currentChapterId + 1]) }}" class="btn btn-primary">
+                                Chapitre suivant <i class="fas fa-arrow-right"></i>
+                            </a>
+                        @endif
                     </div>
 
                 </div>
@@ -106,7 +118,7 @@ if ($validator->fails()) {
 
 @section('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         // Script pour gérer des fonctionnalités spécifiques au chapitre, si nécessaire
     });
 </script>

@@ -54,7 +54,7 @@
                     </form>
 
                     <div class="mt-3 text-center">
-                        <p>Pas encore de compte ? <a href="{{ route('register-user') }}">S'inscrire</a></p>
+                        <p>Pas encore de compte ? <a href="{{ route('register') }}">S'inscrire</a></p>
                     </div>
                 </div>
             </div>
