@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="MyChatGPT - Votre assistant conversationnel intelligent">
+    <meta name="theme-color" content="#2D3748">
+    <meta name="author" content="Ayman & Claire">
+    <title>MyChatGPT</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/src/assets/images/favicon.png">
+    <link rel="apple-touch-icon" href="/src/assets/images/icons/icon-512x512.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../src/css/styles.css">
+
+    <!-- JavaScript -->
+    <script type="module" src="../src/js/app.js" defer></script>
+
+    <!-- Manifest -->
+    <link rel="manifest" href="./manifest.json">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="/" aria-label="Accueil MyChatGPT">
+                    <img src="../src/assets/images/logo.png" alt="Logo MyChatGPT">
+                </a>
+            </div>
+
+            <!-- Bouton Menu Mobile -->
+            <button id="menuButton" class="hamburger" aria-label="Menu principal" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div id="mobileMenu" class="hidden">
+                <ul class="nav-links">
+                    <li><a href="#" class="nav-link">Accueil</a></li>
+                    <li><a href="#" class="nav-link">À propos</a></li>
+                    <li><a href="#" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Menu Bureau -->
+            <ul class="nav-links" id="nav-links">
+                <li><a href="/" class="nav-link active">Accueil</a></li>
+                <li><a href="/about" class="nav-link">À propos</a></li>
+                <li><a href="/contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- Menu Mobile -->
+        <div id="mobileMenu" class="hidden" role="navigation" aria-label="Menu mobile">
+            <nav class="container py-4">
+                <ul class="space-y-2">
+                    <li><a href="/" class="nav-link">Accueil</a></li>
+                    <li><a href="/about" class="nav-link">À propos</a></li>
+                    <li><a href="/contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mt-3">
+        <!-- Chat Interface -->
+        <div class="chat-container hardware-accelerated">
+            <!-- Chat Header -->
+            <header class="chat-header card mb-2">
+                <h1 class="text-center">Assistant MyChatGPT</h1>
+                <p class="text-center">Posez vos questions, je suis là pour vous aider</p>
+            </header>
+
+            <!-- Messages Container -->
+            <div class="chat-messages" id="chatMessages" role="log" aria-live="polite" aria-atomic="false">
+                <div class="message message-bot fade-in">
+                    <p>Bonjour ! Comment puis-je vous aider aujourd'hui ?</p>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="chat-input">
+                <form id="chatForm" class="flex" autocomplete="off" aria-label="Zone de saisie du message">
+                    <div class="input-wrapper flex-grow">
+                        <input type="text" class="input" id="userInput" placeholder="Écrivez votre message..."
+                            aria-label="Message" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary ml-2" aria-label="Envoyer le message">
+                        <span class="hide-mobile">Envoyer</span>
+                        <span class="show-mobile" aria-hidden="true">↑</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal - Login -->
+    <div class="modal hardware-accelerated" id="loginModal" aria-hidden="true" role="dialog"
+        aria-labelledby="modalTitle">
+        <div class="modal-overlay" tabindex="-1" data-close-modal></div>
+        <div class="modal-content card">
+            <div class="modal-header">
+                <h2 id="modalTitle">Connexion</h2>
+                <button class="modal-close" aria-label="Fermer" data-close-modal>&times;</button>
+            </div>
+            <form id="loginForm" class="form-group">
+                <div class="mb-2">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="input" required>
+                </div>
+                <div class="mb-2">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" class="input" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Se connecter</button>
+                    <a href="#" class="btn btn-text">Mot de passe oublié ?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-3">
+        <div class="container">
+            <div class="grid">
+                <div class="card">
+                    <h3>À propos</h3>
+                    <p>MyChatGPT est un assistant conversationnel créé par Ayman et Claire.</p>
+                </div>
+                <div class="card">
+                    <h3>Contact</h3>
+                    <p>Email : <a href="mailto:contact@mychatgpt.com">contact@mychatgpt.com</a></p>
+                </div>
+            </div>
+            <p class="text-center mt-2">&copy; <span id="currentYear"></span> MyChatGPT. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast" role="alert" aria-hidden="true"></div>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+/* Styles de base pour la navbar */
+.navbar {
+  background-color: var(--primary-color);
+  padding: 1rem 0;
+  position: fixed; /* Ajouté */
+  width: 100%; /* Ajouté */
+  top: 0; /* Ajouté */
+  z-index: 1000; /* Ajouté */
+}
+
+
+/* Modifiez la partie mobile comme ceci */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  #mobileMenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--primary-color);
+    padding: 1rem;
+  }
+
+  #mobileMenu:not(.hidden) {
+    display: block;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nav-link {
+    display: block;
+    padding: 0.5rem 0;
+    width: 100%;
+    text-align: center;
+  }
+}
