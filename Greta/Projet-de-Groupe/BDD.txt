@@ -1,0 +1,142 @@
+- la base de données la plus performante en fichier MySQL,
+-- Création de la base de données
+CREATE DATABASE IF NOT EXISTS mychatgpt_db
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
+
+USE mychatgpt_db;
+
+-- Table des utilisateurs
+CREATE TABLE users (
+    id_user VARCHAR(36) PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    last_login TIMESTAMP NULL,
+    is_active BOOLEAN DEFAULT TRUE,
+    CONSTRAINT email_check CHECK (email REGEXP '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$')
+) ENGINE=InnoDB;
+
+-- Table des conversations
+CREATE TABLE conversations (
+    id_conv VARCHAR(36) PRIMARY KEY,
+    id_user VARCHAR(36) NOT NULL,
+    title VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    is_active BOOLEAN DEFAULT TRUE,
+    FOREIGN KEY (id_user) REFERENCES users(id_user) ON DELETE CASCADE,
+    INDEX idx_user_conv (id_user)
+) ENGINE=InnoDB;
+
+-- Table des messages
+CREATE TABLE messages (
+    id_msg VARCHAR(36) PRIMARY KEY,
+    id_conv VARCHAR(36) NOT NULL,
+    content TEXT NOT NULL,
+    is_bot BOOLEAN DEFAULT FALSE,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    token_count INT DEFAULT 0,
+    FOREIGN KEY (id_conv) REFERENCES conversations(id_conv) ON DELETE CASCADE,
+    INDEX idx_conv_msg (id_conv)
+) ENGINE=InnoDB;
+
+-- Table des paramètres utilisateur
+CREATE TABLE settings (
+    id_settings VARCHAR(36) PRIMARY KEY,
+    id_user VARCHAR(36) NOT NULL UNIQUE,
+    language VARCHAR(10) DEFAULT 'fr-FR',
+    theme VARCHAR(20) DEFAULT 'light',
+    notifications_enabled BOOLEAN DEFAULT TRUE,
+    max_tokens_per_request INT DEFAULT 2000,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_user) REFERENCES users(id_user) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- Table des catégories de conversation (pour organiser les discussions)
+CREATE TABLE categories (
+    id_category VARCHAR(36) PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    description TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- Table de liaison conversations-catégories
+CREATE TABLE conversation_categories (
+    id_conv VARCHAR(36),
+    id_category VARCHAR(36),
+    PRIMARY KEY (id_conv, id_category),
+    FOREIGN KEY (id_conv) REFERENCES conversations(id_conv) ON DELETE CASCADE,
+    FOREIGN KEY (id_category) REFERENCES categories(id_category) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- Table des statistiques d'utilisation
+CREATE TABLE usage_stats (
+    id_stat VARCHAR(36) PRIMARY KEY,
+    id_user VARCHAR(36) NOT NULL,
+    total_messages INT DEFAULT 0,
+    total_tokens INT DEFAULT 0,
+    last_interaction TIMESTAMP NULL,
+    FOREIGN KEY (id_user) REFERENCES users(id_user) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- Triggers pour mise à jour automatique
+DELIMITER //
+
+-- Trigger pour mettre à jour les statistiques après chaque nouveau message
+CREATE TRIGGER after_message_insert 
+AFTER INSERT ON messages
+FOR EACH ROW
+BEGIN
+    UPDATE usage_stats
+    SET total_messages = total_messages + 1,
+        total_tokens = total_tokens + NEW.token_count,
+        last_interaction = CURRENT_TIMESTAMP
+    WHERE id_user = (
+        SELECT id_user 
+        FROM conversations 
+        WHERE id_conv = NEW.id_conv
+    );
+END//
+
+-- Trigger pour créer automatiquement une entrée dans usage_stats pour chaque nouvel utilisateur
+CREATE TRIGGER after_user_insert
+AFTER INSERT ON users
+FOR EACH ROW
+BEGIN
+    INSERT INTO usage_stats (id_stat, id_user)
+    VALUES (UUID(), NEW.id_user);
+    
+    INSERT INTO settings (id_settings, id_user)
+    VALUES (UUID(), NEW.id_user);
+END//
+
+DELIMITER ;
+
+-- Index pour optimiser les performances
+CREATE INDEX idx_messages_timestamp ON messages(timestamp);
+CREATE INDEX idx_conversations_updated ON conversations(updated_at);
+CREATE INDEX idx_users_username ON users(username);
+
+Cette structure de base de données inclut :
+
+Gestion complète des utilisateurs
+Système de conversations et messages
+Paramètres personnalisés
+Catégorisation des conversations
+Statistiques d'utilisation
+Triggers automatiques
+Index pour optimiser les performances
+Caractéristiques importantes :
+
+Utilisation d'UUID pour les clés primaires (plus sécurisé que auto-increment)
+Contraintes de clés étrangères pour l'intégrité référentielle
+Index optimisés pour les requêtes fréquentes
+Timestamps automatiques pour le suivi des modifications
+Validation des emails par expression régulière
+Support multilingue (UTF8MB4)
+Système de soft delete avec is_active
+Comptage des tokens pour le suivi de l'utilisation
+Cette structure permet une évolution future du projet tout en maintenant de bonnes performances.

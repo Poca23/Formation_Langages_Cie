@@ -10,17 +10,15 @@ class Chapter extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title',       // Titre du chapitre
-        'description', // Description (facultatif)
+        'title',       // Nom du chapitre
+        'description', // Description
     ];
 
-    /**
-     * Définir la relation des chapitres avec les utilisateurs.
-     */
+    // Définir la relation avec les utilisateurs
     public function users()
     {
         return $this->belongsToMany(User::class, 'chapters_users')
-            ->withPivot('completed') // Inclure le statut de progression
-            ->withTimestamps(); // Inclure les dates de création/mise à jour
+            ->withPivot('completed') // Inclure pivot completed
+            ->withTimestamps(); // Date & heure
     }
 }

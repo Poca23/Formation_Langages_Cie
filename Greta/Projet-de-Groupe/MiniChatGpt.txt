@@ -1,0 +1,233 @@
+# Projet de groupe : MyChatGPT
+
+acteurs : Ayman / Claire
+LINKS : 
+    Miro : (à venir)
+    figma : (à venir)
+    mail : aemn22384@gmail.com / cndweb@gmail.com
+    IDE ; VSCode
+
+
+Trouver :
+
+timeline : à définir
+nom : à définir
+logo : à définir
+fonctionnalités :
+technologies frontend : à définir
+technologies backend : à définir
+base de données : à définir
+
+Créer un chatbot similaire à ChatGPT peut être un projet passionnant et éducatif. Étant donné les technologies que vous avez mentionnées, voici une proposition de projet :
+
+Concept :
+
+Vous pouvez créer un chatbot qui utilise l'apprentissage automatique (Machine Learning) pour répondre aux questions et aux interactions des utilisateurs. Le chatbot pourrait être conçu pour discuter sur des sujets spécifiques, tels que la technologie, la culture, la santé, etc.
+
+Architecture :
+
+Voici une proposition d'architecture pour votre projet :
+
+Front-end :
+Utilisez React pour créer l'interface utilisateur du chatbot.
+Créez un formulaire de saisie pour que les utilisateurs puissent poser des questions ou écrire des messages.
+Utilisez CSS pour personnaliser l'apparence du chatbot.
+Back-end :
+Utilisez Node.js pour créer un serveur qui gérera les requêtes et les réponses du chatbot.
+Créez une API pour gérer les interactions entre le front-end et le back-end.
+Utilisez une bibliothèque de machine learning telle que TensorFlow.js pour entraîner et déployer un modèle de langage qui permettra au chatbot de répondre aux questions et aux interactions des utilisateurs.
+Base de données :
+Utilisez MySQL ou Supabase pour stocker les données de conversation et les réponses du chatbot.
+Créez des tables pour stocker les questions, les réponses, les utilisateurs et les métadonnées de conversation.
+Fonctionnalités :
+
+Voici quelques fonctionnalités que vous pourriez inclure dans votre chatbot :
+
+Reconnaissance de l'intention : utilisez des techniques de traitement du langage naturel (NLP) pour identifier les intentions des utilisateurs et répondre en conséquence.
+Génération de réponses : utilisez des modèles de langage pour générer des réponses cohérentes et pertinentes aux questions et aux interactions des utilisateurs.
+Stockage de conversations : stockez les conversations pour permettre aux utilisateurs de reprendre où ils en étaient et pour améliorer la qualité du chatbot.
+Personnalisation : permettez aux utilisateurs de personnaliser les paramètres du chatbot, tels que la langue, le ton, etc.
+Modèle de langage :
+
+Pour créer un modèle de langage, vous pouvez utiliser une bibliothèque telle que TensorFlow.js et entraîner un modèle de langage sur un jeu de données de conversations. Vous pouvez utiliser des données publiques telles que les données de conversation de forums en ligne, de Reddit, de Twitter, etc.
+
+Timeline :
+
+Étant donné que vous avez un mois pour compléter le projet, voici une proposition de planification :
+
+Semaine 1 : Recherche et conception du projet
+Semaine 2-3 : Développement du front-end et du back-end
+Semaine 4 : Intégration du modèle de langage et test du chatbot
+Conclusion :
+
+Créer un chatbot similaire à ChatGPT peut être un projet passionnant et éducatif. Avec les technologies que vous avez mentionnées, vous pouvez créer un chatbot qui utilise l'apprentissage automatique pour répondre aux questions et aux interactions des utilisateurs. N'oubliez pas de planifier votre projet et de travailler régulièrement pour respecter les délais. Bonne chance avec votre projet !
+
+
+Gestion de projet :
+
+répartition des tâches :
+
+- Maquettage
+- front statique
+- front dynamique
+- base de données
+- back
+- UX
+- UI
+
+Avec toutes ces informations j'aimerais 
+
+- des schémas et diagrammes de fonctionnalités proposés, 
+- le MCD à mettre en tableau pour chaque entité, 
+- le MLD à mettre en tableau pour chaque table, ainsi que 
+
+- la base de données la plus performante en fichier MySQL,
+-- Création de la base de données
+CREATE DATABASE IF NOT EXISTS mychatgpt_db
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
+
+USE mychatgpt_db;
+
+-- Table des utilisateurs
+CREATE TABLE users (
+    id_user VARCHAR(36) PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    last_login TIMESTAMP NULL,
+    is_active BOOLEAN DEFAULT TRUE,
+    CONSTRAINT email_check CHECK (email REGEXP '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$')
+) ENGINE=InnoDB;
+
+-- Table des conversations
+CREATE TABLE conversations (
+    id_conv VARCHAR(36) PRIMARY KEY,
+    id_user VARCHAR(36) NOT NULL,
+    title VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    is_active BOOLEAN DEFAULT TRUE,
+    FOREIGN KEY (id_user) REFERENCES users(id_user) ON DELETE CASCADE,
+    INDEX idx_user_conv (id_user)
+) ENGINE=InnoDB;
+
+-- Table des messages
+CREATE TABLE messages (
+    id_msg VARCHAR(36) PRIMARY KEY,
+    id_conv VARCHAR(36) NOT NULL,
+    content TEXT NOT NULL,
+    is_bot BOOLEAN DEFAULT FALSE,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    token_count INT DEFAULT 0,
+    FOREIGN KEY (id_conv) REFERENCES conversations(id_conv) ON DELETE CASCADE,
+    INDEX idx_conv_msg (id_conv)
+) ENGINE=InnoDB;
+
+-- Table des paramètres utilisateur
+CREATE TABLE settings (
+    id_settings VARCHAR(36) PRIMARY KEY,
+    id_user VARCHAR(36) NOT NULL UNIQUE,
+    language VARCHAR(10) DEFAULT 'fr-FR',
+    theme VARCHAR(20) DEFAULT 'light',
+    notifications_enabled BOOLEAN DEFAULT TRUE,
+    max_tokens_per_request INT DEFAULT 2000,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_user) REFERENCES users(id_user) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- Table des catégories de conversation (pour organiser les discussions)
+CREATE TABLE categories (
+    id_category VARCHAR(36) PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    description TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- Table de liaison conversations-catégories
+CREATE TABLE conversation_categories (
+    id_conv VARCHAR(36),
+    id_category VARCHAR(36),
+    PRIMARY KEY (id_conv, id_category),
+    FOREIGN KEY (id_conv) REFERENCES conversations(id_conv) ON DELETE CASCADE,
+    FOREIGN KEY (id_category) REFERENCES categories(id_category) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- Table des statistiques d'utilisation
+CREATE TABLE usage_stats (
+    id_stat VARCHAR(36) PRIMARY KEY,
+    id_user VARCHAR(36) NOT NULL,
+    total_messages INT DEFAULT 0,
+    total_tokens INT DEFAULT 0,
+    last_interaction TIMESTAMP NULL,
+    FOREIGN KEY (id_user) REFERENCES users(id_user) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- Triggers pour mise à jour automatique
+DELIMITER //
+
+-- Trigger pour mettre à jour les statistiques après chaque nouveau message
+CREATE TRIGGER after_message_insert 
+AFTER INSERT ON messages
+FOR EACH ROW
+BEGIN
+    UPDATE usage_stats
+    SET total_messages = total_messages + 1,
+        total_tokens = total_tokens + NEW.token_count,
+        last_interaction = CURRENT_TIMESTAMP
+    WHERE id_user = (
+        SELECT id_user 
+        FROM conversations 
+        WHERE id_conv = NEW.id_conv
+    );
+END//
+
+-- Trigger pour créer automatiquement une entrée dans usage_stats pour chaque nouvel utilisateur
+CREATE TRIGGER after_user_insert
+AFTER INSERT ON users
+FOR EACH ROW
+BEGIN
+    INSERT INTO usage_stats (id_stat, id_user)
+    VALUES (UUID(), NEW.id_user);
+    
+    INSERT INTO settings (id_settings, id_user)
+    VALUES (UUID(), NEW.id_user);
+END//
+
+DELIMITER ;
+
+-- Index pour optimiser les performances
+CREATE INDEX idx_messages_timestamp ON messages(timestamp);
+CREATE INDEX idx_conversations_updated ON conversations(updated_at);
+CREATE INDEX idx_users_username ON users(username);
+
+Cette structure de base de données inclut :
+
+Gestion complète des utilisateurs
+Système de conversations et messages
+Paramètres personnalisés
+Catégorisation des conversations
+Statistiques d'utilisation
+Triggers automatiques
+Index pour optimiser les performances
+Caractéristiques importantes :
+
+Utilisation d'UUID pour les clés primaires (plus sécurisé que auto-increment)
+Contraintes de clés étrangères pour l'intégrité référentielle
+Index optimisés pour les requêtes fréquentes
+Timestamps automatiques pour le suivi des modifications
+Validation des emails par expression régulière
+Support multilingue (UTF8MB4)
+Système de soft delete avec is_active
+Comptage des tokens pour le suivi de l'utilisation
+Cette structure permet une évolution future du projet tout en maintenant de bonnes performances.
+
+
+- un style guide avec le design le plus moderne qui s'adapterait à ce type de projet,
+- et un tableau regroupant les étapes de gestion du projet avec les tâches, technologies et acteurs qui participeraient à cette tâche.
+
+Tout ça, sachant que :
+    - Ayman s'occuperait plus de la partie Backend,
+    - Et Claire de la partie Frontend, le maquettage et la gestion de projet.

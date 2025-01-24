@@ -1,0 +1,301 @@
+// app.js
+import { ChatController } from './controllers/ChatController.js';
+import { AuthController } from './controllers/AuthController.js';
+import { UIController } from './controllers/UIController.js';
+import { ApiService } from './services/ApiService.js';
+import { StorageService } from './services/StorageService.js';
+import { EventEmitter } from './utils/EventEmitter.js';
+
+class App {
+    constructor() {
+        this.initServices();
+        this.initControllers();
+        this.initEventListeners();
+    }
+
+    initServices() {
+        this.eventEmitter = new EventEmitter();
+        this.apiService = new ApiService();
+        this.storageService = new StorageService();
+    }
+
+    initControllers() {
+        this.authController = new AuthController(this.apiService, this.storageService, this.eventEmitter);
+        this.chatController = new ChatController(this.apiService, this.storageService, this.eventEmitter);
+        this.uiController = new UIController(this.eventEmitter);
+    }
+
+    initEventListeners() {
+        document.addEventListener('DOMContentLoaded', () => {
+            this.uiController.init();
+            this.checkAuthentication();
+        });
+    }
+
+    async checkAuthentication() {
+        const token = this.storageService.getToken();
+        if (token) {
+            try {
+                await this.authController.validateToken(token);
+            } catch (error) {
+                this.storageService.removeToken();
+                this.uiController.showLoginModal();
+            }
+        }
+    }
+}
+
+// Initialisation de l'application
+const app = new App();
+
+// controllers/ChatController.js
+export class ChatController {
+    constructor(apiService, storageService, eventEmitter) {
+        this.apiService = apiService;
+        this.storageService = storageService;
+        this.eventEmitter = eventEmitter;
+        this.messageQueue = [];
+        this.isProcessing = false;
+
+        this.bindEvents();
+    }
+
+    bindEvents() {
+        const chatForm = document.getElementById('chatForm');
+        if (chatForm) {
+            chatForm.addEventListener('submit', (e) => this.handleMessageSubmit(e));
+        }
+
+        this.eventEmitter.on('message:received', (message) => this.displayMessage(message));
+    }
+
+    async handleMessageSubmit(e) {
+        e.preventDefault();
+        const input = document.getElementById('userInput');
+        const message = input.value.trim();
+
+        if (!message) return;
+
+        this.displayMessage({ content: message, isUser: true });
+        input.value = '';
+
+        await this.processMessage(message);
+    }
+
+    async processMessage(message) {
+        try {
+            const response = await this.apiService.sendMessage(message);
+            this.displayMessage({ content: response.message, isUser: false });
+        } catch (error) {
+            this.handleError(error);
+        }
+    }
+
+    displayMessage({ content, isUser }) {
+        const messagesContainer = document.getElementById('chatMessages');
+        const messageElement = document.createElement('div');
+        messageElement.className = `message ${isUser ? 'message-user' : 'message-bot'} fade-in`;
+        
+        const messageContent = document.createElement('p');
+        messageContent.textContent = content;
+        messageElement.appendChild(messageContent);
+
+        messagesContainer.appendChild(messageElement);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    handleError(error) {
+        this.eventEmitter.emit('error', error);
+    }
+}
+
+// controllers/AuthController.js
+export class AuthController {
+    constructor(apiService, storageService, eventEmitter) {
+        this.apiService = apiService;
+        this.storageService = storageService;
+        this.eventEmitter = eventEmitter;
+        this.bindEvents();
+    }
+
+    bindEvents() {
+        const loginForm = document.getElementById('loginForm');
+        if (loginForm) {
+            loginForm.addEventListener('submit', (e) => this.handleLogin(e));
+        }
+    }
+
+    async handleLogin(e) {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        try {
+            const response = await this.apiService.login({ email, password });
+            this.storageService.setToken(response.token);
+            this.eventEmitter.emit('auth:success', response.user);
+        } catch (error) {
+            this.eventEmitter.emit('auth:error', error);
+        }
+    }
+
+    async validateToken(token) {
+        return await this.apiService.validateToken(token);
+    }
+
+    logout() {
+        this.storageService.removeToken();
+        this.eventEmitter.emit('auth:logout');
+    }
+}
+
+// services/ApiService.js
+export class ApiService {
+    constructor() {
+        this.baseUrl = 'http://localhost:3000/api';
+        this.headers = {
+            'Content-Type': 'application/json'
+        };
+    }
+
+    setAuthHeader(token) {
+        this.headers['Authorization'] = `Bearer ${token}`;
+    }
+
+    async sendMessage(content) {
+        const response = await this.fetch('/chat', {
+            method: 'POST',
+            body: JSON.stringify({ content })
+        });
+        return response;
+    }
+
+    async login(credentials) {
+        const response = await this.fetch('/auth/login', {
+            method: 'POST',
+            body: JSON.stringify(credentials)
+        });
+        return response;
+    }
+
+    async fetch(endpoint, options = {}) {
+        try {
+            const response = await fetch(`${this.baseUrl}${endpoint}`, {
+                ...options,
+                headers: this.headers
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            return await response.json();
+        } catch (error) {
+            console.error('API Error:', error);
+            throw error;
+        }
+    }
+}
+
+// services/StorageService.js
+export class StorageService {
+    constructor() {
+        this.storage = window.localStorage;
+    }
+
+    setToken(token) {
+        this.storage.setItem('auth_token', token);
+    }
+
+    getToken() {
+        return this.storage.getItem('auth_token');
+    }
+
+    removeToken() {
+        this.storage.removeItem('auth_token');
+    }
+
+    setItem(key, value) {
+        this.storage.setItem(key, JSON.stringify(value));
+    }
+
+    getItem(key) {
+        const item = this.storage.getItem(key);
+        return item ? JSON.parse(item) : null;
+    }
+}
+
+// utils/EventEmitter.js
+export class EventEmitter {
+    constructor() {
+        this.events = {};
+    }
+
+    on(event, callback) {
+        if (!this.events[event]) {
+            this.events[event] = [];
+        }
+        this.events[event].push(callback);
+    }
+
+    emit(event, data) {
+        if (this.events[event]) {
+            this.events[event].forEach(callback => callback(data));
+        }
+    }
+
+    off(event, callback) {
+        if (this.events[event]) {
+            this.events[event] = this.events[event].filter(cb => cb !== callback);
+        }
+    }
+}
+
+Cette architecture JavaScript offre :
+
+Architecture MVC :
+
+Séparation claire des responsabilités
+Controllers pour la logique métier
+Services pour les opérations externes
+Gestion des événements centralisée
+Fonctionnalités modernes :
+
+Classes ES6+
+Async/Await
+Modules ES6
+Pattern Observer (EventEmitter)
+Gestion de l'état :
+
+LocalStorage pour la persistance
+Gestion des tokens JWT
+Cache des messages
+Gestion des erreurs :
+
+Try/Catch appropriés
+Propagation des erreurs
+Messages d'erreur utilisateur
+Optimisations :
+
+Debouncing des requêtes
+Mise en cache
+File d'attente des messages
+Pour utiliser ce code :
+
+Créez une structure de dossiers :
+js/
+├── controllers/
+│   ├── AuthController.js
+│   ├── ChatController.js
+│   └── UIController.js
+├── services/
+│   ├── ApiService.js
+│   └── StorageService.js
+├── utils/
+│   └── EventEmitter.js
+└── app.js
+
+Ajoutez le type="module" dans votre HTML :
+<script type="module" src="js/app.js"></script>
+
+Configurez votre serveur pour gérer les modules ES6
