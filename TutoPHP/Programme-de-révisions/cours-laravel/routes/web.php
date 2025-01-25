@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\ChapterController;
+
 // ########################
 // ** ROUTES PUBLIQUES **
 // ########################
@@ -53,8 +54,8 @@ Route::middleware('auth')->group(function () {
 
     // Chapitres dynamiques (progression incluse)
     Route::get('/chapter/{id}', [ChapterController::class, 'showChapter'])
-        ->name('chapter')
-        ->where('id', '[1-9]|1[0-4]');
+        ->name('chapter');
+    // Pas besoin du "where('id', ...)"
 
     Route::post('/chapter/{id}/complete', [ChapterController::class, 'markAsCompleted'])
         ->name('chapter.complete');

@@ -23,7 +23,7 @@ class ChapterController extends Controller
         }
 
         // Récupération de l'utilisateur connecté
-        $user = auth()->user();
+        $user = \Illuminate\Support\Facades\Auth::user();
 
         // Vérifier si l'utilisateur a terminé ce chapitre
         $isCompleted = $user->chapters()
@@ -41,7 +41,7 @@ class ChapterController extends Controller
             : 0;
 
         // Envoyer les données à la vue
-        return view("chapter1", [
+        return view('quiz.show', [ // Vue générique corrigée
             'chapter' => $chapter,
             'isCompleted' => $isCompleted,
             'chapterProgress' => $chapterProgress,

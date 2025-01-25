@@ -1,0 +1,696 @@
+greta@greta-HP-ProBook-450-15-6-inch-G9-Notebook-PC:~/Desktop/workspace/Formation_Langages_Cie/TutoPHP/Programme-de-révisions/cours-laravel$ php artisan tinker
+Psy Shell v0.12.7 (PHP 8.3.6 — cli) by Justin Hileman
+> use App\Models\Chapter;
+> dd(Chapter::orderBy('id')->get());
+Illuminate\Database\Eloquent\Collection^ {#5578
+  #items: array:14 [
+    0 => App\Models\Chapter^ {#6213
+      #connection: "sqlite"
+      #table: "chapters"
+      #primaryKey: "id"
+      #keyType: "int"
+      +incrementing: true
+      #with: []
+      #withCount: []
+      +preventsLazyLoading: false
+      #perPage: 15
+      +exists: true
+      +wasRecentlyCreated: false
+      #escapeWhenCastingToString: false
+      #attributes: array:5 [
+        "id" => 1
+        "title" => "Introduction à PHP"
+        "description" => "Premiers pas avec PHP, un langage de programmation côté serveur puissant utilisé dans le développement web moderne."
+        "created_at" => "2025-01-25 17:37:43"
+        "updated_at" => "2025-01-25 17:37:43"
+      ]
+      #original: array:5 [
+        "id" => 1
+        "title" => "Introduction à PHP"
+        "description" => "Premiers pas avec PHP, un langage de programmation côté serveur puissant utilisé dans le développement web moderne."
+        "created_at" => "2025-01-25 17:37:43"
+        "updated_at" => "2025-01-25 17:37:43"
+      ]
+      #changes: []
+      #casts: []
+      #classCastCache: []
+      #attributeCastCache: []
+      #dateFormat: null
+      #appends: []
+      #dispatchesEvents: []
+      #observables: []
+      #relations: []
+      #touches: []
+      +timestamps: true
+      +usesUniqueIds: false
+      #hidden: []
+      #visible: []
+      #fillable: array:2 [
+        0 => "title"
+        1 => "description"
+      ]
+      #guarded: array:1 [
+        0 => "*"
+      ]
+    }
+    1 => App\Models\Chapter^ {#6214
+      #connection: "sqlite"
+      #table: "chapters"
+      #primaryKey: "id"
+      #keyType: "int"
+      +incrementing: true
+      #with: []
+      #withCount: []
+      +preventsLazyLoading: false
+      #perPage: 15
+      +exists: true
+      +wasRecentlyCreated: false
+      #escapeWhenCastingToString: false
+      #attributes: array:5 [
+        "id" => 2
+        "title" => "Les bases"
+        "description" => "Apprenez les bases fondamentales de la syntaxe et des variables en PHP."
+        "created_at" => "2025-01-25 17:37:43"
+        "updated_at" => "2025-01-25 17:37:43"
+      ]
+      #original: array:5 [
+        "id" => 2
+        "title" => "Les bases"
+        "description" => "Apprenez les bases fondamentales de la syntaxe et des variables en PHP."
+        "created_at" => "2025-01-25 17:37:43"
+        "updated_at" => "2025-01-25 17:37:43"
+      ]
+      #changes: []
+      #casts: []
+      #classCastCache: []
+      #attributeCastCache: []
+      #dateFormat: null
+      #appends: []
+      #dispatchesEvents: []
+      #observables: []
+      #relations: []
+      #touches: []
+      +timestamps: true
+      +usesUniqueIds: false
+      #hidden: []
+      #visible: []
+      #fillable: array:2 [
+        0 => "title"
+        1 => "description"
+      ]
+      #guarded: array:1 [
+        0 => "*"
+      ]
+    }
+    2 => App\Models\Chapter^ {#6215
+      #connection: "sqlite"
+      #table: "chapters"
+      #primaryKey: "id"
+      #keyType: "int"
+      +incrementing: true
+      #with: []
+      #withCount: []
+      +preventsLazyLoading: false
+      #perPage: 15
+      +exists: true
+      +wasRecentlyCreated: false
+      #escapeWhenCastingToString: false
+      #attributes: array:5 [
+        "id" => 3
+        "title" => "Structures de contrôle"
+        "description" => "Comprendre les structures conditionnelles comme if, foreach et les boucles en PHP."
+        "created_at" => "2025-01-25 17:37:43"
+        "updated_at" => "2025-01-25 17:37:43"
+      ]
+      #original: array:5 [
+        "id" => 3
+        "title" => "Structures de contrôle"
+        "description" => "Comprendre les structures conditionnelles comme if, foreach et les boucles en PHP."
+        "created_at" => "2025-01-25 17:37:43"
+        "updated_at" => "2025-01-25 17:37:43"
+      ]
+      #changes: []
+      #casts: []
+      #classCastCache: []
+      #attributeCastCache: []
+      #dateFormat: null
+      #appends: []
+      #dispatchesEvents: []
+      #observables: []
+      #relations: []
+      #touches: []
+      +timestamps: true
+      +usesUniqueIds: false
+      #hidden: []
+      #visible: []
+      #fillable: array:2 [
+        0 => "title"
+        1 => "description"
+      ]
+      #guarded: array:1 [
+        0 => "*"
+      ]
+    }
+    3 => App\Models\Chapter^ {#6216
+      #connection: "sqlite"
+      #table: "chapters"
+      #primaryKey: "id"
+      #keyType: "int"
+      +incrementing: true
+      #with: []
+      #withCount: []
+      +preventsLazyLoading: false
+      #perPage: 15
+      +exists: true
+      +wasRecentlyCreated: false
+      #escapeWhenCastingToString: false
+      #attributes: array:5 [
+        "id" => 4
+        "title" => "Fonctions"
+        "description" => "Création et utilisation de fonctions pour rendre votre code modulaire."
+        "created_at" => "2025-01-25 17:37:43"
+        "updated_at" => "2025-01-25 17:37:43"
+      ]
+      #original: array:5 [
+        "id" => 4
+        "title" => "Fonctions"
+        "description" => "Création et utilisation de fonctions pour rendre votre code modulaire."
+        "created_at" => "2025-01-25 17:37:43"
+        "updated_at" => "2025-01-25 17:37:43"
+      ]
+      #changes: []
+      #casts: []
+      #classCastCache: []
+      #attributeCastCache: []
+      #dateFormat: null
+      #appends: []
+      #dispatchesEvents: []
+      #observables: []
+      #relations: []
+      #touches: []
+      +timestamps: true
+      +usesUniqueIds: false
+      #hidden: []
+      #visible: []
+      #fillable: array:2 [
+        0 => "title"
+        1 => "description"
+      ]
+      #guarded: array:1 [
+        0 => "*"
+      ]
+    }
+    4 => App\Models\Chapter^ {#6217
+      #connection: "sqlite"
+      #table: "chapters"
+      #primaryKey: "id"
+      #keyType: "int"
+      +incrementing: true
+      #with: []
+      #withCount: []
+      +preventsLazyLoading: false
+      #perPage: 15
+      +exists: true
+      +wasRecentlyCreated: false
+      #escapeWhenCastingToString: false
+      #attributes: array:5 [
+        "id" => 5
+        "title" => "Tableaux"
+        "description" => "Manipulation des tableaux pour stocker et organiser les données efficacement."
+        "created_at" => "2025-01-25 17:37:43"
+        "updated_at" => "2025-01-25 17:37:43"
+      ]
+      #original: array:5 [
+        "id" => 5
+        "title" => "Tableaux"
+        "description" => "Manipulation des tableaux pour stocker et organiser les données efficacement."
+        "created_at" => "2025-01-25 17:37:43"
+        "updated_at" => "2025-01-25 17:37:43"
+      ]
+      #changes: []
+      #casts: []
+      #classCastCache: []
+      #attributeCastCache: []
+      #dateFormat: null
+      #appends: []
+      #dispatchesEvents: []
+      #observables: []
+      #relations: []
+      #touches: []
+      +timestamps: true
+      +usesUniqueIds: false
+      #hidden: []
+      #visible: []
+      #fillable: array:2 [
+        0 => "title"
+        1 => "description"
+      ]
+      #guarded: array:1 [
+        0 => "*"
+      ]
+    }
+    5 => App\Models\Chapter^ {#6218
+      #connection: "sqlite"
+      #table: "chapters"
+      #primaryKey: "id"
+      #keyType: "int"
+      +incrementing: true
+      #with: []
+      #withCount: []
+      +preventsLazyLoading: false
+      #perPage: 15
+      +exists: true
+      +wasRecentlyCreated: false
+      #escapeWhenCastingToString: false
+      #attributes: array:5 [
+        "id" => 6
+        "title" => "Sessions et Cookies"
+        "description" => "Gérez les sessions utilisateurs et les cookies pour développer des fonctionnalités avancées."
+        "created_at" => "2025-01-25 17:37:43"
+        "updated_at" => "2025-01-25 17:37:43"
+      ]
+      #original: array:5 [
+        "id" => 6
+        "title" => "Sessions et Cookies"
+        "description" => "Gérez les sessions utilisateurs et les cookies pour développer des fonctionnalités avancées."
+        "created_at" => "2025-01-25 17:37:43"
+        "updated_at" => "2025-01-25 17:37:43"
+      ]
+      #changes: []
+      #casts: []
+      #classCastCache: []
+      #attributeCastCache: []
+      #dateFormat: null
+      #appends: []
+      #dispatchesEvents: []
+      #observables: []
+      #relations: []
+      #touches: []
+      +timestamps: true
+      +usesUniqueIds: false
+      #hidden: []
+      #visible: []
+      #fillable: array:2 [
+        0 => "title"
+        1 => "description"
+      ]
+      #guarded: array:1 [
+        0 => "*"
+      ]
+    }
+    6 => App\Models\Chapter^ {#6219
+      #connection: "sqlite"
+      #table: "chapters"
+      #primaryKey: "id"
+      #keyType: "int"
+      +incrementing: true
+      #with: []
+      #withCount: []
+      +preventsLazyLoading: false
+      #perPage: 15
+      +exists: true
+      +wasRecentlyCreated: false
+      #escapeWhenCastingToString: false
+      #attributes: array:5 [
+        "id" => 7
+        "title" => "Installation et Configuration"
+        "description" => "Installation de Laravel et configuration des projets."
+        "created_at" => "2025-01-25 17:37:43"
+        "updated_at" => "2025-01-25 17:37:43"
+      ]
+      #original: array:5 [
+        "id" => 7
+        "title" => "Installation et Configuration"
+        "description" => "Installation de Laravel et configuration des projets."
+        "created_at" => "2025-01-25 17:37:43"
+        "updated_at" => "2025-01-25 17:37:43"
+      ]
+      #changes: []
+      #casts: []
+      #classCastCache: []
+      #attributeCastCache: []
+      #dateFormat: null
+      #appends: []
+      #dispatchesEvents: []
+      #observables: []
+      #relations: []
+      #touches: []
+      +timestamps: true
+      +usesUniqueIds: false
+      #hidden: []
+      #visible: []
+      #fillable: array:2 [
+        0 => "title"
+        1 => "description"
+      ]
+      #guarded: array:1 [
+        0 => "*"
+      ]
+    }
+    7 => App\Models\Chapter^ {#6220
+      #connection: "sqlite"
+      #table: "chapters"
+      #primaryKey: "id"
+      #keyType: "int"
+      +incrementing: true
+      #with: []
+      #withCount: []
+      +preventsLazyLoading: false
+      #perPage: 15
+      +exists: true
+      +wasRecentlyCreated: false
+      #escapeWhenCastingToString: false
+      #attributes: array:5 [
+        "id" => 8
+        "title" => "Routing et Middleware"
+        "description" => "Définissez les routes et utilisez les middlewares pour contrôler l’accès et gérer votre application."
+        "created_at" => "2025-01-25 17:37:43"
+        "updated_at" => "2025-01-25 17:37:43"
+      ]
+      #original: array:5 [
+        "id" => 8
+        "title" => "Routing et Middleware"
+        "description" => "Définissez les routes et utilisez les middlewares pour contrôler l’accès et gérer votre application."
+        "created_at" => "2025-01-25 17:37:43"
+        "updated_at" => "2025-01-25 17:37:43"
+      ]
+      #changes: []
+      #casts: []
+      #classCastCache: []
+      #attributeCastCache: []
+      #dateFormat: null
+      #appends: []
+      #dispatchesEvents: []
+      #observables: []
+      #relations: []
+      #touches: []
+      +timestamps: true
+      +usesUniqueIds: false
+      #hidden: []
+      #visible: []
+      #fillable: array:2 [
+        0 => "title"
+        1 => "description"
+      ]
+      #guarded: array:1 [
+        0 => "*"
+      ]
+    }
+    8 => App\Models\Chapter^ {#6221
+      #connection: "sqlite"
+      #table: "chapters"
+      #primaryKey: "id"
+      #keyType: "int"
+      +incrementing: true
+      #with: []
+      #withCount: []
+      +preventsLazyLoading: false
+      #perPage: 15
+      +exists: true
+      +wasRecentlyCreated: false
+      #escapeWhenCastingToString: false
+      #attributes: array:5 [
+        "id" => 9
+        "title" => "Contrôleurs et Modèles"
+        "description" => "Utilisez le motif MVC avec les contrôleurs et modèles Laravel."
+        "created_at" => "2025-01-25 17:37:43"
+        "updated_at" => "2025-01-25 17:37:43"
+      ]
+      #original: array:5 [
+        "id" => 9
+        "title" => "Contrôleurs et Modèles"
+        "description" => "Utilisez le motif MVC avec les contrôleurs et modèles Laravel."
+        "created_at" => "2025-01-25 17:37:43"
+        "updated_at" => "2025-01-25 17:37:43"
+      ]
+      #changes: []
+      #casts: []
+      #classCastCache: []
+      #attributeCastCache: []
+      #dateFormat: null
+      #appends: []
+      #dispatchesEvents: []
+      #observables: []
+      #relations: []
+      #touches: []
+      +timestamps: true
+      +usesUniqueIds: false
+      #hidden: []
+      #visible: []
+      #fillable: array:2 [
+        0 => "title"
+        1 => "description"
+      ]
+      #guarded: array:1 [
+        0 => "*"
+      ]
+    }
+    9 => App\Models\Chapter^ {#6222
+      #connection: "sqlite"
+      #table: "chapters"
+      #primaryKey: "id"
+      #keyType: "int"
+      +incrementing: true
+      #with: []
+      #withCount: []
+      +preventsLazyLoading: false
+      #perPage: 15
+      +exists: true
+      +wasRecentlyCreated: false
+      #escapeWhenCastingToString: false
+      #attributes: array:5 [
+        "id" => 10
+        "title" => "Création de Vues"
+        "description" => "Apprenez à créer des interfaces utilisateur séduisantes avec Blade."
+        "created_at" => "2025-01-25 17:37:43"
+        "updated_at" => "2025-01-25 17:37:43"
+      ]
+      #original: array:5 [
+        "id" => 10
+        "title" => "Création de Vues"
+        "description" => "Apprenez à créer des interfaces utilisateur séduisantes avec Blade."
+        "created_at" => "2025-01-25 17:37:43"
+        "updated_at" => "2025-01-25 17:37:43"
+      ]
+      #changes: []
+      #casts: []
+      #classCastCache: []
+      #attributeCastCache: []
+      #dateFormat: null
+      #appends: []
+      #dispatchesEvents: []
+      #observables: []
+      #relations: []
+      #touches: []
+      +timestamps: true
+      +usesUniqueIds: false
+      #hidden: []
+      #visible: []
+      #fillable: array:2 [
+        0 => "title"
+        1 => "description"
+      ]
+      #guarded: array:1 [
+        0 => "*"
+      ]
+    }
+    10 => App\Models\Chapter^ {#6223
+      #connection: "sqlite"
+      #table: "chapters"
+      #primaryKey: "id"
+      #keyType: "int"
+      +incrementing: true
+      #with: []
+      #withCount: []
+      +preventsLazyLoading: false
+      #perPage: 15
+      +exists: true
+      +wasRecentlyCreated: false
+      #escapeWhenCastingToString: false
+      #attributes: array:5 [
+        "id" => 11
+        "title" => "ORM Eloquent"
+        "description" => "Interagissez avec votre base de données efficacement à l’aide d’Eloquent."
+        "created_at" => "2025-01-25 17:37:43"
+        "updated_at" => "2025-01-25 17:37:43"
+      ]
+      #original: array:5 [
+        "id" => 11
+        "title" => "ORM Eloquent"
+        "description" => "Interagissez avec votre base de données efficacement à l’aide d’Eloquent."
+        "created_at" => "2025-01-25 17:37:43"
+        "updated_at" => "2025-01-25 17:37:43"
+      ]
+      #changes: []
+      #casts: []
+      #classCastCache: []
+      #attributeCastCache: []
+      #dateFormat: null
+      #appends: []
+      #dispatchesEvents: []
+      #observables: []
+      #relations: []
+      #touches: []
+      +timestamps: true
+      +usesUniqueIds: false
+      #hidden: []
+      #visible: []
+      #fillable: array:2 [
+        0 => "title"
+        1 => "description"
+      ]
+      #guarded: array:1 [
+        0 => "*"
+      ]
+    }
+    11 => App\Models\Chapter^ {#6224
+      #connection: "sqlite"
+      #table: "chapters"
+      #primaryKey: "id"
+      #keyType: "int"
+      +incrementing: true
+      #with: []
+      #withCount: []
+      +preventsLazyLoading: false
+      #perPage: 15
+      +exists: true
+      +wasRecentlyCreated: false
+      #escapeWhenCastingToString: false
+      #attributes: array:5 [
+        "id" => 12
+        "title" => "Validation et Formulaires"
+        "description" => "Implémentez la validation côté serveur pour des formulaires sécurisés et performants."
+        "created_at" => "2025-01-25 17:37:43"
+        "updated_at" => "2025-01-25 17:37:43"
+      ]
+      #original: array:5 [
+        "id" => 12
+        "title" => "Validation et Formulaires"
+        "description" => "Implémentez la validation côté serveur pour des formulaires sécurisés et performants."
+        "created_at" => "2025-01-25 17:37:43"
+        "updated_at" => "2025-01-25 17:37:43"
+      ]
+      #changes: []
+      #casts: []
+      #classCastCache: []
+      #attributeCastCache: []
+      #dateFormat: null
+      #appends: []
+      #dispatchesEvents: []
+      #observables: []
+      #relations: []
+      #touches: []
+      +timestamps: true
+      +usesUniqueIds: false
+      #hidden: []
+      #visible: []
+      #fillable: array:2 [
+        0 => "title"
+        1 => "description"
+      ]
+      #guarded: array:1 [
+        0 => "*"
+      ]
+    }
+    12 => App\Models\Chapter^ {#6225
+      #connection: "sqlite"
+      #table: "chapters"
+      #primaryKey: "id"
+      #keyType: "int"
+      +incrementing: true
+      #with: []
+      #withCount: []
+      +preventsLazyLoading: false
+      #perPage: 15
+      +exists: true
+      +wasRecentlyCreated: false
+      #escapeWhenCastingToString: false
+      #attributes: array:5 [
+        "id" => 13
+        "title" => "Tests Automatisés"
+        "description" => "Apprenez à écrire des tests automatisés pour garantir la stabilité de votre application."
+        "created_at" => "2025-01-25 17:37:43"
+        "updated_at" => "2025-01-25 17:37:43"
+      ]
+      #original: array:5 [
+        "id" => 13
+        "title" => "Tests Automatisés"
+        "description" => "Apprenez à écrire des tests automatisés pour garantir la stabilité de votre application."
+        "created_at" => "2025-01-25 17:37:43"
+        "updated_at" => "2025-01-25 17:37:43"
+      ]
+      #changes: []
+      #casts: []
+      #classCastCache: []
+      #attributeCastCache: []
+      #dateFormat: null
+      #appends: []
+      #dispatchesEvents: []
+      #observables: []
+      #relations: []
+      #touches: []
+      +timestamps: true
+      +usesUniqueIds: false
+      #hidden: []
+      #visible: []
+      #fillable: array:2 [
+        0 => "title"
+        1 => "description"
+      ]
+      #guarded: array:1 [
+        0 => "*"
+      ]
+    }
+    13 => App\Models\Chapter^ {#6226
+      #connection: "sqlite"
+      #table: "chapters"
+      #primaryKey: "id"
+      #keyType: "int"
+      +incrementing: true
+      #with: []
+      #withCount: []
+      +preventsLazyLoading: false
+      #perPage: 15
+      +exists: true
+      +wasRecentlyCreated: false
+      #escapeWhenCastingToString: false
+      #attributes: array:5 [
+        "id" => 14
+        "title" => "Déploiement"
+        "description" => "Préparez et déployez votre application Laravel en production."
+        "created_at" => "2025-01-25 17:37:43"
+        "updated_at" => "2025-01-25 17:37:43"
+      ]
+      #original: array:5 [
+        "id" => 14
+        "title" => "Déploiement"
+        "description" => "Préparez et déployez votre application Laravel en production."
+        "created_at" => "2025-01-25 17:37:43"
+        "updated_at" => "2025-01-25 17:37:43"
+      ]
+      #changes: []
+      #casts: []
+      #classCastCache: []
+      #attributeCastCache: []
+      #dateFormat: null
+      #appends: []
+      #dispatchesEvents: []
+      #observables: []
+      #relations: []
+      #touches: []
+      +timestamps: true
+      +usesUniqueIds: false
+      #hidden: []
+      #visible: []
+      #fillable: array:2 [
+        0 => "title"
+        1 => "description"
+      ]
+      #guarded: array:1 [
+        0 => "*"
+      ]
+    }
+  ]
+  #escapeWhenCastingToString: false
+} // vendor/psy/psysh/src/ExecutionLoopClosure.php(52) : eval()'d code:1
+
