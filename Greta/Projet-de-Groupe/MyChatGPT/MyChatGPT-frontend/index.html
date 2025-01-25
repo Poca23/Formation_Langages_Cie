@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Chat IA</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <button class="new-chat-btn">
+                    <i class="fas fa-plus"></i> Nouvelle conversation
+                </button>
+            </div>
+            <div class="conversations-list">
+                <div class="conversation-item active">
+                    <i class="fas fa-comment"></i>
+                    <span>Chat principal</span>
+                </div>
+                <div class="conversation-item">
+                    <i class="fas fa-comment"></i>
+                    <span>Projet Web</span>
+                </div>
+                <div class="conversation-item">
+                    <i class="fas fa-comment"></i>
+                    <span>Recherche IA</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="chat-header">
+                <div class="header-left">
+                    <button class="toggle-sidebar" id="toggleSidebar" title="Toggle Sidebar">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <button class="share-btn">
+                        <i class="fas fa-share-alt"></i>
+                        <span class="button-text">Partager</span>
+                    </button>
+                </div>
+
+                <div class="header-right">
+                    <button class="help-btn" title="Aide">
+                        <i class="fas fa-question-circle"></i>
+                    </button>
+
+                    <div class="dropdown">
+                        <button class="menu-btn" id="menuDropdown" title="Menu">
+                            <i class="fas fa-cog"></i>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="#" class="dropdown-item">
+                                <i class="fas fa-user"></i>
+                                Mon compte
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                <i class="fas fa-cog"></i>
+                                Paramètres
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                <i class="fas fa-moon"></i>
+                                Mode sombre
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">
+                                <i class="fas fa-sign-out-alt"></i>
+                                Déconnexion
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="chat-container">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message bot-message">
+                        <div class="message-avatar">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="message-content">
+                            <div class="message-header">
+                                <span class="message-sender">Assistant</span>
+                                <span class="message-time">14:30</span>
+                            </div>
+                            <p>Bonjour ! Comment puis-je vous aider aujourd'hui ?</p>
+                        </div>
+                    </div>
+
+                    <div class="message user-message">
+                        <div class="message-content">
+                            <div class="message-header">
+                                <span class="message-sender">Vous</span>
+                                <span class="message-time">14:31</span>
+                            </div>
+                            <p>Bonjour ! J'aimerais en savoir plus sur les fonctionnalités disponibles.</p>
+                        </div>
+                        <div class="message-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-input-container">
+                    <textarea class="chat-input" placeholder="Écrivez votre message ici..." rows="1"></textarea>
+                    <button class="send-button" title="Envoyer">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Help Chat Window -->
+    <div class="help-chat" id="helpChat">
+        <div class="help-chat-header">
+            <h3><i class="fas fa-headset"></i> Support</h3>
+            <button class="close-help-chat" title="Fermer l'aide">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="help-chat-messages">
+            <div class="help-message">
+                <p class="help-text">Comment puis-je vous aider ?</p>
+            </div>
+        </div>
+        <div class="help-chat-input">
+            <textarea placeholder="Écrivez votre message..."></textarea>
+            <buttonbutton title="Envoyer"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
