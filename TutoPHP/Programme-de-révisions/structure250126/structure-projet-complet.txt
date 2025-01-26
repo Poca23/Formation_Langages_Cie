@@ -1,0 +1,137 @@
+cours-laravel/
+├── .env
+├── artisan
+├── composer.json
+├── composer.lock
+├── phpunit.xml
+├── README.md
+├── vite.config.js
+├── package-lock.json
+├── postcss.config.js
+├── tailwind.config.js
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── Controller.php
+│   │   │   ├── CustomAuthController.php
+│   │   │   ├── DashboardController.php
+│   │   │   ├── PHPBasesPhpController.php
+│   │   │   ├── PHPBddLaravelController.php
+│   │   │   ├── PHPDeveloppementApplicationLaravelController.php
+│   │   │   ├── PHPFonctionPhp2Controller.php
+│   │   │   ├── PHPFonctionsPhpController.php
+│   │   │   ├── PHPIntroductionArchitectureMvcController.php
+│   │   │   ├── PHPIntroductionBDDMySqlController.php
+│   │   │   ├── PHPIntroductionController.php
+│   │   │   ├── PHPIntroductionLaravelController.php
+│   │   │   ├── PHPOptimisationDeploiementController.php
+│   │   │   ├── PHPProgramRevisionsController.php
+│   │   │   ├── PHPSecurisationApplicationsLaravelController.php
+│   │   │   ├── PHPSommaireController.php
+│   │   │   ├── PHPStructureControle2Controller.php
+│   │   │   ├── PHPStructureControlePhpController.php
+│   │   │   ├── PHPVariablesTypesDeDonneesController.php
+│   │   │   ├── QuizController.php
+│   │   │   └── SommaireController.php
+│   │   ├── Middleware/
+│   │   │   └── CustomAuth.php
+│   ├── Models/
+│   │   ├── Chapter.php
+│   │   ├── Question.php
+│   │   ├── Quiz.php
+│   │   ├── User.php
+│   │   └── UserQuizResult.php
+│   ├── Providers/
+│   │   └── AppServiceProvider.php
+├── bootstrap/
+│   ├── app.php
+│   └── cache/
+│       ├── .gitignore
+│       ├── packages.php
+│       └── services.php
+├── config/
+│   ├── app.php
+│   ├── auth.php
+│   ├── cache.php
+│   ├── database.php
+│   ├── filesystems.php
+│   ├── logging.php
+│   ├── mail.php
+│   ├── queue.php
+│   ├── sanctum.php
+│   ├── services.php
+│   └── session.php
+├── database/
+│   ├── factories/
+│   │   └── UserFactory.php
+│   ├── migrations/
+│   │   ├── 0001_01_01_000000_create_users_table.php
+│   │   ├── 0001_01_01_000001_create_cache_table.php
+│   │   ├── 0001_01_01_000002_create_jobs_table.php
+│   │   ├── 2025_01_22_125731_create_products_table.php
+│   │   ├── 2025_01_22_154459_create_personal_access_tokens_table.php
+│   │   ├── 2025_01_23_110906_create_quizzes_table.php
+│   │   ├── 2025_01_24_112626_create_chapters_users_table.php
+│   │   └── 2025_01_25_145914_create_chapters_table.php
+│   ├── seeders/
+│   │   └── DatabaseSeeder.php
+│   └── database.sqlite
+├── public/
+│   ├── css/
+│   │   ├── quiz.css
+│   │   ├── revisions.css
+│   │   └── style.css
+│   ├── js/
+│   │   ├── quiz.js
+│   │   ├── revisions.js
+│   │   └── script.js
+│   ├── .htaccess
+│   ├── favicon.ico
+│   ├── index.php
+│   └── robots.txt
+├── resources/
+│   ├── css/
+│   │   └── app.css
+│   ├── js/
+│   │   ├── app.js
+│   │   └── bootstrap.js
+│   ├── views/
+│   │   ├── auth/
+│   │   │   ├── login.blade.php
+│   │   │   └── registration.blade.php
+│   │   ├── layouts/
+│   │   │   └── app.blade.php
+│   │   ├── errors/
+│   │   │   └── 404.blade.php
+│   │   ├── quiz/
+│   │   │   ├── result.blade.php
+│   │   │   └── show.blade.php
+│   │   ├── chapters/
+│   │   │   ├── chapter1.blade.php
+│   │   │   ├── chapter2.blade.php
+│   │   │   ├── ...
+│   │   │   └── chapter14.blade.php
+│   │   ├── programme-revisions.blade.php
+│   │   ├── sommaire.blade.php
+│   │   └── welcome.blade.php
+├── routes/
+│   ├── api.php
+│   ├── console.php
+│   └── web.php
+├── storage/
+│   ├── framework/
+│   │   ├── cache/
+│   │   │   └── data
+│   │   ├── sessions/
+│   │   │   └── .gitignore
+│   │   ├── testing/
+│   │   │   └── .gitignore
+│   │   └── views/
+│   │       └── .gitignore
+│   └── app/
+│       └── .gitignore
+├── tests/
+│   ├── Unit/
+│   │   └── ExampleTest.php
+└── vendor/
+    └── ... (dépendances Composer)

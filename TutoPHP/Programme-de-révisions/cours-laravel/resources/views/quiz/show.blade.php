@@ -8,8 +8,8 @@
     <p>{{ $chapter->description }}</p>
 
     <div class="progress">
-        <div class="progress-bar" style="width: {{ $chapterProgress }}%">
-            Progression : {{ number_format($chapterProgress, 2) }}%
+        <div class="progress-bar" style="width: {{ $progress }}%">
+            Progression : {{ number_format($progress, 2) }}%
         </div>
     </div>
 

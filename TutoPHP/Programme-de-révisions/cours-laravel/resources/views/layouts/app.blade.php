@@ -34,16 +34,16 @@
             <!-- Menu principal -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('sommaire') ? 'active' : '' }}"
-                            href="{{ route('sommaire') }}">Sommaire</a>
-                    </li>
                     @auth
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}"
                                 href="{{ route('dashboard') }}">Dashboard</a>
                         </li>
                     @endauth
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('sommaire') ? 'active' : '' }}"
+                            href="{{ route('sommaire') }}">Sommaire</a>
+                    </li>
                 </ul>
 
                 <!-- Menu utilisateur -->
@@ -51,11 +51,11 @@
                     @guest
                         <!-- Invités -->
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('login') ? 'active' : '' }}"
+                            <a class="nav-link {{ request()->routeIs('login.custom') ? 'active' : '' }}"
                                 href="{{ route('login') }}">Connexion</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('register') ? 'active' : '' }}"
+                            <a class="nav-link {{ request()->routeIs('register.custom') ? 'active' : '' }}"
                                 href="{{ route('register') }}">Inscription</a>
                         </li>
                     @endguest
