@@ -29,8 +29,8 @@ class SommaireController extends Controller
 
         // Récupérer les résultats des quiz si l'utilisateur est connecté
         $quizResults = [];
-        if (auth()->check()) {
-            $quizResults = UserQuizResult::where('user_id', auth()->id())
+        if (\Illuminate\Support\Facades\Auth::check()) {
+            $quizResults = UserQuizResult::where('user_id', \Illuminate\Support\Facades\Auth::user()->id)
                 ->with('quiz')
                 ->get()
                 ->keyBy(function ($result) {

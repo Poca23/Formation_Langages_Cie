@@ -25,32 +25,32 @@
                                 data-bs-parent="#chaptersAccordion">
                                 <div class="accordion-body">
                                     <div class="list-group">
-                                        <a href="{{ route('chapter', ['id' => 1]) }}"
+                                        <a href="{{ route('chapter.show', ['id' => 1]) }}"
                                             class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                                             1. Introduction à PHP
                                             <span class="badge bg-primary rounded-pill">45 min</span>
                                         </a>
-                                        <a href="{{ route('chapter', ['id' => 2]) }}"
+                                        <a href="{{ route('chapter.show', ['id' => 2]) }}"
                                             class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                                             2. Les bases
                                             <span class="badge bg-primary rounded-pill">60 min</span>
                                         </a>
-                                        <a href="{{ route('chapter', ['id' => 3]) }}"
+                                        <a href="{{ route('chapter.show', ['id' => 3]) }}"
                                             class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                                             3. Structures de contrôle
                                             <span class="badge bg-primary rounded-pill">50 min</span>
                                         </a>
-                                        <a href="{{ route('chapter', ['id' => 4]) }}"
+                                        <a href="{{ route('chapter.show', ['id' => 4]) }}"
                                             class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                                             4. Fonctions
                                             <span class="badge bg-primary rounded-pill">55 min</span>
                                         </a>
-                                        <a href="{{ route('chapter', ['id' => 5]) }}"
+                                        <a href="{{ route('chapter.show', ['id' => 5]) }}"
                                             class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                                             5. Tableaux
                                             <span class="badge bg-primary rounded-pill">40 min</span>
                                         </a>
-                                        <a href="{{ route('chapter', ['id' => 6]) }}"
+                                        <a href="{{ route('chapter.show', ['id' => 6]) }}"
                                             class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                                             6. Sessions et Cookies
                                             <span class="badge bg-primary rounded-pill">45 min</span>
@@ -72,42 +72,42 @@
                                 data-bs-parent="#chaptersAccordion">
                                 <div class="accordion-body">
                                     <div class="list-group">
-                                        <a href="{{ route('chapter', ['id' => 7]) }}"
+                                        <a href="{{ route('chapter.show', ['id' => 7]) }}"
                                             class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                                             7. Installation et Configuration
                                             <span class="badge bg-primary rounded-pill">50 min</span>
                                         </a>
-                                        <a href="{{ route('chapter', ['id' => 8]) }}"
+                                        <a href="{{ route('chapter.show', ['id' => 8]) }}"
                                             class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                                             8. Routing et Middleware
                                             <span class="badge bg-primary rounded-pill">60 min</span>
                                         </a>
-                                        <a href="{{ route('chapter', ['id' => 9]) }}"
+                                        <a href="{{ route('chapter.show', ['id' => 9]) }}"
                                             class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                                             9. Contrôleurs et Modèles
                                             <span class="badge bg-primary rounded-pill">45 min</span>
                                         </a>
-                                        <a href="{{ route('chapter', ['id' => 10]) }}"
+                                        <a href="{{ route('chapter.show', ['id' => 10]) }}"
                                             class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                                             10. Création de Vues
                                             <span class="badge bg-primary rounded-pill">55 min</span>
                                         </a>
-                                        <a href="{{ route('chapter', ['id' => 11]) }}"
+                                        <a href="{{ route('chapter.show', ['id' => 11]) }}"
                                             class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                                             11. ORM Eloquent
                                             <span class="badge bg-primary rounded-pill">60 min</span>
                                         </a>
-                                        <a href="{{ route('chapter', ['id' => 12]) }}"
+                                        <a href="{{ route('chapter.show', ['id' => 12]) }}"
                                             class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                                             12. Validation et Formulaires
                                             <span class="badge bg-primary rounded-pill">50 min</span>
                                         </a>
-                                        <a href="{{ route('chapter', ['id' => 13]) }}"
+                                        <a href="{{ route('chapter.show', ['id' => 13]) }}"
                                             class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                                             13. Tests Automatisés
                                             <span class="badge bg-primary rounded-pill">65 min</span>
                                         </a>
-                                        <a href="{{ route('chapter', ['id' => 14]) }}"
+                                        <a href="{{ route('chapter.show', ['id' => 14]) }}"
                                             class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                                             14. Déploiement
                                             <span class="badge bg-primary rounded-pill">40 min</span>

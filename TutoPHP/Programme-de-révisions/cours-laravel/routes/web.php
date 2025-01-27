@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\ChapterController;
+use App\Http\Controllers\SommaireController;
 
 // ########################
 // ** ROUTES PUBLIQUES **
@@ -51,9 +52,8 @@ Route::post('logout', [CustomAuthController::class, 'signOut'])->name('logout');
 // ########################
 Route::middleware('auth')->group(function () {
 // Sommaire
-Route::get('/sommaire', function () {
-return view('sommaire');
-})->name('sommaire');
+Route::get('/sommaire', [SommaireController::class, 'index'])
+->name('sommaire');
 
 // Chapitres dynamiques (progression incluse)
 Route::get('/chapter/{id}', [ChapterController::class, 'show'])
