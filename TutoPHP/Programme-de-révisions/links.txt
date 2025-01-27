@@ -35,6 +35,7 @@ https://github.com/Poca23/Formation_Langages_Cie/tree/master/TutoPHP/Programme-d
 
 app/Models
 https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/app/Models/Chapter.php Chapter.php
+https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/app/Models/ChapterProgress.php ChapterProgress.php
 https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/app/Models/Question.php Question.php
 https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/app/Models/Quiz.php Quiz.php
 https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/app/Models/User.php User.php
@@ -42,6 +43,10 @@ https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-d
 ##############################################################
 ##############################################################
 bootstrap
+bootstrap/cache
+https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/bootstrap/cache/packages.php packages.php
+https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/bootstrap/cache/services.php services.php
+
 https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/bootstrap/app.php app.php
 https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/bootstrap/providers.php providers.php
 ##############################################################
@@ -73,12 +78,16 @@ https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-d
 https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/database/migrations/2025_01_23_110906_create_quizzes_table.php 2025_01_23_110906_create_quizzes_table.php
 https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/database/migrations/2025_01_24_112626_create_chapters_users_table.php 2025_01_24_112626_create_chapters_users_table.php
 https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/database/migrations/2025_01_25_145914_create_chapters_table.php 2025_01_25_145914_create_chapters_table.php
-##############################################################
-##############################################################
-3-2 seeders
+https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/database/migrations/2025_01_27_154159_create_chapter_progress_table.php 2025_01_27_154159_create_chapter_progress_table.php
+
+database/seeders
+https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/database/seeders/ChapterSeeder.php ChapterSeeder.php
 https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/database/seeders/DatabaseSeeder.php DatabaseSeeder.php
+
+https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/database/.gitignore .gitignore
 ##############################################################
 ##############################################################
+
 4. public
 public/css
 https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/public/css/quiz.css quiz.css
@@ -145,6 +154,16 @@ https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-d
 https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/routes/web.php web.php
 ##############################################################
 ##############################################################
+storage
+
+storage/framework/views
+https://github.com/Poca23/Formation_Langages_Cie/tree/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/storage/framework/views
+
+storage/logs/
+https://github.com/Poca23/Formation_Langages_Cie/tree/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/storage/logs laravel.log
+
+##############################################################
+##############################################################
 7. tests
 tests/Feature
 https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/tests/Feature/ExampleTest.php ExampleTest.php
@@ -155,31 +174,31 @@ https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-d
 https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/tests/TestCase.php TestCase.php
 ##############################################################
 ##############################################################
-8. Base
-https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/composer.json composer.json
+8. Fichiers de base:
 
-##############################################################
-##############################################################
-9. Fichiers de base:
-
+https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/.editorconfig .editorconfig
+https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/.gitattributes .gitattributes
+https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/.gitignore .gitignore
+https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/README.md README.md
 https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/artisan artisan
 package.json
 https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/composer.json composer.json
 https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/composer.lock composer.lock
 https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/package-lock.json package-lock.json
+https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/phpunit.xml phpunit.xml
+https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/postcss.config.js postcss.config.js
 https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/tailwind.config.js tailwind.config.js
 https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/vite.config.js vite.config.js
-https://github.com/Poca23/Formation_Langages_Cie/blob/master/TutoPHP/Programme-de-r%C3%A9visions/cours-laravel/README.md README.md
 
 ##############################################################
 ##############################################################
 fichier .env :
+APP_KEY=base64:YgNeqHmjFmn71a12k6GC737VUI0FwkQOhp6jtPp3gqY=
 APP_NAME=Laravel
 APP_ENV=local
-APP_KEY=base64:D4v0sDSczXQNDRlcUtL7l3w7X8fqcE71G1bpWruiubg=
 APP_DEBUG=true
 APP_TIMEZONE=UTC
-APP_URL=http://127.0.0.1:8000
+APP_URL=http://localhost
 
 APP_LOCALE=en
 APP_FALLBACK_LOCALE=en
@@ -200,7 +219,7 @@ LOG_LEVEL=debug
 DB_CONNECTION=sqlite
 # DB_HOST=127.0.0.1
 # DB_PORT=3306
-DB_DATABASE=/home/greta/Desktop/workspace/Formation_Langages_Cie/TutoPHP/Programme-de-révisions/cours-laravel/database/database.sqlite
+# DB_DATABASE=laravel
 # DB_USERNAME=root
 # DB_PASSWORD=
 
