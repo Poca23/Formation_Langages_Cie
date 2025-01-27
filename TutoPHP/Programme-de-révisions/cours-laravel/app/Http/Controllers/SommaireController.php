@@ -11,20 +11,20 @@ class SommaireController extends Controller
     public function index()
     {
         $chapters = [
-            ['number' => 1, 'title' => 'Introduction', 'route' => 'chapter1-introduction'],
-            ['number' => 2, 'title' => 'Les bases', 'route' => 'chapter2-basics'],
-            ['number' => 3, 'title' => 'Contrôle de flux', 'route' => 'chapter3-control-flow'],
-            ['number' => 4, 'title' => 'Fonctions', 'route' => 'chapter4-functions'],
-            ['number' => 5, 'title' => 'Tableaux', 'route' => 'chapter5-arrays'],
-            ['number' => 6, 'title' => 'Sessions et Cookies', 'route' => 'chapter6-sessions-cookies'],
-            ['number' => 7, 'title' => 'Introduction à Laravel', 'route' => 'chapter7-laravel-intro'],
-            ['number' => 8, 'title' => 'Installation de Laravel', 'route' => 'chapter8-laravel-installation'],
-            ['number' => 9, 'title' => 'Structure de Laravel', 'route' => 'chapter9-laravel-structure'],
-            ['number' => 10, 'title' => 'Routes et Contrôleurs', 'route' => 'chapter10-routes-controllers'],
-            ['number' => 11, 'title' => 'Modèles et Bases de données', 'route' => 'chapter11-models-databases'],
-            ['number' => 12, 'title' => 'Vues et Frontend', 'route' => 'chapter12-views-frontend'],
-            ['number' => 13, 'title' => 'Sécurité et Validation', 'route' => 'chapter13-security-validation'],
-            ['number' => 14, 'title' => 'Déploiement et Bonnes Pratiques', 'route' => 'chapter14-deployments-practices'],
+            ['id' => 1, 'title' => 'Introduction', 'duration' => '45 min'],
+            ['id' => 2, 'title' => 'Les bases', 'duration' => '60 min'],
+            ['id' => 3, 'title' => 'Contrôle de flux', 'duration' => '50 min'],
+            ['id' => 4, 'title' => 'Fonctions', 'duration' => '55 min'],
+            ['id' => 5, 'title' => 'Tableaux', 'duration' => '40 min'],
+            ['id' => 6, 'title' => 'Sessions et Cookies', 'duration' => '45 min'],
+            ['id' => 7, 'title' => 'Introduction à Laravel', 'duration' => '50 min'],
+            ['id' => 8, 'title' => 'Installation de Laravel', 'duration' => '60 min'],
+            ['id' => 9, 'title' => 'Structure de Laravel', 'duration' => '45 min'],
+            ['id' => 10, 'title' => 'Routes et Contrôleurs', 'duration' => '55 min'],
+            ['id' => 11, 'title' => 'Modèles et Bases de données', 'duration' => '60 min'],
+            ['id' => 12, 'title' => 'Vues et Frontend', 'duration' => '50 min'],
+            ['id' => 13, 'title' => 'Sécurité et Validation', 'duration' => '65 min'],
+            ['id' => 14, 'title' => 'Déploiement et Bonnes Pratiques', 'duration' => '40 min'],
         ];
 
         // Récupérer les résultats des quiz si l'utilisateur est connecté

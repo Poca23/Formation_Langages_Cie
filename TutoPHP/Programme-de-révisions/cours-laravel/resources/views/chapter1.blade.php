@@ -51,16 +51,34 @@
                 </ul>
             </section>
 
+            <!-- Bouton de complétion du chapitre -->
+            <div class="chapter-completion mt-5 mb-4">
+                @if (!$isCompleted)
+                    <form action="{{ route('chapter.complete', ['id' => $currentChapterId]) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-success btn-lg w-100">
+                            <i class="fas fa-check-circle"></i> Marquer ce chapitre comme terminé
+                        </button>
+                    </form>
+                @else
+                    <div class="alert alert-success">
+                        <i class="fas fa-check-circle"></i> Félicitations ! Vous avez terminé ce chapitre !
+                    </div>
+                @endif
+            </div>
+
             <!-- Navigation entre chapitres -->
             <div class="d-flex justify-content-between mt-4">
                 @if ($currentChapterId > 1)
-                    <a href="{{ route('chapter', ['id' => $currentChapterId - 1]) }}" class="btn btn-secondary">
+                    <a href="{{ route('chapter.show', ['id' => $currentChapterId - 1]) }}" class="btn btn-secondary">
                         <i class="fas fa-arrow-left"></i> Chapitre précédent
                     </a>
+                @else
+                    <div></div>
                 @endif
 
                 @if ($currentChapterId < $totalChapters)
-                    <a href="{{ route('chapter', ['id' => $currentChapterId + 1]) }}" class="btn btn-primary">
+                    <a href="{{ route('chapter.show', ['id' => $currentChapterId + 1]) }}" class="btn btn-primary">
                         Chapitre suivant <i class="fas fa-arrow-right"></i>
                     </a>
                 @endif
@@ -75,11 +93,49 @@
     .progress-bar {
         transition: width 0.5s;
     }
+
+    .chapter-completion {
+        border-top: 1px solid #eee;
+        padding-top: 20px;
+    }
+
+    .nav-link {
+        color: #333;
+        padding: 8px 15px;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+        background-color: #f8f9fa;
+        color: #007bff;
+    }
+
+    section {
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .btn-lg {
+        padding: 15px 30px;
+    }
 </style>
 @endsection
 
 @section('scripts')
 <script>
-    // Script éventuel pour la gestion des interactions dans le chapitre
+    document.addEventListener('DOMContentLoaded', function () {
+        // Smooth scroll pour les liens de navigation
+        document.querySelectorAll('#navbar-chapter a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    });
 </script>
 @endsection
