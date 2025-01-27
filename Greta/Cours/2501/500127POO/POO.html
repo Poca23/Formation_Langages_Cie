@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POO</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>POO</h1>
+    </header>
+    <main>
+
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Introduction au POO</h2>
+            <div class="collapsible-content">
+                <p>La programmation orientée objet (POO) est un concept de programmation qui permet de structurer un
+                    programme
+                    en regroupant des blocs de code et des données en entités appelées objets. Ces objets sont des
+                    instances de
+                    classes, qui définissent les propriétés et les méthodes des objets.</p>
+            </div>
+        </section>
+
+
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Les principes de la POO</h2>
+            <div class="collapsible-content">
+                <p>La POO repose sur plusieurs principes fondamentaux, qui permettent de structurer et d'organiser le
+                    code de
+                    manière efficace et modulaire. Les principes de la POO sont les suivants :</p>
+                <ul>
+                    <li>L'encapsulation : les données et les méthodes d'un objet sont regroupées au sein d'une classe,
+                        ce qui
+                        permet de les protéger et de les manipuler de manière cohérente.</li>
+                    <li>L'héritage : une classe peut hériter des propriétés et des méthodes d'une autre classe, ce qui
+                        permet de
+                        réutiliser du code et de créer des hiérarchies de classes.</li>
+                    <li>Le polymorphisme : un objet peut être utilisé de différentes manières en fonction de son type,
+                        ce qui
+                        permet de traiter des objets de manière générique.</li>
+                </ul>
+            </div>
+        </section>
+
+
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Les classes et les objets</h2>
+            <div class="collapsible-content">
+                <p>En POO, une classe est un modèle qui définit la structure et le comportement des objets. Une classe
+                    peut
+                    contenir des propriétés (attributs) et des méthodes (fonctions) qui définissent les caractéristiques
+                    et les
+                    actions des objets de cette classe. Un objet est une instance d'une classe, qui possède ses propres
+                    valeurs
+                    pour les attributs de la classe et peut exécuter les méthodes de la classe.</p>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Les attributs et les méthodes</h2>
+            <div class="collapsible-content">
+                <p>Les attributs d'une classe sont des variables qui définissent les caractéristiques des objets de
+                    cette
+                    classe. Les méthodes d'une classe sont des fonctions qui définissent les actions que les objets de
+                    cette
+                    classe peuvent effectuer. Les attributs et les méthodes d'une classe sont accessibles à l'aide de
+                    l'opérateur de résolution de portée (::) et de l'opérateur de flèche (->).</p>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Les constructeurs et les destructeurs</h2>
+            <div class="collapsible-content">
+                <p>Les constructeurs sont des méthodes spéciales qui sont appelées lors de la création d'un objet. Les
+                    constructeurs permettent d'initialiser les attributs de l'objet et de réaliser des opérations
+                    d'initialisation. Les destructeurs sont des méthodes spéciales qui sont appelées lors de la
+                    destruction d'un
+                    objet. Les destructeurs permettent de libérer les ressources allouées à l'objet et de réaliser des
+                    opérations de nettoyage.</p>
+            </div>
+        </section>
+
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Les classes abstraites et les interfaces</h2>
+            <div class="collapsible-content">
+                <p>Les classes abstraites sont des classes qui ne peuvent pas être instanciées directement, mais qui
+                    peuvent
+                    être utilisées comme modèles pour d'autres classes. Les interfaces sont des contrats qui définissent
+                    les
+                    méthodes qu'une classe doit implémenter. Les classes abstraites et les interfaces permettent de
+                    définir des
+                    modèles de classes et de garantir que les classes qui en héritent respectent certaines règles.</p>
+            </div>
+        </section>
+
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Les espaces de noms</h2>
+            <div class="collapsible-content">
+                <p>Les espaces de noms sont des conteneurs qui permettent d'organiser les classes et les fonctions en
+                    groupes
+                    logiques. Les espaces de noms permettent d'éviter les conflits de noms entre les classes et les
+                    fonctions,
+                    et de rendre le code plus lisible et plus maintenable.</p>
+            </div>
+        </section>
+
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Les exceptions</h2>
+            <div class="collapsible-content">
+                <p>Les exceptions sont des erreurs qui se produisent lors de l'exécution d'un programme. Les exceptions
+                    permettent de gérer les erreurs de manière élégante et de garantir que le programme continue de
+                    fonctionner
+                    correctement en cas d'erreur. Les exceptions peuvent être levées à l'aide de l'instruction throw et
+                    capturées à l'aide de l'instruction try.</p>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Les traits</h2>
+            <div class="collapsible-content">
+                <p>Les traits sont des groupes de méthodes qui peuvent être inclus dans des classes pour ajouter des
+                    fonctionnalités supplémentaires. Les traits permettent de réutiliser du code et de créer des classes
+                    modulaires et flexibles. Les traits peuvent être inclus dans une classe à l'aide de l'instruction
+                    use.</p>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Les générateurs</h2>
+            <div class="collapsible-content">
+                <p>Les générateurs sont des fonctions spéciales qui permettent de générer des séquences de valeurs de
+                    manière
+                    paresseuse. Les générateurs permettent de créer des itérables de manière efficace et de traiter des
+                    séquences de données de manière générique. Les générateurs peuvent être utilisés à l'aide de
+                    l'instruction
+                    yield.</p>
+            </div>
+        </section>
+
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Les itérateurs</h2>
+            <div class="collapsible-content">
+                <p>Les itérateurs sont des objets qui permettent de parcourir des séquences de données de manière
+                    générique. Les
+                    itérateurs permettent de traiter des séquences de données de manière efficace et de créer des
+                    boucles
+                    génériques. Les itérateurs peuvent être utilisés à l'aide de l'instruction foreach.</p>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Les générateurs et les itérateurs</h2>
+            <div class="collapsible-content">
+                <p>Les générateurs et les itérateurs sont des concepts avancés de la POO qui permettent de traiter des
+                    séquences
+                    de données de manière générique. Les générateurs permettent de générer des séquences de valeurs de
+                    manière
+                    paresseuse, tandis que les itérateurs permettent de parcourir des séquences de données de manière
+                    générique.
+                    Les générateurs et les itérateurs sont des outils puissants qui permettent de traiter des données de
+                    manière
+                    efficace et modulaire.</p>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Les classes finales et les méthodes finales</h2>
+            <div class="collapsible-content">
+                <p>Les classes finales sont des classes qui ne peuvent pas être héritées, tandis que les méthodes
+                    finales sont
+                    des méthodes qui ne peuvent pas être redéfinies. Les classes finales et les méthodes finales
+                    permettent de
+                    garantir que certaines classes et méthodes ne peuvent pas être modifiées, ce qui permet de garantir
+                    l'intégrité du code et de prévenir les erreurs.</p>
+            </div>
+        </section>
+
+
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Les classes anonymes</h2>
+            <div class="collapsible-content">
+                <p>Les classes anonymes sont des classes qui sont définies de manière inline, c'est-à-dire sans nom. Les
+                    classes
+                    anonymes permettent de créer des objets de manière rapide et efficace, sans avoir à définir une
+                    classe
+                    séparée. Les classes anonymes sont utiles pour créer des objets temporaires et pour encapsuler du
+                    code de
+                    manière modulaire.</p>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Exemple :</h2>
+            <div class="collapsible-content">
+                <pre>
+<code>
+class Personne {
+    private $nom;
+    private $prenom;
+
+    public function __construct($nom, $prenom) {
+        $this->nom = $nom;
+        $this->prenom = $prenom;
+    }
+
+    public function getNom() {
+        return $this->nom;
+    }
+
+    public function getPrenom() {
+        return $this->prenom;
+    }
+
+    public function setNom($nom) {
+        $this->nom = $nom;
+    }
+
+    public function setPrenom($prenom) {
+        $this->prenom = $prenom;
+    }
+
+    public function afficher() {
+        echo "Nom : " . $this->nom . "<br>";
+        echo "Prénom : " . $this->prenom . "<br>";
+    }
+}
+
+$personne = new Personne("Doe", "John");
+$personne->afficher();
+</code>
+</pre>
+                <p>Dans cet exemple, nous avons défini une classe Personne avec deux attributs privés nom et prénom, un
+                    constructeur qui initialise ces attributs, des méthodes pour accéder et modifier ces attributs, et
+                    une
+                    méthode pour afficher les attributs. Nous avons ensuite créé un objet de la classe Personne et
+                    affiché ses
+                    attributs à l'aide de la méthode afficher.</p>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Bonnes pratiques</h2>
+            <div class="collapsible-content">
+                <p>La POO est un concept puissant qui permet de structurer et d'organiser le code de manière efficace et
+                    modulaire. Pour tirer le meilleur parti de la POO, il est important de suivre certaines bonnes
+                    pratiques :
+                </p>
+
+                <ul>
+                    <li>Utiliser des classes et des objets pour regrouper le code et les données de manière cohérente.
+                    </li>
+                    <li>Utiliser l'encapsulation pour protéger les données et les méthodes des objets.</li>
+                    <li>Utiliser l'héritage pour réutiliser du code et créer des hiérarchies de classes.</li>
+                    <li>Utiliser le polymorphisme pour traiter des objets de manière générique.</li>
+                    <li>Utiliser des classes abstraites et des interfaces pour définir des modèles de classes.</li>
+                    <li>Utiliser des exceptions pour gérer les erreurs de manière élégante.</li>
+                    <li>Utiliser des traits pour ajouter des fonctionnalités supplémentaires aux classes.</li>
+                    <li>Utiliser des générateurs et des itérateurs pour traiter des séquences de données de manière
+                        générique.
+                    </li>
+                    <li>Utiliser des classes finales et des méthodes finales pour garantir l'intégrité du code.</li>
+                    <li>Utiliser des classes anonymes pour créer des objets de manière rapide et efficace.</li>
+                </ul>
+            </div>
+        </section>
+
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Conclusion</h2>
+            <div class="collapsible-content">
+                <p>La POO est un concept puissant qui permet de structurer et d'organiser le code de manière efficace et
+                    modulaire. En utilisant les principes de la POO, les classes et les objets, les attributs et les
+                    méthodes,
+                    les
+                    constructeurs et les destructeurs, les classes abstraites et les interfaces, les espaces de noms,
+                    les
+                    exceptions, les traits, les générateurs et les itérateurs, les classes finales et les méthodes
+                    finales, les
+                    classes anonymes, il est possible de créer des programmes robustes, flexibles et maintenables. En
+                    suivant
+                    les
+                    bonnes pratiques de la POO, il est possible de tirer le meilleur parti de ce concept et de créer des
+                    applications de qualité professionnelle.</p>
+            </div>
+        </section>
+
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Exercices</h2>
+            <div class="collapsible-content">
+                <p>1. Créez une classe Voiture avec les attributs marque, modèle, année et couleur, et les méthodes
+                    afficher et
+                    démarrer.</p>
+                <p>2. Créez une classe Animal avec les attributs nom, espèce, âge et poids, et les méthodes afficher et
+                    crier.
+                </p>
+                <p>3. Créez une classe CompteBancaire avec les attributs titulaire, solde et taux, et les méthodes
+                    afficher,
+                    déposer et retirer.</p>
+                <p>4. Créez une classe Produit avec les attributs nom, prix, quantité et catégorie, et les méthodes
+                    afficher,
+                    ajouter et retirer.</p>
+                <p>5. Créez une classe Personne avec les attributs nom, prénom, date de naissance et adresse, et les
+                    méthodes
+                    afficher et calculerAge.</p>
+                <p>6. Créez une classe Livre avec les attributs titre, auteur, éditeur et année, et les méthodes
+                    afficher et
+                    emprunter.</p>
+            </div>
+        </section>
+
+
+        <section class="collapsible">
+            <h2 class="collapsible-header">Corrections</h2>
+            <div class="collapsible-content">
+                <p>1. Voiture</p>
+                <pre>
+        <code>
+        class Voiture {
+            private $marque;
+            private $modele;
+            private $annee;
+            private $couleur;
+        
+            public function __construct($marque, $modele, $annee, $couleur) {
+                $this->marque = $marque;
+                $this->modele = $modele;
+                $this->annee = $annee;
+                $this->couleur = $couleur;
+            }
+        
+            public function afficher() {
+                echo "Marque : " . $this->marque . "<br>";
+                echo "Modèle : " . $this->modele . "<br>";
+                echo "Année : " . $this->annee . "<br>";
+                echo "Couleur : " . $this->couleur . "<br>";
+            }
+        
+            public function demarrer() {
+                echo "La voiture démarre<br>";
+            }
+        }
+        
+        $voiture = new Voiture("Renault", "Clio", 2010, "Rouge");
+        $voiture->afficher();
+        $voiture->demarrer();
+        </code>
+                </pre>
+                <p>2. Animal</p>
+                <pre>
+        <code>
+        class Animal {
+            private $nom;
+            private $espece;
+            private $age;
+            private $poids;
+        
+            public function __construct($nom, $espece, $age, $poids) {
+                $this->nom = $nom;
+                $this->espece = $espece;
+                $this->age = $age;
+                $this->poids = $poids;
+            }
+        
+            public function afficher() {
+                echo "Nom : " . $this->nom . "<br>";
+                echo "Espèce : " . $this->espece . "<br>";
+                echo "Âge : " . $this->age . "<br>";
+                echo "Poids : " . $this->poids . "<br>";
+            }
+        
+            public function crier() {
+                echo "L'animal crie<br>";
+            }
+        }
+        
+        $animal = new Animal("Chien", "Labrador", 5, 20);
+        $animal->afficher();
+        $animal->crier();
+        </code>
+                </pre>
+                <p>3. CompteBancaire</p>
+                <pre>
+        <code>
+        class CompteBancaire {
+            private $titulaire;
+            private $solde;
+            private $taux;
+        
+            public function __construct($titulaire, $solde, $taux = 0) {
+                $this->titulaire = $titulaire;
+                $this->solde = $solde;
+                $this->taux = $taux;
+            }
+        
+            public function afficher() {
+                echo "Titulaire : " . $this->titulaire . "<br>";
+                echo "Solde : " . $this->solde . "<br>";
+                echo "Taux : " . $this->taux . "<br>";
+            }
+        
+            public function deposer($montant) {
+                $this->solde += $montant;
+            }
+        
+            public function retirer($montant) {
+                $this->solde -= $montant;
+            }
+        }
+        
+        $compte = new CompteBancaire("Doe John", 1000);
+        $compte->afficher();
+        $compte->deposer(500);
+        $compte->retirer(200);
+        $compte->afficher();
+        </code>
+                </pre>
+                <p>4. Produit</p>
+                <pre>
+        <code>
+        class Produit {
+            private $nom;
+            private $prix;
+            private $quantite;
+            private $categorie;
+        
+        
+            public function __construct($nom, $prix, $quantite, $categorie) {
+                $this->nom = $nom;
+                $this->prix
+                = $prix;
+                $this->quantite = $quantite;
+                $this->categorie = $categorie;
+            }
+        }
+        
+        $produit = new Produit("Ordinateur", 1000, 10, "Informatique");
+        </code>
+                </pre>
+                <p>5. Personne</p>
+                <pre>
+        <code>
+        class Personne {
+            private $nom;
+            private $prenom;
+            private $dateNaissance;
+            private $adresse;
+        
+        
+            public function __construct($nom, $prenom, $dateNaissance, $adresse) {
+                $this->nom = $nom;
+                $this->prenom = $prenom;
+                $this->dateNaissance = $dateNaissance;
+                $this->adresse = $adresse;
+            }
+        
+        
+            public function afficher() {
+                echo "Nom : " . $this->nom . "<br>";
+                echo "Prénom : " . $this->prenom . "<br>";
+                echo "Date de naissance : " . $this->dateNaissance . "<br>";
+                echo "Adresse : " . $this->adresse . "<br>";
+            }
+        
+        
+            public function calculerAge() {
+                $dateActuelle = new DateTime();
+                $dateNaissance = new DateTime($this->dateNaissance);
+                $age = $dateActuelle->diff($dateNaissance)->y;
+                return $age;
+            }
+        }
+        
+        $personne = new Personne("Doe", "John", "1990-01-01", "10 rue de la Paix");
+        $personne->afficher();
+        echo "Âge : " . $personne->calculerAge() . " ans<br>";
+        </code>
+                </pre>
+                <p>6. Les livres</p>
+                <pre>
+        <code>
+        class Livre {
+            private $titre;
+            private $auteur;
+            private $editeur;
+            private $annee;
+        
+        
+            public function __construct($titre, $auteur, $editeur, $annee) {
+                $this->titre = $titre;
+                $this->auteur = $auteur;
+                $this->editeur = $editeur;
+                $this->annee = $annee;
+            }
+        
+        
+            public function afficher() {
+                echo "Titre : " . $this->titre . "<br>";
+                echo "Auteur : " . $this->auteur . "<br>";
+                echo "Éditeur : " . $this->editeur . "<br>";
+                echo "Année : " . $this->annee . "<br>";
+            }
+        
+        
+            public function emprunter() {
+                echo "Le livre est emprunté<br>";
+            }
+        }
+        
+        
+        $livre = new Livre("Le Petit Prince", "Antoine de Saint-Exupéry", "Gallimard", 1943);
+        $livre->afficher();
+        $livre->emprunter();
+        </code>
+                </pre>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Cours React en HTML, CSS et JavaScript - CND</p>
+    </footer>
+
+</body>
+
+</html>
