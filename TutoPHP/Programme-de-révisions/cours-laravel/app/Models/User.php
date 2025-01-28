@@ -22,7 +22,7 @@ class User extends Authenticatable
      */
     public function chapters()
     {
-        return $this->belongsToMany(Chapter::class, 'chapters_users')
+        return $this->belongsToMany(Chapter::class, table: 'chapters_users')
             ->withPivot('completed')
             ->withTimestamps();
     }
