@@ -16,22 +16,22 @@
     <link href="<?php echo e(asset('css/style.css')); ?>" rel="stylesheet">
     <link href="<?php echo e(asset('css/quiz.css')); ?>" rel="stylesheet">
 
-    <?php echo $__env->yieldContent('styles'); ?> <!-- Placeholders CSS spécifiques à des vues -->
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <?php echo $__env->yieldContent('styles'); ?>
 </head>
 
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <!-- Logo / Marque -->
             <a class="navbar-brand" href="<?php echo e(url('/')); ?>">Formation PHP/Laravel</a>
 
-            <!-- Bouton pour affichage mobile -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <!-- Menu principal -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <?php if(auth()->guard()->check()): ?>
@@ -46,10 +46,8 @@
                     </li>
                 </ul>
 
-                <!-- Menu utilisateur -->
                 <ul class="navbar-nav">
                     <?php if(auth()->guard()->guest()): ?>
-                        <!-- Invités -->
                         <li class="nav-item">
                             <a class="nav-link <?php echo e(request()->routeIs('login.custom') ? 'active' : ''); ?>"
                                 href="<?php echo e(route('login')); ?>">Connexion</a>
@@ -60,7 +58,6 @@
                         </li>
                     <?php endif; ?>
                     <?php if(auth()->guard()->check()): ?>
-                        <!-- Utilisateur connecté -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -71,8 +68,9 @@
                                 <li>
                                     <form action="<?php echo e(route('logout')); ?>" method="POST" class="d-inline">
                                         <?php echo csrf_field(); ?>
-                                        <button type="submit" class="dropdown-item"><i class="fas fa-sign-out-alt"></i>
-                                            Déconnexion</button>
+                                        <button type="submit" class="dropdown-item">
+                                            <i class="fas fa-sign-out-alt"></i> Déconnexion
+                                        </button>
                                     </form>
                                 </li>
                             </ul>
@@ -85,9 +83,15 @@
 
     <!-- Contenu Principal -->
     <main class="py-4">
-        <div class="container">
-            <?php echo $__env->yieldContent('content'); ?> <!-- Contenu dynamique spécifique de chaque vue -->
-        </div>
+        <?php if (! empty(trim($__env->yieldContent('container-fluid')))): ?>
+            <div class="container-fluid">
+                <?php echo $__env->yieldContent('content'); ?>
+            </div>
+        <?php else: ?>
+            <div class="container">
+                <?php echo $__env->yieldContent('content'); ?>
+            </div>
+        <?php endif; ?>
     </main>
 
     <!-- Footer -->
@@ -109,7 +113,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="<?php echo e(asset('js/script.js')); ?>"></script>
     <script src="<?php echo e(asset('js/quiz.js')); ?>"></script>
-    <?php echo $__env->yieldContent('scripts'); ?> <!-- JS spécifiques pour des vues -->
+    <?php echo $__env->yieldContent('scripts'); ?>
 </body>
 
 </html><?php /**PATH /home/greta/Desktop/workspace/Formation_Langages_Cie/TutoPHP/Programme-de-révisions/cours-laravel/resources/views/layouts/app.blade.php ENDPATH**/ ?>

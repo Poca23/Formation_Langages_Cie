@@ -32,34 +32,58 @@
 
         <!-- Contenu principal -->
         <div class="col-md-9">
-            {!! $chapter->description !!}
-
-            <!-- Quiz rapide -->
-            <div class="card mt-4">
-                <div class="card-header bg-light">
-                    <h3 class="mb-0">Quiz rapide</h3>
-                </div>
+            <div class="card shadow mb-4">
                 <div class="card-body">
-                    <form id="chapter-quiz">
-                        <div class="mb-3">
-                            <p>Comment déclare-t-on une variable en PHP ?</p>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q1" value="1">
-                                <label class="form-check-label">var maVariable</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q1" value="2">
-                                <label class="form-check-label">$maVariable</label>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <p>Quel est le résultat de 10 % 3 ?</p>
-                            <input type="number" class="form-control" name="q2">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Vérifier</button>
-                    </form>
+                    <h1 class="mb-4">{{ $chapter->title }}</h1>
+                    {!! $chapter->content !!}
                 </div>
             </div>
+            <!-- Quiz rapide -->
+            @if($quiz)
+                <div class="card mt-4">
+                    <div class="card-header bg-light">
+                        <h3 class="mb-0">{{ $quiz->title }}</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="chapter-quiz" action="{{ route('quiz.check-answer') }}" method="POST"
+                            data-id="{{ $quiz->id }}">
+                            @csrf
+                            @foreach($quiz->questions as $question)
+                                <div class="mb-3">
+                                    <p>{{ $question->question_text }}</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="answers[{{ $question->id }}]"
+                                            value="a">
+                                        <label class="form-check-label">{{ $question->option_a }}</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="answers[{{ $question->id }}]"
+                                            value="b">
+                                        <label class="form-check-label">{{ $question->option_b }}</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="answers[{{ $question->id }}]"
+                                            value="c">
+                                        <label class="form-check-label">{{ $question->option_c }}</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="answers[{{ $question->id }}]"
+                                            value="d">
+                                        <label class="form-check-label">{{ $question->option_d }}</label>
+                                    </div>
+                                </div>
+                            @endforeach
+                            <button type="submit" class="btn btn-primary">Vérifier</button>
+                        </form>
+                    </div>
+                </div>
+            @else
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <p class="text-muted mb-0">Aucun quiz n'est disponible pour ce chapitre pour le moment.</p>
+                    </div>
+                </div>
+            @endif
 
             <!-- Bouton de complétion du chapitre -->
             <div class="chapter-completion mt-5 mb-4">
@@ -80,7 +104,7 @@
             <!-- Navigation entre chapitres -->
             <div class="d-flex justify-content-between mt-4">
                 @if ($currentChapterId > 1)
-                    <a href="{{ route('quiz.show', ['id' => $currentChapterId - 1]) }}" class="btn btn-secondary">
+                    <a href="{{ route('chapter.show', ['id' => $currentChapterId - 1]) }}" class="btn btn-secondary">
                         <i class="fas fa-arrow-left"></i> Chapitre précédent
                     </a>
                 @else
@@ -88,7 +112,7 @@
                 @endif
 
                 @if ($currentChapterId < $totalChapters)
-                    <a href="{{ route('quiz.show', ['id' => $currentChapterId + 1]) }}" class="btn btn-primary">
+                    <a href="{{ route('chapter.show', ['id' => $currentChapterId + 1]) }}" class="btn btn-primary">
                         Chapitre suivant <i class="fas fa-arrow-right"></i>
                     </a>
                 @endif
@@ -146,6 +170,14 @@
     .btn-lg {
         padding: 15px 30px;
     }
+
+    .form-check {
+        margin-bottom: 0.5rem;
+    }
+
+    .card {
+        margin-bottom: 1.5rem;
+    }
 </style>
 @endsection
 
@@ -163,15 +195,55 @@
         });
 
         // Gestion du quiz
-        document.getElementById('chapter-quiz').addEventListener('submit', function (e) {
-            e.preventDefault();
-            // Vérification des réponses
-            const answers = {
-                q1: '2', // $maVariable
-                q2: '1' // 10 % 3 = 1
-            };
-            // Ajoutez ici la logique de vérification du quiz
-        });
+        const quizForm = document.getElementById('chapter-quiz');
+        if (quizForm) {
+            quizForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const formData = new FormData(this);
+                const quizId = this.getAttribute('data-id');
+
+                fetch("{{ route('quiz.check-answer') }}", {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        quiz_id: quizId,
+                        answers: Object.fromEntries(formData.entries())
+                    })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Bravo !',
+                                text: 'Vos réponses sont correctes !',
+                                confirmButtonText: 'Continuer'
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Pas tout à fait...',
+                                text: 'Certaines réponses sont incorrectes. Essayez encore !',
+                                confirmButtonText: 'Réessayer'
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erreur:', error);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Une erreur est survenue lors de la vérification des réponses.',
+                            confirmButtonText: 'Fermer'
+                        });
+                    });
+            });
+        }
     });
 </script>
 @endsection

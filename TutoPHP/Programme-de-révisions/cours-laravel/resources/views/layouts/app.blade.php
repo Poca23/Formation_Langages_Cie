@@ -16,22 +16,22 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/quiz.css') }}" rel="stylesheet">
 
-    @yield('styles') <!-- Placeholders CSS spécifiques à des vues -->
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @yield('styles')
 </head>
 
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <!-- Logo / Marque -->
             <a class="navbar-brand" href="{{ url('/') }}">Formation PHP/Laravel</a>
 
-            <!-- Bouton pour affichage mobile -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <!-- Menu principal -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     @auth
@@ -46,10 +46,8 @@
                     </li>
                 </ul>
 
-                <!-- Menu utilisateur -->
                 <ul class="navbar-nav">
                     @guest
-                        <!-- Invités -->
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('login.custom') ? 'active' : '' }}"
                                 href="{{ route('login') }}">Connexion</a>
@@ -60,7 +58,6 @@
                         </li>
                     @endguest
                     @auth
-                        <!-- Utilisateur connecté -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -70,8 +67,9 @@
                                 <li>
                                     <form action="{{ route('logout') }}" method="POST" class="d-inline">
                                         @csrf
-                                        <button type="submit" class="dropdown-item"><i class="fas fa-sign-out-alt"></i>
-                                            Déconnexion</button>
+                                        <button type="submit" class="dropdown-item">
+                                            <i class="fas fa-sign-out-alt"></i> Déconnexion
+                                        </button>
                                     </form>
                                 </li>
                             </ul>
@@ -84,9 +82,15 @@
 
     <!-- Contenu Principal -->
     <main class="py-4">
-        <div class="container">
-            @yield('content') <!-- Contenu dynamique spécifique de chaque vue -->
-        </div>
+        @hasSection('container-fluid')
+            <div class="container-fluid">
+                @yield('content')
+            </div>
+        @else
+            <div class="container">
+                @yield('content')
+            </div>
+        @endif
     </main>
 
     <!-- Footer -->
@@ -108,7 +112,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('js/script.js') }}"></script>
     <script src="{{ asset('js/quiz.js') }}"></script>
-    @yield('scripts') <!-- JS spécifiques pour des vues -->
+    @yield('scripts')
 </body>
 
 </html>
