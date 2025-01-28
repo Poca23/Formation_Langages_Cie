@@ -1,0 +1,20 @@
+3. Base technique
+3.1. Migrations
+Un exemple pour les migrations :
+
+Utilisateurs (déjà présent dans Laravel) :
+
+php artisan make:migration create_courses_table
+
+Migration Courses :
+
+Schema::create('courses', function (Blueprint $table) {
+    $table->id();
+    $table->string('nom');
+    $table->enum('thème', ['PHP', 'Laravel']);
+    $table->timestamps();
+});
+
+Chapitres :
+
+Idem routes.

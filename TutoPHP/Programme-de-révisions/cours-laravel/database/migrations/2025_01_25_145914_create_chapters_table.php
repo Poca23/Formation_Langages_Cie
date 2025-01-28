@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateChaptersTable extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('chapters', function (Blueprint $table) {
@@ -19,9 +16,6 @@ class CreateChaptersTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('chapters');

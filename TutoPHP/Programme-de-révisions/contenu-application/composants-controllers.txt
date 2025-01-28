@@ -1,0 +1,83 @@
+Je continue avec les composants Quiz et Progression :
+
+QuizController.php
+<?php
+namespace App\Http\Controllers;
+use App\Models\Quiz;
+use App\Models\UserProgress;
+use Illuminate\Http\Request;
+
+class QuizController extends Controller
+{
+    public function show(Quiz $quiz)
+    {
+        $quiz->load('questions.answers');
+        return view('quizzes.show', compact('quiz'));
+    }
+
+    public function submit(Request $request, Quiz $quiz)
+    {
+        $answers = $request->validate([
+            'answers' => 'required|array',
+            'answers.*' => 'required|exists:answers,id'
+        ]);
+
+        $correctAnswers = 0;
+        $totalQuestions = $quiz->questions->count();
+
+        foreach ($quiz->questions as $question) {
+            if (in_array($question->correct_answer_id, $answers['answers'])) {
+                $correctAnswers++;
+            }
+        }
+
+        $score = ($correctAnswers / $totalQuestions) * 100;
+
+        UserProgress::updateOrCreate(
+            [
+                'user_id' => auth()->id(),
+                'chapter_id' => $quiz->chapter_id
+            ],
+            [
+                'quiz_completed' => $score === 100,
+                'score' => $score
+            ]
+        );
+
+        return response()->json([
+            'score' => $score,
+            'passed' => $score === 100,
+            'message' => $score === 100 
+                ? 'Félicitations ! Vous pouvez passer au chapitre suivant.' 
+                : 'Réessayez pour obtenir 100%.'
+        ]);
+    }
+}
+
+
+
+
+
+UserProgressController.php
+<?php
+namespace App\Http\Controllers;
+use App\Models\UserProgress;
+use Illuminate\Http\Request;
+
+class UserProgressController extends Controller
+{
+    public function index()
+    {
+        $progress = UserProgress::with(['chapter.section'])
+            ->where('user_id', auth()->id())
+            ->get()
+            ->groupBy('chapter.section.name');
+
+        $toRevise = UserProgress::with(['chapter'])
+            ->where('user_id', auth()->id())
+            ->where('score', '<', 100)
+            ->get();
+
+        return view('progress.index', compact('progress', 'toRevise'));
+    }
+}

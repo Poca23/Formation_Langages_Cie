@@ -1,0 +1,53 @@
+D'après la structure que vous avez partagée, il semble que nous parlons d'un projet Laravel avec un système d'administration robuste. Je vais vous faire un résumé visuel et fonctionnel :
+
+graph TB
+    A[Administration System] --> B[Authentification]
+    A --> C[Gestion Utilisateurs]
+    A --> D[Gestion des Rôles]
+    A --> E[Dashboard]
+    A --> F[Configuration]
+    A --> G[Multilingue]
+
+    B --> B1[Login]
+    B --> B2[Permissions]
+    
+    C --> C1[CRUD Utilisateurs]
+    C --> C2[Profiles]
+    
+    D --> D1[Rôles]
+    D --> D2[Permissions]
+    
+    E --> E1[Statistiques]
+    E --> E2[Activités récentes]
+    
+    F --> F1[Paramètres généraux]
+    F --> F2[Thèmes Light/Dark]
+    
+    G --> G1[Français]
+    G --> G2[Anglais]
+
+Caractéristiques principales :
+
+Interface Administrative Complète
+
+Dashboard personnalisé
+Gestion des utilisateurs
+Système de rôles et permissions
+Architecture Technique
+
+Laravel Framework
+Base de données MySQL
+API RESTful
+Tests automatisés
+Fonctionnalités Avancées
+
+Thème clair/sombre
+Système multilingue (FR/EN)
+Composants Livewire
+Notifications temps réel
+Infrastructure
+
+Configuration Docker
+CI/CD avec GitHub Actions
+Documentation complète
+Sécurité renforcée

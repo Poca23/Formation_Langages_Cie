@@ -1,0 +1,11 @@
+Les routes dans routes/web.php :
+
+<?php
+use App\Http\Controllers\SectionController;
+use App\Http\Controllers\ChapterController;
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', [SectionController::class, 'index'])->name('home');
+    Route::get('/sections/{section}', [SectionController::class, 'show'])->name('sections.show');
+    Route::get('/chapters/{chapter}', [ChapterController::class, 'show'])->name('chapters.show');
+});

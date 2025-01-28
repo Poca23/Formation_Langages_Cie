@@ -1,0 +1,62 @@
+Ajoutez ces styles CSS pour les notifications :
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    color: white;
+    font-weight: 500;
+    animation: slideIn 0.3s ease-out;
+    z-index: 1000;
+}
+
+.notification.success {
+    background: #10B981;
+}
+
+.notification.error {
+    background: #EF4444;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+
+Ces modifications apportent :
+
+Des animations fluides sur les boutons et les cartes
+Un effet de ripple sur les clics
+Des transitions douces sur les hovers
+Des notifications stylées
+Un design moderne avec des ombres et des arrondis
+Des dégradés subtils
+Des interactions visuelles sur tous les éléments cliquables
+Un design responsive et adaptatif
+Des états de chargement animés
+
+
+Le design est maintenant plus dynamique et moderne avec des retours visuels sur chaque interaction utilisateur.

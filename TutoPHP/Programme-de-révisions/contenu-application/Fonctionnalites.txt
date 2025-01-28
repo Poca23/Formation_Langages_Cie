@@ -1,0 +1,6 @@
+1.3. Liste des fonctionnalités (par priorité)
+CRUD des cours, chapitres et contenus (ajout/modification/suppression).
+Affichage des cours et navigation accessible.
+Système de quizz avec validation (100 % requis pour progresser).
+Gestion des thèmes (dark/light).
+Gestion des résultats par tableau de bord.

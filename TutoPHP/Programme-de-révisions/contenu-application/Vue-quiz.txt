@@ -1,0 +1,93 @@
+Vue quiz/show.blade.php
+@extends('layouts.app')
+
+@section('content')
+<div class="quiz-container" x-data="quizHandler()">
+    <h2>Quiz - {{ $quiz->chapter->title }}</h2>
+
+    <form @submit.prevent="submitQuiz">
+        @foreach($quiz->questions as $question)
+        <div class="question-card">
+            <h3>{{ $question->question_text }}</h3>
+            
+            <div class="answers-list">
+                @foreach($question->answers as $answer)
+                <label class="answer-option">
+                    <input type="radio" 
+                           name="answers[{{ $question->id }}]" 
+                           value="{{ $answer->id }}"
+                           x-model="answers[{{ $question->id }}]">
+                    <span>{{ $answer->answer_text }}</span>
+                </label>
+                @endforeach
+            </div>
+        </div>
+        @endforeach
+
+        <button type="submit" class="btn-submit" x-bind:disabled="!isComplete">
+            Valider les réponses
+        </button>
+    </form>
+
+    <div x-show="showResults" class="results-container">
+        <h3 x-text="resultMessage"></h3>
+        <template x-if="!passed">
+            <button @click="resetQuiz" class="btn-retry">
+                Réessayer
+            </button>
+        </template>
+        <template x-if="passed">
+            <a :href="nextChapterUrl" class="btn-next">
+                Chapitre suivant
+            </a>
+        </template>
+    </div>
+</div>
+
+@push('scripts')
+<script>
+function quizHandler() {
+    return {
+        answers: {},
+        showResults: false,
+        passed: false,
+        resultMessage: '',
+        nextChapterUrl: '',
+        
+        get isComplete() {
+            return Object.keys(this.answers).length === {{ $quiz->questions->count() }};
+        },
+
+        async submitQuiz() {
+            try {
+                const response = await fetch('{{ route("quiz.submit", $quiz) }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    },
+                    body: JSON.stringify({ answers: this.answers })
+                });
+
+                const result = await response.json();
+                this.showResults = true;
+                this.passed = result.passed;
+                this.resultMessage = result.message;
+                
+                if (result.passed) {
+                    this.nextChapterUrl = '{{ route("chapters.show", [$quiz->chapter->id + 1]) }}';
+                }
+            } catch (error) {
+                console.error('Erreur:', error);
+            }
+        },
+
+        resetQuiz() {
+            this.answers = {};
+            this.showResults = false;
+        }
+    }
+}
+</script>
+@endpush
+@endsection

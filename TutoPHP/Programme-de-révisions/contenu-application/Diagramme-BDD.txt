@@ -1,0 +1,63 @@
+1. Diagramme de base de données :
+Tables principales :
+- users
+  - id
+  - name
+  - email
+  - password
+  - theme_preference
+  - created_at
+  - updated_at
+
+- sections
+  - id
+  - name (PHP/Laravel)
+  - description
+  - created_at
+  - updated_at
+
+- chapters
+  - id
+  - section_id
+  - title
+  - order
+  - created_at
+  - updated_at
+
+- lessons
+  - id
+  - chapter_id
+  - content
+  - example
+  - created_at
+  - updated_at
+
+- quizzes
+  - id
+  - chapter_id
+  - created_at
+  - updated_at
+
+- questions
+  - id
+  - quiz_id
+  - question_text
+  - created_at
+  - updated_at
+
+- answers
+  - id
+  - question_id
+  - answer_text
+  - is_correct
+  - created_at
+  - updated_at
+
+- user_progress
+  - id
+  - user_id
+  - chapter_id
+  - quiz_completed
+  - score
+  - created_at
+  - updated_at

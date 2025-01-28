@@ -1,0 +1,367 @@
+2. Architecture des dossiers/fichiers
+
+Cette structure inclut :
+
+1. Architecture MVC complète
+2. Système d'administration complet
+3. API RESTful
+4. Tests unitaires, fonctionnels et de navigation
+5. Documentation complète
+6. Configuration Docker pour dev et prod
+7. Scripts de déploiement et maintenance
+8. Gestion des assets et ressources
+9. Système de traduction
+10. Configuration de sécurité
+11. Outils de qualité de code
+12. CI/CD
+13. Monitoring et logging
+
+
+project/
+├── .github/
+│   ├── workflows/
+│   │   ├── ci.yml
+│   │   ├── deploy-production.yml
+│   │   └── deploy-staging.yml
+├── app/
+│   ├── Console/
+│   │   ├── Commands/
+│   │   │   ├── Admin/
+│   │   │   │   ├── CreateAdmin.php
+│   │   │   │   ├── GenerateReport.php
+│   │   │   │   └── CleanupOldData.php
+│   │   │   └── Maintenance/
+│   │   │       ├── ClearCache.php
+│   │   │       └── OptimizeApp.php
+│   ├── Events/
+│   │   ├── Admin/
+│   │   │   ├── UserCreated.php
+│   │   │   ├── UserDeleted.php
+│   │   │   └── SettingsUpdated.php
+│   ├── Exceptions/
+│   │   ├── Admin/
+│   │   │   ├── UnauthorizedAccessException.php
+│   │   │   └── InvalidSettingsException.php
+│   │   └── Handler.php
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── Admin/
+│   │   │   │   ├── DashboardController.php
+│   │   │   │   ├── UserController.php
+│   │   │   │   ├── RoleController.php
+│   │   │   │   ├── PermissionController.php
+│   │   │   │   ├── SettingController.php
+│   │   │   │   ├── LogController.php
+│   │   │   │   ├── BackupController.php
+│   │   │   │   ├── MediaController.php
+│   │   │   │   ├── ReportController.php
+│   │   │   │   └── ProfileController.php
+│   │   │   └── Api/
+│   │   │       └── v1/
+│   │   │           ├── AuthController.php
+│   │   │           └── AdminController.php
+│   │   ├── Middleware/
+│   │   │   ├── AdminAuthenticate.php
+│   │   │   ├── CheckRole.php
+│   │   │   ├── LogAdminActivity.php
+│   │   │   └── SetAdminTheme.php
+│   │   ├── Requests/
+│   │   │   ├── Admin/
+│   │   │   │   ├── CreateUserRequest.php
+│   │   │   │   ├── UpdateSettingsRequest.php
+│   │   │   │   └── GenerateReportRequest.php
+│   │   │   └── Api/
+│   │   │       └── v1/
+│   │   │           └── AdminLoginRequest.php
+│   │   ├── Resources/
+│   │   │   ├── Admin/
+│   │   │   │   ├── UserResource.php
+│   │   │   │   └── SettingResource.php
+│   │   │   └── Api/
+│   │   │       └── v1/
+│   │   │           └── AdminResource.php
+│   │   └── Livewire/
+│   │       └── Admin/
+│   │           ├── Dashboard/
+│   │           │   ├── Statistics.php
+│   │           │   ├── RecentActivity.php
+│   │           │   └── QuickActions.php
+│   │           ├── Users/
+│   │           │   ├── UserList.php
+│   │           │   ├── UserForm.php
+│   │           │   └── UserImport.php
+│   │           └── Settings/
+│   │               ├── GeneralSettings.php
+│   │               ├── SecuritySettings.php
+│   │               └── NotificationSettings.php
+│   ├── Models/
+│   │   ├── User.php
+│   │   ├── Role.php
+│   │   ├── Permission.php
+│   │   ├── Setting.php
+│   │   ├── Activity.php
+│   │   ├── Backup.php
+│   │   ├── Media.php
+│   │   └── Report.php
+│   ├── Observers/
+│   │   ├── UserObserver.php
+│   │   └── ActivityObserver.php
+│   ├── Policies/
+│   │   ├── UserPolicy.php
+│   │   ├── RolePolicy.php
+│   │   └── SettingPolicy.php
+│   ├── Providers/
+│   │   ├── AdminServiceProvider.php
+│   │   └── EventServiceProvider.php
+│   ├── Rules/
+│   │   └── Admin/
+│   │       ├── StrongPassword.php
+│   │       └── UniqueUsername.php
+│   └── Services/
+│       ├── Admin/
+│       │   ├── UserService.php
+│       │   ├── RoleService.php
+│       │   ├── PermissionService.php
+│       │   ├── ActivityLogService.php
+│       │   ├── BackupService.php
+│       │   ├── ReportService.php
+│       │   ├── MediaService.php
+│       │   └── NotificationService.php
+│       ├── Auth/
+│       │   └── AdminAuthService.php
+│       └── Utils/
+│           ├── KeyboardShortcutService.php
+│           ├── ThemeService.php
+│           └── ExportService.php
+├── resources/
+│   ├── css/
+│   │   ├── admin/
+│   │   │   ├── base/
+│   │   │   │   ├── reset.css
+│   │   │   │   ├── typography.css
+│   │   │   │   ├── variables.css
+│   │   │   │   └── animations.css
+│   │   │   ├── components/
+│   │   │   │   ├── buttons.css
+│   │   │   │   ├── forms.css
+│   │   │   │   ├── tables.css
+│   │   │   │   ├── cards.css
+│   │   │   │   ├── modals.css
+│   │   │   │   └── alerts.css
+│   │   │   ├── layouts/
+│   │   │   │   ├── sidebar.css
+│   │   │   │   ├── header.css
+│   │   │   │   └── footer.css
+│   │   │   └── themes/
+│   │   │       ├── light.css
+│   │   │       └── dark.css
+│   │   └── app.css
+│   ├── js/
+│   │   ├── admin/
+│   │   │   ├── components/
+│   │   │   │   ├── datatable.js
+│   │   │   │   ├── charts.js
+│   │   │   │   ├── fileUploader.js
+│   │   │   │   └── notifications.js
+│   │   │   ├── utils/
+│   │   │   │   ├── api.js
+│   │   │   │   ├── helpers.js
+│   │   │   │   └── validation.js
+│   │   │   └── pages/
+│   │   │       ├── dashboard.js
+│   │   │       ├── users.js
+│   │   │       └── settings.js
+│   │   └── app.js
+│   ├── lang/
+│   │   ├── en/
+│   │   │   ├── admin.php
+│   │   │   ├── auth.php
+│   │   │   └── validation.php
+│   │   └── fr/
+│   │       ├── admin.php
+│   │       ├── auth.php
+│   │       └── validation.php
+│   └── views/
+│       ├── admin/
+│       │   ├── layouts/
+│       │   │   ├── app.blade.php
+│       │   │   ├── auth.blade.php
+│       │   │   └── error.blade.php
+│       │   ├── components/
+│       │   │   ├── ui/
+│       │   │   │   ├── button.blade.php
+│       │   │   │   ├── card.blade.php
+│       │   │   │   ├── modal.blade.php
+│       │   │   │   ├── alert.blade.php
+│       │   │   │   ├── badge.blade.php
+│       │   │   │   └── tabs.blade.php
+│       │   │   ├── forms/
+│       │   │   │   ├── input.blade.php
+│       │   │   │   ├── select.blade.php
+│       │   │   │   ├── checkbox.blade.php
+│       │   │   │   └── file-upload.blade.php
+│       │   │   ├── data/
+│       │   │   │   ├── table.blade.php
+│       │   │   │   ├── pagination.blade.php
+│       │   │   │   └── empty-state.blade.php
+│       │   │   └── charts/
+│       │   │       ├── line.blade.php
+│       │   │       ├── bar.blade.php
+│       │   │       └── pie.blade.php
+│       │   ├── partials/
+│       │   │   ├── header.blade.php
+│       │   │   ├── sidebar.blade.php
+│       │   │   ├── footer.blade.php
+│       │   │   └── scripts.blade.php
+│       │   └── pages/
+│       │       ├── dashboard/
+│       │       │   ├── index.blade.php
+│       │       │   └── widgets/
+│       │       │       ├── stats.blade.php
+│       │       │       └── activity.blade.php
+│       │       ├── users/
+│       │       │   ├── index.blade.php
+│       │       │   ├── create.blade.php
+│       │       │   └── edit.blade.php
+│       │       └── settings/
+│       │           ├── general.blade.php
+│       │           ├── security.blade.php
+│       │           └── notifications.blade.php
+├── config/
+│   ├── admin.php
+│   ├── auth.php
+│   ├── logging.php
+│   ├── services.php
+│   └── settings.php
+├── database/
+│   ├── factories/
+│   │   ├── UserFactory.php
+│   │   ├── RoleFactory.php
+│   │   └── SettingFactory.php
+│   ├── migrations/
+│   │   ├── 2014_10_12_000000_create_users_table.php
+│   │   ├── 2024_01_01_000000_create_roles_table.php
+│   │   ├── 2024_01_01_000001_create_permissions_table.php
+│   │   ├── 2024_01_01_000002_create_settings_table.php
+│   │   ├── 2024_01_01_000003_create_activity_log_table.php
+│   │   └── 2024_01_01_000004_create_media_table.php
+│   └── seeders/
+│       ├── DatabaseSeeder.php
+│       ├── UserSeeder.php
+│       ├── RoleSeeder.php
+│       └── SettingSeeder.php
+├── tests/
+│   ├── Unit/
+│   │   ├── Admin/
+│   │   │   ├── Services/
+│   │   │   │   ├── UserServiceTest.php
+│   │   │   │   ├── RoleServiceTest.php
+│   │   │   │   └── AuthServiceTest.php
+│   │   │   └── Models/
+│   │   │       ├── UserTest.php
+│   │   │       └── RoleTest.php
+│   ├── Feature/
+│   │   ├── Admin/
+│   │   │   ├── Controllers/
+│   │   │   │   ├── DashboardControllerTest.php
+│   │   │   │   ├── UserControllerTest.php
+│   │   │   │   └── SettingControllerTest.php
+│   │   │   ├── Middleware/
+│   │   │   │   ├── AdminAuthTest.php
+│   │   │   │   └── RoleCheckTest.php
+│   │   │   └── Livewire/
+│   │   │       ├── UserListTest.php
+│   │   │       └── SettingsFormTest.php
+│   │   └── Api/
+│   │       └── v1/
+│   │           ├── AdminAuthTest.php
+│   │           └── AdminEndpointsTest.php
+│   └── Browser/
+│       └── Admin/
+│           ├── LoginTest.php
+│           ├── DashboardTest.php
+│           └── UserManagementTest.php
+├── docker/
+│   ├── nginx/
+│   │   ├── Dockerfile
+│   │   └── nginx.conf
+│   ├── php/
+│   │   ├── Dockerfile
+│   │   └── php.ini
+│   ├── mysql/
+│   │   └── my.cnf
+│   ├── redis/
+│   │   └── redis.conf
+│   └── elasticsearch/
+│       └── elasticsearch.yml
+├── docs/
+│   ├── installation/
+│   │   ├── requirements.md
+│   │   ├── local-setup.md
+│   │   └── docker-setup.md
+│   ├── architecture/
+│   │   ├── overview.md
+│   │   ├── patterns.md
+│   │   └── security.md
+│   ├── api/
+│   │   ├── authentication.md
+│   │   ├── endpoints.md
+│   │   └── examples.md
+│   ├── admin/
+│   │   ├── user-management.md
+│   │   ├── roles-permissions.md
+│   │   └── settings.md
+│   └── deployment/
+│       ├── staging.md
+│       ├── production.md
+│       └── ci-cd.md
+├── scripts/
+│   ├── deploy/
+│   │   ├── staging.sh
+│   │   └── production.sh
+│   ├── backup/
+│   │   ├── database.sh
+│   │   └── files.sh
+│   └── development/
+│       ├── setup.sh
+│       ├── test.sh
+│       └── lint.sh
+├── storage/
+│   ├── app/
+│   │   ├── public/
+│   │   │   ├── uploads/
+│   │   │   ├── exports/
+│   │   │   └── backups/
+│   │   └── private/
+│   ├── framework/
+│   │   ├── cache/
+│   │   ├── sessions/
+│   │   └── views/
+│   └── logs/
+├── docker-compose.yml
+├── docker-compose.prod.yml
+├── Dockerfile
+├── .env.example
+├── .env.testing
+├── .gitignore
+├── .editorconfig
+├── .eslintrc.js
+├── .prettierrc
+├── composer.json
+├── package.json
+├── phpunit.xml
+├── README.md
+├── artisan
+└── vite.config.js
+├── phpstan.neon
+├── psalm.xml
+├── .php-cs-fixer.php
+├── .stylelintrc
+├── jest.config.js
+├── tailwind.config.js
+├── webpack.mix.js
+├── .gitlab-ci.yml
+├── sonar-project.properties
+├── Makefile
+└── supervisor/
+    └── laravel-worker.conf

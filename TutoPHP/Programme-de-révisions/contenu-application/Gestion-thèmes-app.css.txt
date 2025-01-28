@@ -1,0 +1,22 @@
+Pour la gestion des thèmes, ajoutez dans app.css :
+
+/* Thème clair */
+.theme-light {
+    --bg-primary: #ffffff;
+    --text-primary: #333333;
+    /* autres variables */
+}
+
+/* Thème sombre */
+.theme-dark {
+    --bg-primary: #1a1a1a;
+    --text-primary: #ffffff;
+    /* autres variables */
+}
+
+/* Styles responsifs */
+@media (max-width: 768px) {
+    .sections-grid {
+        grid-template-columns: 1fr;
+    }
+}

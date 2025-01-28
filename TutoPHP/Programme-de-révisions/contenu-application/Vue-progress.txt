@@ -1,0 +1,51 @@
+Vue progress/index.blade.php
+@extends('layouts.app')
+
+@section('content')
+<div class="progress-dashboard">
+    <div class="revision-needed">
+        <h2>À réviser</h2>
+        @if($toRevise->isEmpty())
+            <p>Tout est à jour !</p>
+        @else
+            <ul class="revision-list">
+                @foreach($toRevise as $item)
+                <li>
+                    <a href="{{ route('chapters.show', $item->chapter) }}">
+                        {{ $item->chapter->section->name }} - 
+                        {{ $item->chapter->title }}
+                        <span class="score">Score actuel : {{ $item->score }}%</span>
+                    </a>
+                </li>
+                @endforeach
+            </ul>
+        @endif
+    </div>
+
+    <div class="progress-by-section">
+        @foreach($progress as $sectionName => $items)
+            <div class="section-progress">
+                <h3>{{ $sectionName }}</h3>
+                <div class="progress-bar">
+                    @php
+                        $completedChapters = $items->where('quiz_completed', true)->count();
+                        $totalChapters = $items->count();
+                        $percentage = ($completedChapters / $totalChapters) * 100;
+                    @endphp
+                    <div class="progress-fill" style="width: {{ $percentage }}%">
+                        {{ round($percentage) }}%
+                    </div>
+                </div>
+                <div class="chapters-list">
+                    @foreach($items as $progress)
+                        <div class="chapter-item {{ $progress->quiz_completed ? 'completed' : '' }}">
+                            {{ $progress->chapter->title }}
+                            <span class="score">{{ $progress->score }}%</span>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        @endforeach
+    </div>
+</div>
+@endsection

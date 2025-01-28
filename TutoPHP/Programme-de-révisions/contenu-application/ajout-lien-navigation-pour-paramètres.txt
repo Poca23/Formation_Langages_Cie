@@ -1,0 +1,19 @@
+Ajoutez un lien dans la navigation :
+<nav>
+    <!-- Autres liens -->
+    <a href="{{ route('settings.theme') }}" class="nav-link">
+        Paramètres du thème
+    </a>
+</nav>
+
+
+
+Cette implémentation permet :
+
+De choisir entre mode clair et sombre
+De personnaliser les couleurs principales du thème
+De voir un aperçu en direct des changements
+De sauvegarder les préférences en base de données
+D'appliquer automatiquement le thème à la connexion
+Une interface responsive et intuitive
+Les changements de couleurs sont stockés dans la base de données et appliqués via CSS Variables, ce qui permet une modification facile et isolée du style sans affecter la structure du site.

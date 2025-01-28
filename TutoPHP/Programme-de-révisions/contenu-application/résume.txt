@@ -1,0 +1,48 @@
+J'ai un projet en tête dans le cadre d'un stage pour ma formation developpeuse web et web mobile. Apprendre le php et laravel.
+J'ai gardé un résumé de bonnes pratiques :
+Pour suivre les bonnes pratiques, voici l'ordre à respecter :
+
+1. Conception :
+Diagramme de base de données (tables et relations)
+Architecture des dossiers/fichiers
+Liste des fonctionnalités par priorité
+
+2. Configuration :
+Installation Laravel propre
+Configuration Git
+Configuration environnement (.env)
+
+3. Base technique :
+Migrations
+Models avec relations
+Routes principales
+
+Ce qui me pose le plus de prblèmes ce sont les relations entre les les controlleurs, les models, les migrations et les vues. A cause de ça je n'arrive pas à avancer, pare qu'il y a sans arrêt une erreur.
+J'ai déjà perdu une semaine et tout ce temps depuis ce matin à essayer d'en créer un. Je veux que d'un seul trait, et SANS ERREURS vous me fournissiez la totalité des fichiers nécessaires pour mon projet ensuivant les consignes suivantes :
+- Il n'y aura que moi qui y aura acces,
+- Je veux pouvoir y accéder autant en conncection mobile que wifi partout,
+- je veux une responsivité maximale,
+- un thème dark, light et une possibilité de changer les couleurs grâce à un thème,
+-je veux pouvoir consulter mes cours qui sont divisés en deux grandes parties : PHP et Laravel. Chacunes de ces parties comporteront des chapitres et dans chacun de ces chapitres il y aura une section avec le contenu du cours, une autre avec un exemple, et une autre encore avec un quizz pour valider la compréhension du cours et une correction si il y a eu erreur en validant les résultats sans possibilités de passer au chapitre suivant si pas 100% de réussite au quiz.
+-je ceux que s'il y a une seule petite modification ça ne touche rien d'autre que cette petite partie, du genre une utilité une boite sans gros fichiers.
+Je veux que ça soit performant et pouvoir éditer mon cours si besoin.
+Je veux pouvoir consulter mes résultats en fonction des chapitres, et en fonction des deux grandes parties.
+Je veux avoir un commentaire en page d'accueil sur la liste de ce que je dois réviser.
+Je veux donc que vous me créiez tous les fichiers nécessaires, qu'ils s'accordent parfaitement côté définissions de variables et types et tout autre éléments
+
+Pour suivre les bonnes pratiques, voici l'ordre à respecter :
+
+1. Conception :
+Diagramme de base de données (tables et relations)
+Architecture des dossiers/fichiers
+Liste des fonctionnalités par priorité
+
+2. Configuration :
+Installation Laravel propre
+Configuration Git
+Configuration environnement (.env)
+
+3. Base technique :
+Migrations
+Models avec relations
+Routes principales

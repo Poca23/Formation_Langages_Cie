@@ -1,0 +1,6 @@
+Ajoutez la route dans web.php :
+Route::prefix('settings')->name('settings.')->middleware(['auth'])->group(function () {
+    Route::get('/theme', [ThemeController::class, 'index'])->name('theme');
+    Route::post('/theme', [ThemeController::class, 'update'])->name('theme.update');
+});
+

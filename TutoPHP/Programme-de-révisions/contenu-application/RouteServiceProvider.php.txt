@@ -1,0 +1,65 @@
+Enregistrez le middleware dans app/Providers/RouteServiceProvider.php :
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\AdminCheck;
+
+class RouteServiceProvider extends ServiceProvider
+{
+    public function boot(): void
+    {
+        Route::middleware('admin', AdminCheck::class);
+
+        $this->configureRateLimiting();
+
+        $this->routes(function () {
+            Route::middleware('api')
+                ->prefix('api')
+                ->group(base_path('routes/api.php'));
+
+            Route::middleware('web')
+                ->group(base_path('routes/web.php'));
+        });
+    }
+
+    protected function configureRateLimiting(): void
+    {
+        RateLimiter::for('api', function (Request $request) {
+            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
+        });
+    }
+}
+
+Vos routes dans web.php restent les mêmes :
+use App\Http\Controllers\Settings\ThemeController;
+use App\Http\Controllers\Auth\LoginController;
+
+// Routes publiques
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+
+// Routes protégées
+Route::middleware(['admin'])->group(function () {
+    Route::prefix('settings')->name('settings.')->group(function () {
+        Route::get('/theme', [ThemeController::class, 'index'])->name('theme');
+        Route::post('/theme', [ThemeController::class, 'update'])->name('theme.update');
+    });
+});
+
+
+Ces modifications sont compatibles avec Laravel 11 et sa nouvelle structure. La gestion des middleware est maintenant plus directe et intégrée dans le RouteServiceProvider.
+
+Les autres parties du code (controllers, vues, etc.) restent identiques à ce que je vous ai fourni précédemment.
+
+N'oubliez pas de :
+
+Remplacer 'votre-email@example.com' par votre email dans le middleware AdminCheck
+Exécuter php artisan optimize après avoir fait ces modifications
+Vérifier que toutes vos routes sont bien protégées en testant l'accès
+Cette version est à jour avec Laravel 11 et conserve la même logique de sécurité pour un utilisateur unique administrateur.

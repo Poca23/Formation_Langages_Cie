@@ -26,11 +26,13 @@ class CustomAuthController extends Controller
         ]);
 
         $credentials = $request->only('email', 'password');
+
+        // Tenter de se connecter
         if (Auth::attempt($credentials)) {
             return redirect()->route('dashboard')->withSuccess('Connexion réussie.');
         }
 
-        return redirect()->route('login')->withError('Adresse e-mail ou mot de passe incorrect.');
+        return redirect()->route('login')->withErrors(['email' => 'Adresse e-mail ou mot de passe incorrect.']);
     }
 
     // Afficher le formulaire d'inscription

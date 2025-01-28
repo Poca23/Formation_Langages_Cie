@@ -1,0 +1,39 @@
+Je vais ajouter la gestion complète des thèmes dans une section Settings. Voici les fichiers nécessaires :
+
+Créez un nouveau controller Settings/ThemeController.php :
+<?php
+namespace App\Http\Controllers\Settings;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+class ThemeController extends Controller
+{
+    public function index()
+    {
+        return view('settings.theme');
+    }
+
+    public function update(Request $request)
+    {
+        $request->validate([
+            'theme' => 'required|in:light,dark',
+            'primary_color' => 'required|regex:/^#[a-zA-Z0-9]{6}$/',
+            'secondary_color' => 'required|regex:/^#[a-zA-Z0-9]{6}$/',
+            'accent_color' => 'required|regex:/^#[a-zA-Z0-9]{6}$/',
+        ]);
+
+        $user = auth()->user();
+        $user->update([
+            'theme_preference' => $request->theme,
+            'theme_colors' => [
+                'primary' => $request->primary_color,
+                'secondary' => $request->secondary_color,
+                'accent' => $request->accent_color,
+            ]
+        ]);
+
+        return response()->json(['message' => 'Thème mis à jour avec succès']);
+    }
+}
+

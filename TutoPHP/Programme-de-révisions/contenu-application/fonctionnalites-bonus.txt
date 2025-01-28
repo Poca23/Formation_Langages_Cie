@@ -1,0 +1,867 @@
+Super ! Commençons par créer une interface unifiée et structurée. Je vais vous proposer une approche étape par étape.
+
+D'abord, créons un layout principal moderne avec une navigation latérale :
+// resources/views/layouts/admin.blade.php
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ config('app.name') }} - Administration</title>
+    
+    <!-- CSS -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    
+    <!-- Livewire Styles -->
+    @livewireStyles
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="bg-gray-100" x-data="{ sidebarOpen: true }">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div class="sidebar" x-show="sidebarOpen" 
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="-translate-x-full"
+             x-transition:enter-end="translate-x-0"
+             x-transition:leave="transition ease-in duration-300"
+             x-transition:leave-start="translate-x-0"
+             x-transition:leave-end="-translate-x-full">
+            @include('layouts.partials.sidebar')
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 overflow-x-hidden overflow-y-auto">
+            <!-- Top Navigation -->
+            <header class="bg-white shadow-sm">
+                @include('layouts.partials.topnav')
+            </header>
+
+            <!-- Page Content -->
+            <main class="p-6">
+                @yield('content')
+            </main>
+        </div>
+    </div>
+
+    <!-- Notifications -->
+    <div id="notifications" 
+         class="fixed bottom-4 right-4 z-50"
+         x-data="notificationSystem">
+        @include('layouts.partials.notifications')
+    </div>
+
+    <!-- Keyboard Shortcuts Modal -->
+    <div x-data="{ showShortcuts: false }"
+         x-show="showShortcuts"
+         class="fixed inset-0 z-50 overflow-y-auto">
+        @include('layouts.partials.shortcuts-modal')
+    </div>
+
+    @livewireScripts
+    @stack('scripts')
+</body>
+</html>
+
+Créons le composant de barre latérale :
+// resources/views/layouts/partials/sidebar.blade.php
+<aside class="w-64 bg-gray-800 text-white">
+    <div class="p-4">
+        <h1 class="text-xl font-bold">Administration</h1>
+    </div>
+
+    <nav class="mt-4">
+        <x-nav-item route="dashboard" icon="home">
+            Tableau de bord
+        </x-nav-item>
+
+        <x-nav-item route="content" icon="document-text">
+            Contenu
+        </x-nav-item>
+
+        <x-nav-item route="media" icon="photograph">
+            Médias
+        </x-nav-item>
+
+        <x-nav-item route="analytics" icon="chart-bar">
+            Analytiques
+        </x-nav-item>
+
+        <x-nav-item route="system" icon="cog">
+            Système
+        </x-nav-item>
+
+        <x-nav-item route="logs" icon="document-report">
+            Logs
+        </x-nav-item>
+    </nav>
+</aside>
+
+Créons un composant pour la recherche globale :
+// app/Livewire/GlobalSearch.php
+<?php
+
+namespace App\Livewire;
+
+use Livewire\Component;
+use App\Models\Content;
+use App\Models\Media;
+use App\Models\Log;
+
+class GlobalSearch extends Component
+{
+    public $search = '';
+    public $results = [];
+
+    public function updatedSearch()
+    {
+        if (strlen($this->search) < 2) {
+            $this->results = [];
+            return;
+        }
+
+        $this->results = [
+            'content' => Content::search($this->search)->take(3)->get(),
+            'media' => Media::search($this->search)->take(3)->get(),
+            'logs' => Log::search($this->search)->take(3)->get(),
+        ];
+    }
+
+    public function render()
+    {
+        return view('livewire.global-search');
+    }
+}
+
+Créons un service pour les raccourcis clavier :
+// resources/js/services/shortcuts.js
+export default class ShortcutsService {
+    constructor() {
+        this.shortcuts = new Map();
+        this.initializeDefaultShortcuts();
+        this.listen();
+    }
+
+    initializeDefaultShortcuts() {
+        this.register('ctrl+k', () => this.toggleSearch());
+        this.register('ctrl+,', () => this.openSettings());
+        this.register('ctrl+b', () => this.toggleSidebar());
+        this.register('?', () => this.showShortcutsHelp());
+    }
+
+    register(combination, callback) {
+        this.shortcuts.set(combination, callback);
+    }
+
+    listen() {
+        document.addEventListener('keydown', (e) => {
+            const combo = this.getKeyCombination(e);
+            if (this.shortcuts.has(combo)) {
+                e.preventDefault();
+                this.shortcuts.get(combo)();
+            }
+        });
+    }
+
+    getKeyCombination(e) {
+        const parts = [];
+        if (e.ctrlKey) parts.push('ctrl');
+        if (e.altKey) parts.push('alt');
+        if (e.shiftKey) parts.push('shift');
+        parts.push(e.key.toLowerCase());
+        return parts.join('+');
+    }
+}
+
+Créons un service pour les notifications en temps réel :
+// app/Services/NotificationService.php
+<?php
+
+namespace App\Services;
+
+use Pusher\Pusher;
+
+class NotificationService
+{
+    private $pusher;
+
+    public function __construct()
+    {
+        $this->pusher = new Pusher(
+            config('broadcasting.connections.pusher.key'),
+            config('broadcasting.connections.pusher.secret'),
+            config('broadcasting.connections.pusher.app_id'),
+            config('broadcasting.connections.pusher.options')
+        );
+    }
+
+    public function send($type, $message, $data = [])
+    {
+        $notification = [
+            'type' => $type,
+            'message' => $message,
+            'data' => $data,
+            'timestamp' => now()
+        ];
+
+        $this->pusher->trigger('admin-channel', 'notification', $notification);
+    }
+}
+
+Créons un service pour les exports :
+// app/Services/ExportService.php
+<?php
+
+namespace App\Services;
+
+use Illuminate\Support\Facades\Storage;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PDF;
+
+class ExportService
+{
+    public function toCsv($data, $filename)
+    {
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        
+        // Add headers
+        $sheet->fromArray(array_keys(reset($data)), null, 'A1');
+        
+        // Add data
+        $sheet->fromArray($data, null, 'A2');
+        
+        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Csv($spreadsheet);
+        $path = storage_path("app/exports/{$filename}.csv");
+        $writer->save($path);
+        
+        return $path;
+    }
+
+    public function toPdf($view, $data, $filename)
+    {
+        $pdf = PDF::loadView($view, $data);
+        $path = storage_path("app/exports/{$filename}.pdf");
+        $pdf->save($path);
+        
+        return $path;
+    }
+}
+
+Créons un composant pour les graphiques :
+// app/View/Components/Chart.php
+<?php
+
+namespace App\View\Components;
+
+use Illuminate\View\Component;
+
+class Chart extends Component
+{
+    public $type;
+    public $data;
+    public $options;
+    public $height;
+    public $width;
+
+    public function __construct($type, $data, $options = [], $height = 400, $width = '100%')
+    {
+        $this->type = $type;
+        $this->data = $data;
+        $this->options = $options;
+        $this->height = $height;
+        $this->width = $width;
+    }
+
+    public function render()
+    {
+        return view('components.chart');
+    }
+}
+
+Exemple d'utilisation dans un dashboard :
+// resources/views/dashboard.blade.php
+@extends('layouts.admin')
+
+@section('content')
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Statistiques rapides -->
+    <x-stats-card title="Visites aujourd'hui" :value="$stats['visits']" />
+    <x-stats-card title="Pages actives" :value="$stats['pages']" />
+    <x-stats-card title="Espace disque" :value="$stats['disk']" />
+
+    <!-- Graphique des visites -->
+    <div class="col-span-full">
+        <x-chart 
+            type="line" 
+            :data="$visitorsData"
+            :options="['responsive' => true]"
+        />
+    </div>
+
+    <!-- Dernières activités -->
+    <div class="col-span-full md:col-span-1">
+        <x-activity-feed :activities="$recentActivities" />
+    </div>
+
+    <!-- État du système -->
+    <div class="col-span-full md:col-span-2">
+        <x-system-health-panel :metrics="$systemMetrics" />
+    </div>
+</div>
+@endsection
+
+Pour intégrer tout cela, vous devrez :
+
+Installer les dépendances nécessaires :
+composer require pusher/pusher-php-server
+composer require barryvdh/laravel-dompdf
+composer require phpoffice/phpspreadsheet
+npm install chart.js
+npm install @alpinejs/focus
+
+Configurer votre fichier vite.config.js :
+import { defineConfig } from 'vite';
+import laravel from 'laravel-vite-plugin';
+
+export default defineConfig({
+    plugins: [
+        laravel({
+            input: [
+                'resources/css/app.css',
+                'resources/js/app.js',
+            ],
+            refresh: true,
+        }),
+    ],
+});
+
+Mettre à jour votre fichier app.js :
+import './bootstrap';
+import Alpine from 'alpinejs';
+import focus from '@alpinejs/focus';
+import ShortcutsService from './services/shortcuts';
+
+Alpine.plugin(focus);
+window.Alpine = Alpine;
+Alpine.start();
+
+// Initialize services
+const shortcuts = new ShortcutsService();
+
+Cette structure fournit une base solide pour votre interface d'administration avec :
+
+Une navigation claire et intuitive
+Des raccourcis clavier
+Une recherche globale
+Des notifications en temps réel
+Des exports de données
+Des visualisations de données
+Voulez-vous que je détaille une partie spécifique ou que je continue avec d'autres composants ?
+
+
+
+
+Oui, voici d'autres composants utiles pour compléter l'interface :
+
+Modal réutilisable avec Alpine.js :
+// resources/views/components/modal.blade.php
+<div x-data="{ open: false }"
+     x-show="open"
+     @keydown.escape.window="open = false"
+     class="fixed inset-0 z-50 overflow-y-auto"
+     x-cloak>
+    <div class="flex items-center justify-center min-h-screen px-4">
+        <div class="fixed inset-0 transition-opacity" @click="open = false">
+            <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+        </div>
+
+        <div class="relative bg-white rounded-lg max-w-lg w-full p-6">
+            <div class="absolute top-0 right-0 p-4">
+                <button @click="open = false" class="text-gray-400 hover:text-gray-500">
+                    <span class="sr-only">Fermer</span>
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="mt-3">
+                {{ $slot }}
+            </div>
+        </div>
+    </div>
+</div>
+
+Tableau de données avec tri et filtres :
+// resources/views/components/data-table.blade.php
+<div x-data="dataTable({
+    data: {{ json_encode($data) }},
+    columns: {{ json_encode($columns) }},
+    sortColumn: '{{ $defaultSort }}',
+    sortDirection: 'asc'
+})">
+    <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+                <tr>
+                    @foreach($columns as $column)
+                    <th @click="sort('{{ $column['key'] }}')"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">
+                        {{ $column['label'] }}
+                        <span x-show="sortColumn === '{{ $column['key'] }}'">
+                            <template x-if="sortDirection === 'asc'">↑</template>
+                            <template x-if="sortDirection === 'desc'">↓</template>
+                        </span>
+                    </th>
+                    @endforeach
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                <template x-for="item in sortedData" :key="item.id">
+                    <tr>
+                        @foreach($columns as $column)
+                        <td class="px-6 py-4 whitespace-nowrap" x-text="item.{{ $column['key'] }}"></td>
+                        @endforeach
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+Toast Notifications :
+// resources/views/components/toast.blade.php
+<div
+    x-data="{ 
+        show: false,
+        message: '',
+        type: 'success',
+        timeout: null
+    }"
+    @notify.window="
+        message = $event.detail.message;
+        type = $event.detail.type || 'success';
+        show = true;
+        if (timeout) clearTimeout(timeout);
+        timeout = setTimeout(() => show = false, 3000);
+    "
+    x-show="show"
+    x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="opacity-0 transform translate-y-2"
+    x-transition:enter-end="opacity-100 transform translate-y-0"
+    x-transition:leave="transition ease-in duration-200"
+    x-transition:leave-start="opacity-100 transform translate-y-0"
+    x-transition:leave-end="opacity-0 transform translate-y-2"
+    class="fixed bottom-4 right-4 px-4 py-2 rounded-lg shadow-lg"
+    :class="{
+        'bg-green-500 text-white': type === 'success',
+        'bg-red-500 text-white': type === 'error',
+        'bg-yellow-500 text-white': type === 'warning',
+        'bg-blue-500 text-white': type === 'info'
+    }"
+>
+    <div class="flex items-center">
+        <span x-text="message"></span>
+        <button @click="show = false" class="ml-4 text-white hover:text-gray-200">
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+</div>
+
+Sélecteur de fichiers avancé :
+// resources/views/components/file-uploader.blade.php
+<div x-data="fileUploader()"
+     class="relative border-2 border-dashed border-gray-300 rounded-lg p-6"
+     @dragover.prevent="dragOver = true"
+     @dragleave.prevent="dragOver = false"
+     @drop.prevent="handleDrop($event)">
+    
+    <input type="file" 
+           class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+           @change="handleFileSelect($event)"
+           {{ $attributes }}>
+    
+    <div class="text-center">
+        <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        
+        <p class="mt-1 text-sm text-gray-600">
+            <span>Glissez-déposez un fichier ici ou</span>
+            <span class="text-indigo-600 hover:text-indigo-500">parcourez</span>
+        </p>
+    </div>
+
+    <template x-if="files.length > 0">
+        <div class="mt-4 space-y-2">
+            <template x-for="file in files" :key="file.name">
+                <div class="flex items-center justify-between py-2 px-3 bg-gray-50 rounded">
+                    <span x-text="file.name" class="text-sm text-gray-700"></span>
+                    <button @click="removeFile(file)" class="text-red-500 hover:text-red-700">
+                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </template>
+        </div>
+    </template>
+</div>
+
+@push('scripts')
+<script>
+function fileUploader() {
+    return {
+        dragOver: false,
+        files: [],
+        
+        handleDrop(e) {
+            this.dragOver = false;
+            this.addFiles(e.dataTransfer.files);
+        },
+        
+        handleFileSelect(e) {
+            this.addFiles(e.target.files);
+        },
+        
+        addFiles(fileList) {
+            [...fileList].forEach(file => {
+                if (!this.files.find(f => f.name === file.name)) {
+                    this.files.push(file);
+                }
+            });
+        },
+        
+        removeFile(file) {
+            this.files = this.files.filter(f => f !== file);
+        }
+    }
+}
+</script>
+@endpush
+
+Barre de progression :
+// resources/views/components/progress.blade.php
+<div x-data="{ progress: 0 }"
+     class="relative pt-1">
+    <div class="flex mb-2 items-center justify-between">
+        <div>
+            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full"
+                  :class="{
+                      'text-pink-600 bg-pink-200': progress < 50,
+                      'text-yellow-600 bg-yellow-200': progress >= 50 && progress < 80,
+                      'text-green-600 bg-green-200': progress >= 80
+                  }">
+                <span x-text="progress"></span>%
+            </span>
+        </div>
+    </div>
+    <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
+        <div :style="`width: ${progress}%`"
+             class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center"
+             :class="{
+                 'bg-pink-500': progress < 50,
+                 'bg-yellow-500': progress >= 50 && progress < 80,
+                 'bg-green-500': progress >= 80
+             }">
+        </div>
+    </div>
+</div>
+
+Sélecteur de date personnalisé :
+// resources/views/components/datepicker.blade.php
+<div x-data="datepicker(@entangle($attributes->wire('model')))"
+     class="relative">
+    <input type="text"
+           x-model="formatDate"
+           @click="showDatepicker = !showDatepicker"
+           @keydown.escape="showDatepicker = false"
+           class="w-full pl-4 pr-10 py-2 leading-none rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium"
+           placeholder="Sélectionnez une date">
+
+    <div class="absolute top-0 right-0 px-3 py-2">
+        <svg class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+    </div>
+
+    <div x-show="showDatepicker"
+         x-transition
+         @click.away="showDatepicker = false"
+         class="absolute top-12 left-0 mt-2 w-72 bg-white rounded-lg shadow p-4 z-50">
+        <!-- Calendrier ici -->
+    </div>
+</div>
+
+Sélecteur de couleur :
+// resources/views/components/color-picker.blade.php
+<div x-data="colorPicker()"
+     class="relative">
+    <div class="flex items-center space-x-2">
+        <button @click="isOpen = !isOpen"
+                class="w-10 h-10 rounded-full border-2 border-gray-300"
+                :style="`background-color: ${color}`">
+        </button>
+        <input type="text"
+               x-model="color"
+               class="form-input w-24"
+               @input="updateColor">
+    </div>
+
+    <div x-show="isOpen"
+         @click.away="isOpen = false"
+         class="absolute mt-2 p-3 bg-white rounded-lg shadow-xl z-50">
+        <div class="grid grid-cols-8 gap-2">
+            <template x-for="c in presetColors" :key="c">
+                <button @click="selectColor(c)"
+                        class="w-6 h-6 rounded-full"
+                        :style="`background-color: ${c}`">
+                </button>
+            </template>
+        </div>
+    </div>
+</div>
+
+Ces composants peuvent être utilisés dans toute l'interface pour maintenir une cohérence visuelle et fonctionnelle. Ils sont réactifs et accessibles.
+
+Pour les utiliser efficacement, assurez-vous d'avoir :
+
+Alpine.js configuré correctement
+Les styles Tailwind CSS nécessaires
+Les événements JavaScript/Alpine.js appropriés
+Voulez-vous que je détaille l'implémentation d'un composant spécifique ou que je montre comment les intégrer ensemble ?
+
+
+
+
+
+
+
+
+
+
+########################################################
+########################################################
+Gestionnaire de backups automatique :
+// BackupController.php
+public function createBackup()
+{
+    Artisan::call('backup:run');
+    return response()->json(['message' => 'Backup créé avec succès']);
+}
+
+public function listBackups()
+{
+    $backups = Storage::files('backups');
+    return view('settings.backups', compact('backups'));
+}
+
+public function downloadBackup($filename)
+{
+    return Storage::download("backups/$filename");
+}
+
+
+
+Moniteur de performances serveur :
+// SystemController.php
+public function systemInfo()
+{
+    $diskSpace = disk_free_space('/') / disk_total_space('/') * 100;
+    $cpuLoad = sys_getloadavg();
+    $memoryUsage = memory_get_usage(true);
+    
+    return view('settings.system', compact('diskSpace', 'cpuLoad', 'memoryUsage'));
+}
+
+
+
+Journal d'activités (Activity Log) :
+// Activity.php (Model)
+class Activity extends Model
+{
+    protected $fillable = ['action', 'description', 'changes'];
+}
+
+// Trait pour logger les activités
+trait LogsActivity
+{
+    public static function bootLogsActivity()
+    {
+        static::created(function ($model) {
+            self::logActivity('created', $model);
+        });
+        
+        static::updated(function ($model) {
+            self::logActivity('updated', $model);
+        });
+    }
+}
+
+
+
+Mode maintenance personnalisé :
+// MaintenanceController.php
+public function toggle()
+{
+    if (app()->isDownForMaintenance()) {
+        Artisan::call('up');
+        $message = 'Site en ligne';
+    } else {
+        Artisan::call('down', [
+            '--secret' => 'votre-token-secret',
+            '--render' => 'maintenance'
+        ]);
+        $message = 'Site en maintenance';
+    }
+    
+    return back()->with('status', $message);
+}
+
+
+
+Tableau de bord analytique :
+// DashboardController.php
+public function index()
+{
+    $stats = [
+        'visites_aujourd_hui' => Visit::whereDate('created_at', today())->count(),
+        'pages_populaires' => Page::orderByViews()->limit(5)->get(),
+        'performances' => $this->getPerformanceMetrics(),
+        'erreurs_recentes' => Log::where('level', 'error')
+                                ->latest()
+                                ->limit(5)
+                                ->get()
+    ];
+    
+    return view('dashboard', compact('stats'));
+}
+
+
+
+Gestionnaire de médias :
+// MediaController.php
+public function index()
+{
+    $media = Storage::disk('public')->files('media');
+    return view('media.index', compact('media'));
+}
+
+public function upload(Request $request)
+{
+    $path = $request->file('media')->store('media', 'public');
+    return response()->json(['path' => $path]);
+}
+
+
+
+
+Gestionnaire de cache :
+// CacheController.php
+public function manage()
+{
+    $cacheStats = [
+        'size' => $this->getCacheSize(),
+        'items' => Cache::get('*'),
+    ];
+    
+    return view('settings.cache', compact('cacheStats'));
+}
+
+public function clear()
+{
+    Cache::flush();
+    Artisan::call('view:clear');
+    Artisan::call('route:clear');
+    
+    return back()->with('status', 'Cache nettoyé');
+}
+
+
+
+Notifications personnalisées :
+// NotificationController.php
+public function settings()
+{
+    $preferences = [
+        'email_alerts' => true,
+        'browser_notifications' => true,
+        'maintenance_alerts' => true
+    ];
+    
+    return view('settings.notifications', compact('preferences'));
+}
+
+
+
+API Token Management :
+// ApiTokenController.php
+public function generate()
+{
+    $token = Str::random(60);
+    auth()->user()->update(['api_token' => hash('sha256', $token)]);
+    
+    return response()->json(['token' => $token]);
+}
+
+Éditeur de contenu WYSIWYG :
+// ContentController.php
+public function editor()
+{
+    $pages = Page::all();
+    return view('content.editor', compact('pages'));
+}
+
+public function save(Request $request)
+{
+    Page::updateOrCreate(
+        ['slug' => $request->slug],
+        ['content' => $request->content]
+    );
+}
+
+Mode sombre automatique :
+// darkMode.js
+function initDarkMode() {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    
+    prefersDark.addListener((e) => {
+        const isDark = e.matches;
+        document.documentElement.classList.toggle('dark', isDark);
+        updateThemeColors(isDark);
+    });
+}
+
+Gestionnaire de logs amélioré :
+// LogViewerController.php
+public function index()
+{
+    $logs = Storage::disk('logs')->files();
+    $parsed = collect($logs)->map(function ($log) {
+        return [
+            'filename' => $log,
+            'size' => Storage::disk('logs')->size($log),
+            'updated_at' => Storage::disk('logs')->lastModified($log)
+        ];
+    });
+    
+    return view('logs.index', compact('parsed'));
+}
+
+Ces fonctionnalités peuvent être implémentées progressivement selon vos besoins. Il serait judicieux de :
+
+Créer une interface unifiée pour gérer toutes ces fonctionnalités
+Ajouter des graphiques pour visualiser les données (avec Chart.js par exemple)
+Mettre en place des raccourcis clavier pour les actions fréquentes
+Ajouter des notifications en temps réel pour les événements importants
+Créer des exports de données au format CSV/PDF
+Implémenter un système de recherche global
+Choisissez les fonctionnalités qui vous semblent les plus utiles pour votre usage et implémentez-les une par une.

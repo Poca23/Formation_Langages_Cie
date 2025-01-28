@@ -1,0 +1,26 @@
+2. Configuration
+2.1. Installation Laravel
+Installe Laravel avec Composer si ce n'est pas déjà fait :
+
+composer create-project laravel/laravel mon-projet
+cd mon-projet
+php artisan serve
+
+2.2. Configuration Git
+Initialise Git dans ton dossier :
+
+git init
+git add .
+git commit -m "Initial commit"
+
+2.3. Configuration de l’environnement
+Modifie .env pour y configurer la base de données :
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=mon_projet
+DB_USERNAME=root
+DB_PASSWORD=secret
+
+Puis lance un serveur MySQL en local et crée une base de données mon_projet.

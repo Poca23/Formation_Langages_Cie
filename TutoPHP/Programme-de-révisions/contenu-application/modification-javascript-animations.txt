@@ -1,0 +1,88 @@
+Modifiez le JavaScript dans la vue pour ajouter des animations :
+function themeHandler() {
+    return {
+        currentTheme: '{{ auth()->user()->theme_preference }}',
+        colors: @json(auth()->user()->theme_colors ?? [
+            'primary' => '#ffffff',
+            'secondary' => '#f3f4f6',
+            'accent' => '#3b82f6'
+        ]),
+        loading: false,
+        previewHovered: false,
+
+        init() {
+            this.applyTheme();
+            this.initializeRippleEffect();
+        },
+
+        initializeRippleEffect() {
+            document.querySelectorAll('.theme-btn, .save-theme-btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    let ripple = document.createElement('div');
+                    ripple.classList.add('ripple');
+                    this.appendChild(ripple);
+                    
+                    let rect = this.getBoundingClientRect();
+                    let x = e.clientX - rect.left;
+                    let y = e.clientY - rect.top;
+                    
+                    ripple.style.left = x + 'px';
+                    ripple.style.top = y + 'px';
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+        },
+
+        async saveTheme() {
+            this.loading = true;
+            try {
+                const response = await fetch('{{ route("settings.theme.update") }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    },
+                    body: JSON.stringify({
+                        theme: this.currentTheme,
+                        primary_color: this.colors.primary,
+                        secondary_color: this.colors.secondary,
+                        accent_color: this.colors.accent,
+                    })
+                });
+
+                if (response.ok) {
+                    this.showSuccessNotification();
+                }
+            } catch (error) {
+                this.showErrorNotification();
+            } finally {
+                this.loading = false;
+            }
+        },
+
+        showSuccessNotification() {
+            const notification = document.createElement('div');
+            notification.classList.add('notification', 'success');
+            notification.textContent = 'Thème enregistré avec succès !';
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        },
+
+        showErrorNotification() {
+            const notification = document.createElement('div');
+            notification.classList.add('notification', 'error');
+            notification.textContent = 'Erreur lors de l\'enregistrement';
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+    }
+}

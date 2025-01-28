@@ -1,0 +1,12 @@
+Ajoutez les routes dans web.php
+
+Route::post('/quiz/{quiz}/submit', [QuizController::class, 'submit'])->name('quiz.submit');
+Route::get('/progress', [UserProgressController::class, 'index'])->name('progress.index');
+
+Ces composants permettent de :
+
+Afficher et gérer les quiz
+Suivre la progression de l'utilisateur
+Afficher un tableau de bord des révisions nécessaires
+Empêcher l'accès aux chapitres suivants tant que le quiz n'est pas réussi à 100%
+Afficher les statistiques par section

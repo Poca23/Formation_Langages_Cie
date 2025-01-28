@@ -1,0 +1,61 @@
+Section.php
+<?php
+namespace App\Models;
+use Illuminate\Database\Eloquent\Model;
+
+class Section extends Model
+{
+    protected $fillable = ['name', 'description'];
+
+    public function chapters()
+    {
+        return $this->hasMany(Chapter::class)->orderBy('order');
+    }
+}
+
+
+Chapter.php
+<?php
+namespace App\Models;
+use Illuminate\Database\Eloquent\Model;
+
+class Chapter extends Model
+{
+    protected $fillable = ['section_id', 'title', 'order'];
+
+    public function section()
+    {
+        return $this->belongsTo(Section::class);
+    }
+
+    public function lesson()
+    {
+        return $this->hasOne(Lesson::class);
+    }
+
+    public function quiz()
+    {
+        return $this->hasOne(Quiz::class);
+    }
+
+    public function userProgress()
+    {
+        return $this->hasMany(UserProgress::class);
+    }
+}
+
+
+Lesson.php
+<?php
+namespace App\Models;
+use Illuminate\Database\Eloquent\Model;
+
+class Lesson extends Model
+{
+    protected $fillable = ['chapter_id', 'content', 'example'];
+
+    public function chapter()
+    {
+        return $this->belongsTo(Chapter::class);
+    }
+}

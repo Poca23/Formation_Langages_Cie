@@ -1,0 +1,210 @@
+Créez la vue settings/theme.blade.php :
+@extends('layouts.app')
+
+@section('content')
+<div class="settings-container" x-data="themeHandler()">
+    <h2>Paramètres du thème</h2>
+
+    <div class="theme-settings">
+        <div class="theme-mode">
+            <h3>Mode</h3>
+            <div class="theme-toggles">
+                <button 
+                    @click="setTheme('light')" 
+                    :class="{'active': currentTheme === 'light'}"
+                    class="theme-btn">
+                    Mode clair
+                </button>
+                <button 
+                    @click="setTheme('dark')" 
+                    :class="{'active': currentTheme === 'dark'}"
+                    class="theme-btn">
+                    Mode sombre
+                </button>
+            </div>
+        </div>
+
+        <div class="color-customization">
+            <h3>Personnalisation des couleurs</h3>
+            
+            <div class="color-picker-group">
+                <label>
+                    Couleur principale
+                    <input 
+                        type="color" 
+                        x-model="colors.primary"
+                        @change="updateColors">
+                </label>
+
+                <label>
+                    Couleur secondaire
+                    <input 
+                        type="color" 
+                        x-model="colors.secondary"
+                        @change="updateColors">
+                </label>
+
+                <label>
+                    Couleur d'accent
+                    <input 
+                        type="color" 
+                        x-model="colors.accent"
+                        @change="updateColors">
+                </label>
+            </div>
+
+            <div class="preview-section">
+                <h4>Aperçu</h4>
+                <div class="theme-preview" :style="previewStyles">
+                    <div class="preview-content">
+                        <h5>Exemple de contenu</h5>
+                        <p>Voici à quoi ressemblera votre thème</p>
+                        <button class="preview-button">Bouton d'exemple</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button 
+            @click="saveTheme" 
+            class="save-theme-btn">
+            Enregistrer les préférences
+        </button>
+    </div>
+</div>
+
+@push('scripts')
+<script>
+function themeHandler() {
+    return {
+        currentTheme: '{{ auth()->user()->theme_preference }}',
+        colors: @json(auth()->user()->theme_colors ?? [
+            'primary' => '#ffffff',
+            'secondary' => '#f3f4f6',
+            'accent' => '#3b82f6'
+        ]),
+
+        init() {
+            this.applyTheme();
+        },
+
+        setTheme(theme) {
+            this.currentTheme = theme;
+            this.applyTheme();
+        },
+
+        get previewStyles() {
+            return {
+                '--primary-color': this.colors.primary,
+                '--secondary-color': this.colors.secondary,
+                '--accent-color': this.colors.accent,
+            }
+        },
+
+        applyTheme() {
+            document.documentElement.style.setProperty('--primary-color', this.colors.primary);
+            document.documentElement.style.setProperty('--secondary-color', this.colors.secondary);
+            document.documentElement.style.setProperty('--accent-color', this.colors.accent);
+            document.body.className = `theme-${this.currentTheme}`;
+        },
+
+        async saveTheme() {
+            try {
+                const response = await fetch('{{ route("settings.theme.update") }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    },
+                    body: JSON.stringify({
+                        theme: this.currentTheme,
+                        primary_color: this.colors.primary,
+                        secondary_color: this.colors.secondary,
+                        accent_color: this.colors.accent,
+                    })
+                });
+
+                if (response.ok) {
+                    alert('Thème enregistré avec succès !');
+                }
+            } catch (error) {
+                console.error('Erreur:', error);
+                alert('Erreur lors de l\'enregistrement du thème');
+            }
+        }
+    }
+}
+</script>
+@endpush
+
+<style>
+.settings-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.theme-settings {
+    display: grid;
+    gap: 2rem;
+}
+
+.theme-toggles {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.theme-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--accent-color);
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.theme-btn.active {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.color-picker-group {
+    display: grid;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.color-picker-group label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.preview-section {
+    margin: 2rem 0;
+    padding: 1rem;
+    border: 1px solid var(--accent-color);
+    border-radius: 0.5rem;
+}
+
+.theme-preview {
+    padding: 2rem;
+    border-radius: 0.5rem;
+    background-color: var(--primary-color);
+}
+
+.save-theme-btn {
+    padding: 1rem 2rem;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .color-picker-group {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+@endsection
