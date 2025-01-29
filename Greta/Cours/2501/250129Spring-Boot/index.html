@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cours Spring Boot</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <img src="https://raw.githubusercontent.com/spring-projects/spring-framework/main/framework-docs/src/docs/spring-framework.png"
+                alt="Spring Logo" class="logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#concepts">Concepts Clés</a></li>
+            <li><a href="#pratique">Pratique</a></li>
+            <li><a href="#exercices">Exercices</a></li>
+            <li><a href="#ressources">Ressources</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <!-- Dans la section introduction -->
+        <section id="introduction" class="section">
+            <h1>Spring Boot</h1>
+            <div class="card" id="introCard">
+                <h2>Qu'est-ce que Spring Boot ?</h2>
+                <p>Spring Boot est un projet de la Spring Framework qui simplifie le processus de création
+                    d'applications Spring.
+                    Il permet aux développeurs de démarrer rapidement avec un minimum de configuration.</p>
+                <ul class="features-list">
+                    <li>Configuration automatique</li>
+                    <li>Serveur embarqué</li>
+                    <li>Métriques et monitoring</li>
+                    <li>Production-ready</li>
+                </ul>
+                <button class="info-btn">En savoir plus</button>
+            </div>
+
+            <div class="card" id="prerequisCard">
+                <h2>Prérequis</h2>
+                <ul>
+                    <li>Java 8 ou supérieur</li>
+                    <li>Maven ou Gradle</li>
+                    <li>Connaissances en Java</li>
+                    <li>IDE (IntelliJ IDEA, Eclipse, VS Code)</li>
+                </ul>
+                <button class="info-btn">Détails des versions</button>
+            </div>
+        </section>
+
+        <!-- Dans la section concepts -->
+        <section id="concepts" class="section">
+            <h2>Concepts Clés</h2>
+            <div class="concepts-grid">
+                <div class="concept-card">
+                    <i class="fas fa-cogs"></i>
+                    <h3>Auto-configuration</h3>
+                    <p>Spring Boot configure automatiquement votre application en fonction des dépendances ajoutées.
+                    </p>
+                    <ul>
+                        <li>Configuration conditionnelle</li>
+                        <li>Détection automatique</li>
+                        <li>Configuration par défaut</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card">
+                    <i class="fas fa-box"></i>
+                    <h3>Spring Boot Starters</h3>
+                    <p>Dépendances préconfigurées pour différents scénarios.</p>
+                    <ul>
+                        <li>spring-boot-starter-web</li>
+                        <li>spring-boot-starter-data-jpa</li>
+                        <li>spring-boot-starter-test</li>
+                        <li>spring-boot-starter-security</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card">
+                    <i class="fas fa-server"></i>
+                    <h3>Serveur Embarqué</h3>
+                    <p>Serveur d'application intégré.</p>
+                    <ul>
+                        <li>Tomcat par défaut</li>
+                        <li>Jetty en alternative</li>
+                        <li>Undertow disponible</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Spring Security</h3>
+                    <p>Sécurité et authentification.</p>
+                    <ul>
+                        <li>Authentification</li>
+                        <li>Autorisation</li>
+                        <li>Protection CSRF</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dans la section pratique -->
+        <section id="pratique" class="section">
+            <h2>Mise en Pratique</h2>
+
+            <div class="subsection">
+                <h3>1. Création d'un projet</h3>
+                <div class="code-example">
+                    <pre><code>
+<!-- Utilisation de Spring Initializr -->
+https://start.spring.io/
+- Choisir Maven/Gradle
+- Choisir Java 8+
+- Ajouter les dépendances:
+  * Spring Web
+  * Spring Data JPA
+  * H2 Database
+            </code></pre>
+                    <button class="copy-btn">Copier</button>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>2. Structure du projet</h3>
+                <div class="code-example">
+                    <pre><code>
+projet-demo/
+    ├── src/
+    │   ├── main/
+    │   │   ├── java/
+    │   │   │   └── com/example/demo/
+    │   │   │       ├── DemoApplication.java
+    │   │   │       ├── controllers/
+    │   │   │       ├── models/
+    │   │   │       ├── repositories/
+    │   │   │       └── services/
+    │   │   └── resources/
+    │   │       └── application.properties
+    │   └── test/
+    └── pom.xml
+            </code></pre>
+                    <button class="copy-btn">Copier</button>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>3. Application Simple</h3>
+                <div class="code-example">
+                    <pre><code>
+@SpringBootApplication
+public class DemoApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(DemoApplication.class, args);
+    }
+}
+
+@RestController
+@RequestMapping("/api")
+public class HelloController {
+    @GetMapping("/hello")
+    public String hello() {
+        return "Hello Spring Boot!";
+    }
+}
+            </code></pre>
+                    <button class="copy-btn">Copier</button>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>4. Configuration</h3>
+                <div class="code-example">
+                    <pre><code>
+# application.properties
+server.port=8080
+spring.jpa.hibernate.ddl-auto=update
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.driverClassName=org.h2.Driver
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+            </code></pre>
+                    <button class="copy-btn">Copier</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dans la section exercices -->
+        <section id="exercices" class="section">
+            <h2>Exercices Pratiques</h2>
+
+            <div class="exercise-container">
+                <!-- Exercice 1 -->
+                <div class="exercise-card">
+                    <h3>Exercice 1: Création d'une API REST</h3>
+                    <div class="exercise-content">
+                        <p class="exercise-description">
+                            Créez une API REST simple pour gérer une liste de livres avec les opérations CRUD.
+                        </p>
+                        <div class="exercise-steps">
+                            <h4>Étapes:</h4>
+                            <ol>
+                                <li>Créer une classe Book (id, titre, auteur, année)</li>
+                                <li>Créer un BookRepository</li>
+                                <li>Implémenter un BookController avec les endpoints CRUD</li>
+                                <li>Tester avec Postman ou cURL</li>
+                            </ol>
+                        </div>
+                        <button class="solution-btn" data-exercise="1">Voir la solution</button>
+
+                        <!-- Ajout de la solution -->
+                        <div class="solution-content" id="solution-1">
+                            <h4>Solution:</h4>
+
+                            <div class="code-section">
+                                <h5>Book.java</h5>
+                                <pre><code>
+@Entity
+public class Book {
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+private Long id;
+
+private String title;
+private String author;
+private Integer year;
+
+// Constructeurs, Getters et Setters
+}
+        </code></pre>
+                            </div>
+
+                            <div class="code-section">
+                                <h5>BookRepository.java</h5>
+                                <pre><code>
+@Repository
+public interface BookRepository extends JpaRepository<Book, Long> {
+}
+        </code></pre>
+                            </div>
+
+                            <div class="code-section">
+                                <h5>BookController.java</h5>
+                                <pre><code>
+@RestController
+@RequestMapping("/api/books")
+public class BookController {
+
+@Autowired
+private BookRepository bookRepository;
+
+// Récupérer tous les livres
+@GetMapping
+public List<Book> getAllBooks() {
+return bookRepository.findAll();
+}
+
+// Récupérer un livre par ID
+@GetMapping("/{id}")
+public ResponseEntity<Book> getBookById(@PathVariable Long id) {
+return bookRepository.findById(id)
+    .map(ResponseEntity::ok)
+    .orElse(ResponseEntity.notFound().build());
+}
+
+// Créer un nouveau livre
+@PostMapping
+public ResponseEntity<Book> createBook(@RequestBody Book book) {
+Book savedBook = bookRepository.save(book);
+return ResponseEntity.created(URI.create("/api/books/" + savedBook.getId()))
+    .body(savedBook);
+}
+
+// Mettre à jour un livre
+@PutMapping("/{id}")
+public ResponseEntity<Book> updateBook(@PathVariable Long id, @RequestBody Book book) {
+return bookRepository.findById(id)
+    .map(existingBook -> {
+        book.setId(id);
+        return ResponseEntity.ok(bookRepository.save(book));
+    })
+    .orElse(ResponseEntity.notFound().build());
+}
+
+// Supprimer un livre
+@DeleteMapping("/{id}")
+public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
+if (!bookRepository.existsById(id)) {
+    return ResponseEntity.notFound().build();
+}
+bookRepository.deleteById(id);
+return ResponseEntity.noContent().build();
+}
+}
+        </code></pre>
+                            </div>
+
+                            <div class="code-section">
+                                <h5>Test avec cURL</h5>
+                                <pre><code>
+# Créer un livre
+curl -X POST http://localhost:8080/api/books \
+-H "Content-Type: application/json" \
+-d '{"title":"1984","author":"George Orwell","year":1949}'
+
+# Récupérer tous les livres
+curl http://localhost:8080/api/books
+
+# Récupérer un livre par ID
+curl http://localhost:8080/api/books/1
+
+# Mettre à jour un livre
+curl -X PUT http://localhost:8080/api/books/1 \
+-H "Content-Type: application/json" \
+-d '{"title":"1984","author":"George Orwell","year":1948}'
+
+# Supprimer un livre
+curl -X DELETE http://localhost:8080/api/books/1
+        </code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+    </div>
+
+    <!-- Exercice 2 -->
+    <div class="exercise-card">
+        <h3>Exercice 2: Validation des données</h3>
+        <div class="exercise-content">
+            <p class="exercise-description">
+                Ajoutez la validation des données à votre API de livres.
+            </p>
+            <div class="exercise-steps">
+                <h4>Étapes:</h4>
+                <ol>
+                    <li>Ajouter les annotations de validation</li>
+                    <li>Créer un gestionnaire d'erreurs global</li>
+                    <li>Tester avec des données invalides</li>
+                </ol>
+            </div>
+            <button class="solution-btn" data-exercise="2">Voir la solution</button>
+            <!-- Solution Exercice 2 -->
+            <div class="solution-content" id="solution-2">
+                <h4>Solution:</h4>
+
+                <div class="code-section">
+                    <h5>Book.java (avec validations)</h5>
+                    <pre><code>
+@Entity
+public class Book {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    @NotBlank(message = "Le titre est obligatoire")
+    @Size(min = 1, max = 100, message = "Le titre doit faire entre 1 et 100 caractères")
+    private String title;
+    
+    @NotBlank(message = "L'auteur est obligatoire")
+    @Size(min = 1, max = 50, message = "Le nom de l'auteur doit faire entre 1 et 50 caractères")
+    private String author;
+    
+    @NotNull(message = "L'année est obligatoire")
+    @Min(value = 1000, message = "L'année doit être supérieure à 1000")
+    @Max(value = 9999, message = "L'année doit être inférieure à 9999")
+    private Integer year;
+
+    // Getters et Setters
+}
+        </code></pre>
+                </div>
+
+                <div class="code-section">
+                    <h5>ErrorResponse.java</h5>
+                    <pre><code>
+public class ErrorResponse {
+    private LocalDateTime timestamp;
+    private int status;
+    private String error;
+    private List<String> messages;
+
+    public ErrorResponse(int status, String error, List<String> messages) {
+        this.timestamp = LocalDateTime.now();
+        this.status = status;
+        this.error = error;
+        this.messages = messages;
+    }
+
+    // Getters et Setters
+}
+        </code></pre>
+                </div>
+
+                <div class="code-section">
+                    <h5>GlobalExceptionHandler.java</h5>
+                    <pre><code>
+@ControllerAdvice
+public class GlobalExceptionHandler {
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ErrorResponse> handleValidationErrors(MethodArgumentNotValidException ex) {
+        List<String> errors = ex.getBindingResult()
+            .getFieldErrors()
+            .stream()
+            .map(error -> error.getField() + ": " + error.getDefaultMessage())
+            .collect(Collectors.toList());
+
+        ErrorResponse errorResponse = new ErrorResponse(
+            HttpStatus.BAD_REQUEST.value(),
+            "Erreur de validation",
+            errors
+        );
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponse> handleAllUncaughtException(Exception ex) {
+        ErrorResponse errorResponse = new ErrorResponse(
+            HttpStatus.INTERNAL_SERVER_ERROR.value(),
+            "Erreur serveur",
+            Collections.singletonList(ex.getMessage())
+        );
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+}
+        </code></pre>
+                </div>
+
+                <div class="code-section">
+                    <h5>BookController.java (mise à jour)</h5>
+                    <pre><code>
+@RestController
+@RequestMapping("/api/books")
+public class BookController {
+    
+    @Autowired
+    private BookRepository bookRepository;
+
+    @PostMapping
+    public ResponseEntity<Book> createBook(@Valid @RequestBody Book book) {
+        Book savedBook = bookRepository.save(book);
+        return ResponseEntity.created(URI.create("/api/books/" + savedBook.getId()))
+            .body(savedBook);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Book> updateBook(
+            @PathVariable Long id,
+            @Valid @RequestBody Book book) {
+        return bookRepository.findById(id)
+            .map(existingBook -> {
+                book.setId(id);
+                return ResponseEntity.ok(bookRepository.save(book));
+            })
+            .orElse(ResponseEntity.notFound().build());
+    }
+}
+        </code></pre>
+                </div>
+
+                <div class="code-section">
+                    <h5>Test avec cURL (données invalides)</h5>
+                    <pre><code>
+# Test avec un titre vide
+curl -X POST http://localhost:8080/api/books \
+     -H "Content-Type: application/json" \
+     -d '{"title":"","author":"George Orwell","year":1949}'
+
+# Test avec une année invalide
+curl -X POST http://localhost:8080/api/books \
+     -H "Content-Type: application/json" \
+     -d '{"title":"1984","author":"George Orwell","year":999}'
+
+# Réponse d'erreur typique
+{
+    "timestamp": "2023-11-15T10:30:00",
+    "status": 400,
+    "error": "Erreur de validation",
+    "messages": [
+        "title: Le titre est obligatoire",
+        "year: L'année doit être supérieure à 1000"
+    ]
+}
+        </code></pre>
+                </div>
+
+                <div class="code-section">
+                    <h5>pom.xml (dépendances nécessaires)</h5>
+                    <pre><code>
+&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-validation&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+    ...
+&lt;/dependencies&gt;
+        </code></pre>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Exercice 3 -->
+    <div class="exercise-card">
+        <h3>Exercice 3: Tests unitaires</h3>
+        <div class="exercise-content">
+            <p class="exercise-description">
+                Écrivez des tests unitaires pour votre API de livres.
+            </p>
+            <div class="exercise-steps">
+                <h4>Étapes:</h4>
+                <ol>
+                    <li>Créer des tests pour le Controller</li>
+                    <li>Créer des tests pour le Service</li>
+                    <li>Utiliser MockMvc pour les tests d'intégration</li>
+                </ol>
+            </div>
+            <button class="solution-btn" data-exercise="3">Voir la solution</button>
+            <!-- Solution Exercice 3 -->
+            <div class="solution-content" id="solution-3">
+                <h4>Solution:</h4>
+
+                <div class="code-section">
+                    <h5>BookService.java (ajout d'une couche service)</h5>
+                    <pre><code>
+@Service
+public class BookService {
+    private final BookRepository bookRepository;
+
+    @Autowired
+    public BookService(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
+
+    public List<Book> getAllBooks() {
+        return bookRepository.findAll();
+    }
+
+    public Book getBookById(Long id) {
+        return bookRepository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Livre non trouvé avec l'id: " + id));
+    }
+
+    public Book createBook(Book book) {
+        return bookRepository.save(book);
+    }
+
+    public Book updateBook(Long id, Book book) {
+        getBookById(id); // Vérifie si le livre existe
+        book.setId(id);
+        return bookRepository.save(book);
+    }
+
+    public void deleteBook(Long id) {
+        getBookById(id); // Vérifie si le livre existe
+        bookRepository.deleteById(id);
+    }
+}
+        </code></pre>
+                </div>
+
+                <div class="code-section">
+                    <h5>BookServiceTest.java</h5>
+                    <pre><code>
+@ExtendWith(MockitoExtension.class)
+class BookServiceTest {
+    @Mock
+    private BookRepository bookRepository;
+
+    @InjectMocks
+    private BookService bookService;
+
+    private Book testBook;
+
+    @BeforeEach
+    void setUp() {
+        testBook = new Book();
+        testBook.setId(1L);
+        testBook.setTitle("Test Book");
+        testBook.setAuthor("Test Author");
+        testBook.setYear(2023);
+    }
+
+    @Test
+    void getAllBooks_ShouldReturnListOfBooks() {
+        // Arrange
+        List<Book> books = Arrays.asList(testBook);
+        when(bookRepository.findAll()).thenReturn(books);
+
+        // Act
+        List<Book> result = bookService.getAllBooks();
+
+        // Assert
+        assertEquals(1, result.size());
+        verify(bookRepository).findAll();
+    }
+
+    @Test
+    void getBookById_WithValidId_ShouldReturnBook() {
+        when(bookRepository.findById(1L)).thenReturn(Optional.of(testBook));
+
+        Book result = bookService.getBookById(1L);
+
+        assertEquals(testBook.getTitle(), result.getTitle());
+        verify(bookRepository).findById(1L);
+    }
+
+    @Test
+    void getBookById_WithInvalidId_ShouldThrowException() {
+        when(bookRepository.findById(1L)).thenReturn(Optional.empty());
+
+        assertThrows(ResourceNotFoundException.class, () -> 
+            bookService.getBookById(1L)
+        );
+    }
+}
+        </code></pre>
+                </div>
+
+                <div class="code-section">
+                    <h5>BookControllerTest.java</h5>
+                    <pre><code>
+@WebMvcTest(BookController.class)
+class BookControllerTest {
+    @Autowired
+    private MockMvc mockMvc;
+
+    @MockBean
+    private BookService bookService;
+
+    @Autowired
+    private ObjectMapper objectMapper;
+
+    private Book testBook;
+
+    @BeforeEach
+    void setUp() {
+        testBook = new Book();
+        testBook.setId(1L);
+        testBook.setTitle("Test Book");
+        testBook.setAuthor("Test Author");
+        testBook.setYear(2023);
+    }
+
+    @Test
+    void getAllBooks_ShouldReturnBooks() throws Exception {
+        List<Book> books = Arrays.asList(testBook);
+        when(bookService.getAllBooks()).thenReturn(books);
+
+        mockMvc.perform(get("/api/books")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].title").value("Test Book"))
+                .andExpect(jsonPath("$[0].author").value("Test Author"));
+    }
+
+    @Test
+    void createBook_WithValidData_ShouldReturnCreated() throws Exception {
+        when(bookService.createBook(any(Book.class))).thenReturn(testBook);
+
+        mockMvc.perform(post("/api/books")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(testBook)))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.title").value("Test Book"));
+    }
+
+    @Test
+    void createBook_WithInvalidData_ShouldReturnBadRequest() throws Exception {
+        testBook.setTitle(""); // Invalid title
+
+        mockMvc.perform(post("/api/books")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(testBook)))
+                .andExpect(status().isBadRequest());
+    }
+}
+        </code></pre>
+                </div>
+
+                <div class="code-section">
+                    <h5>BookIntegrationTest.java</h5>
+                    <pre><code>
+@SpringBootTest
+@AutoConfigureMockMvc
+class BookIntegrationTest {
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Autowired
+    private BookRepository bookRepository;
+
+    @Autowired
+    private ObjectMapper objectMapper;
+
+    @BeforeEach
+    void setUp() {
+        bookRepository.deleteAll();
+    }
+
+    @Test
+    void bookLifecycle() throws Exception {
+        // Create
+        Book newBook = new Book();
+        newBook.setTitle("Integration Test Book");
+        newBook.setAuthor("Test Author");
+        newBook.setYear(2023);
+
+        String createResponse = mockMvc.perform(post("/api/books")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(newBook)))
+                .andExpect(status().isCreated())
+                .andReturn().getResponse().getContentAsString();
+
+        Book createdBook = objectMapper.readValue(createResponse, Book.class);
+
+        // Read
+        mockMvc.perform(get("/api/books/" + createdBook.getId()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.title").value("Integration Test Book"));
+
+        // Update
+        createdBook.setTitle("Updated Title");
+        mockMvc.perform(put("/api/books/" + createdBook.getId())
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(createdBook)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.title").value("Updated Title"));
+
+        // Delete
+        mockMvc.perform(delete("/api/books/" + createdBook.getId()))
+                .andExpect(status().isNoContent());
+    }
+}
+        </code></pre>
+                </div>
+
+                <div class="code-section">
+                    <h5>pom.xml (dépendances de test)</h5>
+                    <pre><code>
+&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+        &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.h2database&lt;/groupId&gt;
+        &lt;artifactId&gt;h2&lt;/artifactId&gt;
+        &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+        </code></pre>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Exercice 4 -->
+    <div class="exercise-card">
+        <h3>Exercice 4: Sécurité avec Spring Security</h3>
+        <div class="exercise-content">
+            <p class="exercise-description">
+                Sécurisez votre API avec authentification basic.
+            </p>
+            <div class="exercise-steps">
+                <h4>Étapes:</h4>
+                <ol>
+                    <li>Configurer Spring Security</li>
+                    <li>Créer des rôles utilisateur</li>
+                    <li>Protéger les endpoints</li>
+                    <li>Tester l'authentification</li>
+                </ol>
+            </div>
+            <button class="solution-btn" data-exercise="4">Voir la solution</button>
+            <!-- Solution Exercice 4 -->
+            <div class="solution-content" id="solution-4">
+                <h4>Solution:</h4>
+
+                <div class="code-section">
+                    <h5>pom.xml (dépendances de sécurité)</h5>
+                    <pre><code>
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-security&lt;/artifactId&gt;
+&lt;/dependency&gt;
+        </code></pre>
+                </div>
+
+                <div class="code-section">
+                    <h5>SecurityConfig.java</h5>
+                    <pre><code>
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+            .csrf().disable()
+            .authorizeHttpRequests((auth) -> auth
+                .requestMatchers(HttpMethod.GET, "/api/books/**").hasAnyRole("USER", "ADMIN")
+                .requestMatchers(HttpMethod.POST, "/api/books").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/api/books/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.DELETE, "/api/books/**").hasRole("ADMIN")
+                .anyRequest().authenticated()
+            )
+            .httpBasic(Customizer.withDefaults());
+
+        return http.build();
+    }
+
+    @Bean
+    public InMemoryUserDetailsManager userDetailsService() {
+        UserDetails user = User.builder()
+            .username("user")
+            .password(passwordEncoder().encode("userpass"))
+            .roles("USER")
+            .build();
+
+        UserDetails admin = User.builder()
+            .username("admin")
+            .password(passwordEncoder().encode("adminpass"))
+            .roles("ADMIN")
+            .build();
+
+        return new InMemoryUserDetailsManager(user, admin);
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+}
+        </code></pre>
+                </div>
+
+                <div class="code-section">
+                    <h5>BookController.java (avec annotations de sécurité)</h5>
+                    <pre><code>
+@RestController
+@RequestMapping("/api/books")
+public class BookController {
+
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @GetMapping
+    public List<Book> getAllBooks() {
+        // ...
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping
+    public ResponseEntity<Book> createBook(@Valid @RequestBody Book book) {
+        // ...
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/{id}")
+    public ResponseEntity<Book> updateBook(@PathVariable Long id, @Valid @RequestBody Book book) {
+        // ...
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
+        // ...
+    }
+}
+        </code></pre>
+                </div>
+
+                <div class="code-section">
+                    <h5>Tests avec cURL</h5>
+                    <pre><code>
+# Tentative sans authentification
+curl http://localhost:8080/api/books
+
+# Lecture avec utilisateur normal
+curl -u user:userpass http://localhost:8080/api/books
+
+# Création avec utilisateur normal (doit échouer)
+curl -u user:userpass -X POST http://localhost:8080/api/books \
+     -H "Content-Type: application/json" \
+     -d '{"title":"1984","author":"George Orwell","year":1949}'
+
+# Création avec admin (doit réussir)
+curl -u admin:adminpass -X POST http://localhost:8080/api/books \
+     -H "Content-Type: application/json" \
+     -d '{"title":"1984","author":"George Orwell","year":1949}'
+        </code></pre>
+                </div>
+
+                <div class="code-section">
+                    <h5>SecurityTest.java</h5>
+                    <pre><code>
+@SpringBootTest
+@AutoConfigureMockMvc
+class SecurityTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Test
+    void getBooks_WithoutAuth_ShouldReturnUnauthorized() throws Exception {
+        mockMvc.perform(get("/api/books"))
+            .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    void getBooks_WithUserRole_ShouldSucceed() throws Exception {
+        mockMvc.perform(get("/api/books")
+            .with(user("user").roles("USER")))
+            .andExpect(status().isOk());
+    }
+
+    @Test
+    void createBook_WithUserRole_ShouldBeForbidden() throws Exception {
+        Book book = new Book();
+        book.setTitle("Test");
+        book.setAuthor("Author");
+        book.setYear(2023);
+
+        mockMvc.perform(post("/api/books")
+            .with(user("user").roles("USER"))
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(new ObjectMapper().writeValueAsString(book)))
+            .andExpect(status().isForbidden());
+    }
+
+    @Test
+    void createBook_WithAdminRole_ShouldSucceed() throws Exception {
+        Book book = new Book();
+        book.setTitle("Test");
+        book.setAuthor("Author");
+        book.setYear(2023);
+
+        mockMvc.perform(post("/api/books")
+            .with(user("admin").roles("ADMIN"))
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(new ObjectMapper().writeValueAsString(book)))
+            .andExpect(status().isCreated());
+    }
+}
+        </code></pre>
+                </div>
+
+                <div class="code-section">
+                    <h5>application.properties (configuration optionnelle)</h5>
+                    <pre><code>
+# Désactiver la page de login par défaut (pour API REST)
+spring.security.basic.enabled=true
+spring.security.user.name=user
+spring.security.user.password=userpass
+
+# Logs de sécurité (utile pour le développement)
+logging.level.org.springframework.security=DEBUG
+        </code></pre>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </section>
+
+    <!-- Dans la section ressources -->
+    <section id="ressources" class="section">
+        <h2>Ressources Utiles</h2>
+        <div class="resources-list">
+            <a href="https://spring.io/projects/spring-boot" class="resource-link" target="_blank" rel="noopener">
+                <i class="fas fa-book"></i>
+                Documentation Officielle Spring Boot
+            </a>
+            <a href="https://start.spring.io/" class="resource-link" target="_blank" rel="noopener">
+                <i class="fas fa-play"></i>
+                Spring Initializr
+            </a>
+            <a href="https://github.com/spring-projects/spring-boot" class="resource-link" target="_blank"
+                rel="noopener">
+                <i class="fab fa-github"></i>
+                GitHub Spring Boot
+            </a>
+            <a href="https://spring.io/guides" class="resource-link" target="_blank" rel="noopener">
+                <i class="fas fa-graduation-cap"></i>
+                Spring Guides
+            </a>
+            <a href="https://satin-truffle-ac4.notion.site/Introduction-au-backend-1882ae802e29809e90d5ed263adfef3e"
+                class="resource-link" target="_blank" rel="noopener">Spring boot - Index des notions pour découvrir
+                Spring Boot étape par étape</a>
+
+        </div>
+
+        <div class="tips-section">
+            <h3>Conseils et Bonnes Pratiques</h3>
+            <ul>
+                <li>Utilisez les starters appropriés pour votre projet</li>
+                <li>Suivez la convention de nommage des packages</li>
+                <li>Utilisez la validation des données</li>
+                <li>Implémentez des tests unitaires</li>
+                <li>Configurez correctement le logging</li>
+                <li>Utilisez les profiles Spring pour différents environnements</li>
+            </ul>
+        </div>
+    </section>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modal-text"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
