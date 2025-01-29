@@ -1,19 +1,9 @@
-import "jquery";
-import "datatables.net";
-import "datatables.net-dt/css/jquery.dataTables.css";
-
-import "./bootstrap";
-
-import Alpine from "alpinejs";
-
-window.Alpine = Alpine;
-
-Alpine.start();
-
 $(document).ready(function () {
-    $("#your-table-id").DataTable({
+    $("#myTable").DataTable({
+        processing: true,
+        serverSide: true,
         ajax: {
-            url: "/admin/api/users",
+            url: "/admin/api/users", // Remplacez par l'URL de votre API
             type: "GET",
         },
         columns: [
