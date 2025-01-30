@@ -1,120 +1,160 @@
+// Menu Burger
 document.addEventListener("DOMContentLoaded", function () {
-  // Gestion du modal
-  const modal = document.getElementById("modal");
-  const modalText = document.getElementById("modal-text");
-  const closeBtn = document.getElementsByClassName("close")[0];
-  const infoBtns = document.getElementsByClassName("info-btn");
+  const burgerMenu = document.querySelector(".burger-menu");
+  const navLinks = document.querySelector(".nav-links");
 
-  // Contenu pour le modal
-  const modalContent = {
-    introCard: `
-        <h3>Spring Boot en détail</h3>
-        <p>Spring Boot offre:</p>
-        <ul>
-            <li>Une configuration automatique intelligente</li>
-            <li>Un serveur embarqué (Tomcat, Jetty, ou Undertow)</li>
-            <li>Des métriques et un monitoring via Actuator</li>
-            <li>Une configuration externalisée</li>
-            <li>Des environnements de développement et de production</li>
-            <li>Aucune génération de code et pas de configuration XML requise</li>
-        </ul>
-    `,
-    prerequisCard: `
-        <h3>Versions compatibles</h3>
-        <table>
-            <tr>
-                <th>Spring Boot</th>
-                <th>Java Version</th>
-            </tr>
-            <tr>
-                <td>2.7.x</td>
-                <td>Java 8-18</td>
-            </tr>
-            <tr>
-                <td>2.6.x</td>
-                <td>Java 8-17</td>
-            </tr>
-            <tr>
-                <td>3.0+</td>
-                <td>Java 17+</td>
-            </tr>
-        </table>
-        <p>IDE recommandé: IntelliJ IDEA Ultimate ou Spring Tool Suite</p>
-    `,
-  };
-  // Gestionnaire pour les boutons d'info
-  Array.from(infoBtns).forEach((btn) => {
-    btn.addEventListener("click", function () {
-      const parentId = this.closest(".card").id;
-      modalText.innerHTML = modalContent[parentId];
-      modal.style.display = "block";
-    });
+  burgerMenu.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
   });
 
-  // Fermer le modal
-  closeBtn.onclick = function () {
-    modal.style.display = "none";
-  };
-
-  window.onclick = function (event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
+  // Fermer le menu si on clique en dehors
+  document.addEventListener("click", (e) => {
+    if (!burgerMenu.contains(e.target) && !navLinks.contains(e.target)) {
+      navLinks.classList.remove("active");
     }
-  };
-
-  // Gestion du bouton copier
-  const copyBtn = document.querySelector(".copy-btn");
-  const codeBlock = document.querySelector("code");
-
-  copyBtn.addEventListener("click", function () {
-    navigator.clipboard.writeText(codeBlock.textContent.trim()).then(() => {
-      copyBtn.textContent = "Copié !";
-      setTimeout(() => {
-        copyBtn.textContent = "Copier";
-      }, 2000);
-    });
-  });
-
-  // Animation au défilement
-  const sections = document.querySelectorAll(".section");
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = 1;
-        entry.target.style.transform = "translateY(0)";
-      }
-    });
-  });
-
-  sections.forEach((section) => {
-    section.style.opacity = 0;
-    section.style.transform = "translateY(20px)";
-    section.style.transition = "all 0.5s ease-out";
-    observer.observe(section);
   });
 });
 
+// Boutons de défilement
+const scrollToTop = document.getElementById("scrollToTop");
+const scrollToBottom = document.getElementById("scrollToBottom");
+
+// Afficher/Masquer le bouton scrollToTop en fonction de la position
+window.addEventListener("scroll", () => {
+  if (window.pageYOffset > 300) {
+    scrollToTop.style.display = "flex";
+  } else {
+    scrollToTop.style.display = "none";
+  }
+});
+
+// Fonction de défilement vers le haut
+scrollToTop.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+});
+
+// Fonction de défilement vers le bas
+scrollToBottom.addEventListener("click", () => {
+  window.scrollTo({
+    top: document.documentElement.scrollHeight,
+    behavior: "smooth",
+  });
+});
+
+// Gestion des solutions d'exercices
 document.querySelectorAll(".solution-btn").forEach((button) => {
-  button.addEventListener("click", function () {
-    const exerciseNumber = this.dataset.exercise;
-    const solutionContent = document.getElementById(
-      `solution-${exerciseNumber}`
-    );
-
-    // Toggle la solution
-    if (solutionContent.style.display === "none") {
-      solutionContent.style.display = "block";
-      this.textContent = "Masquer la solution";
-    } else {
+  button.addEventListener("click", () => {
+    const solutionContent = button.nextElementSibling;
+    if (solutionContent.style.display === "block") {
       solutionContent.style.display = "none";
-      this.textContent = "Voir la solution";
+      button.textContent = "Voir la solution";
+    } else {
+      solutionContent.style.display = "block";
+      button.textContent = "Cacher la solution";
     }
+  });
+});
 
-    // Animation du bouton
-    this.style.transform = "scale(0.95)";
-    setTimeout(() => {
-      this.style.transform = "scale(1)";
-    }, 200);
+// Animation au défilement
+const observerOptions = {
+  root: null,
+  rootMargin: "0px",
+  threshold: 0.1,
+};
+
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll(".section").forEach((section) => {
+  observer.observe(section);
+});
+
+// Gestion des exemples de code
+document.querySelectorAll(".code-example").forEach((example) => {
+  const copyBtn = example.querySelector(".copy-btn");
+  if (copyBtn) {
+    copyBtn.addEventListener("click", () => {
+      const code = example.querySelector("code").textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        copyBtn.textContent = "Copié !";
+        setTimeout(() => {
+          copyBtn.textContent = "Copier";
+        }, 2000);
+      });
+    });
+  }
+});
+
+// Ajoutez ceci à votre fichier JavaScript existant
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Récupération des éléments
+  const modal = document.getElementById("modal");
+  const modalText = document.getElementById("modal-text");
+  const closeBtn = document.querySelector(".close");
+  const infoButtons = document.querySelectorAll(".info-btn");
+
+  // Contenu des modales
+  const modalContents = {
+    "En savoir plus": `
+          <h3>Plus d'informations sur Spring Boot</h3>
+          <p>Spring Boot est un framework qui simplifie le développement d'applications Spring en fournissant :</p>
+          <ul>
+              <li>Une configuration automatique intelligente qui réduit le temps de configuration</li>
+              <li>Des serveurs embarqués pour un déploiement facile</li>
+              <li>Des starters préconfigurés pour différents cas d'utilisation</li>
+              <li>Des outils de monitoring et de métriques intégrés</li>
+              <li>Une gestion simplifiée des dépendances</li>
+          </ul>
+      `,
+    "Détails des versions": `
+          <h3>Versions compatibles</h3>
+          <p>Versions recommandées pour le développement avec Spring Boot :</p>
+          <ul>
+              <li>Java : Version 8, 11, ou 17 (LTS recommandées)</li>
+              <li>Maven : Version 3.5+</li>
+              <li>Gradle : Version 7.0+</li>
+              <li>Spring Boot : Version 2.7+ ou 3.0+ selon la version de Java</li>
+          </ul>
+          <p>Note : Spring Boot 3.0+ nécessite Java 17 minimum.</p>
+      `,
+  };
+
+  // Gestionnaire pour les boutons d'info
+  infoButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      modalText.innerHTML = modalContents[button.textContent];
+      modal.style.display = "block";
+      // Animation d'apparition
+      modal.classList.add("fadeIn");
+    });
+  });
+
+  // Fermeture de la modale
+  closeBtn.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+  // Fermeture en cliquant en dehors de la modale
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+
+  // Fermeture avec la touche Echap
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.style.display === "block") {
+      modal.style.display = "none";
+    }
   });
 });

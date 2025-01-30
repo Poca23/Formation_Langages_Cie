@@ -7,6 +7,7 @@
     <title>Cours Spring Boot</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
 </head>
 
 <body>
@@ -15,6 +16,10 @@
             <img src="https://raw.githubusercontent.com/spring-projects/spring-framework/main/framework-docs/src/docs/spring-framework.png"
                 alt="Spring Logo" class="logo">
         </div>
+        <button class="burger-menu" title="Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+
         <ul class="nav-links">
             <li><a href="#introduction">Introduction</a></li>
             <li><a href="#concepts">Concepts Clés</a></li>
@@ -192,7 +197,6 @@ spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
         <!-- Dans la section exercices -->
         <section id="exercices" class="section">
             <h2>Exercices Pratiques</h2>
-
             <div class="exercise-container">
                 <!-- Exercice 1 -->
                 <div class="exercise-card">
@@ -325,33 +329,29 @@ curl -X DELETE http://localhost:8080/api/books/1
                         </div>
                     </div>
                 </div>
+                <!-- Exercice 2 -->
+                <div class="exercise-card">
+                    <h3>Exercice 2: Validation des données</h3>
+                    <div class="exercise-content">
+                        <p class="exercise-description">
+                            Ajoutez la validation des données à votre API de livres.
+                        </p>
+                        <div class="exercise-steps">
+                            <h4>Étapes:</h4>
+                            <ol>
+                                <li>Ajouter les annotations de validation</li>
+                                <li>Créer un gestionnaire d'erreurs global</li>
+                                <li>Tester avec des données invalides</li>
+                            </ol>
+                        </div>
+                        <button class="solution-btn" data-exercise="2">Voir la solution</button>
+                        <!-- Solution Exercice 2 -->
+                        <div class="solution-content" id="solution-2">
+                            <h4>Solution:</h4>
 
-            </div>
-    </div>
-
-    <!-- Exercice 2 -->
-    <div class="exercise-card">
-        <h3>Exercice 2: Validation des données</h3>
-        <div class="exercise-content">
-            <p class="exercise-description">
-                Ajoutez la validation des données à votre API de livres.
-            </p>
-            <div class="exercise-steps">
-                <h4>Étapes:</h4>
-                <ol>
-                    <li>Ajouter les annotations de validation</li>
-                    <li>Créer un gestionnaire d'erreurs global</li>
-                    <li>Tester avec des données invalides</li>
-                </ol>
-            </div>
-            <button class="solution-btn" data-exercise="2">Voir la solution</button>
-            <!-- Solution Exercice 2 -->
-            <div class="solution-content" id="solution-2">
-                <h4>Solution:</h4>
-
-                <div class="code-section">
-                    <h5>Book.java (avec validations)</h5>
-                    <pre><code>
+                            <div class="code-section">
+                                <h5>Book.java (avec validations)</h5>
+                                <pre><code>
 @Entity
 public class Book {
     @Id
@@ -374,11 +374,11 @@ public class Book {
     // Getters et Setters
 }
         </code></pre>
-                </div>
+                            </div>
 
-                <div class="code-section">
-                    <h5>ErrorResponse.java</h5>
-                    <pre><code>
+                            <div class="code-section">
+                                <h5>ErrorResponse.java</h5>
+                                <pre><code>
 public class ErrorResponse {
     private LocalDateTime timestamp;
     private int status;
@@ -395,11 +395,11 @@ public class ErrorResponse {
     // Getters et Setters
 }
         </code></pre>
-                </div>
+                            </div>
 
-                <div class="code-section">
-                    <h5>GlobalExceptionHandler.java</h5>
-                    <pre><code>
+                            <div class="code-section">
+                                <h5>GlobalExceptionHandler.java</h5>
+                                <pre><code>
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -432,11 +432,11 @@ public class GlobalExceptionHandler {
     }
 }
         </code></pre>
-                </div>
+                            </div>
 
-                <div class="code-section">
-                    <h5>BookController.java (mise à jour)</h5>
-                    <pre><code>
+                            <div class="code-section">
+                                <h5>BookController.java (mise à jour)</h5>
+                                <pre><code>
 @RestController
 @RequestMapping("/api/books")
 public class BookController {
@@ -464,11 +464,11 @@ public class BookController {
     }
 }
         </code></pre>
-                </div>
+                            </div>
 
-                <div class="code-section">
-                    <h5>Test avec cURL (données invalides)</h5>
-                    <pre><code>
+                            <div class="code-section">
+                                <h5>Test avec cURL (données invalides)</h5>
+                                <pre><code>
 # Test avec un titre vide
 curl -X POST http://localhost:8080/api/books \
      -H "Content-Type: application/json" \
@@ -490,11 +490,11 @@ curl -X POST http://localhost:8080/api/books \
     ]
 }
         </code></pre>
-                </div>
+                            </div>
 
-                <div class="code-section">
-                    <h5>pom.xml (dépendances nécessaires)</h5>
-                    <pre><code>
+                            <div class="code-section">
+                                <h5>pom.xml (dépendances nécessaires)</h5>
+                                <pre><code>
 &lt;dependencies&gt;
     &lt;dependency&gt;
         &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
@@ -503,35 +503,35 @@ curl -X POST http://localhost:8080/api/books \
     ...
 &lt;/dependencies&gt;
         </code></pre>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
 
-        </div>
-    </div>
+                <!-- Exercice 3 -->
+                <div class="exercise-card">
+                    <h3>Exercice 3: Tests unitaires</h3>
+                    <div class="exercise-content">
+                        <p class="exercise-description">
+                            Écrivez des tests unitaires pour votre API de livres.
+                        </p>
+                        <div class="exercise-steps">
+                            <h4>Étapes:</h4>
+                            <ol>
+                                <li>Créer des tests pour le Controller</li>
+                                <li>Créer des tests pour le Service</li>
+                                <li>Utiliser MockMvc pour les tests d'intégration</li>
+                            </ol>
+                        </div>
+                        <button class="solution-btn" data-exercise="3">Voir la solution</button>
+                        <!-- Solution Exercice 3 -->
+                        <div class="solution-content" id="solution-3">
+                            <h4>Solution:</h4>
 
-    <!-- Exercice 3 -->
-    <div class="exercise-card">
-        <h3>Exercice 3: Tests unitaires</h3>
-        <div class="exercise-content">
-            <p class="exercise-description">
-                Écrivez des tests unitaires pour votre API de livres.
-            </p>
-            <div class="exercise-steps">
-                <h4>Étapes:</h4>
-                <ol>
-                    <li>Créer des tests pour le Controller</li>
-                    <li>Créer des tests pour le Service</li>
-                    <li>Utiliser MockMvc pour les tests d'intégration</li>
-                </ol>
-            </div>
-            <button class="solution-btn" data-exercise="3">Voir la solution</button>
-            <!-- Solution Exercice 3 -->
-            <div class="solution-content" id="solution-3">
-                <h4>Solution:</h4>
-
-                <div class="code-section">
-                    <h5>BookService.java (ajout d'une couche service)</h5>
-                    <pre><code>
+                            <div class="code-section">
+                                <h5>BookService.java (ajout d'une couche service)</h5>
+                                <pre><code>
 @Service
 public class BookService {
     private final BookRepository bookRepository;
@@ -566,11 +566,11 @@ public class BookService {
     }
 }
         </code></pre>
-                </div>
+                            </div>
 
-                <div class="code-section">
-                    <h5>BookServiceTest.java</h5>
-                    <pre><code>
+                            <div class="code-section">
+                                <h5>BookServiceTest.java</h5>
+                                <pre><code>
 @ExtendWith(MockitoExtension.class)
 class BookServiceTest {
     @Mock
@@ -624,11 +624,11 @@ class BookServiceTest {
     }
 }
         </code></pre>
-                </div>
+                            </div>
 
-                <div class="code-section">
-                    <h5>BookControllerTest.java</h5>
-                    <pre><code>
+                            <div class="code-section">
+                                <h5>BookControllerTest.java</h5>
+                                <pre><code>
 @WebMvcTest(BookController.class)
 class BookControllerTest {
     @Autowired
@@ -685,11 +685,11 @@ class BookControllerTest {
     }
 }
         </code></pre>
-                </div>
+                            </div>
 
-                <div class="code-section">
-                    <h5>BookIntegrationTest.java</h5>
-                    <pre><code>
+                            <div class="code-section">
+                                <h5>BookIntegrationTest.java</h5>
+                                <pre><code>
 @SpringBootTest
 @AutoConfigureMockMvc
 class BookIntegrationTest {
@@ -742,11 +742,11 @@ class BookIntegrationTest {
     }
 }
         </code></pre>
-                </div>
+                            </div>
 
-                <div class="code-section">
-                    <h5>pom.xml (dépendances de test)</h5>
-                    <pre><code>
+                            <div class="code-section">
+                                <h5>pom.xml (dépendances de test)</h5>
+                                <pre><code>
 &lt;dependencies&gt;
     &lt;dependency&gt;
         &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
@@ -760,46 +760,46 @@ class BookIntegrationTest {
     &lt;/dependency&gt;
 &lt;/dependencies&gt;
         </code></pre>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
 
-        </div>
-    </div>
+                <!-- Exercice 4 -->
+                <div class="exercise-card">
+                    <h3>Exercice 4: Sécurité avec Spring Security</h3>
+                    <div class="exercise-content">
+                        <p class="exercise-description">
+                            Sécurisez votre API avec authentification basic.
+                        </p>
+                        <div class="exercise-steps">
+                            <h4>Étapes:</h4>
+                            <ol>
+                                <li>Configurer Spring Security</li>
+                                <li>Créer des rôles utilisateur</li>
+                                <li>Protéger les endpoints</li>
+                                <li>Tester l'authentification</li>
+                            </ol>
+                        </div>
+                        <button class="solution-btn" data-exercise="4">Voir la solution</button>
+                        <!-- Solution Exercice 4 -->
+                        <div class="solution-content" id="solution-4">
+                            <h4>Solution:</h4>
 
-    <!-- Exercice 4 -->
-    <div class="exercise-card">
-        <h3>Exercice 4: Sécurité avec Spring Security</h3>
-        <div class="exercise-content">
-            <p class="exercise-description">
-                Sécurisez votre API avec authentification basic.
-            </p>
-            <div class="exercise-steps">
-                <h4>Étapes:</h4>
-                <ol>
-                    <li>Configurer Spring Security</li>
-                    <li>Créer des rôles utilisateur</li>
-                    <li>Protéger les endpoints</li>
-                    <li>Tester l'authentification</li>
-                </ol>
-            </div>
-            <button class="solution-btn" data-exercise="4">Voir la solution</button>
-            <!-- Solution Exercice 4 -->
-            <div class="solution-content" id="solution-4">
-                <h4>Solution:</h4>
-
-                <div class="code-section">
-                    <h5>pom.xml (dépendances de sécurité)</h5>
-                    <pre><code>
+                            <div class="code-section">
+                                <h5>pom.xml (dépendances de sécurité)</h5>
+                                <pre><code>
 &lt;dependency&gt;
     &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
     &lt;artifactId&gt;spring-boot-starter-security&lt;/artifactId&gt;
 &lt;/dependency&gt;
         </code></pre>
-                </div>
+                            </div>
 
-                <div class="code-section">
-                    <h5>SecurityConfig.java</h5>
-                    <pre><code>
+                            <div class="code-section">
+                                <h5>SecurityConfig.java</h5>
+                                <pre><code>
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -843,11 +843,11 @@ public class SecurityConfig {
     }
 }
         </code></pre>
-                </div>
+                            </div>
 
-                <div class="code-section">
-                    <h5>BookController.java (avec annotations de sécurité)</h5>
-                    <pre><code>
+                            <div class="code-section">
+                                <h5>BookController.java (avec annotations de sécurité)</h5>
+                                <pre><code>
 @RestController
 @RequestMapping("/api/books")
 public class BookController {
@@ -877,11 +877,11 @@ public class BookController {
     }
 }
         </code></pre>
-                </div>
+                            </div>
 
-                <div class="code-section">
-                    <h5>Tests avec cURL</h5>
-                    <pre><code>
+                            <div class="code-section">
+                                <h5>Tests avec cURL</h5>
+                                <pre><code>
 # Tentative sans authentification
 curl http://localhost:8080/api/books
 
@@ -898,11 +898,11 @@ curl -u admin:adminpass -X POST http://localhost:8080/api/books \
      -H "Content-Type: application/json" \
      -d '{"title":"1984","author":"George Orwell","year":1949}'
         </code></pre>
-                </div>
+                            </div>
 
-                <div class="code-section">
-                    <h5>SecurityTest.java</h5>
-                    <pre><code>
+                            <div class="code-section">
+                                <h5>SecurityTest.java</h5>
+                                <pre><code>
 @SpringBootTest
 @AutoConfigureMockMvc
 class SecurityTest {
@@ -952,11 +952,11 @@ class SecurityTest {
     }
 }
         </code></pre>
-                </div>
+                            </div>
 
-                <div class="code-section">
-                    <h5>application.properties (configuration optionnelle)</h5>
-                    <pre><code>
+                            <div class="code-section">
+                                <h5>application.properties (configuration optionnelle)</h5>
+                                <pre><code>
 # Désactiver la page de login par défaut (pour API REST)
 spring.security.basic.enabled=true
 spring.security.user.name=user
@@ -965,60 +965,66 @@ spring.security.user.password=userpass
 # Logs de sécurité (utile pour le développement)
 logging.level.org.springframework.security=DEBUG
         </code></pre>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
+        </section>
 
+        <!-- Dans la section ressources -->
+        <section id="ressources" class="section">
+            <h2>Ressources Utiles</h2>
+            <div class="resources-list">
+                <a href="https://spring.io/projects/spring-boot" class="resource-link" target="_blank" rel="noopener">
+                    <i class="fas fa-book"></i>
+                    Documentation Officielle Spring Boot
+                </a>
+                <a href="https://start.spring.io/" class="resource-link" target="_blank" rel="noopener">
+                    <i class="fas fa-play"></i>
+                    Spring Initializr
+                </a>
+                <a href="https://github.com/spring-projects/spring-boot" class="resource-link" target="_blank"
+                    rel="noopener">
+                    <i class="fab fa-github"></i>
+                    GitHub Spring Boot
+                </a>
+                <a href="https://spring.io/guides" class="resource-link" target="_blank" rel="noopener">
+                    <i class="fas fa-graduation-cap"></i>
+                    Spring Guides
+                </a>
+                <a href="https://satin-truffle-ac4.notion.site/Introduction-au-backend-1882ae802e29809e90d5ed263adfef3e"
+                    class="resource-link" target="_blank" rel="noopener">Spring boot - Index des notions pour découvrir
+                    Spring Boot étape par étape</a>
+            </div>
+
+            <div class="tips-section">
+                <h3>Conseils et Bonnes Pratiques</h3>
+                <ul>
+                    <li>Utilisez les starters appropriés pour votre projet</li>
+                    <li>Suivez la convention de nommage des packages</li>
+                    <li>Utilisez la validation des données</li>
+                    <li>Implémentez des tests unitaires</li>
+                    <li>Configurez correctement le logging</li>
+                    <li>Utilisez les profiles Spring pour différents environnements</li>
+                </ul>
+            </div>
+        </section>
+
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div id="modal-text"></div>
+            </div>
         </div>
     </div>
-    </section>
-
-    <!-- Dans la section ressources -->
-    <section id="ressources" class="section">
-        <h2>Ressources Utiles</h2>
-        <div class="resources-list">
-            <a href="https://spring.io/projects/spring-boot" class="resource-link" target="_blank" rel="noopener">
-                <i class="fas fa-book"></i>
-                Documentation Officielle Spring Boot
-            </a>
-            <a href="https://start.spring.io/" class="resource-link" target="_blank" rel="noopener">
-                <i class="fas fa-play"></i>
-                Spring Initializr
-            </a>
-            <a href="https://github.com/spring-projects/spring-boot" class="resource-link" target="_blank"
-                rel="noopener">
-                <i class="fab fa-github"></i>
-                GitHub Spring Boot
-            </a>
-            <a href="https://spring.io/guides" class="resource-link" target="_blank" rel="noopener">
-                <i class="fas fa-graduation-cap"></i>
-                Spring Guides
-            </a>
-            <a href="https://satin-truffle-ac4.notion.site/Introduction-au-backend-1882ae802e29809e90d5ed263adfef3e"
-                class="resource-link" target="_blank" rel="noopener">Spring boot - Index des notions pour découvrir
-                Spring Boot étape par étape</a>
-            <a href="https://start.spring.io/" class="resource-link" target="_blank" rel="noopener">spring
-                initializr</a>
-        </div>
-
-        <div class="tips-section">
-            <h3>Conseils et Bonnes Pratiques</h3>
-            <ul>
-                <li>Utilisez les starters appropriés pour votre projet</li>
-                <li>Suivez la convention de nommage des packages</li>
-                <li>Utilisez la validation des données</li>
-                <li>Implémentez des tests unitaires</li>
-                <li>Configurez correctement le logging</li>
-                <li>Utilisez les profiles Spring pour différents environnements</li>
-            </ul>
-        </div>
-    </section>
-
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div id="modal-text"></div>
-        </div>
-    </div>
+    <button id="scrollToTop" class="scroll-btn" title="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    <button id="scrollToBottom" class="scroll-btn" title="Scroll to bottom">
+        <i class="fas fa-arrow-down"></i>
+    </button>
 
     <script src="script.js"></script>
 </body>
