@@ -1,0 +1,6 @@
+LISTES :
+
+Cette table contient les informations de chaque liste personnelle d’un utilisateur (nom, type, etc.).
+FILMS_LISTES :
+
+Une table relationnelle qui lie les films aux listes. Elle gère les films présent dans chaque liste donnée, avec notamment une date_ajout.

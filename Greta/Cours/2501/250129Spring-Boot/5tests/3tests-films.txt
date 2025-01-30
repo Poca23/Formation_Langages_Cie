@@ -1,0 +1,38 @@
+Étape 5 : Tester avec Postman
+Lister tous les films (GET)
+URL : http://localhost:8080/api/films
+Résultat attendu :
+[
+  {
+    "id": 1,
+    "titre": "Inception",
+    "synopsis": "Cobb, un voleur...",
+    "dateSortie": "2010-07-16",
+    "image": "inception.jpg",
+    "notation": 8.8,
+    "critique": "Chef d'oeuvre de Nolan."
+  },
+  {
+    "id": 2,
+    "titre": "Interstellar",
+    "synopsis": "Cooper, ancien pilote...",
+    "dateSortie": "2014-11-07",
+    "image": "interstellar.jpg",
+    "notation": 8.6,
+    "critique": "Voyage dans l'espace fabuleux."
+  }
+]
+
+Ajouter un film (POST)
+URL : http://localhost:8080/api/films
+Corps (JSON) :
+{
+  "titre": "Avatar",
+  "synopsis": "Un marine sur une planète éloignée...",
+  "dateSortie": "2009-12-18",
+  "image": "avatar.jpg",
+  "notation": 7.8,
+  "critique": "Un film très visuel."
+}
+
+Résultat attendu : "Film ajouté avec succès !"

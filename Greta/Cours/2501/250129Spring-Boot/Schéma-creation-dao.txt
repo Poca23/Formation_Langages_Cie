@@ -1,0 +1,31 @@
+schéma visuel :
+Imagine un "restaurant des bases de données" 🍽️, et ton *DAO est le serveur principal*. 🔥🎩
+
+   🖥️ Ton Application Spring Boot
+           |
+           |  (Je veux un produit !)  
+           ↓
+    🎩 ProductDao (@Repository)
+         | 
+         |  (envoie une commande SQL dans la cuisine 🧑‍🍳 👨‍🍳)
+         ↓
+    🍴 JdbcTemplate : "MagentoSQL" 🚀
+         |
+         |  (Parle à la base de données 📊)
+         ↓
+  --------------------------
+  | Base de Données (SQL) |
+  --------------------------
+         |
+         |  (Voici un produit en mode brut 🌽 🌾)
+         ↓
+     🎩 RowMapper
+         |
+         |  (Transforme ça en plat joli 🌮 🍔)
+         ↓
+       🛒 Objet Product
+          (id, name, price)
+           |
+           |  (Renvoie le produit à ton application)
+           ↓
+   🖥️ Utilisation du produit en Java

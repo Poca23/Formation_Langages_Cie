@@ -1,0 +1,38 @@
+Étape 5 : Tester avec Postman
+Lister toutes les catégories (GET) :
+
+URL : http://localhost:8080/api/categories
+Résultat attendu :
+[
+  {
+    "id": 1,
+    "nom": "Action"
+  },
+  {
+    "id": 2,
+    "nom": "Comédie"
+  }
+]
+
+Ajouter une nouvelle catégorie (POST) :
+
+URL : http://localhost:8080/api/categories
+Corps de la requête (JSON) :
+{
+  "nom": "Science-fiction"
+}
+
+Résultat attendu : "Catégorie ajoutée avec succès !"
+Récupérer une catégorie par ID (GET) :
+
+URL : http://localhost:8080/api/categories/1
+Résultat attendu :
+{
+  "id": 1,
+  "nom": "Action"
+}
+
+Supprimer une catégorie (DELETE) :
+
+URL : http://localhost:8080/api/categories/2
+Résultat attendu : "Catégorie supprimée avec succès !"

@@ -1,0 +1,22 @@
+Table FILMS
+id	        titre	...
+1	        Inception	...
+2	        Interstellar	...
+
+
+Table CATEGORIES
+id	        nom
+1	        Science-Fiction
+2	        Drame
+
+
+Table FILMS_CATEGORIES
+film_id	    categorie_id
+1	        1
+1	        2
+2	        1
+
+Dans cet exemple :
+
+Inception est Science-Fiction et Drame.
+Interstellar est uniquement Science-Fiction.

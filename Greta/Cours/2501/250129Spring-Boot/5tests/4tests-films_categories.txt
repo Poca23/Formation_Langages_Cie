@@ -1,0 +1,41 @@
+🔧 Étape 5 : Tester avec Postman
+Ajouter une relation (POST)
+URL : http://localhost:8080/api/film-categories
+Corps (JSON) :
+
+{
+  "filmId": 1,
+  "categorieId": 1
+}
+
+Résultat attendu : "Relation film-catégorie ajoutée avec succès !"
+
+Lister toutes les relations (GET)
+URL : http://localhost:8080/api/film-categories
+Résultat attendu :
+
+[
+  { "filmId": 1, "categorieId": 1 },
+  { "filmId": 1, "categorieId": 2 }
+]
+
+Lister les catégories d’un film (GET)
+URL : http://localhost:8080/api/film-categories/film/1
+Résultat attendu :
+
+[
+  { "filmId": 1, "categorieId": 1 },
+  { "filmId": 1, "categorieId": 2 }
+]
+
+Supprimer une relation (DELETE)
+URL : http://localhost:8080/api/film-categories
+Corps (JSON) :
+
+{
+  "filmId": 1,
+  "categorieId": 2
+}
+
+Résultat attendu : "Relation film-catégorie supprimée avec succès !"
+

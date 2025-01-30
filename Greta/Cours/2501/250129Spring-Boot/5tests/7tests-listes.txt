@@ -1,0 +1,75 @@
+1. Tester l’ajout d’une liste
+Requête :
+POST http://localhost:8080/api/listes
+
+Corps de la requête JSON :
+Voici un exemple pour ajouter une liste pour un utilisateur ayant un utilisateurId de 1 :
+
+{
+  "utilisateurId": 1,
+  "nom": "Ma liste des favoris",
+  "type": "Favoris"
+}
+
+Étapes avec Postman :
+Ouvre Postman et configure une requête POST vers http://localhost:8080/api/listes.
+Ajoute l’en-tête suivant :
+Content-Type : application/json
+Dans l'onglet Body, choisis raw et indique le contenu JSON ci-dessus.
+Clique sur "Send".
+Résultat attendu :
+Si tout fonctionne correctement, le service retournera une réponse 200 OK avec un message contenant quelque chose comme :
+
+Nouvelle liste ajoutée avec succès !
+
+2. Récupérer les listes d’un utilisateur
+Requête :
+GET http://localhost:8080/api/listes/{utilisateurId}
+
+Exemple :
+Pour un utilisateur avec l'ID 1, l’URL sera :
+GET http://localhost:8080/api/listes/1
+
+Étapes avec Postman :
+Configure une requête GET vers http://localhost:8080/api/listes/1.
+Clique sur "Send".
+Résultat attendu :
+Un tableau JSON contenant toutes les listes enregistrées pour cet utilisateur. Par exemple :
+
+[
+  {
+    "id": 1,
+    "utilisateurId": 1,
+    "nom": "Ma liste des favoris",
+    "type": "Favoris"
+  },
+  {
+    "id": 2,
+    "utilisateurId": 1,
+    "nom": "Ma liste à voir",
+    "type": "À voir"
+  }
+]
+
+3. Supprimer une liste
+Requête :
+DELETE http://localhost:8080/api/listes/{listeId}
+
+Exemple :
+Pour supprimer une liste avec l'ID 1, l'URL sera :
+DELETE http://localhost:8080/api/listes/1
+
+Étapes avec Postman :
+Configure une requête DELETE vers http://localhost:8080/api/listes/1.
+Clique sur "Send".
+Résultat attendu :
+Un message confirmant la suppression :
+
+Liste supprimée avec succès !
+
+Point d’étape
+Tu viens maintenant de tester :
+
+L’ajout d’une nouvelle liste à un utilisateur (POST).
+La récupération des listes d’un utilisateur (GET).
+La suppression d’une liste (DELETE).

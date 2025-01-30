@@ -1,0 +1,13 @@
+Conseils pour les Tests
+Prends le temps d’ajouter des données factices dans ta base pour tester (par exemple, une liste existante pour un utilisateur et des films déjà enregistrés).
+Si tu veux valider que les données sur la base changent réellement :
+Utilise également un outil comme MySQL Workbench, DBeaver ou Adminer pour visualiser directement les données dans ta base de données.
+Affiche les résultats directement via un GET dans Postman après chaque opération (ajout ou suppression).
+Compteur rapide 👀
+Tu peux vérifier que les données insérées sont accessibles à chaque étape :
+
+Ajoute une liste avec un utilisateur (ex. : POST).
+Liste les listes d’un utilisateur (GET).
+Supprime une liste (DELETE), puis vérifie que la GET ne retourne plus cette liste.
+Ajoute un film à une liste (POST du film avec son ID).
+Vérifie que ce film figure bien dans les résultats (GET des films d’une liste).

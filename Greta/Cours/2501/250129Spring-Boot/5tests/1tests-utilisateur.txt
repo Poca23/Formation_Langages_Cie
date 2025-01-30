@@ -1,0 +1,12 @@
+Étape 4 : Test !
+Lance ton application Spring Boot.
+Teste avec Postman ou un navigateur :
+GET http://localhost:8080/api/utilisateurs pour afficher tous les utilisateurs.
+POST avec un JSON pour ajouter un utilisateur :
+{
+  "nom": "Dupont",
+  "prenom": "Jean",
+  "email": "jean.dupont@example.com",
+  "motDePasse": "monmotdepasse",
+  "dateInscription": "2023-11-01"
+}

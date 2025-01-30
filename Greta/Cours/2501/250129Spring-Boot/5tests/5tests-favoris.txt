@@ -1,0 +1,36 @@
+🔧 Étape 5 : Tester l'API avec Postman
+1. Ajouter un favori (POST)
+URL : http://localhost:8080/api/favoris
+Corps JSON :
+
+{
+  "utilisateurId": 1,
+  "filmId": 2,
+  "listeNumero": 1
+}
+
+Résultat attendu : "Film ajouté aux favoris avec succès !"
+
+2. Lister les favoris d’un utilisateur (GET)
+URL : http://localhost:8080/api/favoris/1
+Résultat attendu :
+
+[
+  {
+    "id": 1,
+    "utilisateurId": 1,
+    "filmId": 2,
+    "listeNumero": 1
+  }
+]
+
+3. Supprimer un favori (DELETE)
+URL : http://localhost:8080/api/favoris
+Corps JSON :
+
+{
+  "utilisateurId": 1,
+  "filmId": 2
+}
+
+Résultat attendu : "Film supprimé des favoris avec succès !"

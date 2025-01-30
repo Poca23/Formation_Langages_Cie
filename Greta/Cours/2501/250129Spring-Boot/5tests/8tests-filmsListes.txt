@@ -1,0 +1,48 @@
+1. Ajouter un film à une liste
+Requête :
+POST http://localhost:8080/api/films-listes/{listeId}/{filmId}
+
+Exemple :
+Pour ajouter un film avec l'ID 5 à une liste avec l'ID 2, l'URL sera :
+POST http://localhost:8080/api/films-listes/2/5
+
+Étapes avec Postman :
+Configure une requête POST vers http://localhost:8080/api/films-listes/2/5.
+Clique sur "Send".
+Résultat attendu :
+Un message confirmant que le film a bien été ajouté à la liste :
+
+Film ajouté à la liste avec succès !
+
+2. Lister tous les films d’une liste
+Requête :
+GET http://localhost:8080/api/films-listes/{listeId}
+
+Exemple :
+Pour récupérer tous les films ajoutés dans la liste avec l'ID 2, l'URL sera :
+GET http://localhost:8080/api/films-listes/2
+
+Étapes avec Postman :
+Configure une requête GET vers http://localhost:8080/api/films-listes/2.
+Clique sur "Send".
+Résultat attendu :
+Un tableau JSON contenant les filmId de tous les films dans la liste donnée :
+
+[5, 6, 8]
+
+3. Supprimer un film d’une liste
+Requête :
+DELETE http://localhost:8080/api/films-listes/{listeId}/{filmId}
+
+Exemple :
+Pour supprimer le film avec l'ID 6 de la liste avec l'ID 2, l'URL sera :
+DELETE http://localhost:8080/api/films-listes/2/6
+
+Étapes avec Postman :
+Configure une requête DELETE vers http://localhost:8080/api/films-listes/2/6.
+Clique sur "Send".
+Résultat attendu :
+Un message confirmant la suppression du film :
+
+Film supprimé de la liste avec succès !
+
