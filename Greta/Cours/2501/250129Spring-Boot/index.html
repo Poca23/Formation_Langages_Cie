@@ -30,7 +30,7 @@
             <li><a href="#ressources">Ressources</a></li>
         </ul>
     </nav>
-    <div class="container">
+    <main class="container">
         <!--Introduction -->
         <section id="introduction" class="section">
             <h1>Spring Boot</h1>
@@ -301,6 +301,7 @@
             </div>
         </section>
 
+
         <!-- Les méthodes HTTP -->
         <section id="methodes" class="section">
             <h2>Les Méthodes HTTP</h2>
@@ -319,8 +320,10 @@ Client                    Serveur
    │─────────────────────►  │
    │                        │ [Lecture]
    │       [Données]        │
+   │   [Status: 200 OK]     │
+   │   [Error: 404 Not Found]│
    │◄─────────────────────  │
-            </code></pre>
+        </code></pre>
                     </div>
                     <p>Utilisé pour récupérer des données sans les modifier</p>
 
@@ -334,8 +337,10 @@ Client                    Serveur
    │─────────────────────► │
    │                       │ [Création]
    │    [Nouvel ID]        │
+   │ [Status: 201 Created] │
+   │ [Error: 400 Bad Request]│
    │◄─────────────────────-│
-            </code></pre>
+        </code></pre>
                     </div>
                     <p>Utilisé pour créer une nouvelle ressource</p>
 
@@ -349,8 +354,10 @@ Client                    Serveur
    │─────────────────────►│
    │                      │ [Remplacement]
    │     [Status]         │
+   │ [Status: 200 OK]     │
+   │ [Error: 404 Not Found]│
    │◄────────────────────-│
-            </code></pre>
+        </code></pre>
                     </div>
                     <p>Utilisé pour mettre à jour complètement une ressource</p>
 
@@ -364,8 +371,10 @@ Client                    Serveur
    │─────────────────────►│
    │                      │ [Mise à jour]
    │     [Status]         │
+   │ [Status: 200 OK]     │
+   │ [Error: 404 Not Found]│
    │◄────────────────────-│
-            </code></pre>
+        </code></pre>
                     </div>
                     <p>Utilisé pour mettre à jour partiellement une ressource</p>
 
@@ -378,8 +387,10 @@ Client                    Serveur
    │─────────────────────►│
    │                      │ [Suppression]
    │     [Status]         │
+   │[Status: 204 No Content]│
+   │[Error: 404 Not Found] │
    │◄────────────────────-│
-            </code></pre>
+        </code></pre>
                     </div>
                     <p>Utilisé pour supprimer une ressource</p>
 
@@ -392,8 +403,8 @@ Client                    Serveur
                     </ul>
                 </div>
             </div>
-
         </section>
+
 
         <!-- Pratique -->
         <section id="pratique" class="section">
@@ -1352,26 +1363,26 @@ logging.level.org.springframework.security=DEBUG
             </div>
         </section>
 
-
+        <!-- Modal -->
         <div id="modal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <div id="modal-text"></div>
             </div>
         </div>
-    </div>
+        </>
 
-    <!-- ScrollToTop -->
-    <button id="scrollToTop" class="scroll-btn" title="Scroll to top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+        <!-- ScrollToTop -->
+        <button id="scrollToTop" class="scroll-btn" title="Scroll to top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
 
-    <!-- ScrollToBottom -->
-    <button id="scrollToBottom" class="scroll-btn" title="Scroll to bottom">
-        <i class="fas fa-arrow-down"></i>
-    </button>
+        <!-- ScrollToBottom -->
+        <button id="scrollToBottom" class="scroll-btn" title="Scroll to bottom">
+            <i class="fas fa-arrow-down"></i>
+        </button>
 
-    <script src="script.js"></script>
+        <script src="script.js"></script>
 </body>
 
 </html>
