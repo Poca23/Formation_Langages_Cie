@@ -1,12 +1,25 @@
-package com.example.movies.entity;
+package org.cnd.projectcnd.entities;
+
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
+@Entity // Définit cette classe comme une entité JPA
+@Table(name = "listes") // Nom de la table associée dans la base
 public class Listes {
-    private Long id; // Primary Key
-    private Long utilisateurId; // Foreign Key vers UTILISATEURS
-    private String nom; // Nom de la liste
-    private String type; // Type de la liste (exemple : "Favoris", "À voir", etc.)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Clé primaire auto-générée
+    private Long id;
+
+    @Column(name = "utilisateur_id", nullable = false) // Clé étrangère vers UTILISATEURS
+    private Long utilisateurId;
+
+    @Column(name = "nom", nullable = false) // Nom de la liste
+    private String nom;
+
+    @Column(name = "type", nullable = false) // Type de la liste (exemple : "Favoris", "À voir", etc.)
+    private String type;
 
     // Constructeur par défaut
     public Listes() {
@@ -53,7 +66,7 @@ public class Listes {
         this.type = type;
     }
 
-    // toString, equals et hashCode
+    // Equals and hashCode
     @Override
     public boolean equals(Object o) {
         if (this == o)

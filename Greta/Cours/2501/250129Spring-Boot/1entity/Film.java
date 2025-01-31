@@ -1,17 +1,17 @@
-// package com.example.movies.entity;
+package org.cnd.projectcnd.entities;
 
 import java.time.LocalDate;
 
 public class Film {
-    private Long id; // Clé primaire
+    private Long id; // Clé primate
     private String titre; // Titre du film
     private String synopsis; // Résumé ou description du film
-    private LocalDate dateSortie; // Date de sortie du film
-    private String image; // Lien de l'image (poster du film)
-    private Float notation; // Note du film (exemple 8.5/10)
-    private String critique; // Section où un commentaire est représenté
+    private LocalDate dateSortie; // Date de sortie
+    private String image; // Lien vers une image
+    private Float notation; // Note du film (exemple 8.5)
+    private String critique; // Commentaire ou critique
 
-    // Constructeurs
+    // Constructors
     public Film() {
     }
 

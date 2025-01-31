@@ -1,8 +1,19 @@
-package com.example.movies.entity;
+package org.cnd.projectcnd.entities;
 
-public class FilmCategorie {
-    private Long filmId; // Clé étrangère vers la table FILMS
-    private Long categorieId; // Clé étrangère vers la table CATEGORIES
+import jakarta.persistence.*;
+import java.io.Serializable;
+
+@Entity
+@Table(name = "films_categories") // Table intermédiaire dans la base de données
+public class FilmCategorie implements Serializable { // Implémente Serializable pour une clé composite
+
+    @Id
+    @Column(name = "film_id") // Clé étrangère vers FILMS
+    private Long filmId;
+
+    @Id
+    @Column(name = "categorie_id") // Clé étrangère vers CATEGORIES
+    private Long categorieId;
 
     // Constructeurs
     public FilmCategorie() {
@@ -30,7 +41,3 @@ public class FilmCategorie {
         this.categorieId = categorieId;
     }
 }
-
-// ⚠️ Note : Ici, pas besoin de créer de véritable table ou relation complexe
-// côté ORM parce qu'on utilise JdbcTemplate. La table FILMS_CATEGORIES sera
-// manipulée comme n'importe quelle autre table.
