@@ -50,8 +50,6 @@ public class FilmDao {
 
     /**
      * Récupère tous les films présents dans la base de données.
-     *
-     * @return Liste contenant tous les films.
      */
     public List<Film> findAll() {
         return jdbcTemplate.query(SQL_SELECT_ALL, filmRowMapper);
@@ -59,9 +57,6 @@ public class FilmDao {
 
     /**
      * Recherche des films par titre partiel ou complet.
-     *
-     * @param titre Le mot clé du titre.
-     * @return Liste des films correspondants.
      */
     public List<Film> findByTitre(String titre) {
         return jdbcTemplate.query(SQL_SELECT_BY_TITRE, filmRowMapper, "%" + titre + "%");
@@ -69,10 +64,6 @@ public class FilmDao {
 
     /**
      * Récupère un film par son ID.
-     *
-     * @param id L'identifiant du film.
-     * @return L'objet Film correspondant.
-     * @throws EntityNotFoundException si le film n'existe pas.
      */
     public Film findById(Long id) {
         try {
@@ -84,9 +75,6 @@ public class FilmDao {
 
     /**
      * Sauvegarde un nouveau film dans la base.
-     *
-     * @param film L'objet Film à sauvegarder.
-     * @return Le nombre de lignes affectées.
      */
     public int save(Film film) {
         return jdbcTemplate.update(SQL_INSERT,
@@ -100,11 +88,6 @@ public class FilmDao {
 
     /**
      * Met à jour un film existant.
-     *
-     * @param id   L'ID du film à modifier.
-     * @param film Les nouvelles informations à mettre à jour.
-     * @return Le film modifié.
-     * @throws EntityNotFoundException si le film n'existe pas.
      */
     public Film update(Long id, Film film) {
         if (!existsById(id)) {
@@ -119,14 +102,11 @@ public class FilmDao {
                 film.getNotation(),
                 film.getCritique(),
                 id);
-        return findById(id); // Retourner l'objet Film modifié
+        return findById(id);
     }
 
     /**
      * Vérifie l'existence d'un film par son ID.
-     *
-     * @param id L'identifiant.
-     * @return True si le film existe, False sinon.
      */
     public boolean existsById(Long id) {
         Integer count = jdbcTemplate.queryForObject(SQL_COUNT_BY_ID, Integer.class, id);
@@ -135,10 +115,6 @@ public class FilmDao {
 
     /**
      * Supprime un film de la base de données.
-     *
-     * @param id L'identifiant du film à supprimer.
-     * @return Nombre de lignes affectées.
-     * @throws EntityNotFoundException si le film n'existe pas.
      */
     public int deleteById(Long id) {
         if (!existsById(id)) {
@@ -149,9 +125,6 @@ public class FilmDao {
 
     /**
      * Récupère les catégories associées à un film.
-     *
-     * @param filmId L'ID du film.
-     * @return Liste des noms des catégories.
      */
     public List<String> findCategorieByFilmId(Long filmId) {
         return jdbcTemplate.query(SQL_SELECT_CATEGORIES_BY_FILM,
@@ -161,10 +134,6 @@ public class FilmDao {
 
     /**
      * Associe un film à une ou plusieurs catégories.
-     *
-     * @param filmId       L'ID du film.
-     * @param categorieIds Liste des IDs des catégories.
-     * @return Le nombre de relations ajoutées.
      */
     public int addFilmToCategories(Long filmId, List<Long> categorieIds) {
         int rowsAdded = 0;

@@ -29,7 +29,11 @@
             <li><a href="#exercices">Exercices</a></li>
             <li><a href="#ressources">Ressources</a></li>
         </ul>
+        <button id="themeToggle" title="Toggle Theme">
+            <i class="fas fa-moon"></i>
+        </button>
     </nav>
+
     <main class="container">
         <!--Introduction -->
         <section id="introduction" class="section">
@@ -408,12 +412,15 @@ Client                    Serveur
 
         <!-- Pratique -->
         <section id="pratique" class="section">
-            <h2>Mise en Pratique</h2>
+            <div class="concept-card">
+                <div class="subsection">
+                    <h2>Mise en Pratique</h2>
 
-            <div class="subsection">
-                <h3>1. Création d'un projet</h3>
-                <div class="code-example">
-                    <pre><code>
+                    <div class="subsection">
+                        <h3>1. Création d'un projet</h3>
+                        <div class="concept-card">
+                            <div class="code-example">
+                                <pre><code>
 <!-- Utilisation de Spring Initializr -->
 https://start.spring.io/
 - Choisir Maven/Gradle
@@ -423,14 +430,17 @@ https://start.spring.io/
   * Spring Data JPA
   * H2 Database
             </code></pre>
-                    <button class="copy-btn">Copier</button>
-                </div>
-            </div>
+                                <button class="copy-btn">Copier</button>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="subsection">
-                <h3>2. Structure du projet</h3>
-                <div class="code-example">
-                    <pre><code>
+
+                    <div class="subsection">
+                        <h3>2. Structure du projet</h3>
+                        <div class="concept-card">
+                            <div class="code-example">
+                                <pre><code>
 projet-demo/
     ├── src/
     │   ├── main/
@@ -446,14 +456,17 @@ projet-demo/
     │   └── test/
     └── pom.xml
             </code></pre>
-                    <button class="copy-btn">Copier</button>
-                </div>
-            </div>
+                                <button class="copy-btn">Copier</button>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="subsection">
-                <h3>3. Application Simple</h3>
-                <div class="code-example">
-                    <pre><code>
+
+                    <div class="subsection">
+                        <h3>3. Application Simple</h3>
+                        <div class="concept-card">
+                            <div class="code-example">
+                                <pre><code>
 @SpringBootApplication
 public class DemoApplication {
     public static void main(String[] args) {
@@ -470,14 +483,17 @@ public class HelloController {
     }
 }
             </code></pre>
-                    <button class="copy-btn">Copier</button>
-                </div>
-            </div>
+                                <button class="copy-btn">Copier</button>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="subsection">
-                <h3>4. Configuration</h3>
-                <div class="code-example">
-                    <pre><code>
+
+                    <div class="subsection">
+                        <h3>4. Configuration</h3>
+                        <div class="concept-card">
+                            <div class="code-example">
+                                <pre><code>
 # application.properties
 server.port=8080
 spring.jpa.hibernate.ddl-auto=update
@@ -485,7 +501,11 @@ spring.datasource.url=jdbc:h2:mem:testdb
 spring.datasource.driverClassName=org.h2.Driver
 spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
             </code></pre>
-                    <button class="copy-btn">Copier</button>
+                                <button class="copy-btn">Copier</button>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
