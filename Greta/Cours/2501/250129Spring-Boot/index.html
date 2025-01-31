@@ -22,14 +22,16 @@
 
         <ul class="nav-links">
             <li><a href="#introduction">Introduction</a></li>
-            <li><a href="#concepts">Concepts Clés</a></li>
+            <li><a href="#composants">Les composants principaux</a></li>
+            <li><a href="#methodes">Les méthodes HTTP</a></li>
             <li><a href="#pratique">Pratique</a></li>
+            <li><a href="#concepts">Concepts Clés</a></li>
             <li><a href="#exercices">Exercices</a></li>
             <li><a href="#ressources">Ressources</a></li>
         </ul>
     </nav>
     <div class="container">
-        <!-- Dans la section introduction -->
+        <!--Introduction -->
         <section id="introduction" class="section">
             <h1>Spring Boot</h1>
             <div class="card" id="introCard">
@@ -58,59 +60,342 @@
             </div>
         </section>
 
-        <!-- Dans la section concepts -->
-        <section id="concepts" class="section">
-            <h2>Concepts Clés</h2>
-            <div class="concepts-grid">
+
+        <!-- Les composants principaux -->
+        <section id="composants" class="section">
+            <h2>Composants Principaux de Spring Boot</h2>
+
+            <!-- Section Entités -->
+            <div class="subsection">
+                <h3>1. Les Entités (Entities)</h3>
                 <div class="concept-card">
-                    <i class="fas fa-cogs"></i>
-                    <h3>Auto-configuration</h3>
-                    <p>Spring Boot configure automatiquement votre application en fonction des dépendances ajoutées.
-                    </p>
-                    <ul>
-                        <li>Configuration conditionnelle</li>
-                        <li>Détection automatique</li>
-                        <li>Configuration par défaut</li>
+                    <i class="fas fa-database"></i>
+                    <p>Les entités sont des classes Java qui représentent les tables de la base de données.</p>
+                    <div class="code-section">
+                        <pre><code>
+        @Entity
+        @Table(name = "users")
+        public class User {
+            @Id
+            @GeneratedValue(strategy = GenerationType.IDENTITY)
+            private Long id;
+        
+            @Column(nullable = false)
+            private String username;
+        
+            @Column(nullable = false)
+            private String email;
+        
+            // Getters et Setters
+        }
+                        </code></pre>
+                    </div>
+                    <ul class="features-list">
+                        <li>@Entity : Marque la classe comme une entité JPA</li>
+                        <li>@Table : Spécifie le nom de la table</li>
+                        <li>@Id : Définit la clé primaire</li>
+                        <li>@Column : Configure les propriétés de la colonne</li>
                     </ul>
                 </div>
+            </div>
 
+            <!-- Section DAOs/Repositories -->
+            <div class="subsection">
+                <h3>2. Les DAOs/Repositories</h3>
                 <div class="concept-card">
-                    <i class="fas fa-box"></i>
-                    <h3>Spring Boot Starters</h3>
-                    <p>Dépendances préconfigurées pour différents scénarios.</p>
-                    <ul>
-                        <li>spring-boot-starter-web</li>
-                        <li>spring-boot-starter-data-jpa</li>
-                        <li>spring-boot-starter-test</li>
-                        <li>spring-boot-starter-security</li>
+                    <i class="fas fa-layer-group"></i>
+                    <p>Les repositories fournissent les méthodes d'accès aux données.</p>
+                    <div class="code-section">
+                        <pre><code>
+        @Repository
+        public interface UserRepository extends JpaRepository<User, Long> {
+            Optional<User> findByEmail(String email);
+            List<User> findByUsernameContaining(String username);
+            boolean existsByEmail(String email);
+        }
+                        </code></pre>
+                    </div>
+                    <ul class="features-list">
+                        <li>Héritage de JpaRepository pour les opérations CRUD</li>
+                        <li>Méthodes personnalisées avec convention de nommage</li>
+                        <li>Requêtes personnalisées avec @Query</li>
                     </ul>
                 </div>
+            </div>
 
+            <!-- Section Controllers -->
+            <div class="subsection">
+                <h3>3. Les Controllers</h3>
                 <div class="concept-card">
                     <i class="fas fa-server"></i>
-                    <h3>Serveur Embarqué</h3>
-                    <p>Serveur d'application intégré.</p>
-                    <ul>
-                        <li>Tomcat par défaut</li>
-                        <li>Jetty en alternative</li>
-                        <li>Undertow disponible</li>
+                    <p>Les controllers gèrent les requêtes HTTP et définissent les endpoints de l'API.</p>
+                    <div class="code-section">
+                        <pre><code>
+        @RestController
+        @RequestMapping("/api/users")
+        public class UserController {
+            @Autowired
+            private UserService userService;
+        
+            @GetMapping("/{id}")
+            public ResponseEntity<User> getUser(@PathVariable Long id) {
+                return userService.getUser(id)
+                    .map(ResponseEntity::ok)
+                    .orElse(ResponseEntity.notFound().build());
+            }
+        
+            @PostMapping
+            public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
+                return new ResponseEntity<>(userService.createUser(user), 
+                    HttpStatus.CREATED);
+            }
+        }
+                        </code></pre>
+                    </div>
+                    <ul class="features-list">
+                        <li>@RestController combine @Controller et @ResponseBody</li>
+                        <li>@RequestMapping définit le chemin de base</li>
+                        <li>Annotations HTTP pour les méthodes</li>
                     </ul>
                 </div>
+            </div>
 
+            <!-- Section Services -->
+            <div class="subsection">
+                <h3>4. Les Services</h3>
                 <div class="concept-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Spring Security</h3>
-                    <p>Sécurité et authentification.</p>
-                    <ul>
-                        <li>Authentification</li>
-                        <li>Autorisation</li>
-                        <li>Protection CSRF</li>
+                    <i class="fas fa-cogs"></i>
+                    <p>Les services contiennent la logique métier de l'application.</p>
+                    <div class="code-section">
+                        <pre><code>
+    @Service
+    public class UserService {
+        @Autowired
+        private UserRepository userRepository;
+
+        public User createUser(User user) {
+            // Validation métier
+            if (userRepository.existsByEmail(user.getEmail())) {
+                throw new BusinessException("Email déjà utilisé");
+            }
+            
+            // Logique métier
+            user.setCreatedDate(LocalDateTime.now());
+            return userRepository.save(user);
+        }
+
+        public Optional<User> getUser(Long id) {
+            return userRepository.findById(id);
+        }
+    }
+            </code></pre>
+                    </div>
+                    <ul class="features-list">
+                        <li>@Service : Marque la classe comme un service Spring</li>
+                        <li>Contient la logique métier</li>
+                        <li>Orchestre les opérations entre Controllers et Repositories</li>
+                        <li>Gère les transactions avec @Transactional</li>
                     </ul>
+                </div>
+            </div>
+
+            <!-- Schéma Général Architecture -->
+            <div class="subsection">
+                <h3>Cycle Complet d'une Requête</h3>
+                <div class="concept-card">
+                    <i class="fas fa-exchange-alt"></i>
+                    <div class="code-section">
+                        <pre><code>
+                                                    REQUEST                                                             RESPONSE
+                    ┌──────────┐      ┌─────────────────────────────────────────────────────────────┐      ┌──────────┐
+                    │          │ ───► │                     Spring Boot Application                  │ ───► │          │
+                    │  Client  │      └─────────────────────────────────────────────────────────────┘      │  Client  │
+                    │  (HTTP)  │          │              │              │               │                   │  (HTTP)  │
+                    └──────────┘          ▼              ▼              ▼               ▼                   └──────────┘
+                                    ┌──────────┐    ┌──────────┐   ┌──────────┐   ┌──────────┐                 ▲
+                                    │Controller│    │ Service  │   │Repository│   │  Entity  │                 │
+                                    │  (REST)  │───►│(Business)│──►│  (DAO)  │──►│  Model   │                 │
+                                    └──────────┘    └──────────┘   └──────────┘   └──────────┘                 │
+                                         │               │              │               │                        │
+                                         │               │              │               │                        │
+                                         │               │              ▼               │                        │
+                                         │               │         ┌──────────┐         │                        │
+                                         │               │         │Database  │         │                        │
+                                         │               │         │  (SQL)   │         │                        │
+                                         │               │         └──────────┘         │                        │
+                                         │               │              ▲               │                        │
+                                         │               │              │               │                        │
+                                         │               └──────────────┘               │                        │
+                                         └───────────────────────────────────────────────────────────────────────┘</code></pre>
+                    </div>
+
+                    <ul class="features-list">
+                        <li>Client envoie requête HTTP (GET, POST, PUT, DELETE)</li>
+                        <li>Controller reçoit la requête et valide les données</li>
+                        <li>Service applique la logique métier</li>
+                        <li>Repository prépare les opérations de base de données</li>
+                        <li>Entity définit la structure des données</li>
+                        <li>Database stocke/récupère les données</li>
+                        <li>Les données remontent la chaîne</li>
+                        <li>Service traite les données récupérées</li>
+                        <li>Controller formate la réponse</li>
+                        <li>Client reçoit la réponse HTTP</li>
+                    </ul>
+
+                    <div class="concept-card">
+                        <h4>Détail des Responsabilités</h4>
+                        <ul class="features-list">
+                            <li><strong>Controller</strong>
+                                <ul>
+                                    <li>Gestion des endpoints REST</li>
+                                    <li>Validation des requêtes</li>
+                                    <li>Routage vers les services appropriés</li>
+                                    <li>Formatage des réponses HTTP</li>
+                                </ul>
+                            </li>
+                            <li><strong>Service</strong>
+                                <ul>
+                                    <li>Logique métier</li>
+                                    <li>Transactions</li>
+                                    <li>Orchestration des opérations</li>
+                                    <li>Transformation des données</li>
+                                </ul>
+                            </li>
+                            <li><strong>Repository</strong>
+                                <ul>
+                                    <li>Opérations CRUD</li>
+                                    <li>Requêtes personnalisées</li>
+                                    <li>Mapping Object-Relationnel</li>
+                                </ul>
+                            </li>
+                            <li><strong>Entity</strong>
+                                <ul>
+                                    <li>Mapping avec la base de données</li>
+                                    <li>Validation des données</li>
+                                    <li>Relations entre entités</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="concept-card">
+                        <h4>Flux de Données Typique</h4>
+                        <ul class="features-list">
+                            <li>⬇️ Flux descendant (Request)
+                                <ul>
+                                    <li>Validation des données d'entrée</li>
+                                    <li>Transformation en objets métier</li>
+                                    <li>Persistance des données</li>
+                                </ul>
+                            </li>
+                            <li>⬆️ Flux montant (Response)
+                                <ul>
+                                    <li>Récupération des données</li>
+                                    <li>Transformation en DTOs</li>
+                                    <li>Formatage de la réponse</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Dans la section pratique -->
+        <!-- Les méthodes HTTP -->
+        <section id="methodes" class="section">
+            <h2>Les Méthodes HTTP</h2>
+            <!-- Section Méthodes HTTP -->
+            <div class="subsection">
+                <h3>5. Les Méthodes HTTP</h3>
+                <div class="concept-card">
+                    <i class="fas fa-exchange-alt"></i>
+
+                    <!-- GET -->
+                    <h4>GET</h4>
+                    <div class="code-section">
+                        <pre><code>
+Client                    Serveur
+   │        GET /users       │
+   │─────────────────────►  │
+   │                        │ [Lecture]
+   │       [Données]        │
+   │◄─────────────────────  │
+            </code></pre>
+                    </div>
+                    <p>Utilisé pour récupérer des données sans les modifier</p>
+
+                    <!-- POST -->
+                    <h4>POST</h4>
+                    <div class="code-section">
+                        <pre><code>
+Client                    Serveur
+   │    POST /users         │
+   │   [Données]           │
+   │─────────────────────► │
+   │                       │ [Création]
+   │    [Nouvel ID]        │
+   │◄─────────────────────-│
+            </code></pre>
+                    </div>
+                    <p>Utilisé pour créer une nouvelle ressource</p>
+
+                    <!-- PUT -->
+                    <h4>PUT</h4>
+                    <div class="code-section">
+                        <pre><code>
+Client                    Serveur
+   │    PUT /users/1       │
+   │   [Données]          │
+   │─────────────────────►│
+   │                      │ [Remplacement]
+   │     [Status]         │
+   │◄────────────────────-│
+            </code></pre>
+                    </div>
+                    <p>Utilisé pour mettre à jour complètement une ressource</p>
+
+                    <!-- PATCH -->
+                    <h4>PATCH</h4>
+                    <div class="code-section">
+                        <pre><code>
+Client                    Serveur
+   │   PATCH /users/1      │
+   │  [Modifications]      │
+   │─────────────────────►│
+   │                      │ [Mise à jour]
+   │     [Status]         │
+   │◄────────────────────-│
+            </code></pre>
+                    </div>
+                    <p>Utilisé pour mettre à jour partiellement une ressource</p>
+
+                    <!-- DELETE -->
+                    <h4>DELETE</h4>
+                    <div class="code-section">
+                        <pre><code>
+Client                    Serveur
+   │  DELETE /users/1      │
+   │─────────────────────►│
+   │                      │ [Suppression]
+   │     [Status]         │
+   │◄────────────────────-│
+            </code></pre>
+                    </div>
+                    <p>Utilisé pour supprimer une ressource</p>
+
+                    <ul class="features-list">
+                        <li>GET : Lecture (idempotent)</li>
+                        <li>POST : Création</li>
+                        <li>PUT : Mise à jour complète (idempotent)</li>
+                        <li>PATCH : Mise à jour partielle</li>
+                        <li>DELETE : Suppression (idempotent)</li>
+                    </ul>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Pratique -->
         <section id="pratique" class="section">
             <h2>Mise en Pratique</h2>
 
@@ -194,7 +479,61 @@ spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
             </div>
         </section>
 
-        <!-- Dans la section exercices -->
+
+        <!-- Concepts -->
+        <section id="concepts" class="section">
+            <h2>Concepts Clés</h2>
+            <div class="concepts-grid">
+                <div class="concept-card">
+                    <i class="fas fa-cogs"></i>
+                    <h3>Auto-configuration</h3>
+                    <p>Spring Boot configure automatiquement votre application en fonction des dépendances ajoutées.
+                    </p>
+                    <ul>
+                        <li>Configuration conditionnelle</li>
+                        <li>Détection automatique</li>
+                        <li>Configuration par défaut</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card">
+                    <i class="fas fa-box"></i>
+                    <h3>Spring Boot Starters</h3>
+                    <p>Dépendances préconfigurées pour différents scénarios.</p>
+                    <ul>
+                        <li>spring-boot-starter-web</li>
+                        <li>spring-boot-starter-data-jpa</li>
+                        <li>spring-boot-starter-test</li>
+                        <li>spring-boot-starter-security</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card">
+                    <i class="fas fa-server"></i>
+                    <h3>Serveur Embarqué</h3>
+                    <p>Serveur d'application intégré.</p>
+                    <ul>
+                        <li>Tomcat par défaut</li>
+                        <li>Jetty en alternative</li>
+                        <li>Undertow disponible</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Spring Security</h3>
+                    <p>Sécurité et authentification.</p>
+                    <ul>
+                        <li>Authentification</li>
+                        <li>Autorisation</li>
+                        <li>Protection CSRF</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Exercices -->
         <section id="exercices" class="section">
             <h2>Exercices Pratiques</h2>
             <div class="exercise-container">
@@ -973,7 +1312,8 @@ logging.level.org.springframework.security=DEBUG
             </div>
         </section>
 
-        <!-- Dans la section ressources -->
+
+        <!-- Ressources -->
         <section id="ressources" class="section">
             <h2>Ressources Utiles</h2>
             <div class="resources-list">
@@ -1012,6 +1352,7 @@ logging.level.org.springframework.security=DEBUG
             </div>
         </section>
 
+
         <div id="modal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
@@ -1019,9 +1360,13 @@ logging.level.org.springframework.security=DEBUG
             </div>
         </div>
     </div>
+
+    <!-- ScrollToTop -->
     <button id="scrollToTop" class="scroll-btn" title="Scroll to top">
         <i class="fas fa-arrow-up"></i>
     </button>
+
+    <!-- ScrollToBottom -->
     <button id="scrollToBottom" class="scroll-btn" title="Scroll to bottom">
         <i class="fas fa-arrow-down"></i>
     </button>

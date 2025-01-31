@@ -45,7 +45,7 @@ nav {
 
 .nav-links a:hover {
   color: #007bff;
-  font-weight: 700;
+  text-decoration: underline;
 }
 
 .burger-menu {
@@ -65,12 +65,10 @@ h1 {
   text-transform: uppercase;
   letter-spacing: 2px;
   padding: 1rem;
-  /* Option : Vous pouvez ajouter un effet de dégradé si vous le souhaitez */
   background: linear-gradient(to right, #2da641 0%, #564dc8);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  /* Ajouter une animation subtile au chargement */
   animation: titleFadeIn 1s ease-in-out;
 }
 
@@ -414,8 +412,6 @@ h1 {
   background-color: #0056b3;
 }
 
-/* Ajoutez ceci à votre CSS existant */
-
 .modal {
   transition: opacity 0.3s ease;
 }
@@ -448,4 +444,20 @@ h1 {
 .modal p {
   margin: 1rem 0;
   line-height: 1.6;
+}
+
+.schema pre {
+  font-family: "Courier New", Courier, monospace;
+  white-space: pre;
+  overflow-x: auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+}
+
+.schema-details {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
 }
