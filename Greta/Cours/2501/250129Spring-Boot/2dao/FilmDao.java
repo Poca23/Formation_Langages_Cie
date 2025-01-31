@@ -29,7 +29,7 @@ public class FilmDao {
     private static final String SQL_SELECT_CATEGORIES_BY_FILM = "SELECT c.nom FROM CATEGORIES c INNER JOIN FILMS_CATEGORIES fc ON c.id = fc.categorie_id WHERE fc.film_id = ?";
     private static final String SQL_INSERT_FILM_CATEGORY = "INSERT INTO FILMS_CATEGORIES (film_id, categorie_id) VALUES (?, ?)";
 
-    // Constantes pour les noms des colonnes
+    // Constantes colonnes
     private static final String COL_ID = "id";
     private static final String COL_TITRE = "titre";
     private static final String COL_SYNOPSIS = "synopsis";
@@ -38,7 +38,7 @@ public class FilmDao {
     private static final String COL_NOTATION = "notation";
     private static final String COL_CRITIQUE = "critique";
 
-    // Mapper : Transforme une ligne SQL en un objet Film
+    // Mappers
     private final RowMapper<Film> filmRowMapper = (rs, rowNum) -> new Film(
             rs.getLong(COL_ID),
             rs.getString(COL_TITRE),

@@ -4,6 +4,6 @@ package org.cnd.projectcnd.exceptions;
 
 public class EntityNotFoundException extends RuntimeException {
     public EntityNotFoundException(String message) {
-        super(Dommage);
+        super(message);
     }
 }
