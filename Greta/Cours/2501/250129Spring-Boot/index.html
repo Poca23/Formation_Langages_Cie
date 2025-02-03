@@ -21,11 +21,17 @@
         </button>
 
         <ul class="nav-links">
-            <li><a href="#introduction">Introduction</a></li>
-            <li><a href="#composants">Les composants principaux</a></li>
-            <li><a href="#methodes">Les méthodes HTTP</a></li>
-            <li><a href="#pratique">Pratique</a></li>
-            <li><a href="#concepts">Concepts Clés</a></li>
+            <li class="has-submenu">Cours
+                <ul class="submenu">
+                    <li><a href="#introduction">Introduction</a></li>
+                    <li><a href="#composants">Les composants principaux</a></li>
+                    <li><a href="#methodes">Les méthodes HTTP</a></li>
+                    <li><a href="#bean">Les Beans</a></li>
+                    <li><a href="#pratique">Pratique</a></li>
+                    <li><a href="#concepts">Concepts Clés</a></li>
+                </ul>
+            </li>
+            <li><a href="#http-errors">Les codes d'État HTTP</a></li>
             <li><a href="#exercices">Exercices</a></li>
             <li><a href="#ressources">Ressources</a></li>
         </ul>
@@ -410,6 +416,179 @@ Client                    Serveur
         </section>
 
 
+        <!-- Les Beans -->
+        <section id="bean" class="section">
+            <div class="subsection">
+                <h3>Les Beans, l'Injection de Dépendances et l'IoC</h3>
+                <div class="concept-card">
+                    <i class="fas fa-cogs"></i>
+
+                    <h4>1. Qu'est-ce qu'un Bean ?</h4>
+                    <p>Un Bean est simplement un objet Java qui est créé et géré par Spring. Imaginez-le comme une
+                        brique de base de votre application.</p>
+                    <div class="code-section">
+                        <pre><code>
+        // Un simple Bean Spring
+        @Component  // Cette annotation dit à Spring "Ceci est un Bean"
+        public class UserService {
+            // Contenu de la classe
+        }
+                        </code></pre>
+                    </div>
+
+                    <h4>2. Le Conteneur IoC (Inversion of Control)</h4>
+                    <div class="code-section">
+                        <pre><code>
+        ┌─────────────────────────────────────┐
+        │         Spring IoC Container        │
+        │                                     │
+        │   ┌──────────┐      ┌──────────┐   │
+        │   │ Bean 1   │      │ Bean 2   │   │
+        │   └──────────┘      └──────────┘   │
+        │                                     │
+        │    Spring crée et gère les Beans    │
+        └─────────────────────────────────────┘
+                        </code></pre>
+                    </div>
+                    <p>Le conteneur IoC est comme une usine qui :</p>
+                    <ul class="features-list">
+                        <li>Crée les objets (Beans)</li>
+                        <li>Les configure</li>
+                        <li>Les assemble</li>
+                        <li>Gère leur cycle de vie</li>
+                    </ul>
+
+                    <h4>3. L'Injection de Dépendances (DI)</h4>
+                    <p>Au lieu de créer nos objets nous-mêmes, Spring les "injecte" là où nous en avons besoin.</p>
+
+                    <h5>3.1 Sans Injection de Dépendances ❌</h5>
+                    <div class="code-section">
+                        <pre><code>
+        public class UserService {
+            // Création manuelle = Forte dépendance
+            private UserRepository repository = new UserRepository();
+        }
+                        </code></pre>
+                    </div>
+
+                    <h5>3.2 Avec Injection de Dépendances ✅</h5>
+                    <div class="code-section">
+                        <pre><code>
+        @Service
+        public class UserService {
+            private final UserRepository repository;
+            
+            // Spring injecte automatiquement UserRepository
+            public UserService(UserRepository repository) {
+                this.repository = repository;
+            }
+        }
+                        </code></pre>
+                    </div>
+
+                    <h4>4. Les Différentes Façons d'Injecter</h4>
+                    <div class="code-section">
+                        <pre><code>
+        ┌────────────────────────────────────┐
+        │     Méthodes d'Injection          │
+        │                                    │
+        │ 1. Constructor ────► Recommandée   │
+        │ 2. Setter     ────► Alternative    │
+        │ 3. Field      ────► Déconseillée  │
+        └────────────────────────────────────┘
+        
+        // 1. Constructor Injection (Recommandée)
+        @Service
+        public class UserService {
+            private final UserRepository repository;
+            
+            public UserService(UserRepository repository) {
+                this.repository = repository;
+            }
+        }
+        
+        // 2. Setter Injection
+        @Service
+        public class UserService {
+            private UserRepository repository;
+            
+            @Autowired
+            public void setRepository(UserRepository repository) {
+                this.repository = repository;
+            }
+        }
+        
+        // 3. Field Injection (Éviter)
+        @Service
+        public class UserService {
+            @Autowired
+            private UserRepository repository;
+        }
+                        </code></pre>
+                    </div>
+
+                    <h4>5. Configuration des Beans</h4>
+                    <p>Il existe deux façons principales de déclarer des Beans :</p>
+
+                    <h5>5.1 Annotations (Méthode simple)</h5>
+                    <div class="code-section">
+                        <pre><code>
+        @Component     // Pour les composants génériques
+        @Service       // Pour la couche service
+        @Repository    // Pour la couche d'accès aux données
+        @Controller    // Pour les contrôleurs web
+                        </code></pre>
+                    </div>
+
+                    <h5>5.2 Configuration Java (Plus de contrôle)</h5>
+                    <div class="code-section">
+                        <pre><code>
+        @Configuration
+        public class AppConfig {
+            @Bean
+            public UserService userService() {
+                // Configuration personnalisée
+                return new UserService(userRepository());
+            }
+        }
+                        </code></pre>
+                    </div>
+
+                    <h4>6. Cycle de vie simplifié d'un Bean</h4>
+                    <div class="code-section">
+                        <pre><code>
+        ┌─────────────────────────────────────┐
+        │        Cycle de vie Bean            │
+        │                                     │
+        │ 1. Spring crée le Bean              │
+        │          ↓                          │
+        │ 2. Injection des dépendances        │
+        │          ↓                          │
+        │ 3. @PostConstruct                   │
+        │          ↓                          │
+        │ 4. Bean prêt à l'utilisation       │
+        │          ↓                          │
+        │ 5. @PreDestroy                      │
+        │          ↓                          │
+        │ 6. Bean détruit                     │
+        └─────────────────────────────────────┘
+                        </code></pre>
+                    </div>
+
+                    <h4>Points Clés à Retenir</h4>
+                    <ul class="features-list">
+                        <li>Les Beans sont des objets gérés par Spring</li>
+                        <li>L'IoC nous libère de la création manuelle d'objets</li>
+                        <li>L'injection de dépendances rend le code plus flexible</li>
+                        <li>Préférez l'injection par constructeur</li>
+                        <li>Utilisez @Component (ou ses variantes) pour les cas simples</li>
+                        <li>Utilisez @Configuration/@Bean pour plus de contrôle</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+
         <!-- Pratique -->
         <section id="pratique" class="section">
             <div class="concept-card">
@@ -559,6 +738,159 @@ spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
                         <li>Autorisation</li>
                         <li>Protection CSRF</li>
                     </ul>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Les codes d'État HTTP -->
+        <section id="http-errors" class="section">
+            <div class="subsection">
+                <h3>Comprendre les Codes d'État HTTP</h3>
+                <div class="concept-card">
+                    <i class="fas fa-exclamation-circle"></i>
+
+                    <h4>1. Codes 1XX - Information</h4>
+                    <div class="code-section">
+                        <pre><code>
+        ┌─────────────────────────────────────┐
+        │         Codes 1XX                   │
+        │                                     │
+        │ 100 → Continue                      │
+        │ 101 → Switching Protocols           │
+        │ 102 → Processing                    │
+        └─────────────────────────────────────┘
+        
+        Client          Serveur
+           │    Request    │
+           │──────────────►│
+           │              │
+           │     100      │
+           │◄─────────────│
+           │   Continue   │
+                        </code></pre>
+                    </div>
+                    <p>Les codes 1XX indiquent une réponse provisoire. Le client doit attendre la réponse finale.</p>
+
+                    <h4>2. Codes 2XX - Succès</h4>
+                    <div class="code-section">
+                        <pre><code>
+        ┌─────────────────────────────────────┐
+        │         Codes 2XX                   │
+        │                                     │
+        │ 200 → OK                           │
+        │ 201 → Created                      │
+        │ 202 → Accepted                     │
+        │ 204 → No Content                   │
+        └─────────────────────────────────────┘
+        
+        Client          Serveur
+           │    Request    │
+           │──────────────►│
+           │              │
+           │     200      │
+           │◄─────────────│
+           │     OK       │
+                        </code></pre>
+                    </div>
+                    <p>Les codes 2XX indiquent que la requête a été traitée avec succès.</p>
+
+                    <h4>3. Codes 3XX - Redirection</h4>
+                    <div class="code-section">
+                        <pre><code>
+        ┌─────────────────────────────────────┐
+        │         Codes 3XX                   │
+        │                                     │
+        │ 301 → Moved Permanently            │
+        │ 302 → Found (Temporary Redirect)   │
+        │ 304 → Not Modified                 │
+        │ 307 → Temporary Redirect           │
+        └─────────────────────────────────────┘
+        
+        Client          Serveur
+           │    Request    │
+           │──────────────►│
+           │              │
+           │     301      │
+           │◄─────────────│
+           │   Location   │
+           │  /new-url    │
+                        </code></pre>
+                    </div>
+                    <p>Les codes 3XX indiquent que le client doit effectuer une action supplémentaire.</p>
+
+                    <h4>4. Codes 4XX - Erreur Client</h4>
+                    <div class="code-section">
+                        <pre><code>
+        ┌─────────────────────────────────────┐
+        │         Codes 4XX                   │
+        │                                     │
+        │ 400 → Bad Request                  │
+        │ 401 → Unauthorized                 │
+        │ 403 → Forbidden                    │
+        │ 404 → Not Found                    │
+        │ 405 → Method Not Allowed           │
+        │ 409 → Conflict                     │
+        │ 429 → Too Many Requests            │
+        └─────────────────────────────────────┘
+        
+        Client          Serveur
+           │   Bad Request │
+           │──────────────►│
+           │              │
+           │     400      │
+           │◄─────────────│
+           │  Error msg   │
+                        </code></pre>
+                    </div>
+                    <p>Les codes 4XX indiquent une erreur de la part du client.</p>
+
+                    <h4>5. Codes 5XX - Erreur Serveur</h4>
+                    <div class="code-section">
+                        <pre><code>
+        ┌─────────────────────────────────────┐
+        │         Codes 5XX                   │
+        │                                     │
+        │ 500 → Internal Server Error        │
+        │ 501 → Not Implemented             │
+        │ 502 → Bad Gateway                 │
+        │ 503 → Service Unavailable         │
+        │ 504 → Gateway Timeout             │
+        └─────────────────────────────────────┘
+        
+        Client          Serveur
+           │    Request    │
+           │──────────────►│
+           │              │ ⚡ Erreur
+           │     500      │
+           │◄─────────────│
+           │  Error msg   │
+                        </code></pre>
+                    </div>
+                    <p>Les codes 5XX indiquent une erreur de la part du serveur.</p>
+
+                    <h4>Résumé des Codes les Plus Courants</h4>
+                    <ul class="features-list">
+                        <li>200 : Succès - La requête a été traitée avec succès</li>
+                        <li>201 : Created - Ressource créée avec succès</li>
+                        <li>400 : Bad Request - Requête mal formée</li>
+                        <li>401 : Unauthorized - Authentification nécessaire</li>
+                        <li>403 : Forbidden - Accès interdit</li>
+                        <li>404 : Not Found - Ressource non trouvée</li>
+                        <li>500 : Internal Server Error - Erreur serveur</li>
+                        <li>503 : Service Unavailable - Service indisponible</li>
+                    </ul>
+
+                    <div class="schema-details">
+                        <p><strong>À retenir :</strong></p>
+                        <ul>
+                            <li>1XX : Information (rarement utilisé)</li>
+                            <li>2XX : Succès</li>
+                            <li>3XX : Redirection</li>
+                            <li>4XX : Erreur client</li>
+                            <li>5XX : Erreur serveur</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>

@@ -184,3 +184,17 @@ themeToggle.addEventListener("click", () => {
     themeIcon.classList.replace("fa-moon", "fa-sun");
   }
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  const hasSubmenuItems = document.querySelectorAll(".has-submenu > a");
+
+  hasSubmenuItems.forEach((item) => {
+    item.addEventListener("click", function (e) {
+      if (window.innerWidth <= 1100) {
+        e.preventDefault();
+        const parent = this.parentElement;
+        parent.classList.toggle("active");
+      }
+    });
+  });
+});

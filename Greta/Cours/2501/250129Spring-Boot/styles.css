@@ -505,3 +505,55 @@ h1 {
   margin: 1rem 0;
   line-height: 1.6;
 }
+
+/* Sous-menu styles */
+.has-submenu {
+  position: relative;
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--nav-bg);
+  min-width: 200px;
+  box-shadow: 0 2px 5px var(--shadow);
+  border-radius: 4px;
+  padding: 0.5rem 0;
+  z-index: 1001;
+}
+
+.has-submenu:hover .submenu {
+  display: block;
+}
+
+.submenu li {
+  list-style: none;
+}
+
+.submenu a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.submenu a:hover {
+  background-color: var(--background-color);
+}
+
+/* Responsive adjustments for submenu */
+@media (max-width: 1100px) {
+  .submenu {
+    position: static;
+    display: none;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding-left: 1rem;
+  }
+
+  .has-submenu.active .submenu {
+    display: block;
+  }
+}
