@@ -9,42 +9,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Table(name = "UTILISATEURS", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "email") // Assure que l'email est unique
-})
 public class Utilisateur {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Génère automatiquement les IDs
     private Long id;
-
-    @Column(nullable = false, length = 100) // Nom obligatoire avec une limite de 100 caractères
-    @NotNull
-    @Size(max = 100)
     private String nom;
-
-    @Column(nullable = false, length = 100) // Prénom obligatoire avec une limite de 100 caractères
-    @NotNull
-    @Size(max = 100)
     private String prenom;
-
-    @Column(nullable = false, unique = true, length = 100) // Email unique et obligatoire
-    @NotNull
-    @Email
-    @Size(max = 100)
     private String email;
-
-    @Column(nullable = false, length = 255) // Mot de passe obligatoire
-    @NotNull
-    @Size(max = 255)
     private String motDePasse;
-
-    @Column(nullable = false) // Date d'inscription obligatoire
-    @NotNull
     private LocalDate dateInscription;
-
-    @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Favoris> favoris = new ArrayList<>();
 
     // Constructeur par défaut

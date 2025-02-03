@@ -1,22 +1,15 @@
 package org.cnd.projectcnd.entities;
 
 import jakarta.persistence.*;
+
 import java.util.Objects;
 
-@Entity
 public class Favoris {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // Clé primaire
 
-    @ManyToOne
-    @JoinColumn(name = "utilisateur_id", nullable = false) // Liaison avec Utilisateur via une clé étrangère dans la
-                                                           // table
     private Utilisateur utilisateur; // Relation avec Utilisateur
 
-    @ManyToOne
-    @JoinColumn(name = "film_id", nullable = false) // Liaison avec Film via une clé étrangère dans la table
     private Film film; // Relation avec Film
 
     private int listeNumero; // Numéro de la liste (ex. 1 ou 2 pour les favoris)
@@ -68,7 +61,7 @@ public class Favoris {
     }
 
     // Equals et hashCode
-    @Override
+
     public boolean equals(Object o) {
         if (this == o)
             return true;
@@ -81,13 +74,10 @@ public class Favoris {
                 Objects.equals(film, favoris.film);
     }
 
-    @Override
     public int hashCode() {
         return Objects.hash(id, utilisateur, film, listeNumero);
     }
 
-    // ToString pour debug (optionnel)
-    @Override
     public String toString() {
         return "Favoris{" +
                 "id=" + id +

@@ -3,16 +3,10 @@ package org.cnd.projectcnd.entities;
 import jakarta.persistence.*;
 import java.io.Serializable;
 
-@Entity
-@Table(name = "films_categories") // Table intermédiaire dans la base de données
 public class FilmCategorie implements Serializable { // Implémente Serializable pour une clé composite
 
-    @Id
-    @Column(name = "film_id") // Clé étrangère vers FILMS
     private Long filmId;
 
-    @Id
-    @Column(name = "categorie_id") // Clé étrangère vers CATEGORIES
     private Long categorieId;
 
     // Constructeurs

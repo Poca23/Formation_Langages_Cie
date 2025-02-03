@@ -3,6 +3,7 @@ package org.cnd.projectcnd.entities;
 import java.time.LocalDate;
 
 public class Film {
+
     private Long id; // Clé primate
     private String titre; // Titre du film
     private String synopsis; // Résumé ou description du film

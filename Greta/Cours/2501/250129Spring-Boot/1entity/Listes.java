@@ -4,21 +4,14 @@ import jakarta.persistence.*;
 
 import java.util.Objects;
 
-@Entity // Définit cette classe comme une entité JPA
-@Table(name = "listes") // Nom de la table associée dans la base
 public class Listes {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Clé primaire auto-générée
     private Long id;
 
-    @Column(name = "utilisateur_id", nullable = false) // Clé étrangère vers UTILISATEURS
     private Long utilisateurId;
 
-    @Column(name = "nom", nullable = false) // Nom de la liste
     private String nom;
 
-    @Column(name = "type", nullable = false) // Type de la liste (exemple : "Favoris", "À voir", etc.)
     private String type;
 
     // Constructeur par défaut
@@ -66,8 +59,6 @@ public class Listes {
         this.type = type;
     }
 
-    // Equals and hashCode
-    @Override
     public boolean equals(Object o) {
         if (this == o)
             return true;
@@ -80,7 +71,6 @@ public class Listes {
                 Objects.equals(type, listes.type);
     }
 
-    @Override
     public int hashCode() {
         return Objects.hash(id, utilisateurId, nom, type);
     }

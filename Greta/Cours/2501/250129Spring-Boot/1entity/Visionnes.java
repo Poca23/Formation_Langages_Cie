@@ -5,25 +5,16 @@ import jakarta.persistence.*;
 import java.util.Date;
 import java.util.Objects;
 
-@Entity // Indique que cette classe est une entité JPA
-@Table(name = "visionnes") // Table associée dans la base de données
 public class Visionnes {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Génération automatique de l'ID
     private Long id; // Clé primaire
 
-    @Column(name = "utilisateur_id", nullable = false) // Clé étrangère vers la table UTILISATEURS
     private Long utilisateurId;
 
-    @Column(name = "film_id", nullable = false) // Clé étrangère vers la table FILMS
     private Long filmId;
 
-    @Column(name = "liste_numero", nullable = false) // Numéro de liste (1 ou 2)
     private int listeNumero;
 
-    @Temporal(TemporalType.DATE) // Date sans l'heure
-    @Column(name = "date_visionnage", nullable = false) // Date du visionnage obligatoire
     private Date dateVisionnage;
 
     // Constructeurs
@@ -79,8 +70,6 @@ public class Visionnes {
         this.dateVisionnage = dateVisionnage;
     }
 
-    // Méthodes equals et hashCode
-    @Override
     public boolean equals(Object o) {
         if (this == o)
             return true;
@@ -94,7 +83,6 @@ public class Visionnes {
                 Objects.equals(dateVisionnage, visionnes.dateVisionnage);
     }
 
-    @Override
     public int hashCode() {
         return Objects.hash(id, utilisateurId, filmId, listeNumero, dateVisionnage);
     }

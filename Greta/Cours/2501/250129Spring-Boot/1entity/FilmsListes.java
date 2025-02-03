@@ -5,22 +5,14 @@ import jakarta.persistence.*;
 import java.util.Date;
 import java.util.Objects;
 
-@Entity // Définit cette classe comme une entité JPA
-@Table(name = "films_listes") // Nom de la table associée dans la base de données
 public class FilmsListes {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Clé primaire auto-générée
     private Long id;
 
-    @Column(name = "liste_id", nullable = false) // Clé étrangère vers LISTES
     private Long listeId;
 
-    @Column(name = "film_id", nullable = false) // Clé étrangère vers FILMS
     private Long filmId;
 
-    @Column(name = "date_ajout", nullable = false) // Date d'ajout du film à la liste
-    @Temporal(TemporalType.TIMESTAMP) // Définit le type de date comme TIMESTAMP
     private Date dateAjout;
 
     // Constructeur par défaut
@@ -68,8 +60,6 @@ public class FilmsListes {
         this.dateAjout = dateAjout;
     }
 
-    // equals et hashCode
-    @Override
     public boolean equals(Object o) {
         if (this == o)
             return true;
@@ -82,7 +72,6 @@ public class FilmsListes {
                 Objects.equals(dateAjout, that.dateAjout);
     }
 
-    @Override
     public int hashCode() {
         return Objects.hash(id, listeId, filmId, dateAjout);
     }
