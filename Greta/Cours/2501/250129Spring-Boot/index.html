@@ -27,6 +27,11 @@
                     <li><a href="#composants">Les composants principaux</a></li>
                     <li><a href="#methodes">Les méthodes HTTP</a></li>
                     <li><a href="#bean">Les Beans</a></li>
+                    <li><a href="#contraintes">Les contraintes de validation</a></li>
+                    <li><a href="#cors">CORS (Cross Origin Ressources Sharing)</a></li>
+                    <li><a href="#env-variables">Les variables d'environnement</a></li>
+                    <li><a href="#auth-jwt">Mise en place de l'authentification - JWT</a></li>
+                    <li><a href="#spring-security-intro">Introduction à Spring Security</a></li>
                     <li><a href="#pratique">Pratique</a></li>
                     <li><a href="#concepts">Concepts Clés</a></li>
                 </ul>
@@ -589,6 +594,806 @@ Client                    Serveur
         </section>
 
 
+        <!-- Les Contraintes de Validation -->
+        <section id="contraintes" class="section">
+            <div class="subsection">
+                <h3>Les Contraintes de Validation avec Spring Boot</h3>
+                <div class="concept-card">
+                    <i class="fas fa-check-circle"></i>
+
+                    <h4>1. Introduction aux Validations</h4>
+                    <p>Les contraintes de validation permettent de s'assurer que les données reçues par notre
+                        application respectent certaines règles avant d'être traitées.</p>
+
+                    <h4>2. Mise en Place des Validations</h4>
+                    <p>Tout d'abord, ajoutez la dépendance dans votre pom.xml :</p>
+                    <div class="code-section">
+                        <pre><code>
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-validation&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+                </code></pre>
+                    </div>
+
+                    <h4>3. Les Annotations de Validation Courantes</h4>
+                    <div class="code-section">
+                        <pre><code>
+@NotNull          : La valeur ne doit pas être null
+@NotEmpty         : La chaîne/collection ne doit pas être vide
+@NotBlank         : La chaîne ne doit pas être vide ou constituée uniquement d'espaces
+@Min(value)       : Valeur minimale pour les nombres
+@Max(value)       : Valeur maximale pour les nombres
+@Size             : Taille d'une chaîne, collection, tableau
+@Email            : Format d'email valide
+@Pattern          : Expression régulière à respecter
+@URL              : Format d'URL valide
+@Positive         : Valeur numérique strictement positive
+@Negative         : Valeur numérique strictement négative
+@PositiveOrZero   : Valeur numérique positive ou nulle
+@NegativeOrZero   : Valeur numérique négative ou nulle
+@Past             : Date dans le passé
+@Future           : Date dans le futur
+@PastOrPresent    : Date dans le passé ou présent
+@FutureOrPresent  : Date dans le futur ou présent
+@Valid            : Validation en cascade des objets imbriqués
+                        </code></pre>
+                    </div>
+
+                    <h4>3.1 Placement des Contraintes de Validation</h4>
+                    <div class="code-section">
+                        <pre><code>
+                    public class User {
+                        // 1️⃣ Sur l'attribut : Validation directe de la donnée
+                        @NotNull
+                        private String name;
+                    
+                        // 2️⃣ Sur le getter : Validation après transformation
+                        private String email;
+                        
+                        @Email
+                        public String getEmail() {
+                            return email.toLowerCase(); // Validation après transformation
+                        }
+                    }
+                        </code></pre>
+                    </div>
+
+                    <p>Le placement des contraintes dépend du moment souhaité pour la validation :</p>
+                    <ul class="features-list">
+                        <li><strong>Sur l'attribut</strong> : Pour une validation immédiate de la donnée brute</li>
+                        <li><strong>Sur le getter</strong> : Pour valider après une éventuelle transformation de la
+                            donnée</li>
+                    </ul>
+
+
+                    <h4>4. Exemple Pratique</h4>
+                    <p>Créons une classe User avec des validations :</p>
+                    <div class="code-section">
+                        <pre><code>
+    import javax.validation.constraints.*;
+
+    public class User {
+        @NotNull(message = "L'id ne peut pas être null")
+        private Long id;
+
+        @NotBlank(message = "Le nom est obligatoire")
+        @Size(min = 2, max = 50, message = "Le nom doit faire entre 2 et 50 caractères")
+        private String name;
+
+        @Email(message = "Format d'email invalide")
+        private String email;
+
+        @Min(value = 18, message = "L'âge minimum est 18 ans")
+        private int age;
+    }
+                </code></pre>
+                    </div>
+
+                    <h4>5. Validation dans le Controller</h4>
+                    <div class="code-section">
+                        <pre><code>
+    @RestController
+    @RequestMapping("/api/users")
+    public class UserController {
+
+        @PostMapping
+        public ResponseEntity&lt;User&gt; createUser(@Valid @RequestBody User user) {
+            // Si la validation échoue, Spring retourne automatiquement 
+            // une erreur 400 Bad Request
+            return ResponseEntity.ok(userService.save(user));
+        }
+    }
+                </code></pre>
+                    </div>
+
+                    <h4>5.1 Utilisation Complète de @Valid dans le Controller</h4>
+                    <p>L'annotation @Valid doit être placée systématiquement avant @RequestBody pour toutes les
+                        opérations
+                        modifiant des données :</p>
+                    <div class="code-section">
+                        <pre><code>
+                    @RestController
+                    @RequestMapping("/api/products")
+                    public class ProductController {
+                    
+                        @PostMapping  // Création
+                        public ResponseEntity&lt;Product&gt; createProduct(@Valid @RequestBody Product product) {
+                            return ResponseEntity.status(HttpStatus.CREATED).body(productService.save(product));
+                        }
+                    
+                        @PutMapping("/{id}")  // Mise à jour complète
+                        public ResponseEntity&lt;Product&gt; updateProduct(
+                            @PathVariable Long id, 
+                            @Valid @RequestBody Product product) {
+                            return ResponseEntity.ok(productService.update(id, product));
+                        }
+                    
+                        @PatchMapping("/{id}")  // Mise à jour partielle
+                        public ResponseEntity&lt;Product&gt; partialUpdateProduct(
+                            @PathVariable Long id, 
+                            @Valid @RequestBody Product product) {
+                            return ResponseEntity.ok(productService.partialUpdate(id, product));
+                        }
+                    }
+                        </code></pre>
+                    </div>
+
+                    <ul class="features-list">
+                        <li>@Valid est nécessaire pour toute opération recevant des données (POST, PUT, PATCH)</li>
+                        <li>Se place toujours avant @RequestBody</li>
+                        <li>Non nécessaire pour les opérations de lecture (GET) ou suppression (DELETE)</li>
+                        <li>Garantit la validation des données avant tout traitement</li>
+                    </ul>
+
+
+                    <h4>6. Gestion Personnalisée des Erreurs</h4>
+                    <div class="code-section">
+                        <pre><code>
+    @ControllerAdvice
+    public class ValidationExceptionHandler {
+
+        @ExceptionHandler(MethodArgumentNotValidException.class)
+        public ResponseEntity&lt;Map&lt;String, String&gt;&gt; handleValidationExceptions(
+            MethodArgumentNotValidException ex) {
+            
+            Map&lt;String, String&gt; errors = new HashMap<>();
+            
+            ex.getBindingResult().getAllErrors().forEach(error -> {
+                String fieldName = ((FieldError) error).getField();
+                String errorMessage = error.getDefaultMessage();
+                errors.put(fieldName, errorMessage);
+            });
+            
+            return ResponseEntity.badRequest().body(errors);
+        }
+    }
+                </code></pre>
+                    </div>
+
+                    <h4>7. Exemple de Validation Personnalisée</h4>
+                    <p>Création d'une annotation personnalisée :</p>
+                    <div class="code-section">
+                        <pre><code>
+    // L'annotation
+    @Target({ElementType.FIELD})
+    @Retention(RetentionPolicy.RUNTIME)
+    @Constraint(validatedBy = PasswordValidator.class)
+    public @interface StrongPassword {
+        String message() default "Mot de passe trop faible";
+        Class<?>[] groups() default {};
+        Class<? extends Payload>[] payload() default {};
+    }
+
+    // Le validateur
+    public class PasswordValidator implements ConstraintValidator&lt;StrongPassword, String&gt; {
+        @Override
+        public boolean isValid(String value, ConstraintValidatorContext context) {
+            return value != null && 
+                   value.length() >= 8 && 
+                   value.matches(".*[A-Z].*") && 
+                   value.matches(".*[a-z].*") && 
+                   value.matches(".*[0-9].*");
+        }
+    }
+
+    // Utilisation
+    public class User {
+        @StrongPassword
+        private String password;
+    }
+                </code></pre>
+                    </div>
+
+                    <h4>Points Clés à Retenir</h4>
+                    <ul class="features-list">
+                        <li>Les validations permettent de vérifier les données avant traitement</li>
+                        <li>@Valid active la validation sur un objet</li>
+                        <li>Les messages d'erreur peuvent être personnalisés</li>
+                        <li>Possibilité de créer des validations personnalisées</li>
+                        <li>Spring gère automatiquement les erreurs de validation</li>
+                        <li>Les validations améliorent la robustesse de l'application</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- CORS et Communication React-Spring -->
+        <section id="cors" class="section">
+            <div class="subsection">
+                <h3>Intégration React et Spring Boot : Configuration et Tests avec CORS</h3>
+                <div class="concept-card">
+                    <i class="fas fa-code-branch"></i>
+
+                    <h4>1. Contexte et Objectif</h4>
+                    <p>Dans un projet moderne, le backend (avec Spring Boot) et le frontend (avec React) doivent
+                        fonctionner ensemble. Mais par défaut, ils ne peuvent pas communiquer librement s'ils sont
+                        exécutés sur des serveurs ayant des origines différentes (par exemple, backend sur
+                        <code>http://localhost:8080</code> et frontend sur <code>http://localhost:3000</code>). C'est
+                        ici que le <b>CORS</b> (Cross-Origin Resource Sharing) entre en jeu.
+                    </p>
+
+                    <h4>2. Qu’est-ce que CORS ?</h4>
+                    <p>
+                        CORS est une *politique de sécurité* utilisée par les navigateurs pour empêcher des requêtes
+                        provenant d'une origine non autorisée. Avec CORS correctement configuré, le backend autorisera
+                        React à lui envoyer des requêtes.
+                    </p>
+
+                    <div class="code-section schema">
+                        <pre>
+                  ┌───────────────┐       Requête API        ┌───────────────┐
+                  │ Frontend React│ ───────────────────────► │ Backend Spring│
+                  │http://localhost:3000 │                │http://localhost:8080│
+                  └───────────────┘       Réponse API       └───────────────┘
+                            🚫<b>Sans configuration CORS :</b> Erreur bloquée par le navigateur.
+                            ✅<b>Avec configuration CORS :</b> Communication réussie.
+                  </pre>
+                    </div>
+
+                    <h4>3. Mise en Place de la Communication</h4>
+                    <p>Voici comment configurer CORS et connecter les deux applications de manière fluide.</p>
+
+                    <h5>Étape 1 : Créer un Backend Spring Boot</h5>
+                    <p>Créez un projet Spring Boot avec une simple API REST. Par exemple :</p>
+                    <div class="code-section">
+                        <pre><code>
+          @RestController
+          @RequestMapping("/api")
+          public class TestController {
+              @GetMapping("/test")
+              public String test() {
+                  return "Hello depuis Spring Boot !";
+              }
+          }
+                  </code></pre>
+                    </div>
+
+                    <h5>Étape 2 : Configurer CORS dans Spring Boot</h5>
+                    <p>Ajoutez une configuration CORS pour permettre à React d’accéder au backend :</p>
+                    <div class="code-section">
+                        <pre><code>
+          @Configuration
+          public class CorsConfig implements WebMvcConfigurer {
+              @Override
+              public void addCorsMappings(CorsRegistry registry) {
+                  registry.addMapping("/**") // Appliquer à tous les endpoints
+                          .allowedOrigins("http://localhost:3000") // Autorise React
+                          .allowedMethods("GET", "POST", "PUT", "DELETE");
+              }
+          }
+                  </code></pre>
+                    </div>
+
+                    <h5>Étape 3 : Créer un Frontend React</h5>
+                    <p>Créez un composant React pour tester l'appel au backend :</p>
+                    <div class="code-section">
+                        <pre><code>
+          import React, { useEffect, useState } from 'react';
+          
+          const TestComponent = () => {
+              const [data, setData] = useState("");
+          
+              useEffect(() => {
+                  fetch("http://localhost:8080/api/test")
+                      .then(response => response.text())
+                      .then(data => setData(data))
+                      .catch(error => console.error("Erreur :", error));
+              }, []);
+          
+              return (
+                  <div>
+                      <h1>Test API</h1>
+                      <p>Réponse du backend : {data}</p>
+                  </div>
+              );
+          };
+          
+          export default TestComponent;
+                  </code></pre>
+                    </div>
+
+                    <h5>Étape 4 : Tester la Communication</h5>
+                    <p>1. Lancez le backend Spring Boot sur le port 8080.
+                        2. Lancez le frontend React sur le port 3000.
+                        3. Accédez au composant React et vérifiez que la réponse du backend s'affiche correctement.</p>
+
+                    <div class="code-section schema">
+                        <pre>
+                  🌐 Frontend React       🔄        Backend Spring Boot
+                  ┌─────────────────────────────────────────────┐
+                  │1. Appel fetch() depuis React                │
+                  │   URL : http://localhost:8080/api/test      │
+                  └─────────────────────────────────────────────┘
+                              ⬆ CORS configuré ⬇
+                  ┌─────────────────────────────────────────────┐
+                  │2. Réponse JSON ou String : "Hello depuis…"  │
+                  └─────────────────────────────────────────────┘
+                  </pre>
+                    </div>
+
+                    <h4>4. Résoudre les Problèmes Courants</h4>
+                    <div class="features-list">
+                        <li><b>Erreur CORS :</b> Vérifiez que l'origine utilisée dans Spring Boot correspond à celle du
+                            frontend.</li>
+                        <li><b>Backend inaccessible :</b> Assurez-vous que le backend tourne bien à l'adresse
+                            <code>http://localhost:8080</code>.
+                        </li>
+                        <li><b>Pas de réponse :</b> Vérifiez que votre URL dans React est correcte.</li>
+                    </div>
+
+                    <h4>5. Bonnes Pratiques</h4>
+                    <ul class="features-list">
+                        <li>Utilisez un composant test (comme notre `TestController`) pour isoler les problèmes.</li>
+                        <li>Configurez CORS globalement dans Spring Boot pour un développement fluide.</li>
+                        <li>Gardez les tests React pour vérifier rapidement la connectivité lors de modifications.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Les variables d'environnement -->
+        <section id="env-variables" class="section">
+            <div class="subsection">
+                <h3>Les Variables d’Environnement</h3>
+                <div class="concept-card">
+                    <i class="fas fa-lock"></i>
+
+                    <h4>1. Introduction</h4>
+                    <p>Souviens-toi, dans ton fichier <code>application.properties</code>, tu as peut-être défini des
+                        informations telles que :</p>
+                    <div class="code-section">
+                        <pre><code>
+          spring.datasource.url=jdbc:mysql://localhost:3306/visiotech_db?createDatabaseIfNotExist=true
+          spring.datasource.username=your_mysql_username # 👈 à remplacer
+          spring.datasource.password=your_mysql_password # 👈 à remplacer
+                  </code></pre>
+                    </div>
+                    <p>Le problème, c'est que ces informations sont **sensibles**. Tu ne veux pas qu'elles soient
+                        visibles par tout le monde, surtout si ton code est versionné sur GitHub.</p>
+                    <p>Pour résoudre ce problème, tu peux utiliser des **variables d’environnement**, un outil puissant
+                        pour sécuriser et structurer les configurations de ton application. 🌟</p>
+
+                    <div class="schema">
+                        <pre>
+          💻 Ton application        🔒 Variables d'environnement
+                 ↓                               ↓
+              Utilise les valeurs      Stocke les infos sensibles
+                    lors de                 dans un système
+              l'exécution.              sécurisé et externe.
+                  </pre>
+                    </div>
+
+                    <h4>2. Pourquoi utiliser des Variables d’Environnement ?</h4>
+                    <ul class="features-list">
+                        <li><b>🔒 Sécurité :</b> Les informations comme les mots de passe sont stockées en dehors du
+                            code source, évitant ainsi tout partage accidentel.</li>
+                        <li><b>🚀 Portabilité :</b> Change les configurations en fonction des différentes étapes du
+                            projet (développement, test, production).</li>
+                        <li><b>⚙️ Facilité d’utilisation :</b> Modifie les paramètres sans toucher au code ou aux
+                            fichiers versionnés.</li>
+                    </ul>
+
+                    <h4>3. Mise en Place avec Spring Boot et spring-dotenv</h4>
+                    <p>Voyons comment implémenter des variables d’environnement dans un projet Spring Boot de manière
+                        sécurisée et propre. 🛠️</p>
+
+                    <h5>3.1 Ajoute la Dépendance Maven</h5>
+                    <p>Tout commence par l’ajout de la dépendance suivante dans <code>pom.xml</code> :</p>
+                    <div class="code-section">
+                        <pre><code>
+          <dependency>
+              <groupId>me.paulschwarz</groupId>
+              <artifactId>spring-dotenv</artifactId>
+              <version>3.0.0</version>
+          </dependency>
+                  </code></pre>
+                    </div>
+                    <p><b>💡 Tip :</b> Après avoir modifié ton <code>pom.xml</code>, n’oublie pas de <b>refresh</b> ton
+                        projet Maven !</p>
+
+                    <h5>3.2 Crée le Fichier <code>.env</code></h5>
+                    <p>Ajoute un fichier <code>.env</code> à la racine de ton projet (au même niveau que le dossier
+                        <code>src</code>) et configure-y tes infos sensibles :
+                    </p>
+                    <div class="code-section">
+                        <pre><code>
+          DB_URL=jdbc:mysql://localhost:3306/visiotech_db?createDatabaseIfNotExist=true
+          DB_USERNAME=your_mysql_username
+          DB_PASSWORD=your_mysql_password
+                  </code></pre>
+                    </div>
+                    <p>Voici où placer le fichier :</p>
+                    <div class="schema">
+                        <pre>
+          🔖 Mon Projet Spring Boot
+          ├── src/
+          ├── pom.xml
+          └── .env  👈 Ajoute ton fichier ici
+                  </pre>
+                    </div>
+
+                    <h5>3.3 Ignore le Fichier <code>.env</code> dans Git</h5>
+                    <p>Ajoute <code>.env</code> à ton fichier <code>.gitignore</code> pour t'assurer qu'il ne soit
+                        jamais versionné :</p>
+                    <div class="code-section">
+                        <pre><code>
+          # Ignorer les fichiers contenant des variables sensibles
+          .env
+                  </code></pre>
+                    </div>
+                    <p><b>⚠️ ATTENTION :</b> Ne partage jamais ce fichier, car il contient des informations sensibles.
+                    </p>
+
+                    <h5>3.4 Ajoute un fichier <code>.envsample</code></h5>
+                    <p>Crée un fichier <code>.envsample</code> pour partager avec d’autres développeurs un
+                        <i>template</i> indiquant les variables nécessaires, sans leurs valeurs :
+                    </p>
+                    <div class="code-section">
+                        <pre><code>
+          DB_URL=
+          DB_USERNAME=
+          DB_PASSWORD=
+                  </code></pre>
+                    </div>
+                    <p>Ainsi, chaque développeur peut copier ce fichier, le renommer en <code>.env</code> et remplir les
+                        valeurs selon ses besoins.</p>
+
+                    <h5>3.5 Remplace les Configurations dans <code>application.properties</code></h5>
+                    <p>Édite le fichier <code>application.properties</code> pour référencer tes variables
+                        d’environnement. Utilise la syntaxe <code>${VAR_NAME}</code>, comme ceci :</p>
+                    <div class="code-section">
+                        <pre><code>
+          spring.datasource.url=${DB_URL}
+          spring.datasource.username=${DB_USERNAME}
+          spring.datasource.password=${DB_PASSWORD}
+          spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+          
+          spring.sql.init.mode=always
+          logging.level.org.springframework.jdbc.core=DEBUG
+                  </code></pre>
+                    </div>
+                    <p>Lorsque tu démarres l’application, les valeurs de <code>.env</code> sont automatiquement
+                        injectées. 🚀</p>
+
+                    <h4>4. Schéma de Fonctionnement</h4>
+                    <div class="schema">
+                        <pre>
+          🌐 Ton application Spring Boot
+                 ↕
+          📄 application.properties ▶ Référence les variables d’environnement
+                 ↕
+          📂 .env ▶ Contient les valeurs sensibles (non partagé)
+                  </pre>
+                    </div>
+
+                    <h4>5. Bonnes Pratiques</h4>
+                    <ul class="features-list">
+                        <li>Ajoute <code>.env</code> à <code>.gitignore</code>.</li>
+                        <li>Crée un <code>.envsample</code> pour guider tes collègues.</li>
+                        <li>Ne jamais mettre de valeurs sensibles directement dans <code>application.properties</code>.
+                        </li>
+                        <li>Utilise des outils comme <b>Vault</b> ou <b>Secrets Manager</b> si ton application est en
+                            production.</li>
+                    </ul>
+
+                    <h4>6. Ce que tu as appris</h4>
+                    <ul class="features-list">
+                        <li>Comprendre la valeur et l’usage des variables d’environnement.</li>
+                        <li>Configurer un fichier <code>.env</code> dans un projet Spring Boot avec la librairie
+                            <code>spring-dotenv</code>.
+                        </li>
+                        <li>Éviter de partager des données sensibles dans Git.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Mise en place de l'authentification -->
+        <section id="auth-jwt" class="section">
+            <div class="subsection">
+                <h2>Mise en Place de l’Authentification</h2>
+                <p>🚀 Dans ce chapitre, tu vas apprendre à utiliser les **JWT (JSON Web Tokens)** pour mettre en place
+                    un système d’authentification sécurisé dans ton application. Ils permettront de restreindre l’accès
+                    aux endpoints de ton API en fonction des rôles d’utilisateur.</p>
+
+                <h3>📚 Objectifs</h3>
+                <ul>
+                    <li>✅ Différencier authentification et autorisation</li>
+                    <li>✅ Comprendre comment un JWT facilite l’authentification</li>
+                    <li>✅ Visualiser le séquençage d’une authentification</li>
+                    <li>✅ Être capable de comprendre et structurer un JWT</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h3>Authentification VS Autorisation</h3>
+                <p>La première chose est de bien faire la différence entre **authentification** et **autorisation** :
+                </p>
+
+                <div class="concept-card">
+                    <h4>🔑 Authentification</h4>
+                    <ul>
+                        <li><strong>Objectif :</strong> Vérifie l’identité de l’utilisateur.</li>
+                        <li><strong>Exemple :</strong> L’utilisateur fournit un email + mot de passe pour prouver son
+                            identité (login).</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card">
+                    <h4>🚦 Autorisation</h4>
+                    <ul>
+                        <li><strong>Objectif :</strong> Vérifie ce que l’utilisateur a le droit de faire.</li>
+                        <li><strong>Exemple :</strong> Un utilisateur connecté avec un rôle `ADMIN` peut modifier
+                            d’autres utilisateurs, mais un `USER` ne peut que visualiser son propre profil.</li>
+                    </ul>
+                </div>
+
+                <div class="schema">
+                    <h5>🖼️ Résumé visuel</h5>
+                    <pre>
+          1️⃣ AUTHENTIFICATION :
+          
+          🔑 Utilisateur :
+             ➡️ Email : user@example.com
+             ➡️ Mot de passe : password123
+          
+          Serveur : ✔ Authentification réussie, voici ton <token> !
+          
+          ---
+          
+          2️⃣ AUTORISATION
+          🛂 Avec le token :
+          
+            🔓 Accès autorisé (rôle : ADMIN)
+            🔒 Accès refusé (pas le bon rôle)
+                </pre>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Le Workflow : Comment fonctionne l’authentification JWT ?</h3>
+                <p>Pour illustrer le process complet d’authentification avec JWT, voici un schéma basé sur un cas
+                    classique :</p>
+
+                <div class="schema">
+                    <h5>🗺️ Étapes d’authentification avec JWT</h5>
+                    <pre>
+          1️⃣ Création de Compte :
+          Utilisateur ➡️ /auth/register ➡️ Serveur ➡️ Sauvegarde dans BDD 🗄️
+          
+          2️⃣ Login :
+          Utilisateur ➡️ /auth/login ➡️ Génération d’un JWT 🔑
+                                  Serveur valide ou refuse les identifiants.
+          
+          3️⃣ Utilisation d’un Token pour Réquêtes API :
+          Client ➡️ HTTP Header (Authorization: Bearer <JWT>)
+          Serveur                    ↕ Valide et Autorise/Refuse.
+                </pre>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Qu’est-ce qu’un JWT (JSON Web Token) ?</h3>
+                <p>Un **JWT** est une clé sécurisée, utilisée comme preuve d’identité. Elle se compose de 3 parties :
+                </p>
+
+                <ul class="features-list">
+                    <li><b>📍 Header :</b> Contient des informations sur l’algorithme et le type de token (JWT).</li>
+                    <li><b>📦 Payload :</b> Transporte des informations sur l’utilisateur (email, rôle, etc.)</li>
+                    <li><b>🖋️ Signature :</b> Vérifie l'intégrité du token pour s’assurer qu’il n’a pas été modifié.
+                    </li>
+                </ul>
+
+                <div class="code-section">
+                    <h5>🔗 Exemple d’un JWT</h5>
+                    <pre><code>
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+          .eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ
+          .SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+                </code></pre>
+                </div>
+
+                <div class="concept-card">
+                    <h4>Structure</h4>
+                    <ul>
+                        <li><strong>Header</strong> :<br>{ "alg": "HS256", "typ": "JWT" }</li>
+                        <li><strong>Payload</strong> :<br>{ "email": "user@example.com", "role": "USER", "exp":
+                            1697801937 }</li>
+                        <li><strong>Signature</strong> : (signée avec une clé secrète).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Résumé des Étapes : Authentification par JWT</h3>
+                <div class="schema">
+                    <pre>
+          1️⃣ Authentification auprès du serveur :
+             Utilisateur 👉 `/auth/login` (email + mot de passe)
+             Serveur valide et génère un JWT.
+          
+          2️⃣ Requête API sécurisée :
+             Client 👉 envoie le Header HTTP: Authorization: Bearer <TOKEN>
+             Serveur valide le token reçu 📑.
+          
+          3️⃣ Expiration :
+             Si le token expire, utilisateur doit se reconnecter.
+                </pre>
+                </div>
+                <p>🔥 Et voilà ! Tu sais maintenant comment fonctionne une authentification sécurisée par JWT. 🛡️ On te
+                    montre comment l’implémenter dans les chapitres suivants.</p>
+                <div class="challenge-card">
+                    <h4>🚀 Challenge !</h4>
+                    <p>Reproduis ce workflow dans ton projet :</p>
+                    <ol>
+                        <li>Crée un endpoint `/auth/register` pour enregistrer les utilisateurs.</li>
+                        <li>Crée un endpoint `/auth/login` qui génère un JWT après validation.</li>
+                        <li>Configure un filtre JWT pour gérer l'autorisation sur tes routes sécurisées.</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Introduction à Spring Security -->
+        <section id="spring-security-intro" class="section">
+            <div class="subsection">
+                <h2>Introduction à Spring Security 🚀</h2>
+                <p>🎯 **Spring Security** est une bibliothèque de Spring qui fournit une couche de sécurité pour gérer :
+                    l’authentification, les autorisations, la protection des routes et bien plus encore.</p>
+                <p>Dans ces prochaines étapes, tu vas apprendre comment mettre en place l’**authentification par JWT
+                    Header** avec Spring Security, tout en découvrant ses concepts essentiels.</p>
+            </div>
+
+            <div class="subsection">
+                <h3>🛡️ Spring Security en quelques mots</h3>
+                <p>C’est une **solution de sécurité robuste**, souvent utilisée dans les applications Java/Spring pour
+                    sécuriser les APIs et contrôler les accès. Voici ce qu’il faut retenir avant d’approfondir plus loin
+                    :</p>
+
+                <ul class="features-list">
+                    <li>✅ <strong>Dépendance Maven</strong> : s’active avec un ajout dans le `pom.xml`.</li>
+                    <li>✅ <strong>Gestion des CORS</strong> : intégrée directement.</li>
+                    <li>✅ <strong>Configuration flexible</strong> : permet de définir quelles routes sont protégées ou
+                        publiques.</li>
+                    <li>✅ <strong>Contrôle par rôle</strong> : restreint l’accès aux routes selon les rôles (ex.
+                        `ADMIN`, `USER`).</li>
+                    <li>✅ <strong>Couche en amont</strong> : Spring Security agit avant même que les requêtes
+                        n’atteignent les contrôleurs.</li>
+                    <li>✅ <strong>Sécurisé par défaut</strong> : toute requête sur une route non définie renvoie un
+                        statut **403 : Forbidden**.</li>
+                </ul>
+
+                <div class="notification">
+                    🔗 Tu peux explorer la <a href="https://docs.spring.io/spring-security/reference/index.html" rel="noopener"
+                        target="_blank">documentation officielle ici</a>.
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>🗺️ Schéma global : Pourquoi utiliser Spring Security ?</h3>
+                <p>Voici un aperçu clair de la manière dont Spring Security s’intègre dans ton application :</p>
+
+                <div class="schema">
+                    <h5>✨ Architecture simplifiée</h5>
+                    <pre>
+                                          🛡️ SPRING SECURITY
+           --------------------------------------------------------------------
+          |                                                                    |
+          |      ➡️ Requête Entrante                                           |
+          |                                                                    |
+          |      🔍 Analyse et Filtrage (CORS, Authentification)               |
+          |      🔓 Validation des Roles                                       |
+          |                                                                    |
+           --------------------------------------------------------------------
+                  ⬇️                                                                  ⬇️
+                [Bloqué : 403 ❌]                                  [Requête Acceptée : OK ✅]
+                                      ⬇️ Contrôleurs
+                            (Code métier atteint uniquement si autorisé)
+                </pre>
+                    <p>💡 **En résumé :** Spring Security agit comme un filtre qui protège ton application en bloquant
+                        les requêtes non authentifiées ou non autorisées avant qu'elles ne parviennent à tes
+                        contrôleurs.</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>⚙️ Comment configurer Spring Security ?</h3>
+                <p>Pour mettre en place l’authentification par **JWT avec Spring Security**, voici les étapes globales
+                    que tu seras amené(e) à suivre :</p>
+
+                <ol class="steps-list">
+                    <li><strong>📂 Base de données :</strong> Crée les tables nécessaires pour gérer les utilisateurs.
+                    </li>
+                    <li><strong>🧩 Entités :</strong> Crée deux entités (par exemple : `User` et `Role`).</li>
+                    <li><strong>💾 DAO :</strong> Crée un `UserDao` pour accéder aux données.</li>
+                    <li><strong>🛠️ Service :</strong> Implémente un service personnalisé pour gérer les utilisateurs.
+                    </li>
+                    <li><strong>🔑 JWT :</strong> Développe un utilitaire pour générer et valider les tokens JWT.</li>
+                    <li><strong>🔍 Filtre JWT :</strong> Ajoute un filtre pour intercepter et valider les requêtes
+                        entrantes.</li>
+                    <li><strong>📜 Configuration :</strong> Définit les routes protégées ou non protégées.</li>
+                    <li><strong>📡 Contrôleur :</strong> Crée un contrôleur avec des endpoints comme `/register` et
+                        `/login`.</li>
+                </ol>
+
+                <div class="diagram">
+                    <img src="images/spring_security_workflow.png" alt="Spring Security Workflow"
+                        class="responsive-image">
+                    <p>Ce diagramme montre comment les composants se connectent et interagissent grâce à Spring
+                        Security.</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>⚖️ Pourquoi et quand utiliser Spring Security ?</h3>
+                <p>Voici une liste critique pour savoir **quand choisir Spring Security** :</p>
+
+                <ul class="pros-and-cons">
+                    <li><strong>Utiliser Spring Security si :</strong>
+                        <ul>
+                            <li>✅ Tu cherches une solution complète de gestion de l’authentification (login/logout).
+                            </li>
+                            <li>✅ Tu dois contrôler les accès (par rôle ou permissions).</li>
+                            <li>✅ Tu utilises déjà l’écosystème Spring Boot.</li>
+                            <li>✅ Tu souhaites sécuriser ton application via des JWT ou Basic Auth.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Ne pas utiliser Spring Security si :</strong>
+                        <ul>
+                            <li>❌ Ton projet est très léger (et n'utilise pas Spring Boot).</li>
+                            <li>❌ Tu recherches une solution très simplifiée sans authentification avancée.</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <p><strong>En résumé :</strong> Spring Security est idéal lorsqu’un haut degré de sécurité et de
+                    personnalisation est requis, notamment dans des environnements professionnels ou complexes.</p>
+            </div>
+
+            <div class="subsection">
+                <h3>🎯 Étape suivante : Implémentation complète</h3>
+                <p>Dans les chapitres suivants, tu apprendras à implémenter chaque étape, petit à petit :</p>
+
+                <div class="next-steps-list">
+                    <ul>
+                        <li>👨‍💻 [Base de données, entités et DAO](#)</li>
+                        <li>🔐 [Création du service utilisateur](#)</li>
+                        <li>🔑 [Génération et validation du JWT](#)</li>
+                        <li>⚙️ [Ajout d’un filtre JWT dynamique](#)</li>
+                        <li>🛡️ [Configuration des routes sécurisées](#)</li>
+                        <li>📡 [Endpoints /register et /login](#)</li>
+                    </ul>
+                </div>
+                <p><a href="#next-chapter" class="button">➡️ Passer au chapitre suivant</a></p>
+            </div>
+        </section>
+
+
         <!-- Pratique -->
         <section id="pratique" class="section">
             <div class="concept-card">
@@ -697,7 +1502,9 @@ spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
                 <div class="concept-card">
                     <i class="fas fa-cogs"></i>
                     <h3>Auto-configuration</h3>
-                    <p>Spring Boot configure automatiquement votre application en fonction des dépendances ajoutées.
+                    <p>Spring Boot configure automatiquement votre application en fonction des
+                        dépendances
+                        ajoutées.
                     </p>
                     <ul>
                         <li>Configuration conditionnelle</li>
@@ -770,7 +1577,9 @@ spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
            │   Continue   │
                         </code></pre>
                     </div>
-                    <p>Les codes 1XX indiquent une réponse provisoire. Le client doit attendre la réponse finale.</p>
+                    <p>Les codes 1XX indiquent une réponse provisoire. Le client doit attendre la
+                        réponse
+                        finale.</p>
 
                     <h4>2. Codes 2XX - Succès</h4>
                     <div class="code-section">
@@ -817,7 +1626,8 @@ spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
            │  /new-url    │
                         </code></pre>
                     </div>
-                    <p>Les codes 3XX indiquent que le client doit effectuer une action supplémentaire.</p>
+                    <p>Les codes 3XX indiquent que le client doit effectuer une action supplémentaire.
+                    </p>
 
                     <h4>4. Codes 4XX - Erreur Client</h4>
                     <div class="code-section">
@@ -899,32 +1709,34 @@ spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
         <!-- Exercices -->
         <section id="exercices" class="section">
             <h2>Exercices Pratiques</h2>
-            <div class="exercise-container">
-                <!-- Exercice 1 -->
-                <div class="exercise-card">
-                    <h3>Exercice 1: Création d'une API REST</h3>
-                    <div class="exercise-content">
-                        <p class="exercise-description">
-                            Créez une API REST simple pour gérer une liste de livres avec les opérations CRUD.
-                        </p>
-                        <div class="exercise-steps">
-                            <h4>Étapes:</h4>
-                            <ol>
-                                <li>Créer une classe Book (id, titre, auteur, année)</li>
-                                <li>Créer un BookRepository</li>
-                                <li>Implémenter un BookController avec les endpoints CRUD</li>
-                                <li>Tester avec Postman ou cURL</li>
-                            </ol>
-                        </div>
-                        <button class="solution-btn" data-exercise="1">Voir la solution</button>
+            <div class="concept-card">
+                <div class="exercise-container">
+                    <!-- Exercice 1 -->
+                    <div class="-card">
+                        <h3>Exercice 1: Création d'une API REST</h3>
+                        <div class="exercise-content">
+                            <p class="exercise-description">
+                                Créez une API REST simple pour gérer une liste de livres avec les opérations
+                                CRUD.
+                            </p>
+                            <div class="exercise-steps">
+                                <h4>Étapes:</h4>
+                                <ol>
+                                    <li>Créer une classe Book (id, titre, auteur, année)</li>
+                                    <li>Créer un BookRepository</li>
+                                    <li>Implémenter un BookController avec les endpoints CRUD</li>
+                                    <li>Tester avec Postman ou cURL</li>
+                                </ol>
+                            </div>
+                            <button class="solution-btn" data-exercise="1">Voir la solution</button>
 
-                        <!-- Ajout de la solution -->
-                        <div class="solution-content" id="solution-1">
-                            <h4>Solution:</h4>
+                            <!-- Ajout de la solution -->
+                            <div class="solution-content" id="solution-1">
+                                <h4>Solution:</h4>
 
-                            <div class="code-section">
-                                <h5>Book.java</h5>
-                                <pre><code>
+                                <div class="code-section">
+                                    <h5>Book.java</h5>
+                                    <pre><code>
 @Entity
 public class Book {
 @Id
@@ -938,20 +1750,20 @@ private Integer year;
 // Constructeurs, Getters et Setters
 }
         </code></pre>
-                            </div>
+                                </div>
 
-                            <div class="code-section">
-                                <h5>BookRepository.java</h5>
-                                <pre><code>
+                                <div class="code-section">
+                                    <h5>BookRepository.java</h5>
+                                    <pre><code>
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
 }
         </code></pre>
-                            </div>
+                                </div>
 
-                            <div class="code-section">
-                                <h5>BookController.java</h5>
-                                <pre><code>
+                                <div class="code-section">
+                                    <h5>BookController.java</h5>
+                                    <pre><code>
 @RestController
 @RequestMapping("/api/books")
 public class BookController {
@@ -1003,11 +1815,11 @@ return ResponseEntity.noContent().build();
 }
 }
         </code></pre>
-                            </div>
+                                </div>
 
-                            <div class="code-section">
-                                <h5>Test avec cURL</h5>
-                                <pre><code>
+                                <div class="code-section">
+                                    <h5>Test avec cURL</h5>
+                                    <pre><code>
 # Créer un livre
 curl -X POST http://localhost:8080/api/books \
 -H "Content-Type: application/json" \
@@ -1027,33 +1839,33 @@ curl -X PUT http://localhost:8080/api/books/1 \
 # Supprimer un livre
 curl -X DELETE http://localhost:8080/api/books/1
         </code></pre>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- Exercice 2 -->
-                <div class="exercise-card">
-                    <h3>Exercice 2: Validation des données</h3>
-                    <div class="exercise-content">
-                        <p class="exercise-description">
-                            Ajoutez la validation des données à votre API de livres.
-                        </p>
-                        <div class="exercise-steps">
-                            <h4>Étapes:</h4>
-                            <ol>
-                                <li>Ajouter les annotations de validation</li>
-                                <li>Créer un gestionnaire d'erreurs global</li>
-                                <li>Tester avec des données invalides</li>
-                            </ol>
-                        </div>
-                        <button class="solution-btn" data-exercise="2">Voir la solution</button>
-                        <!-- Solution Exercice 2 -->
-                        <div class="solution-content" id="solution-2">
-                            <h4>Solution:</h4>
+                    <!-- Exercice 2 -->
+                    <div class="-card">
+                        <h3>Exercice 2: Validation des données</h3>
+                        <div class="exercise-content">
+                            <p class="exercise-description">
+                                Ajoutez la validation des données à votre API de livres.
+                            </p>
+                            <div class="exercise-steps">
+                                <h4>Étapes:</h4>
+                                <ol>
+                                    <li>Ajouter les annotations de validation</li>
+                                    <li>Créer un gestionnaire d'erreurs global</li>
+                                    <li>Tester avec des données invalides</li>
+                                </ol>
+                            </div>
+                            <button class="solution-btn" data-exercise="2">Voir la solution</button>
+                            <!-- Solution Exercice 2 -->
+                            <div class="solution-content" id="solution-2">
+                                <h4>Solution:</h4>
 
-                            <div class="code-section">
-                                <h5>Book.java (avec validations)</h5>
-                                <pre><code>
+                                <div class="code-section">
+                                    <h5>Book.java (avec validations)</h5>
+                                    <pre><code>
 @Entity
 public class Book {
     @Id
@@ -1076,11 +1888,11 @@ public class Book {
     // Getters et Setters
 }
         </code></pre>
-                            </div>
+                                </div>
 
-                            <div class="code-section">
-                                <h5>ErrorResponse.java</h5>
-                                <pre><code>
+                                <div class="code-section">
+                                    <h5>ErrorResponse.java</h5>
+                                    <pre><code>
 public class ErrorResponse {
     private LocalDateTime timestamp;
     private int status;
@@ -1097,11 +1909,11 @@ public class ErrorResponse {
     // Getters et Setters
 }
         </code></pre>
-                            </div>
+                                </div>
 
-                            <div class="code-section">
-                                <h5>GlobalExceptionHandler.java</h5>
-                                <pre><code>
+                                <div class="code-section">
+                                    <h5>GlobalExceptionHandler.java</h5>
+                                    <pre><code>
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -1134,11 +1946,11 @@ public class GlobalExceptionHandler {
     }
 }
         </code></pre>
-                            </div>
+                                </div>
 
-                            <div class="code-section">
-                                <h5>BookController.java (mise à jour)</h5>
-                                <pre><code>
+                                <div class="code-section">
+                                    <h5>BookController.java (mise à jour)</h5>
+                                    <pre><code>
 @RestController
 @RequestMapping("/api/books")
 public class BookController {
@@ -1166,11 +1978,11 @@ public class BookController {
     }
 }
         </code></pre>
-                            </div>
+                                </div>
 
-                            <div class="code-section">
-                                <h5>Test avec cURL (données invalides)</h5>
-                                <pre><code>
+                                <div class="code-section">
+                                    <h5>Test avec cURL (données invalides)</h5>
+                                    <pre><code>
 # Test avec un titre vide
 curl -X POST http://localhost:8080/api/books \
      -H "Content-Type: application/json" \
@@ -1192,11 +2004,11 @@ curl -X POST http://localhost:8080/api/books \
     ]
 }
         </code></pre>
-                            </div>
+                                </div>
 
-                            <div class="code-section">
-                                <h5>pom.xml (dépendances nécessaires)</h5>
-                                <pre><code>
+                                <div class="code-section">
+                                    <h5>pom.xml (dépendances nécessaires)</h5>
+                                    <pre><code>
 &lt;dependencies&gt;
     &lt;dependency&gt;
         &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
@@ -1205,35 +2017,35 @@ curl -X POST http://localhost:8080/api/books \
     ...
 &lt;/dependencies&gt;
         </code></pre>
+                                </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
-                </div>
 
-                <!-- Exercice 3 -->
-                <div class="exercise-card">
-                    <h3>Exercice 3: Tests unitaires</h3>
-                    <div class="exercise-content">
-                        <p class="exercise-description">
-                            Écrivez des tests unitaires pour votre API de livres.
-                        </p>
-                        <div class="exercise-steps">
-                            <h4>Étapes:</h4>
-                            <ol>
-                                <li>Créer des tests pour le Controller</li>
-                                <li>Créer des tests pour le Service</li>
-                                <li>Utiliser MockMvc pour les tests d'intégration</li>
-                            </ol>
-                        </div>
-                        <button class="solution-btn" data-exercise="3">Voir la solution</button>
-                        <!-- Solution Exercice 3 -->
-                        <div class="solution-content" id="solution-3">
-                            <h4>Solution:</h4>
+                    <!-- Exercice 3 -->
+                    <div class="-card">
+                        <h3>Exercice 3: Tests unitaires</h3>
+                        <div class="exercise-content">
+                            <p class="exercise-description">
+                                Écrivez des tests unitaires pour votre API de livres.
+                            </p>
+                            <div class="exercise-steps">
+                                <h4>Étapes:</h4>
+                                <ol>
+                                    <li>Créer des tests pour le Controller</li>
+                                    <li>Créer des tests pour le Service</li>
+                                    <li>Utiliser MockMvc pour les tests d'intégration</li>
+                                </ol>
+                            </div>
+                            <button class="solution-btn" data-exercise="3">Voir la solution</button>
+                            <!-- Solution Exercice 3 -->
+                            <div class="solution-content" id="solution-3">
+                                <h4>Solution:</h4>
 
-                            <div class="code-section">
-                                <h5>BookService.java (ajout d'une couche service)</h5>
-                                <pre><code>
+                                <div class="code-section">
+                                    <h5>BookService.java (ajout d'une couche service)</h5>
+                                    <pre><code>
 @Service
 public class BookService {
     private final BookRepository bookRepository;
@@ -1268,11 +2080,11 @@ public class BookService {
     }
 }
         </code></pre>
-                            </div>
+                                </div>
 
-                            <div class="code-section">
-                                <h5>BookServiceTest.java</h5>
-                                <pre><code>
+                                <div class="code-section">
+                                    <h5>BookServiceTest.java</h5>
+                                    <pre><code>
 @ExtendWith(MockitoExtension.class)
 class BookServiceTest {
     @Mock
@@ -1326,11 +2138,11 @@ class BookServiceTest {
     }
 }
         </code></pre>
-                            </div>
+                                </div>
 
-                            <div class="code-section">
-                                <h5>BookControllerTest.java</h5>
-                                <pre><code>
+                                <div class="code-section">
+                                    <h5>BookControllerTest.java</h5>
+                                    <pre><code>
 @WebMvcTest(BookController.class)
 class BookControllerTest {
     @Autowired
@@ -1387,11 +2199,11 @@ class BookControllerTest {
     }
 }
         </code></pre>
-                            </div>
+                                </div>
 
-                            <div class="code-section">
-                                <h5>BookIntegrationTest.java</h5>
-                                <pre><code>
+                                <div class="code-section">
+                                    <h5>BookIntegrationTest.java</h5>
+                                    <pre><code>
 @SpringBootTest
 @AutoConfigureMockMvc
 class BookIntegrationTest {
@@ -1444,11 +2256,11 @@ class BookIntegrationTest {
     }
 }
         </code></pre>
-                            </div>
+                                </div>
 
-                            <div class="code-section">
-                                <h5>pom.xml (dépendances de test)</h5>
-                                <pre><code>
+                                <div class="code-section">
+                                    <h5>pom.xml (dépendances de test)</h5>
+                                    <pre><code>
 &lt;dependencies&gt;
     &lt;dependency&gt;
         &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
@@ -1462,46 +2274,46 @@ class BookIntegrationTest {
     &lt;/dependency&gt;
 &lt;/dependencies&gt;
         </code></pre>
+                                </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
-                </div>
 
-                <!-- Exercice 4 -->
-                <div class="exercise-card">
-                    <h3>Exercice 4: Sécurité avec Spring Security</h3>
-                    <div class="exercise-content">
-                        <p class="exercise-description">
-                            Sécurisez votre API avec authentification basic.
-                        </p>
-                        <div class="exercise-steps">
-                            <h4>Étapes:</h4>
-                            <ol>
-                                <li>Configurer Spring Security</li>
-                                <li>Créer des rôles utilisateur</li>
-                                <li>Protéger les endpoints</li>
-                                <li>Tester l'authentification</li>
-                            </ol>
-                        </div>
-                        <button class="solution-btn" data-exercise="4">Voir la solution</button>
-                        <!-- Solution Exercice 4 -->
-                        <div class="solution-content" id="solution-4">
-                            <h4>Solution:</h4>
+                    <!-- Exercice 4 -->
+                    <div class="-card">
+                        <h3>Exercice 4: Sécurité avec Spring Security</h3>
+                        <div class="exercise-content">
+                            <p class="exercise-description">
+                                Sécurisez votre API avec authentification basic.
+                            </p>
+                            <div class="exercise-steps">
+                                <h4>Étapes:</h4>
+                                <ol>
+                                    <li>Configurer Spring Security</li>
+                                    <li>Créer des rôles utilisateur</li>
+                                    <li>Protéger les endpoints</li>
+                                    <li>Tester l'authentification</li>
+                                </ol>
+                            </div>
+                            <button class="solution-btn" data-exercise="4">Voir la solution</button>
+                            <!-- Solution Exercice 4 -->
+                            <div class="solution-content" id="solution-4">
+                                <h4>Solution:</h4>
 
-                            <div class="code-section">
-                                <h5>pom.xml (dépendances de sécurité)</h5>
-                                <pre><code>
+                                <div class="code-section">
+                                    <h5>pom.xml (dépendances de sécurité)</h5>
+                                    <pre><code>
 &lt;dependency&gt;
     &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
     &lt;artifactId&gt;spring-boot-starter-security&lt;/artifactId&gt;
 &lt;/dependency&gt;
         </code></pre>
-                            </div>
+                                </div>
 
-                            <div class="code-section">
-                                <h5>SecurityConfig.java</h5>
-                                <pre><code>
+                                <div class="code-section">
+                                    <h5>SecurityConfig.java</h5>
+                                    <pre><code>
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -1545,11 +2357,11 @@ public class SecurityConfig {
     }
 }
         </code></pre>
-                            </div>
+                                </div>
 
-                            <div class="code-section">
-                                <h5>BookController.java (avec annotations de sécurité)</h5>
-                                <pre><code>
+                                <div class="code-section">
+                                    <h5>BookController.java (avec annotations de sécurité)</h5>
+                                    <pre><code>
 @RestController
 @RequestMapping("/api/books")
 public class BookController {
@@ -1579,11 +2391,11 @@ public class BookController {
     }
 }
         </code></pre>
-                            </div>
+                                </div>
 
-                            <div class="code-section">
-                                <h5>Tests avec cURL</h5>
-                                <pre><code>
+                                <div class="code-section">
+                                    <h5>Tests avec cURL</h5>
+                                    <pre><code>
 # Tentative sans authentification
 curl http://localhost:8080/api/books
 
@@ -1600,11 +2412,11 @@ curl -u admin:adminpass -X POST http://localhost:8080/api/books \
      -H "Content-Type: application/json" \
      -d '{"title":"1984","author":"George Orwell","year":1949}'
         </code></pre>
-                            </div>
+                                </div>
 
-                            <div class="code-section">
-                                <h5>SecurityTest.java</h5>
-                                <pre><code>
+                                <div class="code-section">
+                                    <h5>SecurityTest.java</h5>
+                                    <pre><code>
 @SpringBootTest
 @AutoConfigureMockMvc
 class SecurityTest {
@@ -1654,11 +2466,11 @@ class SecurityTest {
     }
 }
         </code></pre>
-                            </div>
+                                </div>
 
-                            <div class="code-section">
-                                <h5>application.properties (configuration optionnelle)</h5>
-                                <pre><code>
+                                <div class="code-section">
+                                    <h5>application.properties (configuration optionnelle)</h5>
+                                    <pre><code>
 # Désactiver la page de login par défaut (pour API REST)
 spring.security.basic.enabled=true
 spring.security.user.name=user
@@ -1667,9 +2479,10 @@ spring.security.user.password=userpass
 # Logs de sécurité (utile pour le développement)
 logging.level.org.springframework.security=DEBUG
         </code></pre>
+                                </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1697,8 +2510,10 @@ logging.level.org.springframework.security=DEBUG
                     <i class="fas fa-graduation-cap"></i>
                     Spring Guides
                 </a>
-                <a href="https://satin-truffle-ac4.notion.site/Introduction-au-backend-1882ae802e29809e90d5ed263adfef3e"
-                    class="resource-link" target="_blank" rel="noopener">Spring boot - Index des notions pour découvrir
+                <a href="https://satin-truffle-ac4.notion.site/1812ae802e2980f289aac0bb0c7378e4?v=0877a60633cc41188c1780036f37365e"
+                    class="resource-link" target="_blank" rel="noopener">Spring boot - Index des notions
+                    pour
+                    découvrir
                     Spring Boot étape par étape</a>
             </div>
 

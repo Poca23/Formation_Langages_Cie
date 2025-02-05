@@ -72,11 +72,11 @@ class CustomAuthController extends Controller
 
             // Calcul de la progression globale
             $totalChapters = Chapter::count();
-            $completedChapters = $user->chapters()->wherePivot('completed', true)->count();
+            $completedChapters = $user->Chapter()->wherePivot('completed', true)->count();
             $progress = $totalChapters > 0 ? ($completedChapters / $totalChapters) * 100 : 0;
 
             // Récupérer les chapitres avec progression
-            $chapters = $user->chapters()
+            $chapters = $user->Chapter()
                 ->get()
                 ->map(function ($chapter) {
                     $chapter->progress = $chapter->pivot->completed ? 100 : 0;
