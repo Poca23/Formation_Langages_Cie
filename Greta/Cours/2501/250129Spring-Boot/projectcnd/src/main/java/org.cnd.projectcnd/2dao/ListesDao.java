@@ -22,7 +22,8 @@ public class ListesDao {
             rs.getLong("id"),
             rs.getLong("utilisateur_id"),
             rs.getString("nom"),
-            rs.getString("type"));
+            rs.getString("type")
+    );
 
     // Récupérer toutes les listes
     public List<Listes> findAll() {
@@ -51,7 +52,8 @@ public class ListesDao {
         jdbcTemplate.update(sql,
                 liste.getUtilisateurId(),
                 liste.getNom(),
-                liste.getType());
+                liste.getType()
+        );
 
         // Récupérer l'ID généré automatiquement
         String sqlGetId = "SELECT LAST_INSERT_ID()";
@@ -68,7 +70,8 @@ public class ListesDao {
                 liste.getUtilisateurId(),
                 liste.getNom(),
                 liste.getType(),
-                id);
+                id
+        );
 
         if (rowsAffected <= 0) {
             throw new ResourceNotFoundException("Impossible de mettre à jour la liste avec ID : " + id);

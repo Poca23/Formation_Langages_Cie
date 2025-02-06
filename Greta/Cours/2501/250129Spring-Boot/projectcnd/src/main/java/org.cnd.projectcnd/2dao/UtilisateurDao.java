@@ -1,7 +1,6 @@
 package org.cnd.projectcnd.daos;
 
 import org.cnd.projectcnd.entities.Utilisateur;
-import org.cnd.projectcnd.exceptions.ResourceNotFoundException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -56,23 +55,11 @@ public class UtilisateurDao {
     }
 
     // Ajouter un nouvel utilisateur
-    public Utilisateur save(Utilisateur utilisateur) {
+    public boolean save(Utilisateur utilisateur) {
         String sql = "INSERT INTO utilisateurs (nom, prenom, email, mot_de_passe, date_inscription, role) VALUES (?, ?, ?, ?, ?, ?)";
-        jdbcTemplate.update(sql,
-                utilisateur.getNom(),
-                utilisateur.getPrenom(),
-                utilisateur.getEmail(),
-                utilisateur.getMotDePasse(),
-                utilisateur.getDateInscription(),
-                utilisateur.getRole() // Ajout de la colonne `role`
-        );
-
-        // Récupérer l'ID généré automatiquement
-        String sqlGetId = "SELECT LAST_INSERT_ID()";
-        Long id = jdbcTemplate.queryForObject(sqlGetId, Long.class);
-
-        utilisateur.setId(id);
-        return utilisateur;
+        int rowsAffected = jdbcTemplate.update(sql, utilisateur.getEmail(), utilisateur.getMotDePasse(),
+                utilisateur.getRole());
+        return rowsAffected > 0;
     }
 
     // Mettre à jour un utilisateur existant

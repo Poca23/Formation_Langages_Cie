@@ -54,7 +54,8 @@ public class FavorisDao {
         jdbcTemplate.update(sql,
                 favoris.getUtilisateur().getId(),
                 favoris.getFilm().getId(),
-                favoris.getListeNumero());
+                favoris.getListeNumero()
+        );
 
         String sqlGetId = "SELECT LAST_INSERT_ID()";
         Long id = jdbcTemplate.queryForObject(sqlGetId, Long.class);
@@ -73,7 +74,8 @@ public class FavorisDao {
                 favoris.getUtilisateur().getId(),
                 favoris.getFilm().getId(),
                 favoris.getListeNumero(),
-                id);
+                id
+        );
 
         if (rowsAffected <= 0) {
             throw new ResourceNotFoundException("Échec de la mise à jour du favori avec l'ID : " + id);

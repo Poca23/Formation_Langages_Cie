@@ -60,7 +60,8 @@ public class VisionnesDao {
                 visionnes.getUtilisateurId(),
                 visionnes.getFilmId(),
                 visionnes.getListeNumero(),
-                visionnes.getDateVisionnage());
+                visionnes.getDateVisionnage()
+        );
 
         // Récupérer l'ID généré automatiquement
         String sqlGetId = "SELECT LAST_INSERT_ID()";
@@ -78,7 +79,8 @@ public class VisionnesDao {
                 visionnes.getFilmId(),
                 visionnes.getListeNumero(),
                 visionnes.getDateVisionnage(),
-                id);
+                id
+        );
 
         if (rowsAffected <= 0) {
             throw new ResourceNotFoundException("Impossible de mettre à jour le visionné avec ID : " + id);

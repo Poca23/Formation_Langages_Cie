@@ -51,6 +51,12 @@ public class Utilisateur {
         this.role = role;
     }
 
+    public Utilisateur(String email, String motDePasse, String role) {
+        this.email = email;
+        this.motDePasse = motDePasse;
+        this.role = role;
+    }
+
     // Getters et Setters
     public Long getId() {
         return id;
