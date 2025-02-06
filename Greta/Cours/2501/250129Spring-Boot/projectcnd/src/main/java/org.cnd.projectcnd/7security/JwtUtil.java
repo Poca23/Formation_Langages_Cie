@@ -29,8 +29,7 @@ public class JwtUtil {
 
             // Vérifier que la clé fait au moins 32 bytes (256 bits)
             if (decodedKey.length < 32) {
-                throw new IllegalArgumentException(
-                        "La clé JWT n'est pas assez longue, elle doit faire au moins 32 bytes.");
+                throw new IllegalArgumentException("La clé JWT n'est pas assez longue, elle doit faire au moins 32 bytes.");
             }
 
             // Créer une SecretKey compatible pour HMAC-SHA
@@ -65,12 +64,13 @@ public class JwtUtil {
                 .getSubject();
     }
 
+
     public boolean validateJwtToken(String token) {
         try {
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
             return true;
         } catch (SecurityException e) {
-            throw new SecurityException("Invalid JWT signature: " + e.getMessage());
+            throw  new SecurityException("Invalid JWT signature: " + e.getMessage());
         } catch (MalformedJwtException e) {
             throw new MalformedJwtException("Invalid JWT token: " + e.getMessage());
         } catch (ExpiredJwtException e) {
