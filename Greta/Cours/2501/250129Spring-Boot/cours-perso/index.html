@@ -23,16 +23,20 @@
         <ul class="nav-links">
             <li class="has-submenu">Cours
                 <ul class="submenu">
-                    <li><a href="#introduction">Introduction</a></li>
-                    <li><a href="#composants">Les composants principaux</a></li>
-                    <li><a href="#methodes">Les méthodes HTTP</a></li>
-                    <li><a href="#bean">Les Beans</a></li>
-                    <li><a href="#contraintes">Les contraintes de validation</a></li>
-                    <li><a href="#cors">CORS (Cross Origin Ressources Sharing)</a></li>
-                    <li><a href="#env-variables">Les variables d'environnement</a></li>
-                    <li><a href="#auth-jwt">Mise en place de l'authentification - JWT</a></li>
-                    <li><a href="#spring-security-intro">Introduction à Spring Security</a></li>
-                    <li><a href="#pratique">Pratique</a></li>
+                    <li><a href="#introduction">1 - Introduction</a></li>
+                    <li><a href="#composants">2 - Les composants principaux</a></li>
+                    <li><a href="#methodes">3 - Les méthodes HTTP</a></li>
+                    <li><a href="#bean">4 - Les Beans</a></li>
+                    <li><a href="#contraintes">5 - Les contraintes de validation</a></li>
+                    <li><a href="#cors">6 - CORS (Cross Origin Ressources Sharing)</a></li>
+                    <li><a href="#env-variables">7 - Les variables d'environnement</a></li>
+                    <li><a href="#auth-jwt">8 - Mise en place de l'authentification - JWT</a></li>
+                    <li><a href="#spring-security-intro">9 - Introduction à Spring Security</a></li>
+                    <li><a href="#adjust-bdd">10 - Ajustemment BDD - entités et DAO</a></li>
+                    <li><a href="#custom-user-details-service">11 - Création de CustomUserDetails</a></li>
+                    <li><a href="#jwt-util-service">12 - Création d'un service utilitaire pour token</a></li>
+                    <li><a href=""></a></li>
+                    <li><a href="#pratique"> - Pratique</a></li>
                     <li><a href="#concepts">Concepts Clés</a></li>
                 </ul>
             </li>
@@ -50,7 +54,7 @@
         <section id="introduction" class="section">
             <h1>Spring Boot</h1>
             <div class="card" id="introCard">
-                <h2>Qu'est-ce que Spring Boot ?</h2>
+                <h2>1 - Qu'est-ce que Spring Boot ?</h2>
                 <p>Spring Boot est un projet de la Spring Framework qui simplifie le processus de création
                     d'applications Spring.
                     Il permet aux développeurs de démarrer rapidement avec un minimum de configuration.</p>
@@ -78,7 +82,7 @@
 
         <!-- Les composants principaux -->
         <section id="composants" class="section">
-            <h2>Composants Principaux de Spring Boot</h2>
+            <h2>2 - Composants Principaux de Spring Boot</h2>
 
             <!-- Section Entités -->
             <div class="subsection">
@@ -319,7 +323,7 @@
 
         <!-- Les méthodes HTTP -->
         <section id="methodes" class="section">
-            <h2>Les Méthodes HTTP</h2>
+            <h2>3 - Les Méthodes HTTP</h2>
             <!-- Section Méthodes HTTP -->
             <div class="subsection">
                 <h3>5. Les Méthodes HTTP</h3>
@@ -424,7 +428,7 @@ Client                    Serveur
         <!-- Les Beans -->
         <section id="bean" class="section">
             <div class="subsection">
-                <h3>Les Beans, l'Injection de Dépendances et l'IoC</h3>
+                <h3>4 - Les Beans, l'Injection de Dépendances et l'IoC</h3>
                 <div class="concept-card">
                     <i class="fas fa-cogs"></i>
 
@@ -597,7 +601,7 @@ Client                    Serveur
         <!-- Les Contraintes de Validation -->
         <section id="contraintes" class="section">
             <div class="subsection">
-                <h3>Les Contraintes de Validation avec Spring Boot</h3>
+                <h3>5 - Les Contraintes de Validation avec Spring Boot</h3>
                 <div class="concept-card">
                     <i class="fas fa-check-circle"></i>
 
@@ -822,7 +826,7 @@ Client                    Serveur
         <!-- CORS et Communication React-Spring -->
         <section id="cors" class="section">
             <div class="subsection">
-                <h3>Intégration React et Spring Boot : Configuration et Tests avec CORS</h3>
+                <h3>6 - Intégration React et Spring Boot : Configuration et Tests avec CORS</h3>
                 <div class="concept-card">
                     <i class="fas fa-code-branch"></i>
 
@@ -960,7 +964,7 @@ Client                    Serveur
         <!-- Les variables d'environnement -->
         <section id="env-variables" class="section">
             <div class="subsection">
-                <h3>Les Variables d’Environnement</h3>
+                <h3>7 - Les Variables d’Environnement</h3>
                 <div class="concept-card">
                     <i class="fas fa-lock"></i>
 
@@ -1118,24 +1122,29 @@ Client                    Serveur
         <!-- Mise en place de l'authentification -->
         <section id="auth-jwt" class="section">
             <div class="subsection">
-                <h2>Mise en Place de l’Authentification</h2>
-                <p>🚀 Dans ce chapitre, tu vas apprendre à utiliser les **JWT (JSON Web Tokens)** pour mettre en place
-                    un système d’authentification sécurisé dans ton application. Ils permettront de restreindre l’accès
-                    aux endpoints de ton API en fonction des rôles d’utilisateur.</p>
+                <h2>8 - Mise en Place de l’Authentification</h2>
+                <div class="concept-card">
+                    <p>🚀 Dans ce chapitre, tu vas apprendre à utiliser les **JWT (JSON Web Tokens)** pour mettre en
+                        place
+                        un système d’authentification sécurisé dans ton application. Ils permettront de restreindre
+                        l’accès
+                        aux endpoints de ton API en fonction des rôles d’utilisateur.</p>
 
-                <h3>📚 Objectifs</h3>
-                <ul>
-                    <li>✅ Différencier authentification et autorisation</li>
-                    <li>✅ Comprendre comment un JWT facilite l’authentification</li>
-                    <li>✅ Visualiser le séquençage d’une authentification</li>
-                    <li>✅ Être capable de comprendre et structurer un JWT</li>
-                </ul>
-            </div>
+                    <h3>📚 Objectifs</h3>
+                    <ul>
+                        <li>✅ Différencier authentification et autorisation</li>
+                        <li>✅ Comprendre comment un JWT facilite l’authentification</li>
+                        <li>✅ Visualiser le séquençage d’une authentification</li>
+                        <li>✅ Être capable de comprendre et structurer un JWT</li>
+                    </ul>
+                </div>
 
-            <div class="subsection">
-                <h3>Authentification VS Autorisation</h3>
-                <p>La première chose est de bien faire la différence entre **authentification** et **autorisation** :
-                </p>
+                <div class="subsection">
+                    <h3>Authentification VS Autorisation</h3>
+                    <p>La première chose est de bien faire la différence entre **authentification** et
+                        **autorisation** :
+                    </p>
+                </div>
 
                 <div class="concept-card">
                     <h4>🔑 Authentification</h4>
@@ -1145,7 +1154,6 @@ Client                    Serveur
                             identité (login).</li>
                     </ul>
                 </div>
-
                 <div class="concept-card">
                     <h4>🚦 Autorisation</h4>
                     <ul>
@@ -1265,45 +1273,56 @@ Client                    Serveur
         <!-- Introduction à Spring Security -->
         <section id="spring-security-intro" class="section">
             <div class="subsection">
-                <h2>Introduction à Spring Security 🚀</h2>
-                <p>🎯 **Spring Security** est une bibliothèque de Spring qui fournit une couche de sécurité pour gérer :
-                    l’authentification, les autorisations, la protection des routes et bien plus encore.</p>
-                <p>Dans ces prochaines étapes, tu vas apprendre comment mettre en place l’**authentification par JWT
-                    Header** avec Spring Security, tout en découvrant ses concepts essentiels.</p>
-            </div>
+                <h2>9 - Introduction à Spring Security 🚀</h2>
+                <div class="concept-card">
+                    <p>🎯 **Spring Security** est une bibliothèque de Spring qui fournit une couche de sécurité pour
+                        gérer :
+                        l’authentification, les autorisations, la protection des routes et bien plus encore.</p>
+                    <p>Dans ces prochaines étapes, tu vas apprendre comment mettre en place l’**authentification par JWT
+                        Header** avec Spring Security, tout en découvrant ses concepts essentiels.</p>
 
-            <div class="subsection">
-                <h3>🛡️ Spring Security en quelques mots</h3>
-                <p>C’est une **solution de sécurité robuste**, souvent utilisée dans les applications Java/Spring pour
-                    sécuriser les APIs et contrôler les accès. Voici ce qu’il faut retenir avant d’approfondir plus loin
-                    :</p>
 
-                <ul class="features-list">
-                    <li>✅ <strong>Dépendance Maven</strong> : s’active avec un ajout dans le `pom.xml`.</li>
-                    <li>✅ <strong>Gestion des CORS</strong> : intégrée directement.</li>
-                    <li>✅ <strong>Configuration flexible</strong> : permet de définir quelles routes sont protégées ou
-                        publiques.</li>
-                    <li>✅ <strong>Contrôle par rôle</strong> : restreint l’accès aux routes selon les rôles (ex.
-                        `ADMIN`, `USER`).</li>
-                    <li>✅ <strong>Couche en amont</strong> : Spring Security agit avant même que les requêtes
-                        n’atteignent les contrôleurs.</li>
-                    <li>✅ <strong>Sécurisé par défaut</strong> : toute requête sur une route non définie renvoie un
-                        statut **403 : Forbidden**.</li>
-                </ul>
+                    <div class="subsection">
+                        <h3>🛡️ Spring Security en quelques mots</h3>
+                        <p>C’est une **solution de sécurité robuste**, souvent utilisée dans les applications
+                            Java/Spring
+                            pour
+                            sécuriser les APIs et contrôler les accès. Voici ce qu’il faut retenir avant d’approfondir
+                            plus
+                            loin
+                            :</p>
 
-                <div class="notification">
-                    🔗 Tu peux explorer la <a href="https://docs.spring.io/spring-security/reference/index.html"
-                        rel="noopener" target="_blank">documentation officielle ici</a>.
+                        <ul class="features-list">
+                            <li>✅ <strong>Dépendance Maven</strong> : s’active avec un ajout dans le `pom.xml`.</li>
+                            <li>✅ <strong>Gestion des CORS</strong> : intégrée directement.</li>
+                            <li>✅ <strong>Configuration flexible</strong> : permet de définir quelles routes sont
+                                protégées
+                                ou
+                                publiques.</li>
+                            <li>✅ <strong>Contrôle par rôle</strong> : restreint l’accès aux routes selon les rôles (ex.
+                                `ADMIN`, `USER`).</li>
+                            <li>✅ <strong>Couche en amont</strong> : Spring Security agit avant même que les requêtes
+                                n’atteignent les contrôleurs.</li>
+                            <li>✅ <strong>Sécurisé par défaut</strong> : toute requête sur une route non définie renvoie
+                                un
+                                statut **403 : Forbidden**.</li>
+                        </ul>
+
+                        <div class="notification">
+                            🔗 Tu peux explorer la <a href="https://docs.spring.io/spring-security/reference/index.html"
+                                rel="noopener" target="_blank">documentation officielle ici</a>.
+                        </div>
+                    </div>
+
                 </div>
-            </div>
 
-            <div class="subsection">
-                <h3>🗺️ Schéma global : Pourquoi utiliser Spring Security ?</h3>
-                <p>Voici un aperçu clair de la manière dont Spring Security s’intègre dans ton application :</p>
+                <div class="subsection">
+                    <h3>🗺️ Schéma global : Pourquoi utiliser Spring Security ?</h3>
+                    <p>Voici un aperçu clair de la manière dont Spring Security s’intègre dans ton application :</p>
 
-                <div class="schema">
-                    <h5>✨ Architecture simplifiée</h5>
-                    <pre>
+                    <div class="schema">
+                        <h5>✨ Architecture simplifiée</h5>
+                        <pre>
                                           🛡️ SPRING SECURITY
            --------------------------------------------------------------------
           |                                                                    |
@@ -1318,81 +1337,715 @@ Client                    Serveur
                                       ⬇️ Contrôleurs
                             (Code métier atteint uniquement si autorisé)
                 </pre>
-                    <p>💡 **En résumé :** Spring Security agit comme un filtre qui protège ton application en bloquant
-                        les requêtes non authentifiées ou non autorisées avant qu'elles ne parviennent à tes
-                        contrôleurs.</p>
+                        <p>💡 **En résumé :** Spring Security agit comme un filtre qui protège ton application en
+                            bloquant
+                            les requêtes non authentifiées ou non autorisées avant qu'elles ne parviennent à tes
+                            contrôleurs.</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="subsection">
-                <h3>⚙️ Comment configurer Spring Security ?</h3>
-                <p>Pour mettre en place l’authentification par **JWT avec Spring Security**, voici les étapes globales
-                    que tu seras amené(e) à suivre :</p>
+                <div class="subsection">
+                    <h3>⚙️ Comment configurer Spring Security ?</h3>
+                    <div class="concept-card">
+                        <p>Pour mettre en place l’authentification par **JWT avec Spring Security**, voici les étapes
+                            globales
+                            que tu seras amené(e) à suivre :</p>
 
-                <ol class="steps-list">
-                    <li><strong>📂 Base de données :</strong> Crée les tables nécessaires pour gérer les utilisateurs.
-                    </li>
-                    <li><strong>🧩 Entités :</strong> Crée deux entités (par exemple : `User` et `Role`).</li>
-                    <li><strong>💾 DAO :</strong> Crée un `UserDao` pour accéder aux données.</li>
-                    <li><strong>🛠️ Service :</strong> Implémente un service personnalisé pour gérer les utilisateurs.
-                    </li>
-                    <li><strong>🔑 JWT :</strong> Développe un utilitaire pour générer et valider les tokens JWT.</li>
-                    <li><strong>🔍 Filtre JWT :</strong> Ajoute un filtre pour intercepter et valider les requêtes
-                        entrantes.</li>
-                    <li><strong>📜 Configuration :</strong> Définit les routes protégées ou non protégées.</li>
-                    <li><strong>📡 Contrôleur :</strong> Crée un contrôleur avec des endpoints comme `/register` et
-                        `/login`.</li>
-                </ol>
-
-                <div class="diagram">
-                    <img src="images/spring_security_workflow.png" alt="Spring Security Workflow"
-                        class="responsive-image">
-                    <p>Ce diagramme montre comment les composants se connectent et interagissent grâce à Spring
-                        Security.</p>
-                </div>
-            </div>
-
-            <div class="subsection">
-                <h3>⚖️ Pourquoi et quand utiliser Spring Security ?</h3>
-                <p>Voici une liste critique pour savoir **quand choisir Spring Security** :</p>
-
-                <ul class="pros-and-cons">
-                    <li><strong>Utiliser Spring Security si :</strong>
-                        <ul>
-                            <li>✅ Tu cherches une solution complète de gestion de l’authentification (login/logout).
+                        <ol class="steps-list">
+                            <li><strong>📂 Base de données :</strong> Crée les tables nécessaires pour gérer les
+                                utilisateurs.
                             </li>
-                            <li>✅ Tu dois contrôler les accès (par rôle ou permissions).</li>
-                            <li>✅ Tu utilises déjà l’écosystème Spring Boot.</li>
-                            <li>✅ Tu souhaites sécuriser ton application via des JWT ou Basic Auth.</li>
-                        </ul>
-                    </li>
-                    <li><strong>Ne pas utiliser Spring Security si :</strong>
-                        <ul>
-                            <li>❌ Ton projet est très léger (et n'utilise pas Spring Boot).</li>
-                            <li>❌ Tu recherches une solution très simplifiée sans authentification avancée.</li>
-                        </ul>
-                    </li>
-                </ul>
+                            <li><strong>🧩 Entités :</strong> Crée deux entités (par exemple : `User` et `Role`).</li>
+                            <li><strong>💾 DAO :</strong> Crée un `UserDao` pour accéder aux données.</li>
+                            <li><strong>🛠️ Service :</strong> Implémente un service personnalisé pour gérer les
+                                utilisateurs.
+                            </li>
+                            <li><strong>🔑 JWT :</strong> Développe un utilitaire pour générer et valider les tokens
+                                JWT.
+                            </li>
+                            <li><strong>🔍 Filtre JWT :</strong> Ajoute un filtre pour intercepter et valider les
+                                requêtes
+                                entrantes.</li>
+                            <li><strong>📜 Configuration :</strong> Définit les routes protégées ou non protégées.</li>
+                            <li><strong>📡 Contrôleur :</strong> Crée un contrôleur avec des endpoints comme `/register`
+                                et
+                                `/login`.</li>
+                        </ol>
 
-                <p><strong>En résumé :</strong> Spring Security est idéal lorsqu’un haut degré de sécurité et de
-                    personnalisation est requis, notamment dans des environnements professionnels ou complexes.</p>
-            </div>
-
-            <div class="subsection">
-                <h3>🎯 Étape suivante : Implémentation complète</h3>
-                <p>Dans les chapitres suivants, tu apprendras à implémenter chaque étape, petit à petit :</p>
-
-                <div class="next-steps-list">
-                    <ul>
-                        <li>👨‍💻 [Base de données, entités et DAO](#)</li>
-                        <li>🔐 [Création du service utilisateur](#)</li>
-                        <li>🔑 [Génération et validation du JWT](#)</li>
-                        <li>⚙️ [Ajout d’un filtre JWT dynamique](#)</li>
-                        <li>🛡️ [Configuration des routes sécurisées](#)</li>
-                        <li>📡 [Endpoints /register et /login](#)</li>
-                    </ul>
+                        <div class="diagram">
+                            <img src="images/spring_security_workflow.png" alt="Spring Security Workflow"
+                                class="responsive-image">
+                            <p>Ce diagramme montre comment les composants se connectent et interagissent grâce à Spring
+                                Security.</p>
+                        </div>
+                    </div>
                 </div>
-                <p><a href="#next-chapter" class="button">➡️ Passer au chapitre suivant</a></p>
+
+                <div class="subsection">
+                    <h3>⚖️ Pourquoi et quand utiliser Spring Security ?</h3>
+                    <div class="concept-card">
+                        <p>Voici une liste critique pour savoir **quand choisir Spring Security** :</p>
+
+                        <ul class="pros-and-cons">
+                            <li><strong>Utiliser Spring Security si :</strong>
+                                <ul>
+                                    <li>✅ Tu cherches une solution complète de gestion de l’authentification
+                                        (login/logout).
+                                    </li>
+                                    <li>✅ Tu dois contrôler les accès (par rôle ou permissions).</li>
+                                    <li>✅ Tu utilises déjà l’écosystème Spring Boot.</li>
+                                    <li>✅ Tu souhaites sécuriser ton application via des JWT ou Basic Auth.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Ne pas utiliser Spring Security si :</strong>
+                                <ul>
+                                    <li>❌ Ton projet est très léger (et n'utilise pas Spring Boot).</li>
+                                    <li>❌ Tu recherches une solution très simplifiée sans authentification avancée.</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <p><strong>En résumé :</strong> Spring Security est idéal lorsqu’un haut degré de sécurité et de
+                            personnalisation est requis, notamment dans des environnements professionnels ou complexes.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3>🎯 Étape suivante : Implémentation complète</h3>
+                    <div class="concept-card">
+                        <p>Dans les chapitres suivants, tu apprendras à implémenter chaque étape, petit à petit :</p>
+
+                        <div class="next-steps-list">
+                            <ul>
+                                <li>👨‍💻 [Base de données, entités et DAO](#)</li>
+                                <li>🔐 [Création du service utilisateur](#)</li>
+                                <li>🔑 [Génération et validation du JWT](#)</li>
+                                <li>⚙️ [Ajout d’un filtre JWT dynamique](#)</li>
+                                <li>🛡️ [Configuration des routes sécurisées](#)</li>
+                                <li>📡 [Endpoints /register et /login](#)</li>
+                            </ul>
+                        </div>
+                        <p><a href="#next-chapter" class="button">➡️ Passer au chapitre suivant</a></p>
+                    </div>
+
+                </div>
+        </section>
+
+
+        <!-- Ajustement BDD - Entités et DAO -->
+        <section id="adjust-bdd" class="section">
+            <div class="subsection">
+                <h3>10 - Ajustement BDD - Entités et DAO</h3>
+                <div class="concept-card">
+                    <i class="fas fa-database"></i>
+
+                    <h4>1. Introduction</h4>
+                    <p>🚀 <strong>Objectif :</strong> Mettre à jour la base de données pour gérer les utilisateurs et
+                        implémenter les premiers outils Spring pour la gestion de la sécurité. Dans cette partie, tu vas
+                        :</p>
+                    <ul class="features-list">
+                        <li>Créer une table <code>user</code> pour stocker les données des utilisateurs.</li>
+                        <li>Développer deux entités : <code>User</code> et <code>CustomUserDetails</code>.</li>
+                        <li>Implémenter un DAO pour interagir avec la base de données.</li>
+                    </ul>
+
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>L'astuce Formateur :</strong> Pense toujours à bien structurer ton modèle de données
+                        pour faciliter son utilisation dans toutes les couches de ton application.
+                    </div>
+
+                    <h4>2. Création de la table <code>user</code></h4>
+                    <p>Commence par ajouter une table <code>user</code> dans la base de données. Cette table stocke les
+                        informations de chaque utilisateur.</p>
+                    <div class="code-section">
+                        <pre><code>
+CREATE TABLE IF NOT EXISTS user (
+    id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    role VARCHAR(50) NOT NULL
+);
+                </code></pre>
+                    </div>
+
+                    <h5>📊 Diagramme simplifié de la table</h5>
+                    <div class="diagram">
+                        <pre><code>
++--------+---------+------+------------+
+| Field  | Type    | Null | Constraints|
++--------+---------+------+------------+
+| id     | INT     | NO   | AUTO_INC   |
+| email  | VARCHAR | NO   | UNIQUE     |
+| passwd | VARCHAR | NO   |            |
+| role   | VARCHAR | NO   |            |
++--------+---------+------+------------+
+                </code></pre>
+                    </div>
+
+                    <h4>3. Les entités</h4>
+
+                    <h5>3.1 Entité <code>User</code></h5>
+                    <p>L'entité <code>User</code> représente un utilisateur dans ton système. Place-la dans ton package
+                        <code>entities</code>.
+                    </p>
+                    <div class="code-section">
+                        <pre><code>
+// Représente un utilisateur dans la base de données
+public class User {
+    private int id;             // Identifiant unique
+    private String email;       // Adresse email
+    private String password;    // Mot de passe
+    private String role;        // Rôle (USER / ADMIN)
+
+    public User() {}
+
+    // Constructeurs
+    public User(int id, String email, String password, String role) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
+
+    // Constructeur sans id (pour la création)
+    public User(String email, String password, String role) {
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
+
+    // Getters et Setters !
+}
+                </code></pre>
+                    </div>
+
+                    <div class="tip-box">
+                        <p>⚠️ <strong>Important :</strong> Le constructeur vide est <strong>obligatoire</strong>. Cela
+                            permet, par exemple, que <code>Jackson</code> déserialize un JSON en objet Java.</p>
+                    </div>
+
+                    <h5>3.2. Entité <code>CustomUserDetails</code></h5>
+                    <p>Cette classe permet de connecter ton entité <code>User</code> avec Spring Security, en
+                        redéfinissant ses propriétés pour les rendre compatibles.</p>
+                    <p>Place-le dans ton package <code>entities</code> :</p>
+
+                    <div class="code-section">
+                        <pre><code>
+public class CustomUserDetails implements UserDetails {
+    private final User user;
+
+    // On "entoure" l'entité User ici
+    public CustomUserDetails(User user) {
+        this.user = user;
+    }
+
+    // Ajout des rôles au format Spring Security
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.singletonList(() -> "ROLE_" + user.getRole());
+    }
+
+    // Retourne le mot de passe dans le bon format
+    @Override
+    public String getPassword() {
+        return user.getPassword();
+    }
+
+    @Override
+    public String getUsername() {
+        return user.getEmail();
+    }
+
+    // Méthodes par défaut pour les comptes utilisateur
+    @Override
+    public boolean isAccountNonExpired() { return true; }
+    @Override
+    public boolean isAccountNonLocked() { return true; }
+    @Override
+    public boolean isCredentialsNonExpired() { return true; }
+    @Override
+    public boolean isEnabled() { return true; }
+}
+                </code></pre>
+                    </div>
+
+                    <h4>4. Mise en place du DAO</h4>
+                    <p>Implémentons un DAO pour interagir avec la table <code>user</code> dans la base de données. Les
+                        fonctionnalités principales sont :</p>
+                    <ul class="features-list">
+                        <li>Créer un utilisateur</li>
+                        <li>Récupérer un utilisateur par email</li>
+                        <li>Vérifier si un utilisateur existe via son email</li>
+                    </ul>
+
+                    <h5>4.1. Code DAO</h5>
+                    <div class="code-section">
+                        <pre><code>
+@Repository
+public class UserDao {
+    
+    private final JdbcTemplate jdbcTemplate;
+
+    public UserDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+    private final RowMapper<User> userRowMapper = (rs, _) -> new User(
+        rs.getInt("id"),
+        rs.getString("email"),
+        rs.getString("password"),
+        rs.getString("role")
+    );
+
+    public User findByEmail(String email) {
+        String sql = "SELECT * FROM user WHERE email = ?";
+        return jdbcTemplate.query(sql, userRowMapper, email)
+                .stream()
+                .findFirst()
+                .orElseThrow(() -> new UsernameNotFoundException("Utilisateur non trouvé"));
+    }
+
+    public boolean save(User user) {
+        String sql = "INSERT INTO user (email, password, role) VALUES (?, ?, ?)";
+        int rowsAffected = jdbcTemplate.update(sql, user.getEmail(), user.getPassword(), user.getRole());
+        return rowsAffected > 0;
+    }
+
+    public boolean existsByEmail(String email) {
+        String sql = "SELECT COUNT(*) FROM user WHERE email = ?";
+        return jdbcTemplate.queryForObject(sql, Integer.class, email) > 0;
+    }
+}
+                </code></pre>
+                    </div>
+
+                    <h5>4.2. Flux des méthodes du DAO</h5>
+                    <div class="diagram">
+                        <pre><code>
+[ findByEmail() ]
+       |
+       v
++--------------------------+
+| SQL Query ("SELECT ...") |
++--------------------------+
+       |
+User Not Found ─────────► Throw Exception
+                </code></pre>
+                    </div>
+
+                    <h4>5. Conclusion</h4>
+                    <p>🎉 Super ! Tu as appris à :</p>
+                    <ul class="features-list">
+                        <li>Créer une table SQL</li>
+                        <li>Développer des entités Java pour représenter les utilisateurs</li>
+                        <li>Configurer ta passerelle entre <code>Spring Security</code> et ta base</li>
+                        <li>Implémenter un DAO pour connecter ton back-end avec ta base de données</li>
+                    </ul>
+
+                    <div class="action-callout">
+                        <p>➡️ Passe à l'implémentation du <code>CustomUserDetailsService</code> dans la prochaine
+                            section !</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Création du service CustomUserDetails -->
+        <section id="custom-user-details-service" class="section">
+            <div class="subsection">
+                <h3>11 - Création du service CustomUserDetails</h3>
+                <div class="concept-card">
+                    <i class="fas fa-tools"></i>
+
+                    <h4>1. Introduction</h4>
+                    <p>🚀 Dans ce chapitre, tu vas apprendre à intercaler une <strong>couche de service</strong> entre
+                        le DAO et Spring Security. Spring Security nécessite une implémentation de son interface
+                        <code>UserDetailsService</code> pour authentifier les utilisateurs à partir de ta base de
+                        données.
+                    </p>
+                    <p>Voici un rappel du rôle d’une couche de service dans une architecture Backend :</p>
+
+                    <h5>📊 Schéma d'une architecture simplifiée</h5>
+                    <div class="diagram">
+                        <pre><code>
++---------------+       +---------------+       +--------------------+
+|   Controller  | <---> |    Service    | <---> |     UserDao / BDD  |
++---------------+       +---------------+       +--------------------+
+   ↑ Utilisateur        ↑ Logique métier        ↑ Interaction directe
+   ↑ Web Request         (Validator, etc.)        (avec la base)
+                </code></pre>
+                    </div>
+
+                    <p>Cette structure permet d’organiser ton code et de centraliser la logique métier (comme ici :
+                        charger un utilisateur depuis la base et l'injecter dans Spring Security).</p>
+
+                    <h4>2. Création du Service - Classe <code>CustomUserDetailsService</code></h4>
+                    <p>Ajoute maintenant une nouvelle classe dans le package <code>service</code> pour implémenter le
+                        service :</p>
+                    <div class="code-section">
+                        <pre><code>
+@Service
+public class CustomUserDetailsService implements UserDetailsService {
+
+    private final UserDao userDao;
+
+    // Injection du DAO utilisateur
+    public CustomUserDetailsService(UserDao userDao) {
+        this.userDao = userDao;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        // On récupère l'utilisateur en BDD via le DAO
+        User user = userDao.findByEmail(username);
+
+        // On encapsule cet utilisateur dans CustomUserDetails 
+        return new CustomUserDetails(user);
+    }
+}
+                </code></pre>
+                    </div>
+
+                    <h5>📚 Explication du Service en détails :</h5>
+                    <div class="tip-box">
+                        <p>Cette classe joue un rôle essentiel pour connecter Spring Security à ta base de données.
+                            Voici ses caractéristiques principales :</p>
+                        <ul class="features-list">
+                            <li><strong>Annotation @Service :</strong> Permet à Spring de gérer cette classe comme un
+                                Bean.</li>
+                            <li><strong>Implémentation de l’interface UserDetailsService :</strong> Interface de Spring
+                                Security pour connecter un utilisateur.</li>
+                            <li><strong>Méthode obligatoire :</strong> La méthode <code>loadUserByUsername()</code> est
+                                redéfinie (Polymorphisme) pour effectuer la logique spécifique à ton application.</li>
+                        </ul>
+                    </div>
+
+                    <h5>🔗 Schéma du processus</h5>
+                    <div class="diagram">
+                        <pre><code>
+Étapes du Service CustomUserDetails :
+-------------------------------------
+1. [Spring] Appel à loadUserByUsername()
+          ↓
+2. [DAO] Recherche de l'utilisateur via email
+          ↓
+3. [CustomUserDetails] Encapsulation dans la classe Spring-compatible
+          ↓
+4. Renvoi d'un UserDetails (prêt pour Spring Security)
+                </code></pre>
+                    </div>
+
+                    <h5>💡 Points Clés à Retenir :</h5>
+                    <ul class="features-list">
+                        <li>Ce service agit comme une passerelle entre le DAO et Spring Security.</li>
+                        <li>La méthode <code>loadUserByUsername()</code> est appelée automatiquement par <strong>Spring
+                                Security</strong>.</li>
+                        <li>Le type de retour attendu est <code>UserDetails</code>.</li>
+                        <li>La logique métier spécifique (comme la gestion des exceptions utilisateur) peut être
+                            centralisée ici.</li>
+                        <li>Ce service tire parti du polymorphisme (concept Java puissant) pour adapter cette méthode
+                            aux besoins métier de ton application.</li>
+                    </ul>
+
+                    <h4>3. Comment cela fonctionne ?</h4>
+                    <p>Voici une vue simplifiée de la chaîne de responsabilité, pour comprendre comment ton service
+                        s’intègre :</p>
+                    <div class="diagram">
+                        <pre><code>
++-------------+     +--------------------+     +---------------------------+
+| Spring Sec. | --> | CustomUserDetails  | --> | UserDao (Base de données) |
+| (Appelle la |     | Service            |     |                           |
+| méthode     |     | (Transforme User ->|     |                           |
+| loadUser... |     | CustomUserDetails) |     |                           |
++-------------+     +--------------------+     +---------------------------+
+                </code></pre>
+                    </div>
+
+                    <h4>4. Code Commenté - Étape par Étape</h4>
+                    <p>Voici une version plus détaillée et commentée du code du service
+                        <code>CustomUserDetailsService</code> :
+                    </p>
+                    <div class="code-section">
+                        <pre><code>
+// Annotation pour désigner cette classe comme un Bean utilisable
+@Service  
+public class CustomUserDetailsService implements UserDetailsService {
+
+    // DAO injecté automatiquement par Spring via le constructeur
+    private final UserDao userDao;
+
+    public CustomUserDetailsService(UserDao userDao) {
+        // Assignation du DAO pour gérer les interactions avec la BDD
+        this.userDao = userDao;
+    }
+
+    /**
+     * Méthode clé appelée par Spring Security pour charger un utilisateur
+     * @param username : Le nom d'utilisateur, ici remplacé par "email"
+     * @return UserDetails : Objet que Spring Security comprend
+     * @throws UsernameNotFoundException : Si aucun utilisateur trouvé
+     */
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        // Recherche d'un utilisateur par email dans la base de données via le DAO
+        User user = userDao.findByEmail(username);
+
+        if (user == null) {
+            // Exception déclenchée si aucun utilisateur trouvé
+            throw new UsernameNotFoundException("Utilisateur non trouvé avec l'email : " + username);
+        }
+
+        // Encapsulation de l'utilisateur dans une classe UserDetails compatible
+        return new CustomUserDetails(user);
+    }
+}
+                </code></pre>
+                    </div>
+
+                    <h4>5. Conclusion</h4>
+                    <p>🎉 Félicitations ! Tu as maintenant créé le service <code>CustomUserDetailsService</code>,
+                        essentiel pour permettre à Spring Security de charger des utilisateurs depuis ta base de données
+                        et de les authentifier.</p>
+                    <ul class="features-list">
+                        <li><strong>Service CustomUserDetails :</strong> Connecte ton utilisateur stocké en base à
+                            Spring Security.</li>
+                        <li>Méthode clé : <code>loadUserByUsername()</code> fournit un <code>UserDetails</code> pour
+                            Spring Security.</li>
+                        <li>Code basé sur une architecture propre, avec interception via une couche distincte (service).
+                        </li>
+                    </ul>
+
+                    <div class="action-callout">
+                        <p>➡️ Continue avec la prochaine étape : [La création du service pour générer et valider un
+                            token](#token-service)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Création d'un service pour générer et valider un token -->
+        <section id="jwt-util-service" class="section">
+            <div class="subsection">
+                <h3>12 - Création d’un service pour générer et valider un token</h3>
+                <div class="concept-card">
+                    <i class="fas fa-lock"></i>
+
+                    <h4>1. Introduction</h4>
+                    <p>🚀 Dans cette section, tu vas créer un service utilitaire pour gérer les <strong>tokens
+                            JWT</strong>. Ce service aura deux objectifs principaux :</p>
+                    <ul class="features-list">
+                        <li>Générer un nouveau token JWT pour l’authentification d’un utilisateur.</li>
+                        <li>Valider un token JWT afin de s’assurer que la requête entrante est légitime.</li>
+                    </ul>
+
+                    <div class="tip-box">
+                        <i class="fas fa-info-circle"></i>
+                        <p>💡 Les tokens JWT (JSON Web Tokens) sont une méthode sécurisée et compacte pour transmettre
+                            des informations entre une application et un client.</p>
+                    </div>
+
+                    <h4>2. Ajout des dépendances</h4>
+                    <p>Pour utiliser JSON Web Tokens, ajoute les dépendances nécessaires dans ton fichier
+                        <code>pom.xml</code> :
+                    </p>
+                    <div class="code-section">
+                        <pre><code>
+<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt-api</artifactId>
+    <version>0.11.5</version>
+</dependency>
+<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt-impl</artifactId>
+    <version>0.11.5</version>
+    <scope>runtime</scope>
+</dependency>
+<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt-jackson</artifactId>
+    <version>0.11.5</version>
+    <scope>runtime</scope>
+</dependency>
+                </code></pre>
+                    </div>
+                    <p>🔄 <strong>Après avoir ajouté ces dépendances :</strong> recharge ton projet Maven pour qu'elles
+                        soient bien prises en compte.</p>
+
+                    <h4>3. Configuration du fichier <code>application.properties</code></h4>
+                    <p>Ajoute les valeurs suivantes au fichier <code>application.properties</code> :</p>
+                    <div class="code-section">
+                        <pre><code>
+jwt.secret=your_secret_key
+jwt.expiration=3600000
+                </code></pre>
+                    </div>
+                    <ul class="features-list">
+                        <li><code>jwt.secret</code> : La clé secrète utilisée pour signer et valider le token.</li>
+                        <li><code>jwt.expiration</code> : Durée de validité du token en millisecondes
+                            (<code>3600000</code> = 1 heure).</li>
+                    </ul>
+                    <div class="tip-box">
+                        <p>⚠️ Cette clé doit être secrète ! Ajoute-la dans tes <strong>variables
+                                d’environnement</strong>.</p>
+                    </div>
+
+                    <h4>4. Création de la classe <code>JwtUtil</code></h4>
+                    <p>Crée un package nommé <code>security</code> et ajoute-y une classe <code>JwtUtil</code>. Cette
+                        classe contient les méthodes pour générer, valider et parser les tokens.</p>
+
+                    <h5>4.1 Initialisation de la clé JWT</h5>
+                    <p>Définis d'abord la clé qui sera utilisée pour signer et valider les tokens :</p>
+                    <div class="code-section">
+                        <pre><code>
+@Service
+public class JwtUtil {
+    @Value("${jwt.secret}")
+    private String jwtSecret;
+    
+    @Value("${jwt.expiration}")
+    private int jwtExpirationMs;
+
+    private SecretKey key;
+
+    @PostConstruct
+    public void init() {
+        this.key = Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8));
+    }
+}
+                </code></pre>
+                    </div>
+                    <ul class="features-list">
+                        <li>La clé <code>jwtSecret</code> est injectée depuis le fichier
+                            <code>application.properties</code>.
+                        </li>
+                        <li>La méthode <code>@PostConstruct</code> initialise la clé après que <code>Spring</code> a
+                            injecté les valeurs nécessaires.</li>
+                        <li>La méthode <code>Keys.hmacShaKeyFor()</code> transforme la clé secrète en un objet
+                            utilisable par JJWT.</li>
+                    </ul>
+
+                    <h5>💡 Illustrons la génération de la clé secrète :</h5>
+                    <div class="diagram">
+                        <pre><code>
++-----------------------+     +------------------------------+
+| Key provenant des     | --> | Conversion en tableau de    |
+| application.properties|     | bytes (utf-8) via jwtSecret |
++-----------------------+     +------------------------------+
+                </code></pre>
+                    </div>
+
+                    <h5>4.2 Génération d’un token</h5>
+                    <p>Ajoute maintenant une méthode pour générer un token JWT :</p>
+                    <div class="code-section">
+                        <pre><code>
+public String generateToken(String email) {
+    return Jwts.builder()
+            .setSubject(email)
+            .setIssuedAt(new Date())
+            .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
+            .signWith(key, SignatureAlgorithm.HS256)
+            .compact();
+}
+                </code></pre>
+                    </div>
+                    <ul class="features-list">
+                        <li><code>setSubject()</code> : Définit le champ principal (ici, l’email).</li>
+                        <li><code>setIssuedAt()</code> : Date et heure de création du token.</li>
+                        <li><code>setExpiration()</code> : Temps avant l’expiration du token.</li>
+                        <li><code>signWith()</code> : Signe le token avec la clé secrète.</li>
+                    </ul>
+
+                    <h5>💡 Schéma du flux de génération d'un token :</h5>
+                    <div class="diagram">
+                        <pre><code>
+1. Récupération de l'email
+        ↓
+2. Création du token
+        ↓
+3. Signer avec la clé        -->        +------+  JWT (signé)
+                </code></pre>
+                    </div>
+
+                    <h5>4.3 Extraire l’utilisateur depuis le token</h5>
+                    <p>Ajoute une méthode pour récupérer une information utile (comme l’email) depuis un token :</p>
+                    <div class="code-section">
+                        <pre><code>
+public String getEmailFromToken(String token) {
+    return Jwts.parserBuilder()
+            .setSigningKey(key).build()
+            .parseClaimsJws(token)
+            .getBody()
+            .getSubject();
+}
+                </code></pre>
+                    </div>
+                    <ul class="features-list">
+                        <li><code>setSigningKey()</code> : Configure la clé utilisée pour signer le token.</li>
+                        <li><code>parseClaimsJws()</code> : Analyse le payload du token.</li>
+                        <li><code>getSubject()</code> : Récupère l’email ou autre champ principal défini lors de la
+                            génération du token.</li>
+                    </ul>
+
+                    <h5>💡 Vue simplifiée du traitement d’un token entrant :</h5>
+                    <div class="diagram">
+                        <pre><code>
++--------+                      +-----------------------------+
+| Token  |  ---Verifier-->      | Signature valide (clé JWT) |
++--------+                      +-----------------------------+
+          |
+           ---> Payload解析      ---> Récupérer des données
+                </code></pre>
+                    </div>
+
+                    <h5>4.4 Validation d’un token</h5>
+                    <p>Enfin, écris une méthode pour valider qu’un token est bien formaté et signé :</p>
+                    <div class="code-section">
+                        <pre><code>
+public boolean validateJwtToken(String token) {
+    try {
+        Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
+        return true;
+    } catch (Exception e) {
+        // Gestion des exceptions "token invalide"
+        e.printStackTrace();
+        return false;
+    }
+}
+                </code></pre>
+                    </div>
+                    <p>Les exceptions gérées sont :</p>
+                    <ul class="features-list">
+                        <li><code>ExpiredJwtException</code> : Token expiré.</li>
+                        <li><code>MalformedJwtException</code> : Token malformé.</li>
+                        <li><code>SecurityException</code> : Mauvaise signature.</li>
+                    </ul>
+
+                    <h4>5. Code Final</h4>
+                    <p>Ton fichier ressemblant à cela :</p>
+                    <div class="code-section">
+                        <pre><code>
+// [Voir résumé final de JwtUtil]
+                </code></pre>
+                    </div>
+
+                    <h4>6. Conclusion</h4>
+                    <p>🎉 Félicitations ! Tu as maintenant :</p>
+                    <ul class="features-list">
+                        <li>Créé un service pour manipuler les JWT.</li>
+                        <li>Ajouté des méthodes de génération, extraction et validation.</li>
+                        <li>Organisé correctement les informations sensibles avec <code>application.properties</code>.
+                        </li>
+                    </ul>
+                    <div class="action-callout">
+                        <p>➡️ Prochaine étape : Ajouter un <strong>filtre JWT</strong> pour valider les requêtes
+                            entrantes !</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -1401,7 +2054,7 @@ Client                    Serveur
         <section id="pratique" class="section">
             <div class="concept-card">
                 <div class="subsection">
-                    <h2>Mise en Pratique</h2>
+                    <h2> - Mise en Pratique</h2>
 
                     <div class="subsection">
                         <h3>1. Création d'un projet</h3>
