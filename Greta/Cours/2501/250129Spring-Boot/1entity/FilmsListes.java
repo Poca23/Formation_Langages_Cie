@@ -1,6 +1,8 @@
 package org.cnd.projectcnd.entities;
 
-import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Positive;
 
 import java.util.Date;
 import java.util.Objects;
@@ -9,14 +11,21 @@ public class FilmsListes {
 
     private Long id;
 
+    @NotNull(message = "L'ID de la liste ne peut pas être null")
+    @Positive(message = "L'ID de la liste doit être un nombre positif")
     private Long listeId;
 
+    @NotNull(message = "L'ID du film ne peut pas être null")
+    @Positive(message = "L'ID du film doit être un nombre positif")
     private Long filmId;
 
+    @NotNull(message = "La date d'ajout ne peut pas être null")
+    @PastOrPresent(message = "La date d'ajout ne peut pas être dans le futur")
     private Date dateAjout;
 
     // Constructeur par défaut
     public FilmsListes() {
+        this.dateAjout = new Date();
     }
 
     // Constructeur complet
@@ -58,21 +67,5 @@ public class FilmsListes {
 
     public void setDateAjout(Date dateAjout) {
         this.dateAjout = dateAjout;
-    }
-
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        FilmsListes that = (FilmsListes) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(listeId, that.listeId) &&
-                Objects.equals(filmId, that.filmId) &&
-                Objects.equals(dateAjout, that.dateAjout);
-    }
-
-    public int hashCode() {
-        return Objects.hash(id, listeId, filmId, dateAjout);
     }
 }

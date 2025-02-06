@@ -1,20 +1,14 @@
 package org.cnd.projectcnd.entities;
 
-import jakarta.persistence.*;
-
 import java.util.Date;
 import java.util.Objects;
 
 public class Visionnes {
 
     private Long id; // Clé primaire
-
     private Long utilisateurId;
-
     private Long filmId;
-
     private int listeNumero;
-
     private Date dateVisionnage;
 
     // Constructeurs
@@ -68,22 +62,5 @@ public class Visionnes {
 
     public void setDateVisionnage(Date dateVisionnage) {
         this.dateVisionnage = dateVisionnage;
-    }
-
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        Visionnes visionnes = (Visionnes) o;
-        return listeNumero == visionnes.listeNumero &&
-                Objects.equals(id, visionnes.id) &&
-                Objects.equals(utilisateurId, visionnes.utilisateurId) &&
-                Objects.equals(filmId, visionnes.filmId) &&
-                Objects.equals(dateVisionnage, visionnes.dateVisionnage);
-    }
-
-    public int hashCode() {
-        return Objects.hash(id, utilisateurId, filmId, listeNumero, dateVisionnage);
     }
 }

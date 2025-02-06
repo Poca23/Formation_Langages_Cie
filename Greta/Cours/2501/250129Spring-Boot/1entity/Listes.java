@@ -1,6 +1,9 @@
 package org.cnd.projectcnd.entities;
 
-import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 import java.util.Objects;
 
@@ -8,10 +11,16 @@ public class Listes {
 
     private Long id;
 
+    @NotNull(message = "L'ID de l'utilisateur ne peut pas être null")
+    @Positive(message = "L'ID de l'utilisateur doit être un nombre positif")
     private Long utilisateurId;
 
+    @NotBlank(message = "Le nom ne peut pas être vide")
+    @Size(min = 1, max = 100, message = "Le nom doit contenir entre 1 et 100 caractères")
     private String nom;
 
+    @NotBlank(message = "Le type ne peut pas être vide")
+    @Size(min = 1, max = 50, message = "Le type doit contenir entre 1 et 50 caractères")
     private String type;
 
     // Constructeur par défaut
@@ -57,21 +66,5 @@ public class Listes {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        Listes listes = (Listes) o;
-        return Objects.equals(id, listes.id) &&
-                Objects.equals(utilisateurId, listes.utilisateurId) &&
-                Objects.equals(nom, listes.nom) &&
-                Objects.equals(type, listes.type);
-    }
-
-    public int hashCode() {
-        return Objects.hash(id, utilisateurId, nom, type);
     }
 }
