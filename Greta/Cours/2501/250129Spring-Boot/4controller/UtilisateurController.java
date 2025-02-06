@@ -1,12 +1,13 @@
 package org.cnd.projectcnd.controllers;
 
-import org.cnd.projectcnd.daos.UtilisateurDao;
+import jakarta.validation.Valid;
 import org.cnd.projectcnd.entities.Utilisateur;
+import org.cnd.projectcnd.daos.UtilisateurDao;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/utilisateurs")
@@ -18,51 +19,55 @@ public class UtilisateurController {
         this.utilisateurDao = utilisateurDao;
     }
 
-    // Récupérer tous les utilisateurs
     @GetMapping
-    public List<Utilisateur> getAllUtilisateurs() {
-        return utilisateurDao.findAllUtilisateurs();
+    public ResponseEntity<List<Utilisateur>> getAllUtilisateurs() {
+        return ResponseEntity.ok(utilisateurDao.findAll());
     }
 
-    // Récupérer un utilisateur par ID
     @GetMapping("/{id}")
     public ResponseEntity<Utilisateur> getUtilisateurById(@PathVariable Long id) {
-        Optional<Utilisateur> utilisateur = utilisateurDao.findUtilisateurById(id);
-        return utilisateur.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
-    }
-
-    // Rechercher un utilisateur par email
-    @GetMapping("/search")
-    public ResponseEntity<Utilisateur> findUtilisateurByEmail(@RequestParam String email) {
-        Optional<Utilisateur> utilisateur = utilisateurDao.findUtilisateurByEmail(email);
-        return utilisateur.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
-    }
-
-    // Ajouter un nouvel utilisateur
-    @PostMapping
-    public ResponseEntity<Utilisateur> createUtilisateur(@RequestBody Utilisateur utilisateur) {
-        int rowsInserted = utilisateurDao.saveUtilisateur(utilisateur);
-        if (rowsInserted > 0) {
-            return ResponseEntity.ok(utilisateur);
+        try {
+            return ResponseEntity.ok(utilisateurDao.findById(id));
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.badRequest().build();
     }
 
-    // Modifier les informations d'un utilisateur
+    @GetMapping("/email/{email}")
+    public ResponseEntity<Utilisateur> getUtilisateurByEmail(@PathVariable String email) {
+        try {
+            return ResponseEntity.ok(utilisateurDao.findByEmail(email));
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PostMapping
+    public ResponseEntity<Utilisateur> createUtilisateur(@Valid @RequestBody Utilisateur utilisateur) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(utilisateurDao.save(utilisateur));
+    }
+
     @PutMapping("/{id}")
-    public ResponseEntity<Utilisateur> updateUtilisateur(@PathVariable Long id, @RequestBody Utilisateur utilisateur) {
-        int rowsUpdated = utilisateurDao.updateUtilisateur(id, utilisateur);
-        if (rowsUpdated > 0) {
-            return ResponseEntity.ok(utilisateur); // Retourne l'utilisateur mis à jour
+    public ResponseEntity<Utilisateur> updateUtilisateur(@PathVariable Long id,
+            @Valid @RequestBody Utilisateur updatedUtilisateur) {
+        try {
+            return ResponseEntity.ok(utilisateurDao.update(id, updatedUtilisateur));
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUtilisateurById(@PathVariable Long id) {
+        if (utilisateurDao.deleteById(id)) {
+            return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
     }
 
-    // Supprimer un utilisateur par ID
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUtilisateur(@PathVariable Long id) {
-        int rowsDeleted = utilisateurDao.deleteUtilisateurById(id);
-        if (rowsDeleted > 0) {
+    @DeleteMapping("/email/{email}")
+    public ResponseEntity<Void> deleteUtilisateurByEmail(@PathVariable String email) {
+        if (utilisateurDao.deleteByEmail(email)) {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();

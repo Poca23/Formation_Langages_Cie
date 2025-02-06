@@ -1,69 +1,71 @@
 package org.cnd.projectcnd.controllers;
 
-import org.cnd.projectcnd.daos.FilmCategorieDao;
+import jakarta.validation.Valid;
 import org.cnd.projectcnd.entities.FilmCategorie;
+import org.cnd.projectcnd.daos.FilmCategorieDao;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/films-categories")
+@RequestMapping("/film-categories")
 public class FilmCategorieController {
 
     private final FilmCategorieDao filmCategorieDao;
 
+    // Injection du DAO
     public FilmCategorieController(FilmCategorieDao filmCategorieDao) {
         this.filmCategorieDao = filmCategorieDao;
     }
 
-    // 1. Ajouter une relation entre un film et une catégorie
-    @PostMapping
-    public ResponseEntity<FilmCategorie> addFilmCategorie(@RequestBody FilmCategorie filmCategorie) {
-        int rowsInserted = filmCategorieDao.save(filmCategorie);
-        if (rowsInserted > 0) {
-            return ResponseEntity.ok(filmCategorie);
-        }
-        return ResponseEntity.badRequest().build();
-    }
-
-    // 2. Obtenir toutes les relations film-catégorie
+    // Récupérer toutes les associations Film-Catégorie
     @GetMapping
-    public List<FilmCategorie> getAllFilmCategorie() {
-        return filmCategorieDao.findAll();
+    public ResponseEntity<List<FilmCategorie>> getAllFilmCategories() {
+        return ResponseEntity.ok(filmCategorieDao.findAll());
     }
 
-    // 3. Obtenir les catégories associées à un film donné
-    @GetMapping("/film/{filmId}")
-    public List<FilmCategorie> getFilmCategoriesByFilmId(@PathVariable Long filmId) {
-        return filmCategorieDao.findByFilmId(filmId);
+    // Récupérer toutes les catégories associées à un film donné
+    @GetMapping("/films/{filmId}/categories")
+    public ResponseEntity<List<Long>> getCategoriesByFilmId(@PathVariable Long filmId) {
+        return ResponseEntity.ok(filmCategorieDao.findCategoriesByFilmId(filmId));
     }
 
-    // 4. Supprimer une relation entre un film et une catégorie
-    @DeleteMapping
-    public ResponseEntity<Void> deleteFilmCategorie(@RequestBody FilmCategorie filmCategorie) {
-        int rowsDeleted = filmCategorieDao.delete(filmCategorie);
-        if (rowsDeleted > 0) {
+    // Récupérer tous les films associés à une catégorie donnée
+    @GetMapping("/categories/{categorieId}/films")
+    public ResponseEntity<List<Long>> getFilmsByCategorieId(@PathVariable Long categorieId) {
+        return ResponseEntity.ok(filmCategorieDao.findFilmsByCategorieId(categorieId));
+    }
+
+    // Ajouter une nouvelle association Film-Catégorie
+    @PostMapping
+    public ResponseEntity<FilmCategorie> createFilmCategorie(@Valid @RequestBody FilmCategorie filmCategorie) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(filmCategorieDao.save(filmCategorie));
+    }
+
+    // Supprimer une association spécifique Film-Catégorie
+    @DeleteMapping("/films/{filmId}/categories/{categorieId}")
+    public ResponseEntity<Void> deleteFilmCategorie(@PathVariable Long filmId, @PathVariable Long categorieId) {
+        if (filmCategorieDao.deleteByFilmAndCategorie(filmId, categorieId)) {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
     }
 
-    // 5. Supprimer toutes les relations pour un film donné
-    @DeleteMapping("/film/{filmId}")
-    public ResponseEntity<Void> deleteByFilmId(@PathVariable Long filmId) {
-        int rowsDeleted = filmCategorieDao.deleteByFilmId(filmId);
-        if (rowsDeleted > 0) {
+    // Supprimer toutes les associations pour un film donné
+    @DeleteMapping("/films/{filmId}")
+    public ResponseEntity<Void> deleteAssociationsByFilmId(@PathVariable Long filmId) {
+        if (filmCategorieDao.deleteByFilmId(filmId)) {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
     }
 
-    // 6. Supprimer toutes les relations pour une catégorie donnée
-    @DeleteMapping("/categorie/{categorieId}")
-    public ResponseEntity<Void> deleteByCategorieId(@PathVariable Long categorieId) {
-        int rowsDeleted = filmCategorieDao.deleteByCategorieId(categorieId);
-        if (rowsDeleted > 0) {
+    // Supprimer toutes les associations pour une catégorie donnée
+    @DeleteMapping("/categories/{categorieId}")
+    public ResponseEntity<Void> deleteAssociationsByCategorieId(@PathVariable Long categorieId) {
+        if (filmCategorieDao.deleteByCategorieId(categorieId)) {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();

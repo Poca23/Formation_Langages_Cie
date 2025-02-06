@@ -1,7 +1,9 @@
 package org.cnd.projectcnd.controllers;
 
-import org.cnd.projectcnd.daos.FavorisDao;
+import jakarta.validation.Valid;
 import org.cnd.projectcnd.entities.Favoris;
+import org.cnd.projectcnd.daos.FavorisDao;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,70 +15,47 @@ public class FavorisController {
 
     private final FavorisDao favorisDao;
 
+    // Injection du DAO
     public FavorisController(FavorisDao favorisDao) {
         this.favorisDao = favorisDao;
     }
 
-    // Récupérer tous les favoris
+    // GET /favoris : Récupérer tous les favoris
     @GetMapping
-    public List<Favoris> getAllFavoris() {
-        return favorisDao.trouverTous();
+    public ResponseEntity<List<Favoris>> getAllFavoris() {
+        return ResponseEntity.ok(favorisDao.findAll());
     }
 
-    // Récupérer un favori par son ID
+    // GET /favoris/{id} : Récupérer un favori par son ID
     @GetMapping("/{id}")
     public ResponseEntity<Favoris> getFavorisById(@PathVariable Long id) {
-        Favoris favoris = favorisDao.trouverParId(id);
-        if (favoris != null) {
-            return ResponseEntity.ok(favoris);
+        try {
+            return ResponseEntity.ok(favorisDao.findById(id));
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.notFound().build();
     }
 
-    // Récupérer les favoris d'un utilisateur spécifique
-    @GetMapping("/utilisateur/{utilisateurId}")
-    public List<Favoris> getFavorisByUtilisateur(@PathVariable Long utilisateurId) {
-        return favorisDao.trouverParUtilisateurId(utilisateurId);
-    }
-
-    // Récupérer les favoris d'une liste spécifique pour un utilisateur
-    @GetMapping("/utilisateur/{utilisateurId}/liste/{listeNumero}")
-    public List<Favoris> getFavorisByUtilisateurAndListe(@PathVariable Long utilisateurId,
-            @PathVariable int listeNumero) {
-        return favorisDao.trouverParUtilisateurEtListe(utilisateurId, listeNumero);
-    }
-
-    // Ajouter un nouveau favori (avec relations directes)
+    // POST /favoris : Ajouter un nouveau favori
     @PostMapping
-    public ResponseEntity<Favoris> addFavoris(@RequestBody Favoris favoris) {
-        Favoris savedFavoris = favorisDao.ajouterFavoris(favoris);
-        return ResponseEntity.ok(savedFavoris);
+    public ResponseEntity<Favoris> createFavoris(@Valid @RequestBody Favoris nouveauxFavoris) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(favorisDao.save(nouveauxFavoris));
     }
 
-    // Ajouter un nouveau favori en utilisant les IDs d'utilisateur et de film
-    @PostMapping("/ajouter")
-    public ResponseEntity<Favoris> addFavorisWithIds(@RequestParam Long utilisateurId, @RequestParam Long filmId,
-            @RequestParam int listeNumero) {
-        Favoris favoris = favorisDao.ajouterFavoris(utilisateurId, filmId, listeNumero);
-        return ResponseEntity.ok(favoris);
-    }
-
-    // Mettre à jour le numéro de liste d'un favori
+    // PUT /favoris/{id} : Mettre à jour un favori existant
     @PutMapping("/{id}")
-    public ResponseEntity<Favoris> updateFavoris(@PathVariable Long id, @RequestBody int nouveauNumeroListe) {
-        Favoris updatedFavoris = favorisDao.mettreAJourFavoris(id, nouveauNumeroListe);
-        if (updatedFavoris != null) {
-            return ResponseEntity.ok(updatedFavoris);
+    public ResponseEntity<Favoris> updateFavoris(@PathVariable Long id, @Valid @RequestBody Favoris favoris) {
+        try {
+            return ResponseEntity.ok(favorisDao.update(id, favoris));
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.notFound().build();
     }
 
-    // Supprimer un favori par son ID
+    // DELETE /favoris/{id} : Supprimer un favori par son ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteFavoris(@PathVariable Long id) {
-        Favoris favoris = favorisDao.trouverParId(id);
-        if (favoris != null) {
-            favorisDao.supprimerParId(id);
+        if (favorisDao.delete(id)) {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();

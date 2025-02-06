@@ -1,12 +1,13 @@
 package org.cnd.projectcnd.controllers;
 
-import org.cnd.projectcnd.daos.CategorieDao;
+import jakarta.validation.Valid;
 import org.cnd.projectcnd.entities.Categorie;
+import org.cnd.projectcnd.daos.CategorieDao;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/categories")
@@ -14,48 +15,47 @@ public class CategorieController {
 
     private final CategorieDao categorieDao;
 
+    // Injection du DAO
     public CategorieController(CategorieDao categorieDao) {
         this.categorieDao = categorieDao;
     }
 
     // Récupérer toutes les catégories
     @GetMapping
-    public List<Categorie> getAllCategories() {
-        return categorieDao.findAll();
+    public ResponseEntity<List<Categorie>> getAllCategories() {
+        return ResponseEntity.ok(categorieDao.findAll());
     }
 
     // Récupérer une catégorie par son ID
     @GetMapping("/{id}")
     public ResponseEntity<Categorie> getCategorieById(@PathVariable Long id) {
-        Optional<Categorie> categorie = categorieDao.findById(id);
-        return categorie.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        try {
+            return ResponseEntity.ok(categorieDao.findById(id));
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
-    // Ajouter une nouvelle catégorie
+    // Créer une nouvelle catégorie
     @PostMapping
-    public ResponseEntity<Categorie> createCategorie(@RequestBody Categorie categorie) {
-        int rowsInserted = categorieDao.save(categorie);
-        if (rowsInserted > 0) {
-            return ResponseEntity.ok(categorie);
-        }
-        return ResponseEntity.badRequest().build();
+    public ResponseEntity<Categorie> createCategorie(@Valid @RequestBody Categorie newCategorie) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(categorieDao.save(newCategorie));
     }
 
     // Mettre à jour une catégorie existante
     @PutMapping("/{id}")
-    public ResponseEntity<Categorie> updateCategorie(@PathVariable Long id, @RequestBody String newNom) {
-        int rowsUpdated = categorieDao.update(id, newNom);
-        if (rowsUpdated > 0) {
-            return ResponseEntity.ok(new Categorie(id, newNom)); // Retourne la catégorie mise à jour
+    public ResponseEntity<Categorie> updateCategorie(@PathVariable Long id, @Valid @RequestBody Categorie categorie) {
+        try {
+            return ResponseEntity.ok(categorieDao.update(id, categorie));
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.notFound().build();
     }
 
-    // Supprimer une catégorie par son ID
+    // Supprimer une catégorie par ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCategorie(@PathVariable Long id) {
-        int rowsDeleted = categorieDao.deleteById(id);
-        if (rowsDeleted > 0) {
+        if (categorieDao.delete(id)) {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
