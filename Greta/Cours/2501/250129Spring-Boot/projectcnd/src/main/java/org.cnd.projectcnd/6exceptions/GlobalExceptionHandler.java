@@ -2,6 +2,7 @@ package org.cnd.projectcnd.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -42,7 +43,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ExpiredJwtException.class)
     public ResponseEntity<String> handleExpiredJwtException(ExpiredJwtException ex) {
         return ResponseEntity
-                .status(HttpStatus.UNAUTHORIZED) // le statut HTTP approprié pour un token expiré est 401 (Unauthorized)
+                .status(HttpStatus.UNAUTHORIZED) // le statut HTTP approprié pour un token expiré est 401 (Unauthorized).
                 .body("Le token JWT est expiré. Détails : " + ex.getMessage());
     }
 
@@ -50,7 +51,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MalformedJwtException.class)
     public ResponseEntity<String> handleMalformedJwtException(MalformedJwtException ex) {
         return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST) // le statut HTTP pour un token mal formé est 400
+                .status(HttpStatus.BAD_REQUEST) // le statut HTTP pour un token mal formé est 400.
                 .body("Le token JWT est invalide ou mal formé. Détails : " + ex.getMessage());
     }
 
@@ -69,10 +70,18 @@ public class GlobalExceptionHandler {
                 .body("Le token JWT contient des claims non valides ou vides. Détails : " + ex.getMessage());
     }
 
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleGlobalException(Exception ex) {
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body("Une erreur est survenue, t'auras plus de chance la prochaine fois :)");
+    }
+
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<String> handleBadCredentialsException(BadCredentialsException ex) {
+        return ResponseEntity
+                .status(HttpStatus.UNAUTHORIZED)
+                .body("Une erreur est survenue, identifiant incorrect");
     }
 }

@@ -43,7 +43,7 @@ public class UtilisateurController {
     }
 
     @PostMapping
-    public ResponseEntity<Utilisateur> createUtilisateur(@Valid @RequestBody Utilisateur utilisateur) {
+    public ResponseEntity<Boolean> createUtilisateur(@Valid @RequestBody Utilisateur utilisateur) {
         return ResponseEntity.status(HttpStatus.CREATED).body(utilisateurDao.save(utilisateur));
     }
 
