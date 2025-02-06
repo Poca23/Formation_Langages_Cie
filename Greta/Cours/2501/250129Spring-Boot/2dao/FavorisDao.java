@@ -1,76 +1,96 @@
 package org.cnd.projectcnd.daos;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.transaction.Transactional;
 import org.cnd.projectcnd.entities.Favoris;
+import org.cnd.projectcnd.entities.Film;
+import org.cnd.projectcnd.entities.Utilisateur;
+import org.cnd.projectcnd.exceptions.ResourceNotFoundException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-@Transactional
 public class FavorisDao {
 
-    @PersistenceContext
-    private EntityManager entityManager;
+    private final JdbcTemplate jdbcTemplate;
 
-    // Ajouter un Favoris (avec relation directe)
-    public Favoris ajouterFavoris(Favoris favoris) {
-        entityManager.persist(favoris); // Persiste l'entité en base
+    public FavorisDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+    private final RowMapper<Favoris> favorisRowMapper = (rs, _) -> {
+        Favoris favoris = new Favoris();
+        favoris.setId(rs.getLong("id"));
+
+        // Charger les relations avec les entités `Utilisateur` et `Film`
+        Utilisateur utilisateur = new Utilisateur();
+        utilisateur.setId(rs.getLong("utilisateur_id"));
+        favoris.setUtilisateur(utilisateur);
+
+        Film film = new Film();
+        film.setId(rs.getLong("film_id"));
+        favoris.setFilm(film);
+
+        favoris.setListeNumero(rs.getInt("liste_numero"));
+        return favoris;
+    };
+
+    public List<Favoris> findAll() {
+        String sql = "SELECT * FROM favoris";
+        return jdbcTemplate.query(sql, favorisRowMapper);
+    }
+
+    public Favoris findById(Long id) {
+        String sql = "SELECT * FROM favoris WHERE id = ?";
+        return jdbcTemplate.query(sql, favorisRowMapper, id)
+                .stream()
+                .findFirst()
+                .orElseThrow(() -> new ResourceNotFoundException("Favoris avec l'ID : " + id + " n'existe pas"));
+    }
+
+    public Favoris save(Favoris favoris) {
+        String sql = "INSERT INTO favoris (utilisateur_id, film_id, liste_numero) VALUES (?, ?, ?)";
+        jdbcTemplate.update(sql,
+                favoris.getUtilisateur().getId(),
+                favoris.getFilm().getId(),
+                favoris.getListeNumero());
+
+        String sqlGetId = "SELECT LAST_INSERT_ID()";
+        Long id = jdbcTemplate.queryForObject(sqlGetId, Long.class);
+
+        favoris.setId(id);
         return favoris;
     }
 
-    // Ajouter un Favoris en utilisant des IDs d'utilisateur et de film
-    public Favoris ajouterFavoris(Long utilisateurId, Long filmId, int listeNumero) {
-        Favoris favoris = new Favoris(utilisateurId, filmId, listeNumero);
-        entityManager.persist(favoris); // Persiste directement en base
-        return favoris;
-    }
-
-    // Trouver un Favoris par son ID
-    public Favoris trouverParId(Long id) {
-        return entityManager.find(Favoris.class, id); // Recherche par clé primaire
-    }
-
-    // Trouver tous les Favoris
-    public List<Favoris> trouverTous() {
-        return entityManager.createQuery("SELECT f FROM Favoris f", Favoris.class).getResultList();
-    }
-
-    // Trouver les Favoris pour un utilisateur donné
-    public List<Favoris> trouverParUtilisateurId(Long utilisateurId) {
-        return entityManager.createQuery(
-                "SELECT f FROM Favoris f WHERE f.utilisateur.id = :utilisateurId", Favoris.class)
-                .setParameter("utilisateurId", utilisateurId)
-                .getResultList();
-    }
-
-    // Trouver les Favoris pour un utilisateur et une liste spécifique
-    public List<Favoris> trouverParUtilisateurEtListe(Long utilisateurId, int listeNumero) {
-        return entityManager.createQuery(
-                "SELECT f FROM Favoris f WHERE f.utilisateur.id = :utilisateurId AND f.listeNumero = :listeNumero",
-                Favoris.class)
-                .setParameter("utilisateurId", utilisateurId)
-                .setParameter("listeNumero", listeNumero)
-                .getResultList();
-    }
-
-    // Supprimer un Favoris par son ID
-    public void supprimerParId(Long id) {
-        Favoris favoris = trouverParId(id);
-        if (favoris != null) {
-            entityManager.remove(favoris);
+    public Favoris update(Long id, Favoris favoris) {
+        if (!favorisExists(id)) {
+            throw new ResourceNotFoundException("Favoris avec l'ID : " + id + " n'existe pas");
         }
+
+        String sql = "UPDATE favoris SET utilisateur_id = ?, film_id = ?, liste_numero = ? WHERE id = ?";
+        int rowsAffected = jdbcTemplate.update(sql,
+                favoris.getUtilisateur().getId(),
+                favoris.getFilm().getId(),
+                favoris.getListeNumero(),
+                id);
+
+        if (rowsAffected <= 0) {
+            throw new ResourceNotFoundException("Échec de la mise à jour du favori avec l'ID : " + id);
+        }
+
+        return this.findById(id);
     }
 
-    // Mettre à jour un Favoris
-    public Favoris mettreAJourFavoris(Long id, int nouveauNumeroListe) {
-        Favoris favoris = trouverParId(id);
-        if (favoris != null) {
-            favoris.setListeNumero(nouveauNumeroListe); // Modifie le numéro de la liste
-            entityManager.merge(favoris); // Met à jour l'entité dans la base
-        }
-        return favoris;
+    public boolean delete(Long id) {
+        String sql = "DELETE FROM favoris WHERE id = ?";
+        int rowsAffected = jdbcTemplate.update(sql, id);
+        return rowsAffected > 0;
+    }
+
+    private boolean favorisExists(Long id) {
+        String checkSql = "SELECT COUNT(*) FROM favoris WHERE id = ?";
+        int count = jdbcTemplate.queryForObject(checkSql, Integer.class, id);
+        return count > 0;
     }
 }

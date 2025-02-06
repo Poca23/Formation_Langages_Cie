@@ -1,61 +1,117 @@
 package org.cnd.projectcnd.daos;
 
 import org.cnd.projectcnd.entities.Categorie;
-import org.springframework.dao.EmptyResultDataAccessException;
+import org.cnd.projectcnd.exceptions.ResourceNotFoundException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
-@Repository // Indique que cette classe appartient à la couche DAO
+@Repository
 public class CategorieDao {
 
     private final JdbcTemplate jdbcTemplate;
 
-    // Constructeur pour injecter JdbcTemplate
     public CategorieDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    // Mapper : Transforme une ligne SQL en objet Categorie
-    private final RowMapper<Categorie> categorieRowMapper = (rs, rowNum) -> new Categorie(
-            rs.getLong("id"), // Récupère l'ID
-            rs.getString("nom") // Récupère le nom
-    );
+    private final RowMapper<Categorie> categorieRowMapper = (rs, _) -> new Categorie(
+            rs.getLong("id"),
+            rs.getString("nom"));
 
-    // 1. Obtenir une catégorie par ID
-    public Optional<Categorie> findById(Long id) {
-        String sql = "SELECT * FROM CATEGORIES WHERE id = ?";
+    public List<Categorie> findAll() {
         try {
-            return Optional.ofNullable(jdbcTemplate.queryForObject(sql, categorieRowMapper, id));
-        } catch (EmptyResultDataAccessException e) {
-            return Optional.empty(); // Renvoie vide si non trouvé
+            String sql = "SELECT * FROM CATEGORIES";
+            return jdbcTemplate.query(sql, categorieRowMapper);
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la récupération de toutes les catégories : " + e.getMessage());
+            e.printStackTrace();
+            throw e;
         }
     }
 
-    // 2. Lister toutes les catégories
-    public List<Categorie> findAll() {
-        String sql = "SELECT * FROM CATEGORIES";
-        return jdbcTemplate.query(sql, categorieRowMapper);
+    public Categorie findById(Long id) {
+        try {
+            String sql = "SELECT * FROM CATEGORIES WHERE id = ?";
+            return jdbcTemplate.query(sql, categorieRowMapper, id)
+                    .stream()
+                    .findFirst()
+                    .orElseThrow(() -> new ResourceNotFoundException("Catégorie avec l'ID : " + id + " n'existe pas"));
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la recherche de la catégorie avec l'ID " + id + " : " + e.getMessage());
+            e.printStackTrace();
+            throw e;
+        }
     }
 
-    // 3. Ajouter une nouvelle catégorie
-    public int save(Categorie categorie) {
-        String sql = "INSERT INTO CATEGORIES (nom) VALUES (?)"; // Insère une nouvelle catégorie
-        return jdbcTemplate.update(sql, categorie.getNom());
+    public Categorie save(Categorie categorie) {
+        try {
+            String sql = "INSERT INTO CATEGORIES (nom) VALUES (?)";
+            jdbcTemplate.update(sql, categorie.getNom());
+
+            String sqlGetId = "SELECT LAST_INSERT_ID()";
+            Long id = jdbcTemplate.queryForObject(sqlGetId, Long.class);
+
+            categorie.setId(id);
+            return categorie;
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la sauvegarde de la catégorie : " + e.getMessage());
+            e.printStackTrace();
+            throw e;
+        }
     }
 
-    // 4. Mettre à jour une catégorie par ID
-    public int update(Long id, String newNom) {
-        String sql = "UPDATE CATEGORIES SET nom = ? WHERE id = ?"; // Met à jour le nom correspondant
-        return jdbcTemplate.update(sql, newNom, id);
+    public Categorie update(Long id, Categorie categorie) {
+        try {
+            if (!categorieExists(id)) {
+                throw new ResourceNotFoundException("Catégorie avec l'ID : " + id + " n'existe pas");
+            }
+
+            String sql = "UPDATE CATEGORIES SET nom = ? WHERE id = ?";
+            int rowsAffected = jdbcTemplate.update(sql, categorie.getNom(), id);
+
+            if (rowsAffected <= 0) {
+                throw new ResourceNotFoundException("Échec de la mise à jour de la catégorie avec l'ID : " + id);
+            }
+
+            return this.findById(id);
+        } catch (Exception e) {
+            System.err
+                    .println("Erreur lors de la mise à jour de la catégorie avec l'ID " + id + " : " + e.getMessage());
+            e.printStackTrace();
+            throw e;
+        }
     }
 
-    // 5. Supprimer une catégorie par ID
-    public int deleteById(Long id) {
-        String sql = "DELETE FROM CATEGORIES WHERE id = ?"; // Supprime une catégorie
-        return jdbcTemplate.update(sql, id);
+    public boolean delete(Long id) {
+        try {
+            if (!categorieExists(id)) {
+                throw new ResourceNotFoundException("Catégorie avec l'ID : " + id + " n'existe pas");
+            }
+
+            String sql = "DELETE FROM CATEGORIES WHERE id = ?";
+            int rowsAffected = jdbcTemplate.update(sql, id);
+            return rowsAffected > 0;
+        } catch (Exception e) {
+            System.err
+                    .println("Erreur lors de la suppression de la catégorie avec l'ID " + id + " : " + e.getMessage());
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    private boolean categorieExists(Long id) {
+        try {
+            String checkSql = "SELECT COUNT(*) FROM CATEGORIES WHERE id = ?";
+            int count = jdbcTemplate.queryForObject(checkSql, Integer.class, id);
+            return count > 0;
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la vérification de l'existence de la catégorie avec l'ID " + id + " : "
+                    + e.getMessage());
+            e.printStackTrace();
+            throw e;
+        }
     }
 }

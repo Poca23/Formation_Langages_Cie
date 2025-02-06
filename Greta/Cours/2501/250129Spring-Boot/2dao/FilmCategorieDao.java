@@ -7,58 +7,62 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository // Indique que cette classe fait partie de la couche DAO
+@Repository
 public class FilmCategorieDao {
 
     private final JdbcTemplate jdbcTemplate;
 
-    // Constructeur pour injecter JdbcTemplate
     public FilmCategorieDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    // Mapper : Transforme une ligne SQL en objet FilmCategorie
-    private final RowMapper<FilmCategorie> filmCategorieRowMapper = (rs, rowNum) -> new FilmCategorie(
-            rs.getLong("film_id"), // Récupère l'identifiant du film
-            rs.getLong("categorie_id") // Récupère l'identifiant de la catégorie
-    );
+    private final RowMapper<FilmCategorie> filmCategorieRowMapper = (rs, _) -> new FilmCategorie(
+            rs.getLong("film_id"),
+            rs.getLong("categorie_id"));
 
-    // 1. Insérer une relation entre un film et une catégorie
-    public int save(FilmCategorie filmCategorie) {
-        String sql = "INSERT INTO FILMS_CATEGORIES (film_id, categorie_id) VALUES (?, ?)";
-        return jdbcTemplate.update(sql, filmCategorie.getFilmId(), filmCategorie.getCategorieId());
-    }
-
-    // 2. Obtenir toutes les relations film-catégorie
+    // Récupérer toutes les associations Film-Categorie
     public List<FilmCategorie> findAll() {
-        String sql = "SELECT * FROM FILMS_CATEGORIES"; // Requête pour récupérer toutes les lignes
+        String sql = "SELECT * FROM film_categorie";
         return jdbcTemplate.query(sql, filmCategorieRowMapper);
     }
 
-    // 3. Obtenir les relations pour un film donné
-    public List<FilmCategorie> findByFilmId(Long filmId) {
-        String sql = "SELECT * FROM FILMS_CATEGORIES WHERE film_id = ?"; // Filtre par film_id
-        return jdbcTemplate.query(sql, filmCategorieRowMapper, filmId);
+    // Récupérer les catégories associées à un film donné
+    public List<Long> findCategoriesByFilmId(Long filmId) {
+        String sql = "SELECT categorie_id FROM film_categorie WHERE film_id = ?";
+        return jdbcTemplate.queryForList(sql, Long.class, filmId);
     }
 
-    // 4. Supprimer une relation entre un film et une catégorie
-    public int delete(FilmCategorie filmCategorie) {
-        String sql = "DELETE FROM FILMS_CATEGORIES WHERE film_id = ? AND categorie_id = ?"; // Supprime où les deux
-                                                                                            // correspondent
-        return jdbcTemplate.update(sql, filmCategorie.getFilmId(), filmCategorie.getCategorieId());
+    // Récupérer les films associés à une catégorie donnée
+    public List<Long> findFilmsByCategorieId(Long categorieId) {
+        String sql = "SELECT film_id FROM film_categorie WHERE categorie_id = ?";
+        return jdbcTemplate.queryForList(sql, Long.class, categorieId);
     }
 
-    // 5. Supprimer toutes les relations pour un film donné
-    public int deleteByFilmId(Long filmId) {
-        String sql = "DELETE FROM FILMS_CATEGORIES WHERE film_id = ?"; // Supprime toutes les relations utilisant
-                                                                       // film_id
-        return jdbcTemplate.update(sql, filmId);
+    // Ajouter une association Film-Categorie
+    public FilmCategorie save(FilmCategorie filmCategorie) {
+        String sql = "INSERT INTO film_categorie (film_id, categorie_id) VALUES (?, ?)";
+        jdbcTemplate.update(sql, filmCategorie.getFilmId(), filmCategorie.getCategorieId());
+        return filmCategorie;
     }
 
-    // 6. Supprimer toutes les relations pour une catégorie donnée
-    public int deleteByCategorieId(Long categorieId) {
-        String sql = "DELETE FROM FILMS_CATEGORIES WHERE categorie_id = ?"; // Supprime toutes les relations utilisant
-                                                                            // categorie_id
-        return jdbcTemplate.update(sql, categorieId);
+    // Supprimer une association Film-Categorie spécifique
+    public boolean deleteByFilmAndCategorie(Long filmId, Long categorieId) {
+        String sql = "DELETE FROM film_categorie WHERE film_id = ? AND categorie_id = ?";
+        int rowsAffected = jdbcTemplate.update(sql, filmId, categorieId);
+        return rowsAffected > 0;
+    }
+
+    // Supprimer toutes les associations pour un film donné
+    public boolean deleteByFilmId(Long filmId) {
+        String sql = "DELETE FROM film_categorie WHERE film_id = ?";
+        int rowsAffected = jdbcTemplate.update(sql, filmId);
+        return rowsAffected > 0;
+    }
+
+    // Supprimer toutes les associations pour une catégorie donnée
+    public boolean deleteByCategorieId(Long categorieId) {
+        String sql = "DELETE FROM film_categorie WHERE categorie_id = ?";
+        int rowsAffected = jdbcTemplate.update(sql, categorieId);
+        return rowsAffected > 0;
     }
 }

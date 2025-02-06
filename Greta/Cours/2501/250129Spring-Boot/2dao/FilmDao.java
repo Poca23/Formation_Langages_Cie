@@ -1,12 +1,12 @@
 package org.cnd.projectcnd.daos;
 
 import org.cnd.projectcnd.entities.Film;
-import org.cnd.projectcnd.exceptions.EntityNotFoundException;
-import org.springframework.dao.EmptyResultDataAccessException;
+import org.cnd.projectcnd.exceptions.ResourceNotFoundException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -18,83 +18,53 @@ public class FilmDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    // Constantes SQL
-    private static final String SQL_SELECT_ALL = "SELECT * FROM FILMS";
-    private static final String SQL_SELECT_BY_ID = "SELECT * FROM FILMS WHERE id = ?";
-    private static final String SQL_INSERT = "INSERT INTO FILMS (titre, synopsis, date_sortie, image, notation, critique) VALUES (?, ?, ?, ?, ?, ?)";
-    private static final String SQL_UPDATE = "UPDATE FILMS SET titre = ?, synopsis = ?, date_sortie = ?, image = ?, notation = ?, critique = ? WHERE id = ?";
-    private static final String SQL_DELETE_BY_ID = "DELETE FROM FILMS WHERE id = ?";
-    private static final String SQL_COUNT_BY_ID = "SELECT COUNT(*) FROM FILMS WHERE id = ?";
-    private static final String SQL_SELECT_BY_TITRE = "SELECT * FROM FILMS WHERE titre LIKE ?";
-    private static final String SQL_SELECT_CATEGORIES_BY_FILM = "SELECT c.nom FROM CATEGORIES c INNER JOIN FILMS_CATEGORIES fc ON c.id = fc.categorie_id WHERE fc.film_id = ?";
-    private static final String SQL_INSERT_FILM_CATEGORY = "INSERT INTO FILMS_CATEGORIES (film_id, categorie_id) VALUES (?, ?)";
+    private final RowMapper<Film> filmRowMapper = (rs, _) -> new Film(
+            rs.getLong("id"),
+            rs.getString("titre"),
+            rs.getString("synopsis"),
+            rs.getObject("date_sortie", LocalDate.class), // Conversion SQL -> LocalDate
+            rs.getString("image"),
+            rs.getFloat("notation"),
+            rs.getString("critique"));
 
-    // Constantes colonnes
-    private static final String COL_ID = "id";
-    private static final String COL_TITRE = "titre";
-    private static final String COL_SYNOPSIS = "synopsis";
-    private static final String COL_DATE_SORTIE = "date_sortie";
-    private static final String COL_IMAGE = "image";
-    private static final String COL_NOTATION = "notation";
-    private static final String COL_CRITIQUE = "critique";
-
-    // Mappers
-    private final RowMapper<Film> filmRowMapper = (rs, rowNum) -> new Film(
-            rs.getLong(COL_ID),
-            rs.getString(COL_TITRE),
-            rs.getString(COL_SYNOPSIS),
-            rs.getDate(COL_DATE_SORTIE) != null ? rs.getDate(COL_DATE_SORTIE).toLocalDate() : null,
-            rs.getString(COL_IMAGE),
-            rs.getObject(COL_NOTATION, Float.class),
-            rs.getString(COL_CRITIQUE));
-
-    /**
-     * Récupère tous les films présents dans la base de données.
-     */
     public List<Film> findAll() {
-        return jdbcTemplate.query(SQL_SELECT_ALL, filmRowMapper);
+        String sql = "SELECT * FROM films";
+        return jdbcTemplate.query(sql, filmRowMapper);
     }
 
-    /**
-     * Recherche des films par titre partiel ou complet.
-     */
-    public List<Film> findByTitre(String titre) {
-        return jdbcTemplate.query(SQL_SELECT_BY_TITRE, filmRowMapper, "%" + titre + "%");
-    }
-
-    /**
-     * Récupère un film par son ID.
-     */
     public Film findById(Long id) {
-        try {
-            return jdbcTemplate.queryForObject(SQL_SELECT_BY_ID, filmRowMapper, id);
-        } catch (EmptyResultDataAccessException ex) {
-            throw new EntityNotFoundException("Film avec l'ID " + id + " n'existe pas.");
-        }
+        String sql = "SELECT * FROM films WHERE id = ?";
+        return jdbcTemplate.query(sql, filmRowMapper, id)
+                .stream()
+                .findFirst()
+                .orElseThrow(() -> new ResourceNotFoundException("Film avec l'ID : " + id + " n'existe pas"));
     }
 
-    /**
-     * Sauvegarde un nouveau film dans la base.
-     */
-    public int save(Film film) {
-        return jdbcTemplate.update(SQL_INSERT,
+    public Film save(Film film) {
+        String sql = "INSERT INTO films (titre, synopsis, date_sortie, image, notation, critique) VALUES (?, ?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql,
                 film.getTitre(),
                 film.getSynopsis(),
                 film.getDateSortie(),
                 film.getImage(),
                 film.getNotation(),
                 film.getCritique());
+
+        // Récupérer l'ID généré automatiquement
+        String sqlGetId = "SELECT LAST_INSERT_ID()";
+        Long id = jdbcTemplate.queryForObject(sqlGetId, Long.class);
+
+        film.setId(id);
+        return film;
     }
 
-    /**
-     * Met à jour un film existant.
-     */
     public Film update(Long id, Film film) {
-        if (!existsById(id)) {
-            throw new EntityNotFoundException("Film avec l'ID " + id + " n'existe pas.");
+        if (!filmExists(id)) {
+            throw new ResourceNotFoundException("Film avec l'ID : " + id + " n'existe pas");
         }
 
-        jdbcTemplate.update(SQL_UPDATE,
+        String sql = "UPDATE films SET titre = ?, synopsis = ?, date_sortie = ?, image = ?, notation = ?, critique = ? WHERE id = ?";
+        int rowsAffected = jdbcTemplate.update(sql,
                 film.getTitre(),
                 film.getSynopsis(),
                 film.getDateSortie(),
@@ -102,44 +72,23 @@ public class FilmDao {
                 film.getNotation(),
                 film.getCritique(),
                 id);
-        return findById(id);
-    }
 
-    /**
-     * Vérifie l'existence d'un film par son ID.
-     */
-    public boolean existsById(Long id) {
-        Integer count = jdbcTemplate.queryForObject(SQL_COUNT_BY_ID, Integer.class, id);
-        return count != null && count > 0;
-    }
-
-    /**
-     * Supprime un film de la base de données.
-     */
-    public int deleteById(Long id) {
-        if (!existsById(id)) {
-            throw new EntityNotFoundException("Film avec l'ID " + id + " n'existe pas.");
+        if (rowsAffected <= 0) {
+            throw new ResourceNotFoundException("Échec de la mise à jour du film avec l'ID : " + id);
         }
-        return jdbcTemplate.update(SQL_DELETE_BY_ID, id);
+
+        return this.findById(id);
     }
 
-    /**
-     * Récupère les catégories associées à un film.
-     */
-    public List<String> findCategorieByFilmId(Long filmId) {
-        return jdbcTemplate.query(SQL_SELECT_CATEGORIES_BY_FILM,
-                (rs, rowNum) -> rs.getString("nom"),
-                filmId);
+    public boolean delete(Long id) {
+        String sql = "DELETE FROM films WHERE id = ?";
+        int rowsAffected = jdbcTemplate.update(sql, id);
+        return rowsAffected > 0;
     }
 
-    /**
-     * Associe un film à une ou plusieurs catégories.
-     */
-    public int addFilmToCategories(Long filmId, List<Long> categorieIds) {
-        int rowsAdded = 0;
-        for (Long categorieId : categorieIds) {
-            rowsAdded += jdbcTemplate.update(SQL_INSERT_FILM_CATEGORY, filmId, categorieId);
-        }
-        return rowsAdded;
+    private boolean filmExists(Long id) {
+        String checkSql = "SELECT COUNT(*) FROM films WHERE id = ?";
+        int count = jdbcTemplate.queryForObject(checkSql, Integer.class, id);
+        return count > 0;
     }
 }
