@@ -1,12 +1,19 @@
 package org.cnd.projectcnd.entities;
 
-import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
 import java.io.Serializable;
+import java.util.Objects;
 
 public class FilmCategorie implements Serializable { // Implémente Serializable pour une clé composite
 
+    @NotNull(message = "L'ID du film ne peut pas être null")
+    @Positive(message = "L'ID du film doit être un nombre positif")
     private Long filmId;
 
+    @NotNull(message = "L'ID de la catégorie ne peut pas être null")
+    @Positive(message = "L'ID de la catégorie doit être un nombre positif")
     private Long categorieId;
 
     // Constructeurs

@@ -1,6 +1,7 @@
 package org.cnd.projectcnd.entities;
 
-import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
 import java.util.Objects;
 
@@ -8,10 +9,17 @@ public class Favoris {
 
     private Long id; // Clé primaire
 
+    @NotNull(message = "L'utilisateur ne peut pas être null")
+    @Valid // Pour valider l'objet Utilisateur imbriqué
     private Utilisateur utilisateur; // Relation avec Utilisateur
 
+    @NotNull(message = "Le film ne peut pas être null")
+    @Valid // Pour valider l'objet Film imbriqué
     private Film film; // Relation avec Film
 
+    @Min(value = 1, message = "Le numéro de liste doit être au minimum 1")
+    @Max(value = 2, message = "Le numéro de liste ne peut pas dépasser 2")
+    @PositiveOrZero(message = "Le numéro de liste doit être positif")
     private int listeNumero; // Numéro de la liste (ex. 1 ou 2 pour les favoris)
 
     // Constructeurs
@@ -58,32 +66,5 @@ public class Favoris {
 
     public void setListeNumero(int listeNumero) {
         this.listeNumero = listeNumero;
-    }
-
-    // Equals et hashCode
-
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        Favoris favoris = (Favoris) o;
-        return listeNumero == favoris.listeNumero &&
-                Objects.equals(id, favoris.id) &&
-                Objects.equals(utilisateur, favoris.utilisateur) &&
-                Objects.equals(film, favoris.film);
-    }
-
-    public int hashCode() {
-        return Objects.hash(id, utilisateur, film, listeNumero);
-    }
-
-    public String toString() {
-        return "Favoris{" +
-                "id=" + id +
-                ", utilisateur=" + utilisateur +
-                ", film=" + film +
-                ", listeNumero=" + listeNumero +
-                '}';
     }
 }

@@ -1,18 +1,42 @@
 package org.cnd.projectcnd.entities;
 
+import jakarta.validation.constraints.*;
+import org.hibernate.validator.constraints.URL;
+
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Film {
 
-    private Long id; // Clé primate
-    private String titre; // Titre du film
-    private String synopsis; // Résumé ou description du film
-    private LocalDate dateSortie; // Date de sortie
-    private String image; // Lien vers une image
-    private Float notation; // Note du film (exemple 8.5)
-    private String critique; // Commentaire ou critique
+    private Long id; // Clé primaire
 
-    // Constructors
+    @NotNull(message = "Le titre ne peut pas être null")
+    @NotBlank(message = "Le titre ne peut pas être vide")
+    @Size(min = 1, max = 100, message = "Le titre doit contenir entre 1 et 100 caractères")
+    private String titre; // Titre du film
+
+    @NotNull(message = "Le synopsis ne peut pas être null")
+    @NotBlank(message = "Le synopsis ne peut pas être vide")
+    @Size(min = 10, max = 1000, message = "Le synopsis doit contenir entre 10 et 1000 caractères")
+    private String synopsis; // Résumé ou description du film
+
+    @NotNull(message = "La date de sortie ne peut pas être null")
+    @PastOrPresent(message = "La date de sortie ne peut pas être dans le futur")
+    private LocalDate dateSortie; // Date de sortie
+
+    @NotNull(message = "L'URL de l'image ne peut pas être null")
+    @URL(message = "L'URL de l'image doit être valide")
+    private String image; // Lien vers une image
+
+    @NotNull(message = "La notation ne peut pas être null")
+    @Min(value = 0, message = "La notation ne peut pas être inférieure à 0")
+    @Max(value = 10, message = "La notation ne peut pas être supérieure à 10")
+    private Float notation; // Note du film (exemple 8.5)
+
+    @Size(max = 2000, message = "La critique ne peut pas dépasser 2000 caractères")
+    private String critique; // Commentaire ou critique (optionnel)
+
+    // Constructeurs
     public Film() {
     }
 
