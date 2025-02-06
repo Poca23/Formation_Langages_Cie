@@ -20,10 +20,15 @@ class User extends Authenticatable
      * Relation entre User et Chapter.
      * Un utilisateur peut suivre plusieurs chapitres.
      */
-    public function chapters()
+    public function completedChapters()
     {
         return $this->belongsToMany(Chapter::class, table: 'chapters_users')
             ->withPivot('completed')
             ->withTimestamps();
+    }
+
+    public function currentChapter()
+    {
+        return $thid = $this->currentChapter()->first(); 
     }
 }

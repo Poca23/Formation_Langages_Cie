@@ -198,3 +198,45 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Sélection des éléments nécessaires
+  const coursLink = document.getElementById("cours-link");
+  const submenuCours = document.getElementById("submenu-cours");
+  const submenuGeneral = document.getElementById("submenu-general");
+  const submenuAuth = document.getElementById("submenu-auth");
+  const submenuHeadings = document.querySelectorAll(".submenu-heading");
+
+  // Affiche/Cacher le sous-menu "Cours" lors du clic
+  coursLink.addEventListener("click", (e) => {
+    e.preventDefault(); // Empêche la redirection
+    submenuCours.style.display =
+      submenuCours.style.display === "block" ? "none" : "block";
+  });
+
+  // Gestion des colonnes Général/Authentification
+  submenuHeadings.forEach((heading) => {
+    heading.addEventListener("click", (e) => {
+      e.preventDefault();
+      const target = heading.dataset.target;
+
+      // Masquer tous les sous-menus
+      submenuGeneral.style.display = "none";
+      submenuAuth.style.display = "none";
+
+      // Affiche le sous-menu correspondant au clic
+      if (target === "general") {
+        submenuGeneral.style.display = "block";
+      } else if (target === "auth") {
+        submenuAuth.style.display = "block";
+      }
+    });
+  });
+
+  // Fermer le sous-menu si on clique ailleurs
+  document.addEventListener("click", (e) => {
+    if (!submenuCours.contains(e.target) && e.target !== coursLink) {
+      submenuCours.style.display = "none";
+    }
+  });
+});

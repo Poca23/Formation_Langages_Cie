@@ -12,39 +12,61 @@
 
 <body>
     <nav>
+        <!-- Logo -->
         <div class="logo">
             <img src="https://raw.githubusercontent.com/spring-projects/spring-framework/main/framework-docs/src/docs/spring-framework.png"
                 alt="Spring Logo" class="logo">
         </div>
+
+        <!-- Bouton Burger -->
         <button class="burger-menu" title="Menu">
             <i class="fas fa-bars"></i>
         </button>
 
+        <!-- Liens principaux -->
         <ul class="nav-links">
-            <li class="has-submenu">Cours
-                <ul class="submenu">
-                    <li><a href="#introduction">1 - Introduction</a></li>
-                    <li><a href="#composants">2 - Les composants principaux</a></li>
-                    <li><a href="#methodes">3 - Les méthodes HTTP</a></li>
-                    <li><a href="#bean">4 - Les Beans</a></li>
-                    <li><a href="#contraintes">5 - Les contraintes de validation</a></li>
-                    <li><a href="#cors">6 - CORS (Cross Origin Ressources Sharing)</a></li>
-                    <li><a href="#env-variables">7 - Les variables d'environnement</a></li>
-                    <li><a href="#auth-jwt">8 - Mise en place de l'authentification - JWT</a></li>
-                    <li><a href="#spring-security-intro">9 - Introduction à Spring Security</a></li>
-                    <li><a href="#adjust-bdd">10 - Ajustemment BDD - entités et DAO</a></li>
-                    <li><a href="#custom-user-details-service">11 - Création de CustomUserDetails</a></li>
-                    <li><a href="#jwt-util-service">12 - Création d'un service utilitaire pour token</a></li>
-                    <li><a href=""></a></li>
-                    <li><a href="#pratique"> - Pratique</a></li>
-                    <li><a href="#concepts">Concepts Clés</a></li>
+            <!-- Menu Cours avec sous-menus (Général et Authentification) -->
+            <li class="has-submenu">
+                <a href="#" id="cours-link">Cours</a>
+                <ul class="submenu" id="submenu-cours">
+                    <!-- Colonne Général -->
+                    <li>
+                        <a href="#" class="submenu-heading" data-target="general">Général</a>
+                        <ul class="submenu-column" id="submenu-general">
+                            <li><a href="#introduction">1 - Introduction</a></li>
+                            <li><a href="#composants">2 - Les composants principaux</a></li>
+                            <li><a href="#methodes">3 - Les méthodes HTTP</a></li>
+                            <li><a href="#bean">4 - Les Beans</a></li>
+                            <li><a href="#contraintes">5 - Les contraintes de validation</a></li>
+                            <li><a href="#cors">6 - CORS</a></li>
+                            <li><a href="#env-variables">7 - Les variables d'environnement</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Colonne Authentification -->
+                    <li>
+                        <a href="#" class="submenu-heading" data-target="auth">Authentification</a>
+                        <ul class="submenu-column" id="submenu-auth">
+                            <li><a href="#auth-jwt">1 - JWT Auth</a></li>
+                            <li><a href="#spring-security-intro">2 - Spring Security Intro</a></li>
+                            <li><a href="#adjust-bdd">3 - Ajustement BDD</a></li>
+                            <li><a href="#custom-user-details-service">4 - CustomUserDetails</a></li>
+                            <li><a href="#jwt-util-service">5 - Token Service</a></li>
+                            <li><a href="#JWT-Filter">6 - Filtre JWT</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </li>
+            <!-- Autres liens principaux -->
+            <li><a href="#pratique">Pratique</a></li>
+            <li><a href="#concepts">Concepts Clés</a></li>
             <li><a href="#http-errors">Les codes d'État HTTP</a></li>
             <li><a href="#exercices">Exercices</a></li>
             <li><a href="#ressources">Ressources</a></li>
         </ul>
-        <button id="themeToggle" title="Toggle Theme">
+
+        <!-- Thème (dark/light) -->
+        <button id="themeToggle" title="Changer le thème">
             <i class="fas fa-moon"></i>
         </button>
     </nav>
