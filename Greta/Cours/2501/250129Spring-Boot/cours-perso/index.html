@@ -53,6 +53,8 @@
                             <li><a href="#custom-user-details-service">4 - CustomUserDetails</a></li>
                             <li><a href="#jwt-util-service">5 - Token Service</a></li>
                             <li><a href="#JWT-Filter">6 - Filtre JWT</a></li>
+                            <li><a href="#securiser-routes">7 - Sécuriser les routes de ton API</a></li>
+                            <li><a href="#auth-endpoints">8 - Endpoints d’authentification</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -2067,6 +2069,605 @@ public boolean validateJwtToken(String token) {
                         <p>➡️ Prochaine étape : Ajouter un <strong>filtre JWT</strong> pour valider les requêtes
                             entrantes !</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Création d’un filtre JWT pour authentifier les requêtes entrantes -->
+        <section id="jwt-filter" class="section">
+            <div class="subsection">
+                <h3>6 – Création d’un filtre JWT pour authentifier les requêtes entrantes</h3>
+                <div class="concept-card">
+                    <i class="fas fa-key"></i>
+
+                    <h4>1. Introduction</h4>
+                    <p>
+                        Tu utilises une authentification basée sur les headers JWT (JSON Web Token).
+                        Chaque requête HTTP envoyée à ton API devra donc être analysée :
+                        vérifier si elle contient un **JWT** valide et authentifier son utilisateur si c'est le cas.
+                        🛡️ C'est ici que ton filtre JWT intervient.
+                        Il fonctionne en amont de Spring Security et des contrôleurs, comme une première barrière
+                        🎯.
+                    </p>
+
+                    <h4>2. Ajout du Filtre JWT</h4>
+                    <p>
+                        Crée une classe <code>JwtFilter</code> dans le package <code>security</code> avec le code
+                        suivant :
+                    </p>
+                    <div class="code-section">
+                        <pre><code>
+  @Component
+  public class JwtFilter extends OncePerRequestFilter {
+  
+      private final JwtUtil jwtUtil;
+      private final CustomUserDetailsService userDetailsService;
+  
+      public JwtFilter(JwtUtil jwtUtil, CustomUserDetailsService userDetailsService) {
+          this.jwtUtil = jwtUtil;
+          this.userDetailsService = userDetailsService;
+      }
+  
+      @Override
+      protected void doFilterInternal(HttpServletRequest request, 
+                                      HttpServletResponse response, 
+                                      FilterChain chain)
+              throws ServletException, IOException {
+          try {
+              String jwt = parseJwt(request);
+              if (jwt != null && jwtUtil.validateJwtToken(jwt)) {
+                  String username = jwtUtil.getEmailFromToken(jwt);
+                  UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+                  UsernamePasswordAuthenticationToken authentication =
+                          new UsernamePasswordAuthenticationToken(
+                                  userDetails, 
+                                  null, 
+                                  userDetails.getAuthorities()
+                          );
+                  authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                  SecurityContextHolder.getContext().setAuthentication(authentication);
+              }
+          } catch (Exception e) {
+              System.out.println("Cannot set user authentication: " + e);
+          }
+          chain.doFilter(request, response);
+      }
+  
+      private String parseJwt(HttpServletRequest request) {
+          String headerAuth = request.getHeader("Authorization");
+          if (headerAuth != null && headerAuth.startsWith("Bearer ")) {
+              return headerAuth.substring(7);
+          }
+          return null;
+      }
+  }
+          </code></pre>
+                    </div>
+
+                    <h5>Observations importantes :</h5>
+                    <ul class="features-list">
+                        <li><strong>@Component</strong> indique à Spring que cette classe est un Bean injectable.</li>
+                        <li>La classe <code>JwtFilter</code> hérite de <code>OncePerRequestFilter</code>,
+                            une classe existante de Spring qui permet d’effectuer une action unique par requête.</li>
+                        <li>Le filtre implémente la méthode <code>doFilterInternal()</code>, qui agit sur chaque
+                            requête.</li>
+                    </ul>
+
+                    <h4>3. La méthode utilitaire <code>parseJwt</code></h4>
+                    <p>
+                        Cette méthode privée est utilisée pour analyser et extraire le token JWT depuis
+                        le header <code>Authorization</code> de la requête entrante :
+                    </p>
+                    <div class="code-section">
+                        <pre><code>
+  private String parseJwt(HttpServletRequest request) {
+      String headerAuth = request.getHeader("Authorization");
+      if (headerAuth != null && headerAuth.startsWith("Bearer ")) {
+          return headerAuth.substring(7); // Retire "Bearer "
+      }
+      return null;
+  }
+          </code></pre>
+                    </div>
+                    <p>Son fonctionnement :</p>
+                    <ul class="features-list">
+                        <li>Elle récupère le header <code>Authorization</code> de la requête.</li>
+                        <li>Elle vérifie si le header n'est pas <code>null</code> et commence par <code>Bearer</code>.
+                        </li>
+                        <li>Elle extrait uniquement le token en supprimant le préfixe <code>Bearer</code>.</li>
+                        <li>Si le header est absent ou mal formé, elle retourne <code>null</code>.</li>
+                    </ul>
+
+                    <h4>4. La méthode <code>doFilterInternal()</code></h4>
+                    <p>
+                        Analyse détaillée de l'implémentation de <code>doFilterInternal()</code> pour sécuriser
+                        l'accès :
+                    </p>
+                    <div class="code-section">
+                        <pre><code>
+  @Override
+  protected void doFilterInternal(HttpServletRequest request, 
+                                  HttpServletResponse response, 
+                                  FilterChain chain)
+          throws ServletException, IOException {
+      try {
+          String jwt = parseJwt(request);
+          if (jwt != null && jwtUtil.validateJwtToken(jwt)) {
+              String username = jwtUtil.getEmailFromToken(jwt);
+              UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+              UsernamePasswordAuthenticationToken authentication =
+                      new UsernamePasswordAuthenticationToken(
+                              userDetails, 
+                              null, 
+                              userDetails.getAuthorities());
+              authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+              SecurityContextHolder.getContext().setAuthentication(authentication);
+          }
+      } catch (Exception e) {
+          System.out.println("Cannot set user authentication: " + e);
+      }
+      chain.doFilter(request, response); // Continue dans la chaine de filtres
+  }
+          </code></pre>
+                    </div>
+                    <p>Voici le rôle de ce bloc :</p>
+                    <ul class="features-list">
+                        <li>Récupère le JWT via la méthode utilitaire <code>parseJwt()</code>.</li>
+                        <li>Vérifie si le token :
+                            <ul class="prerequis-list">
+                                <li>n'est pas <code>null</code> ;</li>
+                                <li>est valide via <code>jwtUtil.validateJwtToken()</code>.</li>
+                            </ul>
+                        </li>
+                        <li>Charge l'utilisateur correspondant dans la base via <code>CustomUserDetailsService</code>.
+                        </li>
+                        <li>Crée un objet d'authentification protégé <code>UsernamePasswordAuthenticationToken</code>.
+                        </li>
+                        <li>Met à jour le <code>SecurityContextHolder</code>, essentiel pour Spring Security.</li>
+                        <li>Termine en appelant <code>chain.doFilter(request, response)</code>, pour poursuivre la
+                            chaîne de filtres.</li>
+                    </ul>
+
+                    <h4>5. Comprendre le comportement à différents cas</h4>
+                    <p>Voici ce qu'il se passe selon différents scénarios :</p>
+                    <ul class="features-list">
+                        <li><strong>JWT valide :</strong> Spring Security met à jour le contexte grâce au
+                            <code>SecurityContextHolder</code>.
+                        </li>
+                        <li><strong>Pas de JWT :</strong> La requête continue. Cependant, l'utilisateur ne sera pas
+                            authentifié.</li>
+                        <li><strong>JWT invalide :</strong> Une exception est levée et gérée, la requête continue sans
+                            authentification.</li>
+                    </ul>
+
+                    <h4>6. Diagramme simplifié 🛡️</h4>
+                    <div class="code-section">
+                        <pre><code>
+  ┌───────────────────────────────┐
+  │         HttpServletRequest    │
+  │                               │
+  │  ┌───────────────────────┐    │
+  │  │   JwtFilter (Custom)  │    │
+  │  │                       │    │
+  │  │  ✓ Analyse le JWT     │    │
+  │  │  ✓ Authentifie l'user │    │
+  │  └───────────────────────┘    │
+  │                               │
+  │  ┌───────────────────────┐    │
+  │  │    Spring Security     │    │
+  │  │                       │    │
+  │  │  Gestion auth + roles │    │
+  │  └───────────────────────┘    │
+  │                               │
+  │      REST Controller          │
+  └───────────────────────────────┘
+          </code></pre>
+                    </div>
+
+                    <h4>7. Points Clés à Retenir</h4>
+                    <ul class="features-list">
+                        <li>Le <code>JwtFilter</code> est un gestionnaire de requêtes HTTP en **amont de Spring
+                            Security**.</li>
+                        <li>Il vérifie la présence d’un token JWT, sa validité et charge l’utilisateur associé.</li>
+                        <li>Il prépare le contexte d'authentification de Spring Security sans interrompre les requêtes
+                            entrantes.</li>
+                        <li>Le système reste robuste grâce à la gestion des erreurs locale.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Sécuriser les routes de ton API -->
+        <section id="securiser-routes" class="section">
+            <div class="subsection">
+                <h3>7 – Sécuriser les routes de ton API</h3>
+                <div class="concept-card">
+                    <i class="fas fa-shield-alt"></i>
+
+                    <h4>1. Introduction</h4>
+                    <p>
+                        À ce stade, tu as conçu un filtre personnalisée (<code>JwtFilter</code>) qui
+                        permet de valider un utilisateur grâce au token JWT passé en requête.
+                        Désormais, tu vas configurer Spring Security et définir des règles afin
+                        de **sécuriser les routes** de ton API.
+                    </p>
+
+                    <h4>2. Création de la classe <code>SecurityConfig</code></h4>
+                    <p>
+                        Tout commence par la création d’une classe dédiée à la configuration de
+                        la sécurité :
+                        <code>SecurityConfig</code>. Voici à quoi elle ressemble :
+                    </p>
+                    <div class="code-section">
+                        <pre><code>
+  @Configuration
+  @EnableWebSecurity
+  public class SecurityConfig {
+  
+      private final JwtFilter jwtFilter;
+      private final CustomUserDetailsService userDetailsService;
+  
+      // Injection des dépendances
+      public SecurityConfig(JwtFilter jwtFilter, 
+                            CustomUserDetailsService userDetailsService) {
+          this.jwtFilter = jwtFilter;
+          this.userDetailsService = userDetailsService;
+      }
+  }
+          </code></pre>
+                    </div>
+
+                    <ul class="features-list">
+                        <li><strong>@Configuration</strong> indique que c’est une classe de configuration Spring.</li>
+                        <li><strong>@EnableWebSecurity</strong> désactive la config sécurité par défaut.</li>
+                        <li>Ajout des beans nécessaires : <code>JwtFilter</code> et
+                            <code>CustomUserDetailsService</code>.
+                        </li>
+                    </ul>
+
+                    <h4>3. Le Bean <code>SecurityFilterChain</code></h4>
+                    <p>
+                        Ce Bean permet de définir la <strong>protection des routes</strong>. Ajoute cette méthode :
+                    </p>
+                    <div class="code-section">
+                        <pre><code>
+  @Bean
+  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+      http
+              .csrf(csrf -> csrf.disable())
+              .cors(Customizer.withDefaults())
+              .sessionManagement(sessionManagement ->
+                      sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+              )
+              .authorizeHttpRequests(authorizeRequests ->
+                      authorizeRequests
+                              .requestMatchers("/auth/**", "/test/all").permitAll()
+                              .requestMatchers("/user/**").hasRole("USER")
+                              .requestMatchers("/admin/**").hasRole("ADMIN")
+                              .anyRequest().authenticated()
+              );
+      http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+      return http.build();
+  }
+          </code></pre>
+                    </div>
+
+                    <h5>Points importants du code :</h5>
+                    <ul class="features-list">
+                        <li>Désactivation du **CSRF**, car les JWT sont basés sur des headers (pas de cookies).</li>
+                        <li>Activation du **CORS** avec les paramètres par défaut.</li>
+                        <li>Déclaration d'une gestion de session <code>STATELESS</code>.</li>
+                        <li>Organisation des routes :
+                            <ul class="prerequis-list">
+                                <li><strong>Routes publiques :</strong> <code>permitAll()</code></li>
+                                <li><strong>Routes protégées :</strong> en fonction des rôles avec
+                                    <code>hasRole()</code>
+                                </li>
+                                <li><strong>Autres routes :</strong> doivent être authentifiées.</li>
+                            </ul>
+                        </li>
+                        <li>Ajout du filtre personnalisé <code>JwtFilter</code> avant le filtre de Spring Security.</li>
+                    </ul>
+
+                    <h4>4. Le Bean <code>AuthenticationProvider</code></h4>
+                    <p>
+                        L’<code>AuthenticationProvider</code> permet de gérer l’authentification via des
+                        <strong>DAO</strong> (interaction avec la BDD). Voici comment ajouter ce Bean :
+                    </p>
+                    <div class="code-section">
+                        <pre><code>
+  @Bean
+  public AuthenticationProvider authenticationProvider() {
+      DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+      provider.setUserDetailsService(userDetailsService);
+      provider.setPasswordEncoder(new BCryptPasswordEncoder());
+      return provider;
+  }
+          </code></pre>
+                    </div>
+                    <p>Explications :</p>
+                    <ul class="features-list">
+                        <li>Utilisation d’un <code>DaoAuthenticationProvider</code> pour les BDD SQL classiques.</li>
+                        <li>Implémentation du service de recherches en base <code>CustomUserDetailsService</code>
+                            précédemment créé.</li>
+                        <li>Hachage sécurisé des mots de passe avec **BCrypt** grâce au <code>PasswordEncoder</code>.
+                        </li>
+                    </ul>
+
+                    <h4>5. Le Bean <code>AuthenticationManager</code></h4>
+                    <p>
+                        Ce Bean enregistre le <code>AuthenticationProvider</code> et sera utilisé pour valider
+                        les utilisateurs avant de générer des JWT.
+                    </p>
+                    <div class="code-section">
+                        <pre><code>
+  @Bean
+  public AuthenticationManager authenticationManager(
+          AuthenticationConfiguration authenticationConfiguration
+  ) throws Exception {
+      return authenticationConfiguration.getAuthenticationManager();
+  }
+          </code></pre>
+                    </div>
+
+                    <h4>6. Le Bean <code>PasswordEncoder</code></h4>
+                    <p>
+                        Aucune API sérieuse n’enregistre un mot de passe en texte clair !
+                        Enregistre cet encodeur pour hacher les mots de passe :
+                    </p>
+                    <div class="code-section">
+                        <pre><code>
+  @Bean
+  public PasswordEncoder passwordEncoder() {
+      return new BCryptPasswordEncoder();
+  }
+          </code></pre>
+                    </div>
+
+                    <h4>7. Gérer les CORS</h4>
+                    <p>
+                        Si ton application utilise les CORS, voici le Bean à ajouter pour personnaliser ces règle :
+                    </p>
+                    <div class="code-section">
+                        <pre><code>
+  @Bean
+  CorsConfigurationSource corsConfigurationSource() {
+      CorsConfiguration configuration = new CorsConfiguration();
+      configuration.setAllowedOriginPatterns(List.of("localhost:3000"));
+      configuration.setAllowedMethods(Arrays.asList("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH"));
+      configuration.setAllowCredentials(true);
+      configuration.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
+      final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+      source.registerCorsConfiguration("/**", configuration);
+      return source;
+  }
+          </code></pre>
+                    </div>
+
+                    <h4>8. Résumé Schématique</h4>
+                    <div class="code-section">
+                        <pre><code>
+  ┌───────────────────────────────┐
+  │       SecurityConfig          │
+  │                               │
+  │ ┌───────────────────────────┐ │
+  │ │ Beans: Sécurité API        │ │
+  │ │                           │ │
+  │ │ - SecurityFilterChain     │ │
+  │ │ - AuthenticationProvider  │ │
+  │ │ - AuthenticationManager   │ │
+  │ │ - PasswordEncoder         │ │
+  │ │                           │ │
+  │ │ CORS Management           │ │
+  │ └───────────────────────────┘ │
+  │                               │
+  └───────────────────────────────┘
+          </code></pre>
+                    </div>
+
+                    <h4>9. Points Clés à Retenir</h4>
+                    <ul class="features-list">
+                        <li>Spring Security centralise la gestion des routes dans <code>SecurityConfig</code>.</li>
+                        <li>Les Beans établissent les bases :
+                            <code>SecurityFilterChain</code>, <code>AuthenticationProvider</code>,
+                            <code>PasswordEncoder</code>.
+                        </li>
+                        <li>Les JWT permettent une gestion stateless, adaptée aux API modernes.</li>
+                        <li>Les règles des routes s’écrivent **de la plus permissive à la plus restrictive**.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Endpoints d’authentification -->
+        <section id="auth-endpoints" class="section">
+            <div class="subsection">
+                <h3>8 – Endpoints d’authentification</h3>
+                <div class="concept-card">
+                    <i class="fas fa-unlock-alt"></i>
+
+                    <h4>1. Introduction</h4>
+                    <p>
+                        Jusqu’ici, tu as préparé toute l’infrastructure pour gérer l’authentification via JWT.
+                        Il est maintenant temps de créer les endpoints nécessaires : 😎
+                    </p>
+                    <ul class="features-list">
+                        <li><strong>POST /register :</strong> Permet à un utilisateur de créer un compte.</li>
+                        <li><strong>POST /login :</strong> Permet à un utilisateur de se connecter et de recevoir un
+                            token JWT.</li>
+                    </ul>
+
+                    <h4>2. Le Controller : <code>AuthController</code></h4>
+                    <p>
+                        Dans le package <code>controllers</code>, crée une nouvelle classe <code>AuthController</code>
+                        pour gérer ces endpoints.
+                        Voici la base :
+                    </p>
+                    <div class="code-section">
+                        <pre><code>
+  @RestController
+  @RequestMapping("/auth")
+  public class AuthController {
+      private final AuthenticationManager authenticationManager;
+      private final UserDao userDao;
+      private final PasswordEncoder encoder;
+      private final JwtUtil jwtUtils;
+  
+      public AuthController(AuthenticationManager authenticationManager, 
+                            UserDao userDao, 
+                            PasswordEncoder encoder, 
+                            JwtUtil jwtUtils) {
+          this.authenticationManager = authenticationManager;
+          this.userDao = userDao;
+          this.encoder = encoder;
+          this.jwtUtils = jwtUtils;
+      }
+  }
+          </code></pre>
+                    </div>
+                    <p>
+                        Ce controller est annoté comme à ton habitude avec <code>@RestController</code> (Web API) et
+                        <code>@RequestMapping("/auth")</code>. Les dépendances nécessaires sont injectées dans le
+                        constructeur :
+                    </p>
+                    <ul class="features-list">
+                        <li><code>AuthenticationManager</code> pour gérer l’authentification.</li>
+                        <li><code>UserDao</code> pour interagir avec la BDD utilisateurs.</li>
+                        <li><code>PasswordEncoder</code> pour encoder les mots de passe.</li>
+                        <li><code>JwtUtil</code> pour la génération des tokens JWT.</li>
+                    </ul>
+
+                    <h4>3. Le Endpoint <code>POST /register</code></h4>
+                    <p>
+                        Le premier endpoint permet de créer un utilisateur et de l’enregistrer en BDD. Voici la méthode
+                        complète :
+                    </p>
+                    <div class="code-section">
+                        <pre><code>
+  @PostMapping("/register")
+  public ResponseEntity<String> registerUser(@RequestBody User user) {
+      boolean alreadyExists = userDao.existsByEmail(user.getEmail());
+      if (alreadyExists) {
+          return ResponseEntity.badRequest()
+                               .body("Error: Email is already in use!");
+      }
+      User newUser = new User(
+              user.getEmail(),
+              encoder.encode(user.getPassword()),
+              "USER"
+      );
+      boolean isUserSaved = userDao.save(newUser);
+      if (isUserSaved) {
+          return ResponseEntity.ok("User registered successfully!");
+      } else {
+          return ResponseEntity.badRequest()
+                               .body("Error: User registration failed!");
+      }
+  }
+          </code></pre>
+                    </div>
+                    <p>Explications :</p>
+                    <ul class="features-list">
+                        <li>Vérifie si un utilisateur existe déjà avec l’email donné (via
+                            <code>userDao.existsByEmail()</code>).
+                        </li>
+                        <li>Si l’utilisateur existe, retourne une erreur 400 au client avec un message clair.</li>
+                        <li>Si ce n’est pas le cas :
+                            <ul>
+                                <li>Un nouvel utilisateur est créé avec son email et son mot de passe encodé.</li>
+                                <li>Par défaut, le rôle "USER" est attribué.</li>
+                                <li>La sauvegarde en BDD est effectuée via <code>userDao.save()</code>.</li>
+                                <li>Selon le résultat, retourne une réponse de succès ou d’échec au client.</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h4>4. Le Endpoint <code>POST /login</code></h4>
+                    <p>
+                        Le second endpoint gère l’authentification. Il prend un email et un mot de passe, et retourne un
+                        JWT si tout est correct :
+                    </p>
+                    <div class="code-section">
+                        <pre><code>
+  @PostMapping("/login")
+  public String authenticateUser(@RequestBody User user) {
+      Authentication authentication = authenticationManager.authenticate(
+              new UsernamePasswordAuthenticationToken(
+                      user.getEmail(),
+                      user.getPassword()
+              )
+      );
+      UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+      return jwtUtils.generateToken(userDetails.getUsername());
+  }
+          </code></pre>
+                    </div>
+                    <p>Voici ce que fait ce code :</p>
+                    <ul class="features-list">
+                        <li>Crée un <code>UsernamePasswordAuthenticationToken</code> avec l’email et le mot de passe
+                            fournis.</li>
+                        <li>Utilise <code>authenticationManager</code> pour vérifier les credentials et renvoyer l’objet
+                            Authentication.</li>
+                        <li>Récupère les détails Authentifiés de l’utilisateur via
+                            <code>authentication.getPrincipal()</code>.
+                        </li>
+                        <li>Génère un JWT basé sur l’email de l’utilisateur grâce à
+                            <code>jwtUtils.generateToken()</code>.
+                        </li>
+                        <li>Retourne ce JWT au client, qu'il utilisera pour ses futures requêtes.</li>
+                    </ul>
+
+                    <h4>5. Gestion des exceptions</h4>
+                    <p>
+                        La méthode <code>authenticate()</code> peut lever une exception en cas d’échec, comme
+                        <code>BadCredentialsException</code>. Pour éviter un retour brut d’erreur au client, ajoute
+                        cette méthode
+                        dans ton <code>GlobalExceptionHandler</code> :
+                    </p>
+                    <div class="code-section">
+                        <pre><code>
+  @ExceptionHandler(BadCredentialsException.class)
+  public ResponseEntity<String> handleBadCredentialsException(BadCredentialsException ex) {
+      return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                           .body("Error: Invalid email/password!");
+  }
+          </code></pre>
+                    </div>
+                    <p>
+                        Ainsi, si un utilisateur entre des identifiants incorrects, il recevra une réponse
+                        claire avec un code 401 (non autorisé).
+                    </p>
+
+                    <h4>6. Diagramme explicatif 🚀</h4>
+                    <div class="code-section">
+                        <pre><code>
+  ┌───────────────────────────────┐
+  │         AuthController        │
+  │                               │
+  │  POST /register               │────► User enregistré ou erreur
+  │  POST /login                  │────► JWT généré ou erreur
+  │                               │
+  └───────────────────────────────┘
+  
+        \_ Gestion des exceptions globales
+             BadCredentialsException
+          </code></pre>
+                    </div>
+
+                    <h4>7. Points Clés à Retenir</h4>
+                    <ul class="features-list">
+                        <li>Le controller <code>AuthController</code> est central pour gérer la création des comptes et
+                            les connexions.</li>
+                        <li>Le registre utilisateur inclut une vérification d’unicité de l’email,
+                            et encode le mot de passe avant sauvegarde.</li>
+                        <li>Le login authentifie l’utilisateur et retourne un JWT.</li>
+                        <li>Les exceptions comme <code>BadCredentialsException</code> sont gérées dans le
+                            <code>GlobalExceptionHandler</code>.
+                        </li>
+                    </ul>
                 </div>
             </div>
         </section>

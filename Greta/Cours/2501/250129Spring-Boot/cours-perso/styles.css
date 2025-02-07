@@ -139,11 +139,11 @@ nav {
 /* Responsive Design */
 @media (max-width: 1100px) {
   nav {
-    position: relative;
+    position: fixed;
   }
 
   .container {
-    margin-top: -30px;
+    margin-top: 30px;
     padding: 1rem;
   }
 
@@ -596,16 +596,18 @@ h1 {
   font-weight: bold;
   color: var(--link-color);
   cursor: pointer;
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.1rem;
   display: block;
-  border-bottom: 1px solid var(--shadow);
+  border-top: 3px solid var(--shadow);
+  border-bottom: 3px solid var(--shadow);
+  transition: background-color 0.3s;
 }
 
 .submenu-column a {
   color: var(--text-color);
   text-decoration: none;
   display: block;
-  padding: 0.5rem 0;
+  padding: 0.1rem 1;
   border-radius: 4px;
   transition: background-color 0.3s;
 }
