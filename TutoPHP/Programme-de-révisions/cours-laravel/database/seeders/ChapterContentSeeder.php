@@ -9,6 +9,42 @@ class ChapterContentSeeder extends Seeder
 {
     public function run()
     {
+        DB::table('chapters')->where('id', 1)->update([
+            'content' => '
+                <section id="section1" class="mb-5">
+                    <h2>Qu\'est-ce que PHP ?</h2>
+                    <p>PHP (Hypertext Preprocessor) est un langage de programmation côté serveur conçu principalement pour le développement web dynamique.</p>
+                </section>
+
+                <section id="section2" class="mb-5">
+                    <h2>Histoire de PHP</h2>
+                    <p>PHP a été créé en 1994 par Rasmus Lerdorf. Initialement un simple ensemble de scripts perl pour suivre les visites sur son CV en ligne, 
+                    PHP a évolué pour devenir un des langages dominants du web. À partir de PHP 3, il a acquis une flexibilité et s\'est engagé dans une adoption massive.</p>
+                </section>
+
+                <section id="section3" class="mb-5">
+                    <h2>Pourquoi utiliser PHP ?</h2>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong>Simple :</strong> PHP est facile à apprendre même pour les débutants.
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Flexible :</strong> Il est compatible avec presque tous les systèmes d\'exploitation (Linux, Windows, macOS, etc.).
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Communauté :</strong> Une grande communauté de développeurs qui permettent de résoudre facilement les problèmes.
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Open Source :</strong> PHP est un logiciel gratuit et libre d\'utilisation.
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Intégration :</strong> PHP s\'intègre parfaitement avec HTML, CSS, JavaScript et plusieurs bases de données comme MySQL et PostgreSQL.
+                        </li>
+                    </ul>
+                </section>
+            ',
+        ]);
+        
         DB::table('chapters')->where('id', 2)->update([
             'content' => '
                 <section id="section1" class="mb-5">
@@ -138,5 +174,26 @@ echo MAX_USERS; // Affiche 100
                     </div>
                 </section>'
         ]);
+
+
+        DB::table('chapters')->where('id', 3)->update([
+            'content' => '
+                <section id="section1" class="mb-5">
+                    <h2>Les conditions en PHP</h2>
+                    <p>Les structures conditionnelles permettent de...</p>
+                </section>
+            '
+        ]);
+
+        DB::table('chapters')->where('id', 4)->update([
+            'content' => '
+                <section id="section1" class="mb-5">
+                    <h2>Fonctions en PHP</h2>
+                    <p>Les fonctions sont des blocs de code réutilisables.</p>
+                </section>
+            '
+        ]);
+
+
     }
 }

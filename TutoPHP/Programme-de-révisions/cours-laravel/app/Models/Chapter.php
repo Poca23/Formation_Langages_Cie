@@ -11,13 +11,9 @@ class Chapter extends Model
 
     protected $fillable = [
         'title',
-        'description',
+        'content',
     ];
 
-    /**
-     * Relation entre Chapter et User.
-     * Un chapitre peut être suivi par plusieurs utilisateurs.
-     */
     public function users()
     {
         return $this->belongsToMany(User::class, 'chapters_users')

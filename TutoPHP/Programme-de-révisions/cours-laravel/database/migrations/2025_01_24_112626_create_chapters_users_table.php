@@ -6,23 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateChaptersUsersTable extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('chapters_users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Relier à la table users
-            $table->foreignId('chapter_id')->constrained()->onDelete('cascade'); // Relier à la table chapters
-            $table->boolean('completed')->default(false); // Enregistrer si le chapitre est terminé
-            $table->timestamps(); // Ajoute les colonnes created_at et updated_at automatiquement
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('chapter_id')->constrained('chapters')->onDelete('cascade');
+            $table->boolean('completed')->default(false);
+            $table->timestamps();
+            $table->index(['user_id', 'chapter_id']);
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('chapters_users');

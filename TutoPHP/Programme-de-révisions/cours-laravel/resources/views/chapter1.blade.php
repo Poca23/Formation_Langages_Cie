@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Chapitre 1 : Introduction à PHP')
+@section('title', 'Chapitre ' . $currentChapterId . ' : ' . $chapter->title)
 
 @section('content')
 <div class="container">
@@ -13,6 +13,7 @@
                 </div>
                 <div class="card-body">
                     <nav id="navbar-chapter" class="nav flex-column">
+                        <!-- Dynamique : Contenu du sommaire -->
                         <a class="nav-link" href="#section1">Qu'est-ce que PHP ?</a>
                         <a class="nav-link" href="#section2">Histoire de PHP</a>
                         <a class="nav-link" href="#section3">Pourquoi utiliser PHP ?</a>
@@ -22,34 +23,68 @@
 
             <!-- Barre de progression -->
             <div class="progress mb-3">
-                <div class="progress-bar bg-success" role="progressbar" style="width: {{ $progress ?? 0 }}%">
-                    {{ $progress ?? 0 }}% complété
+                <div class="progress-bar bg-success" role="progressbar" style="width: {{ $progress }}%">
+                    {{ round($progress) }}% complété
                 </div>
             </div>
         </div>
 
         <!-- Contenu principal -->
         <div class="col-md-9">
-            <section id="section1" class="mb-5">
-                <h2>Qu'est-ce que PHP ?</h2>
-                <p>PHP (Hypertext Preprocessor) est un langage de programmation côté serveur utilisé pour le
-                    développement web.</p>
-            </section>
+            <div class="card shadow mb-4">
+                <div class="card-body">
+                    <!-- Dynamique : Titre et contenu -->
+                    <h1 class="mb-4">{{ $chapter->title }}</h1>
+                    {!! $chapter->content !!}
+                </div>
+            </div>
 
-            <section id="section2" class="mb-5">
-                <h2>Histoire de PHP</h2>
-                <p>PHP a été créé en 1994 par Rasmus Lerdorf. Initialement utilisé pour le suivi des visiteurs, il est
-                    devenu aujourd'hui l'un des langages backend les plus populaires.</p>
-            </section>
-
-            <section id="section3" class="mb-5">
-                <h2>Pourquoi utiliser PHP ?</h2>
-                <ul>
-                    <li>Facile à apprendre et à utiliser.</li>
-                    <li>Compatible avec la plupart des serveurs (Apache, Nginx, etc.).</li>
-                    <li>Supporte une grande variété de bases de données comme MySQL et PostgreSQL.</li>
-                </ul>
-            </section>
+            <!-- Quiz rapide -->
+            @if($quiz)
+                <div class="card mt-4">
+                    <div class="card-header bg-light">
+                        <h3 class="mb-0">{{ $quiz->title }}</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="chapter-quiz" action="{{ route('quiz.check-answer') }}" method="POST"
+                            data-id="{{ $quiz->id }}">
+                            @csrf
+                            @foreach($quiz->questions as $question)
+                                <div class="mb-3">
+                                    <p>{{ $question->question_text }}</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="answers[{{ $question->id }}]"
+                                            value="a">
+                                        <label class="form-check-label">{{ $question->option_a }}</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="answers[{{ $question->id }}]"
+                                            value="b">
+                                        <label class="form-check-label">{{ $question->option_b }}</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="answers[{{ $question->id }}]"
+                                            value="c">
+                                        <label class="form-check-label">{{ $question->option_c }}</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="answers[{{ $question->id }}]"
+                                            value="d">
+                                        <label class="form-check-label">{{ $question->option_d }}</label>
+                                    </div>
+                                </div>
+                            @endforeach
+                            <button type="submit" class="btn btn-primary">Vérifier</button>
+                        </form>
+                    </div>
+                </div>
+            @else
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <p class="text-muted mb-0">Aucun quiz n'est disponible pour ce chapitre pour le moment.</p>
+                    </div>
+                </div>
+            @endif
 
             <!-- Bouton de complétion du chapitre -->
             <div class="chapter-completion mt-5 mb-4">
@@ -111,6 +146,21 @@
         color: #007bff;
     }
 
+    .code-block {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        margin: 10px 0;
+    }
+
+    pre {
+        margin-bottom: 0;
+    }
+
+    code {
+        color: #e83e8c;
+    }
+
     section {
         padding: 20px;
         background-color: #fff;
@@ -120,6 +170,14 @@
 
     .btn-lg {
         padding: 15px 30px;
+    }
+
+    .form-check {
+        margin-bottom: 0.5rem;
+    }
+
+    .card {
+        margin-bottom: 1.5rem;
     }
 </style>
 @endsection
@@ -136,6 +194,57 @@
                 });
             });
         });
+
+        // Gestion du quiz
+        const quizForm = document.getElementById('chapter-quiz');
+        if (quizForm) {
+            quizForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const formData = new FormData(this);
+                const quizId = this.getAttribute('data-id');
+
+                fetch("{{ route('quiz.check-answer') }}", {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        quiz_id: quizId,
+                        answers: Object.fromEntries(formData.entries())
+                    })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Bravo !',
+                                text: 'Vos réponses sont correctes !',
+                                confirmButtonText: 'Continuer'
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Pas tout à fait...',
+                                text: 'Certaines réponses sont incorrectes. Essayez encore !',
+                                confirmButtonText: 'Réessayer'
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erreur:', error);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Une erreur est survenue lors de la vérification des réponses.',
+                            confirmButtonText: 'Fermer'
+                        });
+                    });
+            });
+        }
     });
 </script>
 @endsection

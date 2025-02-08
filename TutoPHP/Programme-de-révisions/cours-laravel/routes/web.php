@@ -59,7 +59,7 @@ Route::middleware('auth')->group(function () {
     // Chapitres dynamiques (progression incluse)
     Route::get('/chapter/{id}', [ChapterController::class, 'show'])
         ->name('chapter.show')
-        ->where('id', '[0-9]+');
+        ->where('id', '[0-14]+');
 
     Route::post('/chapter/{id}/complete', [ChapterController::class, 'markAsCompleted'])
         ->name('chapter.complete');

@@ -16,19 +16,18 @@ class User extends Authenticatable
         'password',
     ];
 
-    /**
-     * Relation entre User et Chapter.
-     * Un utilisateur peut suivre plusieurs chapitres.
-     */
     public function completedChapters()
     {
-        return $this->belongsToMany(Chapter::class, table: 'chapters_users')
+        return $this->belongsToMany(Chapter::class, 'chapters_users')
             ->withPivot('completed')
             ->withTimestamps();
     }
 
     public function currentChapter()
     {
-        return $thid = $this->currentChapter()->first(); 
+        return $this->completedChapters()
+            ->wherePivot('completed', false)
+            ->orderBy('id')
+            ->first();
     }
 }

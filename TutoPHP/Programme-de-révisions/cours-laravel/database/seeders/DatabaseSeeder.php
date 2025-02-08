@@ -20,7 +20,6 @@ class DatabaseSeeder extends Seeder
 
         // Appel des seeders dans l'ordre
         $this->call([
-            ChapterSeeder::class,
             QuizSeeder::class,
             ChapterContentSeeder::class,
         ]);

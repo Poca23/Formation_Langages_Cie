@@ -1,12 +1,10 @@
-@extends('layouts.app')
-
-@section('container-fluid')
+<?php $__env->startSection('container-fluid'); ?>
 true
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('title', 'Chapitre ' . $currentChapterId . ' : ' . $chapter->title)
+<?php $__env->startSection('title', 'Chapitre ' . $currentChapterId . ' : ' . $chapter->title); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="row">
     <!-- Sidebar de navigation -->
     <div class="col-md-3">
@@ -27,8 +25,8 @@ true
 
         <!-- Barre de progression -->
         <div class="progress mb-3">
-            <div class="progress-bar bg-success" role="progressbar" style="width: {{ $progress }}%">
-                {{ round($progress) }}% complété
+            <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo e($progress); ?>%">
+                <?php echo e(round($progress)); ?>% complété
             </div>
         </div>
     </div>
@@ -37,91 +35,92 @@ true
     <div class="col-md-9">
         <div class="card shadow mb-4">
             <div class="card-body">
-                <h1 class="mb-4">{{ $chapter->title }}</h1>
-                {!! $chapter->content !!}
+                <h1 class="mb-4"><?php echo e($chapter->title); ?></h1>
+                <?php echo $chapter->content; ?>
+
             </div>
         </div>
 
         <!-- Quiz rapide -->
-        @if($quiz)
+        <?php if($quiz): ?>
             <div class="card mt-4">
                 <div class="card-header bg-light">
-                    <h3 class="mb-0">{{ $quiz->title }}</h3>
+                    <h3 class="mb-0"><?php echo e($quiz->title); ?></h3>
                 </div>
                 <div class="card-body">
-                    <form id="chapter-quiz" action="{{ route('quiz.check-answer') }}" method="POST"
-                        data-id="{{ $quiz->id }}">
-                        @csrf
-                        @foreach($quiz->questions as $question)
+                    <form id="chapter-quiz" action="<?php echo e(route('quiz.check-answer')); ?>" method="POST"
+                        data-id="<?php echo e($quiz->id); ?>">
+                        <?php echo csrf_field(); ?>
+                        <?php $__currentLoopData = $quiz->questions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $question): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div class="mb-3">
-                                <p>{{ $question->question_text }}</p>
+                                <p><?php echo e($question->question_text); ?></p>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="answers[{{ $question->id }}]" value="a">
-                                    <label class="form-check-label">{{ $question->option_a }}</label>
+                                    <input class="form-check-input" type="radio" name="answers[<?php echo e($question->id); ?>]" value="a">
+                                    <label class="form-check-label"><?php echo e($question->option_a); ?></label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="answers[{{ $question->id }}]" value="b">
-                                    <label class="form-check-label">{{ $question->option_b }}</label>
+                                    <input class="form-check-input" type="radio" name="answers[<?php echo e($question->id); ?>]" value="b">
+                                    <label class="form-check-label"><?php echo e($question->option_b); ?></label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="answers[{{ $question->id }}]" value="c">
-                                    <label class="form-check-label">{{ $question->option_c }}</label>
+                                    <input class="form-check-input" type="radio" name="answers[<?php echo e($question->id); ?>]" value="c">
+                                    <label class="form-check-label"><?php echo e($question->option_c); ?></label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="answers[{{ $question->id }}]" value="d">
-                                    <label class="form-check-label">{{ $question->option_d }}</label>
+                                    <input class="form-check-input" type="radio" name="answers[<?php echo e($question->id); ?>]" value="d">
+                                    <label class="form-check-label"><?php echo e($question->option_d); ?></label>
                                 </div>
                             </div>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         <button type="submit" class="btn btn-primary">Vérifier</button>
                     </form>
                 </div>
             </div>
-        @else
+        <?php else: ?>
             <div class="card mt-4">
                 <div class="card-body">
                     <p class="text-muted mb-0">Aucun quiz n'est disponible pour ce chapitre pour le moment.</p>
                 </div>
             </div>
-        @endif
+        <?php endif; ?>
 
         <!-- Bouton de complétion du chapitre -->
         <div class="chapter-completion mt-5 mb-4">
-            @if (!$isCompleted)
-                <form action="{{ route('chapter.complete', ['id' => $currentChapterId]) }}" method="POST">
-                    @csrf
+            <?php if(!$isCompleted): ?>
+                <form action="<?php echo e(route('chapter.complete', ['id' => $currentChapterId])); ?>" method="POST">
+                    <?php echo csrf_field(); ?>
                     <button type="submit" class="btn btn-success btn-lg w-100">
                         <i class="fas fa-check-circle"></i> Marquer ce chapitre comme terminé
                     </button>
                 </form>
-            @else
+            <?php else: ?>
                 <div class="alert alert-success">
                     <i class="fas fa-check-circle"></i> Félicitations ! Vous avez terminé ce chapitre !
                 </div>
-            @endif
+            <?php endif; ?>
         </div>
 
         <!-- Navigation entre chapitres -->
         <div class="d-flex justify-content-between mt-4">
-            @if ($currentChapterId > 1)
-                <a href="{{ route('chapter.show', ['id' => $currentChapterId - 1]) }}" class="btn btn-secondary">
+            <?php if($currentChapterId > 1): ?>
+                <a href="<?php echo e(route('chapter.show', ['id' => $currentChapterId - 1])); ?>" class="btn btn-secondary">
                     <i class="fas fa-arrow-left"></i> Chapitre précédent
                 </a>
-            @else
+            <?php else: ?>
                 <div></div>
-            @endif
+            <?php endif; ?>
 
-            @if ($currentChapterId < $totalChapters)
-                <a href="{{ route('chapter.show', ['id' => $currentChapterId + 1]) }}" class="btn btn-primary">
+            <?php if($currentChapterId < $totalChapters): ?>
+                <a href="<?php echo e(route('chapter.show', ['id' => $currentChapterId + 1])); ?>" class="btn btn-primary">
                     Chapitre suivant <i class="fas fa-arrow-right"></i>
                 </a>
-            @endif
+            <?php endif; ?>
         </div>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('styles')
+<?php $__env->startSection('styles'); ?>
 <style>
     .progress-bar {
         transition: width 0.5s;
@@ -178,9 +177,9 @@ true
         margin-bottom: 1.5rem;
     }
 </style>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('scripts')
+<?php $__env->startSection('scripts'); ?>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Smooth scroll pour les liens de navigation
@@ -202,10 +201,10 @@ true
                 const formData = new FormData(this);
                 const quizId = this.getAttribute('data-id');
 
-                fetch("{{ route('quiz.check-answer') }}", {
+                fetch("<?php echo e(route('quiz.check-answer')); ?>", {
                     method: 'POST',
                     headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'X-CSRF-TOKEN': '<?php echo e(csrf_token()); ?>',
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
@@ -245,4 +244,5 @@ true
         }
     });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/greta/Desktop/workspace/Formation_Langages_Cie/TutoPHP/Programme-de-révisions/cours-laravel/resources/views/chapters/show.blade.php ENDPATH**/ ?>
