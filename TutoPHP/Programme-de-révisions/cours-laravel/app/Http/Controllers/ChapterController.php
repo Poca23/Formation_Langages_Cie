@@ -14,23 +14,25 @@ class ChapterController extends Controller
 {
     public function show($id)
     {
-        $chapter = Chapter::findOrFail($id);
-        $totalChapters = Chapter::count();
-        $quiz = Quiz::where('chapter_number', $id)->with('questions')->first();
+        // Chargez le chapitre avec son quiz et les questions associées
+        $chapter = Chapter::with(['quiz.questions'])->findOrFail($id);
 
+        $totalChapters = Chapter::count();
+
+        // Vérifiez si l'utilisateur a complété ce chapitre
         $isCompleted = ChapterProgress::where('user_id', auth()->id())
-            ->where('chapter_id', $id)
+            ->where('chapter_number', $id)
             ->where('completed', true)
             ->exists();
 
+        // Calculez le pourcentage de progression
         $completedChapters = ChapterProgress::where('user_id', auth()->id())
             ->where('completed', true)
             ->count();
-
         $progress = ($totalChapters > 0) ? ($completedChapters / $totalChapters) * 100 : 0;
 
-        // dd($chapter->title, $chapter->content, $progress, $isCompleted, $quiz);
-
+        // Simplicité grâce à la relation — le quiz est déjà préchargé avec ses questions
+        $quiz = $chapter->quiz;
 
         return view('chapters.show', [
             'chapter' => $chapter,
@@ -46,8 +48,8 @@ class ChapterController extends Controller
     {
         ChapterProgress::updateOrCreate(
             [
-                'user_id' => auth()->id(),
-                'chapter_id' => $id
+                'user_id' => auth(),
+                'chapter_number' => $id
             ],
             ['completed' => true]
         );

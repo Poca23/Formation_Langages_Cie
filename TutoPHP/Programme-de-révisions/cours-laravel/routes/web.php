@@ -57,21 +57,20 @@ Route::middleware('auth')->group(function () {
     Route::get('/sommaire', [SommaireController::class, 'index'])->name('sommaire');
 
     // Chapitres dynamiques (progression incluse)
-    Route::get('/chapter/{id}', [ChapterController::class, 'show'])
+    Route::get('/chapter/{chapter}', [ChapterController::class, 'show'])
         ->name('chapter.show')
-        ->where('id', '[0-14]+');
+        ->whereNumber('chapter')
+        ->where('chapter', '[0-9]+');
+
 
     Route::post('/chapter/{id}/complete', [ChapterController::class, 'markAsCompleted'])
         ->name('chapter.complete');
 
     // Quiz
     Route::get('/quiz', [QuizController::class, 'index'])->name('quiz.index');
-    Route::get('/quiz/{quiz}', [QuizController::class, 'show'])
-        ->name('quiz.show')
-        ->where('quiz', '[0-9]+');
-    Route::post('/quiz/check-answer', [QuizController::class, 'checkAnswer'])->name('quiz.check-answer');
-    Route::post('/quiz/store-result', [QuizController::class, 'storeResult'])->name('quiz.store-result');
-});
+    Route::post('/chapter/{chapter}/quiz/check-answer', [QuizController::class, 'checkAnswer'])->name('quiz.check-answer');
+    Route::post('/chapter/{chapter}/quiz/store-result', [QuizController::class, 'storeResult'])->name('quiz.store-result');
+    });
 
 // ########################
 // ** ROUTE PAR DÉFAUT : 404 **

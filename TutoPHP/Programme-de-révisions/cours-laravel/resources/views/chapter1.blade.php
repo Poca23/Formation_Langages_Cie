@@ -23,7 +23,7 @@
 
             <!-- Barre de progression -->
             <div class="progress mb-3">
-                <div class="progress-bar bg-success" role="progressbar" style="width: {{ $progress }}%">
+                <div class="progress-bar bg-success" role="progressbar" style="width: '{{ $progress }}%'">
                     {{ round($progress) }}% complété
                 </div>
             </div>

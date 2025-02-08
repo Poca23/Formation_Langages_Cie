@@ -11,10 +11,10 @@ class CreateChaptersUsersTable extends Migration
         Schema::create('chapters_users', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('chapter_id')->constrained('chapters')->onDelete('cascade');
+            $table->foreignId('chapter_number')->constrained('chapters')->onDelete('cascade');
             $table->boolean('completed')->default(false);
             $table->timestamps();
-            $table->index(['user_id', 'chapter_id']);
+            $table->index(['user_id', 'chapter_number']);
         });
     }
 

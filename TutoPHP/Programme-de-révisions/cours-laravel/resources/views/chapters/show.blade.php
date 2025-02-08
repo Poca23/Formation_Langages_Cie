@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('container-fluid')
-true
-@endsection
+
 
 @section('title', 'Chapitre ' . $currentChapterId . ' : ' . $chapter->title)
 
@@ -27,7 +26,7 @@ true
 
         <!-- Barre de progression -->
         <div class="progress mb-3">
-            <div class="progress-bar bg-success" role="progressbar" style="width: {{ $progress }}%">
+            <div class="progress-bar bg-success" role="progressbar" style="width: '{{ $progress }}%'">
                 {{ round($progress) }}% complété
             </div>
         </div>

@@ -20,4 +20,9 @@ class Chapter extends Model
             ->withPivot('completed')
             ->withTimestamps();
     }
+
+    public function quiz()
+    {
+        return $this->hasOne(Quiz::class, 'chapter_number', 'id');
+    }
 }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ChapterProgress extends Model
 {
     protected $table = 'chapter_progress';
-    protected $fillable = ['user_id', 'chapter_id', 'completed'];
+    protected $fillable = ['user_id', 'chapter_number', 'completed'];
 
     public function user()
     {

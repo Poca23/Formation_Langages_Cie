@@ -11,7 +11,7 @@ class CreateChapterProgressTable extends Migration
         Schema::create('chapter_progress', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('chapter_id')->constrained();
+            $table->foreignId('chapter_number')->constrained();
             $table->boolean('completed')->default(false);
             $table->timestamps();
         });
