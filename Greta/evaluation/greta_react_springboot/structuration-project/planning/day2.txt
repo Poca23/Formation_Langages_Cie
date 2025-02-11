@@ -1,0 +1,4 @@
+Jour 2:
+
+Matin: Backend (API, Services)
+Après-midi: Setup Frontend + Routes

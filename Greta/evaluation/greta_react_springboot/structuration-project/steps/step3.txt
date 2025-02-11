@@ -1,0 +1,30 @@
+PHASE 3 : DÉVELOPPEMENT FRONTEND (Jour 2 Après-midi - Jour 3)
+
+src/
+├── assets/
+│   ├── images/
+│   └── styles/
+├── components/
+│   ├── common/
+│   │   ├── Header/
+│   │   ├── Footer/
+│   │   └── Loading/
+│   ├── products/
+│   │   ├── ProductList/
+│   │   ├── ProductCard/
+│   │   └── ProductDetail/
+│   └── cart/
+│       ├── CartItem/
+│       └── CartSummary/
+├── pages/
+│   ├── Home/
+│   ├── Products/
+│   ├── Cart/
+│   ├── Checkout/
+│   └── Admin/
+├── context/
+│   └── CartContext.js
+├── services/
+│   └── api.js
+└── utils/
+    └── helpers.js

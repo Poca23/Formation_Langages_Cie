@@ -1,0 +1,82 @@
+RECAP E-COMMERCE - PLANNING JUSQU'À VENDREDI MIDI
+📁 PHASE 1 - LUNDI APRÈS-MIDI (ANALYSE & SETUP)
+Configuration et Structure
+✅ Lecture du cahier des charges
+▶️ Création rapide des mockups (30min max)
+▶️ Création du MCD simple
+▶️ Setup du projet Spring Boot :
+
+Configuration BDD
+Création des entités de base
+Configuration CORS
+📁 PHASE 2 - MARDI MATIN (BACKEND CORE)
+Architecture Backend
+📝 Développement des controllers :
+
+ProductController (CRUD)
+OrderController
+Système de gestion des stocks 📝 Tests Postman de l'API
+
+📁 PHASE 3 - MARDI APRÈS-MIDI (FRONTEND SETUP)
+Structure Frontend React
+📝 Setup projet React
+📝 Configuration des routes :
+
+/products (liste)
+/products/:id (détail)
+/cart (panier)
+/admin/orders (admin) 📝 Context pour le panier 📝 Structure des composants de base
+📁 PHASE 4 - MERCREDI MATIN (FRONTEND CORE)
+Fonctionnalités Frontend
+📝 Développement des features :
+
+Liste des produits
+Détail produit
+Système de panier
+LocalStorage pour le panier 📝 Intégration avec l'API
+📁 PHASE 5 - MERCREDI APRÈS-MIDI (FEATURES)
+Features Critiques
+📝 Système de commande :
+
+Validation email
+Création commande
+Gestion des stocks 📝 Page admin :
+Liste des commandes
+Recherche par email
+📁 PHASE 6 - JEUDI MATIN (POLISH)
+Améliorations
+📝 Gestion des erreurs :
+
+Messages utilisateur
+Validation des données 📝 Tests fonctionnels 📝 Corrections de bugs
+📁 PHASE 7 - JEUDI APRÈS-MIDI (STYLE)
+UI/UX
+📝 CSS de base :
+
+Layout principal
+Composants
+Responsive design 📝 Tests sur différents appareils
+📁 PHASE 8 - VENDREDI MATIN (FINALISATION)
+Finalisation
+📝 Derniers ajustements
+📝 Tests finaux
+📝 Documentation rapide
+📝 Déploiement si temps
+
+PRIORITÉS CRITIQUES
+Système de produits fonctionnel
+Panier opérationnel
+Système de commande basique
+Interface admin minimale
+Gestion des stocks
+POINTS DE CONTRÔLE QUOTIDIENS
+Fin de journée mardi : API fonctionnelle
+Fin de journée mercredi : Frontend basique opérationnel
+Fin de journée jeudi : Features complètes
+Vendredi midi : Projet fonctionnel et stylisé
+Légende :
+✅ Complété
+🔄 En cours
+▶️ Prochaine étape immédiate
+📝 À faire
+

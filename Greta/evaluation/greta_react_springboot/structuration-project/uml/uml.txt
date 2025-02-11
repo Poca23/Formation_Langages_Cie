@@ -1,0 +1,109 @@
+@startuml
+
+package "Entities" {
+  class Product {
+    - Long id
+    - String name
+    - String description
+    - Double price
+    - Integer stock
+    + getters()
+    + setters()
+  }
+
+  class Order {
+    - Long id
+    - String email
+    - LocalDateTime orderDate
+    - Double totalAmount
+    + getters()
+    + setters()
+  }
+
+  class OrderItem {
+    - Long id
+    - Long orderId
+    - Long productId
+    - Integer quantity
+    - Double price
+    + getters()
+    + setters()
+  }
+}
+
+package "Repositories" {
+  interface ProductRepository {
+    + List<Product> findAll()
+    + Optional<Product> findById(Long id)
+    + Product save(Product product)
+    + void update(Product product)
+    + void delete(Long id)
+    + boolean updateStock(Long id, Integer quantity)
+  }
+
+  interface OrderRepository {
+    + List<Order> findAll()
+    + Optional<Order> findById(Long id)
+    + List<Order> findByEmail(String email)
+    + Order save(Order order)
+  }
+
+  interface OrderItemRepository {
+    + List<OrderItem> findByOrderId(Long orderId)
+    + OrderItem save(OrderItem item)
+    + void saveAll(List<OrderItem> items)
+  }
+}
+
+package "Services" {
+  class ProductService {
+    - ProductRepository productRepository
+    + List<Product> getAllProducts()
+    + Product getProduct(Long id)
+    + Product createProduct(Product product)
+    + void updateProduct(Product product)
+    + void deleteProduct(Long id)
+    + boolean checkAndUpdateStock(Long id, Integer quantity)
+  }
+
+  class OrderService {
+    - OrderRepository orderRepository
+    - OrderItemRepository orderItemRepository
+    - ProductRepository productRepository
+    + List<Order> getAllOrders()
+    + Order getOrder(Long id)
+    + List<Order> getOrdersByEmail(String email)
+    + Order createOrder(Order order, List<OrderItem> items)
+  }
+}
+
+package "Controllers" {
+  class ProductController {
+    - ProductService productService
+    + ResponseEntity<List<Product>> getAllProducts()
+    + ResponseEntity<Product> getProduct(Long id)
+    + ResponseEntity<Product> createProduct(Product product)
+    + ResponseEntity<Void> updateProduct(Product product)
+    + ResponseEntity<Void> deleteProduct(Long id)
+  }
+
+  class OrderController {
+    - OrderService orderService
+    + ResponseEntity<List<Order>> getAllOrders()
+    + ResponseEntity<Order> getOrder(Long id)
+    + ResponseEntity<List<Order>> getOrdersByEmail(String email)
+    + ResponseEntity<Order> createOrder(OrderRequest request)
+  }
+}
+
+Order "1" -- "*" OrderItem
+OrderItem "*" -- "1" Product
+
+ProductController --> ProductService
+OrderController --> OrderService
+ProductService --> ProductRepository
+OrderService --> OrderRepository
+OrderService --> OrderItemRepository
+OrderService --> ProductRepository
+
+@enduml

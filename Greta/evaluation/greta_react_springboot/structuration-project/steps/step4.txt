@@ -1,0 +1,14 @@
+PHASE 4 : STYLES ET RESPONSIVE (Jour 4 - Matin)
+
+styles/
+├── base/
+│   ├── _reset.scss
+│   ├── _typography.scss
+│   └── _variables.scss
+├── components/
+│   ├── _buttons.scss
+│   ├── _cards.scss
+│   └── _forms.scss
+└── layout/
+    ├── _grid.scss
+    └── _responsive.scss

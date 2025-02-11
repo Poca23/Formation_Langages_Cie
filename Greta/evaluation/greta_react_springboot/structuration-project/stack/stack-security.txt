@@ -1,0 +1,13 @@
+🔒 Backend Security
+├── Spring Security
+├── JWT
+└── CORS Configuration
+
+🔐 Frontend Security
+├── HTTPS
+├── Token Storage
+└── Input Validation
+
+🛡️ Base de données
+├── Encryption
+└── Password Hashing

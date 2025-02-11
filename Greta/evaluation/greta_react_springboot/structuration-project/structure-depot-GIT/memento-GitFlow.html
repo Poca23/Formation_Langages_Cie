@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Étapes Git Interactives</title>
+    <style>
+        :root {
+            --bg: #f9f9f9;
+            --text-color: #333;
+            --header-bg: #0078d7;
+            --header-text: white;
+            --details-bg: #e9f5ff;
+            --button-bg: #0078d7;
+            --button-text: white;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: var(--header-bg);
+            color: var(--header-text);
+            padding: 1rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+
+        section {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: var(--details-bg);
+        }
+
+        h2 {
+            color: var(--header-bg);
+        }
+
+        .toggle-details {
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .toggle-details:hover {
+            background-color: #005bb5;
+        }
+
+        .details {
+            display: none;
+            padding: 1rem;
+            background-color: var(--details-bg);
+            border-left: 4px solid var(--button-bg);
+            border-radius: 4px;
+            margin-top: 1rem;
+        }
+
+        pre {
+            margin: 0;
+        }
+
+        footer {
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Étapes Git Interactives</h1>
+    </header>
+
+    <main>
+        <section id="initialisation">
+            <h2>1. Initialisation</h2>
+            <button class="toggle-details">Afficher les détails</button>
+            <div class="details">
+                <pre>
+# Initialiser le projet Git
+git init
+
+# Nouvellement, forcer la branche principale en "master"
+git branch -M master
+                </pre>
+            </div>
+        </section>
+
+        <section id="remote">
+            <h2>2. Ajout du dépôt distant</h2>
+            <button class="toggle-details">Afficher les détails</button>
+            <div class="details">
+                <pre>
+# Ajouter le dépôt distant (par exemple GitHub)
+git remote add origin https://github.com/<utilisateur>/<repository>.git
+
+# Vérifier que le remote a été ajouté correctement
+git remote -v
+                </pre>
+            </div>
+        </section>
+
+        <section id="branche">
+            <h2>3. Création de branches</h2>
+            <button class="toggle-details">Afficher les détails</button>
+            <div class="details">
+                <pre>
+# Créer et organiser les branches
+git checkout -b dev
+git checkout -b front
+git checkout dev
+git checkout -b back
+                </pre>
+            </div>
+        </section>
+
+        <section id="commits-initial">
+            <h2>4. Commits initiaux</h2>
+            <button class="toggle-details">Afficher les détails</button>
+            <div class="details">
+                <pre>
+# Ajouter tous les fichiers dans "back"
+git checkout back
+git add .
+git commit -m "Initialisation du Back-end" --date="2023-11-01T12:00:00"
+
+# Ajouter tous les fichiers dans "front"
+git checkout front
+git add .
+git commit -m "Initialisation du Front-end" --date="2023-11-01T11:00:00"
+                </pre>
+            </div>
+        </section>
+
+        <section id="fusion">
+            <h2>5. Fusion des Branches</h2>
+            <button class="toggle-details">Afficher les détails</button>
+            <div class="details">
+                <pre>
+# Fusion des branches dans "dev"
+git checkout dev
+git merge front
+git merge back
+
+# Fusion finale dans "master"
+git checkout master
+git merge dev
+                </pre>
+            </div>
+        </section>
+
+        <section id="push">
+            <h2>6. Pousser les branches vers le dépôt distant</h2>
+            <button class="toggle-details">Afficher les détails</button>
+            <div class="details">
+                <pre>
+# Pousser la branche master
+git push origin master
+
+# Pousser les branches secondaires (back, front, dev)
+git push origin dev
+git push origin front
+git push origin back
+
+# Si jamais le "remote tracking" n'est pas encore configuré :
+git push -u origin <nom_de_la_branche>
+                </pre>
+            </div>
+        </section>
+
+        <section id="verification">
+            <h2>7. Vérifications et historique</h2>
+            <button class="toggle-details">Afficher les détails</button>
+            <div class="details">
+                <pre>
+# Vérifier toutes les branches
+git branch -a
+
+# Examiner l'historique des commits
+git log --oneline --graph --all
+                </pre>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>@Copyright - CND - Créé avec ❤️ pour apprendre Git</p>
+    </footer>
+
+    <script>
+        // Activer/Désactiver les détails
+        const toggleButtons = document.querySelectorAll('.toggle-details');
+        toggleButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const details = button.nextElementSibling;
+                details.style.display = details.style.display === 'block' ? 'none' : 'block';
+                button.textContent = details.style.display === 'block' ? 'Masquer les détails' : 'Afficher les détails';
+            });
+        });
+    </script>
+</body>
+
+</html>

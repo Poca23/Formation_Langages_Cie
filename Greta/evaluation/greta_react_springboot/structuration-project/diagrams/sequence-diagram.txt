@@ -1,0 +1,11 @@
+Client          Panier          ProductService    OrderService    
+  |               |                 |                |
+  |--Ajouter----->|                 |                |
+  |               |--Vérif stock--->|                |
+  |               |<----OK----------|                |
+  |               |                 |                |
+  |--Commander--->|                 |                |
+  |               |--Créer Order------------->|      |
+  |               |                 |         |      |
+  |               |                 |<-MAJ stock-----|
+  |<---Confirmé--|                 |                |

@@ -1,0 +1,25 @@
+PHASE 2 : DÉVELOPPEMENT BACKEND (Jour 1 Après-midi - Jour 2)
+
+src/
+├── main/
+│   ├── java/com/project/
+│   │   ├── config/
+│   │   │   ├── SecurityConfig.java
+│   │   │   └── CorsConfig.java
+│   │   ├── controller/
+│   │   │   ├── ProductController.java
+│   │   │   └── OrderController.java
+│   │   ├── service/
+│   │   │   ├── ProductService.java
+│   │   │   └── OrderService.java
+│   │   ├── repository/
+│   │   │   ├── ProductRepository.java
+│   │   │   └── OrderRepository.java
+│   │   ├── model/
+│   │   │   ├── Product.java
+│   │   │   └── Order.java
+│   │   └── exception/
+│   │       └── CustomExceptions.java
+│   └── resources/
+│       ├── application.properties
+│       └── data.sql

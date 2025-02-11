@@ -1,0 +1,14 @@
++------------------[E-commerce System]----------------------+
+|                                                         |
+|  Client                                                 |
+|    - Consulter la liste des produits                    |
+|    - Voir détail d'un produit                          |
+|    - Ajouter produit au panier                         |
+|    - Modifier quantité dans le panier                   |
+|    - Passer une commande                               |
+|                                                         |
+|  Administrateur                                         |
+|    - Gérer les produits (CRUD)                         |
+|    - Voir les commandes                                 |
+|    - Rechercher les commandes par email                 |
++--------------------------------------------------------+

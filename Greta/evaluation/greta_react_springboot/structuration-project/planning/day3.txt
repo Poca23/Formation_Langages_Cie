@@ -1,0 +1,4 @@
+Jour 3:
+
+Matin: Frontend (Components, Logic)
+Après-midi: Integration Backend/Frontend

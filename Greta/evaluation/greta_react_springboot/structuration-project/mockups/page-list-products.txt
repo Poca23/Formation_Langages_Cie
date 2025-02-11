@@ -1,0 +1,10 @@
+[Nav]
++----------------+
+|  Produit 1     |
+|  Prix / Stock  |
+|  [Ajouter]     |
++----------------+
+|  Produit 2     |
+|  Prix / Stock  |
+|  [Ajouter]     |
++----------------+

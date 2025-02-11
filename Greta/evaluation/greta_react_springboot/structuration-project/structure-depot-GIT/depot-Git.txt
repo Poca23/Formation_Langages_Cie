@@ -1,0 +1,7 @@
+ecommerce/
+├── frontend/  (Code pour React)
+├── backend/  (Code pour Spring Boot)
+├── docs/   (Documentation, design, UML, etc.)
+├── scripts/  (Scripts pour déploiement ou outils automatisés)
+├── README.md  (Description du projet)
+├── .gitignore   (Exclusions Git)

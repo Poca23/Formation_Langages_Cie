@@ -1,0 +1,9 @@
+[Nav]
++----------------+
+| Recherche [  ] |
+| Commandes:     |
+|  #1 email      |
+|     produits   |
+|  #2 email      |
+|     produits   |
++----------------+

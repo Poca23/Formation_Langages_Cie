@@ -1,0 +1,17 @@
+PHASE 5 : TESTS ET DÉPLOIEMENT (Jour 4 - Après-midi)
+
+Tests Backend
+
+Tests unitaires
+Tests d'intégration
+Tests API
+Tests Frontend
+
+Tests composants
+Tests intégration
+Tests E2E
+Déploiement
+
+Configuration serveur
+Base de données
+Documentation

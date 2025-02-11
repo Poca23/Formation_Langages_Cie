@@ -1,0 +1,73 @@
+Application de gestion de produits
+Objectif : proposer une mini-application pour gérer un catalogue de produits 🐙
+
+
+Les cas d’usage que tu vas couvrir sont les suivant : 
+
+Un utilisateur consulte une liste de produits
+Il peut rechercher un produit
+Il peut choisir d’en ajouter un à son panier
+Il doit sélectionner la quantité qu’il désire ajouter
+L’ajout au panier n’est possible que si le stock du produit est suffisant
+Depuis son panier : 
+Il peut éditer la quantité du produit 
+Il peut supprimer un produit
+Il peut supprimer tout son panier
+Lorsqu’il clique sur “acheter”, on demande l’adresse email de l’utilisateur et la donnée est persistée.
+L'utilisateur peut voir toutes ses commandes passées
+Si l’utilisateur tape un numéro de commande (ou adresse email pour bonus) dans une barre de recherche, il peut filtrer les commandes passées.
+
+Ne pas hésiter à faire une TODO liste d’ordre d’étapes pour vous organiser sur ces 4 jours et savoir par quoi commencer :
+(vous pouvez utiliser trello si vous souhaitez)
+
+étape 1 : Bien lire le cahier des charges,
+étape 2 : faire des mockup/schéma,
+étape 3 : initialiser un projet
+étape 4 : etc…
+
+Attention on veut quelque chose de fonctionnel ! Les ajustement CSS se feront les dernières heures du dernier jour quand tout le reste sera opérationnel !
+
+Frontend
+Tu utiliseras React pour concevoir l’interface utilisateur
+ce qui est attendu :
+
+Faire un mockup papier (30min max)
+Utiliser les routes:
+une page avec la liste des produits
+une page avec les détails d’un produit
+une page récap du panier
+une page admin avec la liste des commandes, pouvoir rechercher les commandes par email.
+Utiliser Helmet pour le nom des pages dans l’onglet
+Utiliser le localStorage et/ou un context pour le panier (cart)
+Créer une arborescence de composants cohérente
+Architecture clair, séparer la logique des rendus quand c’est nécessaire
+Faire en sorte que l’application soit responsive
+Mettre des commentaires pour expliquer son code
+
+Backend
+Tu utiliseras Spring Boot pour concevoir une API REST.
+Ce qui est attendu : 
+
+Une architecture claire aux responsabilités séparées (controllers, daos, entities, config…)
+Un schéma de ta base de données avec User, Product et Order. Chaque entité sera reliée à la base de données par un DAO, et exposée au client par son controller.
+Le controller Product expose les 5 endpoints classiques d’un CRUD (2 GETs, 1 POST, 1 PUT, 1 DELETE)
+À toi de voir pour les autres entités
+Gérer le stock d’un produit : 
+Il ne peut pas descendre en dessous de 0
+S’il n’en reste plus, bloquer la possibilité de commander le produit (exception personnalisée) et renvoyer au client “stock épuisé”
+Les exceptions sont gérées et renvoyées au client avec des messages clairs
+Les données reçues sont validées par des contraintes de validation
+Les données sensibles de ton application sont gérées par les variables d’environnement
+Tu penseras bien sûr à gérer les CORS
+Et à commit régulièrement
+BONUS
+Frontend
+Si partie authentification faire côté backend, faire une page de login et avoir 2 types d’utilisateurs : 
+un user client qui voit les produits et ne voit pas les commandes des autres
+un user admin qui n’a qu’une seule page et qui voit toutes les commandes passées
+
+Backend
+La partie Authentification et Autorisations (Spring Security).
+
+BONUS BONUS
+Ajoute toutes les fonctionnalités que tu jugeras utile pour améliorer ton application. Ne vas pas trop loin, encore une fois il faut que cela soit fonctionnel dans le temps imparti.

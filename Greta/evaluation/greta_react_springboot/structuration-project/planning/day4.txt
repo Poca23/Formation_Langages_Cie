@@ -1,0 +1,4 @@
+Jour 4:
+
+Matin: CSS/Responsive
+Après-midi: Tests + Deploy

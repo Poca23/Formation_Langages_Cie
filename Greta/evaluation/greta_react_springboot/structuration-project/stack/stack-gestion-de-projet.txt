@@ -1,0 +1,9 @@
+🔄 Méthodologie Agile
+├── Trello (Kanban)
+├── GitHub Projects
+├── Documentation
+│   ├── Draw.io (Diagrammes UML)
+│   ├── MySQL Workbench (MCD/MLD)
+│   └── Notion/Confluence (Documentation technique)
+└── Versioning
+    └── Git/GitHub

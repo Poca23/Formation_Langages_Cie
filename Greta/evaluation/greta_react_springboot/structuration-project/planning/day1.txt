@@ -1,0 +1,4 @@
+Jour 1:
+
+Matin: Analyse, UML, MCD/MLD
+Après-midi: Setup Backend + Entities

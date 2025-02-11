@@ -1,0 +1,96 @@
+PHASE 1 : ANALYSE & CONCEPTION (Jour 1 - Matin)
+
+Gestion de Projet
+Trello ou tableau Kanban :
+- TODO
+- IN PROGRESS
+- TESTING
+- DONE
+
+Diagrammes UML
+Diagramme de Cas d'Usage
+
++------------------------+
+|      E-commerce        |
++------------------------+
+| Client                 |
+|- Voir produits        |
+|- Rechercher produits  |
+|- Gérer panier        |
+|- Passer commande     |
+|                      |
+| Admin                 |
+|- Voir commandes      |
+|- Rechercher commandes|
++------------------------+
+
+Diagramme de Classes
+
++---------------+     +-----------------+     +---------------+
+|    Product    |     |     Order       |     |   OrderItem   |
++---------------+     +-----------------+     +---------------+
+| -id           |     | -id            |     | -id           |
+| -name         |     | -email         |     | -quantity     |
+| -price        |     | -date          |     | -product      |
+| -stock        |     | -status        |     | -order        |
+| -description  |     | -orderItems    |     |               |
++---------------+     +-----------------+     +---------------+
+
+Modèle Conceptuel de Données (MCD)
+PRODUCT: (id, name, price, stock, description)
+ORDER: (id, email, date, status)
+ORDER_ITEM: (id, #order_id, #product_id, quantity)
+
+Modèle Logique de Données (MLD)
+Product (
+    id INT PRIMARY KEY,
+    name VARCHAR(100),
+    price DECIMAL(10,2),
+    stock INT,
+    description TEXT
+)
+
+Order (
+    id INT PRIMARY KEY,
+    email VARCHAR(100),
+    date TIMESTAMP,
+    status VARCHAR(50)
+)
+
+OrderItem (
+    id INT PRIMARY KEY,
+    order_id INT FOREIGN KEY,
+    product_id INT FOREIGN KEY,
+    quantity INT
+)
+
+Design Mockups (Figma/Adobe XD)
+Pages à maquetter:
+- Page d'accueil/Liste produits
+- Détail produit
+- Panier
+- Confirmation commande
+- Admin dashboard
+
+Outils recommandés:
+
+Gestion projet: Trello
+UML: Draw.io
+MCD/MLD: MySQL Workbench
+Maquettes: Figma
+IDE: IntelliJ IDEA + VSCode
+API Testing: Postman
+Version Control: Git/GitHub
+Pour démarrer:
+
+Créer le tableau Trello
+Faire les diagrammes UML
+Créer les maquettes
+Setup environnement dev
+Commencer par le backend
+Cette approche structurée permet de:
+
+Avoir une vision claire du projet
+Suivre l'avancement
+Garder une documentation claire
+Faciliter la maintenance

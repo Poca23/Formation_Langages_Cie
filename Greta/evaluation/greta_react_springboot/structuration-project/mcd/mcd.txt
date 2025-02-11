@@ -1,0 +1,17 @@
+PRODUCT
+- id (PK)
+- name
+- price
+- stock
+- description (optionnel)
+
+ORDER
+- id (PK)
+- email
+- date
+- status
+
+ORDER_ITEM
+- order_id (FK)
+- product_id (FK)
+- quantity

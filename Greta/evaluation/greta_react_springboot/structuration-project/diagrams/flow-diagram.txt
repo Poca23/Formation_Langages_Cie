@@ -1,0 +1,4 @@
+[Liste Produits] --> [Détail Produit] --> [Ajout Panier] --> [Commande]
+         ^                                                         |
+         |                                                        v
+    [Admin Panel] <---------------- [Gestion Commandes] <-- [Confirmation]

@@ -1,0 +1,15 @@
+⚙️ IDE & Éditeurs
+├── IntelliJ IDEA (Backend)
+└── VSCode (Frontend)
+
+🛠️ Outils de développement
+├── Postman (Test API)
+├── DBeaver (BDD)
+├── Docker
+└── Chrome DevTools
+
+📝 Extensions VSCode recommandées
+├── ESLint
+├── Prettier
+├── GitLens
+└── React Developer Tools

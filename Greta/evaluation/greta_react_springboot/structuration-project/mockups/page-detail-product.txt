@@ -1,0 +1,9 @@
+[Nav]
++----------------+
+|  Nom Produit   |
+|  Image         |
+|  Prix          |
+|  Stock         |
+|  Quantité [+/-]|
+|  [Ajouter]     |
++----------------+

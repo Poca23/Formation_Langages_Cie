@@ -1,0 +1,10 @@
+PRODUCT (id, name, price, stock, description)
+  Primary Key : id
+
+ORDER (id, email, date, status)
+  Primary Key : id
+
+ORDER_ITEM (id, order_id, product_id, quantity)
+  Primary Key : id
+  Foreign Key : order_id references ORDER(id)
+  Foreign Key : product_id references PRODUCT(id)
