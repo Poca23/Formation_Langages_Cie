@@ -1,0 +1,122 @@
+LIVRABLE : Application de Gestion de Produits
+
+CAS D'USAGE
+
+Consultation produits :
+
+Liste des produits
+Recherche produit
+Ajout au panier avec quantité
+Vérification stock
+Gestion panier :
+
+Édition quantité
+Suppression produit
+Vidage panier
+Achat (avec email)
+Gestion commandes :
+
+Vue historique
+Filtrage par numéro/email
+STRUCTURE DU PROJET
+
+Frontend (React)
+
+Routes principales :
+/products (liste)
+/products/:id (détail)
+/cart (panier)
+/admin/orders (admin)
+Utilisation de :
+Helmet
+LocalStorage/Context
+Architecture componentielle
+Backend (Spring Boot)
+
+Architecture en couches :
+Controllers
+Services
+Repositories (JDBC)
+Entities
+Gestion :
+Stock
+Exceptions
+Validation
+CORS
+PLANNING PAR PHASES
+
+PHASE 1 (Lundi AM) - Analyse & Setup ✅
+
+Documentation
+Mockups/Schémas
+Init Git/GitHub
+Setup projets
+PHASE 2 (Mardi AM) - Backend Core ✅
+
+Controllers
+Services
+Tests API
+PHASE 3 (Mardi PM) - Frontend Setup 🔄
+
+React config
+Routes
+Context panier
+PHASE 4 (Mercredi AM) - Frontend Core
+
+Features principales
+Intégration API
+PHASE 5 (Mercredi PM) - Features
+
+Système commandes
+Admin
+PHASE 6 (Jeudi AM) - Polish
+
+Gestion erreurs
+Tests
+PHASE 7 (Jeudi PM) - Style
+
+CSS/Layout
+Responsive
+PHASE 8 (Vendredi AM) - Finalisation
+
+Ajustements
+Documentation
+WORKFLOW GIT
+
+master
+  └── dev
+      ├── back
+      └── front
+
+ÉTAT ACTUEL
+
+Backend : ✅ Terminé et testé
+Frontend : 🔄 En cours de setup
+ÉTAPES IMMÉDIATES
+▶️ Setup React et composants de base
+
+Légende :
+✅ Complété | 🔄 En cours | ▶️ Prochain | 📝 À faire
+
+Fonctionnalités Essentielles d'abord :
+
+Liste des produits
+Détail d'un produit
+Panier
+Gestion des commandes
+Structure React de base :
+
+Pour l'instant, considérer que tout est accessible publiquement
+Ne pas s'occuper des rôles utilisateur/admin pour le moment
+Se concentrer sur les routes principales :
+/products (liste des produits)
+/products/:id (détail d'un produit)
+/cart (panier)
+/admin/orders (vue admin - pour l'instant accessible à tous)
+
+Workflow de base :
+
+Un visiteur peut voir les produits
+Ajouter des produits au panier
+Passer une commande avec un email
+Voir toutes les commandes (côté admin)

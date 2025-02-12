@@ -1,0 +1,152 @@
+RECAP E-COMMERCE - PLANNING JUSQU'À VENDREDI MIDI
+
+📁 PHASE 1 - LUNDI APRÈS-MIDI (ANALYSE & SETUP)
+Configuration et Structure
+✅ Lecture du cahier des charges
+✅ Création rapide des mockups
+✅ Création du MCD simple
+✅ Création du MLD
+✅ Création du Schéma SQL
+✅ Création des diagrammes UML
+✅ Initialisation du repository Git local
+✅ Création du repository GitHub
+✅ Premier push sur GitHub
+✅ Setup du projet Spring Boot initial
+✅ Configuration du pom.xml avec dépendances
+✅ Création de la structure des dossiers
+✅ Création du fichier .env
+✅ Configuration de la base de données (application.properties)
+✅ Création des classes modèles (sans annotations JPA)
+✅ Création du diagramme UML des classes
+✅ Configuration CORS et Sécurité
+
+📁 PHASE 2 - MARDI MATIN (BACKEND CORE)
+Architecture Backend
+🔄 Développement des controllers :
+   - ProductController (CRUD)
+   - OrderController
+   - Système de gestion des stocks
+📝 Tests Postman de l'API
+
+📁 PHASE 3 - MARDI APRÈS-MIDI (FRONTEND SETUP)
+Structure Frontend React
+📝 Setup projet React
+📝 Configuration des routes :
+   - /products (liste)
+   - /products/:id (détail)
+   - /cart (panier)
+   - /admin/orders (admin)
+📝 Context pour le panier
+📝 Structure des composants de base
+
+📁 PHASE 4 - MERCREDI MATIN (FRONTEND CORE)
+Fonctionnalités Frontend
+📝 Développement des features :
+   - Liste des produits
+   - Détail produit
+   - Système de panier
+   - LocalStorage pour le panier
+📝 Intégration avec l'API
+
+📁 PHASE 5 - MERCREDI APRÈS-MIDI (FEATURES)
+Features Critiques
+📝 Système de commande :
+   - Validation email
+   - Création commande
+   - Gestion des stocks
+📝 Page admin :
+   - Liste des commandes
+   - Recherche par email
+
+📁 PHASE 6 - JEUDI MATIN (POLISH)
+Améliorations
+📝 Gestion des erreurs :
+   - Messages utilisateur
+   - Validation des données
+📝 Tests fonctionnels
+📝 Corrections de bugs
+
+📁 PHASE 7 - JEUDI APRÈS-MIDI (STYLE)
+UI/UX
+📝 CSS de base :
+   - Layout principal
+   - Composants
+   - Responsive design
+📝 Tests sur différents appareils
+
+📁 PHASE 8 - VENDREDI MATIN (FINALISATION)
+Finalisation
+📝 Derniers ajustements
+📝 Tests finaux
+📝 Documentation rapide
+📝 Déploiement si temps
+
+PRIORITÉS CRITIQUES
+- Système de produits fonctionnel
+- Panier opérationnel
+- Système de commande basique
+- Interface admin minimale
+- Gestion des stocks
+
+POINTS DE CONTRÔLE QUOTIDIENS
+- Fin de journée mardi : API fonctionnelle
+- Fin de journée mercredi : Frontend basique opérationnel
+- Fin de journée jeudi : Features complètes
+- Vendredi midi : Projet fonctionnel et stylisé
+
+ÉTAT ACTUEL DU PROJET :
+✅ Analyse et conception terminées
+✅ Projet Spring Boot initialisé
+✅ Configuration Maven avec JDBC (choix explicite de ne pas utiliser JPA/Hibernate)
+✅ Configuration de la base de données (application.properties)
+✅ Création des classes modèles
+✅ Ajout des validations (jakarta.validation) sur les entités
+✅ Création et implémentation des repositories JDBC
+🔄 Développement des controllers en cours
+
+CHOIX TECHNIQUES IMPORTANTS :
+NOTE IMPORTANTE :
+❗ Utilisation de JDBC au lieu de JPA/Hibernate pour la persistence des données
+✅ Utilisation de JDBC au lieu de JPA car :
+   - Plus léger et direct pour ce projet
+   - Contrôle direct des requêtes SQL
+   - Pas besoin de mapping complexe
+✅ Validation des données avec jakarta.validation
+✅ Architecture en couches :
+   - Entities (modèles de données)
+   - Repositories (accès aux données via JDBC)
+   - Services (logique métier)
+   - Controllers (endpoints REST)
+
+STRUCTURE DES REPOSITORIES IMPLÉMENTÉS :
+✅ ProductRepository :
+   - findAll()
+   - findById()
+   - save()
+   - update()
+   - delete()
+   - updateStock()
+
+✅ OrderRepository :
+   - findAll()
+   - findById()
+   - findByEmail()
+   - save()
+
+✅ OrderItemRepository :
+   - findByOrderId()
+   - save()
+   - saveAll()
+
+PROCHAINES ÉTAPES IMMÉDIATES :
+▶️ Création des controllers :
+   - ProductController
+   - OrderController
+▶️ Tests Postman de l'API
+▶️ Setup du frontend React
+
+Légende :
+✅ Complété
+🔄 En cours
+▶️ Prochaine étape immédiate
+📝 À faire

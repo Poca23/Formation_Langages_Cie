@@ -1,0 +1,54 @@
+🎨 Technologies principales
+├── React 18+
+├── React Router DOM
+├── Context API
+├── Axios
+└── localStorage
+
+📦 Gestionnaire de paquets
+├── npm/yarn
+└── package.json
+
+🧪 Tests
+├── Jest
+├── React Testing Library
+└── Cypress (E2E)
+
+Extensions Indispensables :
+
+ES7+ React/Redux/React-Native snippets
+
+Snippets pour React (rfc pour créer un composant fonctionnel rapidement)
+ESLint
+
+Analyse de code JavaScript/React
+Détection des erreurs
+Prettier - Code formatter
+
+Formatage automatique du code
+Maintient une cohérence dans le style
+Auto Import
+
+Import automatique des modules
+Complétion intelligente
+Extensions Utiles :
+
+JavaScript (ES6) code snippets
+
+Snippets pour JavaScript moderne
+Material Icon Theme
+
+Icônes pour les fichiers/dossiers
+Meilleure visualisation de l'arborescence
+Auto Rename Tag
+
+Renomme automatiquement les balises HTML/JSX correspondantes
+CSS Peek
+
+Navigation rapide vers les définitions CSS
+Live Server
+
+Serveur de développement avec rechargement automatique
+IntelliSense for CSS
+
+Autocomplétion pour CSS

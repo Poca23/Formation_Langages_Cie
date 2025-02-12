@@ -1,7 +1,13 @@
 ecommerce/
-├── frontend/  (Code pour React)
-├── backend/  (Code pour Spring Boot)
-├── docs/   (Documentation, design, UML, etc.)
-├── scripts/  (Scripts pour déploiement ou outils automatisés)
-├── README.md  (Description du projet)
-├── .gitignore   (Exclusions Git)
+master/main
+   ↓
+dev (branche principale de développement)
+   ↓
+front (pour le développement React)
+back (pour le développement Spring Boot)
+
+Workflow prévu :
+
+Développement sur front ou back selon la partie concernée
+Merge dans dev quand les fonctionnalités sont complètes et testées
+Merge dans master uniquement pour les versions stables

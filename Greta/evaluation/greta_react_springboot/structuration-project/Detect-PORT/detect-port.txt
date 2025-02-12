@@ -1,0 +1,18 @@
+Pour ceux qui ont des problèmes de PORT (à ne pas confondre avec porc 🙂 ) voici un exemple pour résoudre ce problème :
+
+
+Exemple :
+
+Trouver le PID du processus utilisant le port 8080 :
+sudo lsof -i :8080
+
+Cela pourrait retourner quelque chose comme :
+
+COMMAND   PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+nginx    1234 root    6u  IPv4  12345      0t0  TCP *:8080 (LISTEN)
+
+Arrêter le processus :
+sudo kill 1234
+
+Si le processus ne s'arrête pas, utilisez :
+sudo kill -9 1234
