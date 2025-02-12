@@ -1,0 +1,26 @@
+D'après le RECAP, nous entrons maintenant dans la PHASE 6 (POLISH) et voici ce qu'il reste principalement à faire :
+
+PRIORITÉS IMMÉDIATES :
+
+Gestion des erreurs globale :
+Messages utilisateur cohérents
+Validation des données systématique
+Test des cas d'erreur
+
+Tests fonctionnels :
+Flow complet d'achat
+Gestion du panier
+Système de commande
+Interface admin
+Gestion des stocks
+
+CSS et UI/UX :
+Layout principal
+Responsive design
+Cohérence visuelle
+
+Par quoi souhaitez-vous commencer ?
+
+La gestion des erreurs
+Les tests fonctionnels
+Le polish visuel

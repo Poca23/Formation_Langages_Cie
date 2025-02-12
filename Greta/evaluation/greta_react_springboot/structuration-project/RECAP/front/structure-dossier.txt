@@ -1,0 +1,37 @@
+STRUCTURE ACTUELLE DU PROJET
+src/
+├── components/
+│   ├── layout/
+│   │   ├── Layout.tsx
+│   │   ├── Header.tsx
+│   │   └── Footer.tsx
+│   ├── products/
+│   │   ├── ProductList.tsx
+│   │   ├── ProductCard.tsx
+│   │   ├── ProductDetail.tsx
+│   │   └── ProductSearch.tsx
+│   ├── cart/
+│   │   ├── OrderConfirmation.tsx
+│   │   ├── CartItem.tsx
+│   │   ├── CartSummary.tsx
+│   │   └── CheckoutForm.tsx
+│   └── orders/
+│       ├── OrderList.tsx
+│       └── OrderSearch.tsx
+├── contexts/
+│   └── CartContext.tsx
+├── services/
+│   ├── stockService.ts
+│   ├── api.ts
+│   └── localStorage.ts
+├── hooks/
+│   ├── useStock.ts
+│   ├── useCart.ts
+│   ├── useProducts.ts
+│   └── useOrders.ts
+├── utils/
+│   ├── formatters.ts
+│   └── validators.ts
+├── App.tsx
+├── index.tsx
+└── index.css

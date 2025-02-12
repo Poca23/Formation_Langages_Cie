@@ -1,0 +1,424 @@
+Oui continuons sur la gestion des erreurs pour assurer une expérience utilisateur stable, les voici :
+
+Compiled with problems:
+×
+ERROR in ./src/App.tsx 87:42-53
+export 'default' (imported as 'AdminOrders') was not found in './components/admin/AdminOrders' (possible exports: AdminOrders)
+ERROR in ./src/components/cart/CheckoutForm.tsx 8:0-48
+Module not found: Error: Can't resolve '../../hooks/useOrder' in '/home/greta/Desktop/workspace/ecommerce-project/ecommerce-front/src/components/cart'
+ERROR in ./src/components/cart/CheckoutForm.tsx 11:0-28
+Module not found: Error: Can't resolve './CheckoutForm.css' in '/home/greta/Desktop/workspace/ecommerce-project/ecommerce-front/src/components/cart'
+ERROR in ./src/components/cart/OrderConfirmation.tsx 6:0-33
+Module not found: Error: Can't resolve './OrderConfirmation.css' in '/home/greta/Desktop/workspace/ecommerce-project/ecommerce-front/src/components/cart'
+ERROR in ./src/components/layout/Header.tsx 5:0-21
+Module not found: Error: Can't resolve './index.css' in '/home/greta/Desktop/workspace/ecommerce-project/ecommerce-front/src/components/layout'
+ERROR in ./src/components/products/ProductCard.tsx 10:0-27
+Module not found: Error: Can't resolve './ProductCard.css' in '/home/greta/Desktop/workspace/ecommerce-project/ecommerce-front/src/components/products'
+ERROR in ./src/components/products/ProductDetail.tsx 9:0-29
+Module not found: Error: Can't resolve './ProductDetail.css' in '/home/greta/Desktop/workspace/ecommerce-project/ecommerce-front/src/components/products'
+ERROR in ./src/components/products/ProductDetail.tsx 20:6-16
+export 'useProduct' (imported as 'useProduct') was not found in '../../hooks/useProducts' (possible exports: useProducts)
+ERROR in ./src/components/products/ProductDetail.tsx 129:21-31
+export 'useProduct' (imported as 'useProduct') was not found in '../../hooks/useProducts' (possible exports: useProducts)
+ERROR in ./src/components/products/ProductList.tsx 8:0-27
+Module not found: Error: Can't resolve './ProductList.css' in '/home/greta/Desktop/workspace/ecommerce-project/ecommerce-front/src/components/products'
+ERROR in src/App.tsx:6:23
+TS2306: File '/home/greta/Desktop/workspace/ecommerce-project/ecommerce-front/src/components/orders/OrderList.tsx' is not a module.
+    4 | import ProductDetail from './components/products/ProductDetail';
+    5 | import Cart from './components/cart/Cart';
+  > 6 | import OrderList from './components/orders/OrderList';
+      |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    7 | import { CartProvider } from './contexts/CartContext';
+    8 | import OrderConfirmation from './components/cart/OrderConfirmation';
+    9 | import AdminOrders from './components/admin/AdminOrders';
+ERROR in src/App.tsx:9:8
+TS2613: Module '"/home/greta/Desktop/workspace/ecommerce-project/ecommerce-front/src/components/admin/AdminOrders"' has no default export. Did you mean to use 'import { AdminOrders } from "/home/greta/Desktop/workspace/ecommerce-project/ecommerce-front/src/components/admin/AdminOrders"' instead?
+     7 | import { CartProvider } from './contexts/CartContext';
+     8 | import OrderConfirmation from './components/cart/OrderConfirmation';
+  >  9 | import AdminOrders from './components/admin/AdminOrders';
+       |        ^^^^^^^^^^^
+    10 |
+    11 | function App() {
+    12 |   return (
+ERROR in src/components/admin/AdminOrders.tsx:32:32
+TS2339: Property 'email' does not exist on type 'Order'.
+    30 |         {orders.map((order) => (
+    31 |           <div key={order.id} className="order-card">
+  > 32 |             <div>Email: {order.email}</div>
+       |                                ^^^^^
+    33 |             <div>Date: {new Date(order.createdAt).toLocaleDateString()}</div>
+    34 |             <div>Total: {order.total}€</div>
+    35 |             <div className="order-items">
+ERROR in src/components/admin/AdminOrders.tsx:34:32
+TS2339: Property 'total' does not exist on type 'Order'.
+    32 |             <div>Email: {order.email}</div>
+    33 |             <div>Date: {new Date(order.createdAt).toLocaleDateString()}</div>
+  > 34 |             <div>Total: {order.total}€</div>
+       |                                ^^^^^
+    35 |             <div className="order-items">
+    36 |               {order.items.map((item) => (
+    37 |                 <div key={item.productId} className="order-item">
+ERROR in src/components/cart/Cart.tsx:10:13
+TS2339: Property 'items' does not exist on type '{ cart: CartItem[]; addToCart: (product: Product, quantity?: number) => Promise<boolean>; updateQuantity: (productId: number, newQuantity: number) => Promise<boolean>; removeFromCart: (productId: number) => void; clearCart: () => void; stockError: string | null; }'.
+     8 |
+     9 | const Cart: React.FC = () => {
+  > 10 |     const { items, updateQuantity, removeFromCart, clearCart, total } = useCart();
+       |             ^^^^^
+    11 |     const navigate = useNavigate();
+    12 |     const [showCheckout, setShowCheckout] = useState(false);
+    13 |
+ERROR in src/components/cart/Cart.tsx:10:63
+TS2339: Property 'total' does not exist on type '{ cart: CartItem[]; addToCart: (product: Product, quantity?: number) => Promise<boolean>; updateQuantity: (productId: number, newQuantity: number) => Promise<boolean>; removeFromCart: (productId: number) => void; clearCart: () => void; stockError: string | null; }'.
+     8 |
+     9 | const Cart: React.FC = () => {
+  > 10 |     const { items, updateQuantity, removeFromCart, clearCart, total } = useCart();
+       |                                                               ^^^^^
+    11 |     const navigate = useNavigate();
+    12 |     const [showCheckout, setShowCheckout] = useState(false);
+    13 |
+ERROR in src/components/cart/Cart.tsx:33:29
+TS7006: Parameter 'item' implicitly has an 'any' type.
+    31 |             
+    32 |             <div className="space-y-4">
+  > 33 |                 {items.map((item) => (
+       |                             ^^^^
+    34 |                     <CartItem 
+    35 |                         key={item.product.id}
+    36 |                         item={item}
+ERROR in src/components/cart/Cart.tsx:50:31
+TS2322: Type '{ onClose: () => void; }' is not assignable to type 'IntrinsicAttributes'.
+  Property 'onClose' does not exist on type 'IntrinsicAttributes'.
+    48 |
+    49 |             {showCheckout && (
+  > 50 |                 <CheckoutForm onClose={() => setShowCheckout(false)} />
+       |                               ^^^^^^^
+    51 |             )}
+    52 |         </div>
+    53 |     );
+ERROR in src/components/cart/CheckoutForm.tsx:4:26
+TS2307: Cannot find module '../../hooks/useOrder' or its corresponding type declarations.
+    2 | import React, { useState } from 'react';
+    3 | import { useNavigate } from 'react-router-dom';
+  > 4 | import { useOrder } from '../../hooks/useOrder';
+      |                          ^^^^^^^^^^^^^^^^^^^^^^
+    5 | import { useCart } from '../../hooks/useCart';
+    6 | import { useStock } from '../../hooks/useStock';
+    7 | import './CheckoutForm.css';
+ERROR in src/components/cart/CheckoutForm.tsx:36:23
+TS2339: Property 'id' does not exist on type 'CartItem'.
+    34 |
+    35 |     const cartItems = cart.map(item => ({
+  > 36 |       productId: item.id,
+       |                       ^^
+    37 |       quantity: item.quantity
+    38 |     }));
+    39 |
+ERROR in src/components/cart/CheckoutForm.tsx:83:29
+TS2339: Property 'id' does not exist on type 'CartItem'.
+    81 |           <ul>
+    82 |             {cart.map(item => (
+  > 83 |               <li key={item.id}>
+       |                             ^^
+    84 |                 {item.name} x {item.quantity} = {(item.price * item.quantity).toFixed(2)}€
+    85 |               </li>
+    86 |             ))}
+ERROR in src/components/cart/CheckoutForm.tsx:84:23
+TS2339: Property 'name' does not exist on type 'CartItem'.
+    82 |             {cart.map(item => (
+    83 |               <li key={item.id}>
+  > 84 |                 {item.name} x {item.quantity} = {(item.price * item.quantity).toFixed(2)}€
+       |                       ^^^^
+    85 |               </li>
+    86 |             ))}
+    87 |           </ul>
+ERROR in src/components/cart/CheckoutForm.tsx:84:56
+TS2339: Property 'price' does not exist on type 'CartItem'.
+    82 |             {cart.map(item => (
+    83 |               <li key={item.id}>
+  > 84 |                 {item.name} x {item.quantity} = {(item.price * item.quantity).toFixed(2)}€
+       |                                                        ^^^^^
+    85 |               </li>
+    86 |             ))}
+    87 |           </ul>
+ERROR in src/components/cart/CheckoutForm.tsx:89:59
+TS2339: Property 'price' does not exist on type 'CartItem'.
+    87 |           </ul>
+    88 |           <div className="total">
+  > 89 |             Total: {cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)}€
+       |                                                           ^^^^^
+    90 |           </div>
+    91 |         </div>
+    92 |
+ERROR in src/components/orders/OrderList.tsx
+TS1208: 'OrderList.tsx' cannot be compiled under '--isolatedModules' because it is considered a global script file. Add an import, export, or an empty 'export {}' statement to make it a module.
+ERROR in src/components/orders/OrderSearch.tsx
+TS1208: 'OrderSearch.tsx' cannot be compiled under '--isolatedModules' because it is considered a global script file. Add an import, export, or an empty 'export {}' statement to make it a module.
+ERROR in src/components/products/ProductDetail.tsx:3:10
+TS2724: '"../../hooks/useProducts"' has no exported member named 'useProduct'. Did you mean 'useProducts'?
+    1 | // src/components/products/ProductDetail.tsx
+    2 | import { useParams } from 'react-router-dom';
+  > 3 | import { useProduct } from '../../hooks/useProducts';
+      |          ^^^^^^^^^^
+    4 | import { useCart } from '../../hooks/useCart';
+    5 | import './ProductDetail.css';
+    6 |
+ERROR in src/components/products/ProductDetail.tsx:29:7
+TS2345: Argument of type '{ id: any; name: any; price: any; quantity: number; }' is not assignable to parameter of type 'Product'.
+  Object literal may only specify known properties, and 'quantity' does not exist in type 'Product'.
+    27 |       name: product.name,
+    28 |       price: product.price,
+  > 29 |       quantity: 1
+       |       ^^^^^^^^^^^
+    30 |     });
+    31 |   };
+    32 |
+ERROR in src/components/products/ProductList.tsx:26:41
+TS2741: Property 'image' is missing in type 'import("/home/greta/Desktop/workspace/ecommerce-project/ecommerce-front/src/services/api").Product' but required in type 'import("/home/greta/Desktop/workspace/ecommerce-project/ecommerce-front/src/types/index").Product'.
+    24 |       <div className="products-grid">
+    25 |         {products.map((product) => (
+  > 26 |           <ProductCard key={product.id} product={product} />
+       |                                         ^^^^^^^
+    27 |         ))}
+    28 |       </div>
+    29 |     </div>
+ERROR in src/components/products/ProductSearch.tsx
+TS1208: 'ProductSearch.tsx' cannot be compiled under '--isolatedModules' because it is considered a global script file. Add an import, export, or an empty 'export {}' statement to make it a module.
+ERROR in src/hooks/useCart.ts:21:15
+TS2345: Argument of type '(currentCart: CartItem[]) => (CartItem | { quantity: number; stock: number; imageUrl: string | undefined; id: number; name: string; price: number; description: string; image: string; })[]' is not assignable to parameter of type 'SetStateAction<CartItem[]>'.
+  Type '(currentCart: CartItem[]) => (CartItem | { quantity: number; stock: number; imageUrl: string | undefined; id: number; name: string; price: number; description: string; image: string; })[]' is not assignable to type '(prevState: CartItem[]) => CartItem[]'.
+    Type '(CartItem | { quantity: number; stock: number; imageUrl: string | undefined; id: number; name: string; price: number; description: string; image: string; })[]' is not assignable to type 'CartItem[]'.
+      Type 'CartItem | { quantity: number; stock: number; imageUrl: string | undefined; id: number; name: string; price: number; description: string; image: string; }' is not assignable to type 'CartItem'.
+        Property 'product' is missing in type '{ quantity: number; stock: number; imageUrl: string | undefined; id: number; name: string; price: number; description: string; image: string; }' but required in type 'CartItem'.
+    19 |       }
+    20 |
+  > 21 |       setCart((currentCart) => {
+       |               ^^^^^^^^^^^^^^^^^^
+    22 |         const existingItem = currentCart.find((item) => item.id === product.id);
+    23 |
+    24 |         if (existingItem) {
+ERROR in src/hooks/useCart.ts:22:62
+TS2339: Property 'id' does not exist on type 'CartItem'.
+    20 |
+    21 |       setCart((currentCart) => {
+  > 22 |         const existingItem = currentCart.find((item) => item.id === product.id);
+       |                                                              ^^
+    23 |
+    24 |         if (existingItem) {
+    25 |           return currentCart.map((item) =>
+ERROR in src/hooks/useCart.ts:26:18
+TS2339: Property 'id' does not exist on type 'CartItem'.
+    24 |         if (existingItem) {
+    25 |           return currentCart.map((item) =>
+  > 26 |             item.id === product.id
+       |                  ^^
+    27 |               ? { ...item, quantity: item.quantity + quantity }
+    28 |               : item
+    29 |           );
+ERROR in src/hooks/useCart.ts:50:16
+TS2339: Property 'id' does not exist on type 'CartItem'.
+    48 |       setCart((currentCart) =>
+    49 |         currentCart.map((item) =>
+  > 50 |           item.id === productId ? { ...item, quantity: newQuantity } : item
+       |                ^^
+    51 |         )
+    52 |       );
+    53 |       return true;
+ERROR in src/hooks/useCart.ts:60:41
+TS2339: Property 'id' does not exist on type 'CartItem'.
+    58 |   const removeFromCart = useCallback((productId: number) => {
+    59 |     setCart((currentCart) =>
+  > 60 |       currentCart.filter((item) => item.id !== productId)
+       |                                         ^^
+    61 |     );
+    62 |   }, []);
+    63 |
+ERROR in src/hooks/useOrders.ts:36:38
+TS2339: Property 'get' does not exist on type '{ getProduct(id: number): Promise<Product>; getAllProducts(): Promise<Product[]>; createOrder: (orderRequest: OrderRequest) => Promise<...>; updateProductStock: (productId: number, newStock: number) => Promise<...>; checkProductStock: (productId: number, quantity: number) => Promise<...>; }'.
+    34 |         try {
+    35 |           setLoading(true);
+  > 36 |           const response = await api.get(
+       |                                      ^^^
+    37 |             `/api/orders${emailFilter ? `?email=${emailFilter}` : ""}`
+    38 |           );
+    39 |           setOrders(response.data);
+ERROR in src/hooks/useOrders.ts:53:40
+TS2304: Cannot find name 'CartItem'.
+    51 |
+    52 |   // Validation des stocks avant création de commande
+  > 53 |   const validateStocks = async (items: CartItem[]): Promise<boolean> => {
+       |                                        ^^^^^^^^
+    54 |     for (const item of items) {
+    55 |       const isAvailable = await checkStock(item.id, item.quantity);
+    56 |       if (!isAvailable) {
+ERROR in src/hooks/useOrders.ts:78:27
+TS2339: Property 'id' does not exist on type 'CartItem'.
+    76 |         customerEmail: email,
+    77 |         items: cart.map((item) => ({
+  > 78 |           productId: item.id,
+       |                           ^^
+    79 |           quantity: item.quantity,
+    80 |           price: item.price,
+    81 |         })),
+ERROR in src/hooks/useOrders.ts:80:23
+TS2339: Property 'price' does not exist on type 'CartItem'.
+    78 |           productId: item.id,
+    79 |           quantity: item.quantity,
+  > 80 |           price: item.price,
+       |                       ^^^^^
+    81 |         })),
+    82 |         totalAmount: cart.reduce(
+    83 |           (sum, item) => sum + item.price * item.quantity,
+ERROR in src/hooks/useOrders.ts:83:37
+TS2339: Property 'price' does not exist on type 'CartItem'.
+    81 |         })),
+    82 |         totalAmount: cart.reduce(
+  > 83 |           (sum, item) => sum + item.price * item.quantity,
+       |                                     ^^^^^
+    84 |           0
+    85 |         ),
+    86 |       };
+ERROR in src/hooks/useProducts.ts:36:38
+TS18004: No value exists in scope for the shorthand property 'checkStock'. Either declare one or provide an initializer.
+    34 |   }, []);
+    35 |
+  > 36 |   return { products, loading, error, checkStock };
+       |                                      ^^^^^^^^^^
+    37 | }
+    38 |
+ERROR in src/services/api.ts:32:37
+TS2304: Cannot find name 'API_URL'.
+    30 |
+    31 |   createOrder: async (orderRequest: OrderRequest): Promise<Order> => {
+  > 32 |     const response = await fetch(`${API_URL}/orders`, {
+       |                                     ^^^^^^^
+    33 |       method: "POST",
+    34 |       headers: {
+    35 |         "Content-Type": "application/json",
+ERROR in src/services/api.ts:54:37
+TS2304: Cannot find name 'API_URL'.
+    52 |     newStock: number
+    53 |   ): Promise<Product> => {
+  > 54 |     const response = await fetch(`${API_URL}/products/${productId}/stock`, {
+       |                                     ^^^^^^^
+    55 |       method: "PUT",
+    56 |       headers: {
+    57 |         "Content-Type": "application/json",
+ERROR in src/services/api.ts:77:10
+TS2304: Cannot find name 'API_URL'.
+    75 |   ): Promise<boolean> => {
+    76 |     const response = await fetch(
+  > 77 |       `${API_URL}/products/${productId}/check-stock?quantity=${quantity}`
+       |          ^^^^^^^
+    78 |     );
+    79 |
+    80 |     if (!response.ok) {
+ERROR in src/services/localStorage.ts
+TS1208: 'localStorage.ts' cannot be compiled under '--isolatedModules' because it is considered a global script file. Add an import, export, or an empty 'export {}' statement to make it a module.
+ERROR in src/services/stockService.ts:10:43
+TS2339: Property 'baseUrl' does not exist on type '{ getProduct(id: number): Promise<Product>; getAllProducts(): Promise<Product[]>; createOrder: (orderRequest: OrderRequest) => Promise<...>; updateProductStock: (productId: number, newStock: number) => Promise<...>; checkProductStock: (productId: number, quantity: number) => Promise<...>; }'.
+     8 |   checkStock: async (productId: number, quantity: number): Promise<boolean> => {
+     9 |     try {
+  > 10 |       const response = await fetch(`${api.baseUrl}/products/${productId}/check-stock?quantity=${quantity}`);
+       |                                           ^^^^^^^
+    11 |       if (!response.ok) {
+    12 |         throw new Error('Erreur lors de la vérification du stock');
+    13 |       }
+ERROR in src/services/stockService.ts:26:43
+TS2339: Property 'baseUrl' does not exist on type '{ getProduct(id: number): Promise<Product>; getAllProducts(): Promise<Product[]>; createOrder: (orderRequest: OrderRequest) => Promise<...>; updateProductStock: (productId: number, newStock: number) => Promise<...>; checkProductStock: (productId: number, quantity: number) => Promise<...>; }'.
+    24 |   updateStock: async (productId: number, newStock: number): Promise<boolean> => {
+    25 |     try {
+  > 26 |       const response = await fetch(`${api.baseUrl}/products/${productId}/stock`, {
+       |                                           ^^^^^^^
+    27 |         method: 'PUT',
+    28 |         headers: {
+    29 |           'Content-Type': 'application/json',
+ERROR in src/utils/formatters.ts
+TS1208: 'formatters.ts' cannot be compiled under '--isolatedModules' because it is considered a global script file. Add an import, export, or an empty 'export {}' statement to make it a module.
+ERROR in src/utils/validators.ts
+TS1208: 'validators.ts' cannot be compiled under '--isolatedModules' because it is considered a global script file. Add an import, export, or an empty 'export {}' statement to make it a module.
+
+Erreur console :
+Footer.tsx:15 Uncaught Error: Cannot find module './index.css'
+    at webpackMissingModule (Footer.tsx:15:1)
+    at ./src/components/layout/Header.tsx (Footer.tsx:15:1)
+    at options.factory (react refresh:6:1)
+    at __webpack_require__ (bootstrap:22:1)
+    at fn (hot module replacement:61:1)
+    at ./src/components/layout/Layout.tsx (Header.tsx:21:1)
+    at options.factory (react refresh:6:1)
+    at __webpack_require__ (bootstrap:22:1)
+    at fn (hot module replacement:61:1)
+    at ./src/App.tsx (bundle.js:16:83)
+webpackMissingModule	@	Footer.tsx:15
+./src/components/layout/Header.tsx	@	Footer.tsx:15
+options.factory	@	react refresh:6
+__webpack_require__	@	bootstrap:22
+fn	@	hot module replacement:61
+./src/components/layout/Layout.tsx	@	Header.tsx:21
+options.factory	@	react refresh:6
+__webpack_require__	@	bootstrap:22
+fn	@	hot module replacement:61
+./src/App.tsx	@	bundle.js:16
+options.factory	@	react refresh:6
+__webpack_require__	@	bootstrap:22
+fn	@	hot module replacement:61
+./src/index.tsx	@	useStock.ts:67
+options.factory	@	react refresh:6
+__webpack_require__	@	bootstrap:22
+(anonymous)	@	startup:7
+(anonymous)	@	startup:7
+
+########################################
+########################################
+Après analyse :
+Fichiers CSS manquants :
+// Créer ces fichiers CSS
+/src/components/cart/CheckoutForm.css
+/src/components/cart/OrderConfirmation.css
+/src/components/layout/index.css
+/src/components/products/ProductCard.css
+/src/components/products/ProductDetail.css
+/src/components/products/ProductList.css
+
+Problèmes d'export/import :
+// Dans AdminOrders.tsx
+export const AdminOrders = () => { ... }
+export default AdminOrders;
+
+// Dans App.tsx
+import { AdminOrders } from './components/admin/AdminOrders';
+
+Types manquants :
+// Dans types/index.ts
+export interface CartItem {
+  product: Product;
+  quantity: number;
+}
+
+export interface Product {
+  id: number;
+  name: string;
+  price: number;
+  description: string;
+  image: string;
+  stock: number;
+}
+
+export interface Order {
+  id: number;
+  email: string;
+  items: OrderItem[];
+  total: number;
+  createdAt: string;
+}
+
+Fichiers modules vides :
+// Dans OrderList.tsx, OrderSearch.tsx, ProductSearch.tsx
+export {};
+
+Configuration API :
+// Dans .env
+REACT_APP_API_URL=http://localhost:8080
+
+// Dans api.ts
+const API_URL = process.env.REACT_APP_API_URL;

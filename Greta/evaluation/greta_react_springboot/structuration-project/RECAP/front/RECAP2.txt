@@ -111,6 +111,14 @@ POINTS DE CONTRÔLE QUOTIDIENS
 ✅ OrderController créé et testé
 ✅ Projet React initialisé
 ✅ Extensions VSCode installées pour le développement React
+✅ Projet React initialisé
+✅ Extensions VSCode installées pour le développement React
+✅ Structure de base React avec Layout (Header + Footer)
+✅ Types essentiels définis (Product, CartItem, Order)
+✅ Composants produits créés :
+
+ProductList (liste des produits)
+ProductCard (carte individuelle produit) ✅ Données temporaires de test implémentées
 
 CHOIX TECHNIQUES IMPORTANTS :
 ✅ Extensions VSCode pour React/JS :
@@ -151,9 +159,9 @@ updateStock()
 
 
 PROCHAINES ÉTAPES IMMÉDIATES :
-▶️ Configuration des routes React
-▶️ Création des composants de base
 ▶️ Mise en place du context pour le panier
+▶️ Implémentation de la fonctionnalité d'ajout au panier
+▶️ Création de la page panier
 
 
 WORKFLOW GIT :
@@ -177,3 +185,16 @@ Légende :
 🔄 En cours
 ▶️ Prochaine étape immédiate
 📝 À faire
+
+Une structure de base avec Layout (Header + Footer)
+Les types essentiels (Product, CartItem, Order)
+Une page produits avec :
+Une liste de produits (ProductList)
+Des cartes produits (ProductCard)
+Des données temporaires pour tester
+
+La prochaine étape logique serait de mettre en place le contexte du panier pour pouvoir réellement ajouter des produits. On continue ?
+
+
+        <Route path="/" element={<ProductList />} />
+        <Route path="/products" element={<ProductList />} />

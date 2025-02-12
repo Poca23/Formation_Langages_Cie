@@ -1,0 +1,149 @@
+ok, je viens de faire le RECAP de mon côté avec ce que vous m'avez proposé, on restera sur cette base pour la partie frontend :
+RECAP E-COMMERCE - PLANNING JUSQU'À VENDREDI MIDI
+
+Légende :
+✅ Complété
+🔄 En cours
+▶️ Prochaine étape immédiate
+📝 À faire
+
+PHASES DU PROJET
+✅ 📁 PHASE 1 - LUNDI APRÈS-MIDI (ANALYSE & SETUP)
+Configuration et Structure
+✅ 📁 PHASE 2 - MARDI MATIN (BACKEND CORE)
+Architecture Backend
+
+Dans PHASE 3 - MARDI APRÈS-MIDI (FRONTEND SETUP), modifions :
+✅ Setup projet React
+✅ Configuration du CartContext avec localStorage
+✅ Structure des composants de base
+🔄 Configuration des routes :
+/products (liste)
+/products/:id (détail)
+/cart (panier)
+/admin/orders (admin)
+
+📁 PHASE 4 - MERCREDI MATIN (FRONTEND CORE)
+Fonctionnalités Frontend
+✅ Développement des features :
+Liste des produits
+Système de panier
+LocalStorage pour le panier 🔄 Intégration avec l'API 🔄 Détail produit
+
+📁 PHASE 5 - MERCREDI APRÈS-MIDI (FEATURES)
+Features Critiques
+🔄 Système de commande :
+
+✅ Validation email (CheckoutForm)
+🔄 Création commande
+📝 Gestion des stocks 📝 Page admin :
+Liste des commandes
+Recherche par email
+
+📁 PHASE 6 - JEUDI MATIN (POLISH)
+Améliorations
+📝 Gestion des erreurs :
+Messages utilisateur
+Validation des données 📝 Tests fonctionnels 📝 Corrections de bugs
+
+📁 PHASE 7 - JEUDI APRÈS-MIDI (STYLE)
+UI/UX
+🔄 CSS de base :
+✅ Style du formulaire de commande
+📝 Layout principal
+📝 Composants
+📝 Responsive design 📝 Tests sur différents appareils
+
+📁 PHASE 8 - VENDREDI MATIN (FINALISATION)
+Finalisation
+📝 Derniers ajustements
+📝 Tests finaux
+📝 Documentation rapide
+📝 Déploiement si temps
+
+
+ÉTAT ACTUEL DU PROJET
+
+Frontend:
+✅ Configuration des routes dans App.tsx avec React Router
+✅ Header avec navigation et styles
+✅ Styles de base dans index.css
+
+✅ React Router configuré avec les routes principales :
+   - / et /products (liste)
+   - /products/:id (détail)
+   - /cart (panier)
+   - /admin/orders (admin)
+✅ Header avec navigation stylisée
+✅ Styles de base (reset CSS, variables globales, responsive)
+
+
+
+PROCHAINES ÉTAPES IMMÉDIATES
+▶️ Implémenter la page détail produit
+▶️ Intégrer l'API avec les composants frontend
+▶️ Finaliser le système de commande
+
+
+PRIORITÉS CRITIQUES
+
+Système de produits fonctionnel
+Panier opérationnel
+Système de commande basique
+Interface admin minimale
+Gestion des stocks
+
+STRUCTURE ACTUELLE DU PROJET
+src/
+├── components/
+│   ├── layout/
+│   │   ├── Layout.tsx
+│   │   ├── Header.tsx
+│   │   └── Footer.tsx
+│   ├── products/
+│   │   ├── ProductList.tsx
+│   │   ├── ProductCard.tsx
+│   │   ├── ProductDetail.tsx
+│   │   └── ProductSearch.tsx
+│   ├── cart/
+│   │   ├── Cart.tsx
+│   │   ├── CartItem.tsx
+│   │   ├── CartSummary.tsx
+│   │   └── CheckoutForm.tsx
+│   └── orders/
+│       ├── OrderList.tsx
+│       └── OrderSearch.tsx
+├── contexts/
+│   └── CartContext.tsx
+├── services/
+│   ├── api.ts
+│   └── localStorage.ts
+├── hooks/
+│   ├── useProducts.ts
+│   ├── useCart.ts
+│   └── useOrders.ts
+├── utils/
+│   ├── formatters.ts
+│   └── validators.ts
+├── App.tsx
+├── index.tsx
+└── index.css
+
+WORKFLOW GIT
+✅ master : branche principale de production
+└── dev : branche de développement principale
+└── front : développement frontend
+
+NOTE IMPORTANTE :
+❗structure Create React App avec TypeScript
+❗ Utilisation de JDBC au lieu de JPA/Hibernate pour la persistence des données
+✅ Utilisation de JDBC au lieu de JPA car :
+   - Plus léger et direct pour ce projet
+   - Contrôle direct des requêtes SQL
+   - Pas besoin de mapping complexe
+✅ Validation des données avec jakarta.validation
+✅ Architecture en couches :
+   - Entities (modèles de données)
+   - Repositories (accès aux données via JDBC)
+   - Services (logique métier)
+   - Controllers (endpoints REST)
