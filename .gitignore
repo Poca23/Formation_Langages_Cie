@@ -1,2 +1,135 @@
+# === SYSTÈMES D'EXPLOITATION === #
 Greta/Cours/2501/250120Java/jdk-23.0.1/lib/src.zip
 Greta/Cours/2501/250120Java/jdk-23.0.1/lib/modules
+# Fichiers système (MacOS)
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Fichiers système (Windows)
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# === ÉDITEURS ET OUTILS === #
+
+# Éditeurs de code
+*.sublime-workspace
+*.sublime-project
+.idea/                 # IntelliJ IDEA
+.vscode/               # Visual Studio Code
+*.log                  # Logs d'exécution ou système
+
+# === LANGAGES DE PROGRAMMATION === #
+
+# Python
+__pycache__/
+*.py[cod]              # Compilés Python
+*.pyo                  # Fichiers optimisés
+.env                   # Variables d'environnement (clé API ou secrets)
+.venv/                 # Environnements virtuels
+pip-log.txt            # Logs pip
+pip-delete-this-directory.txt
+
+# Node.js (JavaScript/TypeScript)
+node_modules/          # Dépendances Node.js
+npm-debug.log*         # Logs npm
+yarn-debug.log*        # Logs Yarn
+yarn-error.log*
+.pnpm-debug.log*
+
+# Java
+*.class                # Fichiers compilés Java
+*.jar                  # Fichiers JAR
+*.war                  # Fichiers WAR (Web Archives)
+*.ear                  # Fichiers EAR
+*.log                  # Logs d'exécution
+hs_err_pid*.log        # Erreurs JVM
+.DSTORE                # Cache IntelliJ IDEA
+
+# C/C++
+*.obj
+*.so
+*.o
+*.exe
+
+# C# (.NET)
+bin/
+obj/
+*.pdb                  # Symbol files
+*.user                 # Fichiers utilisateur IDE
+*.vs                   # Visual Studio Code fichiers temporaires
+
+# Go
+*.out
+*.exe
+vendor/
+
+# PHP
+vendor/                # Dépendances Composer
+
+# Ruby
+*.gem
+*.rbc
+.bundle/
+vendor/bundle
+
+# === FRAMEWORKS === #
+
+# Django / Flask
+*.sqlite3              # Base de données SQLite
+db.sqlite3
+media/
+env/
+local_settings.py      # Configurations locales
+
+# Laravel (PHP)
+vendor/                # Dépendances Composer
+.env                   # Variables d'environnement (clé API ou secrets)
+*.log                  # Logs Laravel/Horizon
+
+# React / Angular / Vue.js (Front-end frameworks)
+*.map                  # Source maps
+build/                 # Dossier de compilation
+dist/                  # Dossier de distribution
+
+# === DIVERS === #
+
+# Fichiers secrets ou sensibles
+*.env                  # Fichiers d'environnement (API, clés)
+secret-*               # Fichiers contenant des secrets
+*.key                  # Clés SSH ou autres clés sécurisées
+*.pem                  # Certificats
+*.crt                  # Certificats SSL
+
+# Bases de données locales
+*.db
+*.sqlite
+
+# Logs applicatifs
+*.log                  # Logs génériques
+*.log.*                # Logs multi-versions
+*.out                  # Sorties exécutables (ex. `*.out` pour C/C++)
+
+# Images, vidéos ou autres fichiers volumineux inutiles
+*.png
+*.jpg
+*.jpeg
+*.mp4
+*.mov
+*.avi
+
+# === OUTILS D'INTÉGRATION ET DE BUILD === #
+
+# Docker / Kubernetes
+.Dockerfile
+docker-compose.yml
+.dockerignore
+*.tar                   # Fichiers d'images Docker exportées
+
+# Logs Git
+.git/
+*.diff                 # Patches Git
+*.patch
+*.orig
