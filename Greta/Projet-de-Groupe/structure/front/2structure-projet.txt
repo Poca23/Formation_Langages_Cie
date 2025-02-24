@@ -1,0 +1,178 @@
+frontend/
+├── public/
+│ ├── index.html
+│ ├── favicon.ico
+│ └── assets/
+│ ├── images/
+│ └── icons/
+│
+├── src/
+│ ├──routes/
+│ │ ├── Routes.tsx
+│ │ ├── Routes.config.tsx
+│ │ ├── Routes.types.ts
+│ │ └── Routes.test.tsx
+│ │
+│ ├── components/
+│ │ ├── common/
+│ │ │ ├── Button/
+│ │ │ │ ├── index.tsx
+│ │ │ │ ├── Button.tsx
+│ │ │ │ ├── Button.scss
+│ │ │ │ ├── Button.test.tsx
+│ │ │ │ └── Button.types.ts
+│ │ │ │
+│ │ │ ├── Input/
+│ │ │ │ ├── index.tsx
+│ │ │ │ ├── Input.tsx
+│ │ │ │ ├── Input.scss
+│ │ │ │ ├── Input.test.tsx
+│ │ │ │ └── Input.types.ts
+│ │ │ │
+│ │ │ ├── Modal/
+│ │ │ │ ├── index.tsx
+│ │ │ │ ├── Modal.tsx
+│ │ │ │ ├── Modal.scss
+│ │ │ │ ├── Modal.test.tsx
+│ │ │ │ └── Modal.types.ts
+│ │ │ │
+│ │ │ └── Icons/
+│ │ │ ├── index.tsx
+│ │ │ ├── Icons.tsx
+│ │ │ └── Icons.types.ts
+│ │ │
+│ │ ├── layouts/
+│ │ │ ├── MainLayout/
+│ │ │ │ ├── index.tsx
+│ │ │ │ ├── MainLayout.tsx
+│ │ │ │ ├── MainLayout.scss
+│ │ │ │ ├── MainLayout.test.tsx
+│ │ │ │ └── MainLayout.types.ts
+│ │ │ │
+│ │ │ ├── Sidebar/
+│ │ │ │ ├── index.tsx
+│ │ │ │ ├── Sidebar.tsx
+│ │ │ │ ├── Sidebar.scss
+│ │ │ │ ├── Sidebar.test.tsx
+│ │ │ │ └── Sidebar.types.ts
+│ │ │ │
+│ │ │ └── Header/
+│ │ │ ├── index.tsx
+│ │ │ ├── Header.tsx
+│ │ │ ├── Header.scss
+│ │ │ ├── Header.test.tsx
+│ │ │ └── Header.types.ts
+│ │ │
+│ │ ├── chat/
+│ │ │ ├── ChatWindow/
+│ │ │ │ ├── index.tsx
+│ │ │ │ ├── ChatWindow.tsx
+│ │ │ │ ├── ChatWindow.scss
+│ │ │ │ ├── ChatWindow.test.tsx
+│ │ │ │ └── ChatWindow.types.ts
+│ │ │ │
+│ │ │ ├── MessageBubble/
+│ │ │ │ ├── index.tsx
+│ │ │ │ ├── MessageBubble.tsx
+│ │ │ │ ├── MessageBubble.scss
+│ │ │ │ ├── MessageBubble.test.tsx
+│ │ │ │ └── MessageBubble.types.ts
+│ │ │ │
+│ │ │ └── MessageInput/
+│ │ │ ├── index.tsx
+│ │ │ ├── MessageInput.tsx
+│ │ │ ├── MessageInput.scss
+│ │ │ ├── MessageInput.test.tsx
+│ │ │ └── MessageInput.types.ts
+│ │ │
+│ │ └── auth/
+│ │ ├── LoginForm/
+│ │ │ ├── index.tsx
+│ │ │ ├── LoginForm.tsx
+│ │ │ ├── LoginForm.scss
+│ │ │ ├── LoginForm.test.tsx
+│ │ │ └── LoginForm.types.ts
+│ │ │
+│ │ └── RegisterForm/
+│ │ ├── index.tsx
+│ │ ├── RegisterForm.tsx
+│ │ ├── RegisterForm.scss
+│ │ ├── RegisterForm.test.tsx
+│ │ └── RegisterForm.types.ts
+│ │
+│ ├── pages/
+│ │ ├── Home/
+│ │ │ ├── index.tsx
+│ │ │ ├── Home.tsx
+│ │ │ ├── Home.scss
+│ │ │ └── Home.test.tsx
+│ │ │
+│ │ ├── Chat/
+│ │ │ ├── index.tsx
+│ │ │ ├── Chat.tsx
+│ │ │ ├── Chat.scss
+│ │ │ └── Chat.test.tsx
+│ │ │
+│ │ └── Auth/
+│ │ ├── index.tsx
+│ │ ├── Auth.tsx
+│ │ ├── Auth.scss
+│ │ └── Auth.test.tsx
+│ │
+│ ├── hooks/
+│ │ ├── useAuth/
+│ │ │ ├── index.ts
+│ │ │ ├── useAuth.ts
+│ │ │ └── useAuth.test.ts
+│ │ │
+│ │ └── useChat/
+│ │ ├── index.ts
+│ │ ├── useChat.ts
+│ │ └── useChat.test.ts
+│ │
+│ ├── services/
+│ │ ├── api/
+│ │ │ ├── index.ts
+│ │ │ ├── api.ts
+│ │ │ └── api.test.ts
+│ │ │
+│ │ └── auth/
+│ │ ├── index.ts
+│ │ ├── auth.ts
+│ │ └── auth.test.ts
+│ │
+│ ├── utils/
+│ │ ├── formatters/
+│ │ │ ├── index.ts
+│ │ │ ├── formatters.ts
+│ │ │ └── formatters.test.ts
+│ │ │
+│ │ └── validators/
+│ │ ├── index.ts
+│ │ ├── validators.ts
+│ │ └── validators.test.ts
+│ │
+│ ├── context/
+│ │ ├── AuthContext/
+│ │ │ ├── index.ts
+│ │ │ ├── AuthContext.ts
+│ │ │ └── AuthContext.test.ts
+│ │ │
+│ │ └── ThemeContext/
+│ │ ├── index.ts
+│ │ ├── ThemeContext.ts
+│ │ └── ThemeContext.test.ts
+│ │
+│ ├── types/
+│ │ ├── auth.types.ts
+│ │ ├── chat.types.ts
+│ │ └── common.types.ts
+│ │
+│ └── styles/
+│ ├── global.scss
+│ ├── variables.scss
+│ └── mixins.scss
+│
+├── tsconfig.js
+├── package.json
+└── tsconfig.json"

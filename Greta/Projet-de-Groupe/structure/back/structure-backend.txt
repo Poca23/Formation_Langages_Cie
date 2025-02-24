@@ -1,0 +1,25 @@
+Structure du projet backend :
+
+clicktalk/
+├── backend/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/
+│   │   │   │ └── greta
+│   │   │   │       └── clicktalk/
+│   │   │   │           ├── config/
+│   │   │   │           ├── controllers/
+│   │   │   │           ├── DAOs/
+│   │   │   │           ├── DTOs/
+│   │   │   │           ├── entities/
+│   │   │   │           ├── services/
+│   │   │   │           ├── security/
+│   │   │   └── resources/
+│   │   └── test/
+│   └── pom.xml
+│
+├── .env
+├── .envsample
+├── .gitignore
+└── README.md

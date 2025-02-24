@@ -1,4 +1,4 @@
-Voici un fichier CSS moderne et complet qui couvre l'ensemble des styles nécessaires pour le projet :
+/* Voici un fichier CSS moderne et complet qui couvre l'ensemble des styles nécessaires pour le projet : */
 
 /* styles.css */
 
@@ -275,7 +275,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-Ce fichier CSS inclut :
+/* Ce fichier CSS inclut :
 
 Un système de variables CSS pour une personnalisation facile
 Un reset CSS basique
@@ -292,4 +292,4 @@ Pour l'utiliser :
 Importez les polices Google Fonts (Inter et SF Pro Text)
 Liez ce fichier CSS à votre HTML
 Utilisez les classes définies dans votre HTML
-Les styles sont organisés de manière modulaire et suivent une approche BEM simplifiée pour le nommage des classes. Vous pouvez facilement personnaliser les couleurs et les espacements en modifiant les variables CSS au début du fichier.
+Les styles sont organisés de manière modulaire et suivent une approche BEM simplifiée pour le nommage des classes. Vous pouvez facilement personnaliser les couleurs et les espacements en modifiant les variables CSS au début du fichier. */

@@ -1,0 +1,128 @@
+📱 Projet ClickTalk - Livrable Détaillé
+📋 Sommaire
+Présentation du Projet
+Stack Technique
+Architecture
+Planning
+Fonctionnalités
+Base de Données
+API Endpoints
+Tests
+Déploiement
+1. Présentation
+ClickTalk est un chatbot intelligent utilisant le Machine Learning pour interagir avec les utilisateurs.
+
+🎯 Objectifs
+Interface responsive et intuitive
+Performance et sécurité optimales
+Expérience utilisateur fluide
+Documentation complète
+2. Stack Technique
+Frontend
+React + TypeScript
+SASS/Styled Components
+React Router
+Context API/Redux
+Jest & React Testing Library
+Backend
+Spring Boot
+MySQL
+JWT Authentication
+REST API
+3. Architecture
+Structure Frontend
+frontend/
+├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── hooks/
+│   ├── services/
+│   ├── utils/
+│   └── styles/
+
+Structure Backend
+backend/
+├── src/
+│   ├── controllers/
+│   ├── services/
+│   ├── models/
+│   └── config/
+
+4. Planning
+Phase 1: Setup & Design (Semaine 1)
+✅ Configuration projet
+✅ Maquettes Figma
+✅ Architecture base de données
+Phase 2: Core Development (Semaine 2-3)
+🏗️ Authentication
+🏗️ Chat functionality
+🏗️ Projects management
+Phase 3: Finalisation (Semaine 4)
+⏳ Tests
+⏳ Documentation
+⏳ Déploiement
+5. Fonctionnalités
+Utilisateur
+Login/Register
+Gestion profil
+Gestion conversations
+Paramètres personnalisés
+Chat
+Messages temps réel
+Formatage Markdown
+Copie messages
+Streaming réponses
+Projets
+Création/Modification
+Instructions personnalisées
+Organisation conversations
+6. Base de Données
+Schéma
+users
+conversations
+projects
+messages
+settings
+project_conversation
+
+Relations
+User → Conversations (1:N)
+Conversation → Messages (1:N)
+Project → Conversations (N:N)
+7. API Endpoints
+Authentication
+POST /auth/login
+POST /auth/register
+POST /auth/logout
+
+Conversations
+GET /conversations/list
+POST /conversations/create
+DELETE /conversations/delete
+
+8. Tests
+Frontend
+Tests unitaires (Jest)
+Tests d'intégration
+Tests E2E
+Backend
+Tests unitaires
+Tests API
+Tests performance
+9. Déploiement
+Étapes
+Build production
+Configuration serveurs
+Déploiement Frontend (Vercel)
+Déploiement Backend
+Tests production
+Monitoring
+Performance monitoring
+Error tracking
+Analytics
+📌 Links Utiles
+
+Figma
+GitHub
+Documentation
+Ce livrable reste évolutif et sera mis à jour régulièrement selon l'avancement du projet.

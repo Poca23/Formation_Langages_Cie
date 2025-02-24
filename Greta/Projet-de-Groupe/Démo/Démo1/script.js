@@ -251,51 +251,51 @@ export class EventEmitter {
     }
 }
 
-Cette architecture JavaScript offre :
+// Cette architecture JavaScript offre :
 
-Architecture MVC :
+// Architecture MVC :
 
-Séparation claire des responsabilités
-Controllers pour la logique métier
-Services pour les opérations externes
-Gestion des événements centralisée
-Fonctionnalités modernes :
+// Séparation claire des responsabilités
+// Controllers pour la logique métier
+// Services pour les opérations externes
+// Gestion des événements centralisée
+// Fonctionnalités modernes :
 
-Classes ES6+
-Async/Await
-Modules ES6
-Pattern Observer (EventEmitter)
-Gestion de l'état :
+// Classes ES6+
+// Async/Await
+// Modules ES6
+// Pattern Observer (EventEmitter)
+// Gestion de l'état :
 
-LocalStorage pour la persistance
-Gestion des tokens JWT
-Cache des messages
-Gestion des erreurs :
+// LocalStorage pour la persistance
+// Gestion des tokens JWT
+// Cache des messages
+// Gestion des erreurs :
 
-Try/Catch appropriés
-Propagation des erreurs
-Messages d'erreur utilisateur
-Optimisations :
+// Try/Catch appropriés
+// Propagation des erreurs
+// Messages d'erreur utilisateur
+// Optimisations :
 
-Debouncing des requêtes
-Mise en cache
-File d'attente des messages
-Pour utiliser ce code :
+// Debouncing des requêtes
+// Mise en cache
+// File d'attente des messages
+// Pour utiliser ce code :
 
-Créez une structure de dossiers :
-js/
-├── controllers/
-│   ├── AuthController.js
-│   ├── ChatController.js
-│   └── UIController.js
-├── services/
-│   ├── ApiService.js
-│   └── StorageService.js
-├── utils/
-│   └── EventEmitter.js
-└── app.js
+// Créez une structure de dossiers :
+// js/
+// ├── controllers/
+// │   ├── AuthController.js
+// │   ├── ChatController.js
+// │   └── UIController.js
+// ├── services/
+// │   ├── ApiService.js
+// │   └── StorageService.js
+// ├── utils/
+// │   └── EventEmitter.js
+// └── app.js
 
-Ajoutez le type="module" dans votre HTML :
-<script type="module" src="js/app.js"></script>
+// Ajoutez le type="module" dans votre HTML :
+// <script type="module" src="js/app.js"></script>
 
-Configurez votre serveur pour gérer les modules ES6
+// Configurez votre serveur pour gérer les modules ES6

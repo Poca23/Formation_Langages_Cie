@@ -1,0 +1,1064 @@
+"🚀 ClickTalk - Documentation Projet Certification
+📋 Table des Matières
+🎯 Vue d'ensemble
+👥 Équipe & Responsabilités
+🏗️ Architecture Technique
+📅 Planning & Phases
+💻 Documentation Frontend
+🧪 Tests & Qualité
+🎯 Vue d'ensemble
+Contexte
+Projet de certification développement web et web mobile réalisé en binôme, intégrant un chatbot IA avec interface moderne et responsive.
+
+Stack Technique Frontend
+Core: Styles:
+⚛️ Create React App 🎨 SASS
+📝 TypeScript 🎯 Module CSS
+🧪 Jest 🖌️ Custom Design System
+
+👥 Équipe & Responsabilités
+Frontend & Design Lead :
+UI/UX Design (Figma)
+Architecture React/TypeScript
+Gestion de projet
+Documentation technique
+
+Backend Lead :
+Architecture Spring Boot
+Base de données MySQL
+Sécurité & API
+Collaboration
+Tests d'intégration
+Code review
+Déploiement
+Documentation
+
+
+🏗️ Architecture Frontend Détaillée
+📁 Structure Principale
+frontend/
+├── src/
+│ ├── components/ // Composants réutilisables
+│ ├── pages/ // Pages principales
+│ ├── hooks/ // Hooks personnalisés
+│ ├── services/ // Services API
+│ ├── context/ // Contextes globaux
+│ └── styles/ // Styles globaux
+
+🧩 Organisation des Composants
+components/
+├── common/ // Éléments UI réutilisables
+│ ├── Button/
+│ ├── Input/
+│ └── Modal/
+├── layouts/ // Structures de page
+│ ├── MainLayout/
+│ ├── Sidebar/
+│ └── Header/
+├── chat/ // Composants conversation
+└── auth/ // Composants authentification
+
+
+📅 Planning & Phases Détaillées
+🎯 Semaine 1 : Setup & Fondations
+Jour 1-2 : Configuration
+// Installation et setup initial
+- [x] Create React App avec TypeScript
+- [x] Configuration ESLint/Prettier
+- [x] Structure des dossiers
+- [x] Git setup & premier commit
+
+Jour 3-4 : Composants Common
+// Développement composants de base
+- [ ] Button/
+├── Variants: primary, secondary, danger
+└── States: default, hover, active, disabled
+- [ ] Input/
+├── Types: text, password, email
+└── Validation intégrée
+- [ ] Modal/
+├── Système de portails React
+└── Animation transitions
+
+Jour 5 : Layout
+- [ ] MainLayout/
+- [ ] Sidebar/ responsive
+- [ ] Header/ avec navigation
+
+🔐 Semaine 2 : Authentification & Chat
+Jour 1-3 : Auth System
+- [ ] LoginForm/
+├── Validation
+├── Gestion erreurs
+└── Persistance session
+- [ ] RegisterForm/
+- [ ] AuthContext setup
+
+Jour 4-5 : Chat Components
+- [ ] ChatWindow/
+├── Messagerie temps réel
+└── Scroll infini
+- [ ] MessageBubble/
+├── Format Markdown
+└── Copy functionality
+
+💻 Documentation Composants
+🧩 Structure Type Composant
+// Button.types.ts
+interface ButtonProps {
+variant: 'primary' | 'secondary' | 'danger';
+size?: 'small' | 'medium' | 'large';
+onClick: () => void;
+disabled?: boolean;
+children: React.ReactNode;
+}
+
+// Button.tsx
+const Button: React.FC<ButtonProps> = ({
+variant,
+size = 'medium',
+onClick,
+disabled,
+children
+}) => {
+return (
+<button
+className={`button ${variant} ${size}`}
+onClick={onClick}
+disabled={disabled}
+>
+{children}
+</button>
+);
+};
+
+🎨 Styles Organisation
+// global.scss
+@import 'variables';
+@import 'mixins';
+
+// composant.scss
+.button {
+@include flex-center;
+
+&--primary {
+@include button-variant($primary-color);
+}
+
+&--secondary {
+@include button-variant($secondary-color);
+}
+}
+
+🧪 Tests & Qualité
+📋 Standards de Test
+// Button.test.tsx
+describe('Button Component', () => {
+it('renders correctly', () => {
+render(
+<Button variant="primary" onClick={() => {}}>
+Test
+</Button>
+);
+expect(screen.getByText('Test')).toBeInTheDocument();
+});
+
+it('handles click events', () => {
+const mockFn = jest.fn();
+render(
+<Button variant="primary" onClick={mockFn}>
+Click Me
+</Button>
+);
+fireEvent.click(screen.getByText('Click Me'));
+expect(mockFn).toHaveBeenCalled();
+});
+});
+
+✅ Checklist Qualité
+Tests unitaires pour chaque composant
+Tests d'intégration pour les flows critiques
+Responsive design validé
+Accessibilité WCAG
+Performance monitoring
+TypeScript strict mode
+
+🔄 Intégration & Services
+🌐 API Service Configuration
+// services/api/api.ts
+import axios from 'axios';
+
+const api = axios.create({
+baseURL: process.env.REACT_APP_API_URL,
+timeout: 10000,
+headers: {
+'Content-Type': 'application/json'
+}
+});
+
+api.interceptors.request.use((config) => {
+const token = localStorage.getItem('token');
+if (token) {
+config.headers.Authorization = `Bearer ${token}`;
+}
+return config;
+});
+
+🔐 Authentication Service
+// services/auth/auth.ts
+export const authService = {
+async login(credentials: LoginCredentials): Promise<User> {
+const { data } = await api.post('/auth/login', credentials);
+localStorage.setItem('token', data.token);
+return data.user;
+},
+
+async register(userData: RegisterData): Promise<User> {
+const { data } = await api.post('/auth/register', userData);
+localStorage.setItem('token', data.token);
+return data.user;
+},
+
+logout(): void {
+localStorage.removeItem('token');
+}
+};
+
+📚 Contextes & Hooks
+🔑 AuthContext
+// context/AuthContext/AuthContext.ts
+interface AuthContextType {
+user: User | null;
+login: (credentials: LoginCredentials) => Promise<void>;
+logout: () => void;
+isAuthenticated: boolean;
+}
+
+export const AuthContext = createContext<AuthContextType>(null!);
+
+export const AuthProvider: React.FC = ({ children }) => {
+const [user, setUser] = useState<User | null>(null);
+
+const login = async (credentials: LoginCredentials) => {
+const user = await authService.login(credentials);
+setUser(user);
+};
+
+const logout = () => {
+authService.logout();
+setUser(null);
+};
+
+return (
+<AuthContext.Provider value={{ user, login, logout, isAuthenticated: !!user }}>
+{children}
+</AuthContext.Provider>
+);
+};
+
+🎣 Custom Hooks
+// hooks/useChat/useChat.ts
+export const useChat = () => {
+const [messages, setMessages] = useState<Message[]>([]);
+const [loading, setLoading] = useState(false);
+
+const sendMessage = async (content: string) => {
+setLoading(true);
+try {
+const response = await api.post('/chat/message', { content });
+setMessages(prev => [...prev, response.data]);
+} catch (error) {
+console.error('Error sending message:', error);
+} finally {
+setLoading(false);
+}
+};
+
+return { messages, loading, sendMessage };
+};
+
+🚀 Déploiement
+📦 Build Process
+# Production build
+npm run build
+
+# Build validation
+npm run test:coverage
+npm run lint
+
+⚡ Performance Optimizations
+// Lazy loading des routes
+const Chat = lazy(() => import('./pages/Chat/Chat'));
+const Auth = lazy(() => import('./pages/Auth/Auth'));
+
+// Dans App.tsx
+<Suspense fallback={<Loading />}>
+<Routes>
+<Route path="/chat" element={<Chat />} />
+<Route path="/auth" element={<Auth />} />
+</Routes>
+</Suspense>
+
+📝 Documentation Utilisateur
+💡 Conventions de Code
+// Nommage des composants
+ComponentName/
+├── index.tsx // Export public
+├── ComponentName.tsx // Logique principale
+├── ComponentName.scss // Styles
+└── ComponentName.types.ts // Types & interfaces
+
+🔍 Review Checklist
+Types TypeScript complets
+Tests unitaires
+Styles modulaires
+Documentation des props
+Gestion des erreurs
+Accessibilité
+Performance
+Responsive design
+
+
+🎯 Points d'Attention Finaux
+🐛 Debug Tools
+// utils/debug.ts
+export const debugLogger = (component: string, action: string, data?: any) => {
+if (process.env.NODE_ENV === 'development') {
+console.log(`[${component}] ${action}:`, data);
+}
+};
+
+🔄 Maintenance
+Documentation à jour
+Tests réguliers
+Revue de code systématique
+Monitoring des performances
+Feedback utilisateur"
+
+"🚀 ClickTalk - Projet de Certification
+📋 Table des matières
+Présentation du Projet
+Architecture & Structure
+Planning & Phases
+Documentation Technique
+Suivi & Qualité
+🎯 Présentation du Projet
+👥 Équipe & Responsabilités
+Frontend & Design Lead :
+Create React App avec TypeScript
+Design System & UI/UX
+Gestion de projet
+Backend Lead :
+Spring Boot (Java)
+MySQL
+Architecture backend
+Collaboration :
+Tests unitaires et intégration
+Déploiement
+Code review
+💻 Stack Technique
+Frontend :
+⚛️ React (CRA)
+📝 TypeScript
+🎨 SASS
+🧪 Jest
+Backend :
+☕ Spring Boot
+📦 MySQL
+🔐 JWT Auth
+🎯 Objectifs
+Application de messagerie moderne
+Interface responsive et intuitive
+Performance et sécurité optimales
+Tests complets
+Documentation détaillée
+
+🏗️ Architecture & Structure
+📁 Structure des Dossiers Frontend
+frontend/
+├── src/
+│ ├── components/
+│ │ ├── common/ # Composants réutilisables
+│ │ ├── layouts/ # Structures de page
+│ │ ├── chat/ # Composants de messagerie
+│ │ └── auth/ # Composants d'authentification
+│ ├── pages/ # Pages principales
+│ ├── hooks/ # Hooks personnalisés
+│ ├── services/ # Services API
+│ ├── utils/ # Utilitaires
+│ ├── context/ # Contextes React
+│ ├── types/ # Types TypeScript
+│ └── styles/ # Styles globaux
+
+🧩 Architecture Modulaire
+Chaque composant suit la structure :
+
+ComponentName/
+├── index.tsx # Export public
+├── ComponentName.tsx # Logique
+├── ComponentName.scss # Styles
+├── ComponentName.test.tsx # Tests
+└── ComponentName.types.ts # Types
+
+📅 Planning & Phases
+Phase 1 : Setup & Fondations (Semaine 1)
+Jour 1-2 :
+
+⚙️ Configuration initiale
+🎨 Mise en place Design System
+📝 Configuration TypeScript
+Jour 3-5 :
+
+🧩 Composants de base
+📱 Layout responsive
+🔍 Tests unitaires initiaux
+Phase 2 : Authentification & Chat (Semaine 2)
+Jour 1-3 :
+
+🔐 Système d'authentification
+🎨 Design des formulaires
+✅ Validation des données
+Jour 4-5 :
+
+💬 Interface de chat
+📨 Système de messages
+🔄 Intégration WebSocket
+
+Phase 3 : Fonctionnalités & Optimisation (Semaine 3)
+Jour 1-3 :
+
+📱 Responsive design finalisé
+🌓 Thème clair/sombre
+⚡ Optimisation des performances
+Jour 4-5 :
+
+🧪 Tests d'intégration
+📝 Documentation technique
+🔍 Code review approfondi
+Phase 4 : Finalisation & Déploiement (Semaine 4)
+Jour 1-3 :
+
+🐛 Debug et corrections
+✨ Polish UI/UX
+📊 Tests de performance
+Jour 4-5 :
+
+🚀 Déploiement
+📖 Documentation finale
+🎯 Tests en production
+📚 Documentation Technique
+🛠️ Installation & Setup
+# Cloner le projet
+git clone [repository]
+
+# Installation des dépendances
+npm install
+
+# Démarrer en développement
+npm start
+
+# Build production
+npm run build
+
+# Lancer les tests
+npm test
+
+🎨 Standards de Code
+// Exemple de composant
+interface ButtonProps {
+variant: 'primary' | 'secondary';
+onClick: () => void;
+children: React.ReactNode;
+}
+
+const Button: React.FC<ButtonProps> = ({
+variant,
+onClick,
+children
+}) => (
+<button
+className={`button button--${variant}`}
+onClick={onClick}
+>
+{children}
+</button>
+);
+
+🔍 Suivi & Qualité
+✅ Checklist Qualité
+Tests unitaires > 80% coverage
+Responsive design validé
+Performance Lighthouse > 90
+Accessibilité WCAG 2.1
+Sécurité (OWASP)
+Code documenté
+Design System cohérent
+🧪 Tests
+// Exemple de test unitaire
+describe('Button Component', () => {
+it('renders correctly', () => {
+render(
+<Button variant="primary" onClick={() => {}}>
+Test
+</Button>
+);
+expect(screen.getByText('Test')).toBeInTheDocument();
+});
+
+it('handles click events', () => {
+const mockFn = jest.fn();
+render(
+<Button variant="primary" onClick={mockFn}>
+Click Me
+</Button>
+);
+fireEvent.click(screen.getByText('Click Me'));
+expect(mockFn).toHaveBeenCalled();
+});
+});
+
+📊 Métriques de Performance
+Temps de chargement initial : < 2s
+First Contentful Paint : < 1.5s
+Time to Interactive : < 3s
+Bundle size : < 250kb (gzipped)
+🚀 Déploiement
+# Pipeline CI/CD (exemple GitHub Actions)
+name: Deploy ClickTalk
+on:
+push:
+branches: [ main ]
+
+jobs:
+build:
+runs-on: ubuntu-latest
+steps:
+- uses: actions/checkout@v2
+- name: Install Dependencies
+run: npm install
+- name: Run Tests
+run: npm test
+- name: Build
+run: npm run build
+- name: Deploy
+run: |
+# Scripts de déploiement
+
+📝 Guidelines de Contribution
+Fork le projet
+Créer une branche (feature/ma-feature)
+Commits conventionnels
+Tests passants
+Pull Request avec description
+Code review
+Merge
+"
+
+"
+# 🌟 PLANNING DÉTAILLÉ CLICKTALK
+
+## 📋 LÉGENDE
+- ✅ Terminé
+- 🏗️ En cours
+- ⏳ À faire
+- ❗ Priorité haute
+- ⭐ Point clé
+- 💡 Conseil
+- ⚠️ Point d'attention
+- 🔄 Nécessite révision
+- 🎨 Design
+- 🛠️ Développement
+- 🧪 Test
+
+##🎯 PHASE PRÉLIMINAIRE : CONCEPTION (1 semaine)
+###Jour 1-2 : Base de données
+✅ UML
+✅ Création du MCD
+✅ Création du MLD
+✅ Création du MPD
+✅ Création schéma ER
+✅ Validation architecture données ⭐ Point clé : Bien définir les relations entre tables
+
+###Jour 3-5 : Maquettes Figma
+✅ Wireframes principales pages
+✅ Login/Register
+✅ Interface chat
+✅ Settings
+✅ Design System simple
+✅ Couleurs
+✅ Typography
+✅ Composants principaux
+✅ Responsive design
+❗ Priorité : Validation maquettes
+
+
+
+## 📅 SEMAINE 1 : SETUP & FONDATIONS
+### Jour 1-2 : Configuration Initiale
+- ⏳ Création du projet React avec TypeScript
+- ⏳ Configuration ESLint et Prettier
+- ⏳ Setup du système de routing
+- ⏳ Configuration Git/GitHub
+- ⏳ Structure des dossiers initiale
+💡 Conseil : Bien documenter la configuration pour l'équipe
+
+### Jour 3-4 : Design System & Composants Base
+- ⏳ Implémentation des styles globaux
+- ⏳ Création des variables CSS (thèmes)
+- ⏳ Composants de base :
+- Boutons
+- Inputs
+- Cards
+- Modals
+- Navigation
+⭐ Point clé : Maintenir la cohérence visuelle
+
+### Jour 5 : Layout & Navigation
+- ⏳ Sidebar responsive
+- ⏳ Header component
+- ⏳ Layout principal
+- ⏳ Navigation mobile
+❗ Priorité : Responsive design
+
+
+## 📅 SEMAINE 2 : AUTHENTIFICATION & CHAT
+### Jour 1-2 : Système d'Authentification
+- ⏳ Pages Login/Register
+- ⏳ Formulaires avec validation
+- ⏳ Intégration JWT
+- ⏳ Routes protégées
+- ⏳ Context/Redux pour l'auth
+⚠️ Point d'attention : Sécurité des données
+
+### Jour 3-4 : Fonctionnalités Chat
+- ⏳ Interface de chat
+- ⏳ Système de messages
+- ⏳ Formatage Markdown
+- ⏳ Copie de messages
+- ⏳ Streaming des réponses
+🔄 Test des performances
+
+### Jour 5 : Settings & Préférences
+- ⏳ Page de paramètres
+- ⏳ Thème clair/sombre
+- ⏳ Préférences utilisateur
+- ⏳ Gestion du compte
+⭐ Point clé : Persistance des préférences
+
+
+## 📅 SEMAINE 3 : PROJETS & OPTIMISATION
+### Jour 1-2 : Gestion des Projets
+- ⏳ CRUD Projets
+- ⏳ Organisation des conversations
+- ⏳ Instructions personnalisées
+- ⏳ Interface projet
+💡 Conseil : UX intuitive
+
+### Jour 3-4 : Optimisation & Performance
+- ⏳ Code splitting
+- ⏳ Lazy loading
+- ⏳ Optimisation des images
+- ⏳ Caching
+- ⏳ Performance monitoring
+❗ Priorité : Temps de chargement
+
+### Jour 5 : Tests Unitaires
+- ⏳ Tests composants
+- ⏳ Tests hooks
+- ⏳ Tests services
+- ⏳ Tests utils
+🧪 Couverture de tests
+
+
+## 📅 SEMAINE 4 : FINALISATION & DÉPLOIEMENT
+### Jour 1-2 : Tests & Debug
+- ⏳ Tests d'intégration
+- ⏳ Tests E2E
+- ⏳ Debug cross-browser
+- ⏳ Optimisation finale
+⚠️ Point d'attention : Compatibilité
+
+### Jour 3-4 : Documentation & Préparation
+- ⏳ Documentation technique
+- ⏳ Documentation utilisateur
+- ⏳ Préparation déploiement
+- ⏳ Build production
+⭐ Point clé : Documentation claire
+
+### Jour 5 : Déploiement
+- ⏳ Configuration serveur
+- ⏳ Déploiement frontend
+- ⏳ Tests production
+- ⏳ Monitoring
+🔄 Vérification finale
+
+## 📝 NOTES IMPORTANTES
+- Daily standup à 9h30
+- Code review quotidienne
+- Push régulier sur GitHub
+- Documentation mise à jour quotidiennement
+- Communication régulière avec l'équipe backend
+- Tests avant chaque merge
+
+
+## 🎯 OBJECTIFS QUOTIDIENS
+### Morning
+- Review du code de la veille
+- Planification des tâches
+- Standup meeting
+
+### Afternoon
+- Développement
+- Tests unitaires
+- Code review
+
+### Evening
+- Documentation
+- Push du code
+- Préparation du lendemain"
+
+"frontend/
+├── public/
+│ ├── index.html
+│ ├── favicon.ico
+│ └── assets/
+│ ├── images/
+│ └── icons/
+│
+├── src/
+│ ├── components/
+│ │ ├── common/
+│ │ │ ├── Button/
+│ │ │ │ ├── index.tsx
+│ │ │ │ ├── Button.tsx
+│ │ │ │ ├── Button.scss
+│ │ │ │ ├── Button.test.tsx
+│ │ │ │ └── Button.types.ts
+│ │ │ │
+│ │ │ ├── Input/
+│ │ │ │ ├── index.tsx
+│ │ │ │ ├── Input.tsx
+│ │ │ │ ├── Input.scss
+│ │ │ │ ├── Input.test.tsx
+│ │ │ │ └── Input.types.ts
+│ │ │ │
+│ │ │ ├── Modal/
+│ │ │ │ ├── index.tsx
+│ │ │ │ ├── Modal.tsx
+│ │ │ │ ├── Modal.scss
+│ │ │ │ ├── Modal.test.tsx
+│ │ │ │ └── Modal.types.ts
+│ │ │ │
+│ │ │ └── Icons/
+│ │ │ ├── index.tsx
+│ │ │ ├── Icons.tsx
+│ │ │ └── Icons.types.ts
+│ │ │
+│ │ ├── layouts/
+│ │ │ ├── MainLayout/
+│ │ │ │ ├── index.tsx
+│ │ │ │ ├── MainLayout.tsx
+│ │ │ │ ├── MainLayout.scss
+│ │ │ │ ├── MainLayout.test.tsx
+│ │ │ │ └── MainLayout.types.ts
+│ │ │ │
+│ │ │ ├── Sidebar/
+│ │ │ │ ├── index.tsx
+│ │ │ │ ├── Sidebar.tsx
+│ │ │ │ ├── Sidebar.scss
+│ │ │ │ ├── Sidebar.test.tsx
+│ │ │ │ └── Sidebar.types.ts
+│ │ │ │
+│ │ │ └── Header/
+│ │ │ ├── index.tsx
+│ │ │ ├── Header.tsx
+│ │ │ ├── Header.scss
+│ │ │ ├── Header.test.tsx
+│ │ │ └── Header.types.ts
+│ │ │
+│ │ ├── chat/
+│ │ │ ├── ChatWindow/
+│ │ │ │ ├── index.tsx
+│ │ │ │ ├── ChatWindow.tsx
+│ │ │ │ ├── ChatWindow.scss
+│ │ │ │ ├── ChatWindow.test.tsx
+│ │ │ │ └── ChatWindow.types.ts
+│ │ │ │
+│ │ │ ├── MessageBubble/
+│ │ │ │ ├── index.tsx
+│ │ │ │ ├── MessageBubble.tsx
+│ │ │ │ ├── MessageBubble.scss
+│ │ │ │ ├── MessageBubble.test.tsx
+│ │ │ │ └── MessageBubble.types.ts
+│ │ │ │
+│ │ │ └── MessageInput/
+│ │ │ ├── index.tsx
+│ │ │ ├── MessageInput.tsx
+│ │ │ ├── MessageInput.scss
+│ │ │ ├── MessageInput.test.tsx
+│ │ │ └── MessageInput.types.ts
+│ │ │
+│ │ └── auth/
+│ │ ├── LoginForm/
+│ │ │ ├── index.tsx
+│ │ │ ├── LoginForm.tsx
+│ │ │ ├── LoginForm.scss
+│ │ │ ├── LoginForm.test.tsx
+│ │ │ └── LoginForm.types.ts
+│ │ │
+│ │ └── RegisterForm/
+│ │ ├── index.tsx
+│ │ ├── RegisterForm.tsx
+│ │ ├── RegisterForm.scss
+│ │ ├── RegisterForm.test.tsx
+│ │ └── RegisterForm.types.ts
+│ │
+│ ├── pages/
+│ │ ├── Home/
+│ │ │ ├── index.tsx
+│ │ │ ├── Home.tsx
+│ │ │ ├── Home.scss
+│ │ │ └── Home.test.tsx
+│ │ │
+│ │ ├── Chat/
+│ │ │ ├── index.tsx
+│ │ │ ├── Chat.tsx
+│ │ │ ├── Chat.scss
+│ │ │ └── Chat.test.tsx
+│ │ │
+│ │ └── Auth/
+│ │ ├── index.tsx
+│ │ ├── Auth.tsx
+│ │ ├── Auth.scss
+│ │ └── Auth.test.tsx
+│ │
+│ ├── hooks/
+│ │ ├── useAuth/
+│ │ │ ├── index.ts
+│ │ │ ├── useAuth.ts
+│ │ │ └── useAuth.test.ts
+│ │ │
+│ │ └── useChat/
+│ │ ├── index.ts
+│ │ ├── useChat.ts
+│ │ └── useChat.test.ts
+│ │
+│ ├── services/
+│ │ ├── api/
+│ │ │ ├── index.ts
+│ │ │ ├── api.ts
+│ │ │ └── api.test.ts
+│ │ │
+│ │ └── auth/
+│ │ ├── index.ts
+│ │ ├── auth.ts
+│ │ └── auth.test.ts
+│ │
+│ ├── utils/
+│ │ ├── formatters/
+│ │ │ ├── index.ts
+│ │ │ ├── formatters.ts
+│ │ │ └── formatters.test.ts
+│ │ │
+│ │ └── validators/
+│ │ ├── index.ts
+│ │ ├── validators.ts
+│ │ └── validators.test.ts
+│ │
+│ ├── context/
+│ │ ├── AuthContext/
+│ │ │ ├── index.ts
+│ │ │ ├── AuthContext.ts
+│ │ │ └── AuthContext.test.ts
+│ │ │
+│ │ └── ThemeContext/
+│ │ ├── index.ts
+│ │ ├── ThemeContext.ts
+│ │ └── ThemeContext.test.ts
+│ │
+│ ├── types/
+│ │ ├── auth.types.ts
+│ │ ├── chat.types.ts
+│ │ └── common.types.ts
+│ │
+│ └── styles/
+│ ├── global.scss
+│ ├── variables.scss
+│ └── mixins.scss
+│
+├── tsconfig.js
+├── package.json
+└── tsconfig.json"
+
+"frontend/
+├── public/
+│ ├── index.html
+│ ├── favicon.ico
+│ └── assets/
+│ ├── images/
+│ └── icons/
+│
+├── src/
+│ ├── components/
+│ │ ├── common/
+│ │ │ ├── Button/
+│ │ │ │ ├── index.tsx
+│ │ │ │ ├── Button.tsx
+│ │ │ │ ├── Button.scss
+│ │ │ │ ├── Button.test.tsx
+│ │ │ │ └── Button.types.ts
+│ │ │ │
+│ │ │ ├── Input/
+│ │ │ │ ├── index.tsx
+│ │ │ │ ├── Input.tsx
+│ │ │ │ ├── Input.scss
+│ │ │ │ ├── Input.test.tsx
+│ │ │ │ └── Input.types.ts
+│ │ │ │
+│ │ │ ├── Modal/
+│ │ │ │ ├── index.tsx
+│ │ │ │ ├── Modal.tsx
+│ │ │ │ ├── Modal.scss
+│ │ │ │ ├── Modal.test.tsx
+│ │ │ │ └── Modal.types.ts
+│ │ │ │
+│ │ │ └── Icons/
+│ │ │ ├── index.tsx
+│ │ │ ├── Icons.tsx
+│ │ │ └── Icons.types.ts
+│ │ │
+│ │ ├── layouts/
+│ │ │ ├── MainLayout/
+│ │ │ │ ├── index.tsx
+│ │ │ │ ├── MainLayout.tsx
+│ │ │ │ ├── MainLayout.scss
+│ │ │ │ ├── MainLayout.test.tsx
+│ │ │ │ └── MainLayout.types.ts
+│ │ │ │
+│ │ │ ├── Sidebar/
+│ │ │ │ ├── index.tsx
+│ │ │ │ ├── Sidebar.tsx
+│ │ │ │ ├── Sidebar.scss
+│ │ │ │ ├── Sidebar.test.tsx
+│ │ │ │ └── Sidebar.types.ts
+│ │ │ │
+│ │ │ └── Header/
+│ │ │ ├── index.tsx
+│ │ │ ├── Header.tsx
+│ │ │ ├── Header.scss
+│ │ │ ├── Header.test.tsx
+│ │ │ └── Header.types.ts
+│ │ │
+│ │ ├── chat/
+│ │ │ ├── ChatWindow/
+│ │ │ │ ├── index.tsx
+│ │ │ │ ├── ChatWindow.tsx
+│ │ │ │ ├── ChatWindow.scss
+│ │ │ │ ├── ChatWindow.test.tsx
+│ │ │ │ └── ChatWindow.types.ts
+│ │ │ │
+│ │ │ ├── MessageBubble/
+│ │ │ │ ├── index.tsx
+│ │ │ │ ├── MessageBubble.tsx
+│ │ │ │ ├── MessageBubble.scss
+│ │ │ │ ├── MessageBubble.test.tsx
+│ │ │ │ └── MessageBubble.types.ts
+│ │ │ │
+│ │ │ └── MessageInput/
+│ │ │ ├── index.tsx
+│ │ │ ├── MessageInput.tsx
+│ │ │ ├── MessageInput.scss
+│ │ │ ├── MessageInput.test.tsx
+│ │ │ └── MessageInput.types.ts
+│ │ │
+│ │ └── auth/
+│ │ ├── LoginForm/
+│ │ │ ├── index.tsx
+│ │ │ ├── LoginForm.tsx
+│ │ │ ├── LoginForm.scss
+│ │ │ ├── LoginForm.test.tsx
+│ │ │ └── LoginForm.types.ts
+│ │ │
+│ │ └── RegisterForm/
+│ │ ├── index.tsx
+│ │ ├── RegisterForm.tsx
+│ │ ├── RegisterForm.scss
+│ │ ├── RegisterForm.test.tsx
+│ │ └── RegisterForm.types.ts
+│ │
+│ ├── pages/
+│ │ ├── Home/
+│ │ │ ├── index.tsx
+│ │ │ ├── Home.tsx
+│ │ │ ├── Home.scss
+│ │ │ └── Home.test.tsx
+│ │ │
+│ │ ├── Chat/
+│ │ │ ├── index.tsx
+│ │ │ ├── Chat.tsx
+│ │ │ ├── Chat.scss
+│ │ │ └── Chat.test.tsx
+│ │ │
+│ │ └── Auth/
+│ │ ├── index.tsx
+│ │ ├── Auth.tsx
+│ │ ├── Auth.scss
+│ │ └── Auth.test.tsx
+│ │
+│ ├── hooks/
+│ │ ├── useAuth/
+│ │ │ ├── index.ts
+│ │ │ ├── useAuth.ts
+│ │ │ └── useAuth.test.ts
+│ │ │
+│ │ └── useChat/
+│ │ ├── index.ts
+│ │ ├── useChat.ts
+│ │ └── useChat.test.ts
+│ │
+│ ├── services/
+│ │ ├── api/
+│ │ │ ├── index.ts
+│ │ │ ├── api.ts
+│ │ │ └── api.test.ts
+│ │ │
+│ │ └── auth/
+│ │ ├── index.ts
+│ │ ├── auth.ts
+│ │ └── auth.test.ts
+│ │
+│ ├── utils/
+│ │ ├── formatters/
+│ │ │ ├── index.ts
+│ │ │ ├── formatters.ts
+│ │ │ └── formatters.test.ts
+│ │ │
+│ │ └── validators/
+│ │ ├── index.ts
+│ │ ├── validators.ts
+│ │ └── validators.test.ts
+│ │
+│ ├── context/
+│ │ ├── AuthContext/
+│ │ │ ├── index.ts
+│ │ │ ├── AuthContext.ts
+│ │ │ └── AuthContext.test.ts
+│ │ │
+│ │ └── ThemeContext/
+│ │ ├── index.ts
+│ │ ├── ThemeContext.ts
+│ │ └── ThemeContext.test.ts
+│ │
+│ ├── types/
+│ │ ├── auth.types.ts
+│ │ ├── chat.types.ts
+│ │ └── common.types.ts
+│ │
+│ └── styles/
+│ ├── global.scss
+│ ├── variables.scss
+│ └── mixins.scss
+│
+├── tsconfig.js
+├── package.json
+└── tsconfig.json"
