@@ -1,0 +1,13 @@
+Tree command (Linux/Windows/macOS) : 
+
+Tu peux utiliser la commande tree pour générer une vue en arborescence de ton projet. 
+Voici comment l'utiliser :
+
+- Ouvre ton terminal.
+- Navigue jusqu'à ton répertoire de projet.
+- Exécute la commande suivante :
+
+bash
+tree -L 3
+
+L'option -L permet de spécifier le niveau de profondeur des dossiers. Par exemple, tree -L 3 montre une structure avec une profondeur de 3 niveaux. Tu peux ajuster ce chiffre selon tes besoins.

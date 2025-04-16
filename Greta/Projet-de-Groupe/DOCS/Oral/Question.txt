@@ -1,0 +1,15 @@
+🙋 Questions potentielles et réponses suggérées
+
+Question 1: Comment avez-vous assuré la sécurité des conversations des utilisateurs ?
+
+Réponse suggérée: "La sécurité a été une priorité dès le début. Nous avons mis en place un système d'authentification robuste qui protège l'accès aux comptes. Les conversations sont stockées de manière sécurisée et ne sont accessibles qu'à leur propriétaire. Nous avons également veillé à ce que les échanges entre l'application et le serveur soient chiffrés pour garantir la confidentialité des données."
+
+
+Question 2: Quelles ont été les difficultés principales dans la création de l'interface utilisateur ?
+
+Réponse suggérée: "Le plus grand défi a été de concilier simplicité et richesse fonctionnelle. Nous voulions une interface intuitive, que l'on comprend immédiatement, tout en offrant des options avancées pour les utilisateurs plus expérimentés. L'autre difficulté majeure a été d'adapter cette interface à tous les appareils, des petits écrans de téléphone aux grands écrans d'ordinateur, tout en conservant la même fluidité d'utilisation."
+
+
+Question 3: Comment comptez-vous faire évoluer l'application face à l'évolution rapide des technologies d'intelligence artificielle ?
+
+Réponse suggérée: "Nous avons conçu ClickTalk avec une architecture modulaire qui nous permet d'intégrer facilement les nouvelles avancées technologiques. Notre objectif est de rester à jour avec les dernières innovations tout en préservant ce qui fait la force de notre application : sa simplicité d'utilisation. Nous prévoyons également de consulter régulièrement nos utilisateurs pour comprendre leurs besoins émergents et adapter l'application en conséquence."

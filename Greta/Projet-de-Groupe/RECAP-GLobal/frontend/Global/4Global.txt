@@ -1,0 +1,1028 @@
+"📱 Projet ClickTalk - Livrable Détaillé
+📋 Sommaire
+Présentation du Projet
+Stack Technique
+Architecture
+Planning
+Fonctionnalités
+Base de Données
+API Endpoints
+Tests
+Déploiement
+1. Présentation
+ClickTalk est un chatbot intelligent utilisant le Machine Learning pour interagir avec les utilisateurs.
+
+🎯 Objectifs
+Interface responsive et intuitive
+Performance et sécurité optimales
+Expérience utilisateur fluide
+Documentation complète
+2. Stack Technique
+Frontend
+React + TypeScript
+SASS/Styled Components
+React Router
+Context API/Redux
+Jest & React Testing Library
+Backend
+Spring Boot
+MySQL
+JWT Authentication
+REST API
+3. Architecture
+Structure Frontend
+frontend/
+├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── hooks/
+│   ├── services/
+│   ├── utils/
+│   └── styles/
+
+Structure Backend
+backend/
+├── src/
+│   ├── controllers/
+│   ├── services/
+│   ├── models/
+│   └── config/
+
+4. Planning
+Phase 1: Setup & Design (Semaine 1)
+✅ Configuration projet
+✅ Maquettes Figma
+✅ Architecture base de données
+Phase 2: Core Development (Semaine 2-3)
+🏗️ Authentication
+🏗️ Chat functionality
+🏗️ Projects management
+Phase 3: Finalisation (Semaine 4)
+⏳ Tests
+⏳ Documentation
+⏳ Déploiement
+5. Fonctionnalités
+Utilisateur
+Login/Register
+Gestion profil
+Gestion conversations
+Paramètres personnalisés
+Chat
+Messages temps réel
+Formatage Markdown
+Copie messages
+Streaming réponses
+Projets
+Création/Modification
+Instructions personnalisées
+Organisation conversations
+6. Base de Données
+Schéma
+users
+conversations
+projects
+messages
+settings
+project_conversation
+
+Relations
+User → Conversations (1:N)
+Conversation → Messages (1:N)
+Project → Conversations (N:N)
+7. API Endpoints
+Authentication
+POST /auth/login
+POST /auth/register
+POST /auth/logout
+
+Conversations
+GET /conversations/list
+POST /conversations/create
+DELETE /conversations/delete
+
+8. Tests
+Frontend
+Tests unitaires (Jest)
+Tests d'intégration
+Tests E2E
+Backend
+Tests unitaires
+Tests API
+Tests performance
+9. Déploiement
+Étapes
+Build production
+Configuration serveurs
+Déploiement Frontend (Vercel)
+Déploiement Backend
+Tests production
+Monitoring
+Performance monitoring
+Error tracking
+Analytics
+📌 Links Utiles
+
+Figma
+GitHub
+Documentation
+Ce livrable reste évolutif et sera mis à jour régulièrement selon l'avancement du projet."
+
+"Fonctionnalités
+
+Utilisateur :
+login/sign in ;
+
+créer une conversation ;
+créer une project ;
+créer une conversation dans le project;
+envoyer des messages ;
+supprimer une conversation ;
+consulter une liste de conversation ;
+log out/sign out ;
+delete all chats ;
+delete account ;
+Proje﻿cts :
+créer un project ;
+Modifier un projet ;
+Supprimer un projet ;
+créer une conversation dans le project ;
+modifier une conversation dan le projet ;
+Supprimer une conversation dans le projet ;
+ajouter des Instructions dans le project ;
+Modifier des instructions dans le projet
+Conversations :
+Créer les conversation ;
+Envoyer des messages ;
+supprimer les conversations ;
+Formater la réponse qui est en md ;
+pouvoir copier le contenu de la réponse ;
+Réponse en temps réel (streaming de la réponse)
+ajouter message pu animation d'attente dans le front (3 points)
+conversation pour tic tac toc
+Messages :
+Envoyer des messages ;
+Recevoir des réponses ;
+Stopper la réponse ;
+Date et heure du message ;
+copier le message de l'IA
+Paramètres :
+bouton log out ;
+ -> settings ;
+ -> thème ;
+ -> delete account ;
+ -> Change password"
+
+"🔮 Stack Complète du Projet ClickTalk
+🌐 Frontend
+Technologies et outils pour construire l’interface utilisateur :
+
+React + TypeScript : Framework performant et typé pour développer une interface robuste.
+SASS / Styled Components : Gestion avancée des styles modulaires avec thèmes et composants dynamiques.
+React Router : Navigation fluide entre les différentes pages.
+Context API / Redux : Gestion de l’état global.
+Jest & React Testing Library : Tests unitaires et d’intégration pour valider les composants visuellement et fonctionnellement.
+🖥️ Backend
+La couche moteur pour la logique métier et la gestion des données :
+
+Spring Boot (Java) : Framework backend rapide, flexible et extensible.
+MySQL : Pour structurer et gérer les relations complexes (utilisateurs, projets, conversations).
+Spring Security + JWT : Authentification sécurisée via tokens, gestion des rôles utilisateur, protection des endpoints.
+REST API : Communication standardisée entre le frontend et le backend via des endpoints HTTP.
+🛠️ Développement Outils
+Gérer qualité, collaboration et flux de travail :
+
+Git + GitHub : Contrôle des versions et revue de code via pull requests.
+Postman : Tester et valider les API REST lors du développement.
+Maven : Gestionnaire de dépendances backend et automation des builds.
+ESLint & Prettier : Uniformiser le style et réduire les erreurs dans le code frontend.
+Swagger : Documentation interactive pour tester facilement les endpoints REST côté backend.
+🎨 Design
+Proposer une expérience utilisateur intuitive et esthétique :
+
+Figma : Création des maquettes UI (wireframes, design final).
+Miro : Collaboration visuelle pour discussions d’UX et brainstorming en équipe.
+Responsive Design avec CSS Grid et Flexbox : Optimisation pour tous les écrans (desktop, mobile, tablet).
+Design System : Centralisation des styles, couleurs, typographies et icônes pour une cohérence visuelle.
+🔒 Sécurité
+Assurer la protection des données et des communications :
+
+JWT (JSON Web Tokens) : Gestion des sessions sécurisées avec expiration.
+Spring Security : Gestion des permissions et protection des endpoints backend.
+Validation des données : Côté backend, pour éviter les injections SQL et autres attaques.
+HTTPS avec SSL : Chiffrement des échanges entre client et serveur.
+🚀 Déploiement
+Mettre le projet en production et le maintenir à jour :
+
+Vercel : Hébergement optimisé du frontend React.
+Backend : Déploiement via AWS, Heroku ou conteneurs Docker.
+CI/CD Pipelines :
+GitHub Actions : Automatisation des builds, des tests et des déploiements.
+Supervision Post-Déploiement :
+Sentry ou Datadog : Suivi des erreurs et bugs en production.
+Google Analytics ou Mixpanel : Suivi des interactions utilisateur.
+
+
+Résumé simplifié :
+
+Frontend (Vue Utilisateur) : React, SASS, Context API, Jest.
+Backend (Côté Serveur) : Spring Boot, MySQL, JWT, REST API.
+Design : Figma, Miro, Responsive, Design System.
+Sécurité : Spring Security, HTTPS, validation, JWT.
+Développement Outils : GitHub, Postman, Swagger, CI/CD.
+Déploiement : Vercel, AWS/Docker, monitoring avec Sentry."
+
+
+"frontend/
+├── public/
+│   ├── index.html
+│   ├── favicon.ico
+│   ├── assets/
+│   │   ├── images/
+│   │   │   └── logo.png
+│   │   └── icons/
+├──src/
+│   ├── routes/
+│   │   ├── Routes.config.tsx
+│   │   ├── Routes.types.ts
+│   │   ├── Routes.tsx
+│   │   └── Routes.test.tsx
+│   ├── components/
+│   │   ├── common/
+│   │   │   ├── Card/
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── Card.tsx
+│   │   │   │   ├── Card.scss
+│   │   │   │   ├── Card.test.tsx
+│   │   │   │   └── Card.types.ts
+│   │   │   ├── Button/
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── Button.tsx
+│   │   │   │   ├── Button.scss
+│   │   │   │   ├── Button.test.tsx
+│   │   │   │   └── Button.types.ts
+│   │   │   ├── Input/
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── Input.tsx
+│   │   │   │   ├── Input.scss
+│   │   │   │   ├── Input.test.tsx
+│   │   │   │   └── Input.types.ts
+│   │   │   ├── Modal/
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── Modal.tsx
+│   │   │   │   ├── Modal.scss
+│   │   │   │   ├── Modal.test.tsx
+│   │   │   │   └── Modal.types.ts
+│   │   │   ├── Navigation/
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── Navigation.tsx
+│   │   │   │   ├── Navigation.scss
+│   │   │   │   ├── Navigation.test.tsx
+│   │   │   │   └── Navigation.types.ts
+│   │   │   └── Icons/
+│   │   │       ├── index.tsx
+│   │   │       ├── Icons.tsx
+│   │   │       └── Icons.types.ts
+│   │   ├── layouts/
+│   │   │   ├── MainLayout/
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── MainLayout.tsx
+│   │   │   │   ├── MainLayout.scss
+│   │   │   │   ├── MainLayout.test.tsx
+│   │   │   │   └── MainLayout.types.ts
+│   │   │   ├── Sidebar/
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── Sidebar.tsx
+│   │   │   │   ├── Sidebar.scss
+│   │   │   │   ├── Sidebar.test.tsx
+│   │   │   │   └── Sidebar.types.ts
+│   │   │   └── Header/
+│   │   │       ├── index.tsx
+│   │   │       ├── Header.tsx
+│   │   │       ├── Header.scss
+│   │   │       ├── Header.test.tsx
+│   │   │       └── Header.types.ts
+│   │   ├── chat/
+│   │   │   ├── ChatWindow/
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── ChatWindow.tsx
+│   │   │   │   ├── ChatWindow.scss
+│   │   │   │   ├── ChatWindow.test.tsx
+│   │   │   │   └── ChatWindow.types.ts
+│   │   │   ├── MessageBubble/
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── MessageBubble.tsx
+│   │   │   │   ├── MessageBubble.scss
+│   │   │   │   ├── MessageBubble.test.tsx
+│   │   │   │   └── MessageBubble.types.ts
+│   │   │   └── MessageInput/
+│   │   │       ├── index.tsx
+│   │   │       ├── MessageInput.tsx
+│   │   │       ├── MessageInput.scss
+│   │   │       ├── MessageInput.test.tsx
+│   │   │       └── MessageInput.types.ts
+│   │   └── auth/
+│   │       ├── LoginForm/
+│   │       │   ├── index.tsx
+│   │       │   ├── LoginForm.tsx
+│   │       │   ├── LoginForm.scss
+│   │       │   ├── LoginForm.test.tsx
+│   │       │   └── LoginForm.types.ts
+│   │       └── RegisterForm/
+│   │           ├── index.tsx
+│   │           ├── RegisterForm.tsx
+│   │           ├── RegisterForm.scss
+│   │           ├── RegisterForm.test.tsx
+│   │           └── RegisterForm.types.ts
+│   ├── pages/
+│   │   ├── Home/
+│   │   │   ├── index.tsx
+│   │   │   ├── Home.tsx
+│   │   │   ├── Home.scss
+│   │   │   └── Home.test.tsx
+│   │   ├── Chat/
+│   │   │   ├── index.tsx
+│   │   │   ├── Chat.tsx
+│   │   │   ├── Chat.scss
+│   │   │   └── Chat.test.tsx
+│   │   └── Auth/
+│   │       ├── Auth.scss
+│   │       ├── Auth.test.tsx
+│   │       ├── Auth.tsx
+│   │       └── index.tsx
+│   ├── hooks/
+│   │   ├── useAuth/
+│   │   │   ├── index.ts
+│   │   │   ├── useAuth.ts
+│   │   │   └── useAuth.test.ts
+│   │   └── useChat/
+│   │       ├── index.ts
+│   │       ├── useChat.ts
+│   │       └── useChat.test.ts
+│   ├── services/
+│   │   ├── api/
+│   │   │   ├── index.ts
+│   │   │   ├── api.ts
+│   │   │   └── api.test.ts
+│   │   └── auth/
+│   │       ├── index.ts
+│   │       ├── auth.ts
+│   │       └── auth.test.ts
+│   ├── utils/
+│   │   ├── formatters/
+│   │   │   ├── index.ts
+│   │   │   ├── formatters.ts
+│   │   │   └── formatters.test.ts
+│   │   ├── helpers/
+│   │   │   ├── nullToUndefined.ts
+│   │   └── validators/
+│   │       ├── index.ts
+│   │       ├── validators.ts
+│   │       └── validators.test.ts
+│   ├── context/
+│   │   ├── AuthContext/
+│   │   │   ├── index.ts
+│   │   │   ├── AuthContext.ts
+│   │   │   └── AuthContext.test.ts
+│   │   └── ThemeContext/
+│   │       ├── index.ts
+│   │       ├── ThemeContext.ts
+│   │       └── ThemeContext.test.ts
+│   ├── types/
+│   │   ├── auth.types.ts
+│   │   ├── chat.types.ts
+│   │   └── common.types.ts
+│   └── styles/
+│       ├── global.scss
+│       ├── variables.scss
+│       └── mixins.scss
+├── tsconfig.js
+├── package.json
+├── react-icons.d.ts
+└── tsconfig.json
+"
+
+"Structure du projet backend :
+
+clicktalk/
+├── backend/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/
+│   │   │   │ └── greta
+│   │   │   │       └── clicktalk/
+│   │   │   │           ├── config/
+│   │   │   │           ├── controllers/
+│   │   │   │           ├── DAOs/
+│   │   │   │           ├── DTOs/
+│   │   │   │           ├── entities/
+│   │   │   │           ├── services/
+│   │   │   │           ├── security/
+│   │   │   └── resources/
+│   │   └── test/
+│   └── pom.xml
+│
+├── .env
+├── .envsample
+├── .gitignore
+└── README.md"
+
+"🌟 RECAP MISE À JOUR CLICKTALK
+📋 LÉGENDE
+✅ Terminé
+🏗️ En cours
+⏳ À faire
+❗ Priorité haute
+⭐ Point clé
+💡 Conseil
+⚠️ Point d'attention
+🔄 Nécessite révision
+🎨 Design
+🛠️ Développement
+🧪 Test
+
+🎯 PHASE PRÉLIMINAIRE : CONCEPTION (1 semaine)
+Jour 1-2 : Base de données
+✅ UML
+✅ Création du MCD
+✅ Création du MLD
+✅ Création du MPD
+✅ Création schéma ER
+✅ Validation architecture données
+⭐ Point clé : Bien définir les relations entre tables
+
+Jour 3-5 : Maquettes Figma
+✅ Wireframes principales pages
+✅ Login/Register
+✅ Interface chat
+✅ Settings
+✅ Design System simple
+✅ Couleurs
+✅ Typography
+✅ Composants principaux
+✅ Responsive design
+✅ Validation maquettes
+
+📅 SEMAINE 1 : SETUP & FONDATIONS
+Jour 1-2 : Configuration initiale
+✅ Création du projet React avec TypeScript
+✅ Configuration ESLint et Prettier (plugins installés)
+✅ Setup du système de routing
+✅ Configuration Git/GitHub
+✅ Structure des dossiers initiale
+✅ Installation des dépendances de base (react-router-dom, sass)
+✅ Création des composants de base vides
+💡 Conseil : Bien documenter la configuration pour l'équipe
+
+Jour 3-4 : Design System & Composants Base
+✅ Implémentation des styles globaux (responsivité incluse)
+✅ Création des variables SCSS (thèmes)
+✅ Création des mixins SCSS
+🏗️ Préparation des composants de base (structure prête mais refactoring en cours) :
+✅ Boutons
+✅ Inputs
+✅ Cards
+✅ Modals
+✅ Navigation
+⭐ Point clé : Garantir la cohérence et réutilisabilité
+
+Jour 5 : Layout & Navigation
+✅ Sidebar entièrement responsive :
+
+Composant Sidebar finalisé :
+✅ Gestion des événements (ajout, suppression, renommage des éléments).
+✅ Interaction fonctionnelle avec des props simulées (conversations, projets).
+✅ Boutons logout et ajout (conversation/projet).
+✅ SCSS responsive (desktop/tablette/mobile).
+✅ Tests automatisés validés sur le composant Sidebar.
+
+✅ Header terminé :
+Ajout du menu burger de navigation.
+Interaction fonctionnelle : ouverture/fermeture de la Sidebar avec l'état React.
+
+✅ MainLayout complet :
+Structure terminée et intégration fonctionnelle des composants.
+Support complet pour gestion des props et états dynamiques.
+Responsive design parfaitement fonctionnel (desktop/tablette/mobile).
+
+🏗️ Refactoring des styles en cours pour alignement globalement sur Sidebar et MainLayout.
+
+✅ Refactorisation complète du composant Button 🎉
+✅ Refactorisation complète du composant Input 🎉
+✅ Refactorisation complète du composant Card 🎉
+✅ Refactorisation complète du composant Modal 🎉
+
+✅ Refactorisation complète du composant Navigation 🎉
+
+SCSS :
+Centralisation des styles avec utilisation des variables SCSS existantes.
+Gestion des états interactifs (hover, focus, active) et des aspects responsives (affichage conditionnel des labels).
+Optimisation des transitions pour une expérience fluide.
+TypeScript :
+Typage clair et robuste des propriétés via des types centralisés (NavigationItem, NavigationProps).
+Ajustements du DOM pour inclure les attributs ARIA (accessibilité renforcée).
+Tests (Jest) :
+Vérification de l'état actif, des clics sur les liens et des appels à la fonction onNavigate.
+Gestion des cas avec ou sans icônes.
+Optimisation :
+Composant plus performant grâce à la réduction des redondances.
+Intégration fluide avec le Design System existant.
+❗ Priorité immédiate : Finaliser les pages Login/Register.
+
+
+📅 SEMAINE 2 : AUTHENTIFICATION & CHAT
+Jour 1-2 : Système d'authentification
+⏳ Pages Login/Register
+⏳ Formulaires avec validation
+⏳ Intégration JWT
+⏳ Routes protégées
+⏳ Context/Redux pour l'authentification
+⚠️ Point d'attention : Concentration sur la sécurité des données et gestion sécurisée des tokens
+
+Jour 3-4 : Fonctionnalités Chat
+⏳ Interface utilisateur de chat
+⏳ Envoi et réception de messages
+⏳ Gestion du formatage Markdown pour les messages
+⏳ Fonctionnalité de copie de messages
+⏳ Streaming des réponses en direct
+🔄 Tests de performances en temps réel
+
+Jour 5 : Settings & Préférences
+⏳ Page de paramètres (Settings)
+⏳ Support Thème clair/sombre via variables CSS/SCSS
+⏳ Préférences utilisateur persistantes (via localStorage)
+⏳ Gestion du compte utilisateur (modification ou suppression).
+⭐ Point clé : Une interface intuitive pour des réglages clairs et rapides.
+
+📅 SEMAINE 3 : PROJETS & OPTIMISATION
+Jour 1-2 : Gestion des Projets
+⏳ Fonctionnalités complètes CRUD (Create, Read, Update, Delete) pour les projets.
+⏳ Liste dynamique des conversations liées à un projet.
+⏳ Gestion avancée des "instructions personnalisées" par projet.
+⏳ Interface projet optimisée pour naviguer parmi les conversations.
+💡 Conseil : Priorité sur une UX fluide et une intégration avec la Sidebar.
+
+Jour 3-4 : Optimisation & Performance
+⏳ Code splitting pour réduire la taille des bundles.
+⏳ Lazy loading des composants secondaires.
+⏳ Optimisation des images (taille, formats, compression).
+⏳ Système de caching performant.
+⏳ Mise en place d'outils de monitoring pour optimiser les métriques de performance.
+❗ Priorité : Réduction drastique des temps de chargement pour tout appareil.
+
+Jour 5 : Tests Unitaires
+⏳ Tests des composants refactorisés.
+⏳ Tests des hooks custom (e.g., useChat, useAuth).
+⏳ Tests des services API utilisés côté frontend.
+⏳ Validation des utilitaires (validators, helpers, formatters).
+🧪 Objectif : Couverture de tests entre 70-80% minimum.
+
+📅 SEMAINE 4 : FINALISATION & DÉPLOIEMENT
+Jour 1-2 : Tests & Debug
+⏳ Tests d'intégration pour vérifier le bon fonctionnement entre composants (avec Redux et API).
+⏳ Tests E2E (End-to-End) avec simulateur d'utilisateur.
+⏳ Debug sur navigateurs variés : Safari, Edge, Chrome, Firefox, etc.
+⏳ Validation finale des performances (Lighthouse, Core Web Vitals).
+⚠️ Point d'attention : Compatibilité robuste sur les navigateurs modernes et legacy.
+
+Jour 3-4 : Documentation & Préparation
+⏳ Documentation technique claire et structurée pour toute l'équipe.
+⏳ Guide utilisateur pour les équipes internes ou les clients finaux.
+⏳ Préparatifs pour le déploiement (Netlify, Vercel ou autre).
+⏳ Build production propre (warnings nettoyés).
+⭐ Point clé : Une documentation précise mais concise.
+
+Jour 5 : Déploiement
+⏳ Configuration finale du serveur (backend et frontend).
+⏳ Déploiement public du frontend sur un environnement de production.
+⏳ Tests finaux sur l'environnement live.
+⏳ Monitoring temps réel des performances et du comportement des utilisateurs.
+🔄 Dernières vérifications avant la présentation ou le feedback final.
+
+📝 NOTES IMPORTANTES
+Daily standup à 9h30 : Synchronisation des priorités avec l'équipe.
+Revue de code quotidienne : Validation de chaque Pull Request.
+Push régulier sur GitHub : Commits fréquents et explicites.
+Documentation continue : À maintenir en parallèle des tâches pour limiter les oublis.
+Communication avec l'équipe backend pour assurer fluidité et uniformité du projet.
+
+📝 NOTES IMPORTANTES
+✅ Refactoring terminés pour les composants principaux (Navigation ajouté).
+💡 Focus sur la mise en œuvre des pages Login/Register."
+
+"Structure du projet backend :
+
+clicktalk/
+├── backend/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/
+│   │   │   │ └── greta
+│   │   │   │       └── clicktalk/
+│   │   │   │           ├── config/
+│   │   │   │           ├── controllers/
+│   │   │   │           ├── DAOs/
+│   │   │   │           ├── DTOs/
+│   │   │   │           ├── entities/
+│   │   │   │           ├── services/
+│   │   │   │           ├── security/
+│   │   │   └── resources/
+│   │   └── test/
+│   └── pom.xml
+│
+├── .env
+├── .envsample
+├── .gitignore
+└── README.md
+
+
+Liste des choses faites du cpoté backend :
+
+Auth System :
+
+- Implement user login/sign-in functionality.
+- Implement user account deletion functionality.
+- Implement password update functionality
+
+
+API Routes :
+
+- Endpoint: POST /auth/login
+- Endpoint: POST /auth/register
+- Endpoint: DELETE /auth/delete-account
+- Endpoint: PUT  auth/update-password
+- Endpoint: GET /conversation/all
+- Endpoint: GET /conversation/{conv_id}
+- Endpoint: GET /conversation/project/{project_id}
+- Endpoint: POST /conversation/create
+- Endpoint: DELETE /conversation/delete/{conv_id}
+- Endpoint: GET /project/all
+- Endpoint: POST /project/add
+- Endpoint: PUT /project/update
+- Endpoint: DELETE /project/delete/{project_id}
+- Endpoint: GET /messages/conv/{conv_id}
+- Endpoint: POST /messages/add
+
+
+DB Setup :
+- Design and implement the database schema for users.
+- Design and implement the database schema for conversations.
+- Design and implement the database schema for projects.
+- Design and implement the database schema for messages.
+- Design and implement the database schema for settings
+
+
+
+TODOLIST :
+
+Week 1: Core Setup & User Authentication
+
+Goal: Build the foundation and implement user authentication.
+Key Routes/Endpoints:
+POST /api/auth/signup (User sign-up)
+POST /api/auth/login (User login)
+POST /api/auth/logout (User logout)
+
+
+Week 2: Conversation Management
+
+Goal: Implement conversation creation, deletion, and listing.
+Key Routes/Endpoints:
+POST /api/conversations/create (Create conversation)
+DELETE /api/conversations/delete (Delete conversation)
+GET /api/conversations/list (List conversations)
+DELETE /api/conversations/delete-all (Delete all conversations)
+
+
+Week 3: Message Management
+
+Goal: Enable sending and fetching messages.
+Key Routes/Endpoints:
+POST /api/messages/send (Send message)
+GET /api/messages/list (Fetch messages)
+
+
+Week 4: Advanced Features & Deployment
+
+Goal: Finalize security, real-time features, and deploy.
+Key Routes/Endpoints:
+DELETE /api/auth/delete-account (Delete account)
+Optional: WebSocket/Socket.IO for real-time messaging"
+
+"@import 'variables';
+@import 'mixins';
+
+// Reset CSS de base
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px; // Remplacer facilement via variables si besoin
+  @supports (scroll-behavior: smooth) {
+    scroll-behavior: smooth; // Ajout de navigation fluide si supporté
+  }
+}
+
+// Body global
+body {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-size: $fs-md; // Texte par défaut
+  color: $color-text-primary; // Couleur principale texte
+  background-color: $background-color; // Fond principal
+  line-height: 1.6;
+  transition: all 0.3s ease-in-out; // Animation globale pour le thème
+}
+
+// Titres généraux (h1 à h6)
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: $color-text-primary;
+}
+
+// Liens généraux
+a {
+  text-decoration: none;
+  color: $primary-color;
+  transition: color 0.2s ease-in-out;
+  &:hover {
+    color: $primary-hover;
+  }
+}
+
+// Boutons par défaut
+button {
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+// Conteneurs réutilisables
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; // Assure que le conteneur occupe toute la hauteur
+}
+
+// Pour le thème sombre
+body.dark-mode {
+  background-color: $color-bg-dark;
+  color: $color-text-light;
+}
+"
+
+"// Centrage complet (horizontale/verticale)
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Distribution entre éléments avec espace
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Responsivité améliorée
+@mixin responsive($breakpoint, $type: max) {
+  @if $type == max {
+    @media (max-width: $breakpoint) {
+      @content;
+    }
+  } @else if $type == min {
+    @media (min-width: $breakpoint) {
+      @content;
+    }
+  }
+}
+
+// Gestion des ombres via niveaux
+@mixin shadow($level: sm) {
+  @if $level == sm {
+    box-shadow: $shadow-sm;
+  } @else if $level == md {
+    box-shadow: $shadow-md;
+  } @else if $level == lg {
+    box-shadow: $shadow-lg;
+  }
+}
+
+// Animation fluide : fade-in
+@mixin fade-in($duration: 0.3s, $easing: ease-in-out) {
+  animation: fadeIn $duration $easing;
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px); // Décalage visuel sur apparition
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+// Bouton générique (paramétrable pour la couleur)
+@mixin button($bg-color: $primary-color, $text-color: $color-text-light, $hover-bg: $primary-hover) {
+  display: inline-block;
+  padding: $sp-sm $sp-md;
+  font-size: $fs-sm;
+  color: $text-color;
+  background-color: $bg-color;
+  border: none;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background-color: $hover-bg;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+// Divider générique (ligne fine pour séparateurs)
+@mixin divider($color: $border-color, $opacity: 0.2) {
+  border: 0;
+  height: 1px;
+  background-color: $color;
+  opacity: $opacity;
+}
+"
+
+"// Palette de couleurs principales
+$primary-color: #7c3aed; // Couleur principale (violet)
+$primary-hover: #6d28d9; // Hover sur boutons principaux
+$secondary-color: #9333ea; // Couleur secondaire
+
+// Fonds et arrière-plans
+$background-color: #f3f4f6; // Arrière-plan principal
+$background-btn: #e7e7e7; // Fond pour boutons (gris clair)
+$background-btn-grey: #f9fafb; // Fond pour boutons gris très clair
+$color-bg-dark: #1f2937; // Fond sombre global
+$color-bg-dark-hover: #374151; // Hover pour fonds sombres
+$color-bg-light: darken($background-color, 5%); // Variation pour les composants clairs
+$sidebar-color: $color-bg-dark; // Couleur principale de la Sidebar
+
+// Texte et bordures
+$color-text-primary: #111827; // Couleur principale texte
+$color-text-secondary: lighten($color-text-primary, 30%); // Texte secondaire/moins contrasté
+$color-text-light: #9ca3af; // Texte clair pour fonds sombres
+$border-color: #383838; // Couleur des bordures générales
+
+// Messages
+$message-bg-user: #eef2ff; // Fond pour messages utilisateur
+$message-bg-bot: #ffffff; // Fond pour messages chatbot
+
+// Menus déroulants (dropdown)
+$dropdown-bg: #ffffff; // Fond des menus dropdown
+$dropdown-hover: #f3f4f6; // Hover sur items dropdown
+
+// Danger et états d'alerte
+$danger-color: #770b0d !default; // Exemples : rouge pour messages d'erreur
+$danger-hover: darken($danger-color, 10%); // Hover pour boutons rouges
+
+// Ombres
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05); // Ombre légère
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1); // Ombre modérée
+$shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.2); // Ombre plus forte
+
+// Radius (coins arrondis)
+$radius-sm: 0.25rem; // Rayon pour petits éléments
+$radius-md: 0.5rem; // Rayon pour éléments moyens
+$radius-lg: 0.75rem; // Rayon pour grands éléments
+
+// Espacements
+$sp-xs: 0.25rem; // Petit espacement
+$sp-sm: 0.5rem; // Moyen
+$sp-md: 1rem; // Standard
+$sp-lg: 1.5rem; // Large
+$sp-xl: 2rem; // Très large
+
+// Typographie
+$fs-sm: 0.875rem; // Texte petit
+$fs-md: 1rem; // Texte par défaut
+$fs-lg: 1.25rem; // Gros texte
+$fs-xl: 1.5rem; // Très gros texte
+
+// Points de rupture (breakpoints)
+$mobile: 480px; // Max-width = taille mobile
+$tablet: 768px; // Max-width = taille tablette
+$desktop: 1024px; // Max-width = desktop standard
+
+$sidebar-width: 350px; // Largeur standard de la Sidebar
+$color-light: #ffffff !default; // Exemple pour $color-light"
+
+"CREATE DATABASE IF NOT EXISTS clicktalk_db;
+
+use clicktalk_db;
+
+CREATE TABLE IF NOT EXISTS users (
+ id BIGINT AUTO_INCREMENT PRIMARY KEY ,
+        email VARCHAR(255) NOT NULL UNIQUE,
+        password VARCHAR(255) NOT NULL,
+        role VARCHAR(50) NOT NULL,
+        created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS conversations (
+        id BIGINT AUTO_INCREMENT PRIMARY KEY,
+        user_id bigint NOT NULL,
+        title VARCHAR(255) NOT NULL,
+        created_at TIMESTAMP DEFAULT NOW(),
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS projects(
+        id BIGINT AUTO_INCREMENT PRIMARY KEY,
+        user_id BIGINT,
+        title VARCHAR(255) NOT NULL ,
+        context LONGTEXT NOT NULL,
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS project_conversation(
+        project_id BIGINT,
+        conv_id BIGINT UNIQUE,
+        PRIMARY KEY (project_id,conv_id),
+        FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE,
+        FOREIGN KEY (conv_id) REFERENCES  conversations(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS messages (
+        id BIGINT AUTO_INCREMENT PRIMARY KEY,
+        conv_id BIGINT NOT NULL,
+        content LONGTEXT NOT NULL,
+        is_bot BOOLEAN NOT NULL,
+        created_at TIMESTAMP DEFAULT NOW(),
+        FOREIGN KEY (conv_id) REFERENCES conversations(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS settings (
+        id BIGINT AUTO_INCREMENT PRIMARY KEY,
+        user_id BIGINT NOT NULL,
+        theme VARCHAR(255) NOT NULL,
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+Clés primaires :
+id pour la table Users
+id pour la table Conversations
+id pour la table projects
+(project_id, conv_id) pour la table project_conversation
+id pour la table Messages
+id pour la table Settings
+Clés étrangères :
+user_id dans la table Conversations référence la table Users
+user_id dans la table project référence la table users
+conv_id dans la table Messages référence la table Conversations
+conv_id dans la table project_conversation référence la table conversation
+project_id dans la table project_conversation référence la table projects
+user_id dans la table Settings référence la table Users"
+
+Fichiers nécessaires pour commencer l'implémentation
+Pour mettre en œuvre les pages Login/Register et le système d'authentification, voici les fichiers existants dont j'aurais besoin :
+
+Structure et configuration
+src/routes/Routes.tsx ou Routes.config.tsx - Pour comprendre la configuration actuelle des routes
+src/components/auth/LoginForm/LoginForm.tsx (s'il existe déjà)
+src/components/auth/RegisterForm/RegisterForm.tsx (s'il existe déjà)
+src/pages/Auth/Auth.tsx - Page principale d'authentification
+src/context/AuthContext/AuthContext.ts (s'il existe déjà)
+Services et utils
+src/services/api/api.ts - Configuration de base des appels API
+src/services/auth/auth.ts - Service d'authentification
+src/utils/validators/validators.ts - Validateurs pour formulaires
+Styles et composants communs
+src/styles/variables.scss - Pour connaître les variables de style disponibles
+src/components/common/Button/Button.tsx - Composant bouton refactorisé
+src/components/common/Input/Input.tsx - Composant input refactorisé
+Types
+src/types/auth.types.ts - Types liés à l'authentification
+
+
+Entièreté des fichiers frontend :
+/home/greta/Desktop/workspace/Formation_Langages_Cie/Greta/Projet-de-Groupe/Project-ClickTalk/ClickTalk-frontend/public
+/home/greta/Desktop/workspace/Formation_Langages_Cie/Greta/Projet-de-Groupe/Project-ClickTalk/ClickTalk-frontend/src
+/home/greta/Desktop/workspace/Formation_Langages_Cie/Greta/Projet-de-Groupe/Project-ClickTalk/ClickTalk-frontend/.env
+/home/greta/Desktop/workspace/Formation_Langages_Cie/Greta/Projet-de-Groupe/Project-ClickTalk/ClickTalk-frontend/package-lock.json
+/home/greta/Desktop/workspace/Formation_Langages_Cie/Greta/Projet-de-Groupe/Project-ClickTalk/ClickTalk-frontend/package.json
+/home/greta/Desktop/workspace/Formation_Langages_Cie/Greta/Projet-de-Groupe/Project-ClickTalk/ClickTalk-frontend/tsconfig.json
+
+Certains de ces fichiers existent déjà et ont du contenu déjà présent d'une ancienne tentative ratée pour l'étape d'authentification dans le RECAP. Il faut effacer tout ce qui concerne l'authentification pour repartir de zéro.

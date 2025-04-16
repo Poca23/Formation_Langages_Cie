@@ -1,0 +1,211 @@
+🌟 RECAP MISE À JOUR CLICKTALK
+📋 LÉGENDE
+✅ Terminé
+🏗️ En cours
+⏳ À faire
+❗ Priorité haute
+⭐ Point clé
+💡 Conseil
+⚠️ Point d'attention
+🔄 Nécessite révision
+🎨 Design
+🛠️ Développement
+🧪 Test
+
+🎯 PHASE PRÉLIMINAIRE : CONCEPTION (1 semaine)
+Jour 1-2 : Base de données
+✅ UML
+✅ Création du MCD
+✅ Création du MLD
+✅ Création du MPD
+✅ Création schéma ER
+✅ Validation architecture données
+⭐ Point clé : Bien définir les relations entre tables
+
+Jour 3-5 : Maquettes Figma
+✅ Wireframes principales pages
+✅ Login/Register
+✅ Interface chat
+✅ Settings
+✅ Design System simple
+✅ Couleurs
+✅ Typography
+✅ Composants principaux
+✅ Responsive design
+✅ Validation maquettes
+
+📅 SEMAINE 1 : SETUP & FONDATIONS
+Jour 1-2 : Configuration initiale
+✅ Création du projet React avec TypeScript
+✅ Configuration ESLint et Prettier (plugins installés)
+✅ Setup du système de routing
+✅ Configuration Git/GitHub
+✅ Structure des dossiers initiale
+✅ Installation des dépendances de base (react-router-dom, sass)
+✅ Création des composants de base vides
+💡 Conseil : Bien documenter la configuration pour l'équipe
+
+Jour 3-4 : Design System & Composants Base
+✅ Implémentation des styles globaux (responsivité incluse)
+✅ Création des variables SCSS (thèmes)
+✅ Création des mixins SCSS
+✅ Préparation des composants de base :
+
+✅ Boutons
+✅ Inputs
+✅ Cards
+✅ Modals
+✅ Navigation
+⭐ Point clé : Garantir la cohérence et réutilisabilité
+
+Jour 5 : Layout & Navigation
+Composant Sidebar finalisé :
+✅ Gestion des événements (ajout, suppression, renommage des éléments)
+✅ Interaction fonctionnelle avec des props simulées (conversations, projets)
+✅ Boutons logout et ajout (conversation/projet)
+✅ SCSS responsive (desktop/tablette/mobile)
+✅ Tests automatisés validés sur le composant Sidebar
+✅ Sidebar fonctionnelle avec ouverture/fermeture par icônes Home
+
+Header terminé :
+✅ Ajout du menu burger de navigation (fonctionnalité future)
+✅ Ajout de l'icône Home pour contrôler la Sidebar
+✅ Interaction fonctionnelle : ouverture/fermeture de la Sidebar avec l'état React
+
+MainLayout complet :
+✅ Structure terminée et intégration fonctionnelle des composants
+✅ Support complet pour gestion des props et états dynamiques
+✅ Responsive design parfaitement fonctionnel (desktop/tablette/mobile)
+✅ Comportement optimisé: sidebar en overlay plutôt qu'en push
+
+Refactorisation complète des composants :
+✅ Composant Button
+✅ Composant Input
+✅ Composant Card
+✅ Composant Modal
+✅ Composant Navigation
+
+Optimisations :
+✅ Centralisation des styles avec variables SCSS
+✅ Gestion des états interactifs et responsive
+✅ Typage TypeScript robuste
+✅ Tests unitaires pour les composants principaux
+✅ Configuration des future flags pour React Router v7
+
+🏗️ BACKEND - ÉTAT ACTUEL
+Base de données
+✅ Schéma DB créé avec tables (users, conversations, projects, messages, settings)
+✅ Relations et clés étrangères définies
+✅ Structure finale validée
+
+Auth System
+✅ Login/Sign-in fonctionnel
+✅ Suppression de compte
+✅ Mise à jour de mot de passe
+✅ JWT implémenté
+
+API Endpoints
+✅ Routes auth (/auth/login, /auth/register, /auth/delete-account, /auth/update-password)
+✅ Routes conversation (/conversation/all, /conversation/{conv_id}, etc.)
+✅ Routes project (/project/all, /project/add, etc.)
+✅ Routes messages (/messages/conv/{conv_id}, /messages/add)
+
+📅 SEMAINE 2 : AUTHENTIFICATION & CHAT
+Jour 1-2 : Système d'authentification
+✅ Pages Login/Register créées
+✅ Formulaires avec validation implémentés
+✅ Intégration visuelle du logo ClickTalk
+✅ Navigation fonctionnelle entre les formulaires
+✅ Correction des problèmes de navigation entre formulaires d'authentification
+✅ Intégration JWT avec backend
+✅ Routes protégées
+✅ Context pour l'authentification
+✅ Gestion des erreurs d'authentification
+✅ Navigation post-authentification fonctionnelle
+✅ Persistance des données utilisateur
+⚠️ Point d'attention : Concentration sur la sécurité des données et gestion sécurisée des tokens
+
+Jour 3-4 : Fonctionnalités Chat
+⏳ Interface utilisateur de chat
+⏳ Envoi et réception de messages
+⏳ Gestion du formatage Markdown pour les messages
+⏳ Fonctionnalité de copie de messages
+⏳ Streaming des réponses en direct
+🔄 Tests de performances en temps réel
+
+Jour 5 : Settings & Préférences
+⏳ Page de paramètres (Settings)
+⏳ Support Thème clair/sombre via variables CSS/SCSS
+⏳ Préférences utilisateur persistantes (via localStorage)
+⏳ Gestion du compte utilisateur (modification ou suppression)
+⭐ Point clé : Une interface intuitive pour des réglages clairs et rapides
+
+📅 SEMAINE 3 : PROJETS & OPTIMISATION
+Jour 1-2 : Gestion des Projets
+⏳ Fonctionnalités complètes CRUD (Create, Read, Update, Delete) pour les projets
+⏳ Liste dynamique des conversations liées à un projet
+⏳ Gestion avancée des "instructions personnalisées" par projet
+⏳ Interface projet optimisée pour naviguer parmi les conversations
+💡 Conseil : Priorité sur une UX fluide et une intégration avec la Sidebar
+
+Jour 3-4 : Optimisation & Performance
+⏳ Code splitting pour réduire la taille des bundles
+⏳ Lazy loading des composants secondaires
+⏳ Optimisation des images (taille, formats, compression)
+⏳ Système de caching performant
+⏳ Mise en place d'outils de monitoring pour optimiser les métriques de performance
+❗ Priorité : Réduction drastique des temps de chargement pour tout appareil
+
+Jour 5 : Tests Unitaires
+⏳ Tests des composants refactorisés
+⏳ Tests des hooks custom (e.g., useChat, useAuth)
+⏳ Tests des services API utilisés côté frontend
+⏳ Validation des utilitaires (validators, helpers, formatters)
+🧪 Objectif : Couverture de tests entre 70-80% minimum
+
+📅 SEMAINE 4 : FINALISATION & DÉPLOIEMENT
+Jour 1-2 : Tests & Debug
+⏳ Tests d'intégration pour vérifier le bon fonctionnement entre composants
+⏳ Tests E2E (End-to-End) avec simulateur d'utilisateur
+⏳ Debug sur navigateurs variés : Safari, Edge, Chrome, Firefox, etc.
+⏳ Validation finale des performances (Lighthouse, Core Web Vitals)
+⚠️ Point d'attention : Compatibilité robuste sur les navigateurs modernes et legacy
+
+Jour 3-4 : Documentation & Préparation
+⏳ Documentation technique claire et structurée pour toute l'équipe
+⏳ Guide utilisateur pour les équipes internes ou les clients finaux
+⏳ Préparatifs pour le déploiement (Netlify, Vercel ou autre)
+⏳ Build production propre (warnings nettoyés)
+⭐ Point clé : Une documentation précise mais concise
+
+Jour 5 : Déploiement
+⏳ Configuration finale du serveur (backend et frontend)
+⏳ Déploiement public du frontend sur un environnement de production
+⏳ Tests finaux sur l'environnement live
+⏳ Monitoring temps réel des performances et du comportement des utilisateurs
+🔄 Dernières vérifications avant la présentation ou le feedback final
+
+📝 NOTES IMPORTANTES
+✅ Refactoring terminés pour les composants principaux (Navigation ajouté)
+✅ Problèmes d'avertissements React Router résolus avec future flags
+✅ Intégration du logo et nom de l'application sur l'interface d'authentification
+✅ Correction des liens de navigation entre formulaires dans Auth
+✅ Amélioration du système de navigation dans les formulaires d'authentification (boutons vs liens)
+✅ Ajout de styles spécifiques pour les boutons de type lien dans les formulaires
+✅ Intégration fonctionnelle JWT avec backend
+✅ Correction des problèmes de navigation post-authentification
+✅ Sidebar optimisée avec comportement overlay au lieu de push content
+✅ Icônes Home (header et sidebar) pour contrôler l'ouverture/fermeture de la sidebar
+✅ Menu hamburger réservé pour une future fonctionnalité
+❗ Priorité immédiate : Développer l'interface de chat
+💡 Maintenir la cohérence avec le Design System
+📊 Daily standup à 9h30 : Synchronisation des priorités avec l'équipe
+🔄 Revue de code quotidienne : Validation de chaque Pull Request
+📝 Documentation continue : À maintenir en parallèle des tâches
+🔄 Communication régulière avec l'équipe backend pour assurer fluidité du projet
+
+🔧 STACK TECHNIQUE
+Frontend : React, TypeScript, SASS, React Router, Context API
+Backend : Spring Boot, MySQL, JWT, REST API
+Tests : Jest, React Testing Library
+Déploiement : Vercel (front), AWS/Heroku/Docker (back)

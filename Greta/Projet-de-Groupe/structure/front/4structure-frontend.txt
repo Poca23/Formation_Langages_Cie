@@ -1,0 +1,240 @@
+├── package.json
+├── package-lock.json
+├── public
+│   ├── assets
+│   │   └── images
+│   │       ├── avatar-assistant.png
+│   │       ├── avatar-assistant.webp
+│   │       ├── logo.png
+│   │       └── logo.webp
+│   ├── favicon.ico
+│   ├── index.html
+│   ├── logo192.png
+│   ├── logo512.png
+│   ├── manifest.json
+│   ├── robots.txt
+│   └── service-worker.js
+├── README.md
+├── src
+│   ├── App.css
+│   ├── App.test.tsx
+│   ├── App.tsx
+│   ├── components
+│   │   ├── auth
+│   │   │   ├── LoginForm
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── LoginForm.scss
+│   │   │   │   ├── LoginForm.test.tsx
+│   │   │   │   ├── LoginForm.tsx
+│   │   │   │   └── LoginForm.types.ts
+│   │   │   └── RegisterForm
+│   │   │       ├── index.tsx
+│   │   │       ├── RegisterForm.scss
+│   │   │       ├── RegisterForm.test.tsx
+│   │   │       ├── RegisterForm.tsx
+│   │   │       └── RegisterForm.types.ts
+│   │   ├── chat
+│   │   │   ├── ChatContainer
+│   │   │   │   ├── ChatContainer.scss
+│   │   │   │   ├── ChatContainer.tsx
+│   │   │   │   ├── ChatContainer.types.ts
+│   │   │   │   └── index.tsx
+│   │   │   ├── ChatInput
+│   │   │   │   ├── ChatInput.scss
+│   │   │   │   ├── ChatInput.tsx
+│   │   │   │   ├── ChatInput.types.ts
+│   │   │   │   └── index.tsx
+│   │   │   ├── ChatMessages
+│   │   │   │   ├── ChatMessages.scss
+│   │   │   │   ├── ChatMessages.tsx
+│   │   │   │   ├── ChatMessages.types.ts
+│   │   │   │   └── index.tsx
+│   │   │   ├── LoadingIndicator
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── LoadingIndicator.scss
+│   │   │   │   ├── LoadingIndicator.tsx
+│   │   │   │   └── LoadingIndicator.types.ts
+│   │   │   ├── MessageBubble
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── MessageBubble.scss
+│   │   │   │   ├── MessageBubble.tsx
+│   │   │   │   └── MessageBubble.types.ts
+│   │   │   └── PerformanceMonitor
+│   │   │       ├── index.tsx
+│   │   │       ├── PerformanceMonitor.scss
+│   │   │       └── PerformanceMonitor.tsx
+│   │   ├── common
+│   │   │   ├── Button
+│   │   │   │   ├── Button.scss
+│   │   │   │   ├── Button.test.tsx
+│   │   │   │   ├── Button.tsx
+│   │   │   │   ├── Button.types.ts
+│   │   │   │   └── index.tsx
+│   │   │   ├── Card
+│   │   │   │   ├── Card.scss
+│   │   │   │   ├── Card.test.tsx
+│   │   │   │   ├── Card.tsx
+│   │   │   │   ├── Card.types.ts
+│   │   │   │   └── index.tsx
+│   │   │   ├── HeaderMenu
+│   │   │   │   ├── HeaderMenu.scss
+│   │   │   │   └── HeaderMenu.tsx
+│   │   │   ├── Input
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── Input.scss
+│   │   │   │   ├── Input.test.tsx
+│   │   │   │   ├── Input.tsx
+│   │   │   │   └── Input.types.ts
+│   │   │   ├── Modal
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── Modal.scss
+│   │   │   │   ├── Modal.test.tsx
+│   │   │   │   ├── Modal.tsx
+│   │   │   │   └── Modal.types.ts
+│   │   │   ├── Navigation
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── Navigation.scss
+│   │   │   │   ├── Navigation.test.tsx
+│   │   │   │   ├── Navigation.tsx
+│   │   │   │   └── Navigation.types.ts
+│   │   │   └── OptimizedImage
+│   │   │       ├── index.ts
+│   │   │       ├── OptimizedImage.scss
+│   │   │       └── OptimizedImage.tsx
+│   │   ├── ErrorBoundary
+│   │   │   └── ErrorBoundary.tsx
+│   │   ├── layouts
+│   │   │   ├── Header
+│   │   │   │   ├── Header.scss
+│   │   │   │   ├── Header.test.tsx
+│   │   │   │   ├── Header.tsx
+│   │   │   │   ├── Header.types.ts
+│   │   │   │   └── index.tsx
+│   │   │   ├── MainLayout
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── MainLayout.scss
+│   │   │   │   ├── MainLayout.test.tsx
+│   │   │   │   ├── MainLayout.tsx
+│   │   │   │   └── MainLayout.types.ts
+│   │   │   └── Sidebar
+│   │   │       ├── index.tsx
+│   │   │       ├── Sidebar.scss
+│   │   │       ├── Sidebar.test.tsx
+│   │   │       ├── Sidebar.tsx
+│   │   │       └── Sidebar.types.tsx
+│   │   ├── modals
+│   │   │   ├── AccountModal
+│   │   │   │   ├── AccountModal.scss
+│   │   │   │   └── AccountModal.tsx
+│   │   │   ├── HelpModal
+│   │   │   │   ├── HelpModal.scss
+│   │   │   │   └── HelpModal.tsx
+│   │   │   ├── Modals.scss
+│   │   │   └── ThemeModal
+│   │   │       ├── ThemeModal.scss
+│   │   │       └── ThemeModal.tsx
+│   │   ├── project
+│   │   │   ├── ProjectContextPopup
+│   │   │   │   ├── ProjectContextPopup.scss
+│   │   │   │   └── ProjectContextPopup.tsx
+│   │   │   ├── ProjectForm
+│   │   │   │   ├── ProjectForm.scss
+│   │   │   │   └── ProjectForm.tsx
+│   │   │   └── ProjectSidebar
+│   │   │       ├── ProjectSidebar.scss
+│   │   │       └── ProjectSidebar.tsx
+│   │   └── route
+│   │       └── ProtectedRoute.tsx
+│   ├── config
+│   │   └── environment.ts
+│   ├── context
+│   │   ├── AuthContext
+│   │   │   ├── AuthContext.tsx
+│   │   │   └── index.ts
+│   │   ├── ConversationsContext
+│   │   │   └── ConversationsContext.tsx
+│   │   ├── ModalContext
+│   │   │   └── ModalContext.tsx
+│   │   ├── ProjectsContext
+│   │   │   └── ProjectsContext.tsx
+│   │   └── ThemeContext
+│   │       └── ThemeContext.tsx
+│   ├── hooks
+│   │   ├── useAuth
+│   │   │   └── useAuth.ts
+│   │   ├── useChat
+│   │   │   └── useChat.ts
+│   │   ├── useConversation
+│   │   │   └── useConversation.ts
+│   │   ├── usePerformanceMetrics
+│   │   │   └── usePerformanceMetrics.ts
+│   │   └── useProject
+│   │       └── useProject.ts
+│   ├── index.css
+│   ├── index.tsx
+│   ├── logo.svg
+│   ├── pages
+│   │   ├── Auth
+│   │   │   ├── Auth.scss
+│   │   │   ├── Auth.test.tsx
+│   │   │   ├── Auth.tsx
+│   │   │   └── index.tsx
+│   │   ├── Chat
+│   │   │   ├── Chat.scss
+│   │   │   ├── Chat.tsx
+│   │   │   └── index.tsx
+│   │   ├── Home
+│   │   │   ├── Home.scss
+│   │   │   ├── Home.tsx
+│   │   │   └── index.tsx
+│   │   ├── NotFound
+│   │   │   ├── index.tsx
+│   │   │   ├── NotFound.scss
+│   │   │   └── NotFound.tsx
+│   │   ├── Project
+│   │   │   ├── Project.scss
+│   │   │   └── Project.tsx
+│   │   └── Settings
+│   │       ├── Settings.scss
+│   │       └── Settings.tsx
+│   ├── react-icons.d.ts
+│   ├── reportWebVitals.ts
+│   ├── routes
+│   │   ├── Routes.config.tsx
+│   │   ├── Routes.test.tsx
+│   │   ├── Routes.tsx
+│   │   └── Routes.types.ts
+│   ├── services
+│   │   ├── api
+│   │   │   └── api.ts
+│   │   ├── auth
+│   │   │   ├── auth.test.ts
+│   │   │   ├── auth.ts
+│   │   │   └── index.ts
+│   │   ├── conversation
+│   │   │   └── conversation.ts
+│   │   └── project
+│   │       └── project.ts
+│   ├── serviceWorkerRegistration.ts
+│   ├── setupTests.ts
+│   ├── styles
+│   │   ├── global.scss
+│   │   ├── mixins.scss
+│   │   └── variables.scss
+│   ├── types
+│   │   ├── auth.types.ts
+│   │   ├── chat.types.ts
+│   │   ├── common.types.ts
+│   │   ├── conversation.types.ts
+│   │   └── project.types.ts
+│   └── utils
+│       ├── formatters
+│       │   ├── date.formatter.ts
+│       │   └── text.formatter.ts
+│       ├── helpers
+│       │   └── nullToUndefined.ts
+│       ├── performance
+│       │   └── metrics.ts
+│       └── validators
+│           └── validators.ts
+└── tsconfig.json

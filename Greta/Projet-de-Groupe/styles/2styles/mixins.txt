@@ -1,0 +1,39 @@
+/* Alignement central */
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Espace entre les éléments
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// Responsivité
+@mixin responsive($breakpoint) {
+  @if $breakpoint == mobile {
+    @media (max-width: $mobile) {
+      @content;
+    }
+  } @else if $breakpoint == tablet {
+    @media (max-width: $tablet) {
+      @content;
+    }
+  } @else if $breakpoint == desktop {
+    @media (max-width: $desktop) {
+      @content;
+    }
+  }
+}
+
+// Ombres par défaut
+@mixin shadow($level: sm) {
+  @if $level == sm {
+    box-shadow: $shadow-sm;
+  } @else if $level == md {
+    box-shadow: $shadow-md;
+  }
+}

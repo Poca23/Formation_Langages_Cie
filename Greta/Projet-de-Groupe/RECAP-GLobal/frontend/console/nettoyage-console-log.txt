@@ -1,0 +1,54 @@
+Plan de nettoyage des console.log fichier par fichier
+Sur base de la structure du projet, je vous propose une approche systématique pour nettoyer les console.log. Commençons par identifier les zones les plus susceptibles de contenir des console.log:
+
+📋 Priorités de nettoyage
+Hooks et Contexts - Contiennent souvent des console.log pour déboguer les états
+Services API - Contiennent des console.log pour suivre les requêtes/réponses
+Composants de chat - La fonctionnalité principale avec beaucoup de logique
+Composants d'authentification - Souvent débogués avec console.log
+Composants de projet - Fonctionnalités complexes probablement débogués
+Autres composants UI - Vérification après les cas critiques
+🔍 Processus de nettoyage conseillé
+Pour chaque fichier:
+
+Ouvrir le fichier
+Rechercher toutes les occurrences de console.log, console.error, console.warn et console.info
+Évaluer si le log peut être supprimé sans danger
+Supprimer ou commenter le log (en ajoutant un préfixe // DEBUG: pour les logs à conserver temporairement)
+Vérifier le fonctionnement de l'application après chaque groupe de modifications
+Commençons par les principaux fichiers qui contiennent probablement des console.log:
+
+1️⃣ Hooks - Très susceptibles de contenir des console.log
+src/hooks/useAuth/useAuth.ts
+src/hooks/useChat/useChat.ts
+src/hooks/useConversation/useConversation.ts
+src/hooks/useProject/useProject.ts
+
+2️⃣ Services API - Logs de requêtes/réponses
+src/services/api/api.ts
+src/services/auth/auth.ts
+src/services/conversation/conversation.ts
+src/services/project/project.ts
+
+3️⃣ Composants Chat - Logs de débogage pour la fonctionnalité principale
+src/components/chat/ChatContainer/ChatContainer.tsx
+src/components/chat/ChatInput/ChatInput.tsx
+src/components/chat/ChatMessages/ChatMessages.tsx
+src/components/chat/MessageBubble/MessageBubble.tsx
+
+4️⃣ Contextes - Gestionnaires d'état global
+src/context/AuthContext/AuthContext.tsx
+src/context/ModalContext/ModalContext.tsx
+src/context/ThemeContext/ThemeContext.tsx
+
+5️⃣ Composants d'authentification et de projet
+src/components/auth/LoginForm/LoginForm.tsx
+src/components/auth/RegisterForm/RegisterForm.tsx
+src/components/project/ProjectForm/ProjectForm.tsx
+src/components/project/ProjectSidebar/ProjectSidebar.tsx
+src/components/project/ProjectContextPopup/ProjectContextPopup.tsx
+
+6️⃣ Modales et composants UI
+src/components/modals/AccountModal/AccountModal.tsx
+src/components/modals/ThemeModal/ThemeModal.tsx
+src/components/modals/HelpModal/HelpModal.tsx

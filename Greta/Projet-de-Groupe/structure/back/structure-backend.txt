@@ -1,25 +1,89 @@
-Structure du projet backend :
-
-clicktalk/
-├── backend/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── com/
-│   │   │   │ └── greta
-│   │   │   │       └── clicktalk/
-│   │   │   │           ├── config/
-│   │   │   │           ├── controllers/
-│   │   │   │           ├── DAOs/
-│   │   │   │           ├── DTOs/
-│   │   │   │           ├── entities/
-│   │   │   │           ├── services/
-│   │   │   │           ├── security/
-│   │   │   └── resources/
-│   │   └── test/
-│   └── pom.xml
-│
-├── .env
-├── .envsample
-├── .gitignore
-└── README.md
+├── mvnw
+├── mvnw.cmd
+├── pom.xml
+├── README.md
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── com
+│   │   │       └── greta
+│   │   │           └── clicktalk
+│   │   │               ├── ClickTalkApplication.java
+│   │   │               ├── config
+│   │   │               │   ├── DataSourceConfig.java
+│   │   │               │   ├── SecurityConfig.java
+│   │   │               │   └── SwaggerConfig.java
+│   │   │               ├── controllers
+│   │   │               │   ├── AuthController.java
+│   │   │               │   ├── ConversationController.java
+│   │   │               │   ├── MessageController.java
+│   │   │               │   ├── ProjectController.java
+│   │   │               │   └── SettingController.java
+│   │   │               ├── DAOs
+│   │   │               │   ├── ConversationDao.java
+│   │   │               │   ├── MessageDao.java
+│   │   │               │   ├── ProjectConversationDao.java
+│   │   │               │   ├── ProjectDao.java
+│   │   │               │   ├── SettingDao.java
+│   │   │               │   └── UserDao.java
+│   │   │               ├── DTOs
+│   │   │               │   ├── ProjectResponseDTO.java
+│   │   │               │   ├── SendMessageRequestDTO.java
+│   │   │               │   └── UpdatePasswordRequestDTO.java
+│   │   │               ├── entities
+│   │   │               │   ├── Conversation.java
+│   │   │               │   ├── CustomUserDetails.java
+│   │   │               │   ├── Message.java
+│   │   │               │   ├── ProjectConversation.java
+│   │   │               │   ├── Project.java
+│   │   │               │   ├── Setting.java
+│   │   │               │   └── User.java
+│   │   │               ├── excetions
+│   │   │               │   ├── AuthExceptionHandler.java
+│   │   │               │   ├── ConversationAlreadyAssignedException.java
+│   │   │               │   ├── GlobalExceptionHandler.java
+│   │   │               │   └── ResourceNotFoundException.java
+│   │   │               ├── security
+│   │   │               │   └── JwtFilter.java
+│   │   │               └── services
+│   │   │                   ├── CustomUserDetailsService.java
+│   │   │                   ├── DeepSeekService.java
+│   │   │                   ├── GetAllConversationsService.java
+│   │   │                   ├── JwtUtil.java
+│   │   │                   ├── MessagesService.java
+│   │   │                   └── PasswordUpdateService.java
+│   │   └── resources
+│   │       ├── application.properties
+│   │       └── schema.sql
+└── target
+    ├── classes
+    │   ├── application.properties
+    │   ├── com
+    │   │   └── greta
+    │   └── schema.sql
+    ├── ClickTalk-0.0.1-SNAPSHOT.jar
+    ├── ClickTalk-0.0.1-SNAPSHOT.jar.original
+    ├── generated-sources
+    │   └── annotations
+    ├── generated-test-sources
+    │   └── test-annotations
+    ├── maven-archiver
+    │   └── pom.properties
+    ├── maven-status
+    │   └── maven-compiler-plugin
+    │       ├── compile
+    │       │   └── default-compile
+    │       │       ├── createdFiles.lst
+    │       │       └── inputFiles.lst
+    │       └── testCompile
+    │           └── default-testCompile
+    │               ├── createdFiles.lst
+    │               └── inputFiles.lst
+    ├── surefire-reports
+    │   ├── com.greta.clicktalk.ClickTalkApplicationTests.txt
+    │   └── TEST-com.greta.clicktalk.ClickTalkApplicationTests.xml
+    └── test-classes
+        └── com
+            └── greta
+                └── clicktalk
+                    └── ClickTalkApplicationTests.class

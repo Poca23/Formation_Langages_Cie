@@ -1,0 +1,211 @@
+🌟 RECAP MISE À JOUR CLICKTALK
+📋 LÉGENDE
+✅ Terminé
+🏗️ En cours
+⏳ À faire
+❗ Priorité haute
+⭐ Point clé
+💡 Conseil
+⚠️ Point d'attention
+🔄 Nécessite révision
+🎨 Design
+🛠️ Développement
+🧪 Test
+
+🎯 PHASE PRÉLIMINAIRE : CONCEPTION (1 semaine)
+Jour 1-2 : Base de données
+✅ UML
+✅ Création du MCD
+✅ Création du MLD
+✅ Création du MPD
+✅ Création schéma ER
+✅ Validation architecture données
+⭐ Point clé : Bien définir les relations entre tables.
+
+Jour 3-5 : Maquettes Figma
+✅ Wireframes principales pages
+✅ Login/Register
+✅ Interface chat
+✅ Settings
+✅ Design System simple
+✅ Couleurs
+✅ Typography
+✅ Composants principaux
+✅ Responsive design
+✅ Validation maquettes
+
+📅 SEMAINE 1 : SETUP & FONDATIONS
+Jour 1-2 : Configuration initiale
+✅ Création du projet React avec TypeScript
+✅ Configuration ESLint et Prettier (plugins installés)
+✅ Setup du système de routing
+✅ Configuration Git/GitHub
+✅ Structure des dossiers initiale
+✅ Installation des dépendances de base (react-router-dom, sass)
+✅ Création des composants de base vides
+💡 Conseil : Bien documenter la configuration pour l'équipe.
+
+Jour 3-4 : Design System & Composants Base
+✅ Implémentation des styles globaux (responsivité incluse).
+✅ Création des variables SCSS (thèmes).
+✅ Création des mixins SCSS.
+✅ Préparation des composants de base :
+✅ Boutons
+✅ Inputs
+✅ Cards
+✅ Modals
+✅ Navigation
+⭐ Point clé : Garantir la cohérence et réutilisabilité.
+
+Jour 5 : Layout & Navigation
+✅ Sidebar entièrement responsive :
+
+Gestion des événements (ajout, suppression, renommage des éléments).
+Interaction fonctionnelle avec des props simulées (conversations, projets).
+Boutons Logout et ajout (conversation/projet).
+SCSS responsive (desktop/tablette/mobile).
+Tests automatisés validés.
+✅ Header terminé :
+
+Ajout du menu burger de navigation.
+Interaction fonctionnelle : ouverture/fermeture de la Sidebar avec l'état React.
+✅ MainLayout complet :
+
+Structure terminée et intégration fonctionnelle des composants.
+Gestion des props/états dynamiques.
+Responsive design fonctionnel (desktop/tablette/mobile).
+✅ Refactorisation complète :
+
+Bouton 🎉
+Input 🎉
+Card 🎉
+Modal 🎉
+Navigation 🎉
+SCSS :
+
+Centralisation des styles SCSS.
+Gestion des interactions (hover, focus, transitions).
+Fluidité optimisée via animations.
+TypeScript :
+
+Typage robuste → propriétés centralisées (NavigationItem, NavigationProps).
+Accessibilité renforcée via attributs ARIA.
+✅ Tests :
+
+Contrôle des états, clics et interactions fonctionnelles (Jest).
+❗ Priorité immédiate : Finaliser les pages Login/Register.
+📅 SEMAINE 2 : AUTHENTIFICATION & VALIDATIONS
+Jour 1-2 : Système d'authentification
+✅ Pages Login/Register :
+☑️ Création des composants LoginForm & RegisterForm.
+✅ Validation dynamique basée sur les saisies utilisateur :
+- Email : Format vérifié (regex).
+- Mot de passe : Longueur minimale + confirmation correspondant 💪.
+✅ Ajout d'un helper universel : nullToUndefined pour résoudre > TypeScript.
+✅ Gestion claire des erreurs avec des state réactifs.
+✅ SCSS optimisé pour l'uniformité des messages d'erreur :
+- Apparition fluide (transitions).
+- Contour rouge des champs en erreur.
+🧪 Tests validés : Comportement UI avec cas corrects/erreurs.
+
+🎨 SCSS & DESIGN :
+✅ Couleurs réutilisées depuis les variables SCSS.
+✅ Mixins SCSS mis en place pour garantir responsivité.
+✅ Compatibilité 100% responsive (mobile/tablette/desktop).
+✅ Positionnement des boutons "Email oublié ?" et "Mot de passe oublié ?"
+
+✅ Mise à jour des composants LoginForm et RegisterForm :
+
+🌟 Ajout du titre et du logo au-dessus des formulaires.
+🎨 SCSS revisité pour un logo centré et de taille diminuée.
+🎨 Uniformisation de la taille du titre et ajustement de l'espacement.
+🎨 Centrage complet des formulaires (alignement horizontal et vertical).
+🛠️ Refactorisation des composants existants pour garantir :
+
+Réutilisabilité : Utilisation des styles globaux (SCSS variables/mixins).
+Responsivité sur tous les écrans (mobile/tablette/desktop).
+🎨 Positions et tailles ajustées :
+
+Boutons "Email oublié ?" et "Mot de passe oublié ?" correctement espacés et stylés.
+Logo réduit tout en maintenant la clarté visuelle via clamp().
+
+🏗️ Intégration avancée → EN COURS :
+
+🔄 Validation & tests de l'intégration backend JWT.
+🔄 Mise en place des routes protégées via AuthContext.
+🔄 Gestion des états d'authentification (Context/Redux si nécessaire).
+⚠️ Point d'attention : Concentration sur la sécurisation des tokens (localStorage/session).
+
+Jour 3-4 : Fonctionnalités Chat → À FAIRE
+⏳ Création de l'interface utilisateur Chat.
+⏳ Ajout des fonctionnalités d'envoi/réception de messages.
+⏳ Mise en place d'un formatage Markdown dans le chat ✍️.
+⏳ Possibilité de copier un message (fonctionalité bouton "Copier").
+⏳ Streaming live des réponses (système scalable).
+🔄 Performances en temps réel → à préparer après streaming.
+
+Jour 5 : Settings & Préférences → À FAIRE
+⏳ Page utilisateur de paramètres.
+⏳ Implémenter un thème clair/sombre via SCSS.
+⏳ Préférences persistantes (localStorage).
+⏳ Gestion du compte utilisateur (modification/suppression).
+⭐ Point clé : Interface intuitive, réglages accessibles rapidement.
+
+📅 SEMAINE 3 : PROJETS & OPTIMISATION
+Jour 1-2 : Gestion des Projets → À FAIRE
+⏳ Fonctionnalité CRUD complète pour les projets.
+⏳ Liste dynamique des conversations dans chaque projet.
+⏳ Personnalisation des instructions (préférences par projet).
+⏳ Navigation fluide dans les conversations.
+💡 Conseil : Priorité sur une UX fluide dans la Sidebar.
+
+Jour 3-4 : Optimisation & Performance → À FAIRE
+⏳ Code splitting pour réduire la taille du bundle JS.
+⏳ Lazy loading où nécessaire.
+⏳ Compression et optimisation des assets/images.
+⏳ Système de cache avancé.
+⏳ Ajout d'outils de monitoring (analyses performances et métriques Web Vitals).
+❗ Priorité : Améliorer drastiquement les temps de chargement en production.
+
+Jour 5 : Tests Unitaires → À FAIRE
+⏳ Tester :
+
+Composants refactorisés.
+Hooks custom (auth/chat).
+Services API (login, register, messages).
+Utilitaires (validators, helpers).
+🧪 Objectif : Couverture de 70-80% minimum.
+
+📅 SEMAINE 4 : FINALISATION & DÉPLOIEMENT
+Jour 1-2 : Tests & Debug
+⏳ Tests d'intégration pour vérifier le bon fonctionnement entre composants (avec Redux et API).
+⏳ Tests E2E (End-to-End) avec simulateur d'utilisateur.
+⏳ Debug sur navigateurs variés : Safari, Edge, Chrome, Firefox, etc.
+⏳ Validation finale des performances (Lighthouse, Core Web Vitals).
+⚠️ Point d'attention : Compatibilité robuste sur les navigateurs modernes et legacy.
+
+Jour 3-4 : Documentation & Préparation
+⏳ Documentation technique claire et structurée pour toute l'équipe.
+⏳ Guide utilisateur pour les équipes internes ou les clients finaux.
+⏳ Préparatifs pour le déploiement (Netlify, Vercel ou autre).
+⏳ Build production propre (warnings nettoyés).
+⭐ Point clé : Une documentation précise mais concise.
+
+Jour 5 : Déploiement
+⏳ Configuration finale du serveur (backend et frontend).
+⏳ Déploiement public du frontend sur un environnement de production.
+⏳ Tests finaux sur l'environnement live.
+⏳ Monitoring temps réel des performances et du comportement des utilisateurs.
+🔄 Dernières vérifications avant la présentation ou le feedback final.
+
+📝 NOTES IMPORTANTES
+Daily standup à 9h30 : Synchronisation des priorités avec l'équipe.
+Revue de code quotidienne : Validation de chaque Pull Request.
+Push régulier sur GitHub : Commits fréquents et explicites.
+Documentation continue : À maintenir en parallèle des tâches pour limiter les oublis.
+Communication avec l'équipe backend pour assurer fluidité et uniformité du projet.
+
+⏳ Prochaines étapes :
+
+Validation de l'intégration backend des formulaires.
+Ajout de tests E2E sur la partie "Login/Register".

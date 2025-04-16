@@ -1,0 +1,52 @@
+Comment vérifier que vous avez bien supprimé toutes les références aux métriques
+Voici une méthode systématique pour vérifier que vous avez bien supprimé tout ce qui concerne les métriques de performance :
+
+1. Recherche globale dans le code
+Effectuez une recherche dans tous vos fichiers avec les termes suivants :
+
+metrics
+webvitals
+web-vitals
+performance
+CLS
+FID
+LCP
+FCP
+TTFB
+
+Utilisez la recherche globale de votre IDE (Ctrl+Shift+F dans VS Code/WebStorm) pour scanner tous les fichiers du projet.
+
+2. Vérification des importations
+Recherchez spécifiquement les imports liés aux métriques :
+
+import ... from 'web-vitals'
+
+3. Vérification des dépendances
+Vérifiez dans votre package.json si la bibliothèque web-vitals est toujours présente dans les dépendances :
+
+"dependencies": {
+  "web-vitals": "..."
+}
+
+Si oui, supprimez-la et exécutez npm install ou yarn pour mettre à jour votre package-lock.json ou yarn.lock.
+
+4. Vérification des fichiers spécifiques
+Examinez particulièrement ces fichiers où les métriques sont souvent implémentées :
+
+src/index.js ou src/index.tsx (configuration initiale)
+Fichiers liés à la télémétrie ou analytics
+Composants de dashboard/performance
+Services ou hooks liés au monitoring
+5. Vérification de la console du navigateur
+Après avoir fait ces changements :
+
+Lancez l'application en mode développement
+Ouvrez les outils de développement du navigateur
+Vérifiez qu'il n'y a pas d'erreurs liées aux métriques dans la console
+6. Vérification des imports non utilisés
+Certains IDE comme VS Code peuvent identifier les imports non utilisés. Assurez-vous qu'il ne reste pas d'imports liés aux métriques qui seraient simplement inutilisés mais toujours présents.
+
+7. Recherche dans les commentaires
+Recherchez aussi les termes liés aux métriques dans les commentaires du code, qui pourraient indiquer des fonctionnalités liées aux métriques qui ont été commentées mais pas supprimées.
+
+Si vous ne trouvez aucune référence après ces vérifications, vous pouvez être relativement sûr d'avoir supprimé toutes les parties liées aux métriques de performance de votre application.

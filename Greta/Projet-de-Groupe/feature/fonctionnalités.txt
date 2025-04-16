@@ -1,9 +1,8 @@
-
-Fonctionalités :
-
+Fonctionnalités
 
 Utilisateur :
 login/sign in ;
+
 créer une conversation ;
 créer une project ;
 créer une conversation dans le project;
@@ -13,24 +12,6 @@ consulter une liste de conversation ;
 log out/sign out ;
 delete all chats ;
 delete account ;
-
-
-Messages :
-Envoyer des messages ;
-Recevoir des réponses ;
-Stopper la réponse ;
-Date et heure du message ;
-copier le message de l'IA
-
-
-Paramètres :
-bouton log out ;
- -> settings ;
- -> thème ;
- -> delete account ;
- -> Change password
-
-
 Proje﻿cts :
 créer un project ;
 Modifier un projet ;
@@ -40,8 +21,6 @@ modifier une conversation dan le projet ;
 Supprimer une conversation dans le projet ;
 ajouter des Instructions dans le project ;
 Modifier des instructions dans le projet
-
-
 Conversations :
 Créer les conversation ;
 Envoyer des messages ;
@@ -51,3 +30,28 @@ pouvoir copier le contenu de la réponse ;
 Réponse en temps réel (streaming de la réponse)
 ajouter message pu animation d'attente dans le front (3 points)
 conversation pour tic tac toc
+Messages :
+Envoyer des messages ;
+Recevoir des réponses ;
+Stopper la réponse ;
+Date et heure du message ;
+copier le message de l'IA
+Paramètres :
+bouton log out ;
+
+menu burger (Settings) :
+-> Compte :
+Modal
+    -> Nom (icône modifier)
+    -> Email (icône modifier)
+    -> Password (icône modifier)
+    -> Confirmer nouveau password
+    -> bouton pour sauvegarder les changements
+-> Thème :
+Modal
+    -> Dark
+    -> Light
+    -> Color -avec une palette de couleur
+-> Aide :
+Modal
+    -> cf. maquette figma pour le visuel de la modale

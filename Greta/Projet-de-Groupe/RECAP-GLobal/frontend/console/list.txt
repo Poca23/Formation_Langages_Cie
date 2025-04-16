@@ -1,0 +1,111 @@
+# Analyse des fichiers contenant des appels console
+
+Parfait ! Cette recherche est très utile. D'après votre capture d'écran, voici la liste des fichiers contenant des occurrences de "console" avec le nombre d'instances entre parenthèses :
+
+## Fichiers de service :
+- ~~api.ts (22)~~ ✅ NETTOYÉ
+- ~~service-worker.js (2)~~ ✅ NETTOYÉ
+- ~~conversation.ts (7)~~ ✅ NETTOYÉ
+- ~~project.ts (13)~~ ✅ NETTOYÉ
+
+## Hooks :
+- ~~useChat.ts (13)~~ ✅ NETTOYÉ
+- ~~useConversation.ts (3)~~ ✅ NETTOYÉ
+- ~~useProject.ts (5)~~ ✅ NETTOYÉ
+
+## Contexts :
+- ~~AuthContext.tsx (16)~~ ✅ NETTOYÉ
+- ~~ModalContext.tsx (3)~~ ✅ NETTOYÉ
+- ~~ProjectsContext.tsx (1)~~ ✅ NETTOYÉ
+- ~~ThemeContext.tsx (1)~~ ✅ NETTOYÉ
+
+## Composants :
+- ~~LoginForm.tsx (2)~~ ✅ NETTOYÉ
+- ~~RegisterForm.tsx (2)~~ ✅ NETTOYÉ
+- ~~ChatContainer.tsx (1)~~ ✅ NETTOYÉ
+- ~~ChatMessages.tsx (2)~~ ✅ NETTOYÉ
+- ~~Button.test.tsx (3)~~ ✅ NETTOYÉ
+- ~~Button.tsx (1)~~ ✅ NETTOYÉ
+- ~~ErrorBoundary.tsx (1)~~ ✅ CONSERVÉ INTENTIONNELLEMENT
+- ~~MainLayout.tsx (8)~~ ✅ NETTOYÉ
+- ~~Sidebar.tsx (4)~~ ✅ NETTOYÉ
+- ~~AccountModal.tsx (3)~~ ✅ NETTOYÉ
+- ~~ProjectForm.tsx (1)~~ ✅ NETTOYÉ
+
+## Pages :
+- ~~Auth.tsx (2)~~ ✅ NETTOYÉ
+- ~~Chat.tsx (1)~~ ✅ NETTOYÉ
+- ~~Home.tsx (3)~~ ✅ NETTOYÉ
+- ~~Project.tsx (2)~~ ✅ NETTOYÉ
+- ~~Settings.tsx (3)~~ ✅ NETTOYÉ
+
+## Utilitaires :
+- ~~metrics.ts (10)~~ ✅ NETTOYÉ
+- ~~index.tsx (5)~~ ✅ NETTOYÉ
+- ~~serviceWorkerRegistration.ts (5)~~ ✅ NETTOYÉ
+- ~~environment.ts (4)~~ ✅ NETTOYÉ
+
+## Approche recommandée
+Commençons par les fichiers avec le plus grand nombre d'occurrences, qui représentent probablement le plus grand risque :
+
+1. ~~api.ts (22 occurrences)~~ ✅ NETTOYÉ
+2. ~~AuthContext.tsx (16 occurrences)~~ ✅ NETTOYÉ
+3. ~~useChat.ts (13 occurrences)~~ ✅ NETTOYÉ
+4. ~~project.ts (13 occurrences)~~ ✅ NETTOYÉ
+5. ~~metrics.ts (10 occurrences)~~ ✅ NETTOYÉ
+
+Prochaines étapes
+Continuer avec les fichiers de niveau moyen en termes d'occurrences :
+
+~~MainLayout.tsx (8 occurrences)~~ ✅ NETTOYÉ
+~~conversation.ts (7 occurrences)~~ ✅ NETTOYÉ
+~~useProject.ts (5 occurrences)~~ ✅ NETTOYÉ
+~~index.tsx (5 occurrences)~~ ✅ NETTOYÉ
+~~serviceWorkerRegistration.ts (5 occurrences)~~ ✅ NETTOYÉ
+~~Sidebar.tsx (4 occurrences)~~ ✅ NETTOYÉ
+~~environment.ts (4 occurrences)~~ ✅ NETTOYÉ
+
+Aborder ensuite les fichiers avec 2-3 occurrences :
+
+~~useConversation.ts (3 occurrences)~~ ✅ NETTOYÉ
+~~ModalContext.tsx (3 occurrences)~~ ✅ NETTOYÉ
+~~AccountModal.tsx (3 occurrences)~~ ✅ NETTOYÉ
+~~Settings.tsx (3 occurrences)~~ ✅ NETTOYÉ
+~~Home.tsx (3 occurrences)~~ ✅ NETTOYÉ
+~~Button.test.tsx (3 occurrences)~~ ✅ NETTOYÉ
+~~LoginForm.tsx (2 occurrences)~~ ✅ NETTOYÉ
+~~RegisterForm.tsx (2 occurrences)~~ ✅ NETTOYÉ
+~~ChatMessages.tsx (2 occurrences)~~ ✅ NETTOYÉ
+~~Auth.tsx (2 occurrences)~~ ✅ NETTOYÉ
+~~Project.tsx (2 occurrences)~~ ✅ NETTOYÉ
+~~service-worker.js (2 occurrences)~~ ✅ NETTOYÉ
+
+Terminer avec les fichiers ayant une seule occurrence :
+
+~~ProjectsContext.tsx (1 occurrence)~~ ✅ NETTOYÉ
+~~ThemeContext.tsx (1 occurrence)~~ ✅ NETTOYÉ
+~~ChatContainer.tsx (1 occurrence)~~ ✅ NETTOYÉ
+~~Button.tsx (1 occurrence)~~ ✅ NETTOYÉ
+~~ErrorBoundary.tsx (1 occurrence)~~ ✅ CONSERVÉ INTENTIONNELLEMENT
+~~ProjectForm.tsx (1 occurrence)~~ ✅ NETTOYÉ
+~~Chat.tsx (1 occurrence)~~ ✅ NETTOYÉ
+
+Considérations spéciales :
+
+Pour les fichiers de test comme Button.test.tsx, les console.log peuvent être conservés en développement
+Pour ErrorBoundary.tsx, le console.error est intentionnellement conservé pour le logging des erreurs critiques
+Pour service-worker.js, les logs sont souvent nécessaires pour le debugging
+
+Après le nettoyage :
+
+Exécuter une recherche globale finale pour "console." pour vérifier qu'il ne reste aucun log non intentionnel
+Vérifier que l'application fonctionne correctement sans les logs
+Documenter les logs qui ont été conservés intentionnellement et pourquoi
+
+## Logs intentionnellement conservés:
+
+1. **ErrorBoundary.tsx**: Le `console.error` est conservé car:
+   - Il est utilisé pour journaliser les erreurs critiques qui doivent être visibles même en production
+   - C'est une utilisation légitime et standard dans un composant ErrorBoundary
+   - Ce log est essentiel pour le diagnostic des problèmes en production
+   - Un commentaire explicatif a été ajouté pour clarifier cette décision

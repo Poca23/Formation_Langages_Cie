@@ -1,0 +1,231 @@
+📚 Documentation technique complète du projet ClickTalk
+📋 Table des matières
+Vue d'ensemble du projet
+Architecture technique
+Frontend: Structure et composants
+Backend: API et base de données
+Fonctionnalités principales
+Flux utilisateur
+Design system
+Guide de déploiement
+Maintenance et évolution
+Vue d'ensemble du projet
+ClickTalk est une application de chat intelligent permettant aux utilisateurs de communiquer avec un assistant IA tout en organisant leurs conversations par projets. L'application offre une interface intuitive, réactive et moderne avec un design soigné, supportant à la fois les thèmes clair et sombre.
+
+Objectifs principaux :
+
+Fournir une interface de chat fluide pour interagir avec l'IA
+Permettre l'organisation des conversations par projets thématiques
+Offrir une expérience utilisateur optimale sur tous les appareils
+Assurer la sécurité des données utilisateurs
+Architecture technique
+Stack complète
+🌐 Frontend
+Framework principal : React 18 avec TypeScript
+Styles : SASS avec architecture modulaire
+Routing : React Router v6
+Gestion d'état : Context API
+Tests : Jest & React Testing Library
+🖥️ Backend
+Framework : Spring Boot (Java)
+Base de données : MySQL
+Authentification : Spring Security & JWT
+API : REST avec endpoints standardisés
+🛠️ Outils de développement
+Versioning : Git & GitHub
+Test API : Postman & Swagger
+Linting : ESLint & Prettier
+Build : Maven (backend), npm/yarn (frontend)
+🎨 Design
+Maquettes : Figma (lien maquettes)
+Collaboration : Miro (tableau de conception)
+Responsive : Mobile-first avec breakpoints stratégiques
+Design System : Jeu de couleurs, typographie et composants standardisés
+🚀 Déploiement
+Frontend : Vercel
+Backend : AWS/Heroku/Docker
+CI/CD : GitHub Actions
+Monitoring : Sentry/Datadog
+Schéma d'architecture
+┌─────────────┐       ┌─────────────┐       ┌─────────────┐
+│             │       │             │       │             │
+│  Frontend   │◄─────►│   Backend   │◄─────►│  Database   │
+│  (React)    │  API  │(Spring Boot)│  SQL  │   (MySQL)   │
+│             │       │             │       │             │
+└─────────────┘       └─────────────┘       └─────────────┘
+                             │
+                             ▼
+                      ┌─────────────┐
+                      │             │
+                      │   AI Model  │
+                      │   Service   │
+                      │             │
+                      └─────────────┘
+
+Frontend: Structure et composants
+Organisation des dossiers
+src/
+├── assets/          # Images, icônes, fonts
+├── components/      # Composants réutilisables
+│   ├── common/      # Éléments UI basiques (Button, Input, etc.)
+│   ├── chat/        # Composants spécifiques au chat
+│   ├── layout/      # Structure de page (Header, Sidebar, etc.)
+│   └── projects/    # Gestion des projets
+├── contexts/        # Context API pour état global
+├── hooks/           # Custom hooks
+├── pages/           # Composants de page
+├── services/        # Services API, authentification
+├── styles/          # Fichiers SCSS globaux
+├── types/           # Types TypeScript
+└── utils/           # Fonctions utilitaires
+
+Composants principaux
+Layouts
+MainLayout : Structure principale avec sidebar et zone de contenu
+Sidebar : Navigation et liste des projets/conversations
+Header : Barre supérieure avec titre et menu utilisateur
+Authentification
+LoginForm / RegisterForm : Formulaires d'authentification
+AuthContext : Gestion globale de l'authentification
+ProtectedRoute : Garde d'accès aux routes privées
+Chat
+ChatInterface : Interface complète de conversation
+MessageList : Affichage des messages avec virtualisation
+MessageInput : Zone de saisie avec fonctionnalités avancées
+MessageBubble : Affichage d'un message avec support Markdown
+Projets
+ProjectList : Liste des projets de l'utilisateur
+ProjectCard : Aperçu d'un projet
+ProjectForm : Création/édition d'un projet
+ProjectContext : Gestion d'état des projets
+Préférences utilisateur
+SettingsPage : Interface de gestion des préférences
+ThemeToggle : Basculement thème clair/sombre
+AccountModal : Gestion du profil utilisateur
+Backend: API et base de données
+Structure de la base de données
+Tables principales
+Users : Informations des utilisateurs
+Projects : Projets créés par les utilisateurs
+Conversations : Conversations liées aux projets
+Messages : Messages échangés dans les conversations
+API Endpoints
+Authentification
+POST /api/auth/register : Inscription
+POST /api/auth/login : Connexion
+POST /api/auth/refresh : Rafraîchissement du token
+DELETE /api/auth/revoke : Déconnexion
+Utilisateurs
+GET /api/users/me : Profil de l'utilisateur connecté
+PUT /api/users/me : Mise à jour du profil
+DELETE /api/users/me : Suppression du compte
+Projets
+GET /api/projects : Liste des projets
+POST /api/projects : Création d'un projet
+GET /api/projects/{id} : Détails d'un projet
+PUT /api/projects/{id} : Mise à jour d'un projet
+DELETE /api/projects/{id} : Suppression d'un projet
+Conversations
+GET /api/conversations : Liste des conversations
+POST /api/conversations : Création d'une conversation
+GET /api/conversations/{id} : Détails d'une conversation
+DELETE /api/conversations/{id} : Suppression d'une conversation
+Messages
+GET /api/conversations/{id}/messages : Messages d'une conversation
+POST /api/conversations/{id}/messages : Envoi d'un message
+DELETE /api/messages/{id} : Suppression d'un message
+Fonctionnalités principales
+Authentification et gestion des comptes
+Inscription avec validation email
+Connexion sécurisée avec JWT
+Modification des informations du profil
+Suppression de compte
+Gestion des préférences utilisateur
+Chat intelligent
+Conversations en temps réel avec l'IA
+Streaming des réponses
+Support du format Markdown dans les messages
+Indicateur "bot is typing"
+Formatage automatique du code
+Copie de messages
+Gestion des projets
+Création de projets thématiques
+Instructions personnalisées par projet
+Organisation des conversations
+CRUD complet (Création, Lecture, Mise à jour, Suppression)
+Interface utilisateur
+Design responsive (mobile, tablette, desktop)
+Thème clair/sombre
+Mode plein écran pour le chat
+Navigation intuitive
+Animations et transitions fluides
+Flux utilisateur
+Parcours d'inscription/connexion
+L'utilisateur arrive sur la page d'accueil
+Il s'inscrit ou se connecte via le formulaire
+Après authentification, il est redirigé vers l'interface principale
+Création d'un projet
+L'utilisateur clique sur "Nouveau projet" dans la sidebar
+Il remplit le formulaire avec titre et instructions personnalisées
+Le projet est créé et apparaît dans la liste des projets
+Conversation avec l'IA
+L'utilisateur sélectionne une conversation existante ou en crée une nouvelle
+Il saisit un message dans l'input et l'envoie
+L'IA répond avec un streaming de texte en direct
+La conversation se poursuit et est sauvegardée automatiquement
+Design system
+Typographie
+Titres : Inter, bold (700)
+Corps de texte : Inter, regular (400)
+Accents : Inter, medium (500)
+Palette de couleurs
+Thème clair
+Primaire : #4F46E5
+Secondaire : #9C9CFF
+Background : #FFFFFF
+Surface : #F3F4F6
+Texte : #111827
+Thème sombre
+Primaire : #6366F1
+Secondaire : #818CF8
+Background : #1F2937
+Surface : #374151
+Texte : #F9FAFB
+Composants UI réutilisables
+Boutons : Primaires, secondaires, tertiaires
+Inputs : Text, textarea, select, toggle
+Cards : Pour projets et conversations
+Modals : Confirmations et formulaires
+Avatars : Utilisateur et IA
+Guide de déploiement
+Prérequis
+Node.js 16+
+Java 17+
+MySQL 8+
+Git
+Déploiement Frontend
+Cloner le dépôt
+Installer les dépendances : npm install
+Configurer les variables d'environnement dans un fichier .env
+Build du projet : npm run build
+Déployer les fichiers statiques générés (dossier build/) sur Vercel ou autre service d'hébergement
+Déploiement Backend
+Cloner le dépôt
+Configurer les propriétés de l'application dans application.properties
+Build du projet : mvn clean install
+Déployer le JAR généré sur le serveur (AWS, Heroku, etc.)
+Configurer la base de données et les variables d'environnement
+Maintenance et évolution
+Améliorations prévues
+Multi-langue : Support de plusieurs langues
+Partage de conversations : Export et partage de conversations
+Intégration de fichiers : Upload et analyse de documents
+Mode hors-ligne : Support des fonctionnalités basiques sans connexion
+Monitoring et surveillance
+Utilisation de Sentry pour la capture d'erreurs frontend
+Datadog pour la surveillance des performances backend
+Analytics pour comprendre l'usage des fonctionnalités
+Processus de mise à jour
+Déploiement continu via GitHub Actions
+Tests automatisés avant chaque déploiement
+Versions sémantiques pour suivre les évolutions

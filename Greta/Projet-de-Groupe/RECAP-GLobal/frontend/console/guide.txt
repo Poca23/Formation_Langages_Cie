@@ -1,0 +1,9 @@
+Guide de nettoyage des console.log - Approche fichier par fichier
+Parfait ! Procédons méthodiquement fichier par fichier. Pour chaque fichier :
+
+Je vous demanderai de m'envoyer le contenu du fichier concerné
+J'identifierai tous les console.log et autres appels console
+Je proposerai les modifications (suppression ou commentaires)
+Vous appliquerez les modifications et vérifierez que tout fonctionne
+Nous passerons au fichier suivant
+Commençons par les hooks qui sont souvent les plus critiques

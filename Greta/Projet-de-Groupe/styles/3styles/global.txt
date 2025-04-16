@@ -1,0 +1,70 @@
+@import 'variables';
+@import 'mixins';
+
+// Reset CSS de base
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px; // Remplacer facilement via variables si besoin
+  @supports (scroll-behavior: smooth) {
+    scroll-behavior: smooth; // Ajout de navigation fluide si supporté
+  }
+}
+
+// Body global
+body {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-size: $fs-md; // Texte par défaut
+  color: $color-text-primary; // Couleur principale texte
+  background-color: $background-color; // Fond principal
+  line-height: 1.6;
+  transition: all 0.3s ease-in-out; // Animation globale pour le thème
+}
+
+// Titres généraux (h1 à h6)
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: $color-text-primary;
+}
+
+// Liens généraux
+a {
+  text-decoration: none;
+  color: $primary-color;
+  transition: color 0.2s ease-in-out;
+  &:hover {
+    color: $primary-hover;
+  }
+}
+
+// Boutons par défaut
+button {
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+// Conteneurs réutilisables
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; // Assure que le conteneur occupe toute la hauteur
+}
+
+// Pour le thème sombre
+body.dark-mode {
+  background-color: $color-bg-dark;
+  color: $color-text-light;
+}

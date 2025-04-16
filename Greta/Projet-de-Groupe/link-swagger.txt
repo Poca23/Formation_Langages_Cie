@@ -1,0 +1,148 @@
+http://localhost:8080/swagger-ui/index.html#/
+Servers
+
+#######################
+project-controller
+/project/update
+/project/add
+/project/all
+/project/delete/{id}
+
+auth-controller
+/auth/update-password
+/auth/register
+/auth/login
+/auth/delete
+
+message-controller
+/messages/add
+/messages/conv/{id}
+
+conversation-controller
+/conversation/add
+/conversation/{id}
+/conversation/project/{project-id}
+/conversation/all
+/conversation/delete/{id}
+
+setting-controller
+/setting
+#######################
+
+
+http://localhost:8080 - Generated server url
+
+Authorize
+project-controller
+
+
+PUT
+/project/update
+Update a project
+
+
+
+POST
+/project/add
+Add a new project
+
+
+
+GET
+/project/all
+Get all projects
+
+
+
+DELETE
+/project/delete/{id}
+Delete a project
+
+
+auth-controller
+
+
+PUT
+/auth/update-password
+Update password
+
+
+
+POST
+/auth/register
+Register a new user
+
+
+
+POST
+/auth/login
+Authenticate user
+
+
+
+DELETE
+/auth/delete
+Delete user
+
+
+message-controller
+
+
+POST
+/messages/add
+Add a message
+
+
+
+GET
+/messages/conv/{id}
+Get conversation messages
+
+
+conversation-controller
+
+
+POST
+/conversation/add
+Create a new conversation
+
+
+
+GET
+/conversation/{id}
+Get conversation by ID
+
+
+
+GET
+/conversation/project/{project-id}
+Get conversations by project ID
+
+
+
+GET
+/conversation/all
+Get all conversations
+
+
+
+DELETE
+/conversation/delete/{id}
+Delete a conversation
+
+
+setting-controller
+
+
+GET
+/setting
+
+
+
+Schemas
+ProjectExpand allobject
+UpdatePasswordRequestDTOExpand allobject
+SendMessageRequestDTOExpand allobject
+ConversationExpand allobject
+UserExpand allobject
+SettingExpand allobject

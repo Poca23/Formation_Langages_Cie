@@ -1,0 +1,329 @@
+# Plan d'optimisation ClickTalk - Récapitulatif mis à jour
+
+"CLICKTALK-FRONTEND/
+├── public/
+│ ├── assets/
+│ │ ├── icons
+│ │ └── images/
+│ │ ├── avatar-assistant.png
+│ │ └── logo.png
+│ ├── favicon.ico
+│ ├── index.html
+│ ├── logo192.png
+│ ├── logo512.png
+│ ├── manifest.json
+│ └── robots.txt
+├── src/
+│ ├── components/
+│ │ ├── auth/
+│ │ │ ├── LoginForm/
+│ │ │ │ ├── index.tsx
+│ │ │ │ ├── LoginForm.scss
+│ │ │ │ ├── LoginForm.test.tsx
+│ │ │ │ ├── LoginForm.tsx
+│ │ │ │ └── LoginForm.types.ts
+│ │ │ └── RegisterForm/
+│ │ │ ├── index.tsx
+│ │ │ ├── RegisterForm.scss
+│ │ │ ├── RegisterForm.test.tsx
+│ │ │ ├── RegisterForm.tsx
+│ │ │ └── RegisterForm.types.ts
+│ │ ├── chat/
+│ │ │ ├── ChatContainer/
+│ │ │ │ ├── ChatContainer.scss
+│ │ │ │ ├── ChatContainer.tsx
+│ │ │ │ ├── ChatContainer.types.ts
+│ │ │ │ └── index.tsx
+│ │ │ ├── ChatInput/
+│ │ │ │ ├── ChatInput.scss
+│ │ │ │ ├── ChatInput.tsx
+│ │ │ │ ├── ChatInput.types.ts
+│ │ │ │ └── index.tsx
+│ │ │ ├── ChatMessages/
+│ │ │ │ ├── ChatMessages.scss
+│ │ │ │ ├── ChatMessages.tsx
+│ │ │ │ ├── ChatMessages.types.ts
+│ │ │ │ └── index.tsx
+│ │ │ ├── LoadingIndicator/
+│ │ │ │ ├── index.tsx
+│ │ │ │ ├── LoadingIndicator.scss
+│ │ │ │ ├── LoadingIndicator.tsx
+│ │ │ │ └── LoadingIndicator.types.ts
+│ │ │ ├── MessageBubble/
+│ │ │ │ ├── index.tsx
+│ │ │ │ ├── MessageBubble.scss
+│ │ │ │ ├── MessageBubble.tsx
+│ │ │ │ └── MessageBubble.types.ts
+│ │ │ └── PerformanceMonitor/
+│ │ │ ├── index.tsx
+│ │ │ ├── PerformanceMonitor.scss
+│ │ │ └── PerformanceMonitor.tsx
+│ │ ├── common/
+│ │ │ ├── Button/
+│ │ │ │ ├── Button.scss
+│ │ │ │ ├── Button.test.tsx
+│ │ │ │ ├── Button.tsx
+│ │ │ │ ├── Button.types.ts
+│ │ │ │ └── index.tsx
+│ │ │ ├── Card/
+│ │ │ │ ├── Card.scss
+│ │ │ │ ├── Card.test.tsx
+│ │ │ │ ├── Card.tsx
+│ │ │ │ ├── Card.types.ts
+│ │ │ │ └── index.tsx
+│ │ │ ├── HeaderMenu/
+│ │ │ │ ├── HeaderMenu.scss
+│ │ │ │ └── HeaderMenu.tsx
+│ │ │ ├── Input/
+│ │ │ │ ├── index.tsx
+│ │ │ │ ├── Input.scss
+│ │ │ │ ├── Input.test.tsx
+│ │ │ │ ├── Input.tsx
+│ │ │ │ └── Input.types.ts
+│ │ │ ├── Modal/
+│ │ │ │ ├── index.tsx
+│ │ │ │ ├── Modal.scss
+│ │ │ │ ├── Modal.test.tsx
+│ │ │ │ ├── Modal.tsx
+│ │ │ │ └── Modal.types.ts
+│ │ │ └── Navigation/
+│ │ │ ├── index.ts
+│ │ │ ├── Navigation.scss
+│ │ │ ├── Navigation.test.tsx
+│ │ │ ├── Navigation.tsx
+│ │ │ └── Navigation.types.ts
+│ │ ├── conversation/
+│ │ │ ├── ConversationForm/
+│ │ │ │ ├── ConversationForm.scss
+│ │ │ │ └── ConversationForm.tsx
+│ │ │ └── ConversationList/
+│ │ │ ├── ConversationList.scss
+│ │ │ └── ConversationList.tsx
+│ │ ├── ErrorBoundary/
+│ │ │ └── ErrorBoundary.tsx
+│ │ ├── layouts/
+│ │ │ ├── Header/
+│ │ │ │ ├── Header.scss
+│ │ │ │ ├── Header.test.tsx
+│ │ │ │ ├── Header.tsx
+│ │ │ │ ├── Header.types.ts
+│ │ │ │ └── index.tsx
+│ │ │ ├── MainLayout/
+│ │ │ │ ├── index.tsx
+│ │ │ │ ├── MainLayout.scss
+│ │ │ │ ├── MainLayout.test.tsx
+│ │ │ │ ├── MainLayout.tsx
+│ │ │ │ └── MainLayout.types.ts
+│ │ │ └── Sidebar/
+│ │ │ ├── index.tsx
+│ │ │ ├── Sidebar.scss
+│ │ │ ├── Sidebar.test.tsx
+│ │ │ ├── Sidebar.tsx
+│ │ │ └── Sidebar.types.tsx
+│ │ ├── modals/
+│ │ │ ├── AccountModal/
+│ │ │ │ ├── AccountModal.scss
+│ │ │ │ └── AccountModal.tsx
+│ │ │ ├── HelpModal/
+│ │ │ │ ├── HelpModal.scss
+│ │ │ │ └── HelpModal.tsx
+│ │ │ ├── Modals.scss
+│ │ │ └── ThemeModal/
+│ │ │ ├── ThemeModal.scss
+│ │ │ └── ThemeModal.tsx
+│ │ ├── project/
+│ │ │ ├── ConversationProjectList/
+│ │ │ │ ├── ConversationProjectList.scss
+│ │ │ │ └── ConversationProjectList.tsx
+│ │ │ ├── ProjectForm/
+│ │ │ │ ├── ProjectForm.scss
+│ │ │ │ └── ProjectForm.tsx
+│ │ │ └── ProjectList/
+│ │ │ ├── ProjectList.scss
+│ │ │ └── ProjectList.tsx
+│ │ └── route/
+│ │ └── ProtectedRoute.tsx
+│ ├── config/
+│ │ └── environment.ts
+│ ├── context/
+│ │ ├── AuthContext/
+│ │ │ ├── AuthContext.tsx
+│ │ │ └── index.ts
+│ │ ├── ModalContext/
+│ │ │ └── ModalContext.tsx
+│ │ └── ThemeContext/
+│ │ └── ThemeContext.tsx
+│ ├── hooks/
+│ │ ├── useAuth/
+│ │ │ └── useAuth.ts
+│ │ ├── useChat/
+│ │ │ └── useChat.ts
+│ │ ├── useConversation/
+│ │ │ └── useConversation.ts
+│ │ ├── usePerformanceMetrics/
+│ │ │ └── usePerformanceMetrics.ts
+│ │ └── useProject/
+│ │ └── useProject.ts
+│ ├── pages/
+│ │ ├── Auth/
+│ │ │ ├── Auth.scss
+│ │ │ ├── Auth.test.tsx
+│ │ │ ├── Auth.tsx
+│ │ │ └── index.tsx
+│ │ ├── Chat/
+│ │ │ ├── Chat.scss
+│ │ │ ├── Chat.tsx
+│ │ │ └── index.tsx
+│ │ ├── Home/
+│ │ │ ├── Home.scss
+│ │ │ ├── Home.tsx
+│ │ │ └── index.tsx
+│ │ ├── NotFound/
+│ │ │ ├── index.tsx
+│ │ │ ├── NotFound.scss
+│ │ │ └── NotFound.tsx
+│ │ ├── Project/
+│ │ │ ├── Project.scss
+│ │ │ └── Project.tsx
+│ │ └── Settings/
+│ │ ├── Settings.scss
+│ │ └── Settings.tsx
+│ ├── routes/
+│ │ ├── Routes.config.tsx
+│ │ ├── Routes.test.tsx
+│ │ ├── Routes.tsx
+│ │ └── Routes.types.ts
+│ ├── services/
+│ │ ├── api/
+│ │ │ └── api.ts
+│ │ ├── auth/
+│ │ │ ├── auth.test.ts
+│ │ │ ├── auth.ts
+│ │ │ └── index.ts
+│ │ ├── conversation/
+│ │ │ └── conversation.ts
+│ │ └── project/
+│ │ └── project.ts
+│ ├── styles/
+│ │ ├── global.scss
+│ │ ├── mixins.scss
+│ │ └── variables.scss
+│ ├── types
+│ │ ├── auth.types.ts
+│ │ ├── chat.types.ts
+│ │ ├── common.types.ts
+│ │ ├── conversation.types.ts
+│ │ └── project.types.ts│
+├── utils/
+│ │ ├── formatters/(vide)
+│ │ ├── helpers/
+│ │ │ └── nullToUndefined.ts
+│ │ └── validators/
+│ │ └── validators.ts
+│ ├── App.css
+│ ├── App.test.tsx
+│ ├── App.tsx
+│ ├── index.css
+│ ├── index.tsx
+│ ├── logo.svg
+│ ├── react-icons.d.ts
+│ ├── reportWebVitals.ts
+│ └── setupTests.ts
+├── .env
+├── .gitignore
+├── global.d.ts
+├── package-lock.json
+├── package.json
+├── README.md
+└── tsconfig.json
+"
+
+Fichiers déjà optimisés ✅
+Services API:
+
+✅ src/services/api/api.ts - Optimisé avec cache, meilleure gestion d'erreurs et simulation de streaming améliorée
+Composants de Chat:
+
+✅ src/components/chat/ChatContainer/ChatContainer.tsx - Optimisé avec useCallback et useMemo
+✅ src/components/chat/ChatMessages/ChatMessages.tsx - Implémentation de la virtualisation
+✅ src/components/chat/MessageBubble/MessageBubble.tsx - Optimisé avec React.memo
+✅ src/components/chat/ChatInput/ChatInput.tsx - Optimisé avec mémoïsation et gestion optimale des interactions
+Hooks personnalisés:
+
+✅ src/hooks/useChat/useChat.ts - Optimisé avec useMemo, useCallback et gestion améliorée du rendu
+✅ src/hooks/useConversation/useConversation.ts - Optimisé avec gestion d'état regroupé et requêtes parallèles
+Pages principales:
+
+✅ src/pages/Chat/Chat.tsx - Optimisé avec React.memo
+✅ src/pages/Home/Home.tsx - Optimisé avec useMemo, useCallback et mémoïsation conditionnelle
+Contextes:
+
+✅ src/context/AuthContext/AuthContext.tsx - Optimisé avec useMemo et useCallback
+✅ src/context/ThemeContext/ThemeContext.tsx - Optimisé avec memoization
+✅ src/context/ModalContext/ModalContext.tsx - Optimisé avec gestion d'état unifiée et mémoïsation
+Gestion des erreurs:
+
+✅ src/components/ErrorBoundary/ErrorBoundary.tsx - Amélioré pour capturer plus de détails
+Layout et navigation:
+
+✅ src/components/layouts/Header/Header.tsx - Optimisé avec React.memo, useCallback et correction de compatibilité
+✅ src/components/layouts/MainLayout/MainLayout.tsx - Optimisé
+✅ src/components/layouts/Sidebar/Sidebar.tsx - Optimisé
+Routes:
+
+✅ src/routes/Routes.config.tsx - Optimisé avec React.lazy pour le chargement des pages
+Authentification et Formulaires:
+
+✅ src/components/auth/LoginForm/LoginForm.tsx - Optimisé avec useCallback, useMemo, gestion d'état unifiée et validation améliorée
+✅ src/components/auth/RegisterForm/RegisterForm.tsx - Optimisé avec validation à la volée, mémoïsation des rendus et gestion d'état structurée
+Composants communs:
+
+✅ src/components/common/Button/Button.tsx - Optimisé avec React.memo, useCallback et useMemo, avec correction ARIA
+✅ src/components/common/Input/Input.tsx - Optimisé avec mémoïsation et gestion améliorée d'accessibilité
+✅ src/components/common/Modal/Modal.tsx - Optimisé avec gestion améliorée des transitions et performances
+✅ src/components/common/Card/Card.tsx - Optimisé avec mémoïsation et rendu conditionnel
+✅ src/components/common/Navigation/Navigation.tsx - Optimisé avec useCallback et React.memo
+✅ src/components/conversation/ConversationList/ConversationList.tsx - Optimisé avec React.memo, useMemo et correction des problèmes ARIA
+✅ src/components/conversation/ConversationForm/ConversationForm.tsx - Optimisé avec React.memo, useCallback, useMemo et validation améliorée
+Composants modaux:
+
+✅ src/components/modals/AccountModal/AccountModal.tsx - Optimisé avec mémoïsation des rendus et des fonctions
+✅ src/components/modals/HelpModal/HelpModal.tsx - Optimisé avec mémoïsation et gestion optimisée des interactions
+✅ src/components/modals/ThemeModal/ThemeModal.tsx - Optimisé avec mémoïsation des fonctions et états, et correction des problèmes ARIA
+Fichiers restant à optimiser 🔄
+
+Phase 5: Optimisations supplémentaires 🚀
+Utilitaires et formatters (Priorité basse):
+
+🔄 src/utils/formatters/date.formatter.ts (à créer) - Formatage de dates
+🔄 src/utils/formatters/text.formatter.ts (à créer) - Formatage de texte
+Optimisation du bundle (Priorité moyenne):
+
+🔄 src/index.tsx - Configuration du code splitting et lazy loading global
+🔄 Ajout d'un service worker pour le caching et le fonctionnement hors ligne
+Accessibilité (Priorité moyenne):
+
+🔄 Poursuite de l'audit des composants et amélioration des attributs ARIA
+🔄 Mise en place de tests automatisés d'accessibilité
+Performance et métriques (Priorité basse):
+
+🔄 src/utils/performance/metrics.ts (à créer) - Suivi des performances de l'application
+
+Pour créer les fichiers formateurs de date et texte qui s'intègrent bien avec le projet ClickTalk, j'aurai besoin de comprendre quels types de formatage sont nécessaires dans l'application. D'après la structure et les composants que je vois, voici ce qui serait utile pour chaque fichier:
+
+Pour date.formatter.ts:
+Nous aurons probablement besoin de:
+
+Formater les dates des messages de chat
+Formater les dates de création des conversations/projets
+Afficher des timestamps relatifs (comme "il y a 5 minutes", "hier", etc.)
+Gérer différents formats de date (court, long, numérique, etc.)
+Support des fuseaux horaires
+Pour text.formatter.ts:
+Nous aurons probablement besoin de:
+
+Tronquer des textes longs (pour les aperçus)
+Formater les messages avec une syntaxe Markdown basique
+Mise en évidence des termes de recherche
+Nettoyer des chaînes de texte (enlever les espaces, les caractères spéciaux, etc.)
+Formater les nombres (ex: 1000 → 1K)

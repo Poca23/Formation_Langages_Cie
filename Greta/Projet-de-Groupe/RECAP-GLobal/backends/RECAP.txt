@@ -1,0 +1,99 @@
+Structure du projet backend :
+
+clicktalk/
+├── backend/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/
+│   │   │   │ └── greta
+│   │   │   │       └── clicktalk/
+│   │   │   │           ├── config/
+│   │   │   │           ├── controllers/
+│   │   │   │           ├── DAOs/
+│   │   │   │           ├── DTOs/
+│   │   │   │           ├── entities/
+│   │   │   │           ├── services/
+│   │   │   │           ├── security/
+│   │   │   └── resources/
+│   │   └── test/
+│   └── pom.xml
+│
+├── .env
+├── .envsample
+├── .gitignore
+└── README.md
+
+
+Liste des choses faites du cpoté backend :
+
+Auth System :
+
+- Implement user login/sign-in functionality.
+- Implement user account deletion functionality.
+- Implement password update functionality
+
+
+API Routes :
+
+- Endpoint: POST /auth/login
+- Endpoint: POST /auth/register
+- Endpoint: DELETE /auth/delete-account
+- Endpoint: PUT  auth/update-password
+- Endpoint: GET /conversation/all
+- Endpoint: GET /conversation/{conv_id}
+- Endpoint: GET /conversation/project/{project_id}
+- Endpoint: POST /conversation/create
+- Endpoint: DELETE /conversation/delete/{conv_id}
+- Endpoint: GET /project/all
+- Endpoint: POST /project/add
+- Endpoint: PUT /project/update
+- Endpoint: DELETE /project/delete/{project_id}
+- Endpoint: GET /messages/conv/{conv_id}
+- Endpoint: POST /messages/add
+
+
+DB Setup :
+- Design and implement the database schema for users.
+- Design and implement the database schema for conversations.
+- Design and implement the database schema for projects.
+- Design and implement the database schema for messages.
+- Design and implement the database schema for settings
+
+
+
+TODOLIST :
+
+Week 1: Core Setup & User Authentication
+
+Goal: Build the foundation and implement user authentication.
+Key Routes/Endpoints:
+POST /api/auth/signup (User sign-up)
+POST /api/auth/login (User login)
+POST /api/auth/logout (User logout)
+
+
+Week 2: Conversation Management
+
+Goal: Implement conversation creation, deletion, and listing.
+Key Routes/Endpoints:
+POST /api/conversations/create (Create conversation)
+DELETE /api/conversations/delete (Delete conversation)
+GET /api/conversations/list (List conversations)
+DELETE /api/conversations/delete-all (Delete all conversations)
+
+
+Week 3: Message Management
+
+Goal: Enable sending and fetching messages.
+Key Routes/Endpoints:
+POST /api/messages/send (Send message)
+GET /api/messages/list (Fetch messages)
+
+
+Week 4: Advanced Features & Deployment
+
+Goal: Finalize security, real-time features, and deploy.
+Key Routes/Endpoints:
+DELETE /api/auth/delete-account (Delete account)
+Optional: WebSocket/Socket.IO for real-time messaging

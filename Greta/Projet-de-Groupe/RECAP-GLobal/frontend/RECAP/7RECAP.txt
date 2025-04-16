@@ -1,0 +1,180 @@
+🌟 PLANNING DÉTAILLÉ CLICKTALK
+📋 LÉGENDE
+✅ Terminé
+🏗️ En cours
+⏳ À faire
+❗ Priorité haute
+⭐ Point clé
+💡 Conseil
+⚠️ Point d'attention
+🔄 Nécessite révision
+🎨 Design
+🛠️ Développement
+🧪 Test
+
+🎯 PHASE PRÉLIMINAIRE : CONCEPTION (1 semaine)
+Jour 1-2 : Base de données
+✅ UML
+✅ Création du MCD
+✅ Création du MLD
+✅ Création du MPD
+✅ Création schéma ER
+✅ Validation architecture données
+⭐ Point clé : Bien définir les relations entre tables
+
+Jour 3-5 : Maquettes Figma
+✅ Wireframes principales pages
+✅ Login/Register
+✅ Interface chat
+✅ Settings
+✅ Design System simple
+✅ Couleurs
+✅ Typography
+✅ Composants principaux
+✅ Responsive design
+✅ Validation maquettes
+
+📅 SEMAINE 1 : SETUP & FONDATIONS
+Jour 1-2 : Configuration initiale
+✅ Création du projet React avec TypeScript
+✅ Configuration ESLint et Prettier (plugins installés)
+✅ Setup du système de routing
+✅ Configuration Git/GitHub
+✅ Structure des dossiers initiale
+✅ Installation des dépendances de base (react-router-dom, sass)
+✅ Création des composants de base vides
+💡 Conseil : Bien documenter la configuration pour l'équipe
+
+Jour 3-4 : Design System & Composants Base
+🏗️ Implémentation des styles globaux (structure créée et en cours d’optimisation)
+✅ Création des variables SCSS (thèmes)
+✅ Création des mixins SCSS
+
+🏗️ Composants de base (structure prête mais à finaliser/refactoriser) :
+✅ Boutons
+✅ Inputs
+✅ Cards
+✅ Modals
+✅ Navigation
+
+⭐ Point clé : Maintenir la cohérence visuelle
+
+Jour 5 : Layout & Navigation
+✅ Sidebar responsive :
+Composant Sidebar complété :
+
+✅ Gestion des événements (création, suppression, renommage, déplacement).
+✅ Interaction avec des props simulées (conversations, projets).
+✅ Bouton logout et bouton d'ajout (nouveau projet/nouvelle conversation).
+✅ SCSS responsive (desktop + préparation mobile).
+✅ Tests automatisés Sidebar (props, logique de base).
+✅ Header terminé :
+
+✅ Ajout du menu burger avec (icône unifiée dans le projet).
+✅ Gestion des toggles pour l’ouverture/fermeture de la Sidebar.
+✅ Layout principal (MainLayout) :
+
+✅ Structure complète et intégration des composants.
+✅ Création des fichiers manquants (e.g. MainLayout.types.ts).
+✅ Gestion des props centralisée pour les états dynamiques.
+✅ Responsive design pleinement fonctionnel (desktop/tablette/mobile).
+🏗️ Refactoring des styles basé désormais sur les conventions Sidebar/MainLayout.
+❗ Priorité immédiate : Finaliser le refactoring des styles SCSS des composants déjà construits.
+
+📅 SEMAINE 2 : AUTHENTIFICATION & CHAT
+Jour 1-2 : Système d'authentification
+⏳ Pages Login/Register
+⏳ Formulaires avec validation
+⏳ Intégration JWT
+⏳ Routes protégées
+⏳ Context/Redux pour l'auth
+⚠️ Point d'attention : Sécurité des données et stockage des tokens.
+
+Jour 3-4 : Fonctionnalités Chat
+⏳ Interface de chat
+⏳ Système de messages
+⏳ Formatage Markdown
+⏳ Copie de messages
+⏳ Streaming des réponses au chat
+🔄 Test des performances en temps réel.
+
+Jour 5 : Settings & Préférences
+⏳ Page de paramètres
+⏳ Thème clair/sombre intégré grâce aux variables CSS/SCSS
+⏳ Préférences utilisateur (persistance des réglages via localStorage)
+⏳ Gestion du compte (modification, suppression)
+⭐ Point clé : Gestion des données utilisateur et UX intuitive.
+
+📅 SEMAINE 3 : PROJETS & OPTIMISATION
+Jour 1-2 : Gestion des Projets
+⏳ Fonctionnalité CRUD pour les projets (Create, Read, Update, Delete).
+⏳ Organisation des conversations liées à un projet.
+⏳ Instructions personnalisées par projet.
+⏳ Interface projet claire et centrée sur les conversations.
+💡 Conseil : UX intuitive et visuellement cohérente avec la Sidebar.
+
+Jour 3-4 : Optimisation & Performance
+⏳ Code splitting pour réduire la taille des bundles.
+⏳ Lazy loading des composants secondaires.
+⏳ Optimisation des images (taille, formats, compression).
+⏳ Mise en place d'un système de caching performant.
+⏳ Outils de monitoring pour évaluer les performances.
+❗ Priorité : Temps de chargement optimal.
+
+Jour 5 : Tests Unitaires
+⏳ Tests de tous les composants (révision nécessaire suite au refactor de styles).
+⏳ Tests des hooks utilisés (e.g. useChat, useAuth).
+⏳ Tests approfondis des services API frontend.
+⏳ Tests des fonctions utilitaires (validators, formatters).
+
+🧪 Couverture de test objective : 70-80%.
+
+📅 SEMAINE 4 : FINALISATION & DÉPLOIEMENT
+Jour 1-2 : Tests & Debug
+⏳ Tests d'intégration (vérifier communication entre composants Redux/API).
+⏳ Tests E2E (simulateurs utilisateur sur Cypress ou autre).
+⏳ Debug cross-browser pour Safari, Edge, Chrome (et mobiles).
+⏳ Optimisation finale (validation Lighthouse, Core Web Vitals).
+⚠️ Point d'attention : Compatibilité avec les navigateurs/terminaux récents et anciens.
+
+Jour 3-4 : Documentation & Préparation
+⏳ Documentation technique claire pour les développeurs.
+⏳ Documentation utilisateur pour l'équipe ou les clients.
+⏳ Préparation déploiement (Netlify/Vercel ou serveur custom).
+⏳ Build production avec suppression des warnings éventuels.
+⭐ Point clé : Documentation exhaustive, mais concise.
+
+Jour 5 : Déploiement
+⏳ Configuration finale du serveur (backend/front).
+⏳ Déploiement du frontend sur un environnement de production.
+⏳ Tests finaux sur la production pour détecter bugs ou incohérences.
+⏳ Monitoring en temps réel pour suivre le comportement utilisateur.
+🔄 Vérification finale avant feedback.
+
+📝 NOTES IMPORTANTES
+Daily standup à 9h30 : Synchronisation de l’équipe.
+Code review quotidienne : Validation rigoureuse.
+Push régulier sur GitHub : Petits commits fréquents.
+Documentation mise à jour quotidiennement en parallèle.
+Communication régulière avec l'équipe backend pour alignement.
+Test avant chaque merge requis.
+🎯 OBJECTIFS QUOTIDIENS
+Morning
+
+Review du code de la veille.
+Synchronisation et priorisation.
+Standup meeting.
+Afternoon
+
+Développement/Refactoring.
+Tests unitaires (par équipe ou développeur).
+Révisions croisées via pull requests.
+Evening
+
+Documentation (technique et équipes).
+Push final du code.
+Préparation des tâches du lendemain.
+Résumé du focus actuel :
+🎨 Terminer le refactoring des styles des composants existants.
+🛠️ Progresser sur l’auth (Login/Register).
+⏳ Préparer l’intégration complète de l’interface chat.

@@ -1,0 +1,50 @@
+:root {
+  /* Palette principale */
+  --primary-color: #7c3aed; /* Couleur principale (violet) */
+  --primary-hover: #6d28d9;
+  --secondary-color: #9333ea; /* Couleur secondaire */
+  --background-color: #f3f4f6; /* Fond clair */
+  --background-btn: #e7e7e7; /* Fond des boutons */
+  --sidebar-color: #1f2937; /* Fond de la sidebar */
+  --sidebar-hover: #374151; /* Effet hover pour la sidebar */
+  --text-color: #111827; /* Texte principal */
+  --text-light: #9ca3af; /* Texte secondaire */
+  --border-color: #383838; /* Couleur des bordures */
+  --message-bg-user: #eef2ff; /* Fond du message utilisateur */
+  --message-bg-bot: #ffffff; /* Fond du message chatbot */
+
+  /* Dropdown */
+  --dropdown-bg: #f9f9f9; /* Fond des menus déroulants */
+  --dropdown-hover: #e4e4e7; /* Couleur au survol */
+
+  /* Ombres */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.1); /* Ombres légères */
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+
+  /* Radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+
+  /* Thème responsive (breakpoints) */
+  --mobile: 480px;
+  --tablet: 768px;
+  --desktop: 1024px;
+}
+
+/* Thème sombre */
+body.dark-mode {
+  --background-color: #111827;
+  --sidebar-color: #1f2937;
+  --text-color: #f9fafb;
+  --text-light: #d1d5db;
+  --border-color: #374151;
+
+  --message-bg-user: #374151;
+  --message-bg-bot: #1f2937;
+
+  /* Dropdown */
+  --dropdown-bg: #1f2937;
+  --dropdown-hover: #374151;
+}
+

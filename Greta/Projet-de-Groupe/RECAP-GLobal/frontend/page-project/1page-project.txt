@@ -1,0 +1,31 @@
+A corriger :
+
+Sidebar Home :
+- icône à remplacer par chevron : - vers la droite pour ouvrir la sidebar home;
+				  - vers la gauche pour refermer la sidebar home.
+- texte blanc pour liste conversation et projects;
+- mettre un état actif pour la conversation ou le projet utilisé
+- logout effectif pour le bouton "Déconnexion".				  
+				  
+page Project :
+- enlever le bouton dans la sidebar pour ajouter une nouvelle conversation si pas de conversation existant pour le projet;
+- ajout de conversation en temps réel (fetch dans l'état);
+- finaliser le responsive en mettant le project-header dans la sidebar aussi en adaptant pour du super responsive.
+
+BubbleMessage :
+- icône copier enlever le texte "copier" et le mettre juste en survol comme une sorte de tag;
+- essayer de le mettre dedans/dehors.
+
+HeaderMenu :
+- adaptez aussi le thème avec la couleur;
+
+	AccountModal :
+	- unsername à ajouter au backend;
+	- modification possible des données de l'utilisateur sur la modale directement;
+	- possibilité de sauvegarder avec icône disquette les données de l'utilisateur individuellement en bout de ligne;
+	- pour mot de passe : avoir current mot de passe et confirm mot de passe (relier aux endpoints fais dans le backend);
+	
+	HelpModal :
+	- alignement liste numérotée
+
+project-header
